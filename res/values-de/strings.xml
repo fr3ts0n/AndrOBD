@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_connect">Verbinden</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="app_description">Android OBD Fahrzeugdisagnose für ELM327 Bluetooth Adapter</string>
+    <string name="back_again_to_exit">Nochmal zurück um zu beenden</string>
+    <string name="button_scan">Geräte suchen</string>
+    <string name="chart">Vergleichsgraphik</string>
+    <string name="logo">Logo</string>
+    <string name="none_found">Keine Geräte gefunden</string>
+    <string name="none_paired">Keine Geräte gepaart</string>
+    <string name="not_connected">Es ist kein Gerät verbunden</string>
+    <string name="obd_clearcodes">Fehlercodes löschen</string>
+    <string name="obd_codes">OBD Fehlercodes</string>
+    <string name="obd_data">OBD Daten</string>
+    <string name="obd_none">KEIN Dienst</string>
+    <string name="obd_pendingcodes">OBD Fehlercodes (drohend)</string>
+    <string name="obd_permanentcodes">OBD Fehlercodes (permanent)</string>
+    <string name="obd_services">OBD Dienste</string>
+    <string name="obd_veh_info">OBD Fahrzeug Info</string>
+    <string name="scanning">Suche&#8230;</string>
+    <string name="select_BTdevice">Wähle BT Gerät</string>
+    <string name="send">Senden</string>
+    <string name="send_to">Senden an</string>
+    <string name="service_freezeframes">OBD Freeze Frames</string>
+    <string name="share">teilen</string>
+    <string name="time">Zeit [s]</string>
+    <string name="title">titel</string>
+    <string name="title_connected_to">Verbunden %s</string>
+    <string name="title_connecting">Verbinde&#8230;</string>
+    <string name="title_not_connected">Nicht verbunden</string>
+    <string name="title_other_devices">Andere verfügbare Geräte</string>
+    <string name="title_paired_devices">Gepaarte Geräte</string>
+    <string name="welcome_to">Willkommen zu</string>
+    <string name="obd_clear_info">
+Dies wird die MIL zurücksetzen und löscht alle abgasrelevanten Diagnoseinformationen, inklusive:\n
+- Diagnose-Fehlercodes\n
+- Freeze Frame Daten\n
+- Lambdasonden Testdaten\n
+- Status der System-Tests\n
+- Status der On-board Tests\n
+- Fahrstrecke seit MIL aktiv\n
+- Warmläufe seit MIL aktiv\n
+- Motorlaufzeit seit MIL aktiv\n
+- Zeit seit Löschung\n
+- Fahrstrecke seit Löschung\n
+Andere, herstellerspezifische Einstellungen können dadurch verloren gehen.\n
+Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichmässig läuft.</string>
+    <string name="demo_started">DEMO gestartet</string>
+    <string name="demo_stopped">DEMO beendet</string>
+    <string name="load">Messung laden</string>
+    <string name="save">Messung speichern</string>
+    <string name="saved_data">Gespeicherte Daten</string>
+    <string name="snapshot">Schnappschuss</string>
+	<string name="loaded">geladen</string>
+	<string name="saved">gespeichert</string>
+	<string name="connected_to">Verbunden mit</string>
+	<string name="demo">Demo ...</string>
+	<string name="saving_data">Daten speichern ...</string>
+	<string name="dashboard">Instrumententafel</string>
+	<string name="graph_actions">Graphische Aktionen</string>
+	<string name="hud">Head Up Anzeige</string>
+</resources>

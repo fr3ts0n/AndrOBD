@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  AndrOBD -->
+    <string name="app_name" translatable="false">AndrOBD</string>
+    <string name="app_version" translatable="false">V1.0.0</string>
+    <string name="copyright_c_2014_erwin_scheuch_heilig" translatable="false">&#169; 2014 fr3ts0n</string>
+    <string name="app_description">Android OBD vehicle diagnostics app for ELM327 bluetooth adapter</string>
+    <string name="action_settings">Settings</string>
+    <string name="send">Send</string>
+    <string name="not_connected">You are not connected to a device</string>
+    <string name="title_connecting">Connecting&#8230;</string>
+    <string name="title_connected_to">Connected %s</string>
+    <string name="title_not_connected">Not Connected</string>
+    <string name="title">title</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="logo">Logo</string>
+    <string name="back_again_to_exit">Press back again to close this app</string>
+    	<!-- menu  -->
+    <string name="action_connect">Connect</string>
+    <string name="obd_none">NO service</string>
+    <string name="obd_services">OBD Services</string>
+    <string name="obd_veh_info">OBD Vehicle Info</string>
+    <string name="obd_data">OBD Data</string>
+    <string name="service_freezeframes">OBD Freeze Frames</string>
+    <string name="obd_codes">OBD fault codes</string>
+    <string name="obd_permanentcodes">OBD fault codes (permanent)</string>
+    <string name="obd_pendingcodes">OBD fault codes (pending)</string>
+    <string name="obd_clearcodes">Clear fault codes</string>
+    <string name="obd_clear_info">
+This will reset the MIL and clear all emission-related diagnostic\n
+information, including:\n
+ - Diagnostic trouble codes\n
+ - Freeze frame data\n
+ - Oxygen sensor test data\n
+ - Status of system monitoring tests\n
+ - On-board monitoring tests results\n
+ - Distance travelled while MIL activated\n
+ - Number of warm-ups since DTCs cleared\n
+ - Distance travelled since DTCs cleared\n
+ - Engine run time while MIL activated\n
+ - Time since DTCs cleared\n\n
+Other manufacturer-specific clearing/resetting actions may occur.\n
+The loss of data may cause the vehicle to run poorly for a short \n
+period of time while the ECU recalibrates itself.
+     </string>
+
+        <!--  DeviceListActivity -->
+    <string name="scanning">Scanning&#8230;</string>
+    <string name="select_BTdevice">Select a Device</string>
+    <string name="none_paired">No Devices Paired</string>
+    <string name="none_found">No Devices Found</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="button_scan">Scan for Devices</string>
+
+    <!-- ExportTask -->
+    <string name="send_to">Send to</string>
+    <string name="share">share</string>
+    <string name="time">Time [s]</string>
+    <string name="chart">Chart</string>
+    <string name="demo_stopped">DEMO mode stopped</string>
+    <string name="demo_started">DEMO mode started</string>
+    <string name="snapshot">snapshot</string>
+    <string name="save">save Measurement</string>
+    <string name="load">load Measurement</string>
+    <string name="saved_data">Saved Data</string>
+	<string name="loaded">loaded</string>
+	<string name="saved">saved</string>
+	<string name="connected_to">"Connected to "</string>
+	<string name="demo">Demo...</string>
+	<string name="saving_data">Saving data ...</string>
+	<string name="dashboard">Dashboard</string>
+	<string name="graph_actions">Graph actions</string>
+	<string name="hud">Head Up Display</string>
+
+</resources>

@@ -1,0 +1,7 @@
+bin/*
+gen/*
+.idea/*
+
+*~
+/doc
+/bin

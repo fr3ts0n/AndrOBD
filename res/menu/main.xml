@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/secure_connect_scan"
+        android:icon="@drawable/action_connect"
+        android:showAsAction="always"
+        android:title="@string/action_connect"/>
+
+    <item
+        android:id="@+id/graph_actions"
+        android:icon="@drawable/ic_action_graph"
+        android:menuCategory="container"
+        android:showAsAction="always"
+        android:title="@string/graph_actions">
+        <menu><group
+                android:id="@+id/grp_graph_actions"
+                android:menuCategory="container" >
+                <item
+                    android:id="@+id/chart_selected"
+                    android:icon="@drawable/ic_action_graph"
+                    android:showAsAction="ifRoom"
+                    android:title="@string/chart"/>
+                <item
+                    android:id="@+id/dashboard_selected"
+                    android:icon="@drawable/ic_action_dashboard"
+                    android:showAsAction="ifRoom"
+                    android:title="@string/dashboard"/>
+                <item
+                    android:id="@+id/hud_selected"
+                    android:icon="@drawable/ic_action_dashboard"
+                    android:showAsAction="ifRoom"
+                    android:title="@string/hud"/>
+                </group>
+		</menu>
+    </item>
+
+    <item
+        android:id="@+id/save"
+        android:icon="@drawable/ic_action_save"
+        android:showAsAction="ifRoom"
+        android:title="@string/save"/>
+    <item
+        android:id="@+id/load"
+        android:icon="@drawable/ic_action_load"
+        android:showAsAction="ifRoom"
+        android:title="@string/load"/>
+
+    <item
+        android:id="@+id/obd_services"
+        android:icon="@drawable/ic_action_obd_service"
+        android:menuCategory="container"
+        android:showAsAction="always"
+        android:title="@string/obd_services">
+        <menu>
+            <item
+                android:id="@+id/service_none"
+                android:title="@string/obd_none"
+                android:visible="false"/>
+            <item
+                android:id="@+id/service_vid_data"
+                android:title="@string/obd_veh_info"/>
+            <item
+                android:id="@+id/service_data"
+                android:title="@string/obd_data"/>
+            <item
+                android:id="@+id/service_freezeframes"
+                android:title="@string/service_freezeframes"/>
+            <item
+                android:id="@+id/service_codes"
+                android:title="@string/obd_codes"/>
+            <item
+                android:id="@+id/service_permacodes"
+                android:title="@string/obd_permanentcodes"/>
+            <item
+                android:id="@+id/service_pendingcodes"
+                android:title="@string/obd_pendingcodes"/>
+            <item
+                android:id="@+id/service_clearcodes"
+                android:title="@string/obd_clearcodes"/>
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,76 @@
+Source: PDF-Manual of mOByDiC 2700 AllPro version 1.01 released 21.01.2006
+
+KW1281 conversion formulas:
+---------------------------
+Type Conversion                       Unit
+1    a*0.2*b                          rpm
+2    a*0.002*b                        %
+3    a*0.002*b                        Deg
+4    abs(b-127)*0.01*a                ATDC if Value >127, else "BTDC"
+5    a*(b-100)*0.1                    °C
+6    0.001*a*b                        V
+7    0.01*a*b                         km/h
+8    0.1*a*b                          -
+9    (b-127)*0.02*a                   Deg
+10   b                                if b==0 then "COLD", else "WARM"
+11   0.0001*a*(b-128)+1               -
+12   0.001*a*b                        Ohm
+13   (b-127)*0.001*a                  mm
+14   0.005*a*b                        bar
+15   0.01*a*b                         ms
+16   ???                              bitvalue
+17   chr(a) chr(b)                    -
+18   0.04*a*b                         m      bar
+19   a*b*0.01                         L
+20   a*(b-128)/128                    %
+21   0.001*a*b                        V
+22   0.001*a*b                        ms
+23   b/256*a                          %
+24   0.001*a*b                        A
+25   (b*1.421)+(a/182)                g/s
+26   b-a                              C
+27   abs(b-128)*0.01*a                TDC if Value <128, else "BTDC"
+28   b-a                              -
+29   Kennfeld                         if b<a then "1.Kennfeld" else "2.Kennfeld"
+30   b/12*a                           Deg   k/w
+31   b/2560*a                         °C
+32   if b>128 : b-256 else b          -
+33   100*b/a(ifa=0then100*b)          %
+34   (b-128)*0.01*a                   kW
+35   0.01*a*b                         l/h
+36   b*10+a*2560                      km
+37   ???                              -
+38   (b-128)*0.001*a      Deg         k/w
+39   b/256*a                          mg/h
+40   b*0.1+(25.5*a)-400               A
+41   b+a*255                          Ah
+42   b*0.1+(25.5*a)-400               Kw
+43   b*0.1+(25.5*a)                   V
+44   chr(a):chr(b)                    h
+45   0.1*a*b/100
+46   (a*b-3200)*0.0027                Deg k/w
+47   (b-128)*a                        ms
+48   b+a*255                          -
+49   (b/4)*a                          mg/h
+50   (b-128)/(0.01*a),                if a=0 (b-128)/0.01 mBar
+51   ((b-128)/255)*a                  mg/h
+52   b*0.02*a-a                       Nm
+53   (b-128)*1.4222+0.006*a           g/s
+54   a*256+b                          Count
+55   a*b/200                          s
+56   a*256+b                          WSC
+57   a*256+b+65536                    WSC
+58   1.0225*b,                        if b>128 then 1.0225*(256-b)
+59   (a*256+b)/32768                  -
+60   (a*256+b)*0.01                   sec
+61   (b-128)/a,ifa==0(b-128)          -
+62   0.256*a*b                        S
+63   chr(a) + chr(b) + "?"            -
+64   a+b                              Ohm
+65   0.01*a*(b-127)                   mm
+66   (a*b)/511.12                     V
+67   (640*a)+b*2.5                    Deg
+68   (256*a+b)/7.365                  deg/s
+69   (256*a+b)*0.3254                 Bar
+70   (256*a+b)*0.192                  m/s^2
+
