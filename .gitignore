@@ -2,4 +2,4 @@ bin/*
 gen/*
 /doc
 *~
-
+local.properties
