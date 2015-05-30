@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/copyright_c_2014_erwin_scheuch_heilig"
+        android:text="@string/copyright_fr3ts0n"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 	<ListView

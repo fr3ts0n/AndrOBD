@@ -27,10 +27,12 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
@@ -42,6 +44,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fr3ts0n.ecu.Conversions;
 import com.fr3ts0n.ecu.EcuCodeItem;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.prot.ElmProt;
@@ -68,6 +71,8 @@ public class MainActivity extends ListActivity
 	/** Key names received from the BluetoothChatService Handler */
 	public static final String DEVICE_NAME = "device_name";
 	public static final String TOAST = "toast";
+	public static final String MEASURE_SYSTEM = "measure_system";
+
 	/** Message types sent from the BluetoothChatService Handler */
 	public static final int MESSAGE_STATE_CHANGE = 1;
 	public static final int MESSAGE_READ = 2;
@@ -82,6 +87,8 @@ public class MainActivity extends ListActivity
 	private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
 	private static final int REQUEST_ENABLE_BT = 3;
 	private static final int REQUEST_SELECT_FILE = 4;
+	private static final int REQUEST_SETTINGS = 5;
+	
 	/**
 	 * app exit parameters
 	 */
@@ -244,6 +251,15 @@ public class MainActivity extends ListActivity
 		// set listeners for data structure changes
 		setDataListeners();
 
+		// read preferences ...
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		// ... measurement system
+		setConversionSystem(Integer.valueOf(
+				prefs.getString(MEASURE_SYSTEM,
+					String.valueOf(Conversions.SYSTEM_METRIC))
+			)
+		);
+
 		// check if this is a VIEW action from file manager
 		if (Intent.ACTION_VIEW.equals(getIntent().getAction()))
 		{
@@ -299,6 +315,8 @@ public class MainActivity extends ListActivity
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		MainActivity.menu = menu;
+		// update menu item status for current conversion
+		setConversionSystem(Conversions.cnvSystem);
 		return true;
 	}
 
@@ -351,6 +369,12 @@ public class MainActivity extends ListActivity
 				startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
 				return true;
 
+			case R.id.settings:
+				// Launch the DeviceListActivity to see devices and do scan
+				Intent settingsIntent = new Intent(this, SettingsActivity.class);
+				startActivityForResult(settingsIntent, REQUEST_SETTINGS);
+				return true;
+				
 			case R.id.chart_selected:
 				/* if we are in OBD data mode:
 				 * -> Short click on an item starts the readout activity
@@ -434,8 +458,23 @@ public class MainActivity extends ListActivity
 				return true;
 
 			default:
-				return super.onOptionsItemSelected(item);
+				break;
 		}
+
+		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * set mesaurement conversion system to metric/imperial
+	 * @param cnvId ID for metric/imperial conversion
+	 */
+	void setConversionSystem( int cnvId )
+	{
+		Log.i(TAG, "Conversion: " + getResources().getStringArray(R.array.measure_options)[cnvId]);
+		// set coversion system
+		Conversions.cnvSystem =  cnvId;
+		// invalidate current measurements
+		setObdService(ObdProt.OBD_SVC_NONE, null);
 	}
 
 	/**
@@ -517,6 +556,19 @@ public class MainActivity extends ListActivity
 					setObdService(mCommService.elm.getService(), getString(R.string.saved_data));
 				}
 				break;
+				
+			case REQUEST_SETTINGS:
+			{
+				// read preferences ...
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+				// ... measurement system
+				setConversionSystem(
+					Integer.valueOf(prefs.getString(MEASURE_SYSTEM,
+							String.valueOf(Conversions.SYSTEM_METRIC))
+					)
+				);
+			}
+			break;
 		}
 	}
 
@@ -579,8 +631,6 @@ public class MainActivity extends ListActivity
 			// ... turn it OFF again
 			mBluetoothAdapter.disable();
 		}
-		// TODO: save current adjustments
-
 
 		super.onDestroy();
 	}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:icon="@drawable/ic_action_settings"
+    android:title="@string/settings" >
+
+    <ListPreference
+        android:defaultValue="0"
+        android:dialogTitle="@string/measure_system"
+        android:entries="@array/measure_options"
+        android:entryValues="@array/measure_option_values"
+        android:key="measure_system"
+        android:summary="@string/measure_system_description"
+        android:title="@string/measure_system" />
+
+</PreferenceScreen>

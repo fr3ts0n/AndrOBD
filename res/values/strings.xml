@@ -3,10 +3,9 @@
 
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
-    <string name="app_version" translatable="false">V1.0.0</string>
-    <string name="copyright_c_2014_erwin_scheuch_heilig" translatable="false">&#169; 2014 fr3ts0n</string>
+    <string name="app_version" translatable="false">V1.1.0</string>
+    <string name="copyright_fr3ts0n" translatable="false">&#169; 2015 fr3ts0n</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 bluetooth adapter</string>
-    <string name="action_settings">Settings</string>
     <string name="send">Send</string>
     <string name="not_connected">You are not connected to a device</string>
     <string name="title_connecting">Connecting&#8230;</string>
@@ -62,8 +61,8 @@ period of time while the ECU recalibrates itself.
     <string name="demo_stopped">DEMO mode stopped</string>
     <string name="demo_started">DEMO mode started</string>
     <string name="snapshot">snapshot</string>
-    <string name="save">save Measurement</string>
-    <string name="load">load Measurement</string>
+    <string name="save">Save measurement</string>
+    <string name="load">Load measurement</string>
     <string name="saved_data">Saved Data</string>
 	<string name="loaded">loaded</string>
 	<string name="saved">saved</string>
@@ -73,5 +72,18 @@ period of time while the ECU recalibrates itself.
 	<string name="dashboard">Dashboard</string>
 	<string name="graph_actions">Graph actions</string>
 	<string name="hud">Head Up Display</string>
+    <string name="settings">Settings</string>
+    <string name="measure_system_description">Measurement units sytem (metric / imperial)</string>
+	<string name="metric">metric</string>
+	<string name="measure_system">Units</string>
+	<string name="imperial">imperial</string>
+	<string-array name="measure_options">
+		<item>@string/metric</item>
+		<item>@string/imperial</item>
+	</string-array>
+	<string-array name="measure_option_values">
+		<item>0</item>
+		<item>1</item>
+	</string-array>
 
 </resources>

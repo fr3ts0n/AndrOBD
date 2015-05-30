@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_connect">Verbinden</string>
-    <string name="action_settings">Einstellungen</string>
     <string name="app_description">Android OBD Fahrzeugdisagnose für ELM327 Bluetooth Adapter</string>
     <string name="back_again_to_exit">Nochmal zurück um zu beenden</string>
     <string name="button_scan">Geräte suchen</string>
@@ -60,4 +59,9 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
 	<string name="dashboard">Instrumententafel</string>
 	<string name="graph_actions">Graphische Aktionen</string>
 	<string name="hud">Head Up Anzeige</string>
+	<string name="metric">metrisch</string>
+	<string name="measure_system">Masseinheiten</string>
+	<string name="imperial">imperial</string>
+    <string name="settings">Einstellungen</string>
+    <string name="measure_system_description">Masseinheiten (metrisch/imperial)</string>
 </resources>

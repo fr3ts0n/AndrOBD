@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fr3ts0n.ecu.gui.androbd"
-    android:versionCode="1"
+    android:versionCode="10100"
     android:versionName="@string/app_version" >
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="22" />
 
     <!-- start/stop bluetooth adapter -->
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -52,14 +52,19 @@
             />
         <activity
             android:name="ChartActivity"
-		    android:label="OBD chart"
+		    android:label="@string/chart"
             android:configChanges="touchscreen|orientation|screenSize"
             />
         <activity
             android:name="DashBoardActivity"
-		    android:label="DashBoard"
+		    android:label="@string/dashboard"
             android:configChanges="touchscreen|orientation|screenSize"
             />
-    </application>
+        <activity
+            android:name="SettingsActivity"
+		    android:label="@string/settings"
+            android:configChanges="touchscreen|orientation|screenSize"
+            />
+        </application>
 
 </manifest>

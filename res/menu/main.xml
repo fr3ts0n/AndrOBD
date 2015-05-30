@@ -6,14 +6,14 @@
         android:icon="@drawable/action_connect"
         android:showAsAction="always"
         android:title="@string/action_connect"/>
-
     <item
         android:id="@+id/graph_actions"
         android:icon="@drawable/ic_action_graph"
         android:menuCategory="container"
         android:showAsAction="always"
         android:title="@string/graph_actions">
-        <menu><group
+        <menu>
+            <group
                 android:id="@+id/grp_graph_actions"
                 android:menuCategory="container" >
                 <item
@@ -31,10 +31,9 @@
                     android:icon="@drawable/ic_action_dashboard"
                     android:showAsAction="ifRoom"
                     android:title="@string/hud"/>
-                </group>
-		</menu>
+            </group>
+        </menu>
     </item>
-
     <item
         android:id="@+id/save"
         android:icon="@drawable/ic_action_save"
@@ -45,6 +44,11 @@
         android:icon="@drawable/ic_action_load"
         android:showAsAction="ifRoom"
         android:title="@string/load"/>
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_action_settings"
+        android:showAsAction="ifRoom"
+        android:title="@string/settings" />
 
     <item
         android:id="@+id/obd_services"
