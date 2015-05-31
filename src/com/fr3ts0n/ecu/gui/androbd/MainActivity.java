@@ -260,16 +260,6 @@ public class MainActivity extends ListActivity
 			)
 		);
 
-		// check if this is a VIEW action from file manager
-		if (Intent.ACTION_VIEW.equals(getIntent().getAction()))
-		{
-			demoMode = true;
-			// set OBD data mode
-			setObdService(ObdProt.OBD_SVC_DATA, getString(R.string.saved_data));
-			// handle activity result of a file selection
-			onActivityResult(REQUEST_SELECT_FILE, RESULT_OK, getIntent());
-		}
-
 		// Get local Bluetooth adapter
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		Log.d(TAG, "Adapter: " + mBluetoothAdapter);

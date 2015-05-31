@@ -3,7 +3,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
+ * published by the Free Software Foundationpe; either version 2 of
  * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
@@ -48,6 +48,12 @@ public class StreamHandler implements TelegramWriter, Runnable
 	{
 	}
 
+	/**
+	 * Construct new StreamHandler using specified input and output stream
+	 *
+	 * @param inStream stream for incoming messages
+	 * @param outStream stream for outgoing messages
+	 */
 	public StreamHandler(InputStream inStream, OutputStream outStream)
 	{
 		setStreams(inStream, outStream);
@@ -56,7 +62,8 @@ public class StreamHandler implements TelegramWriter, Runnable
 	/**
 	 * Set the input and output stream
 	 *
-	 * @param inStream
+	 * @param inStream stream for incoming messages
+	 * @param outStream stream for outgoing messages
 	 */
 	public void setStreams(InputStream inStream, OutputStream outStream)
 	{
