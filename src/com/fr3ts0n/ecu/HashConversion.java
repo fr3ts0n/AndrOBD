@@ -35,14 +35,6 @@ public class HashConversion extends NumericConversion
 	/* the HashMap Data */
 	@SuppressWarnings("rawtypes")
 	private HashMap hashData = new HashMap();
-	String units = "-";
-
-	/**
-	 * create a new Instance
-	 */
-	public HashConversion()
-	{
-	}
 
 	/**
 	 * create a new hash converter which is initialized with values from map data
@@ -81,13 +73,13 @@ public class HashConversion extends NumericConversion
 		hashData.clear();
 
 		// loop through all strin entries ...
-		for (int i = 0; i < initData.length; i++)
+		for (String anInitData : initData)
 		{
-			data = initData[i].split(";");
-			for (int j = 0; j < data.length; j++)
+			data = anInitData.split(";");
+			for (String aData : data)
 			{
 				// ... split key and value ...
-				String[] words = data[j].split("=");
+				String[] words = aData.split("=");
 				key = Long.valueOf(words[0]);
 				value = words[1];
 				// ... and enter into hash map

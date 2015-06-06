@@ -130,8 +130,8 @@ public class Pids
 
 		public int compare(Object o1, Object o2)
 		{
-			int pid1 = o1 instanceof Pid ? ((Pid) o1).pid : Integer.valueOf(String.valueOf(o1)).intValue();
-			int pid2 = o2 instanceof Pid ? ((Pid) o2).pid : Integer.valueOf(String.valueOf(o2)).intValue();
+			int pid1 = o1 instanceof Pid ? ((Pid) o1).pid : Integer.valueOf(String.valueOf(o1));
+			int pid2 = o2 instanceof Pid ? ((Pid) o2).pid : Integer.valueOf(String.valueOf(o2));
 			return (pid1 - pid2);
 		}
 	};

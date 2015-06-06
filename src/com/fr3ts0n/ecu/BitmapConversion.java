@@ -33,14 +33,6 @@ public class BitmapConversion extends NumericConversion
 	/* the HashMap Data */
 	@SuppressWarnings("rawtypes")
 	private HashMap hashData = new HashMap();
-	String units = "-";
-
-	/**
-	 * create a new Instance
-	 */
-	public BitmapConversion()
-	{
-	}
 
 	/**
 	 * create a new hash converter which is initialized with values from map data

@@ -48,9 +48,9 @@ public class EcuCodeList extends HashMap<Integer, EcuCodeItem>
 	public EcuCodeList(String[] ressources)
 	{
 		// init from ressources list
-		for (int i = 0; i < ressources.length; i++)
+		for (String ressource : ressources)
 		{
-			initFromRessource(ressources[i]);
+			loadFromResource(ressource);
 		}
 	}
 
@@ -65,7 +65,7 @@ public class EcuCodeList extends HashMap<Integer, EcuCodeItem>
 		// init from ressources list
 		for (int i = 0; i < ressources.length; i++)
 		{
-			initFromRessource(ressources[i], idRadix);
+			loadFromResource(ressources[i], idRadix);
 		}
 	}
 
@@ -79,9 +79,9 @@ public class EcuCodeList extends HashMap<Integer, EcuCodeItem>
 	 *
 	 * @param ressource name of ressource to be loaded
 	 */
-	protected void initFromRessource(String ressource)
+	protected void loadFromResource(String ressource)
 	{
-		initFromRessource(ressource, 10);
+		loadFromResource(ressource, 10);
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class EcuCodeList extends HashMap<Integer, EcuCodeItem>
 	 * @param ressource name of ressource to be loaded
 	 * @param idRadix   radix of numeric code id
 	 */
-	protected void initFromRessource(String ressource, int idRadix)
+	protected void loadFromResource(String ressource, int idRadix)
 	{
 		BufferedReader rdr;
 		String currLine;

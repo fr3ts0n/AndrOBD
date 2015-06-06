@@ -271,17 +271,17 @@ public class ObdProt extends ProtoHeader
         EcuDataPv pidData = new EcuDataPv();
 
         // initialize new PID with current data
-        pidData.put(EcuDataPv.FID_PID,new Integer(currPid.pid));
+        pidData.put(EcuDataPv.FID_PID,Integer.valueOf(currPid.pid));
         pidData.put(EcuDataPv.FID_DESCRIPT,currPid.label);
         pidData.put(EcuDataPv.FID_UNITS,Conversions.getUnits(currPid.cnv));
-        pidData.put(EcuDataPv.FID_VALUE,new Float(0));
-        pidData.put(EcuDataPv.FID_DECIMALS, new Integer(currPid.decimals));
-        pidData.put(EcuDataPv.FID_CNVID, new Integer(currPid.cnv));
-        pidData.put(EcuDataPv.FID_MIN, new Float(Pids.memToPhys(0,currPid.pid)));
-        pidData.put(EcuDataPv.FID_MAX, new Float(Pids.memToPhys(0xFFFFFFFF,currPid.pid)));
+        pidData.put(EcuDataPv.FID_VALUE,Float.valueOf(0));
+        pidData.put(EcuDataPv.FID_DECIMALS, currPid.decimals);
+        pidData.put(EcuDataPv.FID_CNVID, currPid.cnv);
+        pidData.put(EcuDataPv.FID_MIN, Pids.memToPhys(0, currPid.pid));
+        pidData.put(EcuDataPv.FID_MAX, Pids.memToPhys(0xFFFFFFFF, currPid.pid));
 
         // add PID item to list of known PIDs
-        pidMap.put(new Integer(currPid.pid), pidData);
+        pidMap.put(currPid.pid, pidData);
       }
     }
     pvList.putAll(pidMap, PvChangeEvent.PV_ADDED, false);
@@ -328,7 +328,7 @@ public class ObdProt extends ProtoHeader
 
 	/**
 	 * Set fixed PID for faster data update
-	 * @param fixedPids the fixedPid to set
+	 * @param pidCodes the fixedPid to set
 	 */
 	public static synchronized void setFixedPid(int[] pidCodes)
 	{

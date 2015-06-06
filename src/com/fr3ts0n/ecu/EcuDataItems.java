@@ -24,7 +24,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Vector;
 
 /**
@@ -57,21 +56,36 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	static final int FLD_DESCRIPTION = 7;
 
 	// set of all conversions
-	static EcuConversions cnv = new EcuConversions();
+	static EcuConversions cnv;
 	// the data logger
 	static Logger log = Logger.getLogger("data.items");
 
+	/**
+	 * Create data items from default CSV pidResource files
+	 * (prot/res/pids.csv, prot/res/conversions.csv)
+	 */
 	public EcuDataItems()
 	{
-		initFromRessource("res/pids.csv");
+		this("prot/res/pids.csv", "prot/res/conversions.csv");
 	}
 
 	/**
-	 * read data from ressource file into data structure
-	 *
-	 * @param ressource the ressource file (csv)
+	 * Create data items from CSV pidResource file
+	 * @param pidResource resource file for PIDs (csv)
+	 * @param conversionResource resource file for conversions (csv)
 	 */
-	private void initFromRessource(String ressource)
+	public EcuDataItems(String pidResource, String conversionResource)
+	{
+		cnv = new EcuConversions(conversionResource);
+		loadFromResource(pidResource);
+	}
+
+	/**
+	 * read data from resource file into data structure
+	 *
+	 * @param resource the resource file (csv)
+	 */
+	public void loadFromResource(String resource)
 	{
 		BufferedReader rdr;
 		String currLine;
@@ -81,12 +95,12 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		int line = 0;
 		try
 		{
-			rdr = new BufferedReader(new InputStreamReader(getClass().getResource(ressource).openStream()));
+			rdr = new BufferedReader(new InputStreamReader(getClass().getResource(resource).openStream()));
 			// loop through all lines of the file ...
 			while ((currLine = rdr.readLine()) != null)
 			{
 				// ignore first line
-				if (++line == 1)
+				if (++line == 1 || currLine.startsWith("#"))
 				{
 					continue;
 				}
@@ -110,34 +124,10 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 
 				// enter data item for all specified services
 				String[] services = params[FLD_SVC].split(",");
-				for (int i = 0; i < services.length; i++)
+				for (String service : services)
 				{
-					int svcId = Integer.decode(services[i]).intValue();
-					// check if service existes already
-					HashMap<Integer, Vector<EcuDataItem>> currSvc = get(svcId);
-					// if not - create it
-					if (currSvc == null)
-					{
-						currSvc = new HashMap<Integer, Vector<EcuDataItem>>();
-						log.debug("+SVC: " + services[i] + " - " + currSvc);
-					}
-
-					// check if item list exists for current PID
-					Vector<EcuDataItem> currVec = currSvc.get(newItm.pid);
-					// if not -- create it
-					if (currVec == null)
-					{
-						currVec = new Vector<EcuDataItem>();
-						log.debug("+PID: " + newItm.pid + " - " + currVec);
-					}
-					// enter data item into list of items / PID
-					currVec.add(newItm);
-					// and update list in into the pid map for corresponding service
-					currSvc.put(newItm.pid, currVec);
-					// update map of services
-					put(svcId, currSvc);
-					// debug message of new enty
-					log.debug("+" + services[i] + "/" + params[FLD_PID] + " - " + currVec);
+					int svcId = Integer.decode(service);
+					appendItemToService(svcId, newItm);
 				}
 			}
 			rdr.close();
@@ -166,6 +156,40 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	}
 
 	/**
+	 * append new data item to specified service
+	 * @param service service to add item to
+	 * @param newItem EcuDataItem to be added
+	 */
+	public void appendItemToService(int service, EcuDataItem newItem)
+	{
+		// check if service existes already
+		HashMap<Integer, Vector<EcuDataItem>> currSvc = get(service);
+		// if not - create it
+		if (currSvc == null)
+		{
+			currSvc = new HashMap<Integer, Vector<EcuDataItem>>();
+			log.debug("+SVC: " + service + " - " + currSvc);
+		}
+
+		// check if item list exists for current PID
+		Vector<EcuDataItem> currVec = currSvc.get(newItem.pid);
+		// if not -- create it
+		if (currVec == null)
+		{
+			currVec = new Vector<EcuDataItem>();
+			log.debug("+PID: " + newItem.pid + " - " + currVec);
+		}
+		// enter data item into list of items / PID
+		currVec.add(newItem);
+		// and update list in into the pid map for corresponding service
+		currSvc.put(newItem.pid, currVec);
+		// update map of services
+		put(service, currSvc);
+		// debug message of new enty
+		log.debug("+" + service + "/" + String.format("0x%02X",newItem.pid) + " - " + currVec);
+	}
+
+	/**
 	 * Update all EcuDataItems with new data from buffer
 	 *
 	 * @param service service of current data
@@ -177,10 +201,9 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		EcuDataItem currItm;
 		Vector<EcuDataItem> currItms = getPidDataItems(service, pid);
 
-		Iterator<EcuDataItem> it = currItms.iterator();
-		while (it.hasNext())
+		for (EcuDataItem currItm1 : currItms)
 		{
-			currItm = it.next();
+			currItm = currItm1;
 			currItm.updatePvFomBuffer(buffer);
 		}
 	}

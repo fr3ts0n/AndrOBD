@@ -51,30 +51,37 @@ public class EcuDataItem
 	/**
 	 * Creates a new instance of EcuDataItem
 	 *
-	 * @param pid
-	 * @param offset
-	 * @param bytes
-	 * @param cnv
-	 * @param decimals
-	 * @param label
+	 * @param newPid PID of data item
+	 * @param offset offset within PID data (in bytes)
+	 * @param numBytes length of parameter in bytes
+	 * @param conversions data conversion to be used with this item
+	 * @param numDecimals number of decimals to display
+	 * @param labelText descriptive text label
 	 */
-	public EcuDataItem(int pid, int offset, int bytes, Conversion[] cnv, int decimals, String label)
+	public EcuDataItem( int newPid,
+	                    int offset,
+	                    int numBytes,
+	                    Conversion[] conversions,
+	                    int numDecimals,
+	                    String labelText)
 	{
-		this.pid = pid;
-		this.ofs = offset;
-		this.bytes = bytes;
-		this.cnv = cnv;
-		this.decimals = decimals;
-		this.label = label;
-		this.pv = new EcuDataPv();
+		pid = newPid;
+		ofs = offset;
+		bytes = numBytes;
+		cnv = conversions;
+		decimals = numDecimals;
+		label = labelText;
+		pv = new EcuDataPv();
 
 		// initialize new PID with current data
-		this.pv.put(EcuDataPv.FID_PID, new Integer(pid));
-		this.pv.put(EcuDataPv.FID_DESCRIPT, label);
-		this.pv.put(EcuDataPv.FID_UNITS, cnv != null ? cnv[EcuConversions.cnvSystem].getUnits() : "");
-		this.pv.put(EcuDataPv.FID_VALUE, new Float(0));
-		this.pv.put(EcuDataPv.FID_DECIMALS, new Integer(decimals));
-		this.pv.put(EcuDataPv.FID_CNVID, cnv);
+		pv.put(EcuDataPv.FID_PID, Integer.valueOf(pid));
+		pv.put(EcuDataPv.FID_DESCRIPT, label);
+		pv.put(EcuDataPv.FID_UNITS, cnv != null ? cnv[EcuConversions.cnvSystem].getUnits() : "");
+		pv.put(EcuDataPv.FID_VALUE, Float.valueOf(0));
+		pv.put(EcuDataPv.FID_DECIMALS, decimals);
+		pv.put(EcuDataPv.FID_CNVID, cnv);
+		pv.put(EcuDataPv.FID_MIN, cnv[EcuConversions.cnvSystem].memToPhys(0));
+		pv.put(EcuDataPv.FID_MAX, cnv[EcuConversions.cnvSystem].memToPhys(0xFFFFFFFF));
 	}
 
 	@Override
@@ -86,7 +93,7 @@ public class EcuDataItem
 	/**
 	 * get physical value from buffer
 	 *
-	 * @param buffer
+	 * @param buffer communication buffer content
 	 * @return physical value
 	 */
 	Object physFromBuffer(char[] buffer)
@@ -105,7 +112,7 @@ public class EcuDataItem
 	/**
 	 * Update process var from Buffer value
 	 *
-	 * @param buffer
+	 * @param buffer communication buffer content
 	 */
 	public void updatePvFomBuffer(char[] buffer)
 	{

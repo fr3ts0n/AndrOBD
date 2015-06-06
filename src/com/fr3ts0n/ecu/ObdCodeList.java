@@ -42,16 +42,31 @@ public class ObdCodeList
 	public ObdCodeList()
 	{
 		// load code list from text files
-		initFromRessource("prot/res/pcodes");
-		initFromRessource("prot/res/ucodes");
+		loadFromResource("prot/res/pcodes");
+		loadFromResource("prot/res/ucodes");
 	}
 
 	/**
-	 * initialize list from ressource file (tab delimited)
+	 * Construct a new code list and initialize it with ressources files
 	 *
-	 * @param ressource name of ressource to be loaded
+	 * @param ressources Array of ressources file names
 	 */
-	protected void initFromRessource(String ressource)
+	public ObdCodeList(String[] ressources)
+	{
+		// init from ressources list
+		for (String ressource : ressources)
+		{
+			loadFromResource(ressource);
+		}
+	}
+
+	/**
+	 * initialize list from resource file (tab delimited)
+	 *
+	 * @param resource name of resource to be loaded
+	 */
+	@Override
+	protected void loadFromResource(String resource)
 	{
 		BufferedReader rdr;
 		String currLine;
@@ -59,11 +74,11 @@ public class ObdCodeList
 
 		try
 		{
-			rdr = new BufferedReader(new InputStreamReader(getClass().getResource(ressource).openStream()));
+			rdr = new BufferedReader(new InputStreamReader(getClass().getResource(resource).openStream()));
 			// loop through all lines of the file ...
 			while ((currLine = rdr.readLine()) != null)
 			{
-				// repalce all optional quotes from CSV code list
+				// replace all optional quotes from CSV code list
 				currLine = currLine.replaceAll("\"", "");
 				// split CSV line into parameters
 				params = currLine.split("\t");
