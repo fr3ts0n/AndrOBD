@@ -196,7 +196,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	 * @param pid     pid of current data
 	 * @param buffer  data buffer to do conversions on
 	 */
-	void updateDataItems(int service, int pid, char[] buffer)
+	public void updateDataItems(int service, int pid, char[] buffer)
 	{
 		EcuDataItem currItm;
 		Vector<EcuDataItem> currItms = getPidDataItems(service, pid);

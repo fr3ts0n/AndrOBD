@@ -80,14 +80,17 @@ public class EcuDataItem
 		pv.put(EcuDataPv.FID_VALUE, Float.valueOf(0));
 		pv.put(EcuDataPv.FID_DECIMALS, decimals);
 		pv.put(EcuDataPv.FID_CNVID, cnv);
-		pv.put(EcuDataPv.FID_MIN, cnv[EcuConversions.cnvSystem].memToPhys(0));
-		pv.put(EcuDataPv.FID_MAX, cnv[EcuConversions.cnvSystem].memToPhys(0xFFFFFFFF));
+		if(cnv != null)
+		{
+			pv.put(EcuDataPv.FID_MIN, cnv[EcuConversions.cnvSystem].memToPhys(0));
+			pv.put(EcuDataPv.FID_MAX, cnv[EcuConversions.cnvSystem].memToPhys(0xFFFFFFFF));
+		}
 	}
 
 	@Override
 	public String toString()
 	{
-		return (String.format("%02d.%d", pid, ofs));
+		return (String.format("%02d.%d.%s", pid, ofs, label));
 	}
 
 	/**
@@ -102,9 +105,10 @@ public class EcuDataItem
 		if (cnv != null)
 		{
 			result = cnv[EcuConversions.cnvSystem].memToPhys(ProtoHeader.getParamInt(ofs, bytes, buffer).longValue());
-		} else
+		}
+		else
 		{
-			result = ProtoHeader.getParamString(ofs, bytes, buffer);
+			result = ProtoHeader.hexStrToAlphaStr(new String(buffer));
 		}
 		return (result);
 	}

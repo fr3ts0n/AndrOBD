@@ -23,6 +23,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.fr3ts0n.ecu.EcuDataItem;
+import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.ObdVidItem;
 import com.fr3ts0n.pvs.IndexedProcessVar;
 import com.fr3ts0n.pvs.PvList;
@@ -55,9 +57,9 @@ public class VidItemAdapter extends ObdItemAdapter
 		TextView tvDescr = (TextView) v.findViewById(R.id.obd_label);
 		TextView tvValue = (TextView) v.findViewById(R.id.obd_units);
 
-		tvDescr.setText(String.valueOf(currPv.get(ObdVidItem.FID_DESCRIPT)));
+		tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
 
-		String fmtText = String.valueOf(currPv.get(ObdVidItem.FID_VALUE));
+		String fmtText = String.valueOf(currPv.get(EcuDataPv.FID_VALUE));
 		tvValue.setText(fmtText);
 
 		return v;

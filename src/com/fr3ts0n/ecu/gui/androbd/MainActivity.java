@@ -236,7 +236,8 @@ public class MainActivity extends ListActivity
 		logCfg.setUseLogCatAppender(true);
 		logCfg.setUseFileAppender(true);
 		logCfg.setFileName(FileHelper.getPath(this).concat(File.separator).concat("log/AndrOBD.log"));
-		logCfg.setLevel("com.fr3ts0n.prot", Level.DEBUG);
+		logCfg.setLevel("com.fr3ts0n.prot.*", Level.DEBUG);
+		logCfg.setLevel("com.fr3ts0n.ecu.*", Level.DEBUG);
 		logCfg.setRootLevel(Level.INFO);
 		logCfg.configure();
 

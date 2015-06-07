@@ -427,9 +427,7 @@ public class ElmProt
 								case OBD_SVC_VEH_INFO:
 								{
 									// otherwise the next PID will be requested
-									Pid nextPid = getNextSupportedPid();
-									writeTelegram(emptyBuffer, service,
-										Integer.valueOf(nextPid != null ? nextPid.pid : 0));
+									writeTelegram(emptyBuffer, service, getNextSupportedPid());
 									// reduce OBD timeout towards minimum limit
 									if ((elmMsgTimeout - ELM_TIMEOUT_RES) >= ELM_TIMEOUT_LRN_LOW)
 									{
@@ -503,8 +501,8 @@ public class ElmProt
 	public void run()
 	{
 		int value = 0;
-		Pid pid = null;
-		Pid oldPid;
+		Integer pid = null;
+		Integer oldPid;
 		runDemo = true;
 
 		log.info("ELM DEMO thread started");
@@ -557,12 +555,12 @@ public class ElmProt
 							pid = getNextSupportedPid();
 							if (pid != null)
 							{
-								if (pid.pid <= (oldPid != null ? oldPid.pid : 0xFF))
+								if (pid <= oldPid)
 									value++;
 								// format new data message and handle it as new reception
 								handleTelegram(String.format(
 									service == OBD_SVC_DATA ? "4%X%02X%02X" : "4%X%02X00%02X",
-									service, pid.pid, value).toCharArray());
+									service, pid, value).toCharArray());
 							} else
 							{
 								// simulate "ALL PIDs supported"
@@ -582,7 +580,7 @@ public class ElmProt
 							if (pid == null)
 							{
 								// simulate "ALL pids supported"
-								handleTelegram("4900FFFFFFFE".toCharArray());
+								handleTelegram("490040000000".toCharArray());
 							}
 
 							// send VIN "1234567890ABCDEFG"

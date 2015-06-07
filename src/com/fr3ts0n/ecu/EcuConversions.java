@@ -51,8 +51,9 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 	public static final String CNV_TYPE_HASH        = "HASH";
 	public static final String CNV_TYPE_BITMAP      = "BITMAP";
 	public static final String CNV_TYPE_CODELIST    = "CODELIST";
-	public static final String CNV_TYPE_PCODELIST = "PCODELIST";
+	public static final String CNV_TYPE_PCODELIST   = "PCODELIST";
 	public static final String CNV_TYPE_VAG         = "VAG";
+	public static final String CNV_TYPE_ASCII       = "ASCII";
 
 	/** CSV field positions */
 	static final int FLD_NAME = 0;
@@ -74,7 +75,7 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 	public static int cnvSystem = SYSTEM_METRIC;
 
 	// DEFAULT type conversion
-	static final LinearConversion dfltCnv = new LinearConversion(1, 1, 0, 0, "DFLT");
+	public static final LinearConversion dfltCnv = new LinearConversion(1, 1, 0, 0, "-");
 
 	/**
 	 * Create conversion list from default resource file (tab delimited csv)
@@ -165,6 +166,10 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 						Double.parseDouble(params[FLD_FACTOR]) / Integer.parseInt(params[FLD_DIVIDER]),
 						Double.parseDouble(params[FLD_OFFSET]),
 						params[FLD_UNITS]);
+				}
+				else if (params[FLD_TYPE].equals(CNV_TYPE_ASCII))
+				{
+					newCnv = null;
 				}
 				else
 				{
