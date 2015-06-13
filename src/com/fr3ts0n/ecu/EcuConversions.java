@@ -74,9 +74,11 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 	// current conversion system
 	public static int cnvSystem = SYSTEM_METRIC;
 
-	// DEFAULT type conversion
-	public static final LinearConversion dfltCnv = new LinearConversion(1, 1, 0, 0, "-");
+	/** DEFAULT type conversion */
+	public static final LinearConversion dfltCnv = new LinearConversion(1, 1, 0, 0, "");
 
+	/** code list conversion */
+	public static EcuCodeList codeList = null;
 	/**
 	 * Create conversion list from default resource file (tab delimited csv)
 	 * (prot/res/conversion.csv)
@@ -152,12 +154,14 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 				else if (params[FLD_TYPE].equals(CNV_TYPE_CODELIST))
 				{
 					// create BitmapConversion based on CSV parameters
-					newCnv = new EcuCodeList( String.valueOf(params[FLD_PARAMETERS]).split(";") );
+					codeList = new EcuCodeList( String.valueOf(params[FLD_PARAMETERS]).split(";") );
+					newCnv = codeList;
 				}
 				else if (params[FLD_TYPE].equals(CNV_TYPE_PCODELIST))
 				{
 					// create BitmapConversion based on CSV parameters
-					newCnv = new ObdCodeList( String.valueOf(params[FLD_PARAMETERS]).split(";") );
+					codeList = new ObdCodeList( String.valueOf(params[FLD_PARAMETERS]).split(";") );
+					newCnv = codeList;
 				}
 				else if (params[FLD_TYPE].equals(CNV_TYPE_VAG))
 				{

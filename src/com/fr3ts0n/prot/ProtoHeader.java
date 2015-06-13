@@ -259,7 +259,8 @@ public abstract class ProtoHeader
 	{
 		int ofs;
 		int value = 0;
-
+		// if specified length is 0, take all the rest
+		if(len == 0) len = buffer.length - start;
 		for (ofs = start; ofs < start + len; ofs++)
 		{
 			value <<= 8;
@@ -366,7 +367,7 @@ public abstract class ProtoHeader
 		     ofs < len;
 		     ofs += 2)
 		{
-			result.append(Byte.valueOf(msgStr.substring(start + ofs, start + ofs + 2), 16).intValue());
+			result.append(Integer.valueOf(msgStr.substring(start + ofs, start + ofs + 2), 16).intValue());
 		}
 		return (result.toString());
 	}
@@ -837,7 +838,7 @@ public abstract class ProtoHeader
 		     ofs < msgStr.length();
 		     ofs += 2)
 		{
-			result.append(String.format("%c", Byte.parseByte(msgStr.substring(ofs, ofs + 2), 16)));
+			result.append(String.format("%c", Integer.parseInt(msgStr.substring(ofs, ofs + 2), 16)));
 		}
 		return (result.toString());
 	}
@@ -1038,7 +1039,7 @@ public abstract class ProtoHeader
 		char[] result = new char[hexString.length() / 2];
 		for (int i = 0; i < hexString.length(); i += 2)
 		{
-			result[i / 2] = (char) Byte.parseByte(hexString.substring(i, i + 2), 16);
+			result[i / 2] = (char) Integer.parseInt(hexString.substring(i, i + 2), 16);
 		}
 		return (result);
 	}

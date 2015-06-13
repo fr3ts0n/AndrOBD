@@ -26,10 +26,12 @@ import android.os.PowerManager;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import android.widget.GridView;
+import android.widget.ListAdapter;
 
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.prot.ObdProt;
 
+import java.util.HashSet;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -43,7 +45,7 @@ public class DashBoardActivity extends Activity
 	 * For passing the index number of the <code>Sensor</code> in its
 	 * <code>SensorManager</code>
 	 */
-	public static final String PID = "PID";
+	public static final String POSITIONS = "POSITIONS";
 	/**
 	 * For passing the resource id of the <code>dashboard display</code>
 	 */
@@ -60,7 +62,27 @@ public class DashBoardActivity extends Activity
 	private static PowerManager.WakeLock wakeLock;
 	ObdGaugeAdapter adapter;
 
+	/** Map to uniquely collect PID numbers */
+	private HashSet<Integer> pidNumbers = new HashSet<Integer>();
+
 	public static final int MESSAGE_UPDATE_VIEW = 7;
+
+	private static ListAdapter mAdapter = null;
+
+	/** data adapter as source of display data */
+	public static ListAdapter getAdapter()
+	{
+		return mAdapter;
+	}
+
+	/**
+	 * Set list adapter as data source of display
+	 * @param Adapter
+	 */
+	public static void setAdapter(ListAdapter Adapter)
+	{
+		mAdapter = Adapter;
+	}
 
 	/**
 	 * Handle message requests
@@ -116,7 +138,7 @@ public class DashBoardActivity extends Activity
 		wakeLock.acquire();
 
 		/* get PIDs to be shown */
-		int pids[] = getIntent().getIntArrayExtra(PID);
+		int positions[] = getIntent().getIntArrayExtra(POSITIONS);
 
 		// set the desired content screen
 		int resId = getIntent().getIntExtra(RES_ID, R.layout.dashboard);
@@ -126,8 +148,8 @@ public class DashBoardActivity extends Activity
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		int height = metrics.heightPixels;
 		int width = metrics.widthPixels;
-		int numColumns = Math.min(pids.length, Math.max(1, width / MIN_GAUGE_SIZE));
-		int numRows = Math.min(pids.length, Math.max(1, height / MIN_GAUGE_SIZE));
+		int numColumns = Math.min(positions.length, Math.max(1, width / MIN_GAUGE_SIZE));
+		int numRows = Math.min(positions.length, Math.max(1, height / MIN_GAUGE_SIZE));
 
 		int minWidth = width / numColumns;
 		int minHeight = height / numRows;
@@ -140,18 +162,20 @@ public class DashBoardActivity extends Activity
 		adapter = new ObdGaugeAdapter(this, R.layout.obd_gauge, minWidth, minHeight);
 		grid.setAdapter(adapter);
 
-		for (int pid : pids)
+		pidNumbers.clear();
+		for (int position : positions)
 		{
 			// get corresponding Process variable
-			currPv = (EcuDataPv) ObdProt.PidPvs.get(pid);
+			currPv = (EcuDataPv) mAdapter.getItem(position);
 			if (currPv != null)
 			{
+				pidNumbers.add(currPv.getAsInt(EcuDataPv.FID_PID));
 				adapter.add(currPv);
 			}
 		}
 
 		// limit selected PIDs to selection
-		ObdProt.setFixedPid(pids);
+		ChartActivity.setFixedPids(pidNumbers);
 	}
 
 	/**

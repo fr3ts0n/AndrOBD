@@ -28,6 +28,7 @@ import android.widget.TextView;
 
 import com.fr3ts0n.ecu.Conversion;
 import com.fr3ts0n.ecu.Conversions;
+import com.fr3ts0n.ecu.EcuConversions;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.pvs.IndexedProcessVar;
 import com.fr3ts0n.pvs.PvChangeEvent;
@@ -36,6 +37,10 @@ import com.fr3ts0n.pvs.PvList;
 
 import org.achartengine.model.XYSeries;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 /**
@@ -63,17 +68,29 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	/**
 	 * set / update PV list
 	 *
-	 * @param com.fr3ts0n.pvs PV list
+	 * @param pvs process variable list
 	 */
 	@SuppressWarnings("unchecked")
 	public synchronized void setPvList(PvList pvs)
 	{
 		this.pvs = pvs;
 		clear();
-		addAll(pvs.values());
+		Object[] pidPvs = pvs.values().toArray();
+		Arrays.sort(pidPvs, pidSorter);
+		addAll(pidPvs);
 		if (this.getClass() == ObdItemAdapter.class)
 			addAllDataSeries();
 	}
+
+	@SuppressWarnings("rawtypes")
+	static Comparator pidSorter = new Comparator()
+	{
+		public int compare(Object lhs, Object rhs)
+		{
+			return   ((IndexedProcessVar)lhs).getAsInt(EcuDataPv.FID_PID)
+				     - ((IndexedProcessVar)rhs).getAsInt(EcuDataPv.FID_PID);
+		}
+	};
 
 	/*
 	 * (non-Javadoc)
@@ -107,20 +124,18 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		// format value string
 		String fmtText;
 		Object colVal = currPv.get(EcuDataPv.FID_VALUE);
-		Object cnvObj = ((EcuDataPv) currPv).get(EcuDataPv.FID_CNVID);
+		Object cnvObj = currPv.get(EcuDataPv.FID_CNVID);
 		try
 		{
 			if (cnvObj != null && cnvObj instanceof Conversion[])
 			{
 				Conversion[] cnv = (Conversion[]) cnvObj;
-				fmtText = cnv[Conversions.cnvSystem].physToPhysFmtString(
+				fmtText = cnv[EcuConversions.cnvSystem].physToPhysFmtString(
 					(Float) colVal,
-					((EcuDataPv) currPv).getAsInt(EcuDataPv.FID_DECIMALS));
+					String.valueOf(currPv.get(EcuDataPv.FID_FORMAT)));
 			} else
 			{
-				fmtText = Conversions.physToPhysFmtString((Float) colVal,
-					((EcuDataPv) currPv).getAsInt(EcuDataPv.FID_CNVID),
-					((EcuDataPv) currPv).getAsInt(EcuDataPv.FID_DECIMALS));
+				fmtText = String.valueOf(colVal);
 			}
 		} catch (Exception ex)
 		{

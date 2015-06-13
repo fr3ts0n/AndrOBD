@@ -18,6 +18,7 @@
 
 package com.fr3ts0n.ecu;
 
+import com.fr3ts0n.prot.ProtUtils;
 import com.fr3ts0n.prot.ProtoHeader;
 
 import org.apache.log4j.Logger;
@@ -28,18 +29,27 @@ import org.apache.log4j.Logger;
  * @author erwin
  */
 public class EcuDataItem
-	extends Object
 	implements Cloneable
 {
 	public int pid;        // pid
 	public int bytes;        // number of data bytes expected from vehicle
 	public int ofs;        // Offset within message
 	public Conversion[] cnv;        // type of conversion
-	public int decimals;    // number of decimal digits
+	public String fmt;    // Format for text output
 	public String label;        // text label
 	public EcuDataPv pv;        // the process variable for displaying
+
 	// Logger object
 	public static final Logger log = Logger.getLogger("data.ecu");
+
+	public static int[] byteValues =
+	{
+		    0xFFFF, // fake default max value for length 0
+				  0xFF,
+		    0xFFFF,
+		  0xFFFFFF,
+		0xFFFFFFFF
+	};
 
 	/**
 	 * Creates a new instance of EcuDataItem
@@ -55,36 +65,44 @@ public class EcuDataItem
 	 * @param offset offset within PID data (in bytes)
 	 * @param numBytes length of parameter in bytes
 	 * @param conversions data conversion to be used with this item
-	 * @param numDecimals number of decimals to display
+	 * @param format formatting string for text representation
+	 * @param minValue minimum physical value to display/scale
+	 * @param maxValue maximum physical value to display/scale
 	 * @param labelText descriptive text label
 	 */
 	public EcuDataItem( int newPid,
 	                    int offset,
 	                    int numBytes,
 	                    Conversion[] conversions,
-	                    int numDecimals,
+	                    String format,
+	                    Float minValue,
+	                    Float maxValue,
 	                    String labelText)
 	{
 		pid = newPid;
 		ofs = offset;
 		bytes = numBytes;
 		cnv = conversions;
-		decimals = numDecimals;
+		fmt = format;
 		label = labelText;
 		pv = new EcuDataPv();
+		Float minVal = minValue;
+		Float maxVal = maxValue;
 
 		// initialize new PID with current data
 		pv.put(EcuDataPv.FID_PID, Integer.valueOf(pid));
 		pv.put(EcuDataPv.FID_DESCRIPT, label);
 		pv.put(EcuDataPv.FID_UNITS, cnv != null ? cnv[EcuConversions.cnvSystem].getUnits() : "");
 		pv.put(EcuDataPv.FID_VALUE, Float.valueOf(0));
-		pv.put(EcuDataPv.FID_DECIMALS, decimals);
+		pv.put(EcuDataPv.FID_FORMAT, fmt);
 		pv.put(EcuDataPv.FID_CNVID, cnv);
 		if(cnv != null)
 		{
-			pv.put(EcuDataPv.FID_MIN, cnv[EcuConversions.cnvSystem].memToPhys(0));
-			pv.put(EcuDataPv.FID_MAX, cnv[EcuConversions.cnvSystem].memToPhys(0xFFFFFFFF));
+			if(minVal == null) minVal = (Float) cnv[EcuConversions.cnvSystem].memToPhys(0);
+			if(maxVal == null) maxVal = (Float) cnv[EcuConversions.cnvSystem].memToPhys(byteValues[bytes]);
 		}
+		pv.put(EcuDataPv.FID_MIN, minVal);
+		pv.put(EcuDataPv.FID_MAX, maxVal);
 	}
 
 	@Override
@@ -102,13 +120,20 @@ public class EcuDataItem
 	Object physFromBuffer(char[] buffer)
 	{
 		Object result;
-		if (cnv != null)
+		try
 		{
-			result = cnv[EcuConversions.cnvSystem].memToPhys(ProtoHeader.getParamInt(ofs, bytes, buffer).longValue());
-		}
-		else
+			if (cnv != null)
+			{
+				result = cnv[EcuConversions.cnvSystem].memToPhys(ProtoHeader.getParamInt(ofs, bytes, buffer).longValue());
+			}
+			else
+			{
+				result = String.valueOf(buffer);
+			}
+		} catch(Exception ex)
 		{
-			result = ProtoHeader.hexStrToAlphaStr(new String(buffer));
+			result = String.format("%s : %s", ProtUtils.hexDumpBuffer(buffer), ex.getMessage());
+			log.error(result);
 		}
 		return (result);
 	}

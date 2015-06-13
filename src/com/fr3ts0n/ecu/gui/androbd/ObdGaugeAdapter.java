@@ -18,7 +18,6 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -44,7 +43,6 @@ import org.achartengine.renderer.SimpleSeriesRenderer;
  *
  * @author erwin
  */
-@SuppressLint("ViewHolder")
 public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 	PvChangeListener
 {
@@ -123,11 +121,11 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
 		ViewHolder holder;
-		EcuDataPv currPv = (EcuDataPv) getItem(position);
+		EcuDataPv currPv = getItem(position);
 		CategorySeries category = (CategorySeries) currPv.get(FID_GAUGE_SERIES);
 
 		// get data PV
-		// if (convertView == null)
+		if (convertView == null)
 		{
 			convertView = mInflater.inflate(resourceId, parent, false);
 			convertView.getLayoutParams().width = minWidth;
@@ -168,7 +166,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			r.setColor(colors[position % colors.length]);
 			try
 			{
-				r.setChartValuesFormat(Conversions.formats[currPv.getAsInt(EcuDataPv.FID_DECIMALS)]);
+				r.setChartValuesFormat(Conversions.formats[0]);
 			} catch (Exception e)
 			{
 				// ignore
@@ -180,10 +178,10 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			holder.gauge.addView(ChartFactory.getDialChartView(getContext(), category, renderer), 0);
 			convertView.setTag(holder);
 		}
-		// else
-		// {
-		// 	holder = (ViewHolder)convertView.getTag();
-		// }
+		else
+		{
+		 	holder = (ViewHolder)convertView.getTag();
+		}
 
 		holder.tvDescr.setTextColor(colors[position % colors.length]);
 		holder.tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));

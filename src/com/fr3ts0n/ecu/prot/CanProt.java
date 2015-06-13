@@ -88,8 +88,8 @@ public abstract class CanProt extends ProtoHeader
 			pidData.put(EcuDataPv.FID_DESCRIPT, getMsgDescriptors()[i]);
 			pidData.put(EcuDataPv.FID_UNITS, Conversions.getUnits(convId));
 			pidData.put(EcuDataPv.FID_VALUE, Float.valueOf(0));
-			pidData.put(EcuDataPv.FID_DECIMALS, getMsgParameters()[i][FLD_ID_DECIMALS]);
-			pidData.put(EcuDataPv.FID_CNVID, new Integer(getMsgParameters()[i][FLD_ID_CONV]));
+			pidData.put(EcuDataPv.FID_FORMAT, "%."+getMsgParameters()[i][FLD_ID_DECIMALS]+"d");
+			pidData.put(EcuDataPv.FID_CNVID, Integer.valueOf(getMsgParameters()[i][FLD_ID_CONV]));
 
 			CanPvs.put(paramId, pidData);
 		}
@@ -104,7 +104,7 @@ public abstract class CanProt extends ProtoHeader
 	{
 		for (int i = 0; i < getMsgParameters().length; i++)
 		{
-			Integer paramId = new Integer(i);
+			Integer paramId = i;
 			/** enter process variables for each parameter */
 			EcuDataPv pidData = (EcuDataPv) CanPvs.get(paramId);
 			if (pidData != null)

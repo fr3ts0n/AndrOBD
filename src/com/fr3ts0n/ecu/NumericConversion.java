@@ -38,25 +38,10 @@ public abstract class NumericConversion implements Conversion
 	/** physical units of data item */
 	String units = "";
 
-	/**
-	 * convert a numerical physical value into a formatted string
-	 *
-	 * @param physVal  physical value
-	 * @param decimals number of decimals for formatting
-	 * @return formatted String
-	 */
-	public String physToPhysFmtString(Number physVal, int decimals)
+	@Override
+	public String physToPhysFmtString(Number physVal, String format)
 	{
-		String result = "";
-		if (decimals >= 0)
-		{
-			LinearConversion.decimalFormat
-				.applyPattern(LinearConversion.formats[decimals]);
-			result = LinearConversion.decimalFormat.format(physVal);
-		} else
-		{
-			result = String.valueOf(physVal);
-		}
+		String result = String.format(format, physVal);
 		return result;
 	}
 
@@ -83,7 +68,8 @@ public abstract class NumericConversion implements Conversion
 	 */
 	public String memToString(Number value, int numDecimals)
 	{
-		return physToPhysFmtString(memToPhys(value.longValue()), numDecimals);
+		String fmt = "%." + numDecimals + "d";
+		return physToPhysFmtString(memToPhys(value.longValue()), fmt);
 	}
 
 	/**

@@ -189,6 +189,8 @@ public class ElmProt
 	protected int elmMsgTimeout = ELM_TIMEOUT_MAX;
 	/** number of bytes expected from opponent */
 	private int charsExpected = 0;
+	/** remember last command which was sent */
+	private char[] lastCommand;
 
 	/**
 	 * Set message timeout to ELM adapter to wait for valid response from vehicle
@@ -256,6 +258,7 @@ public class ElmProt
 	public void sendTelegram(char[] buffer)
 	{
 		log.debug(this.toString() + " TX:'" + String.valueOf(buffer) + "'");
+		lastCommand = buffer;
 		super.sendTelegram(buffer);
 	}
 
@@ -396,6 +399,7 @@ public class ElmProt
 						break;
 
 					case NODATA:
+						char[] veryLastCmd = lastCommand;
 						setStatus(STAT.NODATA);
 						// increase OBD timeout since we may expect answers too fast
 						if ((elmMsgTimeout + ELM_TIMEOUT_RES) < ELM_TIMEOUT_MAX)
@@ -405,7 +409,8 @@ public class ElmProt
 							// ... and limit MIN timeout for this session
 							ELM_TIMEOUT_LRN_LOW = elmMsgTimeout;
 						}
-						// intentionally NO break;
+						sendTelegram(veryLastCmd);
+						break;
 
 					case OK:
 					default:
@@ -555,12 +560,12 @@ public class ElmProt
 							pid = getNextSupportedPid();
 							if (pid != null)
 							{
-								if (pid <= oldPid)
-									value++;
+								value++;
+								value &= 0xFF;
 								// format new data message and handle it as new reception
 								handleTelegram(String.format(
-									service == OBD_SVC_DATA ? "4%X%02X%02X" : "4%X%02X00%02X",
-									service, pid, value).toCharArray());
+									service == OBD_SVC_DATA ? "4%X%02X%02X%02X" : "4%X%02X00%02X%02X",
+									service, pid, value, value).toCharArray());
 							} else
 							{
 								// simulate "ALL PIDs supported"

@@ -46,7 +46,7 @@ import android.widget.Toast;
 
 import com.fr3ts0n.ecu.Conversions;
 import com.fr3ts0n.ecu.EcuCodeItem;
-import com.fr3ts0n.ecu.EcuDataPv;
+import com.fr3ts0n.ecu.EcuConversions;
 import com.fr3ts0n.ecu.prot.ElmProt;
 import com.fr3ts0n.ecu.prot.ObdProt;
 import com.fr3ts0n.pvs.PvChangeEvent;
@@ -236,8 +236,8 @@ public class MainActivity extends ListActivity
 		logCfg.setUseLogCatAppender(true);
 		logCfg.setUseFileAppender(true);
 		logCfg.setFileName(FileHelper.getPath(this).concat(File.separator).concat("log/AndrOBD.log"));
-		logCfg.setLevel("com.fr3ts0n.prot.*", Level.DEBUG);
-		logCfg.setLevel("com.fr3ts0n.ecu.*", Level.DEBUG);
+		logCfg.setLevel("com.fr3ts0n.prot", Level.DEBUG);
+		logCfg.setLevel("com.fr3ts0n.ecu", Level.DEBUG);
 		logCfg.setRootLevel(Level.INFO);
 		logCfg.configure();
 
@@ -307,39 +307,35 @@ public class MainActivity extends ListActivity
 		getMenuInflater().inflate(R.menu.main, menu);
 		MainActivity.menu = menu;
 		// update menu item status for current conversion
-		setConversionSystem(Conversions.cnvSystem);
+		setConversionSystem(EcuConversions.cnvSystem);
 		return true;
 	}
 
 	/**
-	 * get the PIDs of items which are checked in the list view
+	 * get the Position in model of the selected items
 	 *
-	 * @return Array of selected PIDs
+	 * @return Array of selected item positions
 	 */
-	private int[] getSelectedPids()
+	private int[] getSelectedPositions()
 	{
-		int selectedPids[];
+		int selectedPositions[];
 		// SparseBoolArray - what a garbage data type to return ...
 		final SparseBooleanArray checkedItems = getListView().getCheckedItemPositions();
 		// get number of items
-		int checkedItemsCount = checkedItems.size();
+		int checkedItemsCount = getListView().getCheckedItemCount();
 		// dimension array
-		selectedPids = new int[checkedItemsCount];
+		selectedPositions = new int[checkedItemsCount];
+		int j=0;
 		// loop through findings
-		for (int i = 0; i < checkedItemsCount; ++i)
+		for (int i = 0; i < checkedItems.size(); i++)
 		{
 			// Item position in adapter
-			int position = checkedItems.keyAt(i);
-			// Add team if item is checked == TRUE!
-			if (checkedItems.valueAt(i))
+			if(checkedItems.valueAt(i))
 			{
-				// get measurement ...
-				EcuDataPv pv = (EcuDataPv) getListAdapter().getItem(position);
-				// ... and add it's PID
-				selectedPids[i] = (Integer) pv.get(EcuDataPv.FID_PID);
+				selectedPositions[j++] = checkedItems.keyAt(i);
 			}
 		}
-		return selectedPids;
+		return selectedPositions;
 	}
 
 	/**
@@ -372,11 +368,11 @@ public class MainActivity extends ListActivity
 			     */
 				if (mCommService.elm.getService() == ObdProt.OBD_SVC_DATA)
 				{
-					int selectedPids[] = getSelectedPids();
-					if (selectedPids.length > 0)
+					if (getListView().getCheckedItemCount() > 0)
 					{
+						ChartActivity.setAdapter(getListAdapter());
 						Intent intent = new Intent(this, ChartActivity.class);
-						intent.putExtra(ChartActivity.PID, selectedPids);
+						intent.putExtra(ChartActivity.POSITIONS, getSelectedPositions());
 						startActivity(intent);
 					} else
 					{
@@ -392,11 +388,11 @@ public class MainActivity extends ListActivity
 			     */
 				if (mCommService.elm.getService() == ObdProt.OBD_SVC_DATA)
 				{
-					int selectedPids[] = getSelectedPids();
-					if (selectedPids.length > 0)
+					if (getListView().getCheckedItemCount() > 0)
 					{
+						DashBoardActivity.setAdapter(getListAdapter());
 						Intent intent = new Intent(this, DashBoardActivity.class);
-						intent.putExtra(DashBoardActivity.PID, selectedPids);
+						intent.putExtra(DashBoardActivity.POSITIONS, getSelectedPositions());
 						intent.putExtra(DashBoardActivity.RES_ID, item.getItemId() == R.id.dashboard_selected ? R.layout.dashboard : R.layout.head_up);
 						startActivity(intent);
 					} else
@@ -463,7 +459,7 @@ public class MainActivity extends ListActivity
 	{
 		Log.i(TAG, "Conversion: " + getResources().getStringArray(R.array.measure_options)[cnvId]);
 		// set coversion system
-		Conversions.cnvSystem =  cnvId;
+		EcuConversions.cnvSystem =  cnvId;
 		// invalidate current measurements
 		setObdService(ObdProt.OBD_SVC_NONE, null);
 	}
@@ -655,10 +651,9 @@ public class MainActivity extends ListActivity
 		     * ->Long click on an item starts the single item chart activity
 		     */
 			case ObdProt.OBD_SVC_DATA:
+				DashBoardActivity.setAdapter(getListAdapter());
 				intent = new Intent(this, DashBoardActivity.class);
-				EcuDataPv currPid = (EcuDataPv) getListAdapter().getItem(position);
-				intent.putExtra(ChartActivity.PID,
-					new int[]{Integer.valueOf(String.valueOf(currPid.get(EcuDataPv.FID_PID)))});
+				intent.putExtra(DashBoardActivity.POSITIONS, new int[]{ position });
 				startActivity(intent);
 				break;
 

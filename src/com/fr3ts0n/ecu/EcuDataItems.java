@@ -51,9 +51,11 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	static final int FLD_OFS = 2;
 	static final int FLD_LEN = 3;
 	static final int FLD_FORMULA = 4;
-	static final int FLD_DIGITS = 5;
-	static final int FLD_LABEL = 6;
-	static final int FLD_DESCRIPTION = 7;
+	static final int FLD_FORMAT = 5;
+	static final int FLD_MIN = 6;
+	static final int FLD_MAX = 7;
+	static final int FLD_LABEL = 8;
+	static final int FLD_DESCRIPTION = 9;
 
 	// set of all conversions
 	static EcuConversions cnv;
@@ -114,12 +116,22 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 				{
 					log.warn("Conversion not found: " + params[FLD_FORMULA] + " " + currLine);
 				}
+				// try to use MIN/MAX values from CSV
+				Float minVal = null;
+				Float maxVal = null;
+				try {	minVal = Float.parseFloat(params[FLD_MIN]);	}
+				catch(NumberFormatException ex) {	/* ignore */ }
+				try {	maxVal = Float.parseFloat(params[FLD_MAX]);	}
+				catch(NumberFormatException e) { /* ignore */	}
+
 				// create linear conversion
 				newItm = new EcuDataItem(Integer.decode(params[FLD_PID]).intValue(),
 					Integer.parseInt(params[FLD_OFS]),
 					Integer.parseInt(params[FLD_LEN]),
 					currCnvSet,
-					Integer.parseInt(params[FLD_DIGITS]),
+					params[FLD_FORMAT],
+					minVal,
+					maxVal,
 					params[FLD_LABEL]);
 
 				// enter data item for all specified services

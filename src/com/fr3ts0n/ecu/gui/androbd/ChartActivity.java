@@ -27,6 +27,7 @@ import android.os.PowerManager.WakeLock;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.ListAdapter;
 
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.prot.ObdProt;
@@ -39,6 +40,11 @@ import org.achartengine.renderer.BasicStroke;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -60,7 +66,10 @@ public class ChartActivity extends Activity
 	 * For passing the index number of the <code>Sensor</code> in its
 	 * <code>SensorManager</code>
 	 */
-	public static final String PID = "PID";
+	public static final String POSITIONS = "POSITIONS";
+
+	/** Map to uniquely collect PID numbers */
+	private HashSet<Integer> pidNumbers = new HashSet<Integer>();
 
 	/**
 	 * List of colors to be used for series
@@ -107,6 +116,19 @@ public class ChartActivity extends Activity
 	 */
 	private static WakeLock wakeLock;
 
+	private static ListAdapter mAdapter = null;
+
+	/** data adapter as source of display data */
+	public static ListAdapter getAdapter()
+	{
+		return mAdapter;
+	}
+
+	public static void setAdapter(ListAdapter mAdapter)
+	{
+		ChartActivity.mAdapter = mAdapter;
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -130,11 +152,11 @@ public class ChartActivity extends Activity
 		setTitle("OBD data graph");
 
 		/* get PIDs to be shown */
-		int pids[] = getIntent().getIntArrayExtra(PID);
+		int positions[] = getIntent().getIntArrayExtra(POSITIONS);
 
 		// set up overall chart properties
 		sensorData = new XYMultipleSeriesDataset();
-		renderer = new XYMultipleSeriesRenderer(pids.length);
+		renderer = new XYMultipleSeriesRenderer(positions.length);
 		chartView = ChartFactory.getTimeChartView(this, sensorData, renderer, "H:mm:ss");
 		// set up global renderer
 		renderer.setXTitle(getString(R.string.time));
@@ -145,14 +167,22 @@ public class ChartActivity extends Activity
 		renderer.setFitLegend(true);
 		renderer.setClickEnabled(false);
 		// set up chart data
-		setUpChartData(pids);
+		setUpChartData(positions);
 		// make chart visible
 		setContentView(chartView);
 		// limit selected PIDs to selection
-		ObdProt.setFixedPid(pids);
+		setFixedPids(pidNumbers);
 	}
 
-
+	public static void setFixedPids(HashSet<Integer> pidNumbers)
+	{
+		int[] pids = new int[pidNumbers.size()];
+		int i=0;
+		for(Integer pidNum : pidNumbers) pids[i++] = pidNum;
+		Arrays.sort(pids);
+		// set protocol fixed PIDs
+		ObdProt.setFixedPid(pids);
+	}
 	/**
 	 * Handle menu selections
 	 *
@@ -233,20 +263,26 @@ public class ChartActivity extends Activity
 	/**
 	 * Set up all the charting data series
 	 *
-	 * @param pids PIDs to be used for chart data
+	 * @param positions Positions of PIDs withn adapter
 	 */
-	private void setUpChartData(int[] pids)
+	private void setUpChartData(int[] positions)
 	{
 		long startTime = System.currentTimeMillis();
 		int i = 0;
 		EcuDataPv currPv;
 		XYSeries currSeries;
+
+		pidNumbers.clear();
+
 		// loop through all PIDs
-		for (int pid : pids)
+		for (int position : positions)
 		{
 			// get corresponding Process variable
-			currPv = (EcuDataPv) ObdProt.PidPvs.get(pid);
+			currPv = (EcuDataPv) mAdapter.getItem(position);
 			if (currPv == null) continue;
+			// add PID to unique list of PIDs
+			pidNumbers.add(currPv.getAsInt(EcuDataPv.FID_PID));
+
 			// get contained data series
 			currSeries = (XYSeries) currPv.get(ObdItemAdapter.FID_DATA_SERIES);
 			if (currSeries == null) continue;

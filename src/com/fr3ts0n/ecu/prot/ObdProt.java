@@ -261,6 +261,9 @@ public class ObdProt extends ProtoHeader
    */
   public void preparePidPvs(PvList pvList)
   {
+    // reset fixed PIDs
+    resetFixedPid();
+
     PvList newList = new PvList();
     for(Integer currPid : pidSupported)
     {
@@ -272,11 +275,10 @@ public class ObdProt extends ProtoHeader
 
 	      // create new dummy item / OneToOne conversion
 	      Conversion[] dummyCnvs = { EcuConversions.dfltCnv, EcuConversions.dfltCnv };
-	      EcuDataItem newItem =
-		      new EcuDataItem( currPid, 0, 2,
-			      dummyCnvs,
-			      0, String.format("PID %02X",currPid)
-		      );
+	      EcuDataItem newItem = new EcuDataItem( currPid, 0, 0, dummyCnvs,
+                                               "%.0f", null, null,
+                                               String.format("PID %02X",currPid)
+                                             );
 	      dataItems.appendItemToService(service, newItem);
 
 	      // re-load data items for this PID
@@ -417,7 +419,9 @@ public class ObdProt extends ProtoHeader
                 setNumCodes(new Long(msgPayload).intValue());
                 // no break here ...
               default:
-                dataItems.updateDataItems(msgSvc,msgPid, getPayLoad(buffer));
+                dataItems.updateDataItems( msgSvc,
+                                           msgPid,
+                                           hexToBytes(String.valueOf(getPayLoad(buffer))));
                 break;
             }
             break;
@@ -440,7 +444,9 @@ public class ObdProt extends ProtoHeader
                 break;
 
               default:
-                dataItems.updateDataItems(msgSvc,msgPid, getPayLoad(buffer));
+                dataItems.updateDataItems( msgSvc,
+                                           msgPid,
+                                           hexToBytes(String.valueOf(getPayLoad(buffer))));
                 break;
             }
             break;
@@ -556,6 +562,7 @@ public class ObdProt extends ProtoHeader
         break;
 
       case OBD_SVC_DATA:
+      case OBD_SVC_FREEZEFRAME:
         // read data items
         // Clear data items
         pidSupported.clear();
@@ -564,16 +571,9 @@ public class ObdProt extends ProtoHeader
         writeTelegram(emptyBuffer,obdService,0);
         break;
 
-      case OBD_SVC_FREEZEFRAME:
-        // read freeze frame data items
-        // Clear data items
-        pidSupported.clear();
-        PidPvs.clear();
-        // request for PID's supported
-        writeTelegram(emptyBuffer,obdService,0);
-        break;
-
       case OBD_SVC_READ_CODES:
+      case OBD_SVC_PENDINGCODES:
+      case OBD_SVC_PERMACODES:
         // read trouble codes
         tCodes.clear();
         numCodes = 0;
@@ -584,20 +584,6 @@ public class ObdProt extends ProtoHeader
 
       case OBD_SVC_CLEAR_CODES:
         // clear trouble codes
-        writeTelegram(emptyBuffer,obdService,0);
-        break;
-
-      case OBD_SVC_PENDINGCODES:
-        // read pending trouble codes
-        tCodes.clear();
-        numCodes = 0;
-        writeTelegram(emptyBuffer,obdService,0);
-        break;
-
-      case OBD_SVC_PERMACODES:
-        // read pending trouble codes
-        tCodes.clear();
-        numCodes = 0;
         writeTelegram(emptyBuffer,obdService,0);
         break;
 

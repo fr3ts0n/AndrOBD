@@ -92,14 +92,8 @@ public class ObdCodeList
 		}
 	}
 
-	/**
-	 * convert a numerical physical value into a formatted string
-	 *
-	 * @param value    physical value
-	 * @param decimals number of decimals for formatting
-	 * @return formatted String
-	 */
-	public String physToPhysFmtString(Number value, int decimals)
+	@Override
+	public String physToPhysFmtString(Number value, String format)
 	{
 		String result = "Fault code unknown";
 		EcuCodeItem code = get(value.intValue());

@@ -294,15 +294,8 @@ public class VagConversion extends NumericConversion
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
-	/**
-	 * Format physical value to physical value string
-	 *
-	 * @param physValue physical value
-	 * @param decimals  number of decimals for formatting
-	 * @return physical value as formatted string
-	 */
 	@Override
-	public String physToPhysFmtString(Number physValue, int decimals)
+	public String physToPhysFmtString(Number physValue, String format)
 	{
 		String result = null;
 		switch (cnvId)
@@ -329,7 +322,7 @@ public class VagConversion extends NumericConversion
 				break;
 
 			default:
-				result = super.physToPhysFmtString(physValue, decimals);
+				result = super.physToPhysFmtString(physValue, format);
 		}
 		return (result);
 	}

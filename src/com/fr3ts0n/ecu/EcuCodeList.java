@@ -123,12 +123,13 @@ public class EcuCodeList extends HashMap<Integer, EcuCodeItem>
 
 	public Number memToPhys(long value)
 	{
-		return value;
+		return (float) value;
 	}
 
 	public String memToString(Number value, int numDecimals)
 	{
-		return physToPhysFmtString(memToPhys(value.longValue()), numDecimals);
+		String fmt = "%." + numDecimals + "f";
+		return physToPhysFmtString(memToPhys(value.longValue()), fmt);
 	}
 
 	public Number physToMem(Number value)
@@ -136,14 +137,8 @@ public class EcuCodeList extends HashMap<Integer, EcuCodeItem>
 		return value;
 	}
 
-	/**
-	 * convert a numerical physical value into a formatted string
-	 *
-	 * @param value    physical value
-	 * @param decimals number of decimals for formatting
-	 * @return formatted String
-	 */
-	public String physToPhysFmtString(Number value, int decimals)
+	@Override
+	public String physToPhysFmtString(Number value, String format)
 	{
 		String result;
 		EcuCodeItem code = get(value.intValue());

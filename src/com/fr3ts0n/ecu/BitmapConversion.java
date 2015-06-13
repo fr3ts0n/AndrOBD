@@ -19,6 +19,7 @@
 package com.fr3ts0n.ecu;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -32,7 +33,7 @@ public class BitmapConversion extends NumericConversion
 	private static final long serialVersionUID = -8498739122873083420L;
 	/* the HashMap Data */
 	@SuppressWarnings("rawtypes")
-	private HashMap hashData = new HashMap();
+	private HashMap<Long,String> hashData = new HashMap<Long,String>();
 
 	/**
 	 * create a new hash converter which is initialized with values from map data
@@ -79,9 +80,8 @@ public class BitmapConversion extends NumericConversion
 			{
 				// ... split key and value ...
 				String[] words = data[j].split("=");
-				key = Long.valueOf(words[0]);
+				key = (long) (1 << Long.valueOf(words[0]));
 				value = words[1];
-				// TODO: if( key >= 64 )
 				// ... and enter into hash map
 				hashData.put(key, value);
 			}
@@ -90,7 +90,7 @@ public class BitmapConversion extends NumericConversion
 
 	public Number memToPhys(long value)
 	{
-		return (value);
+		return (float) value;
 	}
 
 	public Number physToMem(Number value)
@@ -98,39 +98,27 @@ public class BitmapConversion extends NumericConversion
 		return (value);
 	}
 
-	/**
-	 * convert a numerical physical value into a formatted string
-	 *
-	 * @param physVal  physical value
-	 * @param decimals number of decimals for formatting
-	 * @return formatted String
-	 */
 	@Override
-	public String physToPhysFmtString(Number physVal, int decimals)
+	public String physToPhysFmtString(Number physVal, String format)
 	{
 		String result = null;
 		long val = physVal.longValue();
-		long currBitVal;
-		// loop through all bits
-		for (int i = 0; i < 64; i++)
+
+		for(Map.Entry<Long,String> item : hashData.entrySet())
 		{
-			currBitVal = 1 << i;
-			if ((val & currBitVal) != 0)
+			if((val & item.getKey()) != 0)
 			{
-				// check if we have a meaning for this bit
-				String bitRslt = (String) hashData.get(i);
-				// yes, then add the meaning to result string
-				if (bitRslt != null)
-				{
-					// if this is NOT the first entry, then add a new line
-					if (result != null) result += "\n";
-					// now add the result
-					result += bitRslt;
-				}
+				// if this is NOT the first entry, then add a new line
+				if (result == null)
+					result = "";
+				else
+					result += "\n";
+				// now add the result
+				result += item.getValue();
 			}
 		}
 		// if we haven't found a string representation, return numeric value
-		if (result == null) result = String.valueOf(physVal);
+		if (result == null) result = super.physToPhysFmtString(physVal,format);
 		return (result);
 	}
 }

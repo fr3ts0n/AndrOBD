@@ -34,7 +34,7 @@ public class HashConversion extends NumericConversion
 	private static final long serialVersionUID = -1077047688974749271L;
 	/* the HashMap Data */
 	@SuppressWarnings("rawtypes")
-	private HashMap hashData = new HashMap();
+	private HashMap<Long, String> hashData = new HashMap<Long, String>();
 
 	/**
 	 * create a new hash converter which is initialized with values from map data
@@ -72,7 +72,7 @@ public class HashConversion extends NumericConversion
 		// clear old hash data
 		hashData.clear();
 
-		// loop through all strin entries ...
+		// loop through all entries ...
 		for (String anInitData : initData)
 		{
 			data = anInitData.split(";");
@@ -90,7 +90,7 @@ public class HashConversion extends NumericConversion
 
 	public Number memToPhys(long value)
 	{
-		return (value);
+		return (float) value;
 	}
 
 	public Number physToMem(Number value)
@@ -98,19 +98,14 @@ public class HashConversion extends NumericConversion
 		return (value);
 	}
 
-	/**
-	 * convert a numerical physical value into a formatted string
-	 *
-	 * @param physVal  physical value
-	 * @param decimals number of decimals for formatting
-	 * @return formatted String
-	 */
 	@Override
-	public String physToPhysFmtString(Number physVal, int decimals)
+	public String physToPhysFmtString(Number physVal, String format)
 	{
-		String result = (String) hashData.get(physVal);
+		String result = hashData.get(physVal.longValue());
 		// if we haven't found a string representation, return numeric value
-		if (result == null) result = String.valueOf(physVal);
+		if (result == null)
+			result = super.physToPhysFmtString(physVal, format);
+
 		return (result);
 	}
 

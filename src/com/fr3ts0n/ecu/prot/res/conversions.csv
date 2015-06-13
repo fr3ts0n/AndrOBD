@@ -1,13 +1,13 @@
 CONVERSION_ID	TYPE	VARIANT	SYSTEM	FACT	DIV	OFFS	PhOf	UNIT	Remark	Parameters	Beschreibung
-OBD_TYPE	HASH	0	METRIC	1	1	0	0	-	OBD Type	1=OBD-II as defined by the CARB;2=OBD as defined by the EPA;3=OBD and OBD-II;4=OBD-I;5=Not OBD compliant;6=EOBD (Europe);7=EOBD and OBD-II;8=EOBD and OBD;9=EOBD, OBD and OBD II;10=JOBD (Japan);11=JOBD and OBD II;12=JOBD and EOBD;13=JOBD, EOBD, and OBD II;14=Reserved;15=Reserved;16=Reserved;17=Engine Manufacturer Diagnostics (EMD);18=Engine Manufacturer Diagnostics Enhanced (EMD+);19=Heavy Duty On-Board Diagnostics (Child/Partial) (HD OBD-C);20=Heavy Duty On-Board Diagnostics (HD OBD);21=World Wide Harmonized OBD (WWH OBD);22=Reserved;23=Heavy Duty Euro OBD Stage I without NOx control (HD EOBD-I);24=Heavy Duty Euro OBD Stage I with NOx control (HD EOBD-I N);25=Heavy Duty Euro OBD Stage II without NOx control (HD EOBD-II);26=Heavy Duty Euro OBD Stage II with NOx control (HD EOBD-II N);27=Reserved;28=Brazil OBD Phase 1 (OBDBr-1);29=Brazil OBD Phase 2 (OBDBr-2);30=Korean OBD (KOBD);31=India OBD I (IOBD I);32=India OBD II (IOBD II);33=Heavy Duty Euro OBD Stage VI (HD EOBD-IV)	
-FUEL_TYPE	HASH	0	METRIC	1	1	0	0	-	Fuel system type	0=Not available;1=Gasoline;2=Methanol;3=Ethanol;4=Diesel;5=LPG;6=CNG;7=Propane;8=Electric;9=Bifuel running Gasoline;10=Bifuel running Methanol;11=Bifuel running Ethanol;12=Bifuel running LPG;13=Bifuel running CNG;14=Bifuel running Propane;15=Bifuel running Electricity;16=Bifuel running electric and combustion engine;17=Hybrid gasoline;18=Hybrid Ethanol;19=Hybrid Diesel;20=Hybrid Electric;21=Hybrid running electric and combustion engine;22=Hybrid Regenerative;23=Bifuel running diesel	
-FUEL_SYS_STATUS	BITMAP	0	METRIC	1	1	0	0	-	Fuel system status	0=Open loop due to insufficient engine temperature;1=Closed loop, using oxygen sensor feedback to determine fuel mix;2=Open loop due to engine load OR fuel cut due to deceleration;3=Open loop due to system failure;4=Closed loop, using at least one oxygen sensor but there is a fault in the feedback system;	
-SEC_AIR_STATUS	BITMAP	0	METRIC	1	1	0	0	-	Secondary Air status	0=Upstream;1=Downstream of catalytic converter;2=From the outside atmosphere or off;3=Pump commanded on for diagnostics	
-MISFIRE_STATUS	BITMAP	0	METRIC	1	1	0	0	-	Misfire status	0=available;4=incomplete	
-FS_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0	-	Fuel system test status	1=available;5=incomplete	
-COMP_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0	-	Component test status	2=available;6=incomplete	
-IGN_MON_STATUS	BITMAP	0	METRIC	1	1	1	1	-	Ignition monitor status	3=Compression ignition monitor available	
-OBD_CODELIST	PCODELIST	0	METRIC	1	1	0	0	-	Code list conversion	prot/res/pcodes;prot/res/ucodes
+OBD_TYPE	HASH	0	METRIC	1	1	0	0		OBD Type	1=OBD-II as defined by the CARB;2=OBD as defined by the EPA;3=OBD and OBD-II;4=OBD-I;5=Not OBD compliant;6=EOBD (Europe);7=EOBD and OBD-II;8=EOBD and OBD;9=EOBD, OBD and OBD II;10=JOBD (Japan);11=JOBD and OBD II;12=JOBD and EOBD;13=JOBD, EOBD, and OBD II;14=Reserved;15=Reserved;16=Reserved;17=Engine Manufacturer Diagnostics (EMD);18=Engine Manufacturer Diagnostics Enhanced (EMD+);19=Heavy Duty On-Board Diagnostics (Child/Partial) (HD OBD-C);20=Heavy Duty On-Board Diagnostics (HD OBD);21=World Wide Harmonized OBD (WWH OBD);22=Reserved;23=Heavy Duty Euro OBD Stage I without NOx control (HD EOBD-I);24=Heavy Duty Euro OBD Stage I with NOx control (HD EOBD-I N);25=Heavy Duty Euro OBD Stage II without NOx control (HD EOBD-II);26=Heavy Duty Euro OBD Stage II with NOx control (HD EOBD-II N);27=Reserved;28=Brazil OBD Phase 1 (OBDBr-1);29=Brazil OBD Phase 2 (OBDBr-2);30=Korean OBD (KOBD);31=India OBD I (IOBD I);32=India OBD II (IOBD II);33=Heavy Duty Euro OBD Stage VI (HD EOBD-IV)	
+FUEL_TYPE	HASH	0	METRIC	1	1	0	0		Fuel system type	0=Not available;1=Gasoline;2=Methanol;3=Ethanol;4=Diesel;5=LPG;6=CNG;7=Propane;8=Electric;9=Bifuel running Gasoline;10=Bifuel running Methanol;11=Bifuel running Ethanol;12=Bifuel running LPG;13=Bifuel running CNG;14=Bifuel running Propane;15=Bifuel running Electricity;16=Bifuel running electric and combustion engine;17=Hybrid gasoline;18=Hybrid Ethanol;19=Hybrid Diesel;20=Hybrid Electric;21=Hybrid running electric and combustion engine;22=Hybrid Regenerative;23=Bifuel running diesel	
+FUEL_SYS_STATUS	BITMAP	0	METRIC	1	1	0	0		Fuel system status	0=Open loop due to insufficient engine temperature;1=Closed loop, using oxygen sensor feedback to determine fuel mix;2=Open loop due to engine load OR fuel cut due to deceleration;3=Open loop due to system failure;4=Closed loop, using at least one oxygen sensor but there is a fault in the feedback system;	
+SEC_AIR_STATUS	BITMAP	0	METRIC	1	1	0	0		Secondary Air status	0=Upstream;1=Downstream of catalytic converter;2=From the outside atmosphere or off;3=Pump commanded on for diagnostics	
+MISFIRE_STATUS	BITMAP	0	METRIC	1	1	0	0		Misfire status	0=available;4=incomplete	
+FS_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Fuel system test status	1=available;5=incomplete	
+COMP_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Component test status	2=available;6=incomplete	
+IGN_MON_STATUS	BITMAP	0	METRIC	1	1	1	1		Ignition monitor status	3=Compression ignition monitor available	
+OBD_CODELIST	PCODELIST	0	METRIC	1	1	0	0		Code list conversion	prot/res/pcodes;prot/res/ucodes	
 AIRFLOW	LINEAR	0	METRIC	1	100	0	0	g/s	Air Flow		
 AIRFLOW	LINEAR	0	IMPERIAL	1	756	0	0	lb/min	Air Flow		
 ANGLE	LINEAR	0	METRIC	1	2	-128	0	°	Angle (Timing adv)		
@@ -16,8 +16,8 @@ DISTANCE	LINEAR	0	METRIC	1	1	0	0	km	Distance
 DISTANCE	LINEAR	0	IMPERIAL	1000	1609	0	0	miles	Distance		
 HOURS	LINEAR	0	METRIC	1	60	0	0	h	Time (hours)		
 HOURS	LINEAR	0	IMPERIAL	1	60	0	0	h	Time (hours)		
-ONETOONE	LINEAR	0	METRIC	1	1	0	0	-	OneToOne		
-ONETOONE	LINEAR	0	IMPERIAL	1	1	0	0	-	OneToOne		
+ONETOONE	LINEAR	0	METRIC	1	1	0	0		OneToOne		
+ONETOONE	LINEAR	0	IMPERIAL	1	1	0	0		OneToOne		
 PERCENT	LINEAR	0	METRIC	100	255	0	0	%	Percent		
 PERCENT	LINEAR	0	IMPERIAL	100	255	0	0	%	Percent		
 PERCENT_REL	LINEAR	0	METRIC	100	255	-128	0	%	Percent relative		

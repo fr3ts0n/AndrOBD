@@ -47,10 +47,10 @@ public interface Conversion extends Serializable
 	 * convert a numerical physical value into a formatted string
 	 *
 	 * @param physVal  physical value
-	 * @param decimals number of decimals for formatting
+	 * @param format formatting pattern for text display
 	 * @return formatted String
 	 */
-	public String physToPhysFmtString(Number physVal, int decimals);
+	public String physToPhysFmtString(Number physVal, String format);
 
 	/**
 	 * convert measurement item from storage format to physical value

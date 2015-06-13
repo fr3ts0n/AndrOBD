@@ -36,7 +36,7 @@ public class EcuDataPv extends IndexedProcessVar
 	public static final int FID_VALUE = 2;
 	public static final int FID_UNITS = 3;
 	// optional Field IDs which will be invisible for table display
-	public static final String FID_DECIMALS = "DECIMALS";
+	public static final String FID_FORMAT = "FMT";
 	public static final String FID_CNVID = "CNV_ID";
 	public static final String FID_MIN = "MIN";
 	public static final String FID_MAX = "MAX";
