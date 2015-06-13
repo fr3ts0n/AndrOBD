@@ -44,7 +44,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fr3ts0n.ecu.Conversions;
 import com.fr3ts0n.ecu.EcuCodeItem;
 import com.fr3ts0n.ecu.EcuConversions;
 import com.fr3ts0n.ecu.prot.ElmProt;
@@ -216,10 +215,19 @@ public class MainActivity extends ListActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		// read preferences ...
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
 		super.onCreate(savedInstanceState);
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 			WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+		// keep main display on?
+		if(prefs.getBoolean("keep_screen_on", false))
+		{
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		}
 
 		// set up action bar
 		ActionBar actionBar = getActionBar();
@@ -236,10 +244,7 @@ public class MainActivity extends ListActivity
 		logCfg.setUseLogCatAppender(true);
 		logCfg.setUseFileAppender(true);
 		logCfg.setFileName(FileHelper.getPath(this).concat(File.separator).concat("log/AndrOBD.log"));
-		logCfg.setLevel("com.fr3ts0n.prot", Level.DEBUG);
-		logCfg.setLevel("com.fr3ts0n.ecu", Level.DEBUG);
-		logCfg.setRootLevel(Level.INFO);
-		logCfg.configure();
+		setLogLevels(prefs);
 
 		// Set up all data adapters
 		mCommService = new ObdCommService(this, mHandler);
@@ -252,12 +257,10 @@ public class MainActivity extends ListActivity
 		// set listeners for data structure changes
 		setDataListeners();
 
-		// read preferences ...
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		// ... measurement system
 		setConversionSystem(Integer.valueOf(
 				prefs.getString(MEASURE_SYSTEM,
-					String.valueOf(Conversions.SYSTEM_METRIC))
+					String.valueOf(EcuConversions.SYSTEM_METRIC))
 			)
 		);
 
@@ -275,6 +278,16 @@ public class MainActivity extends ListActivity
 				startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
 			}
 		}
+	}
+
+	/**
+	 * Setr logging levels from shared preferences
+	 * @param prefs shared preferences
+	 */
+	private void setLogLevels(SharedPreferences prefs)
+	{
+		logCfg.setRootLevel(Level.toLevel(prefs.getString("log_master", "INFO")));
+		logCfg.configure();
 	}
 
 	/**
@@ -458,10 +471,13 @@ public class MainActivity extends ListActivity
 	void setConversionSystem( int cnvId )
 	{
 		Log.i(TAG, "Conversion: " + getResources().getStringArray(R.array.measure_options)[cnvId]);
-		// set coversion system
-		EcuConversions.cnvSystem =  cnvId;
-		// invalidate current measurements
-		setObdService(ObdProt.OBD_SVC_NONE, null);
+		if(EcuConversions.cnvSystem != cnvId)
+		{
+			// set coversion system
+			EcuConversions.cnvSystem =  cnvId;
+			// invalidate current measurements
+			setObdService(ObdProt.OBD_SVC_NONE, null);
+		}
 	}
 
 	/**
@@ -548,12 +564,22 @@ public class MainActivity extends ListActivity
 			{
 				// read preferences ...
 				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+				// log levels
+				setLogLevels(prefs);
+
 				// ... measurement system
 				setConversionSystem(
 					Integer.valueOf(prefs.getString(MEASURE_SYSTEM,
-							String.valueOf(Conversions.SYSTEM_METRIC))
+							String.valueOf(EcuConversions.SYSTEM_METRIC))
 					)
 				);
+
+				// keep main display on?
+				if(prefs.getBoolean("keep_screen_on", false))
+				{
+					getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+				}
 			}
 			break;
 		}

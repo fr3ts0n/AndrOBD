@@ -91,7 +91,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 		{
 			String msg = new String(buffer);
 			msg += "\r";
-			log.debug(this.toString() + " TX:" + ProtUtils.hexDumpBuffer(msg.toCharArray()));
+			log.trace(this.toString() + " TX:" + ProtUtils.hexDumpBuffer(msg.toCharArray()));
 			out.write(msg.getBytes());
 			out.flush();
 			result = buffer.length;
@@ -115,7 +115,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 		{
 			while ((chr = in.read()) >= 0)
 			{
-				log.debug(this.toString() + " RX: '"
+				log.trace(this.toString() + " RX: '"
 					+ String.format("%02X : %1c", (byte) chr, chr < 32 ? '.' : chr)
 					+ "'");
 

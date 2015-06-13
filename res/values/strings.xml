@@ -73,17 +73,40 @@ period of time while the ECU recalibrates itself.
 	<string name="graph_actions">Graph actions</string>
 	<string name="hud">Head Up Display</string>
     <string name="settings">Settings</string>
+
+    <string name="common_settings">Common settings</string>
     <string name="measure_system_description">Measurement units sytem (metric / imperial)</string>
+    <string name="measure_system">Measurement units</string>
 	<string name="metric">metric</string>
-	<string name="measure_system">Units</string>
 	<string name="imperial">imperial</string>
-	<string-array name="measure_options">
-		<item>@string/metric</item>
-		<item>@string/imperial</item>
-	</string-array>
-	<string-array name="measure_option_values">
-		<item>0</item>
-		<item>1</item>
-	</string-array>
+    <string-array name="measure_options" translatable="false">
+        <item>@string/metric</item>
+        <item>@string/imperial</item>
+    </string-array>
+    <string-array name="measure_option_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string name="logging_level">Logging level</string>
+    <string name="logging_level_description">Level of details to be logged into debug log file</string>
+    <string name="master">master</string>
+    <string name="comm_io">communication i/o</string>
+    <string name="protocol">protocol</string>
+    <string name="process_vars">process variables</string>
+    <string name="data">data</string>
+    <string-array name="logging_options" translatable="false">
+        <item>OFF</item>
+        <item>FATAL</item>
+        <item>ERROR</item>
+        <item>WARN</item>
+        <item>INFO</item>
+        <item>DEBUG</item>
+        <item>TRACE</item>
+        <item>ALL</item>
+    </string-array>
+
+    <string name="keep_screen_on">Keep main screen on</string>
+    <string name="keep_screen_on_description">Do not turn OFF screen if main/data screen is on display</string>
 
 </resources>

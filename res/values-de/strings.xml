@@ -64,4 +64,14 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
 	<string name="imperial">imperial</string>
     <string name="settings">Einstellungen</string>
     <string name="measure_system_description">Masseinheiten (metrisch/imperial)</string>
+    <string name="logging_level_description">Details die zur Fehlerfindung gespeichert werden</string>
+    <string name="logging_level">Logging Informationstiefe</string>
+    <string name="comm_io">Kommunikation E/A</string>
+    <string name="common_settings">Allgemeine Einstellungen</string>
+    <string name="data">Daten</string>
+    <string name="master">Master</string>
+    <string name="process_vars">Prozessvariablen</string>
+    <string name="protocol">Übertragnungsprotokoll</string>
+    <string name="keep_screen_on">Datenanzeige nicht abschalten</string>
+    <string name="keep_screen_on_description">Haupt-/Datenanzeige soll nicht automatisch abschalten</string>
 </resources>

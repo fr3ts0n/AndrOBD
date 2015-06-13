@@ -142,7 +142,7 @@ public class ProcessVar
 	 */
 	public synchronized void pvChanged(PvChangeEvent event)
 	{
-		log.debug(toString() + ":Child PvChange:" + event.toString());
+		log.trace(toString() + ":Child PvChange:" + event.toString());
 		firePvChanged(new PvChangeEvent(this,
 			((ProcessVar) event.getSource()).getKeyValue(),
 			event.getSource(),
@@ -372,7 +372,7 @@ public class ProcessVar
 		ensurePvChangeListeners();
 		PvChangeListeners.remove(l);
 		allowEvents = !PvChangeListeners.isEmpty();
-		log.debug("-PvListener:" + toString() + "->" + String.valueOf(l));
+		log.trace("-PvListener:" + toString() + "->" + String.valueOf(l));
 	}
 
 	/**
@@ -386,7 +386,7 @@ public class ProcessVar
 		ensurePvChangeListeners();
 		PvChangeListeners.put(l, new Integer(eventMask));
 		allowEvents = true;
-		log.debug("+PvListener:" + toString() + "->" + String.valueOf(l));
+		log.trace("+PvListener:" + toString() + "->" + String.valueOf(l));
 	}
 
 	/**
@@ -408,7 +408,7 @@ public class ProcessVar
 	{
 		if (allowEvents && e.getType() != PvChangeEvent.PV_NOACTION)
 		{
-			log.debug("PvChange:" + e.toString());
+			log.trace("PvChange:" + e.toString());
 
 			Integer evtMask;
 			Map.Entry curr;
@@ -429,7 +429,7 @@ public class ProcessVar
 
 					if ((evtMask.intValue() & e.getType()) != 0)
 					{
-						log.debug("Notify:" + curr);
+						log.trace("Notify:" + curr);
 						((PvChangeListener) curr.getKey()).pvChanged(e);
 					}
 				}

@@ -18,7 +18,6 @@
 
 package com.fr3ts0n.ecu.prot;
 
-import com.fr3ts0n.ecu.Pid;
 import com.fr3ts0n.prot.TelegramListener;
 import com.fr3ts0n.prot.TelegramWriter;
 
