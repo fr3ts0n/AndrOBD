@@ -31,6 +31,7 @@ import android.widget.TextView;
 import com.fr3ts0n.ecu.Conversion;
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataPv;
+import com.fr3ts0n.ecu.LinearConversion;
 import com.fr3ts0n.pvs.IndexedProcessVar;
 import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
@@ -116,19 +117,41 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		TextView tvDescr = (TextView) convertView.findViewById(R.id.obd_label);
 		tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
 		CheckBox cbChecked = (CheckBox) convertView.findViewById(R.id.check);
+		TextView tvValue = (TextView) convertView.findViewById(R.id.obd_value);
+		TextView tvUnits = (TextView) convertView.findViewById(R.id.obd_units);
+		ProgressBar pb = (ProgressBar) convertView.findViewById(R.id.bar);
 		cbChecked.setVisibility(View.VISIBLE);
 
 		// format value string
 		String fmtText;
 		Float colVal = (Float)currPv.get(EcuDataPv.FID_VALUE);
 		Object cnvObj = currPv.get(EcuDataPv.FID_CNVID);
+		Float min = (Float) currPv.get(EcuDataPv.FID_MIN);
+		Float max = (Float) currPv.get(EcuDataPv.FID_MAX);
+		int pid = currPv.getAsInt(EcuDataPv.FID_PID);
+
 		try
 		{
 			if (cnvObj != null && cnvObj instanceof Conversion[])
 			{
-				Conversion[] cnv = (Conversion[]) cnvObj;
+				Conversion[] cnv;
+				cnv = (Conversion[]) cnvObj;
+				// set formatted text
 				fmtText = cnv[EcuDataItem.cnvSystem].physToPhysFmtString( colVal,
 					String.valueOf(currPv.get(EcuDataPv.FID_FORMAT)));
+				// set progress bar only on LinearConversion
+				if(    min != null
+					  && max != null
+					  && cnv[EcuDataItem.cnvSystem] instanceof LinearConversion)
+				{
+					pb.setVisibility(ProgressBar.VISIBLE);
+					pb.getProgressDrawable().setColorFilter(ChartActivity.getColor(pid), PorterDuff.Mode.SRC_IN);
+					pb.setProgress((int)(100 * ((colVal - min) / (max - min))));
+				}
+				else
+				{
+					pb.setVisibility(ProgressBar.GONE);
+				}
 			} else
 			{
 				fmtText = String.valueOf(colVal);
@@ -138,23 +161,9 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 			fmtText = String.valueOf(colVal);
 		}
 		// set value
-		TextView tvValue = (TextView) convertView.findViewById(R.id.obd_value);
 		tvValue.setText(fmtText);
-		TextView tvUnits = (TextView) convertView.findViewById(R.id.obd_units);
 		tvUnits.setText(currPv.getUnits());
-		ProgressBar pb = (ProgressBar) convertView.findViewById(R.id.bar);
-		Float min = (Float) currPv.get(EcuDataPv.FID_MIN);
-		Float max = (Float) currPv.get(EcuDataPv.FID_MAX);
-		int pid = currPv.getAsInt(EcuDataPv.FID_PID);
-		if(min != null && max != null)
-		{
-			pb.getProgressDrawable().setColorFilter(ChartActivity.getColor(pid), PorterDuff.Mode.SRC_IN);
-			pb.setProgress((int)(100 * ((colVal - min) / (max - min))));
-		}
-		else
-		{
-			pb.setVisibility(ProgressBar.INVISIBLE);
-		}
+
 		return convertView;
 	}
 
