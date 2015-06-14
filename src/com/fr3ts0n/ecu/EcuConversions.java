@@ -61,7 +61,7 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 	static Logger log = Logger.getLogger("data.cnv");
 
 	/** DEFAULT type conversion */
-	public static final LinearConversion dfltCnv = new LinearConversion(1, 1, 0, 0, "");
+	public static final NumericConversion dfltCnv = new IntConversion();
 
 	/** code list conversion */
 	public static EcuCodeList codeList = null;
