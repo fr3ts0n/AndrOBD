@@ -4,6 +4,14 @@ svc	pid	ofs	len	formula	format	min	max	label	description	formula_remark	options	
 0x01,0x02	0x01	1	1	FS_TEST_STATUS	%.0f			Fuel system test status	fuel_system1_status_formula -fuel_system2_status_formula			
 0x01,0x02	0x01	1	1	COMP_TEST_STATUS	%.0f			Component test status	fuel_system1_status_formula -fuel_system2_status_formula			
 0x01,0x02	0x01	1	1	IGN_MON_STATUS	%.0f			Ignition monitoring status	fuel_system1_status_formula -fuel_system2_status_formula			
+0x01,0x02	0x01	2	2	CAT_TEST_STATUS	%.0f			Catalyst test status				
+0x01,0x02	0x01	2	2	HCAT_TEST_STATUS	%.0f			Heated Cat / Nox Monitor test status				
+0x01,0x02	0x01	2	2	EVAP_TEST_STATUS	%.0f			Evaporative system test status				
+0x01,0x02	0x01	2	2	SECAIR_TEST_STATUS	%.0f			Secondary air sys test status				
+0x01,0x02	0x01	2	2	AC_TEST_STATUS	%.0f			A/C refrigerant test status				
+0x01,0x02	0x01	2	2	O2SENSOR_TEST_STATUS	%.0f			Oxygen Sensor test status				
+0x01,0x02	0x01	2	2	O2HEATER_TEST_STATUS	%.0f			Oxygen Sensor Heater test status				
+0x01,0x02	0x01	2	2	EGR_TEST_STATUS	%.0f			EGR System test status				
 0x01,0x02	0x02	0	2	OBD_CODELIST	%.0f			DTC location	DFC which caused freeze frame			
 0x01,0x02	0x03	0	2	FUEL_SYS_STATUS	%.0f			Fuel System Status	fuel_system1_status_formula -fuel_system2_status_formula			
 0x01,0x02	0x04	0	1	PERCENT	%.1f			Calculated Load Value				
@@ -21,6 +29,7 @@ svc	pid	ofs	len	formula	format	min	max	label	description	formula_remark	options	
 0x01,0x02	0x10	0	2	AIRFLOW	%.2f			Air Flow Rate (MAF sensor)				
 0x01,0x02	0x11	0	1	PERCENT	%.1f			Absolute Throttle Position				
 0x01,0x02	0x12	0	1	ONETOONE	%.0f			Secondary air status	secondary_air_status_formula			
+0x01,0x02	0x13	0	1	ONETOONE	%.0f			Number of Oxygen sensors	secondary_air_status_formula			
 0x01,0x02	0x14	0	2	ONETOONE	%.0f			O2 Sensor 1	Bank 1	o2_sensor_formula		
 0x01,0x02	0x15	0	2	ONETOONE	%.0f			O2 Sensor 2	Bank 1	o2_sensor_formula		
 0x01,0x02	0x16	0	2	ONETOONE	%.0f			O2 Sensor 3	Bank 1	o2_sensor_formula		
@@ -30,6 +39,7 @@ svc	pid	ofs	len	formula	format	min	max	label	description	formula_remark	options	
 0x01,0x02	0x1A	0	2	ONETOONE	%.0f			O2 Sensor 3	Bank 2	o2_sensor_formula		
 0x01,0x02	0x1B	0	2	ONETOONE	%.0f			O2 Sensor 4	Bank 2	o2_sensor_formula		
 0x01,0x02	0x1C	0	1	OBD_TYPE	%.0f			OBD conforms to	obd_requirements_formula			
+0x01,0x02	0x1D	0	1	O2_PRESENT_MAP	%.0f			Oxygen sensors present	obd_requirements_formula			
 0x01,0x02	0x1E	0	1	ONETOONE	%.0f			Power Take-Off Status	pto_status_formula			
 0x01,0x02	0x1F	0	2	HOURS	%.2f			Time Since Engine Start				
 0x01,0x02	0x21	0	2	DISTANCE	%.0f			Distance since MIL activated				
@@ -76,6 +86,29 @@ svc	pid	ofs	len	formula	format	min	max	label	description	formula_remark	options	
 0x01,0x02	0x4C	0	1	PERCENT	%.1f			Comm. Throttle Actuator Cntrl	commanded TAC			
 0x01,0x02	0x4D	0	2	HOURS	%.2f			Engine running while MIL on	minutes run by the engine while MIL activated			
 0x01,0x02	0x4E	0	2	HOURS	%.2f			Time since DTCs cleared				
+0x01,0x02	0x4F	0	1	ONETOONE	%.0f			Maximum equivalence ratio				
+0x01,0x02	0x4F	1	1	VOLTAGE_MV	%.0f			Maximum oxygen sensor voltage				
+0x01,0x02	0x4F	2	1	CURRENT	%.0f			Maximum oxygen sensor current				
+0x01,0x02	0x4F	3	1	PRESS_WIDERANGE	%.0f			Maximum intake manifold absolute pressure				
+0x01,0x02	0x50	0	1	AIRFLOW	%.0f			Maximum air flow rate from mass air flow sensor				
+0x01,0x02	0x51	0	1	FUEL_TYPE	%.0f			Fuel type				
+0x01,0x02	0x52	0	1	PERCENT	%.0f			Ethanol fuel %				
+0x01,0x02	0x53	0	2	PRESS_VAPOR_ABS	%.3f			Absolute Evap system Vapor Pressure				
+0x01,0x02	0x54	0	2	PRESS_VAPOR_REL	%.0f			Evap System Vapor Pressure				
+0x01,0x02	0x55	0	1	PERCENT_REL	%.1f			Short term secondary oxygen sensor trim bank 1				
+0x01,0x02	0x55	1	1	PERCENT_REL	%.1f			Short term secondary oxygen sensor trim bank 3				
+0x01,0x02	0x56	0	1	PERCENT_REL	%.1f			Long term secondary oxygen sensor trim bank 1				
+0x01,0x02	0x56	1	1	PERCENT_REL	%.1f			Long term secondary oxygen sensor trim bank 3				
+0x01,0x02	0x57	0	1	PERCENT_REL	%.1f			Short term secondary oxygen sensor trim bank 2				
+0x01,0x02	0x57	1	1	PERCENT_REL	%.1f			Short term secondary oxygen sensor trim bank 4				
+0x01,0x02	0x58	0	1	PERCENT_REL	%.1f			Long term secondary oxygen sensor trim bank 2				
+0x01,0x02	0x58	1	1	PERCENT_REL	%.1f			Long term secondary oxygen sensor trim bank 4				
+0x01,0x02	0x59	0	2	PRESS_WIDERANGE	%.1f			Fuel rail pressure (absolute)				
+0x01,0x02	0x5A	0	1	PERCENT	%.1f			Relative accelerator pedal position				
+0x01,0x02	0x5B	0	1	PERCENT	%.1f			Hybrid battery pack remaining life				
+0x01,0x02	0x5C	0	1	TEMPERATURE	%.0f			Engine oil temperature				
+0x01,0x02	0x5D	0	2	ANGLE_WIDERANGE	%.2f			Fuel injection timing				
+0x01,0x02	0x5E	0	2	CONSUMPTION	%.2f			Engine fuel rate				
 0x09	0x01	0	1	ONETOONE	%.0f			Message count VIN				
 0x09	0x02	0	17	ASCII	%.0f			Vehicle identification number				
 0x09	0x03	0	1	ONETOONE	%.0f			Message count CAL-ID				

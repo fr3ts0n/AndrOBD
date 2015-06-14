@@ -563,8 +563,8 @@ public class ElmProt
 								value &= 0xFF;
 								// format new data message and handle it as new reception
 								handleTelegram(String.format(
-									service == OBD_SVC_DATA ? "4%X%02X%02X%02X" : "4%X%02X00%02X%02X",
-									service, pid, value, value).toCharArray());
+									service == OBD_SVC_DATA ? "4%X%02X%02X%02X%02X%02X" : "4%X%02X00%02X%02X%02X%02X",
+									service, pid, value, value, value, value).toCharArray());
 							} else
 							{
 								// simulate "ALL PIDs supported"

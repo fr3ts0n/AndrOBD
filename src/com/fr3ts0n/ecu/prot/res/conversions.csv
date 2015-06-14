@@ -6,26 +6,29 @@ SEC_AIR_STATUS	BITMAP	0	METRIC	1	1	0	0		Secondary Air status	0=Upstream;1=Downst
 MISFIRE_STATUS	BITMAP	0	METRIC	1	1	0	0		Misfire status	0=available;4=incomplete	
 FS_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Fuel system test status	1=available;5=incomplete	
 COMP_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Component test status	2=available;6=incomplete	
-IGN_MON_STATUS	BITMAP	0	METRIC	1	1	1	1		Ignition monitor status	3=Compression ignition monitor available	
+IGN_MON_STATUS	BITMAP	0	METRIC	1	1	0	0		Ignition monitor status	3=Compression ignition monitor available	
+CAT_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Catalyst test status	0=available;8=incomplete	
+HCAT_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Heated Cat / Nox Monitor test status	1=available;9=incomplete	
+EVAP_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Evaporative system test status	2=available;10=incomplete	
+SECAIR_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Secondary air sys test status	3=available;11=incomplete	
+AC_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		A/C Refrigerant	4=available;12=incomplete	
+O2SENSOR_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Oxygen Sensor	5=available;13=incomplete	
+O2HEATER_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Oxygen Sensor Heater	6=available;14=incomplete	
+EGR_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		EGR System	7=available;15=incomplete	
+O2_PRESENT_MAP	BITMAP	0	METRIC	1	1	0	0		O2-Sensors present	0=B1S1;1=B1S2;2=B2S1;3=B2S2;4=B3S1;5=B3S2;6=B4S1;7=B4S2	
 OBD_CODELIST	PCODELIST	0	METRIC	1	1	0	0		Code list conversion	prot/res/pcodes;prot/res/ucodes	
 AIRFLOW	LINEAR	0	METRIC	1	100	0	0	g/s	Air Flow		
 AIRFLOW	LINEAR	0	IMPERIAL	1	756	0	0	lb/min	Air Flow		
 ANGLE	LINEAR	0	METRIC	1	2	-128	0	°	Angle (Timing adv)		
-ANGLE	LINEAR	0	IMPERIAL	1	2	-128	0	°	Angle (Timing adv)		
+ANGLE_WIDERANGE	LINEAR	0	METRIC	1	128	-26880	0	°	Angle wide range (Injection)		
 DISTANCE	LINEAR	0	METRIC	1	1	0	0	km	Distance		
 DISTANCE	LINEAR	0	IMPERIAL	1000	1609	0	0	miles	Distance		
 HOURS	LINEAR	0	METRIC	1	60	0	0	h	Time (hours)		
-HOURS	LINEAR	0	IMPERIAL	1	60	0	0	h	Time (hours)		
 ONETOONE	LINEAR	0	METRIC	1	1	0	0		OneToOne		
-ONETOONE	LINEAR	0	IMPERIAL	1	1	0	0		OneToOne		
 PERCENT	LINEAR	0	METRIC	100	255	0	0	%	Percent		
-PERCENT	LINEAR	0	IMPERIAL	100	255	0	0	%	Percent		
 PERCENT_REL	LINEAR	0	METRIC	100	255	-128	0	%	Percent relative		
-PERCENT_REL	LINEAR	0	IMPERIAL	100	255	-128	0	%	Percent relative		
 PERCENT7	LINEAR	0	METRIC	100	128	0	0	%	Percent 7Bit (Fuel Trim)		
-PERCENT7	LINEAR	0	IMPERIAL	100	128	0	0	%	Percent 7Bit (Fuel Trim)		
 PERCENT7_REL	LINEAR	0	METRIC	100	128	-128	0	%	Percent 7Bit relative)		
-PERCENT7_REL	LINEAR	0	IMPERIAL	100	128	-128	0	%	Percent 7Bit relative)		
 PRESS	LINEAR	0	METRIC	3	1	0	0	kPa	Pressure		
 PRESS	LINEAR	0	IMPERIAL	4351	10000	0	0	PSI	Pressure		
 PRESS_AIR	LINEAR	0	METRIC	1	1	0	0	kPa	Pressure (intake)		
@@ -36,14 +39,12 @@ PRESS_VAPOR	LINEAR	0	METRIC	1	4	0	0	Pa	Pressure (Vapor)
 PRESS_VAPOR	LINEAR	0	IMPERIAL	100	99635	0	0	in H2O	Pressure (Vapor)		
 PRESS_WIDERANGE	LINEAR	0	METRIC	10	1	0	0	kPa	Pressure (wide range)		
 PRESS_WIDERANGE	LINEAR	0	IMPERIAL	14504	10000	0	0	PSI	Pressure (wide range)		
+PRESS_VAPOR_ABS	LINEAR	0	METRIC	1	200	0	0	kPa	Pressure (Vapor, absolute)		
+PRESS_VAPOR_REL	LINEAR	0	METRIC	1	1	-32767	0	Pa	Pressure (Vapor relative)		
 RATIO	LINEAR	0	METRIC	100	32768	0	0	%	Ratio		
-RATIO	LINEAR	0	IMPERIAL	100	32768	0	0	%	Ratio		
 RATIO_RELATIVE	LINEAR	0	METRIC	100	65535	0	0	%	Ratio relative		
-RATIO_RELATIVE	LINEAR	0	IMPERIAL	100	65535	0	0	%	Ratio relative		
 RATIO_WIDERANGE	LINEAR	0	METRIC	100	256	-32768	0	%	Ratio (wide range)		
-RATIO_WIDERANGE	LINEAR	0	IMPERIAL	100	256	-32768	0	%	Ratio (wide range)		
 RPM	LINEAR	0	METRIC	1	4	0	0	/min	engine speed		
-RPM	LINEAR	0	IMPERIAL	1	4	0	0	/min	engine speed		
 SPEED_HIGHRES	LINEAR	0	METRIC	1	128	0	0	km/h	vehicle speed		
 SPEED_HIGHRES	LINEAR	0	IMPERIAL	100	20595	0	0	mph	vehicle speed		
 TEMP_WIDERANGE	LINEAR	0	METRIC	1	10	-40	0	°C	Temperature (wide range)		
@@ -51,10 +52,10 @@ TEMP_WIDERANGE	LINEAR	0	IMPERIAL	9	50	-40	32	°F	Temperature (wide range)
 TEMPERATURE	LINEAR	0	METRIC	1	1	-40	0	°C	Temperature		
 TEMPERATURE	LINEAR	0	IMPERIAL	9	5	-40	32	°F	Temperature		
 TORQUE	LINEAR	0	METRIC	1	1	0	0	Nm	Torque		
-TORQUE	LINEAR	0	IMPERIAL	1	1	0	0	Nm	Torque		
 VEHSPEED	LINEAR	0	METRIC	1	1	0	0	km/h	vehicle speed		
 VEHSPEED	LINEAR	0	IMPERIAL	1000	1609	0	0	mph	vehicle speed		
 VOLTAGE	LINEAR	0	METRIC	1	1000	0	0	V	Voltage		
-VOLTAGE	LINEAR	0	IMPERIAL	1	1000	0	0	V	Voltage		
 VOLTAGE_HIGHRES	LINEAR	0	METRIC	10	81967	0	0	V	Voltage (high resolution)		
-VOLTAGE_HIGHRES	LINEAR	0	IMPERIAL	10	81967	0	0	V	Voltage (high resolution)		
+CURRENT	LINEAR	0	METRIC	1	1	0	0	mA	Current 		
+VOLTAGE_MV	LINEAR	0	METRIC	1	1	0	0	mV	Voltage millivolt		
+CONSUMPTION	LINEAR	0	METRIC	5	100	0	0	l/h	Fuel consumption		
