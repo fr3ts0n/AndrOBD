@@ -27,8 +27,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.fr3ts0n.ecu.Conversion;
-import com.fr3ts0n.ecu.Conversions;
-import com.fr3ts0n.ecu.EcuConversions;
+import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.pvs.IndexedProcessVar;
 import com.fr3ts0n.pvs.PvChangeEvent;
@@ -38,8 +37,6 @@ import com.fr3ts0n.pvs.PvList;
 import org.achartengine.model.XYSeries;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -109,15 +106,13 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 			convertView = mInflater.inflate(R.layout.obd_item, parent, false);
 		}
 		// set alternating background color
-		// v.setBackgroundColor((position % 2)==0 ? Color.LTGRAY : Color.WHITE);
+		// convertView.setBackgroundColor((position % 2)==0 ? Color.LTGRAY : Color.WHITE);
 
 		// fill view fields with data
 
 		// description text
 		TextView tvDescr = (TextView) convertView.findViewById(R.id.obd_label);
 		tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
-		TextView tvUnits = (TextView) convertView.findViewById(R.id.obd_units);
-		tvUnits.setText(String.valueOf(currPv.get(EcuDataPv.FID_UNITS)));
 		CheckBox cbChecked = (CheckBox) convertView.findViewById(R.id.check);
 		cbChecked.setVisibility(View.VISIBLE);
 
@@ -130,7 +125,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 			if (cnvObj != null && cnvObj instanceof Conversion[])
 			{
 				Conversion[] cnv = (Conversion[]) cnvObj;
-				fmtText = cnv[EcuConversions.cnvSystem].physToPhysFmtString(
+				fmtText = cnv[EcuDataItem.cnvSystem].physToPhysFmtString(
 					(Float) colVal,
 					String.valueOf(currPv.get(EcuDataPv.FID_FORMAT)));
 			} else
@@ -144,6 +139,8 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		// set value
 		TextView tvValue = (TextView) convertView.findViewById(R.id.obd_value);
 		tvValue.setText(fmtText);
+		TextView tvUnits = (TextView) convertView.findViewById(R.id.obd_units);
+		tvUnits.setText(currPv.getUnits());
 
 		return convertView;
 	}

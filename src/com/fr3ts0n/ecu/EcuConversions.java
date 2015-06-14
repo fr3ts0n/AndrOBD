@@ -35,17 +35,6 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 	/** SerialVersion UID */
 	private static final long serialVersionUID = 273813879102783740L;
 
-	/** conversion systems METRIC and IMPERIAL */
-	public static final int SYSTEM_METRIC = 0;
-	public static final int SYSTEM_IMPERIAL = 1;
-	public static final int SYSTEM_TYPES = 2;
-	/** names of conversion system types */
-	public static final String[] cnvSystems =
-	{
-		"METRIC",
-		"IMPERIAL",
-	};
-
 	/** conversion type IDs from CSV file */
 	public static final String CNV_TYPE_LINEAR      = "LINEAR";
 	public static final String CNV_TYPE_HASH        = "HASH";
@@ -70,9 +59,6 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 
 	// the data logger
 	static Logger log = Logger.getLogger("data.cnv");
-
-	// current conversion system
-	public static int cnvSystem = SYSTEM_METRIC;
 
 	/** DEFAULT type conversion */
 	public static final LinearConversion dfltCnv = new LinearConversion(1, 1, 0, 0, "");
@@ -186,9 +172,9 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 				if (currCnvSet == null)
 				{
 					// create new set for metric and imperial
-					currCnvSet = new Conversion[SYSTEM_TYPES];
+					currCnvSet = new Conversion[EcuDataItem.SYSTEM_TYPES];
 					// and initialize both systems with this data
-					for (int i = 0; i < SYSTEM_TYPES; i++)
+					for (int i = 0; i < EcuDataItem.SYSTEM_TYPES; i++)
 					{
 						currCnvSet[i] = newCnv;
 						log.debug("+" + params[FLD_NAME] + "/" + params[FLD_SYSTEM] + " - " + newCnv.toString());
@@ -196,9 +182,9 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 				} else
 				{
 					// if it is known already, then only update the matching system
-					for (int i = 0; i < SYSTEM_TYPES; i++)
+					for (int i = 0; i < EcuDataItem.SYSTEM_TYPES; i++)
 					{
-						if (cnvSystems[i].equals(params[FLD_SYSTEM]))
+						if (EcuDataItem.cnvSystems[i].equals(params[FLD_SYSTEM]))
 						{
 							currCnvSet[i] = newCnv;
 							log.debug("+" + params[FLD_NAME] + "/" + params[FLD_SYSTEM] + " - " + newCnv.toString());

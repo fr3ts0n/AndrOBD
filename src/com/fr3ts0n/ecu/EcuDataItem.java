@@ -31,6 +31,18 @@ import org.apache.log4j.Logger;
 public class EcuDataItem
 	implements Cloneable
 {
+	/** conversion systems METRIC and IMPERIAL */
+	public static final int SYSTEM_METRIC = 0;
+	public static final int SYSTEM_IMPERIAL = 1;
+	public static final int SYSTEM_TYPES = 2;
+	/** names of conversion system types */
+	public static final String[] cnvSystems =
+	{
+		"METRIC",
+		"IMPERIAL",
+	};
+	// current conversion system
+	public static int cnvSystem = SYSTEM_METRIC;
 	public int pid;        // pid
 	public int bytes;        // number of data bytes expected from vehicle
 	public int ofs;        // Offset within message
@@ -92,14 +104,14 @@ public class EcuDataItem
 		// initialize new PID with current data
 		pv.put(EcuDataPv.FID_PID, Integer.valueOf(pid));
 		pv.put(EcuDataPv.FID_DESCRIPT, label);
-		pv.put(EcuDataPv.FID_UNITS, cnv != null ? cnv[EcuConversions.cnvSystem].getUnits() : "");
+		pv.put(EcuDataPv.FID_UNITS, cnv != null ? cnv[cnvSystem].getUnits() : "");
 		pv.put(EcuDataPv.FID_VALUE, Float.valueOf(0));
 		pv.put(EcuDataPv.FID_FORMAT, fmt);
 		pv.put(EcuDataPv.FID_CNVID, cnv);
 		if(cnv != null)
 		{
-			if(minVal == null) minVal = (Float) cnv[EcuConversions.cnvSystem].memToPhys(0);
-			if(maxVal == null) maxVal = (Float) cnv[EcuConversions.cnvSystem].memToPhys(byteValues[bytes]);
+			if(minVal == null) minVal = (Float) cnv[cnvSystem].memToPhys(0);
+			if(maxVal == null) maxVal = (Float) cnv[cnvSystem].memToPhys(byteValues[bytes]);
 		}
 		pv.put(EcuDataPv.FID_MIN, minVal);
 		pv.put(EcuDataPv.FID_MAX, maxVal);
@@ -124,7 +136,7 @@ public class EcuDataItem
 		{
 			if (cnv != null)
 			{
-				result = cnv[EcuConversions.cnvSystem].memToPhys(ProtoHeader.getParamInt(ofs, bytes, buffer).longValue());
+				result = cnv[cnvSystem].memToPhys(ProtoHeader.getParamInt(ofs, bytes, buffer).longValue());
 			}
 			else
 			{

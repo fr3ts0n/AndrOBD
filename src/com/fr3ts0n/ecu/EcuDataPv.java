@@ -62,4 +62,20 @@ public class EcuDataPv extends IndexedProcessVar
 	{
 		return (FIELDS);
 	}
+
+	/**
+	 * get units of a data PV
+	 * Units may change because of the conversion system changed (metric/imperial)
+	 * @return
+	 */
+	public String getUnits()
+	{
+		String result = "";
+		Conversion[] cnv = (Conversion[]) get(FID_CNVID);
+		if(cnv != null)
+		{
+			result = cnv[EcuDataItem.cnvSystem].getUnits();
+		}
+		return result;
+	}
 }

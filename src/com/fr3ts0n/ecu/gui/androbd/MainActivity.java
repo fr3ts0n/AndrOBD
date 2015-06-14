@@ -45,7 +45,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fr3ts0n.ecu.EcuCodeItem;
-import com.fr3ts0n.ecu.EcuConversions;
+import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.prot.ElmProt;
 import com.fr3ts0n.ecu.prot.ObdProt;
 import com.fr3ts0n.pvs.PvChangeEvent;
@@ -215,19 +215,26 @@ public class MainActivity extends ListActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		// read preferences ...
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
 		super.onCreate(savedInstanceState);
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 			WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+		// read preferences ...
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 		// keep main display on?
 		if(prefs.getBoolean("keep_screen_on", false))
 		{
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		}
+
+		// ... measurement system
+		setConversionSystem(Integer.valueOf(
+				prefs.getString(MEASURE_SYSTEM,
+					String.valueOf(EcuDataItem.SYSTEM_METRIC))
+			)
+		);
 
 		// set up action bar
 		ActionBar actionBar = getActionBar();
@@ -256,13 +263,6 @@ public class MainActivity extends ListActivity
 		fileHelper = new FileHelper(this, mCommService.elm);
 		// set listeners for data structure changes
 		setDataListeners();
-
-		// ... measurement system
-		setConversionSystem(Integer.valueOf(
-				prefs.getString(MEASURE_SYSTEM,
-					String.valueOf(EcuConversions.SYSTEM_METRIC))
-			)
-		);
 
 		// Get local Bluetooth adapter
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -320,7 +320,7 @@ public class MainActivity extends ListActivity
 		getMenuInflater().inflate(R.menu.main, menu);
 		MainActivity.menu = menu;
 		// update menu item status for current conversion
-		setConversionSystem(EcuConversions.cnvSystem);
+		setConversionSystem(EcuDataItem.cnvSystem);
 		return true;
 	}
 
@@ -471,12 +471,10 @@ public class MainActivity extends ListActivity
 	void setConversionSystem( int cnvId )
 	{
 		Log.i(TAG, "Conversion: " + getResources().getStringArray(R.array.measure_options)[cnvId]);
-		if(EcuConversions.cnvSystem != cnvId)
+		if(EcuDataItem.cnvSystem != cnvId)
 		{
 			// set coversion system
-			EcuConversions.cnvSystem =  cnvId;
-			// invalidate current measurements
-			setObdService(ObdProt.OBD_SVC_NONE, null);
+			EcuDataItem.cnvSystem =  cnvId;
 		}
 	}
 
@@ -571,7 +569,7 @@ public class MainActivity extends ListActivity
 				// ... measurement system
 				setConversionSystem(
 					Integer.valueOf(prefs.getString(MEASURE_SYSTEM,
-							String.valueOf(EcuConversions.SYSTEM_METRIC))
+							String.valueOf(EcuDataItem.SYSTEM_METRIC))
 					)
 				);
 

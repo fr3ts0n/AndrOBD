@@ -27,7 +27,6 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.fr3ts0n.ecu.Conversions;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.pvs.ProcessVar;
 import com.fr3ts0n.pvs.PvChangeEvent;
@@ -37,6 +36,9 @@ import org.achartengine.ChartFactory;
 import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DialRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 /**
  * Adapter for OBD data gauge display
@@ -65,6 +67,9 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			Color.WHITE,
 			Color.LTGRAY,
 		};
+
+	/** format for numeric labels */
+	protected static final NumberFormat labelFormat = new DecimalFormat("0;-#");
 
 	static class ViewHolder
 	{
@@ -159,14 +164,14 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			renderer.setMaxValue(maxValue);
 
 			// renderer.setChartTitleTextSize(24);
-			renderer.setChartTitle(String.valueOf(currPv.get(EcuDataPv.FID_UNITS)));
+			renderer.setChartTitle(currPv.getUnits());
 			renderer.setChartTitleTextSize(18);
 
 			SimpleSeriesRenderer r = new SimpleSeriesRenderer();
 			r.setColor(colors[position % colors.length]);
 			try
 			{
-				r.setChartValuesFormat(Conversions.formats[0]);
+				r.setChartValuesFormat(labelFormat);
 			} catch (Exception e)
 			{
 				// ignore

@@ -19,24 +19,22 @@
 
 package com.fr3ts0n.ecu.prot;
 
-import java.beans.PropertyChangeEvent;
-import java.util.Arrays;
-import java.util.Vector;
-
 import com.fr3ts0n.ecu.Conversion;
-import com.fr3ts0n.ecu.Conversions;
+import com.fr3ts0n.ecu.EcuCodeList;
 import com.fr3ts0n.ecu.EcuConversions;
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataItems;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.ObdCodeItem;
-import com.fr3ts0n.ecu.ObdCodeList;
 import com.fr3ts0n.prot.ProtoHeader;
 import com.fr3ts0n.prot.TelegramListener;
 import com.fr3ts0n.prot.TelegramWriter;
 import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvList;
 
+import java.beans.PropertyChangeEvent;
+import java.util.Arrays;
+import java.util.Vector;
 
 /**
  * OBD communication protocol layer
@@ -138,7 +136,7 @@ public class ObdProt extends ProtoHeader
   /** current fault codes */
   public static PvList tCodes  = new PvList();
   /** list of known fault codes */
-  public static ObdCodeList knownCodes = Conversions.obdCodeList;
+  public static EcuCodeList knownCodes = EcuConversions.codeList;
   /** queue of ELM commands to be sent */
   static Vector<String> cmdQueue      = new Vector<String>();
 
