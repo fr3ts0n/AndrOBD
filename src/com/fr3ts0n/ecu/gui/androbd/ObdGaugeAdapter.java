@@ -53,20 +53,6 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 	private static int resourceId;
 	private transient int minWidth;
 	private transient int minHeight;
-	/**
-	 * List of colors to be used for series
-	 */
-	public static final int[] colors =
-		{
-			Color.RED,
-			Color.YELLOW,
-			Color.BLUE,
-			Color.GREEN,
-			Color.MAGENTA,
-			Color.CYAN,
-			Color.WHITE,
-			Color.LTGRAY,
-		};
 
 	/** format for numeric labels */
 	protected static final NumberFormat labelFormat = new DecimalFormat("0;-#");
@@ -128,6 +114,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		ViewHolder holder;
 		EcuDataPv currPv = getItem(position);
 		CategorySeries category = (CategorySeries) currPv.get(FID_GAUGE_SERIES);
+		int pid = currPv.getAsInt(EcuDataPv.FID_PID);
 
 		// get data PV
 		if (convertView == null)
@@ -168,7 +155,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			renderer.setChartTitleTextSize(18);
 
 			SimpleSeriesRenderer r = new SimpleSeriesRenderer();
-			r.setColor(colors[position % colors.length]);
+			r.setColor(ChartActivity.getColor(pid));
 			try
 			{
 				r.setChartValuesFormat(labelFormat);
@@ -188,7 +175,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		 	holder = (ViewHolder)convertView.getTag();
 		}
 
-		holder.tvDescr.setTextColor(colors[position % colors.length]);
+		holder.tvDescr.setTextColor(ChartActivity.getColor(pid));
 		holder.tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
 
 		return convertView;

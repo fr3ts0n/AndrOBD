@@ -41,10 +41,7 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -82,7 +79,7 @@ public class ChartActivity extends Activity
 			Color.GREEN,
 			Color.MAGENTA,
 			Color.CYAN,
-			Color.WHITE,
+			Color.GRAY,
 			Color.LTGRAY,
 		};
 
@@ -127,6 +124,28 @@ public class ChartActivity extends Activity
 	public static void setAdapter(ListAdapter mAdapter)
 	{
 		ChartActivity.mAdapter = mAdapter;
+	}
+
+	/**
+	 * get color for an ID number preferrably unique pid number
+	 * this is to get persistent coloring/lining for each id
+	 * @param id id to get color for
+	 * @return color for given ID
+	 */
+	public static int getColor(int id)
+	{
+		return colors[id % colors.length];
+	}
+
+	/**
+	 * get stroke for an ID number preferrably unique pid number
+	 * this is to get persistent coloring/lining for each id
+	 * @param id id to get color for
+	 * @return color for given ID
+	 */
+	public static BasicStroke getStroke(int id)
+	{
+		return stroke[(id / colors.length) % stroke.length];
 	}
 
 	@Override
@@ -280,8 +299,9 @@ public class ChartActivity extends Activity
 			// get corresponding Process variable
 			currPv = (EcuDataPv) mAdapter.getItem(position);
 			if (currPv == null) continue;
+			int pid = currPv.getAsInt(EcuDataPv.FID_PID);
 			// add PID to unique list of PIDs
-			pidNumbers.add(currPv.getAsInt(EcuDataPv.FID_PID));
+			pidNumbers.add(pid);
 
 			// get contained data series
 			currSeries = (XYSeries) currPv.get(ObdItemAdapter.FID_DATA_SERIES);
@@ -299,11 +319,11 @@ public class ChartActivity extends Activity
 			renderer.setYTitle(String.valueOf(currPv.get(EcuDataPv.FID_UNITS)), i);
 			renderer.setYAxisAlign(((i % 2) == 0) ? Align.LEFT : Align.RIGHT, i);
 			renderer.setYLabelsAlign(((i % 2) == 0) ? Align.LEFT : Align.RIGHT, i);
-			renderer.setYLabelsColor(i, colors[i % colors.length]);
+			renderer.setYLabelsColor(i, getColor(pid));
 			/* set up new line renderer */
 			XYSeriesRenderer r = new XYSeriesRenderer();
-			r.setColor(colors[i % colors.length]);
-			r.setStroke(stroke[(i / colors.length) % stroke.length]);
+			r.setColor(getColor(pid));
+			r.setStroke(getStroke(pid));
 			// register line renderer
 			renderer.addSeriesRenderer(i, r);
 			i++;
