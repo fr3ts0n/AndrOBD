@@ -34,6 +34,7 @@ import com.fr3ts0n.pvs.PvList;
 
 import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Vector;
 
 /**
@@ -262,7 +263,7 @@ public class ObdProt extends ProtoHeader
     // reset fixed PIDs
     resetFixedPid();
 
-    PvList newList = new PvList();
+    HashMap newList = new HashMap();
     for(Integer currPid : pidSupported)
     {
       Vector<EcuDataItem> items = dataItems.getPidDataItems(service,currPid);

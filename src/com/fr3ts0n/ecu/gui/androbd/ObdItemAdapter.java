@@ -108,9 +108,6 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		{
 			convertView = mInflater.inflate(R.layout.obd_item, parent, false);
 		}
-		// set alternating background color
-		// convertView.setBackgroundColor((position % 2)==0 ? Color.LTGRAY : Color.WHITE);
-
 		// fill view fields with data
 
 		// description text
@@ -124,7 +121,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 
 		// format value string
 		String fmtText;
-		Float colVal = (Float)currPv.get(EcuDataPv.FID_VALUE);
+		Object colVal = currPv.get(EcuDataPv.FID_VALUE);
 		Object cnvObj = currPv.get(EcuDataPv.FID_CNVID);
 		Float min = (Float) currPv.get(EcuDataPv.FID_MIN);
 		Float max = (Float) currPv.get(EcuDataPv.FID_MAX);
@@ -137,7 +134,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 				Conversion[] cnv;
 				cnv = (Conversion[]) cnvObj;
 				// set formatted text
-				fmtText = cnv[EcuDataItem.cnvSystem].physToPhysFmtString( colVal,
+				fmtText = cnv[EcuDataItem.cnvSystem].physToPhysFmtString( (Float)colVal,
 					String.valueOf(currPv.get(EcuDataPv.FID_FORMAT)));
 				// set progress bar only on LinearConversion
 				if(    min != null
@@ -146,7 +143,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 				{
 					pb.setVisibility(ProgressBar.VISIBLE);
 					pb.getProgressDrawable().setColorFilter(ChartActivity.getColor(pid), PorterDuff.Mode.SRC_IN);
-					pb.setProgress((int)(100 * ((colVal - min) / (max - min))));
+					pb.setProgress((int)(100 * (((Float)colVal - min) / (max - min))));
 				}
 				else
 				{

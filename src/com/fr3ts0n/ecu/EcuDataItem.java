@@ -144,8 +144,8 @@ public class EcuDataItem
 			}
 		} catch(Exception ex)
 		{
-			result = String.format("%s : %s", ProtUtils.hexDumpBuffer(buffer), ex.getMessage());
-			log.error(result);
+			result = String.format("%s:%s", ProtUtils.hexDumpBuffer(buffer), ex.getMessage());
+			log.error(String.format("%s: %s", toString(), result));
 		}
 		return (result);
 	}
