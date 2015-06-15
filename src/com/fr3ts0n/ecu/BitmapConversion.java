@@ -18,8 +18,8 @@
 
 package com.fr3ts0n.ecu;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * conversion of numeric values based on a Bitmap
@@ -32,7 +32,7 @@ public class BitmapConversion extends NumericConversion
 	private static final long serialVersionUID = -8498739122873083420L;
 	/* the HashMap Data */
 	@SuppressWarnings("rawtypes")
-	private HashMap<Long,String> hashData = new HashMap<Long,String>();
+	private TreeMap<Long,String> hashData = new TreeMap<Long,String>();
 
 	/**
 	 * create a new hash converter which is initialized with values from map data
