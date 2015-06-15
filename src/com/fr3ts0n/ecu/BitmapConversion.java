@@ -19,7 +19,6 @@
 package com.fr3ts0n.ecu;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -73,19 +72,20 @@ public class BitmapConversion extends NumericConversion
 		hashData.clear();
 
 		// loop through all string entries ...
-		for (int i = 0; i < initData.length; i++)
+		for (String anInitData : initData)
 		{
-			data = initData[i].split(";");
-			for (int j = 0; j < data.length; j++)
+			data = anInitData.split(";");
+			for (String aData : data)
 			{
 				// ... split key and value ...
-				String[] words = data[j].split("=");
+				String[] words = aData.split("=");
 				key = (long) (1 << Long.valueOf(words[0]));
 				value = words[1];
 				// ... and enter into hash map
 				hashData.put(key, value);
 			}
 		}
+
 	}
 
 	public Number memToPhys(long value)
@@ -106,16 +106,15 @@ public class BitmapConversion extends NumericConversion
 
 		for(Map.Entry<Long,String> item : hashData.entrySet())
 		{
-			if((val & item.getKey()) != 0)
-			{
-				// if this is NOT the first entry, then add a new line
-				if (result == null)
-					result = "";
-				else
-					result += "\n";
-				// now add the result
-				result += item.getValue();
-			}
+			// if this is NOT the first entry, then add a new line
+			if (result == null)
+				result = "";
+			else
+				result += "\n";
+			// now add the result
+			result += String.format("%s  %s",
+															((val & item.getKey()) != 0) ? "(*)" : "(  )",
+															item.getValue() );
 		}
 		// if we haven't found a string representation, return numeric value
 		if (result == null) result = super.physToPhysFmtString(physVal,format);
