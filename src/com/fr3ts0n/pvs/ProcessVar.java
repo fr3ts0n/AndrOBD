@@ -21,6 +21,7 @@ package com.fr3ts0n.pvs;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -56,9 +57,11 @@ public class ProcessVar
 	/** flag if to allow ChangeEvents to be fired */
 	protected boolean allowEvents = false;
 	/** list of process var change listeners */
-	private transient HashMap<PvChangeListener, Integer> PvChangeListeners = new HashMap<PvChangeListener, Integer>();
+	private transient Map<PvChangeListener, Integer> PvChangeListeners =
+		Collections.synchronizedMap(new HashMap<PvChangeListener, Integer>());
 	/** Map of attribute changes */
-	private HashMap<Object, PvChangeEvent> changes = new HashMap<Object, PvChangeEvent>();
+	private Map<Object, PvChangeEvent> changes =
+		Collections.synchronizedMap(new HashMap<Object, PvChangeEvent>());
 	/** The logger object */
 	public static Logger log = Logger.getLogger(ProcessVar.class.getPackage().getName());
 
