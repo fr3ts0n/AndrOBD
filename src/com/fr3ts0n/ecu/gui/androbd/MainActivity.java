@@ -46,6 +46,7 @@ import android.widget.Toast;
 
 import com.fr3ts0n.ecu.EcuCodeItem;
 import com.fr3ts0n.ecu.EcuDataItem;
+import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.prot.ElmProt;
 import com.fr3ts0n.ecu.prot.ObdProt;
 import com.fr3ts0n.pvs.PvChangeEvent;
@@ -672,13 +673,18 @@ public class MainActivity extends ListActivity
 		switch (mCommService.elm.getService())
 		{
 		    /* if we are in OBD data mode:
-		     * ->Long click on an item starts the single item chart activity
+		     * ->Long click on an item starts the single item dashboard activity
 		     */
 			case ObdProt.OBD_SVC_DATA:
-				DashBoardActivity.setAdapter(getListAdapter());
-				intent = new Intent(this, DashBoardActivity.class);
-				intent.putExtra(DashBoardActivity.POSITIONS, new int[]{ position });
-				startActivity(intent);
+				EcuDataPv pv = (EcuDataPv)getListAdapter().getItem(position);
+				/* only numeric values may be shown as graph/dashboard */
+				if(pv.get(EcuDataPv.FID_VALUE) instanceof Number)
+				{
+					DashBoardActivity.setAdapter(getListAdapter());
+					intent = new Intent(this, DashBoardActivity.class);
+					intent.putExtra(DashBoardActivity.POSITIONS, new int[]{ position });
+					startActivity(intent);
+				}
 				break;
 
 			/* If we are in DFC mode of any kind
