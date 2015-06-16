@@ -86,6 +86,7 @@ public class ElmProt
 		FBERROR("FBERROR"),
 		DATAERROR("DATAERROR"),
 		BUFFERFULL("BUFFERFULL"),
+		STOPPED("STOPPED"),
 		RXERROR("<"),
 		QMARK("?"),
 		UNKNOWN("");
@@ -329,6 +330,7 @@ public class ElmProt
 			case DATAERROR:
 			case BUFFERFULL:
 			case RXERROR:
+			case STOPPED:
 				// remember this as last received message
 				// do NOT respond immediately
 				lastRxMsg = bufferStr;
