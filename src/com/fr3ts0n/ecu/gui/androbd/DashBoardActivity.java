@@ -175,7 +175,7 @@ public class DashBoardActivity extends Activity
 		}
 
 		// limit selected PIDs to selection
-		ChartActivity.setFixedPids(pidNumbers);
+		MainActivity.setFixedPids(pidNumbers);
 	}
 
 	/**

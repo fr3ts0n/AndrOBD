@@ -194,8 +194,12 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 			XYSeries series = (XYSeries) pv.get(FID_DATA_SERIES);
 			if (series != null)
 			{
-				series.add(event.getTime(),
-					Double.valueOf(String.valueOf(event.getValue())));
+				if(event.getValue() instanceof Number)
+				{
+					series.add(event.getTime(),
+						((Number)event.getValue()).doubleValue());
+
+				}
 			}
 		}
 	}

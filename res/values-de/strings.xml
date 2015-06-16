@@ -74,4 +74,6 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="protocol">Übertragnungsprotokoll</string>
     <string name="keep_screen_on">Datenanzeige nicht abschalten</string>
     <string name="keep_screen_on_description">Haupt-/Datenanzeige soll nicht automatisch abschalten</string>
+    <string name="unfilter">Filter aufheben</string>
+    <string name="filter">Liste filtern</string>
 </resources>

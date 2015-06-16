@@ -51,12 +51,15 @@ import com.fr3ts0n.ecu.prot.ElmProt;
 import com.fr3ts0n.ecu.prot.ObdProt;
 import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
+import com.fr3ts0n.pvs.PvList;
 
 import org.apache.log4j.Level;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -94,7 +97,7 @@ public class MainActivity extends ListActivity
 	 */
 	private static final int EXIT_TIMEOUT = 2500;
 	/** time between display updates to represent data changes */
-	private static final int DISPLAY_UPDATE_TIME = 1000;
+	private static final int DISPLAY_UPDATE_TIME = 500;
 	/** Member object for the BT comm services */
 	private static ObdCommService mCommService = null;
 	/** Local Bluetooth adapter */
@@ -212,6 +215,20 @@ public class MainActivity extends ListActivity
 			}
 		}
 	};
+
+	/**
+	 * Set fixed PIDs for protocol to specified list of PIDs
+	 * @param pidNumbers List of PIDs
+	 */
+	public static void setFixedPids(HashSet<Integer> pidNumbers)
+	{
+		int[] pids = new int[pidNumbers.size()];
+		int i=0;
+		for(Integer pidNum : pidNumbers) pids[i++] = pidNum;
+		Arrays.sort(pids);
+		// set protocol fixed PIDs
+		ObdProt.setFixedPid(pids);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -353,6 +370,37 @@ public class MainActivity extends ListActivity
 	}
 
 	/**
+	 * Filter display items to just the selected ones
+	 */
+	private void setFiltered(boolean filtered)
+	{
+		if(filtered)
+		{
+			PvList filteredList = new PvList();
+			HashSet<Integer> selPids = new HashSet<Integer>();
+			for(int pos : getSelectedPositions())
+			{
+				EcuDataPv pv = (EcuDataPv)mPidAdapter.getItem(pos);
+				selPids.add(pv.getAsInt(EcuDataPv.FID_PID));
+				filteredList.put(pv.toString(), pv);
+			}
+			mPidAdapter.setPvList(filteredList);
+			setFixedPids(selPids);
+		}
+		else
+		{
+			ObdProt.resetFixedPid();
+			mPidAdapter.setPvList(ObdProt.PidPvs);
+		}
+
+		setMenuItemEnable(R.id.filter_selected, !filtered);
+		setMenuItemEnable(R.id.unfilter_selected, filtered);
+		setMenuItemEnable(R.id.chart_selected, !filtered);
+		setMenuItemEnable(R.id.dashboard_selected, !filtered);
+		setMenuItemEnable(R.id.hud_selected, !filtered);
+	}
+
+	/**
 	 * Handler for Options menu selection
 	 */
 	@Override
@@ -415,6 +463,14 @@ public class MainActivity extends ListActivity
 					}
 				}
 				return true;
+
+			case R.id.filter_selected:
+				setFiltered(true);
+				break;
+
+			case R.id.unfilter_selected:
+				setFiltered(false);
+				break;
 
 			case R.id.save:
 				// save recorded data (threaded)
@@ -711,11 +767,17 @@ public class MainActivity extends ListActivity
 	public void setObdService(int obdService, CharSequence menuTitle)
 	{
 		setContentView(R.layout.obd_list);
+		// un-filter display
+		setFiltered(false);
+		// set title
 		TextView title = (TextView) findViewById(R.id.title);
 		title.setText(menuTitle);
+		// update controls
 		setMenuItemEnable(R.id.graph_actions, false);
 		getListView().setOnItemLongClickListener(this);
+		// set protocol service
 		mCommService.elm.setService(obdService);
+		// set corresponding list adapter
 		switch (obdService)
 		{
 			case ObdProt.OBD_SVC_DATA:

@@ -31,6 +31,17 @@
                     android:icon="@drawable/ic_action_dashboard"
                     android:showAsAction="ifRoom"
                     android:title="@string/hud"/>
+                <item
+                    android:id="@+id/filter_selected"
+                    android:icon="@mipmap/ic_ok"
+                    android:showAsAction="never"
+                    android:title="@string/filter"/>
+                <item
+                    android:id="@+id/unfilter_selected"
+                    android:icon="@mipmap/ic_nok"
+                    android:showAsAction="never"
+                    android:title="@string/unfilter"
+                    android:enabled="false"/>
             </group>
         </menu>
     </item>

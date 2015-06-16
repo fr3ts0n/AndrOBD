@@ -72,8 +72,11 @@ period of time while the ECU recalibrates itself.
 	<string name="dashboard">Dashboard</string>
 	<string name="graph_actions">Graph actions</string>
 	<string name="hud">Head Up Display</string>
-    <string name="settings">Settings</string>
+    <string name="filter">Filter selected</string>
+    <string name="unfilter">Un-filter selected</string>
 
+    <!-- Settings -->
+    <string name="settings">Settings</string>
     <string name="common_settings">Common settings</string>
     <string name="measure_system_description">Measurement units sytem (metric / imperial)</string>
     <string name="measure_system">Measurement units</string>

@@ -40,7 +40,6 @@ import org.achartengine.renderer.BasicStroke;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -73,6 +72,8 @@ public class ChartActivity extends Activity
 	 */
 	public static final int[] colors =
 		{
+			Color.parseColor("lightgray"),
+			Color.parseColor("darkgray"),
 			Color.parseColor("red"),
 			Color.parseColor("blue"),
 			Color.parseColor("green"),
@@ -80,8 +81,6 @@ public class ChartActivity extends Activity
 			Color.parseColor("cyan"),
 			Color.parseColor("navy"),
 			Color.parseColor("yellow"),
-			Color.parseColor("lightgray"),
-			Color.parseColor("darkgray"),
 			Color.parseColor("aqua"),
 			Color.parseColor("fuchsia"),
 			Color.parseColor("maroon"),
@@ -200,18 +199,9 @@ public class ChartActivity extends Activity
 		// make chart visible
 		setContentView(chartView);
 		// limit selected PIDs to selection
-		setFixedPids(pidNumbers);
+		MainActivity.setFixedPids(pidNumbers);
 	}
 
-	public static void setFixedPids(HashSet<Integer> pidNumbers)
-	{
-		int[] pids = new int[pidNumbers.size()];
-		int i=0;
-		for(Integer pidNum : pidNumbers) pids[i++] = pidNum;
-		Arrays.sort(pids);
-		// set protocol fixed PIDs
-		ObdProt.setFixedPid(pids);
-	}
 	/**
 	 * Handle menu selections
 	 *
