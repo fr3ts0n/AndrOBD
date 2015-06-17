@@ -72,24 +72,24 @@ public class ChartActivity extends Activity
 	 */
 	public static final int[] colors =
 		{
-			Color.parseColor("lightgray"),
-			Color.parseColor("darkgray"),
-			Color.parseColor("red"),
-			Color.parseColor("blue"),
-			Color.parseColor("green"),
-			Color.parseColor("gray"),
-			Color.parseColor("cyan"),
-			Color.parseColor("navy"),
-			Color.parseColor("yellow"),
-			Color.parseColor("aqua"),
-			Color.parseColor("fuchsia"),
-			Color.parseColor("maroon"),
-			Color.parseColor("lime"),
-			Color.parseColor("magenta"),
-			Color.parseColor("olive"),
-			Color.parseColor("purple"),
-			Color.parseColor("silver"),
-			Color.parseColor("teal"),
+			Color.LTGRAY,
+			Color.DKGRAY,
+			Color.RED,
+			Color.BLUE,
+			Color.GREEN,
+			Color.GRAY,
+			Color.CYAN,
+			Color.parseColor("#FF000080"), // navy
+			Color.YELLOW,
+			Color.parseColor("#FF00FFFF"), // aqua
+			Color.parseColor("#FFFF00FF"), // fuchsia
+			Color.parseColor("#FF800000"), // maroon
+			Color.parseColor("#FF00FF00"), // lime
+			Color.MAGENTA,
+			Color.parseColor("#FF808000"), // olive
+			Color.parseColor("#FF800080"), // purple
+			Color.parseColor("#FFC0C0C0"), // silver
+			Color.parseColor("#FF008080"), // teal
 		};
 
 	/**
