@@ -27,8 +27,6 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
-import org.apache.log4j.Category;
-
 public class SettingsActivity
 	extends Activity
 {
@@ -109,7 +107,7 @@ public class SettingsActivity
 				{
 					String value = (resultCode == Activity.RESULT_OK) ? data.getData().toString() : null;
 					ed.putString(key, value);
-					if(value != null) pref.setSummary(value);
+					pref.setSummary(value != null ? value : getString(R.string.select_extension));
 				}
 			}
 			ed.commit();
