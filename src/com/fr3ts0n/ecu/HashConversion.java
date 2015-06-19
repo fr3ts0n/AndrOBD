@@ -102,7 +102,7 @@ public class HashConversion extends NumericConversion
 		String result = hashData.get(physVal.longValue());
 		// if we haven't found a string representation, return numeric value
 		if (result == null)
-			result = super.physToPhysFmtString(physVal, format);
+			result = "Unknown state: "+super.physToPhysFmtString(physVal, format);
 
 		return (result);
 	}

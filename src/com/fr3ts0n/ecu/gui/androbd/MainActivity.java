@@ -651,6 +651,8 @@ public class MainActivity extends ListActivity
 	 */
 	public void loadPreferredExtensions()
 	{
+		String errors = "";
+
 		// custom code list
 		try
 		{
@@ -665,6 +667,7 @@ public class MainActivity extends ListActivity
 		{
 			Log.e(TAG, "Load ext. codelist: ", e);
 			e.printStackTrace();
+			errors += e.getLocalizedMessage()+"\n";
 		}
 
 		// custom conversions
@@ -681,6 +684,7 @@ public class MainActivity extends ListActivity
 		{
 			Log.e(TAG, "Load ext. conversions: ", e);
 			e.printStackTrace();
+			errors += e.getLocalizedMessage()+"\n";
 		}
 
 		// custom PIDs
@@ -697,6 +701,16 @@ public class MainActivity extends ListActivity
 		{
 			Log.e(TAG, "Load ext. PIDs: ", e);
 			e.printStackTrace();
+			errors += e.getLocalizedMessage()+"\n";
+		}
+
+		if(errors.length() != 0)
+		{
+			new AlertDialog.Builder(this)
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setTitle(R.string.extension_loading)
+				.setMessage(getString(R.string.check_cust_settings) + errors)
+				.show();
 		}
 	}
 

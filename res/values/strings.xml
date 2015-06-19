@@ -120,4 +120,6 @@ period of time while the ECU recalibrates itself.
     <string name="data_items">Data items</string>
     <string name="fault_codes">Fault codes</string>
     <string name="select_extension">Select .csv extension file …</string>
+    <string name="extension_loading">Customisation loading</string>
+    <string name="check_cust_settings">Please check your customisation settings\n</string>
 </resources>

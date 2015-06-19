@@ -84,4 +84,6 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="fault_codes">Fehlercodes</string>
     <string name="select_extension">Bitte .csv Erweiterungs-Datei auswählen …</string>
     <string name="dev_opt_description">Optionen zur Fehlersuche und Anpassungen</string>
+    <string name="extension_loading">Anpassungen laden</string>
+    <string name="check_cust_settings">Bitte Einstellungen für Anpassungen prüfen\n</string>
 </resources>
