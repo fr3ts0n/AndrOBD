@@ -25,6 +25,9 @@ package com.fr3ts0n.ecu;
 public class IntConversion
 	extends NumericConversion
 {
+	/** uid */
+	private static final long serialVersionUID = -2551205550381391025L;
+
 	@Override
 	public Number memToPhys(long value)
 	{

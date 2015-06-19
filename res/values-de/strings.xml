@@ -24,7 +24,7 @@
     <string name="service_freezeframes">OBD Freeze Frames</string>
     <string name="share">teilen</string>
     <string name="time">Zeit [s]</string>
-    <string name="title">titel</string>
+    <string name="title">Titel</string>
     <string name="title_connected_to">Verbunden %s</string>
     <string name="title_connecting">Verbinde&#8230;</string>
     <string name="title_not_connected">Nicht verbunden</string>
@@ -76,4 +76,12 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="keep_screen_on_description">Haupt-/Datenanzeige soll nicht automatisch abschalten</string>
     <string name="unfilter">Filter aufheben</string>
     <string name="filter">Liste filtern</string>
+    <string name="conversions">Umrechnungen</string>
+    <string name="data_items">Mess- / Datenpunkte</string>
+    <string name="debugging">Fehlersuche</string>
+    <string name="development_options">Entwicklungseinstellungen</string>
+    <string name="extension_files">Protokoll Anpassungsdateien (csv)</string>
+    <string name="fault_codes">Fehlercodes</string>
+    <string name="select_extension">Bitte .csv Erweiterungs-Datei auswählen …</string>
+    <string name="dev_opt_description">Optionen zur Fehlersuche und Anpassungen</string>
 </resources>

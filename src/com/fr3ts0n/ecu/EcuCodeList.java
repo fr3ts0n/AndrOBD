@@ -20,6 +20,7 @@ package com.fr3ts0n.ecu;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
@@ -75,22 +76,57 @@ public class EcuCodeList extends HashMap<Integer, EcuCodeItem>
 	}
 
 	/**
-	 * initialize list from ressource file (tab delimited)
+	 * initialize list from resource file (tab delimited)
 	 *
-	 * @param ressource name of ressource to be loaded
+	 * @param resource name of resource to be loaded
 	 */
-	protected void loadFromResource(String ressource)
+	protected void loadFromResource(String resource)
 	{
-		loadFromResource(ressource, 10);
+		try
+		{
+			loadFromStream(getClass().getResource(resource).openStream());
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * initialize list from ressource file (tab delimited)
+	 * initialize list from resource file (tab delimited)
 	 *
-	 * @param ressource name of ressource to be loaded
+	 * @param resource name of resource to be loaded
 	 * @param idRadix   radix of numeric code id
 	 */
-	protected void loadFromResource(String ressource, int idRadix)
+	protected void loadFromResource(String resource, int idRadix)
+	{
+		try
+		{
+			loadFromStream(getClass().getResource(resource).openStream(), idRadix);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * initialize list from stream (tab delimited)
+	 *
+	 * @param inStr Input stream to be loaded
+	 */
+	public void loadFromStream(InputStream inStr)
+	{
+		loadFromStream(inStr, 10);
+	}
+
+	/**
+	 * initialize list from stream (tab delimited)
+	 *
+	 * @param inStr Input stream to be loaded
+	 * @param idRadix   radix of numeric code id
+	 */
+	protected void loadFromStream(InputStream inStr, int idRadix)
 	{
 		BufferedReader rdr;
 		String currLine;
@@ -98,7 +134,7 @@ public class EcuCodeList extends HashMap<Integer, EcuCodeItem>
 
 		try
 		{
-			rdr = new BufferedReader(new InputStreamReader(getClass().getResource(ressource).openStream()));
+			rdr = new BufferedReader(new InputStreamReader(inStr));
 			// loop through all lines of the file ...
 			while ((currLine = rdr.readLine()) != null)
 			{

@@ -45,7 +45,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fr3ts0n.ecu.EcuCodeItem;
+import com.fr3ts0n.ecu.EcuConversions;
 import com.fr3ts0n.ecu.EcuDataItem;
+import com.fr3ts0n.ecu.EcuDataItems;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.prot.ElmProt;
 import com.fr3ts0n.ecu.prot.ObdProt;
@@ -97,7 +99,7 @@ public class MainActivity extends ListActivity
 	 */
 	private static final int EXIT_TIMEOUT = 2500;
 	/** time between display updates to represent data changes */
-	private static final int DISPLAY_UPDATE_TIME = 500;
+	private static final int DISPLAY_UPDATE_TIME = 300;
 	/** Member object for the BT comm services */
 	private static ObdCommService mCommService = null;
 	/** Local Bluetooth adapter */
@@ -125,6 +127,8 @@ public class MainActivity extends ListActivity
 	/** toast for showing exit message */
 	private static Toast exitToast = null;
 	private static FileHelper fileHelper;
+	// app preferences ...
+	SharedPreferences prefs;
 
 	/**
 	 * Timer Task to cyclically update data screen
@@ -209,7 +213,7 @@ public class MainActivity extends ListActivity
 					break;
 
 				case MESSAGE_UPDATE_VIEW:
-					currDataAdapter.notifyDataSetChanged();
+					getListView().invalidateViews();
 					break;
 
 			}
@@ -237,9 +241,8 @@ public class MainActivity extends ListActivity
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 			WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-		// read preferences ...
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		// get preferences
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 		// keep main display on?
 		if(prefs.getBoolean("keep_screen_on", false))
@@ -269,7 +272,7 @@ public class MainActivity extends ListActivity
 		logCfg.setUseLogCatAppender(true);
 		logCfg.setUseFileAppender(true);
 		logCfg.setFileName(FileHelper.getPath(this).concat(File.separator).concat("log/AndrOBD.log"));
-		setLogLevels(prefs);
+		setLogLevels();
 
 		// Set up all data adapters
 		mCommService = new ObdCommService(this, mHandler);
@@ -277,6 +280,9 @@ public class MainActivity extends ListActivity
 		mVidAdapter = new VidItemAdapter(this, R.layout.obd_item, ObdProt.VidPvs);
 		mDfcAdapter = new DfcItemAdapter(this, R.layout.obd_item, ObdProt.tCodes);
 		currDataAdapter = mPidAdapter;
+		// load csv files for protocol extensions
+		loadPreferredExtensions();
+
 		// create file helper instance
 		fileHelper = new FileHelper(this, mCommService.elm);
 		// set listeners for data structure changes
@@ -300,9 +306,8 @@ public class MainActivity extends ListActivity
 
 	/**
 	 * Setr logging levels from shared preferences
-	 * @param prefs shared preferences
 	 */
-	private void setLogLevels(SharedPreferences prefs)
+	private void setLogLevels()
 	{
 		logCfg.setRootLevel(Level.toLevel(prefs.getString("log_master", "INFO")));
 		logCfg.configure();
@@ -592,7 +597,7 @@ public class MainActivity extends ListActivity
 				{
 					// Get the Uri of the selected file
 					Uri uri = data.getData();
-					Log.d(TAG, "Load content: " + uri);
+					Log.i(TAG, "Load content: " + uri);
 					// load data ...
 					try
 					{
@@ -617,11 +622,8 @@ public class MainActivity extends ListActivity
 				
 			case REQUEST_SETTINGS:
 			{
-				// read preferences ...
-				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
 				// log levels
-				setLogLevels(prefs);
+				setLogLevels();
 
 				// ... measurement system
 				setConversionSystem(
@@ -635,8 +637,66 @@ public class MainActivity extends ListActivity
 				{
 					getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 				}
+
+				// update from protocol extensions
+				loadPreferredExtensions();
 			}
 			break;
+		}
+	}
+
+	/**
+	 * Load optional extension files which may have
+	 * been defined in preferences
+	 */
+	public void loadPreferredExtensions()
+	{
+		// custom code list
+		try
+		{
+			String filePath = prefs.getString(SettingsActivity.extKeys[2], null);
+			if(filePath != null)
+			{
+				Log.i(TAG, "Load ext. codelist: "+filePath);
+				InputStream inStr = getContentResolver().openInputStream(Uri.parse(filePath));
+				EcuConversions.codeList.loadFromStream(inStr);
+			}
+		} catch (Exception e)
+		{
+			Log.e(TAG, "Load ext. codelist: ", e);
+			e.printStackTrace();
+		}
+
+		// custom conversions
+		try
+		{
+			String filePath = prefs.getString(SettingsActivity.extKeys[0], null);
+			if(filePath != null)
+			{
+				Log.i(TAG, "Load ext. conversions: "+filePath);
+				InputStream inStr = getContentResolver().openInputStream(Uri.parse(filePath));
+				EcuDataItems.cnv.loadFromStream(inStr);
+			}
+		} catch (Exception e)
+		{
+			Log.e(TAG, "Load ext. conversions: ", e);
+			e.printStackTrace();
+		}
+
+		// custom PIDs
+		try
+		{
+			String filePath = prefs.getString(SettingsActivity.extKeys[1], null);
+			if(filePath != null)
+			{
+				Log.i(TAG, "Load ext. conversions: "+filePath);
+				InputStream inStr = getContentResolver().openInputStream(Uri.parse(filePath));
+				ObdProt.dataItems.loadFromStream(inStr);
+			}
+		} catch (Exception e)
+		{
+			Log.e(TAG, "Load ext. PIDs: ", e);
+			e.printStackTrace();
 		}
 	}
 

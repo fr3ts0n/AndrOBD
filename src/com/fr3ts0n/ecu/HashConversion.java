@@ -33,7 +33,6 @@ public class HashConversion extends NumericConversion
 	 */
 	private static final long serialVersionUID = -1077047688974749271L;
 	/* the HashMap Data */
-	@SuppressWarnings("rawtypes")
 	private HashMap<Long, String> hashData = new HashMap<Long, String>();
 
 	/**
@@ -63,7 +62,6 @@ public class HashConversion extends NumericConversion
 	 *
 	 * @param initData initializer strings for conversions in the format "key=value[;key=value[...]]"
 	 */
-	@SuppressWarnings("unchecked")
 	public void initFromStrings(String[] initData)
 	{
 		Long key;

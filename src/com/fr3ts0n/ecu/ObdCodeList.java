@@ -20,6 +20,7 @@ package com.fr3ts0n.ecu;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
@@ -61,12 +62,12 @@ public class ObdCodeList
 	}
 
 	/**
-	 * initialize list from resource file (tab delimited)
+	 * load code list from stream (tab delimited)
 	 *
-	 * @param resource name of resource to be loaded
+	 * @param inStr Input stream to be loaded
 	 */
 	@Override
-	protected void loadFromResource(String resource)
+	public void loadFromStream(InputStream inStr)
 	{
 		BufferedReader rdr;
 		String currLine;
@@ -74,7 +75,7 @@ public class ObdCodeList
 
 		try
 		{
-			rdr = new BufferedReader(new InputStreamReader(getClass().getResource(resource).openStream()));
+			rdr = new BufferedReader(new InputStreamReader(inStr));
 			// loop through all lines of the file ...
 			while ((currLine = rdr.readLine()) != null)
 			{

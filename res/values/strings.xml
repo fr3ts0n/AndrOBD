@@ -91,6 +91,7 @@ period of time while the ECU recalibrates itself.
         <item>1</item>
     </string-array>
 
+    <string name="debugging">Debugging</string>
     <string name="logging_level">Logging level</string>
     <string name="logging_level_description">Level of details to be logged into debug log file</string>
     <string name="master">master</string>
@@ -112,4 +113,11 @@ period of time while the ECU recalibrates itself.
     <string name="keep_screen_on">Keep main screen on</string>
     <string name="keep_screen_on_description">Do not turn OFF screen if main/data screen is on display</string>
 
+    <string name="development_options">Development options</string>
+    <string name="dev_opt_description">Options for debugging and customisation</string>
+    <string name="extension_files">Protocol customisation files (csv)</string>
+    <string name="conversions">Data Conversions</string>
+    <string name="data_items">Data items</string>
+    <string name="fault_codes">Fault codes</string>
+    <string name="select_extension">Select .csv extension file …</string>
 </resources>

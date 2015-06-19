@@ -128,7 +128,7 @@ public class ObdProt extends ProtoHeader
   };
 
   /** new style data items */
-  static final EcuDataItems dataItems = new EcuDataItems();
+  public static final EcuDataItems dataItems = new EcuDataItems();
 
   /** OBD data items */
   public static PvList PidPvs  = new PvList();
@@ -207,7 +207,7 @@ public class ObdProt extends ProtoHeader
    */
   protected char[] getNewHeader(char[] buffer)
   {
-    return(getNewHeader(buffer,OBD_SVC_DATA,new Integer(0)));
+    return(getNewHeader(buffer,OBD_SVC_DATA,Integer.valueOf(0)));
   }
 
   /**
@@ -223,7 +223,7 @@ public class ObdProt extends ProtoHeader
   {
     int[][] fldMap = getTelegramParams(type);
     char[] header = createEmptyBuffer(fldMap,'0');
-    setParamValue(ID_OBD_SVC,fldMap,header,new Integer(type));
+    setParamValue(ID_OBD_SVC,fldMap,header,Integer.valueOf(type));
     switch(type)
     {
       // these commands do not require parametrs
@@ -263,7 +263,7 @@ public class ObdProt extends ProtoHeader
     // reset fixed PIDs
     resetFixedPid();
 
-    HashMap newList = new HashMap();
+    HashMap<String,EcuDataPv> newList = new HashMap<String,EcuDataPv>();
     for(Integer currPid : pidSupported)
     {
       Vector<EcuDataItem> items = dataItems.getPidDataItems(service,currPid);
@@ -415,7 +415,7 @@ public class ObdProt extends ProtoHeader
               // OBD number of fault codes
               case 1:
                 msgPayload = ((Integer)getParamValue(ID_NUM_CODES,NUMCODE_PARAMETERS,buffer)).longValue();
-                setNumCodes(new Long(msgPayload).intValue());
+                setNumCodes(Long.valueOf(msgPayload).intValue());
                 // no break here ...
               default:
                 dataItems.updateDataItems( msgSvc,
@@ -534,7 +534,7 @@ public class ObdProt extends ProtoHeader
   {
     int old = this.numCodes;
     this.numCodes = numCodes;
-    firePropertyChange(new PropertyChangeEvent(this,"numCodes",new Integer(old),new Integer(numCodes)));
+    firePropertyChange(new PropertyChangeEvent(this,"numCodes",Integer.valueOf(old),Integer.valueOf(numCodes)));
   }
 
   /**

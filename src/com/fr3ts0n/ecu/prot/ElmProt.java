@@ -508,7 +508,6 @@ public class ElmProt
 	{
 		int value = 0;
 		Integer pid = null;
-		Integer oldPid;
 		runDemo = true;
 
 		log.info("ELM DEMO thread started");
@@ -557,7 +556,6 @@ public class ElmProt
 						// otherwise send data ...
 						case OBD_SVC_DATA:
 						case OBD_SVC_FREEZEFRAME:
-							oldPid = pid;
 							pid = getNextSupportedPid();
 							if (pid != null)
 							{

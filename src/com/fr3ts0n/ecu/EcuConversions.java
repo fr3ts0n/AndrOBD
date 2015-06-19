@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
@@ -88,12 +89,7 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 		loadFromResource(resource);
 	}
 
-	/**
-	 * load conversion list from resource file (tab delimited)
-	 *
-	 * @param resource name of resource to be loaded
-	 */
-	private void loadFromResource(String resource)
+	public void loadFromStream(InputStream inStr)
 	{
 		BufferedReader rdr;
 		String currLine;
@@ -104,7 +100,7 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 
 		try
 		{
-			rdr = new BufferedReader(new InputStreamReader(getClass().getResource(resource).openStream()));
+			rdr = new BufferedReader(new InputStreamReader(inStr));
 			// loop through all lines of the file ...
 			while ((currLine = rdr.readLine()) != null)
 			{
@@ -198,6 +194,23 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 		} catch (IOException e)
 		{
 			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * load conversion list from resource file (tab delimited)
+	 *
+	 * @param resource name of resource to be loaded
+	 */
+	private void loadFromResource(String resource)
+	{
+		try
+		{
+			loadFromStream(getClass().getResource(resource).openStream());
+		}
+		catch(IOException ex)
+		{
+			ex.printStackTrace();
 		}
 	}
 

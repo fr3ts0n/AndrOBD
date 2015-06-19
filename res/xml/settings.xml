@@ -6,6 +6,13 @@
     <PreferenceCategory
         android:title="@string/common_settings"
         >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="keep_screen_on"
+            android:summary="@string/keep_screen_on_description"
+            android:title="@string/keep_screen_on"
+            />
+
         <ListPreference
             android:defaultValue="0"
             android:dialogTitle="@string/measure_system"
@@ -16,23 +23,62 @@
             android:title="@string/measure_system"
             />
 
-        <ListPreference
-            android:defaultValue="INFO"
-            android:dialogTitle="@string/logging_level"
-            android:entries="@array/logging_options"
-            android:entryValues="@array/logging_options"
-            android:key="log_master"
-            android:summary="@string/logging_level_description"
-            android:title="@string/logging_level"
-            />
-
-        <CheckBoxPreference
-            android:title="@string/keep_screen_on"
-            android:summary="@string/keep_screen_on_description"
-            android:defaultValue="false"
-            android:key="keep_screen_on"
-            />
-
     </PreferenceCategory>
+
+    <PreferenceScreen
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="@string/development_options"
+        android:summary="@string/dev_opt_description"
+        >
+        <PreferenceCategory
+            android:title="@string/debugging">
+            <ListPreference
+                android:defaultValue="INFO"
+                android:dialogTitle="@string/logging_level"
+                android:entries="@array/logging_options"
+                android:entryValues="@array/logging_options"
+                android:key="log_master"
+                android:summary="@string/logging_level_description"
+                android:title="@string/logging_level"
+                />
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:title="@string/extension_files">
+            <Preference
+                android:icon="@drawable/ic_action_load"
+                android:key="ext_file_conversions"
+                android:summary="@string/select_extension"
+                android:title="@string/conversions"
+                >
+                <intent
+                    android:action="android.intent.action.OPEN_DOCUMENT"
+                    android:mimeType="*/*"
+                    />
+            </Preference>
+            <Preference
+                android:icon="@drawable/ic_action_load"
+                android:key="ext_file_dataitems"
+                android:summary="@string/select_extension"
+                android:title="@string/data_items"
+                >
+                <intent
+                    android:action="android.intent.action.OPEN_DOCUMENT"
+                    android:mimeType="*/*"
+                    />
+            </Preference>
+            <Preference
+                android:icon="@drawable/ic_action_load"
+                android:key="ext_file_faultcodes"
+                android:summary="@string/select_extension"
+                android:title="@string/fault_codes"
+                >
+                <intent
+                    android:action="android.intent.action.OPEN_DOCUMENT"
+                    android:mimeType="*/*"
+                    />
+            </Preference>
+        </PreferenceCategory>
+
+    </PreferenceScreen>
 
 </PreferenceScreen>

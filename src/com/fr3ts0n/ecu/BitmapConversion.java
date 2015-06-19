@@ -31,7 +31,6 @@ public class BitmapConversion extends NumericConversion
 	/** SerialVersion UID */
 	private static final long serialVersionUID = -8498739122873083420L;
 	/* the HashMap Data */
-	@SuppressWarnings("rawtypes")
 	private TreeMap<Long,String> hashData = new TreeMap<Long,String>();
 
 	/**
@@ -62,7 +61,6 @@ public class BitmapConversion extends NumericConversion
 	 *
 	 * @param initData initializer strings for conversions in the format "BitPos=value[;BitPos=value[...]]"
 	 */
-	@SuppressWarnings("unchecked")
 	public void initFromStrings(String[] initData)
 	{
 		Long key;

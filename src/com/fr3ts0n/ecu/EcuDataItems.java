@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Vector;
@@ -58,7 +59,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	static final int FLD_DESCRIPTION = 9;
 
 	// set of all conversions
-	static EcuConversions cnv;
+	public static EcuConversions cnv;
 	// the data logger
 	static Logger log = Logger.getLogger("data.items");
 
@@ -87,7 +88,24 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	 *
 	 * @param resource the resource file (csv)
 	 */
-	public void loadFromResource(String resource)
+	private void loadFromResource(String resource)
+	{
+		try
+		{
+			loadFromStream(getClass().getResource(resource).openStream());
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * read data from input stream (csv) into data structure
+	 *
+	 * @param inStr the csv input stream
+	 */
+	public void loadFromStream(InputStream inStr)
 	{
 		BufferedReader rdr;
 		String currLine;
@@ -97,7 +115,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		int line = 0;
 		try
 		{
-			rdr = new BufferedReader(new InputStreamReader(getClass().getResource(resource).openStream()));
+			rdr = new BufferedReader(new InputStreamReader(inStr));
 			// loop through all lines of the file ...
 			while ((currLine = rdr.readLine()) != null)
 			{
