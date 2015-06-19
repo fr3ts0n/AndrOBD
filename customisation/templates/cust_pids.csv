@@ -1,0 +1,4 @@
+svc	pid	ofs	len	formula	format	min	max	label	Remarks
+0x01,0x02	0x5F	0	1	CUST_STATE	%.0f			Customized PID59	uses custom hash conversion
+0x01,0x02	0x61	0	1	CUST_BITMAP	%.0f			Customized PID61	uses custom bitmap conversion
+0x01,0x02	0x62	0	1	CUST_AIRFLOW	%.2f			Customized PID62	uses custom linear conversion

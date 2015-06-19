@@ -1,0 +1,5 @@
+CONVERSION_ID	TYPE	VARIANT	SYSTEM	FACT	DIV	OFFS	PhOf	UNIT	Remark	Parameters	Beschreibung
+CUST_STATE	HASH	0	METRIC	1	1	0	0		Custom Hash conversion	1=Test state 1;2=Test state 2;3=Test state3;4=Test state 4;5=Test state 5;6=Test state 6;7=Test state 7;8=Test state 8;9=Test state 9;10=Test state 10	Customized HASH conversion for state lists
+CUST_BITMAP	BITMAP	0	METRIC	1	1	0	0		Fuel system status	0=Test bit 0;1=Test bit 1;2=Test bit 2;3=Test bit3;4=Test bit 4;5=Test bit 5;6=Test bit 6;7=Test bit 7	customized BITMAP conversion for bit masked values/states
+CUST_AIRFLOW	LINEAR	0	METRIC	60	100	0	0	g/min	customized air flow (g/min)		customized LINEAR conversion for numeric conversions (METRIC)
+CUST_AIRFLOW	LINEAR	0	IMPERIAL	1	756	0	0	lb/min	customized air flow (lb/min)		customized LINEAR conversion for numeric conversions (IMPERIAL)
