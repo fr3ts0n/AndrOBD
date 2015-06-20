@@ -87,8 +87,8 @@ public class EcuDataItem
 	                    int numBytes,
 	                    Conversion[] conversions,
 	                    String format,
-	                    Float minValue,
-	                    Float maxValue,
+	                    Number minValue,
+	                    Number maxValue,
 	                    String labelText)
 	{
 		pid = newPid;
@@ -98,8 +98,8 @@ public class EcuDataItem
 		fmt = format;
 		label = labelText;
 		pv = new EcuDataPv();
-		Float minVal = minValue;
-		Float maxVal = maxValue;
+		Number minVal = minValue;
+		Number maxVal = maxValue;
 
 		// initialize new PID with current data
 		pv.put(EcuDataPv.FID_PID, Integer.valueOf(pid));
@@ -110,8 +110,8 @@ public class EcuDataItem
 		pv.put(EcuDataPv.FID_CNVID, cnv);
 		if(cnv != null)
 		{
-			if(minVal == null) minVal = (Float) cnv[cnvSystem].memToPhys(0);
-			if(maxVal == null) maxVal = (Float) cnv[cnvSystem].memToPhys(byteValues[bytes]);
+			if(minVal == null) minVal = cnv[cnvSystem].memToPhys(0);
+			if(maxVal == null) maxVal = cnv[cnvSystem].memToPhys(byteValues[bytes]);
 		}
 		pv.put(EcuDataPv.FID_MIN, minVal);
 		pv.put(EcuDataPv.FID_MAX, maxVal);
@@ -145,7 +145,7 @@ public class EcuDataItem
 		} catch(Exception ex)
 		{
 			result = String.format("%s:%s", ProtUtils.hexDumpBuffer(buffer), ex.getMessage());
-			log.error(String.format("%s: %s", toString(), result));
+			log.warn(String.format("%s: %s", toString(), result));
 		}
 		return (result);
 	}

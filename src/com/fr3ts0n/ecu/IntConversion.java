@@ -31,14 +31,13 @@ public class IntConversion
 	@Override
 	public Number memToPhys(long value)
 	{
-		return (float) value;
-
+		return value;
 	}
 
 	@Override
 	public Number physToMem(Number value)
 	{
-		return value.longValue();
+		return value;
 	}
 
 	@Override

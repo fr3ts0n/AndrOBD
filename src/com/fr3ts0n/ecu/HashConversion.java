@@ -88,12 +88,12 @@ public class HashConversion extends NumericConversion
 
 	public Number memToPhys(long value)
 	{
-		return (float) value;
+		return value;
 	}
 
 	public Number physToMem(Number value)
 	{
-		return (value);
+		return value;
 	}
 
 	@Override

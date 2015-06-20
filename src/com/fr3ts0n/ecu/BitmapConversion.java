@@ -83,17 +83,16 @@ public class BitmapConversion extends NumericConversion
 				hashData.put(key, value);
 			}
 		}
-
 	}
 
 	public Number memToPhys(long value)
 	{
-		return (float) value;
+		return value;
 	}
 
 	public Number physToMem(Number value)
 	{
-		return (value);
+		return value;
 	}
 
 	@Override
@@ -111,8 +110,8 @@ public class BitmapConversion extends NumericConversion
 				result += "\n";
 			// now add the result
 			result += String.format("%s  %s",
-															((val & item.getKey()) != 0) ? "(*)" : "(  )",
-															item.getValue() );
+									((val & item.getKey()) != 0) ? "(*)" : "(  )",
+									item.getValue() );
 		}
 		// if we haven't found a string representation, return numeric value
 		if (result == null) result = super.physToPhysFmtString(physVal,format);

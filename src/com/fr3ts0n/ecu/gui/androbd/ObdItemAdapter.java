@@ -41,7 +41,6 @@ import org.achartengine.model.XYSeries;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Iterator;
 
 /**
  * Adapter for OBD data items (PVs)
@@ -123,8 +122,8 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		String fmtText;
 		Object colVal = currPv.get(EcuDataPv.FID_VALUE);
 		Object cnvObj = currPv.get(EcuDataPv.FID_CNVID);
-		Float min = (Float) currPv.get(EcuDataPv.FID_MIN);
-		Float max = (Float) currPv.get(EcuDataPv.FID_MAX);
+		Number min = (Number) currPv.get(EcuDataPv.FID_MIN);
+		Number max = (Number) currPv.get(EcuDataPv.FID_MAX);
 		int pid = currPv.getAsInt(EcuDataPv.FID_PID);
 
 		try
@@ -134,8 +133,8 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 				Conversion[] cnv;
 				cnv = (Conversion[]) cnvObj;
 				// set formatted text
-				fmtText = cnv[EcuDataItem.cnvSystem].physToPhysFmtString( (Float)colVal,
-					String.valueOf(currPv.get(EcuDataPv.FID_FORMAT)));
+				fmtText = cnv[EcuDataItem.cnvSystem].physToPhysFmtString((Number)colVal,
+						(String)currPv.get(EcuDataPv.FID_FORMAT));
 				// set progress bar only on LinearConversion
 				if(    min != null
 					  && max != null
@@ -143,7 +142,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 				{
 					pb.setVisibility(ProgressBar.VISIBLE);
 					pb.getProgressDrawable().setColorFilter(ChartActivity.getColor(pid), PorterDuff.Mode.SRC_IN);
-					pb.setProgress((int)(100 * (((Float)colVal - min) / (max - min))));
+					pb.setProgress((int)(100 * ((((Number)colVal).doubleValue() - min.doubleValue()) / (max.doubleValue() - min.doubleValue()))));
 				}
 				else
 				{
@@ -169,15 +168,10 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	 */
 	protected synchronized void addAllDataSeries()
 	{
-		IndexedProcessVar pv;
-		@SuppressWarnings("unchecked")
-		Iterator<IndexedProcessVar> it = pvs.values().iterator();
-		while (it.hasNext())
+		for (IndexedProcessVar pv : (Iterable<IndexedProcessVar>) pvs.values())
 		{
-			pv = it.next();
 			XYSeries series = (XYSeries) pv.get(FID_DATA_SERIES);
-			if (series == null)
-			{
+			if (series == null) {
 				series = new XYSeries(String.valueOf(pv.get(EcuDataPv.FID_DESCRIPT)));
 				pv.put(FID_DATA_SERIES, series);
 				pv.addPvChangeListener(this, PvChangeEvent.PV_MODIFIED);

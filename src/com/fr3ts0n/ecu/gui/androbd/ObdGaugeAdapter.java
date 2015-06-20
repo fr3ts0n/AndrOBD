@@ -96,7 +96,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		{
 			category = new CategorySeries(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
 			category.add(String.valueOf(currPv.get(EcuDataPv.FID_UNITS)),
-				Double.valueOf(String.valueOf(currPv.get(EcuDataPv.FID_VALUE))));
+					((Number)currPv.get(EcuDataPv.FID_VALUE)).doubleValue());
 			currPv.put(FID_GAUGE_SERIES, category);
 		}
 		// make this adapter to listen for PV data updates
@@ -129,8 +129,8 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			holder.tvDescr = (TextView) convertView.findViewById(R.id.label);
 			holder.gauge = (FrameLayout) convertView.findViewById(R.id.gauge);
 
-			Float minValue = (Float) currPv.get(EcuDataPv.FID_MIN);
-			Float maxValue = (Float) currPv.get(EcuDataPv.FID_MAX);
+			Number minValue = (Number) currPv.get(EcuDataPv.FID_MIN);
+			Number maxValue = (Number) currPv.get(EcuDataPv.FID_MAX);
 			if (minValue == null) minValue = 0f;
 			if (maxValue == null) maxValue = 255f;
 
@@ -147,8 +147,8 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 
 			renderer.setVisualTypes(new DialRenderer.Type[]{DialRenderer.Type.NEEDLE});
 
-			renderer.setMinValue(minValue);
-			renderer.setMaxValue(maxValue);
+			renderer.setMinValue(minValue.doubleValue());
+			renderer.setMaxValue(maxValue.doubleValue());
 
 			// renderer.setChartTitleTextSize(24);
 			renderer.setChartTitle(currPv.getUnits());
@@ -188,6 +188,6 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		CategorySeries series = (CategorySeries) currPv.get(FID_GAUGE_SERIES);
 		series.set(0,
 			String.valueOf(currPv.get(EcuDataPv.FID_UNITS)),
-			(Float) event.getValue());
+				((Number)event.getValue()).doubleValue());
 	}
 }
