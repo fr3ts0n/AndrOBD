@@ -49,6 +49,8 @@ public class EcuDataPv extends IndexedProcessVar
 			"UNITS",
 		};
 
+	private transient Object renderingComponent;
+
 	/**
 	 * Creates a new instance of EcuDataPv
 	 */
@@ -77,5 +79,15 @@ public class EcuDataPv extends IndexedProcessVar
 			result = cnv[EcuDataItem.cnvSystem].getUnits();
 		}
 		return result;
+	}
+
+	public Object getRenderingComponent()
+	{
+		return renderingComponent;
+	}
+
+	public void setRenderingComponent(Object renderingComponent)
+	{
+		this.renderingComponent = renderingComponent;
 	}
 }

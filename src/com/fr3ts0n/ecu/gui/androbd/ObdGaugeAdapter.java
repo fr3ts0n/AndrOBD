@@ -82,6 +82,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 	{
 		object.remove(FID_GAUGE_SERIES);
 		object.removePvChangeListener(this);
+		object.setRenderingComponent(null);
 		super.remove(object);
 	}
 
@@ -116,7 +117,10 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		CategorySeries category = (CategorySeries) currPv.get(FID_GAUGE_SERIES);
 		int pid = currPv.getAsInt(EcuDataPv.FID_PID);
 
-		// get data PV
+		// get rendering component from PV
+		convertView = (View)currPv.getRenderingComponent();
+
+		// if no component assigned to PV, then create one
 		if (convertView == null)
 		{
 			convertView = mInflater.inflate(resourceId, parent, false);
@@ -128,6 +132,9 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			// description text
 			holder.tvDescr = (TextView) convertView.findViewById(R.id.label);
 			holder.gauge = (FrameLayout) convertView.findViewById(R.id.gauge);
+
+			holder.tvDescr.setTextColor(ChartActivity.getColor(pid));
+			holder.tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
 
 			Number minValue = (Number) currPv.get(EcuDataPv.FID_MIN);
 			Number maxValue = (Number) currPv.get(EcuDataPv.FID_MAX);
@@ -169,14 +176,10 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 
 			holder.gauge.addView(ChartFactory.getDialChartView(getContext(), category, renderer), 0);
 			convertView.setTag(holder);
-		}
-		else
-		{
-		 	holder = (ViewHolder)convertView.getTag();
-		}
 
-		holder.tvDescr.setTextColor(ChartActivity.getColor(pid));
-		holder.tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
+			// assign rendering component to PV (for re-usage)
+			currPv.setRenderingComponent(convertView);
+		}
 
 		return convertView;
 	}
