@@ -22,6 +22,8 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.view.Menu;
@@ -203,6 +205,25 @@ public class ChartActivity extends Activity
 	}
 
 	/**
+	 * Handle message requests
+	 */
+	private transient final Handler mHandler = new Handler()
+	{
+		@Override
+		public void handleMessage(Message msg)
+		{
+
+			switch (msg.what)
+			{
+				case MainActivity.MESSAGE_UPDATE_VIEW:
+					/* update chart */
+					chartView.invalidate();
+					break;
+			}
+		}
+	};
+
+	/**
 	 * Handle menu selections
 	 *
 	 * @param item selected menu item
@@ -246,8 +267,9 @@ public class ChartActivity extends Activity
 		@Override
 		public void run()
 		{
-			/* update chart */
-			chartView.repaint();
+			/* forward message to update the view */
+			Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_UPDATE_VIEW);
+			mHandler.sendMessage(msg);
 		}
 	};
 
