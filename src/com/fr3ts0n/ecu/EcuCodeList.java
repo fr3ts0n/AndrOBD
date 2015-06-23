@@ -180,9 +180,9 @@ public class EcuCodeList extends HashMap<Integer, EcuCodeItem>
 		EcuCodeItem code = get(value.intValue());
 		if (code != null)
 		{
-			result = code.get(ObdCodeItem.FID_CODE).toString()
+			result = code.get(EcuCodeItem.FID_CODE).toString()
 				+ " - "
-				+ code.get(ObdCodeItem.FID_DESCRIPT).toString();
+				+ code.get(EcuCodeItem.FID_DESCRIPT).toString();
 		} else
 		{
 			result = value.toString() + " - Fault code unknown";
