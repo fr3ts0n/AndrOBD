@@ -61,6 +61,7 @@ public class DashBoardActivity extends Activity
 	 */
 	private static PowerManager.WakeLock wakeLock;
 	ObdGaugeAdapter adapter;
+	GridView grid;
 
 	/** Map to uniquely collect PID numbers */
 	private HashSet<Integer> pidNumbers = new HashSet<Integer>();
@@ -96,7 +97,7 @@ public class DashBoardActivity extends Activity
 			switch (msg.what)
 			{
 				case MESSAGE_UPDATE_VIEW:
-					adapter.notifyDataSetChanged();
+					grid.invalidateViews();
 					break;
 			}
 		}
@@ -154,9 +155,8 @@ public class DashBoardActivity extends Activity
 		int minWidth = width / numColumns;
 		int minHeight = height / numRows;
 
-		GridView grid = (GridView) findViewById(android.R.id.list);
+		grid = (GridView) findViewById(android.R.id.list);
 		grid.setColumnWidth(minWidth);
-
 
 		// set data adapter
 		adapter = new ObdGaugeAdapter(this, R.layout.obd_gauge, minWidth, minHeight);
