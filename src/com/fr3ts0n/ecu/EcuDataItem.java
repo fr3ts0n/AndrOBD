@@ -50,6 +50,7 @@ public class EcuDataItem
 	public String fmt;    // Format for text output
 	public String label;        // text label
 	public EcuDataPv pv;        // the process variable for displaying
+	public boolean enabled = true; // if not enabled, do not process
 
 	// Logger object
 	public static final Logger log = Logger.getLogger("data.ecu");
@@ -120,7 +121,7 @@ public class EcuDataItem
 	@Override
 	public String toString()
 	{
-		return (String.format("%02d.%d.%s", pid, ofs, label));
+		return (String.format("%02X.%s", pid, label));
 	}
 
 	/**
@@ -146,6 +147,7 @@ public class EcuDataItem
 		{
 			result = String.format("%s:%s", ProtUtils.hexDumpBuffer(buffer), ex.getMessage());
 			log.warn(String.format("%s: %s", toString(), result));
+			enabled = false;
 		}
 		return (result);
 	}
@@ -157,15 +159,17 @@ public class EcuDataItem
 	 */
 	public void updatePvFomBuffer(char[] buffer)
 	{
-		// get physical value
-		Object result = physFromBuffer(buffer);
-		pv.put(EcuDataPv.FID_VALUE, result);
-		log.debug(String.format("%02X %-30s %16s %s",
-			pid,
-			label,
-			pv.get(EcuDataPv.FID_VALUE),
-			pv.get(EcuDataPv.FID_UNITS)));
-
+		if(enabled)
+		{
+			// get physical value
+			Object result = physFromBuffer(buffer);
+			pv.put(EcuDataPv.FID_VALUE, result);
+			log.debug(String.format("%02X %-30s %16s %s",
+			                        pid,
+			                        label,
+			                        pv.get(EcuDataPv.FID_VALUE),
+			                        pv.get(EcuDataPv.FID_UNITS)));
+		}
 	}
 
 	@Override

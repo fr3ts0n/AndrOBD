@@ -23,9 +23,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+
+import com.fr3ts0n.ecu.EcuDataItem;
+import com.fr3ts0n.ecu.prot.ObdProt;
+
+import java.util.HashSet;
+import java.util.Vector;
 
 public class SettingsActivity
 	extends Activity
@@ -34,12 +41,14 @@ public class SettingsActivity
 	static SharedPreferences prefs;
 	/** preference keys for extension files */
 	static final String[] extKeys =
-		{
-			"ext_file_conversions",
-			"ext_file_dataitems",
-			"ext_file_faultcodes"
-		};
+	{
+		"ext_file_conversions",
+		"ext_file_dataitems",
+		"ext_file_faultcodes"
+	};
 
+	// Preference key for data items
+	static final String KEY_DATA_ITEMS = "data_items";
 	/*
 	 * (non-Javadoc)
 	 *
@@ -60,6 +69,8 @@ public class SettingsActivity
 		extends PreferenceFragment
 		implements Preference.OnPreferenceClickListener
 	{
+		Vector<EcuDataItem> items;
+
 		@Override
 		public void onCreate(Bundle savedInstanceState)
 		{
@@ -67,10 +78,50 @@ public class SettingsActivity
 
 			// Load the preferences from an XML resource
 			addPreferencesFromResource(R.xml.settings);
+
 			for (String key : extKeys)
 				setPrefsText(key);
+
+			// set up selectable PID list
+			setupPidSelection();
 		}
 
+		/**
+		 * set up selection for PIDs
+		 */
+		void setupPidSelection()
+		{
+			MultiSelectListPreference itemList =
+				(MultiSelectListPreference) findPreference(KEY_DATA_ITEMS);
+
+			// collect data items for selection
+			items = ObdProt.dataItems.getSvcDataItems(ObdProt.OBD_SVC_DATA);
+			HashSet<String> selections = new HashSet<String>();
+			CharSequence[] titles = new CharSequence[items.size()];
+			CharSequence[] keys = new CharSequence[items.size()];
+			// loop through data items
+			int i = 0;
+			for(EcuDataItem currItem : items)
+			{
+				titles[i] = currItem.label;
+				keys[i] = currItem.toString();
+				selections.add(currItem.toString());
+				i++;
+			}
+			// set enries and keys
+			itemList.setEntries(titles);
+			itemList.setEntryValues(keys);
+
+			// if there is no item selected, mark all as selected
+			if(itemList.getValues().size() == 0)
+				itemList.setValues(selections);
+		}
+
+		/**
+		 * set up preference text for extension files
+		 *
+		 * @param key preference key to be set up
+		 */
 		void setPrefsText(String key)
 		{
 			Preference prefComp = findPreference(key);

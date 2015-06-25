@@ -86,4 +86,6 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="dev_opt_description">Optionen zur Fehlersuche und Anpassungen</string>
     <string name="extension_loading">Anpassungen laden</string>
     <string name="check_cust_settings">Bitte Einstellungen für Anpassungen prüfen\n</string>
+    <string name="items_for_display">Daten zur Anzeige</string>
+    <string name="items_for_display_descr">Datenpunkte zur Anzeige auswählen ...</string>
 </resources>

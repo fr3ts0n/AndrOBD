@@ -186,6 +186,26 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	}
 
 	/**
+	 * get all data items for selected service
+	 *
+	 * @param service service to search data items for
+	 * @return Vector to data items - or null if no data items exist
+	 */
+	public Vector<EcuDataItem> getSvcDataItems(int service)
+	{
+		Vector<EcuDataItem> result = new Vector<EcuDataItem>();
+		HashMap<Integer, Vector<EcuDataItem>> currSvc = get(service);
+		if (currSvc != null)
+		{
+			for(Vector<EcuDataItem> currVec : currSvc.values())
+			{
+				result.addAll(currVec);
+			}
+		}
+		return (result);
+	}
+
+	/**
 	 * append new data item to specified service
 	 * @param service service to add item to
 	 * @param newItem EcuDataItem to be added

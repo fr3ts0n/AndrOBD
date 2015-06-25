@@ -27,6 +27,8 @@ import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.pvs.IndexedProcessVar;
 import com.fr3ts0n.pvs.PvList;
 
+import java.util.Collection;
+
 /**
  * Adapter to display OBD VID items from a process variable list
  *
@@ -37,6 +39,12 @@ public class VidItemAdapter extends ObdItemAdapter
 	public VidItemAdapter(Context context, int resource, PvList pvs)
 	{
 		super(context, resource, pvs);
+	}
+
+	@Override
+	public Collection<Object> getPreferredItems(PvList pvs, String preferenceKey)
+	{
+		return pvs.values();
 	}
 
 	/* (non-Javadoc)

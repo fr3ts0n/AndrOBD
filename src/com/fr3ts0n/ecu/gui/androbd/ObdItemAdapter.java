@@ -19,7 +19,9 @@
 package com.fr3ts0n.ecu.gui.androbd;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +42,10 @@ import com.fr3ts0n.pvs.PvList;
 import org.achartengine.model.XYSeries;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Adapter for OBD data items (PVs)
@@ -55,10 +60,12 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	transient public static final String FID_DATA_SERIES = "SERIES";
 	/** allow data updates to be handled */
 	public static boolean allowDataUpdates = true;
+	transient SharedPreferences prefs;
 
 	public ObdItemAdapter(Context context, int resource, PvList pvs)
 	{
 		super(context, resource);
+		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		mInflater = (LayoutInflater) context
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		setPvList(pvs);
@@ -73,10 +80,16 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	public synchronized void setPvList(PvList pvs)
 	{
 		this.pvs = pvs;
-		clear();
-		Object[] pidPvs = pvs.values().toArray();
+		// get set to be displayed (filtered with preferences */
+		Collection<Object> filtered = getPreferredItems(pvs, SettingsActivity.KEY_DATA_ITEMS);
+		// make it a sorted array
+		Object[] pidPvs = filtered.toArray();
 		Arrays.sort(pidPvs, pidSorter);
+
+		clear();
+		// add all elements
 		addAll(pidPvs);
+
 		if (this.getClass() == ObdItemAdapter.class)
 			addAllDataSeries();
 	}
@@ -90,6 +103,38 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 				     - ((IndexedProcessVar)rhs).getAsInt(EcuDataPv.FID_PID);
 		}
 	};
+
+	/**
+	 * get set of data items filtered with set of preferred items to be displayed
+	 * @param pvs list of PVs to be handled
+	 * @param preferenceKey key of preference to be used as filter
+	 * @return Set of filtered data items
+	 */
+	public Collection<Object> getPreferredItems(PvList pvs, String preferenceKey)
+	{
+		// filter PVs with preference selections
+		Set<String> pidsToShow = prefs.getStringSet( SettingsActivity.KEY_DATA_ITEMS,
+		                                             (Set<String>)pvs.keySet());
+		return getMatchingItems(pvs, pidsToShow);
+	}
+
+	/**
+	 * get set of data items filtered with set of preferred items to be displayed
+	 * @param pvs list of PVs to be handled
+	 * @param pidsToShow Set of keys to be used as filter
+	 * @return Set of filtered data items
+	 */
+	public Collection<Object> getMatchingItems(PvList pvs, Set<String> pidsToShow)
+	{
+		HashSet<Object> filtered = new HashSet<Object>();
+		for(Object key : pidsToShow)
+		{
+			IndexedProcessVar pv = (IndexedProcessVar) pvs.get(key);
+			if(pv != null)
+				filtered.add(pv);
+		}
+		return(filtered);
+	}
 
 	/*
 	 * (non-Javadoc)

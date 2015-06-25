@@ -90,4 +90,9 @@ public class EcuDataPv extends IndexedProcessVar
 	{
 		this.renderingComponent = renderingComponent;
 	}
+
+	public String toString()
+	{
+		return (String.format("%02X.%s", get(FID_PID), get(FID_DESCRIPT)));
+	}
 }
