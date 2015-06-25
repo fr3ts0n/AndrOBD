@@ -64,15 +64,15 @@ public class EcuCodeList extends HashMap<Integer, EcuCodeItem>
 	public EcuCodeList(String[] ressources, int idRadix)
 	{
 		// init from ressources list
-		for (int i = 0; i < ressources.length; i++)
+		for (String ressource : ressources)
 		{
-			loadFromResource(ressources[i], idRadix);
+			loadFromResource(ressource, idRadix);
 		}
 	}
 
 	public String getUnits()
 	{
-		return "-";
+		return "";
 	}
 
 	/**

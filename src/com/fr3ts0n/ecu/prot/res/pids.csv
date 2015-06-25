@@ -110,9 +110,9 @@ svc	pid	ofs	len	formula	format	min	max	label	description	formula_remark	options	
 0x01,0x02	0x5D	0	2	ANGLE_WIDERANGE	%.2f			Fuel injection timing				
 0x01,0x02	0x5E	0	2	CONSUMPTION	%.2f			Engine fuel rate				
 0x09	0x01	0	1	ONETOONE	%.0f			Message count VIN				
-0x09	0x02	0	17	ASCII	%.0f			Vehicle identification number				
+0x09	0x02	0	17	ASCII	%s			Vehicle identification number				
 0x09	0x03	0	1	ONETOONE	%.0f			Message count CAL-ID				
-0x09	0x04	0	16	ASCII	%.0f			Calibration identifier				
+0x09	0x04	0	16	ASCII	%s			Calibration identifier				
 0x09	0x05	0	1	ONETOONE	%.0f			Message count CVN				
 0x09	0x06	0	1	ONETOONE	%.0f			Calibration verification [1]				
 0x09	0x06	1	1	ONETOONE	%.0f			Calibration verification [2]				
@@ -135,3 +135,4 @@ svc	pid	ofs	len	formula	format	min	max	label	description	formula_remark	options	
 0x09	0x08	26	2	ONETOONE	%.0f			AIR Monitor Conditions Encountered Counts (Secondary Air)				
 0x09	0x08	28	2	ONETOONE	%.0f			EVAP Monitor Completion Condition Counts				
 0x09	0x08	30	2	ONETOONE	%.0f			EVAP Monitor Conditions Encountered Counts				
+0x09	0x0A	0	20	ASCII	%s			ECU name				

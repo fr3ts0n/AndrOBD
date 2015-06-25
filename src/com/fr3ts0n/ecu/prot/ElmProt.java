@@ -400,8 +400,11 @@ public class ElmProt
 						break;
 
 					case NODATA:
+					case STOPPED:
 						char[] veryLastCmd = lastCommand;
 						setStatus(STAT.NODATA);
+						// re-queue last command
+						cmdQueue.add(String.valueOf(veryLastCmd));
 						// increase OBD timeout since we may expect answers too fast
 						if ((elmMsgTimeout + ELM_TIMEOUT_RES) < ELM_TIMEOUT_MAX)
 						{
@@ -410,8 +413,7 @@ public class ElmProt
 							// ... and limit MIN timeout for this session
 							ELM_TIMEOUT_LRN_LOW = elmMsgTimeout;
 						}
-						sendTelegram(veryLastCmd);
-						break;
+						// NO break here since reaction is only quqeued
 
 					case OK:
 					default:
