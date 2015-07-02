@@ -404,7 +404,7 @@ public class ElmProt
 						char[] veryLastCmd = lastCommand;
 						setStatus(STAT.NODATA);
 						// re-queue last command
-						cmdQueue.add(String.valueOf(veryLastCmd));
+						if(service != OBD_SVC_NONE)	cmdQueue.add(String.valueOf(veryLastCmd));
 						// increase OBD timeout since we may expect answers too fast
 						if ((elmMsgTimeout + ELM_TIMEOUT_RES) < ELM_TIMEOUT_MAX)
 						{
