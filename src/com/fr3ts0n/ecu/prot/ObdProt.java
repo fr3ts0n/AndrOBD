@@ -357,7 +357,7 @@ public class ObdProt extends ProtoHeader
   protected synchronized Integer getNextSupportedPid()
   {
     Vector<Integer> pidsToCheck = (fixedPids.size() > 0) ? fixedPids : pidSupported;
-    Integer result = null;
+    Integer result = 0;
 
     if(pidsToCheck.size() > 0)
     {

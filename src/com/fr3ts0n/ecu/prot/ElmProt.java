@@ -559,7 +559,7 @@ public class ElmProt
 						case OBD_SVC_DATA:
 						case OBD_SVC_FREEZEFRAME:
 							pid = getNextSupportedPid();
-							if (pid != null)
+							if (pid != 0)
 							{
 								value++;
 								value &= 0xFF;
@@ -583,7 +583,7 @@ public class ElmProt
 
 						case OBD_SVC_VEH_INFO:
 							pid = getNextSupportedPid();
-							if (pid == null)
+							if (pid == 0)
 							{
 								// simulate "ALL pids supported"
 								handleTelegram("490040000000".toCharArray());
