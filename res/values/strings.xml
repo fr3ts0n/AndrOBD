@@ -3,7 +3,7 @@
 
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
-    <string name="app_version" translatable="false">V1.2.3</string>
+    <string name="app_version" translatable="false">V1.2.4</string>
     <string name="copyright_fr3ts0n" translatable="false">&#169; 2015 fr3ts0n</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 bluetooth adapter</string>
     <string name="send">Send</string>
