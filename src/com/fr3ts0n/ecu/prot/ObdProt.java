@@ -300,7 +300,7 @@ public class ObdProt extends ProtoHeader
    * @param start Start PID (multiple of 0x20) to process bitmask for
    * @param bitmask 32-Bit bitmask which indicates support for the next 32 PIDs
    */
-  protected void markSupportedPids(int start, long bitmask, PvList pvList)
+  synchronized protected void markSupportedPids(int start, long bitmask, PvList pvList)
   {
     currSupportedPid = 0;
     // loop through bits and mark corresponding PIDs as supported

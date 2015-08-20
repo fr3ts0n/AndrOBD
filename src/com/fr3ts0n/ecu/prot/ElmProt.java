@@ -136,18 +136,23 @@ public class ElmProt
 	/**
 	 * numeric IDs for commands
 	 */
-	public static enum CMD
+	public enum CMD
 	{
-		RESET("ATZ", 0),
-		INFO("ATI", 0),
-		GETPROT("ATDP", 0),
-		CANMONITOR("ATMA", 0),
-		ECHO("ATE", 1),
-		SETPROT("ATSP", 1),
-		SETPROTAUTO("ATSPA", 1),
-		SETTIMEOUT("ATST", 2),
-		SETLINEFEED("ATL", 1),
-		SETSPACES("ATS", 1);
+		RESET(        "Z"   , 0), ///< reset adapter
+		INFO(         "I"   , 0), ///< request adapter info
+		ECHO(         "E"   , 1), ///< enable/disable echo
+		SETLINEFEED(  "L"   , 1), ///< enable/disable line feeds
+		SETSPACES(    "S"   , 1), ///< enable/disable spaces
+		SETHEADER(    "H"   , 1), ///< enable/disable header response
+		GETPROT(      "DP"  , 0), ///< get protocol
+		SETPROT(      "SP"  , 1), ///< set protocol
+		CANMONITOR(   "MA"  , 0), ///< monitor CAN messages
+		SETPROTAUTO(  "SPA" , 1), ///< set protocol auto
+		SETTIMEOUT(   "ST"  , 2), ///< set timeout (x*4ms)
+		SETCANTXHDR(  "SH"  , 3), ///< set TX header
+		SETCANRXFLT(  "CRA" , 3); ///< set CAN RX filter
+
+		protected static final String CMD_HEADER = "AT";
 		private String command;
 		protected int paramDigits;
 
@@ -160,7 +165,7 @@ public class ElmProt
 		@Override
 		public String toString()
 		{
-			return command;
+			return CMD_HEADER+command;
 		}
 	}
 
@@ -178,9 +183,9 @@ public class ElmProt
 	 * for ELM message timeout handling
 	 */
 	/** LOW Learn value ELM Message Timeout [ms] */
-	static int ELM_TIMEOUT_LRN_LOW = 10;
+	static int ELM_TIMEOUT_LRN_LOW = 12;
 	/** min. ELM Message Timeout [ms] */
-	static final int ELM_TIMEOUT_MIN = 10;
+	static final int ELM_TIMEOUT_MIN = 12;
 	/** max. ELM Message Timeout [ms] */
 	static final int ELM_TIMEOUT_MAX = 200;
 	/** Learning resolution of ELM Message Timeout [ms] */
