@@ -7,11 +7,19 @@
     android:layout_gravity="top" >
 
     <TextView
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|top"
+        />
+
+    <TextView
         android:id="@+id/label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="TextView"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom"
+        />
 
 </FrameLayout>

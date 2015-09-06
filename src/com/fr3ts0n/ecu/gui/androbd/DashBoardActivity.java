@@ -37,7 +37,7 @@ import java.util.TimerTask;
 
 
 /**
- * Created by erwin on 06.12.14.
+ * Display selected data items as dashboard
  */
 public class DashBoardActivity extends Activity
 {
@@ -60,8 +60,8 @@ public class DashBoardActivity extends Activity
 	 * the wake lock to keep app communication alive
 	 */
 	private static PowerManager.WakeLock wakeLock;
-	ObdGaugeAdapter adapter;
-	GridView grid;
+	private transient ObdGaugeAdapter adapter;
+	private transient GridView grid;
 
 	/** Map to uniquely collect PID numbers */
 	private HashSet<Integer> pidNumbers = new HashSet<Integer>();
@@ -69,6 +69,9 @@ public class DashBoardActivity extends Activity
 	public static final int MESSAGE_UPDATE_VIEW = 7;
 
 	private static ListAdapter mAdapter = null;
+
+	/** record positions to be charted */
+	private transient int[] positions;
 
 	/** data adapter as source of display data */
 	public static ListAdapter getAdapter()
@@ -122,8 +125,6 @@ public class DashBoardActivity extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-		EcuDataPv currPv;
-
 		super.onCreate(savedInstanceState);
 		// set to full screen
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -139,43 +140,7 @@ public class DashBoardActivity extends Activity
 		wakeLock.acquire();
 
 		/* get PIDs to be shown */
-		int positions[] = getIntent().getIntArrayExtra(POSITIONS);
-
-		// set the desired content screen
-		int resId = getIntent().getIntExtra(RES_ID, R.layout.dashboard);
-		setContentView(resId);
-
-		DisplayMetrics metrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		int height = metrics.heightPixels;
-		int width = metrics.widthPixels;
-		int numColumns = Math.min(positions.length, Math.max(1, width / MIN_GAUGE_SIZE));
-		int numRows = Math.min(positions.length, Math.max(1, height / MIN_GAUGE_SIZE));
-
-		int minWidth = width / numColumns;
-		int minHeight = height / numRows;
-
-		grid = (GridView) findViewById(android.R.id.list);
-		grid.setColumnWidth(minWidth);
-
-		// set data adapter
-		adapter = new ObdGaugeAdapter(this, R.layout.obd_gauge, minWidth, minHeight);
-		grid.setAdapter(adapter);
-
-		pidNumbers.clear();
-		for (int position : positions)
-		{
-			// get corresponding Process variable
-			currPv = (EcuDataPv) mAdapter.getItem(position);
-			if (currPv != null)
-			{
-				pidNumbers.add(currPv.getAsInt(EcuDataPv.FID_PID));
-				adapter.add(currPv);
-			}
-		}
-
-		// limit selected PIDs to selection
-		MainActivity.setFixedPids(pidNumbers);
+		positions = getIntent().getIntArrayExtra(POSITIONS);
 	}
 
 	/**
@@ -193,12 +158,52 @@ public class DashBoardActivity extends Activity
 	}
 
 	/* (non-Javadoc)
-	 * @see android.app.Activity#onStart()
+	 * @see android.app.Activity#onResume()
 	 */
 	@Override
-	protected void onStart()
+	protected void onResume()
 	{
-		super.onStart();
+		EcuDataPv currPv;
+
+		super.onResume();
+		// set the desired content screen
+		int resId = getIntent().getIntExtra(RES_ID, R.layout.dashboard);
+		setContentView(resId);
+
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		int height = metrics.heightPixels;
+		int width = metrics.widthPixels;
+		int numColumns = Math.min(positions.length, Math.max(1, width / MIN_GAUGE_SIZE));
+		int numRows = Math.min(positions.length, Math.max(1, height / MIN_GAUGE_SIZE));
+
+		int minWidth = width / numColumns;
+		int minHeight = height / numRows;
+
+		/* get grid object */
+		grid = (GridView) findViewById(android.R.id.list);
+		grid.setColumnWidth(minWidth);
+		grid.setNumColumns(numColumns);
+
+		// set data adapter
+		adapter = new ObdGaugeAdapter(this, R.layout.obd_gauge, minWidth, minHeight);
+
+		pidNumbers.clear();
+		for (int position : positions)
+		{
+			// get corresponding Process variable
+			currPv = (EcuDataPv) mAdapter.getItem(position);
+			if (currPv != null)
+			{
+				currPv.setRenderingComponent(null);
+				pidNumbers.add(currPv.getAsInt(EcuDataPv.FID_PID));
+				adapter.add(currPv);
+			}
+		}
+		grid.setAdapter(adapter);
+		// limit selected PIDs to selection
+		MainActivity.setFixedPids(pidNumbers);
+
 		// start display update task
 		try
 		{
@@ -210,13 +215,14 @@ public class DashBoardActivity extends Activity
 	}
 
 	/* (non-Javadoc)
-	 * @see android.app.Activity#onStop()
+	 * @see android.app.Activity#onPause()
 	 */
 	@Override
-	protected void onStop()
+	protected void onPause()
 	{
 		refreshTimer.purge();
-		super.onStop();
+		adapter.clear();
+		super.onPause();
 	}
 
 }

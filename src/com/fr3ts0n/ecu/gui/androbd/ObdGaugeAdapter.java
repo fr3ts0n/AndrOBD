@@ -32,7 +32,8 @@ import com.fr3ts0n.pvs.ProcessVar;
 import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
 
-import org.achartengine.ChartFactory;
+import org.achartengine.GraphicalView;
+import org.achartengine.chart.DialChart;
 import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DialRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
@@ -59,9 +60,8 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 
 	static class ViewHolder
 	{
-		TextView tvDescr;
 		FrameLayout gauge;
-		DialRenderer renderer;
+		TextView tvDescr;
 	}
 
 	public ObdGaugeAdapter(Context context, int resource, int minWidth, int minHeight)
@@ -99,6 +99,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			category.add(String.valueOf(currPv.get(EcuDataPv.FID_UNITS)),
 					((Number)currPv.get(EcuDataPv.FID_VALUE)).doubleValue());
 			currPv.put(FID_GAUGE_SERIES, category);
+			currPv.setRenderingComponent(null);
 		}
 		// make this adapter to listen for PV data updates
 		currPv.addPvChangeListener(this, PvChangeEvent.PV_MODIFIED);
@@ -114,27 +115,35 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 	{
 		ViewHolder holder;
 		EcuDataPv currPv = getItem(position);
-		CategorySeries category = (CategorySeries) currPv.get(FID_GAUGE_SERIES);
 		int pid = currPv.getAsInt(EcuDataPv.FID_PID);
 
-		// get rendering component from PV
-		convertView = (View)currPv.getRenderingComponent();
-
-		// if no component assigned to PV, then create one
+		// if no recycled convertView delivered, then create a new one
 		if (convertView == null)
 		{
 			convertView = mInflater.inflate(resourceId, parent, false);
-			convertView.getLayoutParams().width = minWidth;
-			convertView.getLayoutParams().height = minHeight;
 
 			holder = new ViewHolder();
-
-			// description text
-			holder.tvDescr = (TextView) convertView.findViewById(R.id.label);
+			// get all views into view holder
 			holder.gauge = (FrameLayout) convertView.findViewById(R.id.gauge);
+			holder.tvDescr = (TextView) convertView.findViewById(R.id.label);
 
-			holder.tvDescr.setTextColor(ChartActivity.getColor(pid));
-			holder.tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
+			// remember this view holder
+			convertView.setTag(holder);
+		}
+		else
+		{
+			// recall previous holder
+			holder = (ViewHolder)convertView.getTag();
+		}
+
+		convertView.getLayoutParams().width = minWidth;
+		convertView.getLayoutParams().height = minHeight;
+
+		// if no rendering component is registered with PV, then create and register new one
+		DialChart chartView = (DialChart)currPv.getRenderingComponent();
+		if(chartView == null)
+		{
+			CategorySeries category = (CategorySeries) currPv.get(FID_GAUGE_SERIES);
 
 			Number minValue = (Number) currPv.get(EcuDataPv.FID_MIN);
 			Number maxValue = (Number) currPv.get(EcuDataPv.FID_MAX);
@@ -147,6 +156,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			// dial background
 			renderer.setPanEnabled(false);
 			renderer.setShowLegend(false);
+			renderer.setShowLabels(true);
 
 			renderer.setLabelsTextSize(16);
 			renderer.setLabelsColor(Color.WHITE);
@@ -166,19 +176,28 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			try
 			{
 				r.setChartValuesFormat(labelFormat);
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				// ignore
 			}
 			renderer.addSeriesRenderer(0, r);
 
-			holder.renderer = renderer;
 
-			holder.gauge.addView(ChartFactory.getDialChartView(getContext(), category, renderer), 0);
-			convertView.setTag(holder);
+			// create chart view and register with PV
+			chartView = new DialChart(category, renderer);
+			currPv.setRenderingComponent(chartView);
+		}
 
-			// assign rendering component to PV (for re-usage)
-			currPv.setRenderingComponent(convertView);
+		// set new values for display
+		holder.tvDescr.setTextColor(ChartActivity.getColor(pid));
+		holder.tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
+		// replace DialChart if needed
+		View oldChartView = holder.gauge.findViewById(0);
+		if(!(oldChartView instanceof GraphicalView) || ((GraphicalView)oldChartView).getChart() != chartView)
+		{
+			holder.gauge.removeViewAt(0);
+			holder.gauge.addView(new GraphicalView(getContext(), chartView), 0);
 		}
 
 		return convertView;
