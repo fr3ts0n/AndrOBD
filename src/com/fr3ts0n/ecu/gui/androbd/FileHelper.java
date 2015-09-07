@@ -186,7 +186,8 @@ class FileHelper
 			/* ensure that measurement page is activated
 			   to avoid deletion of loaded data afterwards */
 			int currService = oIn.readInt();
-			elm.setService(currService);
+			/* if data was saved in mode 0, keep current mode */
+			if(currService != 0) elm.setService(currService);
 			/* read in the data */
 			ObdProt.PidPvs = (PvList) oIn.readObject();
 			ObdProt.VidPvs = (PvList) oIn.readObject();

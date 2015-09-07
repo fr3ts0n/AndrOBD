@@ -193,12 +193,8 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		holder.tvDescr.setTextColor(ChartActivity.getColor(pid));
 		holder.tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
 		// replace DialChart if needed
-		View oldChartView = holder.gauge.findViewById(0);
-		if(!(oldChartView instanceof GraphicalView) || ((GraphicalView)oldChartView).getChart() != chartView)
-		{
-			holder.gauge.removeViewAt(0);
-			holder.gauge.addView(new GraphicalView(getContext(), chartView), 0);
-		}
+		holder.gauge.removeViewAt(0);
+		holder.gauge.addView(new GraphicalView(getContext(), chartView), 0);
 
 		return convertView;
 	}
