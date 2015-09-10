@@ -20,7 +20,9 @@ package com.fr3ts0n.ecu.gui.androbd;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
@@ -31,7 +33,6 @@ import com.fr3ts0n.pvs.PvList;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -163,31 +164,55 @@ class FileHelper
 	}
 
 	/**
+	 * Load all data in a independent thread
+	 * @param uri Uri of ile to be loaded
+	 */
+	public synchronized void loadDataThreaded(final Uri uri,
+	                                          final Handler reportTo,
+																						final int reportMessage)
+	{
+		// create progress dialog
+		progress = ProgressDialog.show(context,
+		                               context.getString(R.string.loading_data),
+		                               uri.toString(),
+		                               true);
+
+		Thread loadTask = new Thread()
+		{
+			public void run()
+			{
+				Looper.prepare();
+				loadData(uri);
+				progress.dismiss();
+				reportTo.sendMessage(reportTo.obtainMessage(reportMessage));
+				Looper.loop();
+			}
+		};
+		loadTask.start();
+	}
+
+	/**
 	 * Load data from file into data sructures
 	 *
-	 * @param inStr Input stream
+	 * @param uri URI of file to be loaded
 	 */
-	public synchronized int loadData(InputStream inStr)
+	public synchronized int loadData(final Uri uri)
 	{
 		int numBytesLoaded = 0;
 		String msg;
-		try
-		{
-			numBytesLoaded = inStr.available();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		msg = String.format("%d Bytes", numBytesLoaded);
+		InputStream inStr;
 
 		try
 		{
+			inStr = context.getContentResolver().openInputStream(uri);
+			numBytesLoaded = inStr.available();
+			msg = String.format("%d Bytes", numBytesLoaded);
 			ObjectInputStream oIn = new ObjectInputStream(inStr);
 			/* ensure that measurement page is activated
 			   to avoid deletion of loaded data afterwards */
 			int currService = oIn.readInt();
 			/* if data was saved in mode 0, keep current mode */
-			if(currService != 0) elm.setService(currService);
+			if(currService != 0) elm.setService(currService, false);
 			/* read in the data */
 			ObdProt.PidPvs = (PvList) oIn.readObject();
 			ObdProt.VidPvs = (PvList) oIn.readObject();

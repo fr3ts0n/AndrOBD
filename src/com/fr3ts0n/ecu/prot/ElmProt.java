@@ -342,12 +342,11 @@ public class ElmProt
 				// remember this as last received message
 				// do NOT respond immediately
 				lastRxMsg = bufferStr;
-				log.info("ELM rx:'" + bufferStr + "'");
+				log.info("ELM rx:'" + bufferStr + "' ("+lastTxMsg+")");
 				break;
 
 			// received a PROMPT, what was the last response?
 			case PROMPT:
-				setStatus(STAT.CONNECTED);
 				// check for last received message
 				switch (getResponseId(lastRxMsg))
 				{
@@ -376,7 +375,7 @@ public class ElmProt
 					case BUSBUSY:
 					case FBERROR:
 						setStatus(STAT.BUSERROR);
-						sendCommand(CMD.RESET, 0);
+						sendCommand(CMD.SETPROTAUTO, PROT.ELM_PROT_AUTO.ordinal());
 						break;
 
 					case DATAERROR:
@@ -462,6 +461,7 @@ public class ElmProt
 
 			// handle data response
 			default:
+				setStatus(STAT.CONNECTED);
 				// is this a length identifier?
 				if (buffer[0] == '0' && buffer.length == 3)
 				{
@@ -625,9 +625,10 @@ public class ElmProt
 	 * Setter for property service.
 	 *
 	 * @param service New value of property service.
+	 * @param clearLists clear data list for this service
 	 */
 	@Override
-	public void setService(int service)
+	public void setService(int service, boolean clearLists)
 	{
 		// log the change in service
 		if (service != this.service)
@@ -637,23 +638,6 @@ public class ElmProt
 			// reset timeout to optimum performance
 			setElmMsgTimeout(ELM_TIMEOUT_MIN);
 
-			// clean up data lists
-			switch (service)
-			{
-				case OBD_SVC_DATA:
-				case OBD_SVC_FREEZEFRAME:
-					// Clear data items
-					pidSupported.clear();
-					PidPvs.clear();
-					break;
-
-				case OBD_SVC_READ_CODES:
-				case OBD_SVC_PENDINGCODES:
-				case OBD_SVC_PERMACODES:
-					tCodes.clear();
-					break;
-			}
-
 			// send corresponding command(s)
 			switch (service)
 			{
@@ -662,10 +646,18 @@ public class ElmProt
 					break;
 
 				default:
-					super.setService(service);
+					super.setService(service, clearLists);
 			}
 		}
+	}
 
+	/**
+	 * set OBD service - compatibility function
+	 * @param service New value of property service.
+	 */
+	public void setService(int service)
+	{
+		setService(service, true);
 	}
 
 	/**

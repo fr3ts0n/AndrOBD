@@ -69,6 +69,7 @@ period of time while the ECU recalibrates itself.
 	<string name="connected_to">"Connected to "</string>
 	<string name="demo">Demo...</string>
 	<string name="saving_data">Saving data ...</string>
+    <string name="loading_data">Loading data ...</string>
 	<string name="dashboard">Dashboard</string>
 	<string name="graph_actions">Graph actions</string>
 	<string name="hud">Head Up Display</string>

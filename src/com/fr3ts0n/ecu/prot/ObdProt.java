@@ -547,13 +547,52 @@ public class ObdProt extends ProtoHeader
   }
 
   /**
+   * clear data lists for selected service
+   * @param obdService OBD service to clear lists for
+   */
+  protected void clearDataLists(int obdService)
+  {
+    // clean up data lists
+    switch (service)
+    {
+      case OBD_SVC_DATA:
+      case OBD_SVC_FREEZEFRAME:
+        // Clear data items
+        pidSupported.clear();
+        PidPvs.clear();
+        break;
+
+      case OBD_SVC_READ_CODES:
+      case OBD_SVC_PENDINGCODES:
+      case OBD_SVC_PERMACODES:
+        tCodes.clear();
+        break;
+
+      case OBD_SVC_VEH_INFO:
+        // Clear data items
+        pidSupported.clear();
+        VidPvs.clear();
+        break;
+    }
+  }
+
+  /**
    * Setter for property service.
    *  This includes initialisation of the requested service to the vehicle
-   * @param obdService New service to be requested.
+   * @param obdService New OBD service to be requested.
+   * @param clearLists clear data list for this service
    */
-  public void setService(int obdService)
+  public void setService(int obdService, boolean clearLists)
   {
     this.service = obdService;
+    // if lists shall be cleared
+    if(clearLists)
+    {
+      // then do it
+      clearDataLists(obdService);
+    }
+
+    // set specified OBD service
     switch(obdService)
     {
       case OBD_SVC_NONE:
@@ -562,10 +601,6 @@ public class ObdProt extends ProtoHeader
 
       case OBD_SVC_DATA:
       case OBD_SVC_FREEZEFRAME:
-        // read data items
-        // Clear data items
-        pidSupported.clear();
-        PidPvs.clear();
         // request for PID's supported
         writeTelegram(emptyBuffer,obdService,0);
         break;
@@ -573,11 +608,10 @@ public class ObdProt extends ProtoHeader
       case OBD_SVC_READ_CODES:
       case OBD_SVC_PENDINGCODES:
       case OBD_SVC_PERMACODES:
-        // read trouble codes
-        tCodes.clear();
         numCodes = 0;
-        cmdQueue.add("0101");
         // read PID number of codes ...
+        cmdQueue.add("0101");
+        // read trouble codes
         writeTelegram(emptyBuffer,obdService,0);
         break;
 
@@ -587,9 +621,6 @@ public class ObdProt extends ProtoHeader
         break;
 
       case OBD_SVC_VEH_INFO:
-        // Clear data items
-        pidSupported.clear();
-        VidPvs.clear();
         // read vehicle information
         writeTelegram(emptyBuffer,obdService,0);
         break;

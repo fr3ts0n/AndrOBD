@@ -41,7 +41,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fr3ts0n.ecu.EcuCodeItem;
@@ -58,7 +57,6 @@ import com.fr3ts0n.pvs.PvList;
 import org.apache.log4j.Level;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -93,7 +91,7 @@ public class MainActivity extends ListActivity
 	private static final int REQUEST_ENABLE_BT = 3;
 	private static final int REQUEST_SELECT_FILE = 4;
 	private static final int REQUEST_SETTINGS = 5;
-	
+
 	/**
 	 * app exit parameters
 	 */
@@ -118,17 +116,67 @@ public class MainActivity extends ListActivity
 	private static ObdItemAdapter currDataAdapter;
 	/** Timer for display updates */
 	private static Timer updateTimer = new Timer();
-	/* is demo mode enabled? */
-	private static boolean demoMode = false;
-	/* initial state of bluetooth adapter */
+	/** initial state of bluetooth adapter */
 	private static boolean initialBtStateEnabled = false;
 	/** last time of back key pressed */
 	private static long lastBackPressTime = 0;
 	/** toast for showing exit message */
 	private static Toast exitToast = null;
 	private static FileHelper fileHelper;
-	// app preferences ...
+	/** app preferences ... */
 	SharedPreferences prefs;
+
+	/** operating modes */
+	public enum MODE
+	{
+		OFFLINE,
+		ONLINE,
+		DEMO,
+		FILE
+	}
+	/** current operating mode */
+	private MODE mode = MODE.OFFLINE;
+	/** get current operating mode */
+	public MODE getMode()
+	{
+		return mode;
+	}
+
+	/**
+	 * set new operating mode
+	 * @param mode new mode
+	 */
+	public void setMode(MODE mode)
+	{
+		// if this is a mode change, or file reload ...
+		if(mode != this.mode || mode == MODE.FILE)
+		{
+			if(mode != MODE.DEMO) stopDemoService();
+
+			switch(mode)
+			{
+				case OFFLINE:
+					break;
+
+				case ONLINE:
+					// Launch the DeviceListActivity to see devices and do scan
+					Intent serverIntent = new Intent(this, DeviceListActivity.class);
+					startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+					break;
+
+				case DEMO:
+					startDemoService();
+					break;
+
+				case FILE:
+					setStatus(R.string.saved_data);
+					selectFileToLoad();
+					break;
+			}
+			// set new mode
+			this.mode = mode;
+		}
+	}
 
 	/**
 	 * Timer Task to cyclically update data screen
@@ -175,7 +223,16 @@ public class MainActivity extends ListActivity
 				case MESSAGE_WRITE:
 					break;
 
+				// data has been read - finish up
 				case MESSAGE_READ:
+					// set listeners for data structure changes
+					setDataListeners();
+					// set adapters data source to loaded list instances
+					mPidAdapter.setPvList(ObdProt.PidPvs);
+					mVidAdapter.setPvList(ObdProt.VidPvs);
+					mDfcAdapter.setPvList(ObdProt.tCodes);
+					// set OBD data mode to the one selected by input file
+					setObdService(mCommService.elm.getService(), getString(R.string.saved_data));
 					break;
 
 				case MESSAGE_DEVICE_NAME:
@@ -292,7 +349,7 @@ public class MainActivity extends ListActivity
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		Log.d(TAG, "Adapter: " + mBluetoothAdapter);
 		// If BT is not on, request that it be enabled.
-		if (!demoMode && mBluetoothAdapter != null)
+		if (getMode() != MODE.DEMO && mBluetoothAdapter != null)
 		{
 			// remember initial bluetooth state
 			initialBtStateEnabled = mBluetoothAdapter.isEnabled();
@@ -320,16 +377,16 @@ public class MainActivity extends ListActivity
 	{
 		// add pv change listeners to trigger model updates
 		ObdProt.PidPvs.addPvChangeListener(this,
-			PvChangeEvent.PV_ADDED
-				| PvChangeEvent.PV_CLEARED
+		                                   PvChangeEvent.PV_ADDED
+			                                   | PvChangeEvent.PV_CLEARED
 		);
 		ObdProt.VidPvs.addPvChangeListener(this,
 			PvChangeEvent.PV_ADDED
 				| PvChangeEvent.PV_CLEARED
 		);
 		ObdProt.tCodes.addPvChangeListener(this,
-			PvChangeEvent.PV_ADDED
-				| PvChangeEvent.PV_CLEARED
+		                                   PvChangeEvent.PV_ADDED
+			                                   | PvChangeEvent.PV_CLEARED
 		);
 	}
 
@@ -418,9 +475,7 @@ public class MainActivity extends ListActivity
 		switch (item.getItemId())
 		{
 			case R.id.secure_connect_scan:
-				// Launch the DeviceListActivity to see devices and do scan
-				serverIntent = new Intent(this, DeviceListActivity.class);
-				startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+				setMode(MODE.ONLINE);
 				return true;
 
 			case R.id.settings:
@@ -428,7 +483,7 @@ public class MainActivity extends ListActivity
 				Intent settingsIntent = new Intent(this, SettingsActivity.class);
 				startActivityForResult(settingsIntent, REQUEST_SETTINGS);
 				return true;
-				
+
 			case R.id.chart_selected:
 				/* if we are in OBD data mode:
 				 * -> Short click on an item starts the readout activity
@@ -483,7 +538,7 @@ public class MainActivity extends ListActivity
 				return true;
 
 			case R.id.load:
-				selectFileToLoad();
+				setMode(MODE.FILE);
 				return true;
 
 			case R.id.service_none:
@@ -545,10 +600,6 @@ public class MainActivity extends ListActivity
 	 */
 	public void selectFileToLoad()
 	{
-		stopDemoService();
-		// set OBD data mode
-		setObdService(ObdProt.OBD_SVC_DATA, getString(R.string.saved_data));
-
 		File file = new File(FileHelper.getPath(this));
 		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -567,15 +618,16 @@ public class MainActivity extends ListActivity
 		switch (requestCode)
 		{
 			case REQUEST_CONNECT_DEVICE_SECURE:
-				// When DeviceListActivity returns with a device to connect
-				if (resultCode == Activity.RESULT_OK)
-					connectDevice(data, true);
-				break;
-
 			case REQUEST_CONNECT_DEVICE_INSECURE:
 				// When DeviceListActivity returns with a device to connect
 				if (resultCode == Activity.RESULT_OK)
+				{
 					connectDevice(data, false);
+				}
+				else
+				{
+					setMode(MODE.OFFLINE);
+				}
 				break;
 
 			case REQUEST_ENABLE_BT:
@@ -588,7 +640,7 @@ public class MainActivity extends ListActivity
 				} else
 				{
 					// Start demo service Thread
-					startDemoService();
+					setMode(MODE.DEMO);
 				}
 				break;
 
@@ -599,27 +651,13 @@ public class MainActivity extends ListActivity
 					Uri uri = data.getData();
 					Log.i(TAG, "Load content: " + uri);
 					// load data ...
-					try
-					{
-						InputStream inStr = getContentResolver().openInputStream(uri);
-						fileHelper.loadData(inStr);
-					} catch (FileNotFoundException e)
-					{
-						e.printStackTrace();
-					}
+					fileHelper.loadDataThreaded(uri, mHandler, MESSAGE_READ);
 					// don't allow saving it again
 					setMenuItemEnable(R.id.save, false);
-					// set listeners for data structure changes
-					setDataListeners();
-					// set adapters data source to loaded list instances
-					mPidAdapter.setPvList(ObdProt.PidPvs);
-					mVidAdapter.setPvList(ObdProt.VidPvs);
-					mDfcAdapter.setPvList(ObdProt.tCodes);
-					// set OBD data mode to the one selected by input file
-					setObdService(mCommService.elm.getService(), getString(R.string.saved_data));
+					setMenuItemEnable(R.id.obd_services, true);
 				}
 				break;
-				
+
 			case REQUEST_SETTINGS:
 			{
 				// log levels
@@ -752,7 +790,7 @@ public class MainActivity extends ListActivity
 		if (mBluetoothAdapter == null)
 		{
 			// start ELM protocol demo loop
-			startDemoService();
+			setMode(MODE.DEMO);
 		}
 	}
 
@@ -765,7 +803,7 @@ public class MainActivity extends ListActivity
 	protected void onDestroy()
 	{
 		// stop demo service if it was started
-		stopDemoService();
+		setMode(MODE.OFFLINE);
 
 		// if bluetooth adapter was switched OFF before ...
 		if (mBluetoothAdapter != null && !initialBtStateEnabled)
@@ -844,13 +882,12 @@ public class MainActivity extends ListActivity
 		// un-filter display
 		setFiltered(false);
 		// set title
-		TextView title = (TextView) findViewById(R.id.title);
-		title.setText(menuTitle);
+		getActionBar().setTitle(menuTitle != null ? menuTitle : getString(R.string.app_name));
 		// update controls
 		setMenuItemEnable(R.id.graph_actions, false);
 		getListView().setOnItemLongClickListener(this);
 		// set protocol service
-		mCommService.elm.setService(obdService);
+		mCommService.elm.setService(obdService, getMode()!=MODE.FILE);
 		// set corresponding list adapter
 		switch (obdService)
 		{
@@ -897,12 +934,13 @@ public class MainActivity extends ListActivity
 	 */
 	private void startDemoService()
 	{
-		if (!demoMode)
+		if (getMode() != MODE.DEMO)
 		{
-			demoMode = true;
 			setStatus(getString(R.string.demo));
 			Toast.makeText(this, getString(R.string.demo_started), Toast.LENGTH_SHORT).show();
-			setMenuItemEnable(R.id.secure_connect_scan, false);
+			setMenuItemEnable(R.id.secure_connect_scan,
+			                     mBluetoothAdapter != null
+				                && mBluetoothAdapter.isEnabled());
 			setMenuItemEnable(R.id.obd_services, true);
 			setMenuItemEnable(R.id.graph_actions, false);
 			/* The Thread object for processing the demo mode loop */
@@ -916,9 +954,8 @@ public class MainActivity extends ListActivity
 	 */
 	private void stopDemoService()
 	{
-		if (demoMode)
+		if (getMode() == MODE.DEMO)
 		{
-			demoMode = false;
 			ElmProt.runDemo = false;
 			Toast.makeText(this, getString(R.string.demo_stopped), Toast.LENGTH_SHORT).show();
 		}
@@ -988,11 +1025,14 @@ public class MainActivity extends ListActivity
 	private void onDisconnect()
 	{
 		// handle further initialisations
-		setMenuItemEnable(R.id.secure_connect_scan, true);
+		setMenuItemEnable(R.id.secure_connect_scan,
+		                  mBluetoothAdapter != null
+			                  && mBluetoothAdapter.isEnabled());
 		setMenuItemEnable(R.id.obd_services, false);
 		setMenuItemEnable(R.id.graph_actions, false);
 		// display connection status
 		setStatus(R.string.title_not_connected);
+		setMode(MODE.OFFLINE);
 	}
 
 	/**
