@@ -43,6 +43,7 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 	public static final String CNV_TYPE_CODELIST    = "CODELIST";
 	public static final String CNV_TYPE_PCODELIST   = "PCODELIST";
 	public static final String CNV_TYPE_VAG         = "VAG";
+	public static final String CNV_TYPE_INT         = "INTEGER";
 	public static final String CNV_TYPE_ASCII       = "ASCII";
 
 	/** CSV field positions */
@@ -157,6 +158,10 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 				{
 					newCnv = null;
 				}
+				else if (params[FLD_TYPE].equals(CNV_TYPE_INT))
+				{
+					newCnv = dfltCnv;
+				}
 				else
 				{
 					newCnv = dfltCnv;
@@ -173,7 +178,7 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 					for (int i = 0; i < EcuDataItem.SYSTEM_TYPES; i++)
 					{
 						currCnvSet[i] = newCnv;
-						log.debug("+" + params[FLD_NAME] + "/" + params[FLD_SYSTEM] + " - " + newCnv.toString());
+						log.debug("+" + params[FLD_NAME] + "/" + params[FLD_SYSTEM] + " - " + String.valueOf(newCnv));
 					}
 				} else
 				{

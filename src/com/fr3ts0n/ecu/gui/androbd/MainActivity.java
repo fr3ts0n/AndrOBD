@@ -887,7 +887,7 @@ public class MainActivity extends ListActivity
 		setMenuItemEnable(R.id.graph_actions, false);
 		getListView().setOnItemLongClickListener(this);
 		// set protocol service
-		mCommService.elm.setService(obdService, getMode()!=MODE.FILE);
+		mCommService.elm.setService(obdService, (getMode() != MODE.FILE));
 		// set corresponding list adapter
 		switch (obdService)
 		{

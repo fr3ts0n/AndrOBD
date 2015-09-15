@@ -55,6 +55,7 @@ public class VidItemAdapter extends ObdItemAdapter
 	{
 		// get data PV
 		IndexedProcessVar currPv = (IndexedProcessVar) getItem(position);
+		String fmtText;
 
 		if (v == null)
 		{
@@ -65,7 +66,15 @@ public class VidItemAdapter extends ObdItemAdapter
 
 		tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
 
-		String fmtText = String.valueOf(currPv.get(EcuDataPv.FID_VALUE));
+		try
+		{
+			fmtText = String.format(currPv.get(EcuDataPv.FID_FORMAT).toString(),
+			                        currPv.get(EcuDataPv.FID_VALUE));
+		}
+		catch(Exception ex)
+		{
+			fmtText = String.valueOf(currPv.get(EcuDataPv.FID_VALUE));
+		}
 		tvValue.setText(fmtText);
 
 		return v;

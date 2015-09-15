@@ -595,7 +595,7 @@ public class ElmProt
 							if (pid == 0)
 							{
 								// simulate "ALL pids supported"
-								handleTelegram("490040000000".toCharArray());
+								handleTelegram("490044000000".toCharArray());
 							}
 
 							// send VIN "1234567890ABCDEFG"
@@ -603,6 +603,8 @@ public class ElmProt
 							handleTelegram("1:4902313233".toCharArray());
 							handleTelegram("2:34353637383930".toCharArray());
 							handleTelegram("3:41424344454647".toCharArray());
+							// CAL-ID 01234567
+							handleTelegram("490601234567".toCharArray());
 							break;
 
 						case OBD_SVC_NONE:

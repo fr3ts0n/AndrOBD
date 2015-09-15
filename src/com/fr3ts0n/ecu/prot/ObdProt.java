@@ -553,7 +553,7 @@ public class ObdProt extends ProtoHeader
   protected void clearDataLists(int obdService)
   {
     // clean up data lists
-    switch (service)
+    switch (obdService)
     {
       case OBD_SVC_DATA:
       case OBD_SVC_FREEZEFRAME:

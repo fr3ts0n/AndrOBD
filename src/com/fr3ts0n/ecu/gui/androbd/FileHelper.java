@@ -174,7 +174,7 @@ class FileHelper
 		// create progress dialog
 		progress = ProgressDialog.show(context,
 		                               context.getString(R.string.loading_data),
-		                               uri.toString(),
+		                               uri.getPath(),
 		                               true);
 
 		Thread loadTask = new Thread()
