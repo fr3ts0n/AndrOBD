@@ -21,10 +21,8 @@ package com.fr3ts0n.ecu.gui.androbd;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.CheckBox;
 
-import com.fr3ts0n.ecu.EcuDataPv;
-import com.fr3ts0n.pvs.IndexedProcessVar;
 import com.fr3ts0n.pvs.PvList;
 
 import java.util.Collection;
@@ -49,33 +47,15 @@ public class VidItemAdapter extends ObdItemAdapter
 
 	/* (non-Javadoc)
 	 * @see com.fr3ts0n.ecu.gui.androbd.ObdItemAdapter#getView(int, android.view.View, android.view.ViewGroup)
-	 */
+   */
 	@Override
 	public View getView(int position, View v, ViewGroup parent)
 	{
-		// get data PV
-		IndexedProcessVar currPv = (IndexedProcessVar) getItem(position);
-		String fmtText;
-
-		if (v == null)
-		{
-			v = mInflater.inflate(R.layout.obd_item, parent, false);
-		}
-		TextView tvDescr = (TextView) v.findViewById(R.id.obd_label);
-		TextView tvValue = (TextView) v.findViewById(R.id.obd_units);
-
-		tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
-
-		try
-		{
-			fmtText = String.format(currPv.get(EcuDataPv.FID_FORMAT).toString(),
-			                        currPv.get(EcuDataPv.FID_VALUE));
-		}
-		catch(Exception ex)
-		{
-			fmtText = String.valueOf(currPv.get(EcuDataPv.FID_VALUE));
-		}
-		tvValue.setText(fmtText);
+		// let superclass format the item
+		v = super.getView(position, v, parent);
+		// hide the checkbox
+		CheckBox cbx = (CheckBox) v.findViewById(R.id.check);
+		cbx.setVisibility(View.GONE);
 
 		return v;
 	}

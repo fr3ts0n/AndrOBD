@@ -105,11 +105,14 @@ public class EcuDataItem
 		// initialize new PID with current data
 		pv.put(EcuDataPv.FID_PID, Integer.valueOf(pid));
 		pv.put(EcuDataPv.FID_DESCRIPT, label);
-		pv.put(EcuDataPv.FID_UNITS, cnv != null ? cnv[cnvSystem].getUnits() : "");
+		pv.put(EcuDataPv.FID_UNITS,
+		       (cnv != null && cnv[cnvSystem] != null)
+		       ? cnv[cnvSystem].getUnits()
+		       : "");
 		pv.put(EcuDataPv.FID_VALUE, Float.valueOf(0));
 		pv.put(EcuDataPv.FID_FORMAT, fmt);
 		pv.put(EcuDataPv.FID_CNVID, cnv);
-		if(cnv != null)
+		if(cnv != null && cnv[cnvSystem] != null)
 		{
 			if(minVal == null) minVal = cnv[cnvSystem].memToPhys(0);
 			if(maxVal == null) maxVal = cnv[cnvSystem].memToPhys(byteValues[bytes]);
@@ -135,13 +138,13 @@ public class EcuDataItem
 		Object result;
 		try
 		{
-			if (cnv != null)
+			if (cnv != null && cnv[cnvSystem] != null)
 			{
 				result = cnv[cnvSystem].memToPhys(ProtoHeader.getParamInt(ofs, bytes, buffer).longValue());
 			}
 			else
 			{
-				result = String.valueOf(buffer);
+				result = String.copyValueOf(buffer, ofs, bytes);
 			}
 		} catch(Exception ex)
 		{

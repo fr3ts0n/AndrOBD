@@ -183,17 +183,20 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 
 		try
 		{
-			if (cnvObj != null && cnvObj instanceof Conversion[])
+			if ( cnvObj != null
+				   && cnvObj instanceof Conversion[]
+					 && ((Conversion[])cnvObj)[EcuDataItem.cnvSystem] != null
+				 )
 			{
-				Conversion[] cnv;
-				cnv = (Conversion[]) cnvObj;
+				Conversion cnv;
+				cnv = ((Conversion[])cnvObj)[EcuDataItem.cnvSystem];
 				// set formatted text
-				fmtText = cnv[EcuDataItem.cnvSystem].physToPhysFmtString((Number)colVal,
+				fmtText = cnv.physToPhysFmtString((Number)colVal,
 						(String)currPv.get(EcuDataPv.FID_FORMAT));
 				// set progress bar only on LinearConversion
 				if(    min != null
 					  && max != null
-					  && cnv[EcuDataItem.cnvSystem] instanceof LinearConversion)
+					  && cnv instanceof LinearConversion)
 				{
 					pb.setVisibility(ProgressBar.VISIBLE);
 					pb.getProgressDrawable().setColorFilter(ChartActivity.getColor(pid), PorterDuff.Mode.SRC_IN);
