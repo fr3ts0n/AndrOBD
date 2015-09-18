@@ -16,7 +16,7 @@
  * MA 02111-1307 USA
  */
 
-package com.fr3ts0n.ecu;
+package com.fr3ts0n.ecu.gui.application;
 
 import java.io.File;
 

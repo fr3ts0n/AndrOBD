@@ -24,11 +24,11 @@ import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataItems;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.VagConversion;
-import com.fr3ts0n.prot.gui.KLHandler;
 import com.fr3ts0n.prot.ProtUtils;
 import com.fr3ts0n.prot.ProtoHeader;
 import com.fr3ts0n.prot.TelegramListener;
 import com.fr3ts0n.prot.TelegramWriter;
+import com.fr3ts0n.prot.gui.KLHandler;
 import com.fr3ts0n.pvs.PvList;
 
 import org.apache.log4j.Logger;
@@ -157,7 +157,7 @@ public class Kw1281Prot extends ProtoHeader
 	public static PvList tCodes = new PvList();
 	static final String[] codeListFiles =
 		{
-			"res/vag_codes.csv"
+			"prot/res/vag_codes.csv"
 		};
 	/** list of known fault codes */
 	public static EcuCodeList knownCodes = new EcuCodeList(codeListFiles);

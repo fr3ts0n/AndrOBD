@@ -20,7 +20,6 @@ package com.fr3ts0n.ecu.gui.application;
 
 import com.fr3ts0n.ecu.Conversions;
 import com.fr3ts0n.ecu.EcuDataPv;
-import com.fr3ts0n.ecu.ObdFileFilter;
 import com.fr3ts0n.ecu.prot.ElmProt;
 import com.fr3ts0n.ecu.prot.ObdProt;
 import com.fr3ts0n.prot.gui.SerialHandler;
@@ -459,7 +458,7 @@ public class ObdTestFrame extends javax.swing.JFrame
 		Conversions.cnvSystem = cbCnvSystem.getSelectedIndex();
 
 		// update process variables
-		prt.preparePidPvs(ElmProt.PidPvs, true);
+		prt.preparePidPvs(ElmProt.PidPvs);
 		ElmProt.canProt.preparePidPvs(true);
 
 		// update currently selected display

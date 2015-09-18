@@ -112,12 +112,12 @@ public class ObdItemTableRenderer
 						{
 							Conversion[] cnv = (Conversion[]) cnvObj;
 							fmtText = cnv[Conversions.cnvSystem].physToPhysFmtString((Float) colVal,
-								((EcuDataPv) value).getAsInt(EcuDataPv.FID_DECIMALS));
+								String.valueOf(((EcuDataPv) value).get(EcuDataPv.FID_FORMAT)));
 						} else
 						{
 							fmtText = Conversions.physToPhysFmtString((Float) colVal,
 								((EcuDataPv) value).getAsInt(EcuDataPv.FID_CNVID),
-								((EcuDataPv) value).getAsInt(EcuDataPv.FID_DECIMALS));
+								0);
 						}
 						break;
 

@@ -20,9 +20,8 @@ package com.fr3ts0n.ecu.gui.application;
 
 import com.fr3ts0n.ecu.EcuCodeItem;
 import com.fr3ts0n.ecu.EcuCodeList;
-import com.fr3ts0n.ecu.EcuConversions;
+import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataPv;
-import com.fr3ts0n.ecu.ObdFileFilter;
 import com.fr3ts0n.ecu.prot.Kw1281Prot;
 import com.fr3ts0n.prot.gui.KLHandlerGeneric;
 import com.fr3ts0n.pvs.PvList;
@@ -684,7 +683,7 @@ public class VagTestFrame extends javax.swing.JFrame
 	private void cbCnvSystemItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_cbCnvSystemItemStateChanged
 	{//GEN-HEADEREND:event_cbCnvSystemItemStateChanged
 		// set new conversion system
-		EcuConversions.cnvSystem = cbCnvSystem.getSelectedIndex();
+		EcuDataItem.cnvSystem = cbCnvSystem.getSelectedIndex();
 
 		// update currently selected display
 		switch (tabMain.getSelectedIndex())
