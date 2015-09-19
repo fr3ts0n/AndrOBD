@@ -104,7 +104,7 @@ public class SerialExt
 	private static native int sendChar(int fd, char txChar);
 
 	/** file descriptor of serial port */
-	static int serialPortDescriptor = -1;
+	public static int serialPortDescriptor = -1;
 
 	static
 	{

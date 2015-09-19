@@ -18,6 +18,14 @@
 
 package com.fr3ts0n.pvs.gui;
 
+import java.beans.BeanDescriptor;
+import java.beans.EventSetDescriptor;
+import java.beans.IndexedPropertyDescriptor;
+import java.beans.IntrospectionException;
+import java.beans.MethodDescriptor;
+import java.beans.PropertyDescriptor;
+import java.beans.SimpleBeanInfo;
+
 
 /**
  * @author erwin

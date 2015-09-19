@@ -311,7 +311,7 @@ public class ObdDataPanel extends JPanel
 				if ((ts = selPids.get(getPvId(pv))) != null)
 					try
 					{
-						ts.addOrUpdate(new Second(), (Float) pv.get(EcuDataPv.FID_VALUE));
+						ts.addOrUpdate(new Second(), ((Number)pv.get(EcuDataPv.FID_VALUE)).floatValue());
 					} catch (Exception e)
 					{
 						ProcessVar.log.error(e);

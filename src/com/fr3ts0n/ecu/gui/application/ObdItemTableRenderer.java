@@ -18,10 +18,6 @@
 
 package com.fr3ts0n.ecu.gui.application;
 
-import com.fr3ts0n.ecu.Conversion;
-import com.fr3ts0n.ecu.Conversions;
-import com.fr3ts0n.ecu.EcuDataPv;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -30,6 +26,10 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.TableCellRenderer;
+
+import com.fr3ts0n.ecu.Conversion;
+import com.fr3ts0n.ecu.EcuDataItem;
+import com.fr3ts0n.ecu.EcuDataPv;
 
 
 /**
@@ -97,34 +97,44 @@ public class ObdItemTableRenderer
 			Object colVal = ((EcuDataPv) value).get(column);
 			if (colVal != null)
 			{
-				// formatting is based on column ...
-				switch (column)
+				try
 				{
-					case EcuDataPv.FID_PID:
-						setHorizontalAlignment(RIGHT);
-						fmtText = String.valueOf(colVal);
-						break;
-
-					case EcuDataPv.FID_VALUE:
-						setHorizontalAlignment(RIGHT);
-						Object cnvObj = ((EcuDataPv) value).get(EcuDataPv.FID_CNVID);
-						if (cnvObj != null && cnvObj instanceof Conversion[])
-						{
-							Conversion[] cnv = (Conversion[]) cnvObj;
-							fmtText = cnv[Conversions.cnvSystem].physToPhysFmtString((Float) colVal,
-								String.valueOf(((EcuDataPv) value).get(EcuDataPv.FID_FORMAT)));
-						} else
-						{
-							fmtText = Conversions.physToPhysFmtString((Float) colVal,
-								((EcuDataPv) value).getAsInt(EcuDataPv.FID_CNVID),
-								0);
-						}
-						break;
-
-					default:
-						setHorizontalAlignment(LEFT);
-						fmtText = colVal.toString();
-						break;
+					// formatting is based on column ...
+					switch (column)
+					{
+						case EcuDataPv.FID_PID:
+							setHorizontalAlignment(RIGHT);
+							fmtText = String.valueOf(colVal);
+							break;
+	
+						case EcuDataPv.FID_VALUE:
+							setHorizontalAlignment(RIGHT);
+								EcuDataPv currPv=(EcuDataPv)value;
+								Object cnvObj = currPv.get(EcuDataPv.FID_CNVID);
+								if ( cnvObj != null
+									   && cnvObj instanceof Conversion[]
+										 && ((Conversion[])cnvObj)[EcuDataItem.cnvSystem] != null
+									 )
+								{
+									Conversion cnv;
+									cnv = ((Conversion[])cnvObj)[EcuDataItem.cnvSystem];
+									// set formatted text
+									fmtText = cnv.physToPhysFmtString((Number)colVal,
+											(String)currPv.get(EcuDataPv.FID_FORMAT));
+								} else
+								{
+									fmtText = String.valueOf(colVal);
+								}
+							break;
+	
+						default:
+							setHorizontalAlignment(LEFT);
+							fmtText = String.valueOf(colVal);
+							break;
+					}
+				} catch (Exception ex)
+				{
+					fmtText = String.valueOf(colVal);
 				}
 			}
 		}

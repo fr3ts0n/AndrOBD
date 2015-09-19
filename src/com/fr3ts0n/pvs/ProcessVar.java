@@ -149,7 +149,7 @@ public class ProcessVar
 		firePvChanged(new PvChangeEvent(this,
 			((ProcessVar) event.getSource()).getKeyValue(),
 			event.getSource(),
-			event.getType()));
+			event.getType() | PvChangeEvent.PV_CHILDCHANGE));
 	}
 
 	/** return String representation */
@@ -407,7 +407,7 @@ public class ProcessVar
 	 *
 	 * @param e the event to be fired
 	 */
-	protected synchronized void firePvChanged(PvChangeEvent e)
+	public synchronized void firePvChanged(PvChangeEvent e)
 	{
 		if (allowEvents && e.getType() != PvChangeEvent.PV_NOACTION)
 		{

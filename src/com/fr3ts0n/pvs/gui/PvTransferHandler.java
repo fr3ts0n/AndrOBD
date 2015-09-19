@@ -42,6 +42,7 @@ public class PvTransferHandler extends TransferHandler
 
 	/** Serial Version ID */
 	private static final long serialVersionUID = -3156199604384589468L;
+	private static final PvDataFlavor processVarFlavor = new PvDataFlavor();
 
 	public PvTransferHandler()
 	{
@@ -70,7 +71,7 @@ public class PvTransferHandler extends TransferHandler
 				JTree tree = (JTree) c;
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getSelectionPath().getLastPathComponent();
 				ProcessVar pv = (ProcessVar) node.getUserObject();
-				return pv;
+				return (Transferable) pv;
 			} catch (ClassCastException ex)
 			{
 				ProcessVar.log.error(this.toString() + ":" + ex.getMessage());
@@ -79,7 +80,7 @@ public class PvTransferHandler extends TransferHandler
 		{
 			PvTable tab = (PvTable) c;
 			ProcessVar pv = (ProcessVar) tab.getPvModel().getElementAt(tab.getSelectedRow());
-			return pv;
+			return (Transferable) pv;
 		}
 		// anything else is handled by superclass
 		return super.createTransferable(c);
@@ -95,7 +96,7 @@ public class PvTransferHandler extends TransferHandler
 		{
 			if (action == MOVE)
 			{
-				ProcessVar pv = (ProcessVar) t.getTransferData(ProcessVar.PvDataFlavors[0]);
+				ProcessVar pv = (ProcessVar) t.getTransferData(processVarFlavor);
 				pv.firePvChanged(new PvChangeEvent(pv, pv.getKeyAttribute(), pv, PvChangeEvent.PV_ELIMINATED));
 			}
 		} catch (UnsupportedFlavorException e)
@@ -121,10 +122,10 @@ public class PvTransferHandler extends TransferHandler
 				Point dropPoint = support.getDropLocation().getDropPoint();
 				TreePath path = tree.getPathForLocation(dropPoint.x, dropPoint.y);
 				Object node = path.getLastPathComponent();
-				if (support.isDataFlavorSupported(ProcessVar.PvDataFlavors[0]))
+				if (support.isDataFlavorSupported(processVarFlavor))
 				{
 					ProcessVar tVar = (ProcessVar) ((PvTreeNode) node).getUserObject();
-					ProcessVar chldPv = (ProcessVar) support.getTransferable().getTransferData(ProcessVar.PvDataFlavors[0]);
+					ProcessVar chldPv = (ProcessVar) support.getTransferable().getTransferData(processVarFlavor);
 
 					Object chldKey = chldPv.getKeyValue();
 					tVar.put(chldKey, chldPv, PvChangeEvent.PV_ADDED);
@@ -151,6 +152,6 @@ public class PvTransferHandler extends TransferHandler
 	public boolean canImport(TransferSupport support)
 	{
 		return support != null
-			&& support.isDataFlavorSupported(ProcessVar.PvDataFlavors[0]);
+			&& support.isDataFlavorSupported(processVarFlavor);
 	}
 }

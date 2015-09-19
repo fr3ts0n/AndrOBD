@@ -112,6 +112,18 @@ public class PvTableModel extends AbstractTableModel
 	}
 
 	/**
+	 * get process var for row
+	 * @param rowIndex row index
+	 * @return process var
+	 */
+	public IndexedProcessVar getElementAt(int rowIndex)
+	{
+		if (rowIndex < getRowCount())
+			currRow = (IndexedProcessVar) pv.get(keys[rowIndex]);
+
+		return currRow;
+	}
+	/**
 	 * get the value for table location (x,y)
 	 *
 	 * @param rowIndex    row number
@@ -125,7 +137,7 @@ public class PvTableModel extends AbstractTableModel
 		if (pv != null)
 		{
 			// get the column value
-			if (rowIndex < getRowCount() && (currRow = (IndexedProcessVar) pv.get(keys[rowIndex])) != null)
+			if((currRow = getElementAt(rowIndex)) != null)
 			{
 				result = currRow.get(columnIndex);
 			}
@@ -140,40 +152,57 @@ public class PvTableModel extends AbstractTableModel
 	 */
 	public synchronized void pvChanged(PvChangeEvent event)
 	{
-		Object key = event.getKey();
-		int rowId = key != null ? Arrays.binarySearch(keys, key) : 0;
-		switch (event.getType())
+ 		Object key;
+ 		int rowId;
+		try
+ 		{
+			if(event.isChildEvent())
+	 		{
+	 			key = String.valueOf(event.getValue());
+	 		}
+			else
+			{
+	 			key = event.getKey();
+			}
+ 			rowId = key != null ? Arrays.binarySearch(keys, key) : 0;
+	
+			switch (event.getType())
+			{
+				case PvChangeEvent.PV_CONFIRMED:
+				case PvChangeEvent.PV_MODIFIED:
+				case PvChangeEvent.PV_MANUAL_MOD:
+					fireTableRowsUpdated(rowId, rowId);
+					break;
+	
+				case PvChangeEvent.PV_ADDED:
+					if (pv.size() == 1)
+					{
+						setProcessVar(pv);
+					} else
+					{
+						updateKeys(pv);
+						fireTableRowsInserted(rowId, rowId);
+					}
+					break;
+	
+				case PvChangeEvent.PV_DELETED:
+					updateKeys(pv);
+					fireTableRowsDeleted(rowId, rowId);
+					break;
+	
+				case PvChangeEvent.PV_CLEARED:
+					if (keys.length > 0)
+					{
+						updateKeys(pv);
+					}
+					// w/o data there are NO columns available -> structure change
+					fireTableStructureChanged();
+					break;
+			}
+ 		}
+		catch(Exception ex)
 		{
-			case PvChangeEvent.PV_CONFIRMED:
-			case PvChangeEvent.PV_MODIFIED:
-			case PvChangeEvent.PV_MANUAL_MOD:
-				fireTableRowsUpdated(rowId, rowId);
-				break;
-
-			case PvChangeEvent.PV_ADDED:
-				if (pv.size() == 1)
-				{
-					setProcessVar(pv);
-				} else
-				{
-					updateKeys(pv);
-					fireTableRowsInserted(rowId, rowId);
-				}
-				break;
-
-			case PvChangeEvent.PV_DELETED:
-				updateKeys(pv);
-				fireTableRowsDeleted(rowId, rowId);
-				break;
-
-			case PvChangeEvent.PV_CLEARED:
-				if (keys.length > 0)
-				{
-					updateKeys(pv);
-				}
-				// w/o data there are NO columns available -> structure change
-				fireTableStructureChanged();
-				break;
+			ex.printStackTrace();
 		}
 	}
 
