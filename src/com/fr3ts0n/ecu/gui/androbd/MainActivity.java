@@ -124,7 +124,7 @@ public class MainActivity extends ListActivity
 	private static Toast exitToast = null;
 	private static FileHelper fileHelper;
 	/** app preferences ... */
-	SharedPreferences prefs;
+	protected static SharedPreferences prefs;
 
 	/** operating modes */
 	public enum MODE

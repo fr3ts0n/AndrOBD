@@ -18,6 +18,7 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -128,10 +129,14 @@ public class DashBoardActivity extends Activity
 		super.onCreate(savedInstanceState);
 		// set to full screen
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		// keep display on
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		// keep main display on?
+		if(MainActivity.prefs.getBoolean("keep_screen_on", false))
+		{
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		}
 		// hide the action bar
-		getActionBar().hide();
+		ActionBar actionBar = getActionBar();
+		if (actionBar != null) actionBar.hide();
 
 		// prevent activity from falling asleep
 		PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);

@@ -18,6 +18,7 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
@@ -171,7 +172,13 @@ public class ChartActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-			WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+		// keep main display on?
+		if(MainActivity.prefs.getBoolean("keep_screen_on", false))
+		{
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		}
 
 		// prevent activity from falling asleep
 		PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
@@ -179,7 +186,14 @@ public class ChartActivity extends Activity
 			getString(R.string.app_name));
 		wakeLock.acquire();
 
-		setTitle("OBD data graph");
+		// set up action bar
+		ActionBar actionBar = getActionBar();
+		if (actionBar != null)
+		{
+			actionBar.setDisplayShowTitleEnabled(true);
+		}
+
+		setTitle(R.string.chart);
 
 		/* get PIDs to be shown */
 		int positions[] = getIntent().getIntArrayExtra(POSITIONS);
