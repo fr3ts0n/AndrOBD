@@ -9,6 +9,11 @@
         <option name="RES_FOLDER_RELATIVE_PATH" value="/../res" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../assets" />
         <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../libs" />
+        <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../proguard_logs" />
+        <option name="UPDATE_PROPERTY_FILES" value="true" />
+        <option name="ENABLE_MANIFEST_MERGING" value="true" />
+        <option name="ENABLE_PRE_DEXING" value="false" />
+        <includeAssetsFromLibraries>true</includeAssetsFromLibraries>
       </configuration>
     </facet>
   </component>
@@ -16,18 +21,21 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/.idea/gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/res" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/customisation" />
+      <excludeFolder url="file://$MODULE_DIR$/manual" />
+      <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/common" />
       <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/ecu/gui/application" />
       <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/prot/gui" />
       <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/pvs/gui" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
-    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module" module-name="Library" />
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="file://$MODULE_DIR$/libs" />
@@ -37,5 +45,6 @@
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="inheritedJdk" />
   </component>
 </module>
