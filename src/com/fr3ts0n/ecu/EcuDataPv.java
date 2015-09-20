@@ -32,18 +32,20 @@ public class EcuDataPv extends IndexedProcessVar
 
 	// Field IDs
 	public static final int FID_PID = 0;
-	public static final int FID_DESCRIPT = 1;
-	public static final int FID_VALUE = 2;
-	public static final int FID_UNITS = 3;
+	public static final int FID_OFS = 1;
+	public static final int FID_DESCRIPT = 2;
+	public static final int FID_VALUE = 3;
+	public static final int FID_UNITS = 4;
 	// optional Field IDs which will be invisible for table display
 	public static final String FID_FORMAT = "FMT";
 	public static final String FID_CNVID = "CNV_ID";
 	public static final String FID_MIN = "MIN";
 	public static final String FID_MAX = "MAX";
-
+	
 	public static final String[] FIELDS =
 		{
 			"PID",
+			"OFS",
 			"DESCRIPTION",
 			"VALUE",
 			"UNITS",
@@ -93,6 +95,6 @@ public class EcuDataPv extends IndexedProcessVar
 
 	public String toString()
 	{
-		return (String.format("%02X.%s", get(FID_PID), get(FID_DESCRIPT)));
+		return (String.format("%02X.%d", get(FID_PID), get(FID_OFS)));
 	}
 }

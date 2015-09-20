@@ -104,6 +104,7 @@ public class EcuDataItem
 
 		// initialize new PID with current data
 		pv.put(EcuDataPv.FID_PID, Integer.valueOf(pid));
+		pv.put(EcuDataPv.FID_OFS, Integer.valueOf(ofs));
 		pv.put(EcuDataPv.FID_DESCRIPT, label);
 		pv.put(EcuDataPv.FID_UNITS,
 		       (cnv != null && cnv[cnvSystem] != null)
@@ -124,7 +125,7 @@ public class EcuDataItem
 	@Override
 	public String toString()
 	{
-		return (String.format("%02X.%s", pid, label));
+		return (String.format("%02X.%d", pid, ofs));
 	}
 
 	/**
@@ -164,14 +165,21 @@ public class EcuDataItem
 	{
 		if(enabled)
 		{
-			// get physical value
-			Object result = physFromBuffer(buffer);
-			pv.put(EcuDataPv.FID_VALUE, result);
-			log.debug(String.format("%02X %-30s %16s %s",
-			                        pid,
-			                        label,
-			                        pv.get(EcuDataPv.FID_VALUE),
-			                        pv.get(EcuDataPv.FID_UNITS)));
+			try
+			{
+				// get physical value
+				Object result = physFromBuffer(buffer);
+				pv.put(EcuDataPv.FID_VALUE, result);
+				log.debug(String.format("%02X %-30s %16s %s",
+				                        pid,
+				                        label,
+				                        pv.get(EcuDataPv.FID_VALUE),
+				                        pv.get(EcuDataPv.FID_UNITS)));
+			}
+			catch(Exception ex)
+			{
+				log.error(ex);
+			}
 		}
 	}
 

@@ -148,7 +148,7 @@ public class Kw1281Prot extends ProtoHeader
 			"Command ",
 		};
 	// data items to be used for data display
-	EcuDataItems itms = new EcuDataItems("res/vag_pids.csv", "res/vag_conversions.csv");
+	EcuDataItems itms = new EcuDataItems("prot/res/vag_pids.csv", "prot/res/vag_conversions.csv");
 	/** List of ECU data items */
 	public static PvList PidPvs = new PvList();
 	/** ECU vehicle identification items */
@@ -261,7 +261,8 @@ public class Kw1281Prot extends ProtoHeader
 									EcuDataItem itm = (EcuDataItem) it.next().clone();
 									itm.pid = frmNum;
 									itm.ofs = i - 1;
-									itm.pv.setKeyValue(Float.valueOf(itm.toString()));
+									itm.pv.put(EcuDataPv.FID_PID, Integer.valueOf(itm.pid));
+									itm.pv.put(EcuDataPv.FID_OFS, Integer.valueOf(itm.ofs));
 									grpVec.add(itm);
 								}
 							}
@@ -615,7 +616,7 @@ public class Kw1281Prot extends ProtoHeader
 			while (itItm.hasNext())
 			{
 				EcuDataItem itm = itItm.next();
-				PidPvs.put(itm.pv.getKeyValue(), itm.pv);
+				PidPvs.put(itm.pv.toString(), itm.pv);
 			}
 		}
 	}
@@ -690,7 +691,8 @@ public class Kw1281Prot extends ProtoHeader
 								// set specific values for this item
 								currItm.pid = (int) getCurrDataGroup();
 								currItm.ofs += fldId;
-								currItm.pv.setKeyValue(Float.valueOf(currItm.toString()));
+								currItm.pv.put(EcuDataPv.FID_PID, Integer.valueOf(currItm.pid));
+								currItm.pv.put(EcuDataPv.FID_OFS, Integer.valueOf(currItm.ofs));
 								// ensure there are enough elements in list
 								while (currGrpItems.size() <= fldId)
 									currGrpItems.add(null);
@@ -774,7 +776,8 @@ public class Kw1281Prot extends ProtoHeader
 								// set specific values for this item
 								currItm.pid = (int) getCurrDataGroup();
 								currItm.ofs += i / 3;
-								currItm.pv.setKeyValue(Float.valueOf(currItm.toString()));
+								currItm.pv.put(EcuDataPv.FID_PID, Integer.valueOf(currItm.pid));
+								currItm.pv.put(EcuDataPv.FID_OFS, Integer.valueOf(currItm.ofs));
 								// ensure there are enough elements in list
 								while (currGrpItems.size() < (i / 3))
 									currGrpItems.add(null);
@@ -963,7 +966,7 @@ public class Kw1281Prot extends ProtoHeader
 				}
 				try
 				{
-					Thread.sleep(1);
+					Thread.sleep(50);
 				} catch (Exception e)
 				{/* do nothing */}
 			}

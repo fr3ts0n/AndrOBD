@@ -88,7 +88,7 @@ public class VagTestFrame extends javax.swing.JFrame
 	/** is this a simulation, or the real world? */
 	static boolean isSimulation = false;
 	/** ECU addresses */
-	static EcuCodeList AddressList = new EcuCodeList(new String[]{"/com/fr3ts0n/ecu/res/ecuadr"}, 16);
+	static EcuCodeList AddressList = new EcuCodeList(new String[]{"/com/fr3ts0n/ecu/prot/res/ecuadr"}, 16);
 	/**
 	 * Action listener to handle read/clear code actions
 	 */

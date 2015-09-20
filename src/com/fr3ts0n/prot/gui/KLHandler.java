@@ -19,13 +19,6 @@
 package com.fr3ts0n.prot.gui;
 
 
-import org.apache.log4j.Logger;
-
-import com.fr3ts0n.prot.ProtUtils;
-import com.fr3ts0n.prot.SerialExt;
-import com.fr3ts0n.prot.TelegramWriter;
-import com.fr3ts0n.prot.gui.SerialHandler.ProtStatus;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -33,6 +26,12 @@ import java.io.IOException;
 import java.util.Vector;
 
 import javax.swing.Timer;
+
+import org.apache.log4j.Logger;
+
+import com.fr3ts0n.prot.ProtUtils;
+import com.fr3ts0n.prot.SerialExt;
+import com.fr3ts0n.prot.TelegramWriter;
 
 /**
  * Communication handler for KL-Adaptor

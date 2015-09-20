@@ -20,6 +20,8 @@ package com.fr3ts0n.ecu;
 
 import java.text.DecimalFormat;
 
+import org.apache.log4j.Logger;
+
 /**
  * Base class for numeric diagnostic data conversions
  *
@@ -29,6 +31,8 @@ public abstract class NumericConversion implements Conversion
 {
 	/** fixed serial version id  */
 	private static final long serialVersionUID = 5506104864792893549L;
+	/** Logger object */
+	public static final Logger log = Logger.getLogger("data.ecu");
 	/** Formatter to format numeric values to strings */
 	protected static DecimalFormat decimalFormat = new DecimalFormat();
 	/** format templates to format numeric values to strings */

@@ -284,7 +284,7 @@ public class VagConversion extends NumericConversion
 				break;
 
 			default:
-				throw new UnsupportedOperationException(String.format("Unsupported Formula: ID=%d", cnvId));
+				log.info(String.format("Unsupported Formula: ID=%d [%s]", cnvId, units));
 		}
 		return (float) result;
 	}
