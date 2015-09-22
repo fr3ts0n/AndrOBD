@@ -56,6 +56,8 @@ import com.fr3ts0n.pvs.PvList;
 
 import org.apache.log4j.Level;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -69,7 +71,7 @@ import de.mindpipe.android.logging.log4j.LogConfigurator;
  * Main Activity for AndrOBD app
  */
 public class MainActivity extends ListActivity
-	implements PvChangeListener, AdapterView.OnItemLongClickListener
+	implements PvChangeListener, AdapterView.OnItemLongClickListener, PropertyChangeListener
 {
 	/** Key names received from the BluetoothChatService Handler */
 	public static final String DEVICE_NAME = "device_name";
@@ -84,6 +86,7 @@ public class MainActivity extends ListActivity
 	public static final int MESSAGE_TOAST = 5;
 	public static final int MESSAGE_DATA_ITEMS_CHANGED = 6;
 	public static final int MESSAGE_UPDATE_VIEW = 7;
+	public static final int MESSAGE_OBD_STATE_CHANGED = 8;
 	private static final String TAG = "AndrOBD";
 	/** internal Intent request codes */
 	private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
@@ -175,6 +178,7 @@ public class MainActivity extends ListActivity
 			}
 			// set new mode
 			this.mode = mode;
+			setStatus(mode.toString());
 		}
 	}
 
@@ -220,6 +224,7 @@ public class MainActivity extends ListActivity
 							break;
 					}
 					break;
+
 				case MESSAGE_WRITE:
 					break;
 
@@ -272,6 +277,16 @@ public class MainActivity extends ListActivity
 				case MESSAGE_UPDATE_VIEW:
 					getListView().invalidateViews();
 					break;
+
+				case 	MESSAGE_OBD_STATE_CHANGED:
+					/* Show ELM status only in ONLINE mode */
+					if(getMode() != MODE.DEMO)
+					{
+						PropertyChangeEvent evt = (PropertyChangeEvent)msg.obj;
+						setStatus(evt.getNewValue().toString());
+					}
+					break;
+
 
 			}
 		}
@@ -337,6 +352,7 @@ public class MainActivity extends ListActivity
 		mVidAdapter = new VidItemAdapter(this, R.layout.obd_item, ObdProt.VidPvs);
 		mDfcAdapter = new DfcItemAdapter(this, R.layout.obd_item, ObdProt.tCodes);
 		currDataAdapter = mPidAdapter;
+
 		// load csv files for protocol extensions
 		loadPreferredExtensions();
 
@@ -344,6 +360,8 @@ public class MainActivity extends ListActivity
 		fileHelper = new FileHelper(this, mCommService.elm);
 		// set listeners for data structure changes
 		setDataListeners();
+		// automate elm status display
+		mCommService.elm.addPropertyChangeListener(this);
 
 		// Get local Bluetooth adapter
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -381,8 +399,8 @@ public class MainActivity extends ListActivity
 			                                   | PvChangeEvent.PV_CLEARED
 		);
 		ObdProt.VidPvs.addPvChangeListener(this,
-			PvChangeEvent.PV_ADDED
-				| PvChangeEvent.PV_CLEARED
+		                                   PvChangeEvent.PV_ADDED
+			                                   | PvChangeEvent.PV_CLEARED
 		);
 		ObdProt.tCodes.addPvChangeListener(this,
 		                                   PvChangeEvent.PV_ADDED
@@ -469,7 +487,6 @@ public class MainActivity extends ListActivity
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		// Handle presses on the action bar items
-		Intent serverIntent;
 		updateTimer.purge();
 
 		switch (item.getItemId())
@@ -634,9 +651,8 @@ public class MainActivity extends ListActivity
 				// When the request to enable Bluetooth returns
 				if (resultCode == Activity.RESULT_OK)
 				{
-					// Launch the DeviceListActivity to see devices and do scan
-					Intent serverIntent = new Intent(this, DeviceListActivity.class);
-					startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+					// Start online mode
+					setMode(MODE.ONLINE);
 				} else
 				{
 					// Start demo service Thread
@@ -824,9 +840,9 @@ public class MainActivity extends ListActivity
 		super.onListItemClick(l, v, position, id);
 		// enable graphic actions only on DATA service if min 1 item selected
 		setMenuItemEnable(R.id.graph_actions,
-			((mCommService.elm.getService() == ObdProt.OBD_SVC_DATA)
-				&& (getListView().getCheckedItemCount() > 0)
-			)
+		                  ((mCommService.elm.getService() == ObdProt.OBD_SVC_DATA)
+			                  && (getListView().getCheckedItemCount() > 0)
+		                  )
 		);
 	}
 
@@ -1049,6 +1065,23 @@ public class MainActivity extends ListActivity
 		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DATA_ITEMS_CHANGED);
 		msg.obj = event;
 		mHandler.sendMessage(msg);
+	}
+
+	/**
+	 * Property change listener to ELM-Protocol
+	 *
+	 * @param evt the property change event to be handled
+	 */
+	public void propertyChange(PropertyChangeEvent evt)
+	{
+    /* handle protocol status changes */
+    if (evt.getPropertyName().equals("status"))
+    {
+	    // forward property change to the UI Activity
+	    Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_OBD_STATE_CHANGED);
+	    msg.obj = evt;
+	    mHandler.sendMessage(msg);
+    }
 	}
 
 	/**
