@@ -341,10 +341,10 @@ public class ObdDataPanel extends JPanel
 						addDataSeries((ProcessVar) currPv);
 					}
 				}
-				// update table column widths
-				updateColumnWidths();
 				break;
 		}
+		// update table column widths
+		updateColumnWidths();
 	}
 
 
@@ -370,6 +370,7 @@ public class ObdDataPanel extends JPanel
 		{
 			/** set column sizes here, since this only works with inserted data */
 			tblPids.getColumn(EcuDataPv.FIELDS[EcuDataPv.FID_PID]).setPreferredWidth(40);
+			tblPids.getColumn(EcuDataPv.FIELDS[EcuDataPv.FID_OFS]).setPreferredWidth(40);
 			tblPids.getColumn(EcuDataPv.FIELDS[EcuDataPv.FID_DESCRIPT]).setPreferredWidth(350);
 			tblPids.getColumn(EcuDataPv.FIELDS[EcuDataPv.FID_VALUE]).setPreferredWidth(150);
 		}

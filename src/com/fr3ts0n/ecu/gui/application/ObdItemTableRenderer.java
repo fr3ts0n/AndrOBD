@@ -104,9 +104,14 @@ public class ObdItemTableRenderer
 					{
 						case EcuDataPv.FID_PID:
 							setHorizontalAlignment(RIGHT);
+							fmtText = String.format("%02X", colVal);
+							break;
+
+						case EcuDataPv.FID_OFS:
+							setHorizontalAlignment(RIGHT);
 							fmtText = String.valueOf(colVal);
 							break;
-	
+
 						case EcuDataPv.FID_VALUE:
 							setHorizontalAlignment(RIGHT);
 								EcuDataPv currPv=(EcuDataPv)value;
@@ -126,7 +131,7 @@ public class ObdItemTableRenderer
 									fmtText = String.valueOf(colVal);
 								}
 							break;
-	
+
 						default:
 							setHorizontalAlignment(LEFT);
 							fmtText = String.valueOf(colVal);

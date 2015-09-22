@@ -18,13 +18,6 @@
 
 package com.fr3ts0n.ecu.gui.application;
 
-import com.fr3ts0n.ecu.Conversions;
-import com.fr3ts0n.ecu.EcuDataPv;
-import com.fr3ts0n.ecu.prot.ElmProt;
-import com.fr3ts0n.ecu.prot.ObdProt;
-import com.fr3ts0n.prot.gui.SerialHandler;
-import com.fr3ts0n.pvs.PvList;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -41,6 +34,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+import com.fr3ts0n.ecu.Conversions;
+import com.fr3ts0n.ecu.EcuDataPv;
+import com.fr3ts0n.ecu.prot.ElmProt;
+import com.fr3ts0n.ecu.prot.ObdProt;
+import com.fr3ts0n.prot.gui.SerialHandler;
+import com.fr3ts0n.pvs.PvChangeEvent;
+import com.fr3ts0n.pvs.PvChangeListener;
+import com.fr3ts0n.pvs.PvList;
+
 
 /**
  * Main application frame for OBD com.fr3ts0n.test application
@@ -48,7 +50,7 @@ import javax.swing.JOptionPane;
  * @author erwin
  */
 public class ObdTestFrame extends javax.swing.JFrame
-	implements PropertyChangeListener
+	implements PropertyChangeListener, PvChangeListener
 {
 	/**
 	 *
@@ -99,6 +101,7 @@ public class ObdTestFrame extends javax.swing.JFrame
 	/** Creates new form ObdTestFrame */
 	public ObdTestFrame()
 	{
+		ObdProt.VidPvs.addPvChangeListener(this);
 		// set up serial handler and protocol drivers
 		ser.setMessageHandler(prt);
 		prt.addTelegramWriter(ser);
@@ -184,7 +187,6 @@ public class ObdTestFrame extends javax.swing.JFrame
 		jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 10, 20, 10));
 		jPanel1.setLayout(new java.awt.GridLayout(2, 0));
 
-		TblVehIDs.setAutoResizeMode(5);
 		TblVehIDs.setName("TblVids"); // NOI18N
 		TblVehIDs.setOpaque(false);
 		TblVehIDs.setRowHeight(20);
@@ -488,6 +490,7 @@ public class ObdTestFrame extends javax.swing.JFrame
 	{//GEN-HEADEREND:event_tabMainStateChanged
 		// request OBD service for selected Tab
 		requestServiceForSelectedTab();
+		updateColumnWidths();
 	}//GEN-LAST:event_tabMainStateChanged
 
 	/**
@@ -574,6 +577,32 @@ public class ObdTestFrame extends javax.swing.JFrame
 		{
 			lblStatus.setText(evt.getNewValue().toString());
 		}
+	}
+
+	/**
+	 * update the column widths of data table
+	 */
+	private void updateColumnWidths()
+	{
+		if (TblVehIDs.getRowCount() >= 1)
+		{
+			/** set column sizes here, since this only works with inserted data */
+			TblVehIDs.getColumn(EcuDataPv.FIELDS[EcuDataPv.FID_PID]).setPreferredWidth(20);
+			TblVehIDs.getColumn(EcuDataPv.FIELDS[EcuDataPv.FID_OFS]).setPreferredWidth(20);
+			TblVehIDs.getColumn(EcuDataPv.FIELDS[EcuDataPv.FID_DESCRIPT]).setPreferredWidth(350);
+			TblVehIDs.getColumn(EcuDataPv.FIELDS[EcuDataPv.FID_VALUE]).setPreferredWidth(350);
+		}
+	}
+
+	/**
+	 * handle changes in the process var(s)
+	 *
+	 * @param event Process var event to be handled
+	 */
+	public void pvChanged(PvChangeEvent event)
+	{
+		// update table column widths
+		updateColumnWidths();
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
