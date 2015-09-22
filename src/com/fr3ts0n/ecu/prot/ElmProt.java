@@ -189,6 +189,8 @@ public class ElmProt
 	static final int ELM_TIMEOUT_MIN = 12;
 	/** max. ELM Message Timeout [ms] */
 	static final int ELM_TIMEOUT_MAX = 1000;
+	/** default ELM message timeout */
+	static final int ELM_TIMEOUT_DEFAULT = 200;
 	/** Learning resolution of ELM Message Timeout [ms] */
 	static final int ELM_TIMEOUT_RES = 4;
 	/** ELM message timeout: defaults to approx 200 [ms] */
@@ -365,17 +367,17 @@ public class ElmProt
 						break;
 
 					case NOCONN:
-						// no immediate response
-						setStatus(STAT.DISCONNECTED);
-						sendCommand(CMD.RESET, 0);
-						break;
-
 					case CANERROR:
 					case BUSERROR:
 					case BUSBUSY:
 					case FBERROR:
-						setStatus(STAT.BUSERROR);
-						sendCommand(CMD.SETPROTAUTO, PROT.ELM_PROT_AUTO.ordinal());
+						setStatus(STAT.DISCONNECTED);
+						// re-queue last command
+						if(service != OBD_SVC_NONE)	cmdQueue.add(String.valueOf(lastCommand));
+						// set default timeout
+						setElmMsgTimeout(ELM_TIMEOUT_DEFAULT);
+						// set to automatic protocol
+						sendCommand(CMD.SETPROT, PROT.ELM_PROT_AUTO.ordinal());
 						break;
 
 					case DATAERROR:
@@ -409,10 +411,9 @@ public class ElmProt
 						break;
 
 					case NODATA:
-						char[] veryLastCmd = lastCommand;
 						setStatus(STAT.NODATA);
 						// re-queue last command
-						if(service != OBD_SVC_NONE)	cmdQueue.add(String.valueOf(veryLastCmd));
+						if(service != OBD_SVC_NONE)	cmdQueue.add(String.valueOf(lastCommand));
 						// increase OBD timeout since we may expect answers too fast
 						if ((elmMsgTimeout + ELM_TIMEOUT_RES) < ELM_TIMEOUT_MAX)
 						{
