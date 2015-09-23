@@ -3,7 +3,7 @@
 
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
-    <string name="app_version" translatable="false">V1.2.8</string>
+    <string name="app_version" translatable="false">V1.2.9</string>
     <string name="copyright_fr3ts0n" translatable="false">&#169; 2015 fr3ts0n</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 bluetooth adapter</string>
     <string name="send">Send</string>
@@ -67,9 +67,9 @@ period of time while the ECU recalibrates itself.
 	<string name="loaded">loaded</string>
 	<string name="saved">saved</string>
 	<string name="connected_to">"Connected to "</string>
-	<string name="demo">Demo...</string>
-	<string name="saving_data">Saving data ...</string>
-    <string name="loading_data">Loading data ...</string>
+	<string name="demo">Demo…</string>
+	<string name="saving_data">Saving data …</string>
+    <string name="loading_data">Loading data …</string>
 	<string name="dashboard">Dashboard</string>
 	<string name="graph_actions">Graph actions</string>
 	<string name="hud">Head Up Display</string>
@@ -79,7 +79,7 @@ period of time while the ECU recalibrates itself.
     <!-- Settings -->
     <string name="settings">Settings</string>
     <string name="common_settings">Common settings</string>
-    <string name="measure_system_description">Measurement units sytem (metric / imperial)</string>
+    <string name="measure_system_description">Measurement units system (metric / imperial)</string>
     <string name="measure_system">Measurement units</string>
 	<string name="metric">metric</string>
 	<string name="imperial">imperial</string>
@@ -92,7 +92,7 @@ period of time while the ECU recalibrates itself.
         <item>1</item>
     </string-array>
     <string name="items_for_display">Data items to display</string>
-    <string name="items_for_display_descr">Select all data items to be displayed ...</string>
+    <string name="items_for_display_descr">Select all data items to be displayed …</string>
     <string-array name="empty" translatable="false" />
 
     <string name="debugging">Debugging</string>
@@ -126,4 +126,7 @@ period of time while the ECU recalibrates itself.
     <string name="select_extension">Select .csv extension file …</string>
     <string name="extension_loading">Customisation loading</string>
     <string name="check_cust_settings">Please check your customisation settings\n</string>
+    <string name="obd_options">OBD options </string>
+    <string name="obd_opt_description">Options for OBD protocol / vehicle communication </string>
+    <string name="select_protocol">Preferred OBD protocol </string>
 </resources>

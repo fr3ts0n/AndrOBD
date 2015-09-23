@@ -54,8 +54,8 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
 	<string name="loaded">geladen</string>
 	<string name="saved">gespeichert</string>
 	<string name="connected_to">Verbunden mit</string>
-	<string name="demo">Demo ...</string>
-	<string name="saving_data">Daten speichern ...</string>
+	<string name="demo">Demo…</string>
+	<string name="saving_data">Daten speichern …</string>
 	<string name="dashboard">Instrumententafel</string>
 	<string name="graph_actions">Graphische Aktionen</string>
 	<string name="hud">Head Up Anzeige</string>
@@ -87,5 +87,9 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="extension_loading">Anpassungen laden</string>
     <string name="check_cust_settings">Bitte Einstellungen für Anpassungen prüfen\n</string>
     <string name="items_for_display">Daten zur Anzeige</string>
-    <string name="items_for_display_descr">Datenpunkte zur Anzeige auswählen ...</string>
+    <string name="items_for_display_descr">Datenpunkte zur Anzeige auswählen …</string>
+    <string name="loading_data">Daten laden …</string>
+    <string name="obd_opt_description">Einstellungen für OBD Protokill / Fahrzeugkommunikation</string>
+    <string name="obd_options">OBD Einstellungen </string>
+    <string name="select_protocol">Bevorzugtes OBD Protokoll </string>
 </resources>

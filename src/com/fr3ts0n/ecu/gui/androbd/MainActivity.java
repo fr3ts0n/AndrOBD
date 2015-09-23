@@ -313,6 +313,16 @@ public class MainActivity extends ListActivity
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 			WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+		// set up action bar
+		ActionBar actionBar = getActionBar();
+		if (actionBar != null)
+		{
+			actionBar.setDisplayShowTitleEnabled(true);
+		}
+
+		setContentView(R.layout.startup_layout);
+
 		// get preferences
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -329,15 +339,10 @@ public class MainActivity extends ListActivity
 			)
 		);
 
-		// set up action bar
-		ActionBar actionBar = getActionBar();
-		if (actionBar != null)
-		{
-			actionBar.setDisplayShowTitleEnabled(true);
-			// actionBar.setDisplayOptions(ActionBar.NAVIGATION_MODE_TABS);
-		}
-
-		setContentView(R.layout.startup_layout);
+		// ... preferred protocol
+		ElmProt.setPreferredProtocol(
+			Integer.valueOf(prefs.getString(SettingsActivity.KEY_PROT_SELECT, "0"))
+		);
 
 		// set up log4j logging ...
 		logCfg = new LogConfigurator();
@@ -679,10 +684,15 @@ public class MainActivity extends ListActivity
 				// log levels
 				setLogLevels();
 
+				// set preferred protocol
+				ElmProt.setPreferredProtocol(
+					Integer.valueOf(prefs.getString(SettingsActivity.KEY_PROT_SELECT, "0"))
+				);
+
 				// ... measurement system
 				setConversionSystem(
 					Integer.valueOf(prefs.getString(MEASURE_SYSTEM,
-							String.valueOf(EcuDataItem.SYSTEM_METRIC))
+					                                String.valueOf(EcuDataItem.SYSTEM_METRIC))
 					)
 				);
 

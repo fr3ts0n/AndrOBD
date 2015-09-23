@@ -18,6 +18,7 @@
             android:dialogTitle="@string/measure_system"
             android:entries="@array/measure_options"
             android:entryValues="@array/measure_option_values"
+            android:icon="@android:drawable/ic_menu_manage"
             android:key="measure_system"
             android:summary="@string/measure_system_description"
             android:title="@string/measure_system"
@@ -28,9 +29,26 @@
             android:dialogTitle="@string/items_for_display"
             android:entries="@array/empty"
             android:entryValues="@array/empty"
+            android:icon="@android:drawable/ic_menu_manage"
             android:key="data_items"
             android:summary="@string/items_for_display_descr"
             android:title="@string/items_for_display"
+            />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:summary="@string/obd_opt_description"
+        android:title="@string/obd_options">
+
+        <ListPreference
+            android:defaultValue="0"
+            android:dialogTitle="@string/select_protocol"
+            android:entries="@array/empty"
+            android:entryValues="@array/empty"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:key="protocol"
+            android:title="@string/select_protocol"
             />
 
     </PreferenceCategory>
@@ -55,6 +73,7 @@
                     android:title="@string/logging_level"
                     />
             </PreferenceCategory>
+
             <PreferenceCategory
                 android:title="@string/extension_files">
                 <Preference

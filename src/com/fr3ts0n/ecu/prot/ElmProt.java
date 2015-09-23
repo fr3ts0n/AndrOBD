@@ -199,6 +199,18 @@ public class ElmProt
 	private int charsExpected = 0;
 	/** remember last command which was sent */
 	private char[] lastCommand;
+	/** preferred ELM protocol to be selected */
+	static private int preferredProtocol = PROT.ELM_PROT_AUTO.ordinal();
+
+	/**
+	 * set preferred ELM protocol to be used
+	 * @param newPreferredProtocol preferred ELM protocol index
+	 */
+	public static void setPreferredProtocol(int newPreferredProtocol)
+	{
+		preferredProtocol = newPreferredProtocol;
+		log.info("Preferred protocol: "+PROT.values()[newPreferredProtocol]);
+	}
 
 	/**
 	 * Set message timeout to ELM adapter to wait for valid response from vehicle
@@ -376,8 +388,8 @@ public class ElmProt
 						if(service != OBD_SVC_NONE)	cmdQueue.add(String.valueOf(lastCommand));
 						// set default timeout
 						setElmMsgTimeout(ELM_TIMEOUT_DEFAULT);
-						// set to automatic protocol
-						sendCommand(CMD.SETPROT, PROT.ELM_PROT_AUTO.ordinal());
+						// set to preferred protocol
+						sendCommand(CMD.SETPROT, preferredProtocol);
 						break;
 
 					case DATAERROR:
@@ -519,7 +531,7 @@ public class ElmProt
 	public void run()
 	{
 		int value = 0;
-		Integer pid = null;
+		Integer pid;
 		runDemo = true;
 
 		log.info("ELM DEMO thread started");

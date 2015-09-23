@@ -23,12 +23,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 import com.fr3ts0n.ecu.EcuDataItem;
+import com.fr3ts0n.ecu.prot.ElmProt;
 import com.fr3ts0n.ecu.prot.ObdProt;
 
 import java.util.HashSet;
@@ -37,18 +39,24 @@ import java.util.Vector;
 public class SettingsActivity
 	extends Activity
 {
-	/** app preferences */
+	/**
+	 * app preferences
+	 */
 	static SharedPreferences prefs;
-	/** preference keys for extension files */
+	/**
+	 * preference keys for extension files
+	 */
 	static final String[] extKeys =
-	{
-		"ext_file_conversions",
-		"ext_file_dataitems",
-		"ext_file_faultcodes"
-	};
+		{
+			"ext_file_conversions",
+			"ext_file_dataitems",
+			"ext_file_faultcodes"
+		};
 
 	// Preference key for data items
 	static final String KEY_DATA_ITEMS = "data_items";
+	static final String KEY_PROT_SELECT = "protocol";
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -62,12 +70,13 @@ public class SettingsActivity
 
 		// Display the fragment as the main content.
 		getFragmentManager().beginTransaction().replace(android.R.id.content,
-			new PrefsFragment()).commit();
+		                                                new PrefsFragment()).commit();
 	}
 
 	public static class PrefsFragment
 		extends PreferenceFragment
-		implements Preference.OnPreferenceClickListener
+		implements Preference.OnPreferenceClickListener,
+		           SharedPreferences.OnSharedPreferenceChangeListener
 	{
 		Vector<EcuDataItem> items;
 
@@ -80,10 +89,41 @@ public class SettingsActivity
 			addPreferencesFromResource(R.xml.settings);
 
 			for (String key : extKeys)
+			{
 				setPrefsText(key);
+			}
 
+			// set up protocol selection
+			setupProtoSelection();
 			// set up selectable PID list
 			setupPidSelection();
+
+			// add handler for selection update
+			prefs.registerOnSharedPreferenceChangeListener(this);
+		}
+
+		/**
+		 * set up protocol selection
+		 */
+		void setupProtoSelection()
+		{
+			ListPreference pref = (ListPreference) findPreference(KEY_PROT_SELECT);
+			ElmProt.PROT[] values = ElmProt.PROT.values();
+			CharSequence[] titles = new CharSequence[values.length];
+			CharSequence[] keys = new CharSequence[values.length];
+			int i = 0;
+			for (ElmProt.PROT proto : values)
+			{
+				titles[i] = proto.toString();
+				keys[i] = String.valueOf(proto.ordinal());
+				i++;
+			}
+			// set enries and keys
+			pref.setEntries(titles);
+			pref.setEntryValues(keys);
+			pref.setDefaultValue(titles[0]);
+			// show current selection
+			pref.setSummary(pref.getEntry());
 		}
 
 		/**
@@ -101,7 +141,7 @@ public class SettingsActivity
 			CharSequence[] keys = new CharSequence[items.size()];
 			// loop through data items
 			int i = 0;
-			for(EcuDataItem currItem : items)
+			for (EcuDataItem currItem : items)
 			{
 				titles[i] = currItem.label;
 				keys[i] = currItem.toString();
@@ -113,8 +153,10 @@ public class SettingsActivity
 			itemList.setEntryValues(keys);
 
 			// if there is no item selected, mark all as selected
-			if(itemList.getValues().size() == 0)
+			if (itemList.getValues().size() == 0)
+			{
 				itemList.setValues(selections);
+			}
 		}
 
 		/**
@@ -150,19 +192,31 @@ public class SettingsActivity
 		{
 			Preference pref;
 			SharedPreferences.Editor ed = prefs.edit();
+			String value = (resultCode == Activity.RESULT_OK) ? data.getData().toString() : null;
 			// find the right key
 			for (String key : extKeys)
 			{
 				pref = findPreference(key);
 				if (pref.hashCode() == requestCode)
 				{
-					String value = (resultCode == Activity.RESULT_OK) ? data.getData().toString() : null;
 					ed.putString(key, value);
 					pref.setSummary(value != null ? value : getString(R.string.select_extension));
 				}
 			}
-			ed.commit();
+
+			ed.apply();
 		}
 
+		@Override
+		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
+		{
+			Preference pref = findPreference(key);
+
+			if (pref instanceof ListPreference)
+			{
+				ListPreference listPref = (ListPreference) pref;
+				pref.setSummary(listPref.getEntry());
+			}
+		}
 	}
 }
