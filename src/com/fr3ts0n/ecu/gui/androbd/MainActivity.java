@@ -28,6 +28,7 @@ import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -41,6 +42,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.fr3ts0n.ecu.EcuCodeItem;
@@ -87,6 +89,7 @@ public class MainActivity extends ListActivity
 	public static final int MESSAGE_DATA_ITEMS_CHANGED = 6;
 	public static final int MESSAGE_UPDATE_VIEW = 7;
 	public static final int MESSAGE_OBD_STATE_CHANGED = 8;
+	public static final int MESSAGE_OBD_NUMCODES = 9;
 	private static final String TAG = "AndrOBD";
 	/** internal Intent request codes */
 	private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
@@ -128,7 +131,6 @@ public class MainActivity extends ListActivity
 	private static FileHelper fileHelper;
 	/** app preferences ... */
 	protected static SharedPreferences prefs;
-
 	/** operating modes */
 	public enum MODE
 	{
@@ -283,14 +285,25 @@ public class MainActivity extends ListActivity
 					if(getMode() != MODE.DEMO)
 					{
 						PropertyChangeEvent evt = (PropertyChangeEvent)msg.obj;
-						setStatus(evt.getNewValue().toString());
+						setStatus(String.valueOf(evt.getNewValue()));
 					}
 					break;
 
+				case 	MESSAGE_OBD_NUMCODES:
+					PropertyChangeEvent evt = (PropertyChangeEvent)msg.obj;
+					setNumCodes((Integer)evt.getNewValue());
+					break;
 
 			}
 		}
 	};
+
+	private int numCodes = 0;
+	private void setNumCodes(int newNumCodes)
+	{
+		numCodes = newNumCodes;
+		setMenuItemEnable(R.id.service_freezeframes, (numCodes != 0));
+	}
 
 	/**
 	 * Set fixed PIDs for protocol to specified list of PIDs
@@ -334,9 +347,9 @@ public class MainActivity extends ListActivity
 
 		// ... measurement system
 		setConversionSystem(Integer.valueOf(
-				prefs.getString(MEASURE_SYSTEM,
-					String.valueOf(EcuDataItem.SYSTEM_METRIC))
-			)
+			                    prefs.getString(MEASURE_SYSTEM,
+			                                    String.valueOf(EcuDataItem.SYSTEM_METRIC))
+		                    )
 		);
 
 		// ... preferred protocol
@@ -914,6 +927,24 @@ public class MainActivity extends ListActivity
 		getListView().setOnItemLongClickListener(this);
 		// set protocol service
 		mCommService.elm.setService(obdService, (getMode() != MODE.FILE));
+		// show / hide freeze frame selector */
+		Spinner ff_selector = (Spinner)findViewById(R.id.ff_selector);
+		ff_selector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		{
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+			{
+				mCommService.elm.setFreezeFrame_Id(position);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent)
+			{
+
+			}
+		});
+		ff_selector.setAdapter(mDfcAdapter);
+		ff_selector.setVisibility(obdService == ObdProt.OBD_SVC_FREEZEFRAME ? View.VISIBLE : View.GONE);
 		// set corresponding list adapter
 		switch (obdService)
 		{
@@ -950,8 +981,18 @@ public class MainActivity extends ListActivity
 		if (menu != null)
 		{
 			MenuItem item = menu.findItem(id);
-			item.setEnabled(enabled);
-			item.getIcon().setAlpha(enabled ? 255 : 127);
+			if(item != null)
+			{
+				item.setEnabled(enabled);
+
+				// if menu item has icon ...
+				Drawable icon = item.getIcon();
+				if(icon != null)
+				{
+					// set it's shading
+					icon.setAlpha(enabled ? 255 : 127);
+				}
+			}
 		}
 	}
 
@@ -1088,7 +1129,14 @@ public class MainActivity extends ListActivity
     if (evt.getPropertyName().equals("status"))
     {
 	    // forward property change to the UI Activity
-	    Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_OBD_STATE_CHANGED);
+	    Message msg = mHandler.obtainMessage(MESSAGE_OBD_STATE_CHANGED);
+	    msg.obj = evt;
+	    mHandler.sendMessage(msg);
+    }
+		else if(evt.getPropertyName().equals("numCodes"))
+    {
+	    // forward property change to the UI Activity
+	    Message msg = mHandler.obtainMessage(MESSAGE_OBD_NUMCODES);
 	    msg.obj = evt;
 	    mHandler.sendMessage(msg);
     }

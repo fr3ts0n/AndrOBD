@@ -80,6 +80,7 @@
                 android:title="@string/obd_data"/>
             <item
                 android:id="@+id/service_freezeframes"
+                android:enabled="false"
                 android:title="@string/service_freezeframes"/>
             <item
                 android:id="@+id/service_codes"

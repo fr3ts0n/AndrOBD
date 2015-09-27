@@ -120,7 +120,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	 * @param preferenceKey key of preference to be used as filter
 	 * @return Set of filtered data items
 	 */
-	public Collection<Object> getPreferredItems(PvList pvs, String preferenceKey)
+	public Collection getPreferredItems(PvList pvs, String preferenceKey)
 	{
 		// filter PVs with preference selections
 		Set<String> pidsToShow = prefs.getStringSet( SettingsActivity.KEY_DATA_ITEMS,

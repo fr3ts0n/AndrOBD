@@ -200,16 +200,16 @@ public class ElmProt
 	/** remember last command which was sent */
 	private char[] lastCommand;
 	/** preferred ELM protocol to be selected */
-	static private int preferredProtocol = PROT.ELM_PROT_AUTO.ordinal();
+	static private PROT preferredProtocol = PROT.ELM_PROT_AUTO;
 
 	/**
 	 * set preferred ELM protocol to be used
-	 * @param newPreferredProtocol preferred ELM protocol index
+	 * @param protoIndex preferred ELM protocol index
 	 */
-	public static void setPreferredProtocol(int newPreferredProtocol)
+	public static void setPreferredProtocol(int protoIndex)
 	{
-		preferredProtocol = newPreferredProtocol;
-		log.info("Preferred protocol: "+PROT.values()[newPreferredProtocol]);
+		preferredProtocol = PROT.values()[protoIndex];
+		log.info("Preferred protocol: "+preferredProtocol);
 	}
 
 	/**
@@ -370,8 +370,10 @@ public class ElmProt
 						elmMsgTimeout = ELM_TIMEOUT_MAX;
 						// ... reset learned minimum timeout ...
 						ELM_TIMEOUT_LRN_LOW = ELM_TIMEOUT_MIN;
-						// ... and try to set it to optimum performance
-						setElmMsgTimeout(ELM_TIMEOUT_LRN_LOW);
+						// set to preferred protocol
+						queueCommand(CMD.SETPROT, preferredProtocol.ordinal());
+						// set default timeout
+						setElmMsgTimeout(ELM_TIMEOUT_DEFAULT);
 						// speed up protocol by removing spaces and line feeds from output
 						queueCommand(CMD.SETSPACES, 0);
 						queueCommand(CMD.SETLINEFEED, 0);
@@ -388,8 +390,8 @@ public class ElmProt
 						if(service != OBD_SVC_NONE)	cmdQueue.add(String.valueOf(lastCommand));
 						// set default timeout
 						setElmMsgTimeout(ELM_TIMEOUT_DEFAULT);
-						// set to preferred protocol
-						sendCommand(CMD.SETPROT, preferredProtocol);
+						// set to AUTO protocol
+						sendCommand(CMD.SETPROT, PROT.ELM_PROT_AUTO.ordinal());
 						break;
 
 					case DATAERROR:

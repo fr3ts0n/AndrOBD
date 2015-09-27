@@ -68,4 +68,13 @@ public class DfcItemAdapter extends ObdItemAdapter
 
 		return v;
 	}
+
+	/* (non-Javadoc)
+	 * @see com.fr3ts0n.ecu.gui.androbd.ObdItemAdapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
+	@Override
+	public View getDropDownView(int position, View v, ViewGroup parent)
+	{
+		return getView(position, v, parent);
+	}
 }

@@ -140,7 +140,8 @@ public class ObdProt extends ProtoHeader
   public static EcuCodeList knownCodes = EcuConversions.codeList;
   /** queue of ELM commands to be sent */
   static Vector<String> cmdQueue      = new Vector<String>();
-
+  /** freeze frame ID to request */
+	private int freezeFrame_Id = 0;
 
   /** Creates a new instance of ObdProt */
   public ObdProt()
@@ -152,7 +153,18 @@ public class ObdProt extends ProtoHeader
     tCodes.put(0, new ObdCodeItem(0,"No trouble codes set"));
   }
 
-  /**
+	/**
+	 * set Freeze frame id to be requested
+	 * @param freezeFrame_Id ID of freeze frame to be requested
+	 */
+	public void setFreezeFrame_Id(int freezeFrame_Id)
+	{
+		log.info(String.format("FreezeFrame ID: %d", freezeFrame_Id));
+		this.freezeFrame_Id = freezeFrame_Id;
+		setService(OBD_SVC_FREEZEFRAME, true);
+	}
+
+	/**
    * list of parameters for specific protocol
    * @return complete set of protocol parameters
    */
@@ -235,7 +247,7 @@ public class ObdProt extends ProtoHeader
 
       // freezeframes require additional frame id
       case OBD_SVC_FREEZEFRAME:
-        setParamValue(ID_OBD_FRAMEID,fldMap,header,0);
+        setParamValue(ID_OBD_FRAMEID, fldMap, header, freezeFrame_Id);
         // NO break here
 
       // all other commands require PID to be set
