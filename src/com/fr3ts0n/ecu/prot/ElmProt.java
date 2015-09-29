@@ -328,8 +328,7 @@ public class ElmProt
 		// if ths is echo of last command
 		if (lastTxMsg.compareToIgnoreCase(bufferStr) == 0)
 		{
-			// immediate set echo off
-			queueCommand(CMD.ECHO, 0);
+			// ignore echoed command
 			return result;
 		}
 
@@ -343,7 +342,6 @@ public class ElmProt
 			case NODATA:
 			case OK:
 			case ERROR:
-			case MODEL:
 			case NOCONN:
 			case CANERROR:
 			case BUSERROR:
@@ -359,27 +357,29 @@ public class ElmProt
 				log.info("ELM rx:'" + bufferStr + "' ("+lastTxMsg+")");
 				break;
 
+			case MODEL:
+				setStatus(STAT.INITIALIZING);
+				// since device just restarted, assume device timeout
+				// to be set to default value ...
+				elmMsgTimeout = ELM_TIMEOUT_MAX;
+				// ... reset learned minimum timeout ...
+				ELM_TIMEOUT_LRN_LOW = ELM_TIMEOUT_MIN;
+				// set to preferred protocol
+				queueCommand(CMD.SETPROT, preferredProtocol.ordinal());
+				// set default timeout
+				setElmMsgTimeout(ELM_TIMEOUT_DEFAULT);
+				// speed up protocol by removing spaces and line feeds from output
+				queueCommand(CMD.SETSPACES, 0);
+				queueCommand(CMD.SETLINEFEED, 0);
+				// immediate set echo off
+				queueCommand(CMD.ECHO, 0);
+				break;
+
 			// received a PROMPT, what was the last response?
 			case PROMPT:
 				// check for last received message
 				switch (getResponseId(lastRxMsg))
 				{
-					case MODEL:
-						// since device just restarted, assume device timeout
-						// to be set to default value ...
-						elmMsgTimeout = ELM_TIMEOUT_MAX;
-						// ... reset learned minimum timeout ...
-						ELM_TIMEOUT_LRN_LOW = ELM_TIMEOUT_MIN;
-						// set to preferred protocol
-						queueCommand(CMD.SETPROT, preferredProtocol.ordinal());
-						// set default timeout
-						setElmMsgTimeout(ELM_TIMEOUT_DEFAULT);
-						// speed up protocol by removing spaces and line feeds from output
-						queueCommand(CMD.SETSPACES, 0);
-						queueCommand(CMD.SETLINEFEED, 0);
-						setStatus(STAT.INITIALIZING);
-						break;
-
 					case NOCONN:
 					case CANERROR:
 					case BUSERROR:
@@ -438,6 +438,7 @@ public class ElmProt
 						}
 						// NO break here since reaction is only quqeued
 
+					case MODEL:
 					case OK:
 					default:
 						// queued commands will be sent first
@@ -652,8 +653,6 @@ public class ElmProt
 		{
 			log.info("OBD Service: " + this.service + "->" + service);
 			this.service = service;
-			// reset timeout to optimum performance
-			setElmMsgTimeout(ELM_TIMEOUT_MIN);
 
 			// send corresponding command(s)
 			switch (service)
