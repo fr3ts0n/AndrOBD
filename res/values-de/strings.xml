@@ -18,7 +18,7 @@
     <string name="obd_services">OBD Dienste</string>
     <string name="obd_veh_info">OBD Fahrzeug Info</string>
     <string name="scanning">Suche&#8230;</string>
-    <string name="select_BTdevice">Wähle BT Gerät</string>
+    <string name="select_device">Wähle BT Gerät</string>
     <string name="send">Senden</string>
     <string name="send_to">Senden an</string>
     <string name="service_freezeframes">OBD Freeze Frames</string>
@@ -92,4 +92,7 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="obd_opt_description">Einstellungen für OBD Protokill / Fahrzeugkommunikation</string>
     <string name="obd_options">OBD Einstellungen </string>
     <string name="select_protocol">Bevorzugtes OBD Protokoll </string>
+    <string name="refreshing">aktualisiere …</string>
+    <string name="select_fault_code">Wähle Fehlercode …</string>
+    <string name="devices_found">%s USB Gerät(e) gefunden</string>
 </resources>

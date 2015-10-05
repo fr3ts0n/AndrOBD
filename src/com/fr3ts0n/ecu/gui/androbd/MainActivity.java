@@ -105,7 +105,7 @@ public class MainActivity extends ListActivity
 	/** time between display updates to represent data changes */
 	private static final int DISPLAY_UPDATE_TIME = 300;
 	/** Member object for the BT comm services */
-	private static ObdCommService mCommService = null;
+	private static CommService mCommService = null;
 	/** Local Bluetooth adapter */
 	private static BluetoothAdapter mBluetoothAdapter = null;
 
@@ -164,8 +164,8 @@ public class MainActivity extends ListActivity
 					break;
 
 				case ONLINE:
-					// Launch the DeviceListActivity to see devices and do scan
-					Intent serverIntent = new Intent(this, DeviceListActivity.class);
+					// Launch the BtDeviceListActivity to see devices and do scan
+					Intent serverIntent = new Intent(this, BtDeviceListActivity.class);
 					startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
 					break;
 
@@ -212,16 +212,16 @@ public class MainActivity extends ListActivity
 				case MESSAGE_STATE_CHANGE:
 					switch (msg.arg1)
 					{
-						case ObdCommService.STATE_CONNECTED:
+						case CommService.STATE_CONNECTED:
 							onConnect();
 							break;
 
-						case ObdCommService.STATE_CONNECTING:
+						case CommService.STATE_CONNECTING:
 							setStatus(R.string.title_connecting);
 							break;
 
-						case ObdCommService.STATE_LISTEN:
-						case ObdCommService.STATE_NONE:
+						case CommService.STATE_LISTEN:
+						case CommService.STATE_NONE:
 							onDisconnect();
 							break;
 					}
@@ -365,7 +365,7 @@ public class MainActivity extends ListActivity
 		setLogLevels();
 
 		// Set up all data adapters
-		mCommService = new ObdCommService(this, mHandler);
+		mCommService = new BtCommService(this, mHandler);
 		mPidAdapter = new ObdItemAdapter(this, R.layout.obd_item, ObdProt.PidPvs);
 		mVidAdapter = new VidItemAdapter(this, R.layout.obd_item, ObdProt.VidPvs);
 		mDfcAdapter = new DfcItemAdapter(this, R.layout.obd_item, ObdProt.tCodes);
@@ -514,7 +514,7 @@ public class MainActivity extends ListActivity
 				return true;
 
 			case R.id.settings:
-				// Launch the DeviceListActivity to see devices and do scan
+				// Launch the BtDeviceListActivity to see devices and do scan
 				Intent settingsIntent = new Intent(this, SettingsActivity.class);
 				startActivityForResult(settingsIntent, REQUEST_SETTINGS);
 				return true;
@@ -654,7 +654,7 @@ public class MainActivity extends ListActivity
 		{
 			case REQUEST_CONNECT_DEVICE_SECURE:
 			case REQUEST_CONNECT_DEVICE_INSECURE:
-				// When DeviceListActivity returns with a device to connect
+				// When BtDeviceListActivity returns with a device to connect
 				if (resultCode == Activity.RESULT_OK)
 				{
 					connectDevice(data, false);
@@ -1066,7 +1066,7 @@ public class MainActivity extends ListActivity
 	{
 		// Get the device MAC address
 		String address = data.getExtras().getString(
-			DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+			BtDeviceListActivity.EXTRA_DEVICE_ADDRESS);
 		// Get the BluetoothDevice object
 		BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
 		// Attempt to connect to the device

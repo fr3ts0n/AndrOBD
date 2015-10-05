@@ -43,137 +43,111 @@ import java.util.UUID;
  * performing data transmissions when connected.
  */
 @SuppressLint("NewApi")
-public class ObdCommService
+public class BtCommService extends CommService
 {
 
-	public Handler BTmsgHandler;
-
-	// Debugging
-	private static final String TAG = "ObdCommService";
-	private static final boolean D = true;
-
 	// Member fields
-	private final BluetoothAdapter mAdapter;
-	private final Handler mHandler;
-	private ConnectThread mConnectThread;
-	private ConnectedThread mConnectedThread;
-	private int mState;
+	private final BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
+	private BtConnectThread mBtConnectThread;
+	private BtWorkerThread mBtWorkerThread;
+	/** communication stream handler */
+	public static final StreamHandler ser = new StreamHandler();
 
-	public ElmProt elm;
-	public StreamHandler ser;
-
-	// Constants that indicate the current connection state
-	public static final int STATE_NONE = 0;         // we're doing nothing
-	public static final int STATE_LISTEN = 1;       // listening for incoming connections
-	public static final int STATE_CONNECTING = 2;   // initiating an outgoing connection
-	public static final int STATE_CONNECTED = 3;    // connected to a remote device
 
 	/**
-	 * Constructor. Prepares a new BluetoothChat session.
-	 *
-	 * @param context The UI Activity Context
-	 * @param handler A Handler to send messages back to the UI Activity
+	 * Constructor. Prepares a new Communication session.
 	 */
-	public ObdCommService(Context context, Handler handler)
+	public BtCommService()
 	{
-		mAdapter = BluetoothAdapter.getDefaultAdapter();
-		Log.d(TAG, "Adapter: " + mAdapter);
-		// mAdapter = MainActivity.mBluetoothAdapter;
-		mState = STATE_NONE;
-		mHandler = handler;
+		super();
 		// set up protocol handlers
-		elm = new ElmProt();
-		ser = new StreamHandler();
 		elm.addTelegramWriter(ser);
 		ser.setMessageHandler(elm);
 	}
 
 	/**
-	 * Set the current state of the chat connection
+	 * Constructor. Prepares a new Communication session.
 	 *
-	 * @param state An integer defining the current connection state
+	 * @param handler A Handler to send messages back to the UI Activity
 	 */
-	private synchronized void setState(int state)
+	public BtCommService(Handler handler)
 	{
-		if (D)
-			Log.d(TAG, "setState() " + mState + " -> " + state);
-		mState = state;
-
-		// Give the new state to the Handler so the UI Activity can update
-		mHandler.obtainMessage(MainActivity.MESSAGE_STATE_CHANGE, state, -1)
-			.sendToTarget();
+		super(handler);
 	}
 
 	/**
-	 * Return the current connection state.
+	 * Constructor. Prepares a new Bluetooth Communication session.
+	 *
+	 * @param context The UI Activity Context
+	 * @param handler A Handler to send messages back to the UI Activity
 	 */
-	public synchronized int getState()
+	public BtCommService(Context context, Handler handler)
 	{
-		return mState;
+		super(context, handler);
 	}
 
 	/**
 	 * Start the chat service. Specifically start AcceptThread to begin a session
 	 * in listening (server) mode. Called by the Activity onResume()
 	 */
+	@Override
 	public synchronized void start()
 	{
 		if (D)
 			Log.d(TAG, "start");
 
 		// Cancel any thread attempting to make a connection
-		if (mConnectThread != null)
+		if (mBtConnectThread != null)
 		{
-			mConnectThread.cancel();
-			mConnectThread = null;
+			mBtConnectThread.cancel();
+			mBtConnectThread = null;
 		}
 
 		// Cancel any thread currently running a connection
-		if (mConnectedThread != null)
+		if (mBtWorkerThread != null)
 		{
-			mConnectedThread.cancel();
-			mConnectedThread = null;
+			mBtWorkerThread.cancel();
+			mBtWorkerThread = null;
 		}
 
 		setState(STATE_LISTEN);
 	}
 
 	/**
-	 * Start the ConnectThread to initiate a connection to a remote device.
+	 * Start the BtConnectThread to initiate a connection to a remote device.
 	 *
 	 * @param device The BluetoothDevice to connect
 	 * @param secure Socket Security type - Secure (true) , Insecure (false)
 	 */
 	public synchronized void connect(BluetoothDevice device, boolean secure)
 	{
-		if (D)
-			Log.d(TAG, "connect to: " + device);
+		Log.d(TAG, "connect to: " + device);
 
 		// Cancel any thread attempting to make a connection
 		if (mState == STATE_CONNECTING)
 		{
-			if (mConnectThread != null)
+			if (mBtConnectThread != null)
 			{
-				mConnectThread.cancel();
-				mConnectThread = null;
+				mBtConnectThread.cancel();
+				mBtConnectThread = null;
 			}
 		}
 
 		// Cancel any thread currently running a connection
-		if (mConnectedThread != null)
+		if (mBtWorkerThread != null)
 		{
-			mConnectedThread.cancel();
-			mConnectedThread = null;
+			mBtWorkerThread.cancel();
+			mBtWorkerThread = null;
 		}
 
 		// Start the thread to connect with the given device
-		mConnectThread = new ConnectThread(device, secure);
-		mConnectThread.start();
+		mBtConnectThread = new BtConnectThread(device, secure);
+		mBtConnectThread.start();
 		setState(STATE_CONNECTING);
 	}
 
 	/**
-	 * Start the ConnectedThread to begin managing a Bluetooth connection
+	 * Start the BtWorkerThread to begin managing a Bluetooth connection
 	 *
 	 * @param socket The BluetoothSocket on which the connection was made
 	 * @param device The BluetoothDevice that has been connected
@@ -185,22 +159,22 @@ public class ObdCommService
 			Log.d(TAG, "connected, Socket Type:" + socketType);
 
 		// Cancel the thread that completed the connection
-		if (mConnectThread != null)
+		if (mBtConnectThread != null)
 		{
-			mConnectThread.cancel();
-			mConnectThread = null;
+			mBtConnectThread.cancel();
+			mBtConnectThread = null;
 		}
 
 		// Cancel any thread currently running a connection
-		if (mConnectedThread != null)
+		if (mBtWorkerThread != null)
 		{
-			mConnectedThread.cancel();
-			mConnectedThread = null;
+			mBtWorkerThread.cancel();
+			mBtWorkerThread = null;
 		}
 
 		// Start the thread to manage the connection and perform transmissions
-		mConnectedThread = new ConnectedThread(socket, socketType);
-		mConnectedThread.start();
+		mBtWorkerThread = new BtWorkerThread(socket, socketType);
+		mBtWorkerThread.start();
 
 		// Send the name of the connected device back to the UI Activity
 		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DEVICE_NAME);
@@ -215,90 +189,60 @@ public class ObdCommService
 	/**
 	 * Stop all threads
 	 */
+	@Override
 	public synchronized void stop()
 	{
 		if (D)
 			Log.d(TAG, "stop");
 
-		if (mConnectThread != null)
+		if (mBtConnectThread != null)
 		{
-			mConnectThread.cancel();
-			mConnectThread = null;
+			mBtConnectThread.cancel();
+			mBtConnectThread = null;
 		}
 
-		if (mConnectedThread != null)
+		if (mBtWorkerThread != null)
 		{
-			mConnectedThread.cancel();
-			mConnectedThread = null;
+			mBtWorkerThread.cancel();
+			mBtWorkerThread = null;
 		}
 
 		setState(STATE_NONE);
 	}
 
 	/**
-	 * Write to the ConnectedThread in an unsynchronized manner
+	 * Write to the BtWorkerThread in an unsynchronized manner
 	 *
 	 * @param out The bytes to write
-	 * @see ConnectedThread#write(byte[])
+	 * @see BtWorkerThread#write(byte[])
 	 */
+	@Override
 	public void write(byte[] out)
 	{
 		// Create temporary object
-		ConnectedThread r;
-		// Synchronize a copy of the ConnectedThread
+		BtWorkerThread r;
+		// Synchronize a copy of the BtWorkerThread
 		synchronized (this)
 		{
 			if (mState != STATE_CONNECTED)
 				return;
-			r = mConnectedThread;
+			r = mBtWorkerThread;
 		}
 		// Perform the write unsynchronized
 		r.write(out);
 	}
 
 	/**
-	 * Indicate that the connection attempt failed and notify the UI Activity.
-	 */
-	private void connectionFailed()
-	{
-		// Send a failure message back to the Activity
-		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_TOAST);
-		Bundle bundle = new Bundle();
-		bundle.putString(MainActivity.TOAST, "Unable to connect device");
-		msg.setData(bundle);
-		mHandler.sendMessage(msg);
-
-		// Start the service over to restart listening mode
-		ObdCommService.this.start();
-	}
-
-	/**
-	 * Indicate that the connection was lost and notify the UI Activity.
-	 */
-	private void connectionLost()
-	{
-		// Send a failure message back to the Activity
-		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_TOAST);
-		Bundle bundle = new Bundle();
-		bundle.putString(MainActivity.TOAST, "Device connection was lost");
-		msg.setData(bundle);
-		mHandler.sendMessage(msg);
-
-		// Start the service over to restart listening mode
-		ObdCommService.this.start();
-	}
-
-	/**
 	 * This thread runs while attempting to make an outgoing connection with a
 	 * device. It runs straight through; the connection either succeeds or fails.
 	 */
-	private class ConnectThread extends Thread
+	private class BtConnectThread extends Thread
 	{
 		private final BluetoothSocket mmSocket;
 		private final BluetoothDevice mmDevice;
 		private String mSocketType;
 
-		public ConnectThread(BluetoothDevice device, boolean secure)
+		public BtConnectThread(BluetoothDevice device, boolean secure)
 		{
 			mmDevice = device;
 			BluetoothSocket tmp = null;
@@ -314,20 +258,10 @@ public class ObdCommService
 			{
 				if (secure)
 				{
-					// tmp = device.createRfcommSocketToServiceRecord(
-					// MY_UUID_SECURE);
-
 					tmp = device.createRfcommSocketToServiceRecord(SPP_UUID);
-
 				} else
 				{
-					// tmp = device.createInsecureRfcommSocketToServiceRecord(
-					// MY_UUID_INSECURE);
 					tmp = device.createRfcommSocketToServiceRecord(SPP_UUID);
-
-					// Method m = device.getClass().getMethod("createRfcommSocket", new
-					// Class[] {int.class});
-					// tmp = (BluetoothSocket) m.invoke(device, 1);
 				}
 			} catch (IOException e)
 			{
@@ -338,8 +272,8 @@ public class ObdCommService
 
 		public void run()
 		{
-			Log.i(TAG, "BEGIN mConnectThread SocketType:" + mSocketType);
-			setName("ConnectThread" + mSocketType);
+			Log.i(TAG, "BEGIN mBtConnectThread SocketType:" + mSocketType);
+			setName("BtConnectThread" + mSocketType);
 
 			// Always cancel discovery because it will slow down a connection
 			mAdapter.cancelDiscovery();
@@ -365,10 +299,10 @@ public class ObdCommService
 				return;
 			}
 
-			// Reset the ConnectThread because we're done
-			synchronized (ObdCommService.this)
+			// Reset the BtConnectThread because we're done
+			synchronized (BtCommService.this)
 			{
-				mConnectThread = null;
+				mBtConnectThread = null;
 			}
 
 			// Start the connected thread
@@ -391,15 +325,15 @@ public class ObdCommService
 	 * This thread runs during a connection with a remote device. It handles all
 	 * incoming and outgoing transmissions.
 	 */
-	private class ConnectedThread extends Thread
+	private class BtWorkerThread extends Thread
 	{
 		private final BluetoothSocket mmSocket;
 		private final InputStream mmInStream;
 		private final OutputStream mmOutStream;
 
-		public ConnectedThread(BluetoothSocket socket, String socketType)
+		public BtWorkerThread(BluetoothSocket socket, String socketType)
 		{
-			Log.d(TAG, "create ConnectedThread: " + socketType);
+			Log.d(TAG, "create BtWorkerThread: " + socketType);
 			mmSocket = socket;
 			InputStream tmpIn = null;
 			OutputStream tmpOut = null;
@@ -425,7 +359,7 @@ public class ObdCommService
 		 */
 		public void run()
 		{
-			Log.i(TAG, "BEGIN mConnectedThread");
+			Log.i(TAG, "BEGIN mBtWorkerThread");
 			// send RESET to Elm adapter
 			elm.sendCommand(ElmProt.CMD.RESET, 0);
 			try
@@ -434,6 +368,7 @@ public class ObdCommService
 				ser.run();
 			} catch (Exception ex)
 			{
+				// Intentionally ignore
 			}
 			connectionLost();
 		}

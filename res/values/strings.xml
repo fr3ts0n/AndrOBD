@@ -44,9 +44,9 @@ The loss of data may cause the vehicle to run poorly for a short \n
 period of time while the ECU recalibrates itself.
      </string>
 
-        <!--  DeviceListActivity -->
+        <!--  BtDeviceListActivity -->
     <string name="scanning">Scanning&#8230;</string>
-    <string name="select_BTdevice">Select a Device</string>
+    <string name="select_device">Select a Device</string>
     <string name="none_paired">No Devices Paired</string>
     <string name="none_found">No Devices Found</string>
     <string name="title_paired_devices">Paired Devices</string>
@@ -129,5 +129,8 @@ period of time while the ECU recalibrates itself.
     <string name="obd_options">OBD options </string>
     <string name="obd_opt_description">Options for OBD protocol / vehicle communication </string>
     <string name="select_protocol">Preferred OBD protocol </string>
-    <string name="select_fault_code">Select fault code ...</string>
+    <string name="select_fault_code">Select fault code …</string>
+
+    <string name="refreshing">scanning …</string>
+    <string name="devices_found">%s USB device(s) found</string>
 </resources>

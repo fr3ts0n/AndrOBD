@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/AndrOBD.iml" filepath="$PROJECT_DIR$/.idea/AndrOBD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../usb-serial-for-android/usbSerialForAndroid/src/main/usbSerial.iml" filepath="$PROJECT_DIR$/../usb-serial-for-android/usbSerialForAndroid/src/main/usbSerial.iml" />
     </modules>
   </component>
 </project>

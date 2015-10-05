@@ -179,7 +179,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 	{
 		if (listenerList == null)
 		{
-			listenerList = new Vector<PropertyChangeListener>();
+			listenerList = new Vector<>();
 		}
 		listenerList.add(listener);
 	}
@@ -204,10 +204,9 @@ public class StreamHandler implements TelegramWriter, Runnable
 
 		if (listenerList == null) return;
 		PropertyChangeListener listener;
-		Iterator<PropertyChangeListener> it = listenerList.iterator();
-		while (it.hasNext())
+		for (PropertyChangeListener aListenerList : listenerList)
 		{
-			listener = it.next();
+			listener = aListenerList;
 			listener.propertyChange(event);
 		}
 	}

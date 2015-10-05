@@ -5,7 +5,7 @@
           android:versionName="@string/app_version">
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="12"
         android:targetSdkVersion="22"/>
 
     <!-- start/stop bluetooth adapter -->
@@ -34,9 +34,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="DeviceListActivity"
+            android:name=".UsbDeviceListActivity"
+            android:label="@string/select_device"
+            android:theme="@android:style/Theme.Holo.Dialog" >
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter" />
+        </activity>
+        <activity
+            android:name=".BtDeviceListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/select_BTdevice"
+            android:label="@string/select_device"
             android:textColor="#ecad14"
             android:theme="@android:style/Theme.Holo.Dialog"
             />

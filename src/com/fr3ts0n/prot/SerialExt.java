@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 import java.io.IOException;
 
 /**
- * Extension to native serial port to allow odd baud rates and 5-Baud operations
+ * Extension to native serial selectedPort to allow odd baud rates and 5-Baud operations
  * especially for automotive usage
  *
  * @author erwin
@@ -45,7 +45,7 @@ public class SerialExt
 	/**
 	 * Close serial device
 	 *
-	 * @param fd file descriptor of port
+	 * @param fd file descriptor of selectedPort
 	 * @return error status of system function (0=success)
 	 */
 	private static native int closeSerial(int fd);
@@ -55,7 +55,7 @@ public class SerialExt
 	 * set status of BREAK signal
 	 * This is used to create a 5-baud signal for ECU kick-off
 	 *
-	 * @param fd        file descriptor of port
+	 * @param fd        file descriptor of selectedPort
 	 * @param brkStatus desired status of BREAK signal
 	 * @return error status of system function (0=success)
 	 */
@@ -64,11 +64,11 @@ public class SerialExt
 	/**
 	 * native interface to
 	 * set custom baud rate
-	 * Custom baud rates are set by dividing the port baud base frequency with a
+	 * Custom baud rates are set by dividing the selectedPort baud base frequency with a
 	 * divisor value. Purpose of this function is to allow odd ball ECU baud rates
 	 * like 10400 baud etc., which are not supported by regular system calls
 	 *
-	 * @param fd       file descriptor of port
+	 * @param fd       file descriptor of selectedPort
 	 * @param baudRate cusom baud rate to be set
 	 * @return error status of system function (0=success)
 	 */
@@ -77,33 +77,33 @@ public class SerialExt
 	/**
 	 * native interface to
 	 * return custom baud rate setting
-	 * Custom baud rates are set by dividing the port baud base frequency with a
+	 * Custom baud rates are set by dividing the selectedPort baud base frequency with a
 	 * divisor value. Purpose of this function is to allow odd ball ECU baud rates
 	 * like 10400 baud etc., which are not supported by regular system calls
 	 *
-	 * @param fd file descriptor of port
+	 * @param fd file descriptor of selectedPort
 	 * @return custom baud rate setting, or 0 if no custom baud rate was set
 	 */
 	private static native int getCustomBaudrate(int fd);
 
 	/**
-	 * receive a character from COM port
+	 * receive a character from COM selectedPort
 	 *
-	 * @param fd file descriptor of port
+	 * @param fd file descriptor of selectedPort
 	 * @return received character or -1 on receive error
 	 */
 	private static native int receiveChar(int fd);
 
 	/**
-	 * send a character from COM port
+	 * send a character from COM selectedPort
 	 *
-	 * @param fd     file descriptor of port
+	 * @param fd     file descriptor of selectedPort
 	 * @param txChar character to be sent
 	 * @return error status of system function (0=success)
 	 */
 	private static native int sendChar(int fd, char txChar);
 
-	/** file descriptor of serial port */
+	/** file descriptor of serial selectedPort */
 	public static int serialPortDescriptor = -1;
 
 	static
@@ -152,7 +152,7 @@ public class SerialExt
 	 * Set line BREAK status to desired state
 	 *
 	 * @param newStatus desired BREAK status
-	 * @return error status of port/line setting (0=SUCCESS)
+	 * @return error status of selectedPort/line setting (0=SUCCESS)
 	 * @throws IOException
 	 */
 	public static int setBreak(int newStatus)
@@ -171,7 +171,7 @@ public class SerialExt
 	 * Set custom baud rate on specified SerialPort
 	 *
 	 * @param baudrate new baud rate in bps
-	 * @return error status of port/line setting (0=SUCCESS)
+	 * @return error status of selectedPort/line setting (0=SUCCESS)
 	 * @throws IOException
 	 */
 	public static int setCustomBaudrate(int baudrate)
@@ -189,7 +189,7 @@ public class SerialExt
 	/**
 	 * Set custom baud rate on specified SerialPort
 	 *
-	 * @return error status of port/line setting (0=SUCCESS)
+	 * @return error status of selectedPort/line setting (0=SUCCESS)
 	 * @throws IOException
 	 */
 	public static int getCustomBaudrate()
@@ -205,7 +205,7 @@ public class SerialExt
 	}
 
 	/**
-	 * receive a character from COM port
+	 * receive a character from COM selectedPort
 	 *
 	 * @return received character or -1 on receive error
 	 */
@@ -222,7 +222,7 @@ public class SerialExt
 	}
 
 	/**
-	 * send a character to COM port
+	 * send a character to COM selectedPort
 	 *
 	 * @param txChar character to be sent
 	 * @return received character or -1 on send error
@@ -240,7 +240,7 @@ public class SerialExt
 	}
 
 	/**
-	 * send characters to COM port
+	 * send characters to COM selectedPort
 	 *
 	 * @param txBytes characters to be sent
 	 * @return received character or -1 on send error

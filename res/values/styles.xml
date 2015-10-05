@@ -17,4 +17,5 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <color name="AppColor">#5D0081</color>
 </resources>

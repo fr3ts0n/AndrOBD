@@ -165,7 +165,7 @@ public class UdpInputStream extends PipedInputStream
 		}
 	}
 	/**
-	 * show receive statistics on port close
+	 * show receive statistics on selectedPort close
 	 * this is activated for testing only
 	 *
 	 */

@@ -10,6 +10,9 @@
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../assets" />
         <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../libs" />
         <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../proguard_logs" />
+        <proGuardCfgFiles>
+          <file>file:///usr/lib/jvm/java-1.7.0-openjdk-amd64/tools/proguard/proguard-android.txt</file>
+        </proGuardCfgFiles>
         <option name="UPDATE_PROPERTY_FILES" value="true" />
         <option name="ENABLE_MANIFEST_MERGING" value="true" />
         <option name="ENABLE_PRE_DEXING" value="false" />
@@ -26,6 +29,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/.settings" />
       <excludeFolder url="file://$MODULE_DIR$/customisation" />
+      <excludeFolder url="file://$MODULE_DIR$/doc" />
       <excludeFolder url="file://$MODULE_DIR$/manual" />
       <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/common" />
       <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/ecu/gui/application" />
@@ -34,7 +38,7 @@
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="Library" />
+    <orderEntry type="module" module-name="usbSerial" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -45,6 +49,6 @@
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
   </component>
 </module>

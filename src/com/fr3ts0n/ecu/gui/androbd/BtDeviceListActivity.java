@@ -45,10 +45,10 @@ import java.util.Set;
  * by the user, the MAC address of the device is sent back to the parent
  * Activity in the result Intent.
  */
-public class DeviceListActivity extends Activity
+public class BtDeviceListActivity extends Activity
 {
 	// Debugging
-	private static final String TAG = "DeviceListActivity";
+	private static final String TAG = "BtDeviceListActivity";
 	private static final boolean D = true;
 
 	// Return Intent extra
@@ -211,7 +211,7 @@ public class DeviceListActivity extends Activity
 			} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action))
 			{
 				setProgressBarIndeterminateVisibility(false);
-				setTitle(R.string.select_BTdevice);
+				setTitle(R.string.select_device);
 				if (mNewDevicesArrayAdapter.getCount() == 0)
 				{
 					String noDevices = getResources().getText(R.string.none_found).toString();
