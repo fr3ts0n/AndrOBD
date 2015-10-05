@@ -67,8 +67,24 @@ public class UsbCommService extends CommService
 	{
 		super(context, handler);
 		elm.addTelegramWriter(this);
+		setDevice(port);
+	}
+
+	/**
+	 * Set USB serial port device
+	 * @param port serial port to be set
+	 */
+	protected void setDevice(UsbSerialPort port)
+	{
 		sPort = port;
 		mSerialIoManager = new SerialInputOutputManager(sPort, mListener);
+	}
+
+	@Override
+	public void connect(Object device, boolean secure)
+	{
+		setDevice((UsbSerialPort)device);
+		start();
 	}
 
 	@Override

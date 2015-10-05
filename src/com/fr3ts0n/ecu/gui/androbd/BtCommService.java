@@ -114,12 +114,13 @@ public class BtCommService extends CommService
 	}
 
 	/**
-	 * Start the BtConnectThread to initiate a connection to a remote device.
+	 * start connection to specified device
 	 *
-	 * @param device The BluetoothDevice to connect
+	 * @param device The device to connect
 	 * @param secure Socket Security type - Secure (true) , Insecure (false)
 	 */
-	public synchronized void connect(BluetoothDevice device, boolean secure)
+	@Override
+	public synchronized void connect(Object device, boolean secure)
 	{
 		Log.d(TAG, "connect to: " + device);
 
@@ -141,7 +142,7 @@ public class BtCommService extends CommService
 		}
 
 		// Start the thread to connect with the given device
-		mBtConnectThread = new BtConnectThread(device, secure);
+		mBtConnectThread = new BtConnectThread((BluetoothDevice)device, secure);
 		mBtConnectThread.start();
 		setState(STATE_CONNECTING);
 	}

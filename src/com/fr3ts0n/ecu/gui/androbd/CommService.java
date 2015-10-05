@@ -122,6 +122,14 @@ public abstract class CommService
 	public abstract void write(byte[] out);
 
 	/**
+	 * start connection to specified device
+	 *
+	 * @param device The device to connect
+	 * @param secure Socket Security type - Secure (true) , Insecure (false)
+	 */
+	public abstract void connect(Object device, boolean secure);
+
+	/**
 	 * Indicate that the connection attempt failed and notify the UI Activity.
 	 */
 	protected void connectionFailed()
