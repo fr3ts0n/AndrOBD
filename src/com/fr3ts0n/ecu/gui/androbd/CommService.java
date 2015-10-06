@@ -23,9 +23,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 import com.fr3ts0n.ecu.prot.ElmProt;
+
+import org.apache.log4j.Logger;
 
 /**
  * Abstract communication service
@@ -42,21 +43,26 @@ public abstract class CommService
 	public static MEDIUM medium = MEDIUM.BLUETOOTH;
 
 	// Constants that indicate the current connection state
-	public static final int STATE_NONE = 0;         // we're doing nothing
-	public static final int STATE_LISTEN = 1;       // listening for incoming connections
-	public static final int STATE_CONNECTING = 2;   // initiating an outgoing connection
-	public static final int STATE_CONNECTED = 3;    // connected to a remote device
-	public static final int STATE_OFFLINE = 4;      // we are offline
+	public enum STATE
+	{
+		NONE,           // we're doing nothing
+		LISTEN,         // listening for incoming connections
+		CONNECTING,     // initiating an outgoing connection
+		CONNECTED,      // connected to a remote device
+		OFFLINE         // we are offline
+	}
 
 	// Debugging
 	protected static final String TAG = "CommService";
 	protected static final boolean D = true;
 
+	public static final Logger log = Logger.getLogger(TAG);
+
 	public static final ElmProt elm = new ElmProt();
 
 	protected Context mContext;
 	protected Handler mHandler = null;
-	protected int mState;
+	protected STATE mState;
 
 	/**
 	 * Constructor. Prepares a new Communication session.
@@ -65,7 +71,7 @@ public abstract class CommService
 	{
 		super();
 		// mAdapter = MainActivity.mBluetoothAdapter;
-		mState = STATE_NONE;
+		mState = STATE.NONE;
 	}
 
 	/**
@@ -96,20 +102,19 @@ public abstract class CommService
 	 *
 	 * @param state An integer defining the current connection state
 	 */
-	protected synchronized void setState(int state)
+	protected synchronized void setState(STATE state)
 	{
-		Log.d(TAG, "setState() " + mState + " -> " + state);
+		log.debug("setState() " + mState + " -> " + state);
 		mState = state;
 
 		// Give the new state to the Handler so the UI Activity can update
-		mHandler.obtainMessage(MainActivity.MESSAGE_STATE_CHANGE, state, -1)
-			.sendToTarget();
+		mHandler.obtainMessage(MainActivity.MESSAGE_STATE_CHANGE, state).sendToTarget();
 	}
 
 	/**
 	 * Return the current connection state.
 	 */
-	public synchronized int getState()
+	public synchronized STATE getState()
 	{
 		return mState;
 	}
@@ -146,16 +151,13 @@ public abstract class CommService
 	protected void connectionFailed()
 	{
 		// set new state offline
-		setState(STATE_OFFLINE);
+		setState(STATE.OFFLINE);
 		// Send a failure message back to the Activity
 		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_TOAST);
 		Bundle bundle = new Bundle();
 		bundle.putString(MainActivity.TOAST, "Unable to connect device");
 		msg.setData(bundle);
 		mHandler.sendMessage(msg);
-
-		// Start the service over to restart listening mode
-		start();
 	}
 
 	/**
@@ -164,15 +166,12 @@ public abstract class CommService
 	protected void connectionLost()
 	{
 		// set new state offline
-		setState(STATE_OFFLINE);
+		setState(STATE.OFFLINE);
 		// Send a failure message back to the Activity
 		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_TOAST);
 		Bundle bundle = new Bundle();
 		bundle.putString(MainActivity.TOAST, "Device connection was lost");
 		msg.setData(bundle);
 		mHandler.sendMessage(msg);
-
-		// Start the service over to restart listening mode
-		start();
 	}
 }

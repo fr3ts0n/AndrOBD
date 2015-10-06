@@ -46,7 +46,7 @@ period of time while the ECU recalibrates itself.
 
         <!--  BtDeviceListActivity -->
     <string name="scanning">Scanning&#8230;</string>
-    <string name="select_device">Select a Device</string>
+    <string name="select_device">Select adapter</string>
     <string name="none_paired">No Devices Paired</string>
     <string name="none_found">No Devices Found</string>
     <string name="title_paired_devices">Paired Devices</string>

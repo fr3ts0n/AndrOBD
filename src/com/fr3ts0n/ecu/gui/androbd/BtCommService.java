@@ -26,7 +26,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 import com.fr3ts0n.ecu.prot.ElmProt;
 import com.fr3ts0n.prot.StreamHandler;
@@ -51,7 +50,7 @@ public class BtCommService extends CommService
 	private BtConnectThread mBtConnectThread;
 	private BtWorkerThread mBtWorkerThread;
 	/** communication stream handler */
-	public static final StreamHandler ser = new StreamHandler();
+	public StreamHandler ser = new StreamHandler();;
 
 
 	/**
@@ -60,19 +59,6 @@ public class BtCommService extends CommService
 	public BtCommService()
 	{
 		super();
-		// set up protocol handlers
-		elm.addTelegramWriter(ser);
-		ser.setMessageHandler(elm);
-	}
-
-	/**
-	 * Constructor. Prepares a new Communication session.
-	 *
-	 * @param handler A Handler to send messages back to the UI Activity
-	 */
-	public BtCommService(Handler handler)
-	{
-		super(handler);
 	}
 
 	/**
@@ -84,6 +70,9 @@ public class BtCommService extends CommService
 	public BtCommService(Context context, Handler handler)
 	{
 		super(context, handler);
+		// set up protocol handlers
+		elm.addTelegramWriter(ser);
+		ser.setMessageHandler(elm);
 	}
 
 	/**
@@ -93,8 +82,7 @@ public class BtCommService extends CommService
 	@Override
 	public synchronized void start()
 	{
-		if (D)
-			Log.d(TAG, "start");
+		log.debug("start");
 
 		// Cancel any thread attempting to make a connection
 		if (mBtConnectThread != null)
@@ -110,7 +98,7 @@ public class BtCommService extends CommService
 			mBtWorkerThread = null;
 		}
 
-		setState(STATE_LISTEN);
+		setState(STATE.LISTEN);
 	}
 
 	/**
@@ -122,10 +110,10 @@ public class BtCommService extends CommService
 	@Override
 	public synchronized void connect(Object device, boolean secure)
 	{
-		Log.d(TAG, "connect to: " + device);
+		log.debug("connect to: " + device);
 
 		// Cancel any thread attempting to make a connection
-		if (mState == STATE_CONNECTING)
+		if (mState == STATE.CONNECTING)
 		{
 			if (mBtConnectThread != null)
 			{
@@ -141,10 +129,11 @@ public class BtCommService extends CommService
 			mBtWorkerThread = null;
 		}
 
+		setState(STATE.CONNECTING);
+
 		// Start the thread to connect with the given device
 		mBtConnectThread = new BtConnectThread((BluetoothDevice)device, secure);
 		mBtConnectThread.start();
-		setState(STATE_CONNECTING);
 	}
 
 	/**
@@ -156,8 +145,7 @@ public class BtCommService extends CommService
 	public synchronized void connected(BluetoothSocket socket, BluetoothDevice
 		device, final String socketType)
 	{
-		if (D)
-			Log.d(TAG, "connected, Socket Type:" + socketType);
+		log.debug("connected, Socket Type:" + socketType);
 
 		// Cancel the thread that completed the connection
 		if (mBtConnectThread != null)
@@ -173,10 +161,6 @@ public class BtCommService extends CommService
 			mBtWorkerThread = null;
 		}
 
-		// Start the thread to manage the connection and perform transmissions
-		mBtWorkerThread = new BtWorkerThread(socket, socketType);
-		mBtWorkerThread.start();
-
 		// Send the name of the connected device back to the UI Activity
 		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DEVICE_NAME);
 		Bundle bundle = new Bundle();
@@ -184,7 +168,11 @@ public class BtCommService extends CommService
 		msg.setData(bundle);
 		mHandler.sendMessage(msg);
 
-		setState(STATE_CONNECTED);
+		setState(STATE.CONNECTED);
+
+		// Start the thread to manage the connection and perform transmissions
+		mBtWorkerThread = new BtWorkerThread(socket, socketType);
+		mBtWorkerThread.start();
 	}
 
 	/**
@@ -193,8 +181,7 @@ public class BtCommService extends CommService
 	@Override
 	public synchronized void stop()
 	{
-		if (D)
-			Log.d(TAG, "stop");
+		log.debug("stop");
 
 		if (mBtConnectThread != null)
 		{
@@ -208,7 +195,7 @@ public class BtCommService extends CommService
 			mBtWorkerThread = null;
 		}
 
-		setState(STATE_NONE);
+		setState(STATE.NONE);
 	}
 
 	/**
@@ -218,19 +205,10 @@ public class BtCommService extends CommService
 	 * @see BtWorkerThread#write(byte[])
 	 */
 	@Override
-	public void write(byte[] out)
+	public synchronized void write(byte[] out)
 	{
-		// Create temporary object
-		BtWorkerThread r;
-		// Synchronize a copy of the BtWorkerThread
-		synchronized (this)
-		{
-			if (mState != STATE_CONNECTED)
-				return;
-			r = mBtWorkerThread;
-		}
 		// Perform the write unsynchronized
-		r.write(out);
+		mBtWorkerThread.write(out);
 	}
 
 	/**
@@ -266,14 +244,14 @@ public class BtCommService extends CommService
 				}
 			} catch (IOException e)
 			{
-				Log.e(TAG, "Socket Type: " + mSocketType + "create() failed", e);
+				log.error("Socket Type: " + mSocketType + "create() failed", e);
 			}
 			mmSocket = tmp;
 		}
 
 		public void run()
 		{
-			Log.i(TAG, "BEGIN mBtConnectThread SocketType:" + mSocketType);
+			log.info("BEGIN mBtConnectThread SocketType:" + mSocketType);
 			setName("BtConnectThread" + mSocketType);
 
 			// Always cancel discovery because it will slow down a connection
@@ -293,8 +271,8 @@ public class BtCommService extends CommService
 					mmSocket.close();
 				} catch (IOException e2)
 				{
-					Log.e(TAG, "unable to close() " + mSocketType +
-						" socket during connection failure", e2);
+					log.error("unable to close() " + mSocketType +
+						          " socket during connection failure", e2);
 				}
 				connectionFailed();
 				return;
@@ -317,7 +295,7 @@ public class BtCommService extends CommService
 				mmSocket.close();
 			} catch (IOException e)
 			{
-				Log.e(TAG, "close() of connect " + mSocketType + " socket failed", e);
+				log.error("close() of connect " + mSocketType + " socket failed", e);
 			}
 		}
 	}
@@ -334,7 +312,7 @@ public class BtCommService extends CommService
 
 		public BtWorkerThread(BluetoothSocket socket, String socketType)
 		{
-			Log.d(TAG, "create BtWorkerThread: " + socketType);
+			log.debug("create BtWorkerThread: " + socketType);
 			mmSocket = socket;
 			InputStream tmpIn = null;
 			OutputStream tmpOut = null;
@@ -346,7 +324,7 @@ public class BtCommService extends CommService
 				tmpOut = socket.getOutputStream();
 			} catch (IOException e)
 			{
-				Log.e(TAG, "temp sockets not created", e);
+				log.error("temp sockets not created", e);
 			}
 
 			mmInStream = tmpIn;
@@ -360,7 +338,7 @@ public class BtCommService extends CommService
 		 */
 		public void run()
 		{
-			Log.i(TAG, "BEGIN mBtWorkerThread");
+			log.info("BEGIN mBtWorkerThread");
 			// send RESET to Elm adapter
 			elm.sendCommand(ElmProt.CMD.RESET, 0);
 			try
@@ -391,7 +369,7 @@ public class BtCommService extends CommService
 				mmSocket.close();
 			} catch (IOException e)
 			{
-				Log.e(TAG, "close() of connect socket failed", e);
+				log.error("close() of connect socket failed", e);
 			}
 		}
 

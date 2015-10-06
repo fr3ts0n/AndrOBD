@@ -25,15 +25,14 @@ import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 import com.fr3ts0n.ecu.prot.ElmProt;
+import com.fr3ts0n.prot.ProtUtils;
 import com.fr3ts0n.prot.TelegramWriter;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.util.SerialInputOutputManager;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -55,17 +54,16 @@ public class UsbCommService extends CommService
 			@Override
 			public void onRunError(Exception e)
 			{
-				Log.d(TAG, "Runner stopped.");
-				connectionLost();
+				// do nothing
 			}
 
 			@Override
 			public void onNewData(final byte[] data)
 			{
+				log.trace("RX: " +
+					          ProtUtils.hexDumpBuffer(new String(data).toCharArray()));
 				for(byte chr : data)
 				{
-					Log.d(TAG, String.format("RX: %02X : %1c", chr, chr < 32 ? '.' : chr));
-
 					switch (chr)
 					{
 						// ignore special characters
@@ -78,7 +76,8 @@ public class UsbCommService extends CommService
 							// trigger message handling
 						case 10:
 						case 13:
-							elm.handleTelegram(Arrays.toString(data).toCharArray());
+							if(message.length() > 0)
+								elm.handleTelegram(message.toCharArray());
 							message = "";
 							break;
 
@@ -92,13 +91,7 @@ public class UsbCommService extends CommService
 	public UsbCommService(Context context, Handler handler)
 	{
 		super(context, handler);
-	}
-
-	public UsbCommService(Context context, Handler handler, UsbSerialPort port)
-	{
-		super(context, handler);
 		elm.addTelegramWriter(this);
-		setDevice(port);
 	}
 
 	/**
@@ -123,37 +116,44 @@ public class UsbCommService extends CommService
 	{
 		if (sPort != null)
 		{
-			Log.i(TAG, "Starting io manager ..");
-			mExecutor.submit(mSerialIoManager);
-
 			final UsbManager usbManager = (UsbManager) mContext.getSystemService(Context.USB_SERVICE);
-
 			UsbDeviceConnection connection = usbManager.openDevice(sPort.getDriver().getDevice());
 			if (connection == null)
 			{
+				connectionFailed();
 				return;
 			}
 
 			try
 			{
 				sPort.open(connection);
-				sPort.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
-
+				sPort.setDTR(true);
+				sPort.setParameters(38400, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
 				// Send the name of the connected device back to the UI Activity
+				log.info("Starting io manager ..");
+				mExecutor.submit(mSerialIoManager);
+
 				Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DEVICE_NAME);
 				Bundle bundle = new Bundle();
 				bundle.putString(MainActivity.DEVICE_NAME, sPort.toString());
 				msg.setData(bundle);
 				mHandler.sendMessage(msg);
 
-				setState(STATE_CONNECTED);
-
+				setState(STATE.CONNECTED);
+				try
+				{
+					Thread.sleep(1000,0);
+				}
+				catch (InterruptedException e)
+				{
+					e.printStackTrace();
+				}
 				// send RESET to Elm adapter
 				elm.sendCommand(ElmProt.CMD.RESET, 0);
 			}
 			catch (IOException e)
 			{
-				Log.e(TAG, "Error setting up device: " + e.getMessage(), e);
+				log.error("Error setting up device: " + e.getMessage(), e);
 				try
 				{
 					sPort.close();
@@ -162,7 +162,7 @@ public class UsbCommService extends CommService
 				{
 					// Ignore.
 				}
-				connectionLost();
+				connectionFailed();
 				sPort = null;
 			}
 		}
@@ -173,9 +173,10 @@ public class UsbCommService extends CommService
 	{
 		if (mSerialIoManager != null)
 		{
-			Log.i(TAG, "Stopping io manager ..");
+			log.info( "Stopping io manager ..");
 			mSerialIoManager.stop();
 			mSerialIoManager = null;
+			connectionLost();
 		}
 	}
 
@@ -187,13 +188,15 @@ public class UsbCommService extends CommService
 	@Override
 	public void write(byte[] out)
 	{
+		log.trace("RX: " +
+			          ProtUtils.hexDumpBuffer(new String(out).toCharArray()));
 		mSerialIoManager.writeAsync(out);
 	}
 
 	@Override
 	public int writeTelegram(char[] buffer)
 	{
-		String tgm = Arrays.toString(buffer) + "\n";
+		String tgm = String.valueOf(buffer) + "\r";
 		write(tgm.getBytes());
 		return buffer.length;
 	}

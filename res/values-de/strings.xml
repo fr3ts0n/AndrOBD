@@ -18,7 +18,7 @@
     <string name="obd_services">OBD Dienste</string>
     <string name="obd_veh_info">OBD Fahrzeug Info</string>
     <string name="scanning">Suche&#8230;</string>
-    <string name="select_device">Wähle BT Gerät</string>
+    <string name="select_device">Wähle Adapter</string>
     <string name="send">Senden</string>
     <string name="send_to">Senden an</string>
     <string name="service_freezeframes">OBD Freeze Frames</string>

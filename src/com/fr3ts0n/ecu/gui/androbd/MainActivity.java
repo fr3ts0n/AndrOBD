@@ -220,13 +220,13 @@ public class MainActivity extends ListActivity
 			switch (msg.what)
 			{
 				case MESSAGE_STATE_CHANGE:
-					switch (msg.arg1)
+					switch ((CommService.STATE)msg.obj)
 					{
-						case CommService.STATE_CONNECTED:
+						case CONNECTED:
 							onConnect();
 							break;
 
-						case CommService.STATE_CONNECTING:
+						case CONNECTING:
 							setStatus(R.string.title_connecting);
 							break;
 
@@ -881,6 +881,8 @@ public class MainActivity extends ListActivity
 	{
 		// stop demo service if it was started
 		setMode(MODE.OFFLINE);
+
+		mCommService.stop();
 
 		// if bluetooth adapter was switched OFF before ...
 		if (mBluetoothAdapter != null && !initialBtStateEnabled)

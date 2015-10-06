@@ -80,9 +80,13 @@ public class ElmProt
 		SEARCH    ( "SEARCHING"   ),
 		ERROR     ( "ERROR"       ),
 		NOCONN    ( "UNABLE"      ),
+		NOCONN2   ( "NABLETO"     ),
 		CANERROR  ( "CANERROR"    ),
 		BUSBUSY   ( "BUSBUSY"     ),
 		BUSERROR  ( "BUSERROR"    ),
+		BUSINIERR ( "BUSINIT:ERR" ),
+		BUSINIERR2( "BUSINIT:BUS" ),
+		BUSINIERR3( "BUSINIT:...ERR" ),
 		FBERROR   ( "FBERROR"     ),
 		DATAERROR ( "DATAERROR"   ),
 		BUFFERFULL( "BUFFERFULL"  ),
@@ -343,8 +347,12 @@ public class ElmProt
 			case OK:
 			case ERROR:
 			case NOCONN:
+			case NOCONN2:
 			case CANERROR:
 			case BUSERROR:
+			case BUSINIERR:
+			case BUSINIERR2:
+			case BUSINIERR3:
 			case BUSBUSY:
 			case FBERROR:
 			case DATAERROR:
@@ -381,8 +389,12 @@ public class ElmProt
 				switch (getResponseId(lastRxMsg))
 				{
 					case NOCONN:
+					case NOCONN2:
 					case CANERROR:
 					case BUSERROR:
+					case BUSINIERR:
+					case BUSINIERR2:
+					case BUSINIERR3:
 					case BUSBUSY:
 					case FBERROR:
 						setStatus(STAT.DISCONNECTED);
@@ -410,12 +422,6 @@ public class ElmProt
 						sendCommand(CMD.RESET, 0);
 						break;
 
-					case QMARK:
-						// RESET device
-						sendCommand(CMD.RESET, 0);
-						setStatus(STAT.INITIALIZING);
-						break;
-
 					case SEARCH:
 						setStatus(STAT.CONNECTING);
 						break;
@@ -438,6 +444,8 @@ public class ElmProt
 						}
 						// NO break here since reaction is only quqeued
 
+					case QMARK:
+						// last command stays ignored
 					case MODEL:
 					case OK:
 					default:
