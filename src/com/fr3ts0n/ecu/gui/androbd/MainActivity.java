@@ -97,6 +97,7 @@ public class MainActivity extends ListActivity
 	private static final int REQUEST_ENABLE_BT = 3;
 	private static final int REQUEST_SELECT_FILE = 4;
 	private static final int REQUEST_SETTINGS = 5;
+	private static final int REQUEST_CONNECT_DEVICE_USB = 6;
 
 	/**
 	 * app exit parameters
@@ -164,9 +165,18 @@ public class MainActivity extends ListActivity
 					break;
 
 				case ONLINE:
-					// Launch the BtDeviceListActivity to see devices and do scan
-					Intent serverIntent = new Intent(this, BtDeviceListActivity.class);
-					startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+					switch(CommService.medium)
+					{
+						case BLUETOOTH:
+							// Launch the BtDeviceListActivity to see devices and do scan
+							Intent serverIntent = new Intent(this, BtDeviceListActivity.class);
+							startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+							break;
+
+						case USB:
+							Intent enableIntent = new Intent(this, UsbDeviceListActivity.class);
+							startActivityForResult(enableIntent, REQUEST_CONNECT_DEVICE_USB);
+					}
 					break;
 
 				case DEMO:
@@ -220,8 +230,7 @@ public class MainActivity extends ListActivity
 							setStatus(R.string.title_connecting);
 							break;
 
-						case CommService.STATE_LISTEN:
-						case CommService.STATE_NONE:
+						default:
 							onDisconnect();
 							break;
 					}
@@ -298,11 +307,9 @@ public class MainActivity extends ListActivity
 		}
 	};
 
-	private int numCodes = 0;
 	private void setNumCodes(int newNumCodes)
 	{
-		numCodes = newNumCodes;
-		setMenuItemEnable(R.id.service_freezeframes, (numCodes != 0));
+		setMenuItemEnable(R.id.service_freezeframes, (newNumCodes != 0));
 	}
 
 	/**
@@ -365,7 +372,6 @@ public class MainActivity extends ListActivity
 		setLogLevels();
 
 		// Set up all data adapters
-		mCommService = new BtCommService(this, mHandler);
 		mPidAdapter = new ObdItemAdapter(this, R.layout.obd_item, ObdProt.PidPvs);
 		mVidAdapter = new VidItemAdapter(this, R.layout.obd_item, ObdProt.VidPvs);
 		mDfcAdapter = new DfcItemAdapter(this, R.layout.obd_item, ObdProt.tCodes);
@@ -373,27 +379,47 @@ public class MainActivity extends ListActivity
 
 		// load csv files for protocol extensions
 		loadPreferredExtensions();
-
 		// create file helper instance
-		fileHelper = new FileHelper(this, mCommService.elm);
+		fileHelper = new FileHelper(this, CommService.elm);
 		// set listeners for data structure changes
 		setDataListeners();
 		// automate elm status display
-		mCommService.elm.addPropertyChangeListener(this);
+		CommService.elm.addPropertyChangeListener(this);
 
-		// Get local Bluetooth adapter
-		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-		Log.d(TAG, "Adapter: " + mBluetoothAdapter);
-		// If BT is not on, request that it be enabled.
-		if (getMode() != MODE.DEMO && mBluetoothAdapter != null)
+		// set default comm medium
+		CommService.medium =
+			CommService.MEDIUM.values()[
+				Integer.valueOf(prefs.getString( SettingsActivity.KEY_COMM_MEDIUM, "0"))];
+		// override comm medium with USB connect intent
+		if("android.hardware.usb.action.USB_DEVICE_ATTACHED".equals(getIntent().getAction()))
 		{
-			// remember initial bluetooth state
-			initialBtStateEnabled = mBluetoothAdapter.isEnabled();
-			if (!initialBtStateEnabled)
-			{
-				Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-				startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-			}
+			CommService.medium = CommService.MEDIUM.USB;
+		}
+
+		switch(CommService.medium)
+		{
+			case BLUETOOTH:
+				mCommService = new BtCommService(this, mHandler);
+				// Get local Bluetooth adapter
+				mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+				Log.d(TAG, "Adapter: " + mBluetoothAdapter);
+				// If BT is not on, request that it be enabled.
+				if (getMode() != MODE.DEMO && mBluetoothAdapter != null)
+				{
+					// remember initial bluetooth state
+					initialBtStateEnabled = mBluetoothAdapter.isEnabled();
+					if (!initialBtStateEnabled)
+					{
+						Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+						startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+					}
+				}
+				break;
+
+			case USB:
+				mCommService = new UsbCommService(this, mHandler);
+				setMode(MODE.ONLINE);
+				break;
 		}
 	}
 
@@ -475,7 +501,7 @@ public class MainActivity extends ListActivity
 		if(filtered)
 		{
 			PvList filteredList = new PvList();
-			HashSet<Integer> selPids = new HashSet<Integer>();
+			HashSet<Integer> selPids = new HashSet<>();
 			for(int pos : getSelectedPositions())
 			{
 				EcuDataPv pv = (EcuDataPv)mPidAdapter.getItem(pos);
@@ -523,7 +549,7 @@ public class MainActivity extends ListActivity
 				/* if we are in OBD data mode:
 				 * -> Short click on an item starts the readout activity
 			     */
-				if (mCommService.elm.getService() == ObdProt.OBD_SVC_DATA)
+				if (CommService.elm.getService() == ObdProt.OBD_SVC_DATA)
 				{
 					if (getListView().getCheckedItemCount() > 0)
 					{
@@ -543,7 +569,7 @@ public class MainActivity extends ListActivity
 				/* if we are in OBD data mode:
 				 * -> Short click on an item starts the readout activity
 			     */
-				if (mCommService.elm.getService() == ObdProt.OBD_SVC_DATA)
+				if (CommService.elm.getService() == ObdProt.OBD_SVC_DATA)
 				{
 					if (getListView().getCheckedItemCount() > 0)
 					{
@@ -657,7 +683,19 @@ public class MainActivity extends ListActivity
 				// When BtDeviceListActivity returns with a device to connect
 				if (resultCode == Activity.RESULT_OK)
 				{
-					connectDevice(data, false);
+					connectBtDevice(data, false);
+				}
+				else
+				{
+					setMode(MODE.OFFLINE);
+				}
+				break;
+
+			case REQUEST_CONNECT_DEVICE_USB:
+				// DeviceListActivity returns with a device to connect
+				if (resultCode == Activity.RESULT_OK)
+				{
+					mCommService.connect(UsbDeviceListActivity.selectedPort, true);
 				}
 				else
 				{
@@ -797,7 +835,7 @@ public class MainActivity extends ListActivity
 	@Override
 	public void onBackPressed()
 	{
-		if (mCommService.elm.getService() != ObdProt.OBD_SVC_NONE)
+		if (CommService.elm.getService() != ObdProt.OBD_SVC_NONE)
 		{
 			setObdService(ObdProt.OBD_SVC_NONE, null);
 		} else
@@ -826,7 +864,7 @@ public class MainActivity extends ListActivity
 	{
 		super.onStart();
 		// If the adapter is null, then Bluetooth is not supported
-		if (mBluetoothAdapter == null)
+		if (CommService.medium == CommService.MEDIUM.BLUETOOTH && mBluetoothAdapter == null)
 		{
 			// start ELM protocol demo loop
 			setMode(MODE.DEMO);
@@ -863,7 +901,7 @@ public class MainActivity extends ListActivity
 		super.onListItemClick(l, v, position, id);
 		// enable graphic actions only on DATA service if min 1 item selected
 		setMenuItemEnable(R.id.graph_actions,
-		                  ((mCommService.elm.getService() == ObdProt.OBD_SVC_DATA)
+		                  ((CommService.elm.getService() == ObdProt.OBD_SVC_DATA)
 			                  && (getListView().getCheckedItemCount() > 0)
 		                  )
 		);
@@ -877,7 +915,7 @@ public class MainActivity extends ListActivity
 	{
 		Intent intent;
 
-		switch (mCommService.elm.getService())
+		switch (CommService.elm.getService())
 		{
 		    /* if we are in OBD data mode:
 		     * ->Long click on an item starts the single item dashboard activity
@@ -910,6 +948,21 @@ public class MainActivity extends ListActivity
 		return true;
 	}
 
+	AdapterView.OnItemSelectedListener ff_selected = new AdapterView.OnItemSelectedListener()
+	{
+		@Override
+		public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+		{
+			CommService.elm.setFreezeFrame_Id(position);
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> parent)
+		{
+
+		}
+	};
+
 	/**
 	 * Activate desired OBD service
 	 *
@@ -921,28 +974,16 @@ public class MainActivity extends ListActivity
 		// un-filter display
 		setFiltered(false);
 		// set title
-		getActionBar().setTitle(menuTitle != null ? menuTitle : getString(R.string.app_name));
+		ActionBar ab = getActionBar();
+		if(ab != null) ab.setTitle(menuTitle != null ? menuTitle : getString(R.string.app_name));
 		// update controls
 		setMenuItemEnable(R.id.graph_actions, false);
 		getListView().setOnItemLongClickListener(this);
 		// set protocol service
-		mCommService.elm.setService(obdService, (getMode() != MODE.FILE));
+		CommService.elm.setService(obdService, (getMode() != MODE.FILE));
 		// show / hide freeze frame selector */
 		Spinner ff_selector = (Spinner)findViewById(R.id.ff_selector);
-		ff_selector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-		{
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-			{
-				mCommService.elm.setFreezeFrame_Id(position);
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> parent)
-			{
-
-			}
-		});
+		ff_selector.setOnItemSelectedListener(ff_selected);
 		ff_selector.setAdapter(mDfcAdapter);
 		ff_selector.setVisibility(obdService == ObdProt.OBD_SVC_FREEZEFRAME ? View.VISIBLE : View.GONE);
 		// set corresponding list adapter
@@ -1011,7 +1052,7 @@ public class MainActivity extends ListActivity
 			setMenuItemEnable(R.id.obd_services, true);
 			setMenuItemEnable(R.id.graph_actions, false);
 			/* The Thread object for processing the demo mode loop */
-			Thread demoThread = new Thread(mCommService.elm);
+			Thread demoThread = new Thread(CommService.elm);
 			demoThread.start();
 		}
 	}
@@ -1062,7 +1103,7 @@ public class MainActivity extends ListActivity
 	 * @param data   Intent data which contains the bluetooth device address
 	 * @param secure flag to indicate if the connection shall be secure, or not
 	 */
-	private void connectDevice(Intent data, boolean secure)
+	private void connectBtDevice(Intent data, boolean secure)
 	{
 		// Get the device MAC address
 		String address = data.getExtras().getString(
@@ -1078,6 +1119,8 @@ public class MainActivity extends ListActivity
 	 */
 	private void onConnect()
 	{
+		stopDemoService();
+		mode = MODE.ONLINE;
 		// handle further initialisations
 		setMenuItemEnable(R.id.secure_connect_scan, false);
 		setMenuItemEnable(R.id.obd_services, true);

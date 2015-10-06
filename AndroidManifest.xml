@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="com.fr3ts0n.ecu.gui.androbd"
           xmlns:android="http://schemas.android.com/apk/res/android"
-          android:versionCode="10209"
+          android:versionCode="10300"
           android:versionName="@string/app_version">
 
     <uses-sdk
@@ -32,11 +32,6 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".UsbDeviceListActivity"
-            android:label="@string/select_device"
-            android:theme="@android:style/Theme.Holo.Dialog" >
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
             </intent-filter>
@@ -44,6 +39,13 @@
             <meta-data
                 android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
                 android:resource="@xml/device_filter" />
+        </activity>
+        <activity
+            android:name=".UsbDeviceListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/select_device"
+            android:textColor="#ecad14"
+            android:theme="@android:style/Theme.Holo.Dialog" >
         </activity>
         <activity
             android:name=".BtDeviceListActivity"

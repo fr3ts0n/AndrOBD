@@ -22,7 +22,9 @@ package com.fr3ts0n.ecu.gui.androbd;
 import android.content.Context;
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
+import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.fr3ts0n.ecu.prot.ElmProt;
@@ -48,6 +50,7 @@ public class UsbCommService extends CommService
 	private final SerialInputOutputManager.Listener mListener =
 		new SerialInputOutputManager.Listener()
 		{
+			String message = "";
 
 			@Override
 			public void onRunError(Exception e)
@@ -59,9 +62,37 @@ public class UsbCommService extends CommService
 			@Override
 			public void onNewData(final byte[] data)
 			{
-				elm.handleTelegram(Arrays.toString(data).toCharArray());
+				for(byte chr : data)
+				{
+					Log.d(TAG, String.format("RX: %02X : %1c", chr, chr < 32 ? '.' : chr));
+
+					switch (chr)
+					{
+						// ignore special characters
+						case 32:
+							break;
+
+						// trigger message handling for new request
+						case '>':
+							message += (char) chr;
+							// trigger message handling
+						case 10:
+						case 13:
+							elm.handleTelegram(Arrays.toString(data).toCharArray());
+							message = "";
+							break;
+
+						default:
+							message += (char) chr;
+					}
+				}
 			}
 		};
+
+	public UsbCommService(Context context, Handler handler)
+	{
+		super(context, handler);
+	}
 
 	public UsbCommService(Context context, Handler handler, UsbSerialPort port)
 	{
@@ -107,7 +138,16 @@ public class UsbCommService extends CommService
 			{
 				sPort.open(connection);
 				sPort.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
+
+				// Send the name of the connected device back to the UI Activity
+				Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DEVICE_NAME);
+				Bundle bundle = new Bundle();
+				bundle.putString(MainActivity.DEVICE_NAME, sPort.toString());
+				msg.setData(bundle);
+				mHandler.sendMessage(msg);
+
 				setState(STATE_CONNECTED);
+
 				// send RESET to Elm adapter
 				elm.sendCommand(ElmProt.CMD.RESET, 0);
 			}
@@ -153,7 +193,8 @@ public class UsbCommService extends CommService
 	@Override
 	public int writeTelegram(char[] buffer)
 	{
-		write(Arrays.toString(buffer).getBytes());
+		String tgm = Arrays.toString(buffer) + "\n";
+		write(tgm.getBytes());
 		return buffer.length;
 	}
 

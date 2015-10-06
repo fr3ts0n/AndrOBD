@@ -56,6 +56,7 @@ public class SettingsActivity
 	// Preference key for data items
 	static final String KEY_DATA_ITEMS = "data_items";
 	static final String KEY_PROT_SELECT = "protocol";
+	static final String KEY_COMM_MEDIUM = "comm_medium";
 
 	/*
 	 * (non-Javadoc)
@@ -76,7 +77,7 @@ public class SettingsActivity
 	public static class PrefsFragment
 		extends PreferenceFragment
 		implements Preference.OnPreferenceClickListener,
-		           SharedPreferences.OnSharedPreferenceChangeListener
+		SharedPreferences.OnSharedPreferenceChangeListener
 	{
 		Vector<EcuDataItem> items;
 
@@ -93,6 +94,8 @@ public class SettingsActivity
 				setPrefsText(key);
 			}
 
+			// set up communication media selection
+			setupCommMediaSelection();
 			// set up protocol selection
 			setupProtoSelection();
 			// set up selectable PID list
@@ -113,6 +116,30 @@ public class SettingsActivity
 			CharSequence[] keys = new CharSequence[values.length];
 			int i = 0;
 			for (ElmProt.PROT proto : values)
+			{
+				titles[i] = proto.toString();
+				keys[i] = String.valueOf(proto.ordinal());
+				i++;
+			}
+			// set enries and keys
+			pref.setEntries(titles);
+			pref.setEntryValues(keys);
+			pref.setDefaultValue(titles[0]);
+			// show current selection
+			pref.setSummary(pref.getEntry());
+		}
+
+		/**
+		 * set up protocol selection
+		 */
+		void setupCommMediaSelection()
+		{
+			ListPreference pref = (ListPreference) findPreference(KEY_COMM_MEDIUM);
+			CommService.MEDIUM[] values = CommService.MEDIUM.values();
+			CharSequence[] titles = new CharSequence[values.length];
+			CharSequence[] keys = new CharSequence[values.length];
+			int i = 0;
+			for (CommService.MEDIUM proto : values)
 			{
 				titles[i] = proto.toString();
 				keys[i] = String.valueOf(proto.ordinal());

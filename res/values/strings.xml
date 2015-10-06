@@ -3,7 +3,7 @@
 
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
-    <string name="app_version" translatable="false">V1.2.9</string>
+    <string name="app_version" translatable="false">V1.3.0</string>
     <string name="copyright_fr3ts0n" translatable="false">&#169; 2015 fr3ts0n</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 bluetooth adapter</string>
     <string name="send">Send</string>
@@ -130,6 +130,7 @@ period of time while the ECU recalibrates itself.
     <string name="obd_opt_description">Options for OBD protocol / vehicle communication </string>
     <string name="select_protocol">Preferred OBD protocol </string>
     <string name="select_fault_code">Select fault code …</string>
+    <string name="select_medium">Adapter type …</string>
 
     <string name="refreshing">scanning …</string>
     <string name="devices_found">%s USB device(s) found</string>

@@ -32,18 +32,29 @@ import com.fr3ts0n.ecu.prot.ElmProt;
  */
 public abstract class CommService
 {
+	/** communication media */
+	public enum MEDIUM
+	{
+		BLUETOOTH,
+		USB
+	};
+	/** media type selection */
+	public static MEDIUM medium = MEDIUM.BLUETOOTH;
+
 	// Constants that indicate the current connection state
 	public static final int STATE_NONE = 0;         // we're doing nothing
 	public static final int STATE_LISTEN = 1;       // listening for incoming connections
 	public static final int STATE_CONNECTING = 2;   // initiating an outgoing connection
 	public static final int STATE_CONNECTED = 3;    // connected to a remote device
+	public static final int STATE_OFFLINE = 4;      // we are offline
+
 	// Debugging
 	protected static final String TAG = "CommService";
 	protected static final boolean D = true;
-	protected Context mContext;
 
 	public static final ElmProt elm = new ElmProt();
 
+	protected Context mContext;
 	protected Handler mHandler = null;
 	protected int mState;
 
@@ -134,6 +145,8 @@ public abstract class CommService
 	 */
 	protected void connectionFailed()
 	{
+		// set new state offline
+		setState(STATE_OFFLINE);
 		// Send a failure message back to the Activity
 		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_TOAST);
 		Bundle bundle = new Bundle();
@@ -150,6 +163,8 @@ public abstract class CommService
 	 */
 	protected void connectionLost()
 	{
+		// set new state offline
+		setState(STATE_OFFLINE);
 		// Send a failure message back to the Activity
 		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_TOAST);
 		Bundle bundle = new Bundle();

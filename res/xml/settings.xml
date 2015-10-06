@@ -38,19 +38,34 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:summary="@string/obd_opt_description"
         android:title="@string/obd_options">
 
-        <ListPreference
-            android:defaultValue="0"
-            android:dialogTitle="@string/select_protocol"
-            android:entries="@array/empty"
-            android:entryValues="@array/empty"
+        <PreferenceScreen
             android:icon="@android:drawable/ic_menu_manage"
-            android:key="protocol"
-            android:title="@string/select_protocol"
-            />
+            android:summary="@string/obd_opt_description"
+            android:title="@string/obd_options">
 
+            <ListPreference
+                android:defaultValue="0"
+                android:dialogTitle="@string/select_medium"
+                android:entries="@array/empty"
+                android:entryValues="@array/empty"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:key="comm_medium"
+                android:title="@string/select_medium"
+                />
+
+            <ListPreference
+                android:defaultValue="0"
+                android:dialogTitle="@string/select_protocol"
+                android:entries="@array/empty"
+                android:entryValues="@array/empty"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:key="protocol"
+                android:title="@string/select_protocol"
+                />
+
+        </PreferenceScreen>
     </PreferenceCategory>
 
     <PreferenceCategory

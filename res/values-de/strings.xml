@@ -95,4 +95,5 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="refreshing">aktualisiere …</string>
     <string name="select_fault_code">Wähle Fehlercode …</string>
     <string name="devices_found">%s USB Gerät(e) gefunden</string>
+    <string name="select_medium">Adapter-Typ …</string>
 </resources>
