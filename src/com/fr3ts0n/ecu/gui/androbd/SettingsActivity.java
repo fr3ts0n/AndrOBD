@@ -57,6 +57,7 @@ public class SettingsActivity
 	static final String KEY_DATA_ITEMS = "data_items";
 	static final String KEY_PROT_SELECT = "protocol";
 	static final String KEY_COMM_MEDIUM = "comm_medium";
+	static final String ELM_MIN_TIMEOUT = "elm_min_timeout";
 
 	/*
 	 * (non-Javadoc)

@@ -35,6 +35,68 @@ public class ElmProt
 {
 
 	public static final int OBD_SVC_CAN_MONITOR = 256;
+	/**
+	 * for ELM message timeout handling
+	 */
+	/** minimum ELM timeout */
+	protected static int ELM_TIMEOUT_MIN = 12;
+	/** minimum ELM timeout (learned from vehicle) */
+	protected static int ELM_TIMEOUT_LRN_LOW = 12;
+	/** max. ELM Message Timeout [ms] */
+	static final int ELM_TIMEOUT_MAX = 1000;
+	/** default ELM message timeout */
+	static final int ELM_TIMEOUT_DEFAULT = 200;
+	/** Learning resolution of ELM Message Timeout [ms] */
+	static final int ELM_TIMEOUT_RES = 4;
+	/** ELM message timeout: defaults to approx 200 [ms] */
+	protected int elmMsgTimeout = ELM_TIMEOUT_MAX;
+	/** number of bytes expected from opponent */
+	private int charsExpected = 0;
+	/** remember last command which was sent */
+	private char[] lastCommand;
+	/** preferred ELM protocol to be selected */
+	static private PROT preferredProtocol = PROT.ELM_PROT_AUTO;
+
+
+	/**
+	 * LOW Learn value ELM Message Timeout
+	 * @return currently learned timout value [ms]
+	 */
+	public static int getElmTimeoutLrnLow()
+	{
+		return ELM_TIMEOUT_LRN_LOW;
+	}
+
+	/**
+	 * set LOW Learn value ELM Message Timeout
+	 * @param elmTimeoutLrnLow new learn value [ms]
+	 */
+	public static void setElmTimeoutLrnLow(int elmTimeoutLrnLow)
+	{
+		log.info(String.format("ELM learn timeout: %d -> %d",
+		                       ELM_TIMEOUT_LRN_LOW, elmTimeoutLrnLow));
+		ELM_TIMEOUT_LRN_LOW = elmTimeoutLrnLow;
+	}
+
+	/**
+	 * min. (configured) ELM Message Timeout
+	 * @return minimum (configured) ELM timeout value [ms]
+	 */
+	public static int getElmTimeoutMin()
+	{
+		return ELM_TIMEOUT_MIN;
+	}
+
+	/**
+	 * Set min. (configured) ELM Message Timeout
+	 * @param elmTimeoutMin minimum (configured) ELM timeout value [ms]
+	 */
+	public static void setElmTimeoutMin(int elmTimeoutMin)
+	{
+		log.info(String.format("ELM min timeout: %d -> %d",
+		                       ELM_TIMEOUT_MIN, elmTimeoutMin));
+		ELM_TIMEOUT_MIN = elmTimeoutMin;
+	}
 
 	/**
 	 * ELM protocol ID's
@@ -183,28 +245,6 @@ public class ElmProt
 	public ElmProt()
 	{
 	}
-
-	/**
-	 * for ELM message timeout handling
-	 */
-	/** LOW Learn value ELM Message Timeout [ms] */
-	static int ELM_TIMEOUT_LRN_LOW = 12;
-	/** min. ELM Message Timeout [ms] */
-	static final int ELM_TIMEOUT_MIN = 12;
-	/** max. ELM Message Timeout [ms] */
-	static final int ELM_TIMEOUT_MAX = 1000;
-	/** default ELM message timeout */
-	static final int ELM_TIMEOUT_DEFAULT = 200;
-	/** Learning resolution of ELM Message Timeout [ms] */
-	static final int ELM_TIMEOUT_RES = 4;
-	/** ELM message timeout: defaults to approx 200 [ms] */
-	protected int elmMsgTimeout = ELM_TIMEOUT_MAX;
-	/** number of bytes expected from opponent */
-	private int charsExpected = 0;
-	/** remember last command which was sent */
-	private char[] lastCommand;
-	/** preferred ELM protocol to be selected */
-	static private PROT preferredProtocol = PROT.ELM_PROT_AUTO;
 
 	/**
 	 * set preferred ELM protocol to be used
@@ -371,7 +411,7 @@ public class ElmProt
 				// to be set to default value ...
 				elmMsgTimeout = ELM_TIMEOUT_MAX;
 				// ... reset learned minimum timeout ...
-				ELM_TIMEOUT_LRN_LOW = ELM_TIMEOUT_MIN;
+				setElmTimeoutLrnLow(getElmTimeoutMin());
 				// set to preferred protocol
 				queueCommand(CMD.SETPROT, preferredProtocol.ordinal());
 				// set default timeout
@@ -440,7 +480,7 @@ public class ElmProt
 							// increase timeout, since we have just timed out
 							setElmMsgTimeout(elmMsgTimeout + ELM_TIMEOUT_RES);
 							// ... and limit MIN timeout for this session
-							ELM_TIMEOUT_LRN_LOW = elmMsgTimeout;
+							setElmTimeoutLrnLow(elmMsgTimeout);
 						}
 						// NO break here since reaction is only quqeued
 
@@ -469,7 +509,7 @@ public class ElmProt
 									// otherwise the next PID will be requested
 									writeTelegram(emptyBuffer, service, getNextSupportedPid());
 									// reduce OBD timeout towards minimum limit
-									if ((elmMsgTimeout - ELM_TIMEOUT_RES) >= ELM_TIMEOUT_LRN_LOW)
+									if ((elmMsgTimeout - ELM_TIMEOUT_RES) >= getElmTimeoutLrnLow())
 									{
 										setElmMsgTimeout(elmMsgTimeout - ELM_TIMEOUT_RES);
 									}

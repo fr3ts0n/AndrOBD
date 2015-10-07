@@ -73,7 +73,10 @@ import de.mindpipe.android.logging.log4j.LogConfigurator;
  * Main Activity for AndrOBD app
  */
 public class MainActivity extends ListActivity
-	implements PvChangeListener, AdapterView.OnItemLongClickListener, PropertyChangeListener
+	implements PvChangeListener,
+						 AdapterView.OnItemLongClickListener,
+						 PropertyChangeListener,
+						 SharedPreferences.OnSharedPreferenceChangeListener
 {
 	/** Key names received from the BluetoothChatService Handler */
 	public static final String DEVICE_NAME = "device_name";
@@ -132,6 +135,43 @@ public class MainActivity extends ListActivity
 	private static FileHelper fileHelper;
 	/** app preferences ... */
 	protected static SharedPreferences prefs;
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences prefs, String key)
+	{
+		// keep main display on?
+		if(prefs.getBoolean("keep_screen_on", false))
+		{
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		}
+
+		// set default comm medium
+		CommService.medium =
+			CommService.MEDIUM.values()[
+				Integer.valueOf(prefs.getString( SettingsActivity.KEY_COMM_MEDIUM, "0"))];
+
+		// ELM timeout
+		ElmProt.setElmTimeoutMin(Integer.valueOf(
+			prefs.getString(SettingsActivity.ELM_MIN_TIMEOUT,
+			                String.valueOf(ElmProt.getElmTimeoutMin()))));
+
+		// ... measurement system
+		setConversionSystem(Integer.valueOf(
+			prefs.getString(MEASURE_SYSTEM,
+			                String.valueOf(EcuDataItem.SYSTEM_METRIC))
+		));
+
+    // ... preferred protocol
+    ElmProt.setPreferredProtocol(
+	    Integer.valueOf(prefs.getString(SettingsActivity.KEY_PROT_SELECT, "0")));
+
+		// log levels
+		setLogLevels();
+
+		// update from protocol extensions
+		loadPreferredExtensions();
+	}
+
 	/** operating modes */
 	public enum MODE
 	{
@@ -162,6 +202,7 @@ public class MainActivity extends ListActivity
 			switch(mode)
 			{
 				case OFFLINE:
+					setMenuItemEnable(R.id.secure_connect_scan, true);
 					break;
 
 				case ONLINE:
@@ -332,7 +373,7 @@ public class MainActivity extends ListActivity
 		super.onCreate(savedInstanceState);
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-			WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		// set up action bar
 		ActionBar actionBar = getActionBar();
@@ -343,33 +384,17 @@ public class MainActivity extends ListActivity
 
 		setContentView(R.layout.startup_layout);
 
-		// get preferences
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-		// keep main display on?
-		if(prefs.getBoolean("keep_screen_on", false))
-		{
-			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		}
-
-		// ... measurement system
-		setConversionSystem(Integer.valueOf(
-			                    prefs.getString(MEASURE_SYSTEM,
-			                                    String.valueOf(EcuDataItem.SYSTEM_METRIC))
-		                    )
-		);
-
-		// ... preferred protocol
-		ElmProt.setPreferredProtocol(
-			Integer.valueOf(prefs.getString(SettingsActivity.KEY_PROT_SELECT, "0"))
-		);
-
 		// set up log4j logging ...
 		logCfg = new LogConfigurator();
 		logCfg.setUseLogCatAppender(true);
 		logCfg.setUseFileAppender(true);
 		logCfg.setFileName(FileHelper.getPath(this).concat(File.separator).concat("log/AndrOBD.log"));
-		setLogLevels();
+
+		// get preferences
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		onSharedPreferenceChanged(prefs, null);
+		// register for later changes
+		prefs.registerOnSharedPreferenceChangeListener(this);
 
 		// Set up all data adapters
 		mPidAdapter = new ObdItemAdapter(this, R.layout.obd_item, ObdProt.PidPvs);
@@ -377,8 +402,6 @@ public class MainActivity extends ListActivity
 		mDfcAdapter = new DfcItemAdapter(this, R.layout.obd_item, ObdProt.tCodes);
 		currDataAdapter = mPidAdapter;
 
-		// load csv files for protocol extensions
-		loadPreferredExtensions();
 		// create file helper instance
 		fileHelper = new FileHelper(this, CommService.elm);
 		// set listeners for data structure changes
@@ -386,10 +409,6 @@ public class MainActivity extends ListActivity
 		// automate elm status display
 		CommService.elm.addPropertyChangeListener(this);
 
-		// set default comm medium
-		CommService.medium =
-			CommService.MEDIUM.values()[
-				Integer.valueOf(prefs.getString( SettingsActivity.KEY_COMM_MEDIUM, "0"))];
 		// override comm medium with USB connect intent
 		if("android.hardware.usb.action.USB_DEVICE_ATTACHED".equals(getIntent().getAction()))
 		{
@@ -480,14 +499,17 @@ public class MainActivity extends ListActivity
 		int checkedItemsCount = getListView().getCheckedItemCount();
 		// dimension array
 		selectedPositions = new int[checkedItemsCount];
-		int j=0;
-		// loop through findings
-		for (int i = 0; i < checkedItems.size(); i++)
+		if(checkedItemsCount > 0)
 		{
-			// Item position in adapter
-			if(checkedItems.valueAt(i))
+			int j=0;
+			// loop through findings
+			for (int i = 0; i < checkedItems.size(); i++)
 			{
-				selectedPositions[j++] = checkedItems.keyAt(i);
+				// Item position in adapter
+				if(checkedItems.valueAt(i))
+				{
+					selectedPositions[j++] = checkedItems.keyAt(i);
+				}
 			}
 		}
 		return selectedPositions;
@@ -732,29 +754,7 @@ public class MainActivity extends ListActivity
 
 			case REQUEST_SETTINGS:
 			{
-				// log levels
-				setLogLevels();
-
-				// set preferred protocol
-				ElmProt.setPreferredProtocol(
-					Integer.valueOf(prefs.getString(SettingsActivity.KEY_PROT_SELECT, "0"))
-				);
-
-				// ... measurement system
-				setConversionSystem(
-					Integer.valueOf(prefs.getString(MEASURE_SYSTEM,
-					                                String.valueOf(EcuDataItem.SYSTEM_METRIC))
-					)
-				);
-
-				// keep main display on?
-				if(prefs.getBoolean("keep_screen_on", false))
-				{
-					getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-				}
-
-				// update from protocol extensions
-				loadPreferredExtensions();
+				onSharedPreferenceChanged(prefs, null);
 			}
 			break;
 		}

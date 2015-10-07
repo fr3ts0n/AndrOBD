@@ -28,7 +28,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +35,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.TwoLineListItem;
 
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
@@ -112,7 +112,7 @@ public final class UsbDeviceListActivity extends Activity
 				final UsbSerialDriver driver = port.getDriver();
 				final UsbDevice device = driver.getDevice();
 
-				final String title = String.format("Vendor:%04x Product:%04x",
+				final String title = String.format("USB: 0x%04x/0x%04x",
 				                                   device.getVendorId(),
 				                                   device.getProductId());
 				final String subtitle = driver.getClass().getSimpleName();
@@ -171,12 +171,10 @@ public final class UsbDeviceListActivity extends Activity
 			protected List<UsbSerialPort> doInBackground(Void... params)
 			{
 				Log.d(TAG, "Refreshing device list ...");
-				SystemClock.sleep(1000);
-
 				final List<UsbSerialDriver> drivers =
 					UsbSerialProber.getDefaultProber().findAllDrivers(mUsbManager);
-
 				final List<UsbSerialPort> result = new ArrayList<>();
+
 				for (final UsbSerialDriver driver : drivers)
 				{
 					final List<UsbSerialPort> ports = driver.getPorts();
@@ -194,6 +192,8 @@ public final class UsbDeviceListActivity extends Activity
 			{
 				mEntries.clear();
 				mEntries.addAll(result);
+				TextView numFound = (TextView) findViewById(R.id.num_found);
+				numFound.setText(getString(R.string.devices_found, result.size()));
 				mAdapter.notifyDataSetChanged();
 				Log.d(TAG, "Done refreshing, " + mEntries.size() + " entries found.");
 			}

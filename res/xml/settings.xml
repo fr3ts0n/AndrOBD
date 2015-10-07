@@ -65,6 +65,13 @@
                 android:title="@string/select_protocol"
                 />
 
+            <EditTextPreference
+                android:defaultValue="12"
+                android:key="elm_min_timeout"
+                android:numeric="integer"
+                android:title="@string/min_elm_timeout"
+                android:icon="@android:drawable/ic_menu_edit"/>
+
         </PreferenceScreen>
     </PreferenceCategory>
 

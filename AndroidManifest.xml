@@ -44,8 +44,8 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/select_device"
             android:textColor="#ecad14"
-            android:theme="@android:style/Theme.Holo.Dialog" >
-        </activity>
+            android:theme="@android:style/Theme.Holo.Dialog"
+            />
         <activity
             android:name=".BtDeviceListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

@@ -33,8 +33,6 @@ import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.util.SerialInputOutputManager;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * USB device communication service
@@ -44,7 +42,6 @@ public class UsbCommService extends CommService
 {
 	private static UsbSerialPort sPort = null;
 	private SerialInputOutputManager mSerialIoManager;
-	private final ExecutorService mExecutor = Executors.newSingleThreadExecutor();
 
 	private final SerialInputOutputManager.Listener mListener =
 		new SerialInputOutputManager.Listener()
@@ -54,7 +51,8 @@ public class UsbCommService extends CommService
 			@Override
 			public void onRunError(Exception e)
 			{
-				// do nothing
+				log.error("onRunError: ", e);
+				connectionLost();
 			}
 
 			@Override
@@ -67,6 +65,8 @@ public class UsbCommService extends CommService
 					switch (chr)
 					{
 						// ignore special characters
+						case 0:	case 1:	case 2: case 3: case 4:
+						case 5:	case 6: case 7: case 8: case 9:
 						case 32:
 							break;
 
@@ -129,10 +129,13 @@ public class UsbCommService extends CommService
 				sPort.open(connection);
 				sPort.setDTR(true);
 				sPort.setParameters(38400, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
-				// Send the name of the connected device back to the UI Activity
-				log.info("Starting io manager ..");
-				mExecutor.submit(mSerialIoManager);
 
+				log.info("Starting io manager ..");
+				Thread runner = new Thread(mSerialIoManager);
+				runner.setPriority(Thread.MAX_PRIORITY);
+				runner.start();
+
+				// Send the name of the connected device back to the UI Activity
 				Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DEVICE_NAME);
 				Bundle bundle = new Bundle();
 				bundle.putString(MainActivity.DEVICE_NAME, sPort.toString());
@@ -140,14 +143,6 @@ public class UsbCommService extends CommService
 				mHandler.sendMessage(msg);
 
 				setState(STATE.CONNECTED);
-				try
-				{
-					Thread.sleep(1000,0);
-				}
-				catch (InterruptedException e)
-				{
-					e.printStackTrace();
-				}
 				// send RESET to Elm adapter
 				elm.sendCommand(ElmProt.CMD.RESET, 0);
 			}
@@ -190,7 +185,15 @@ public class UsbCommService extends CommService
 	{
 		log.trace("RX: " +
 			          ProtUtils.hexDumpBuffer(new String(out).toCharArray()));
-		mSerialIoManager.writeAsync(out);
+		try
+		{
+			mSerialIoManager.writeAsync(out);
+		}
+		catch(Exception ex)
+		{
+			log.error("TX error", ex);
+			connectionLost();
+		}
 	}
 
 	@Override
