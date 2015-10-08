@@ -181,6 +181,7 @@ public class BtCommService extends CommService
 	public synchronized void stop()
 	{
 		log.debug("stop");
+		elm.removeTelegramWriter(ser);
 
 		if (mBtConnectThread != null)
 		{
@@ -194,7 +195,7 @@ public class BtCommService extends CommService
 			mBtWorkerThread = null;
 		}
 
-		setState(STATE.NONE);
+		setState(STATE.OFFLINE);
 	}
 
 	/**

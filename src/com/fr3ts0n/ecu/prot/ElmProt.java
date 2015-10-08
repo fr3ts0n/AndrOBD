@@ -502,9 +502,16 @@ public class ElmProt
 						{
 							switch (service)
 							{
+								case OBD_SVC_VEH_INFO:
+									// if all pid's have been read once ...
+									if(pidsWrapped)
+									{
+										// ... terminate service loop
+										break;
+									}
+									// no break here ...
 								case OBD_SVC_DATA:
 								case OBD_SVC_FREEZEFRAME:
-								case OBD_SVC_VEH_INFO:
 								{
 									// otherwise the next PID will be requested
 									writeTelegram(emptyBuffer, service, getNextSupportedPid());
@@ -539,8 +546,17 @@ public class ElmProt
 				int idx = bufferStr.indexOf(':');
 				if (idx >= 0)
 				{
-					// concat response without line counter
-					lastRxMsg += bufferStr.substring(idx + 1);
+					if(buffer[0] == '0')
+					{
+						// first line of a multiline message
+						lastRxMsg = bufferStr.substring(idx + 1);
+					}
+					else
+					{
+						// continuation lines
+						// concat response without line counter
+						lastRxMsg += bufferStr.substring(idx + 1);
+					}
 				} else
 				{
 					// otherwise use this as last received message
@@ -659,7 +675,7 @@ public class ElmProt
 							if (pid == 0)
 							{
 								// simulate "ALL pids supported"
-								handleTelegram("490044000000".toCharArray());
+								handleTelegram("490054000000".toCharArray());
 							}
 
 							// send VIN "1234567890ABCDEFG"
@@ -667,6 +683,12 @@ public class ElmProt
 							handleTelegram("1:4902313233".toCharArray());
 							handleTelegram("2:34353637383930".toCharArray());
 							handleTelegram("3:41424344454647".toCharArray());
+
+							// send CAL-ID "GSPA..." without length id
+							handleTelegram("0:490401475350".toCharArray());
+              handleTelegram("1:412D3132333435".toCharArray());
+							handleTelegram("2:36373839303000".toCharArray());
+
 							// CAL-ID 01234567
 							handleTelegram("490601234567".toCharArray());
 							break;

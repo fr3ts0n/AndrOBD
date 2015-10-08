@@ -62,6 +62,7 @@ public class ObdProt extends ProtoHeader
 
   // current supported PID
   static int currSupportedPid = 0;
+  static boolean pidsWrapped = false;
 
   // content of last sent message
   protected static String lastTxMsg = "";
@@ -315,6 +316,7 @@ public class ObdProt extends ProtoHeader
   synchronized protected void markSupportedPids(int start, long bitmask, PvList pvList)
   {
     currSupportedPid = 0;
+
     // loop through bits and mark corresponding PIDs as supported
     for(int i=0; i<0x1F; i++)
     {
@@ -376,6 +378,7 @@ public class ObdProt extends ProtoHeader
       result = pidsToCheck.get(currSupportedPid);
       currSupportedPid++;
       currSupportedPid %= (pidsToCheck.size());
+      pidsWrapped = (currSupportedPid==0);
     }
     return(result);
   }
@@ -597,6 +600,7 @@ public class ObdProt extends ProtoHeader
   public void setService(int obdService, boolean clearLists)
   {
     this.service = obdService;
+    pidsWrapped = false;
     // if lists shall be cleared
     if(clearLists)
     {

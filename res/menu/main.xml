@@ -86,11 +86,11 @@
                 android:id="@+id/service_codes"
                 android:title="@string/obd_codes"/>
             <item
-                android:id="@+id/service_permacodes"
-                android:title="@string/obd_permanentcodes"/>
-            <item
                 android:id="@+id/service_pendingcodes"
                 android:title="@string/obd_pendingcodes"/>
+            <item
+                android:id="@+id/service_permacodes"
+                android:title="@string/obd_permanentcodes"/>
             <item
                 android:id="@+id/service_clearcodes"
                 android:title="@string/obd_clearcodes"/>

@@ -149,9 +149,8 @@ public class EcuDataItem
 			}
 		} catch(Exception ex)
 		{
-			result = String.format("%s:%s", ProtUtils.hexDumpBuffer(buffer), ex.getMessage());
-			log.warn(String.format("%s: %s", toString(), result));
-			enabled = false;
+			result = "n/a";
+			log.warn(String.format("%s: %s - [%s]", toString(), ex.getMessage(), ProtUtils.hexDumpBuffer(buffer)));
 		}
 		return (result);
 	}
