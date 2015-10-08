@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_androbd" default="compile.module.androbd">
+  <dirname property="module.androbd.basedir" file="${ant.file.module_androbd}"/>
+  
+  <property name="module.jdk.home.androbd" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.androbd" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.androbd" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.androbd" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="androbd.output.dir" value="${module.androbd.basedir}/../bin/production/AndrOBD"/>
+  <property name="androbd.testoutput.dir" value="${module.androbd.basedir}/../bin/test/AndrOBD"/>
+  
+  <path id="androbd.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="androbd.module.production.classpath">
+    <fileset dir="${basedir}/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="${module.jdk.classpath.androbd}"/>
+  </path>
+  
+  <path id="androbd.runtime.production.module.classpath">
+    <pathelement location="${androbd.output.dir}"/>
+    <fileset dir="${basedir}/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="androbd.module.classpath">
+    <pathelement location="${androbd.output.dir}"/>
+    <fileset dir="${basedir}/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="${module.jdk.classpath.androbd}"/>
+  </path>
+  
+  <path id="androbd.runtime.module.classpath">
+    <pathelement location="${androbd.testoutput.dir}"/>
+    <pathelement location="${androbd.output.dir}"/>
+    <fileset dir="${basedir}/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.androbd">
+    <patternset refid="ignored.files"/>
+    <exclude name="com/fr3ts0n/ecu/gui/application/**"/>
+    <exclude name="com/fr3ts0n/pvs/gui/**"/>
+    <exclude name="com/fr3ts0n/prot/gui/**"/>
+    <exclude name="com/fr3ts0n/common/**"/>
+    <exclude name="com/fr3ts0n/common/res/**"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.androbd">
+    <patternset refid="compiler.excluded"/>
+    <patternset refid="excluded.from.module.androbd"/>
+  </patternset>
+  
+  <path id="androbd.module.sourcepath">
+    <dirset dir="${module.androbd.basedir}/../../AndrOBD">
+      <include name="src"/>
+      <include name="gen"/>
+      <include name="res"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.androbd" depends="compile.module.androbd.production,compile.module.androbd.tests" description="Compile module AndrOBD"/>
+  
+  <target name="compile.module.androbd.production" depends="register.custom.compilers" description="Compile module AndrOBD; production classes">
+    <mkdir dir="${androbd.output.dir}"/>
+    <javac2 destdir="${androbd.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.androbd}/javac">
+      <compilerarg line="${compiler.args.androbd}"/>
+      <bootclasspath refid="androbd.module.bootclasspath"/>
+      <classpath refid="androbd.module.production.classpath"/>
+      <src refid="androbd.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.androbd"/>
+    </javac2>
+    
+    <copy todir="${androbd.output.dir}">
+      <fileset dir="${module.androbd.basedir}/../src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.androbd"/>
+      </fileset>
+      <fileset dir="${module.androbd.basedir}/../gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.androbd"/>
+      </fileset>
+      <fileset dir="${module.androbd.basedir}/../res">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+        <patternset refid="excluded.from.compilation.androbd"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.androbd.tests" depends="register.custom.compilers,compile.module.androbd.production" description="compile module AndrOBD; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.androbd" description="cleanup module">
+    <delete dir="${androbd.output.dir}"/>
+    <delete dir="${androbd.testoutput.dir}"/>
+  </target>
+</project>
