@@ -26,7 +26,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.fr3ts0n.ecu.prot.ElmProt;
 import com.fr3ts0n.prot.ProtUtils;
 import com.fr3ts0n.prot.TelegramWriter;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
@@ -107,6 +106,7 @@ public class UsbCommService extends CommService
 	@Override
 	public void connect(Object device, boolean secure)
 	{
+		setState(STATE.CONNECTING);
 		setDevice((UsbSerialPort)device);
 		start();
 	}
@@ -143,8 +143,6 @@ public class UsbCommService extends CommService
 				mHandler.sendMessage(msg);
 
 				setState(STATE.CONNECTED);
-				// send RESET to Elm adapter
-				elm.sendCommand(ElmProt.CMD.RESET, 0);
 			}
 			catch (IOException e)
 			{
@@ -166,6 +164,9 @@ public class UsbCommService extends CommService
 	@Override
 	public void stop()
 	{
+		// remove this as valid telegram writer for elm protocol
+		elm.removeTelegramWriter(this);
+
 		if (mSerialIoManager != null)
 		{
 			log.info( "Stopping io manager ..");

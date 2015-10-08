@@ -38,7 +38,7 @@ public abstract class CommService
 	{
 		BLUETOOTH,
 		USB
-	};
+	}
 	/** media type selection */
 	public static MEDIUM medium = MEDIUM.BLUETOOTH;
 
@@ -54,7 +54,6 @@ public abstract class CommService
 
 	// Debugging
 	protected static final String TAG = "CommService";
-	protected static final boolean D = true;
 
 	public static final Logger log = Logger.getLogger(TAG);
 
@@ -150,12 +149,13 @@ public abstract class CommService
 	 */
 	protected void connectionFailed()
 	{
+		stop();
 		// set new state offline
 		setState(STATE.OFFLINE);
 		// Send a failure message back to the Activity
 		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_TOAST);
 		Bundle bundle = new Bundle();
-		bundle.putString(MainActivity.TOAST, "Unable to connect device");
+		bundle.putString(MainActivity.TOAST, mContext.getString(R.string.unabletoconnect));
 		msg.setData(bundle);
 		mHandler.sendMessage(msg);
 	}
@@ -165,12 +165,13 @@ public abstract class CommService
 	 */
 	protected void connectionLost()
 	{
+		stop();
 		// set new state offline
 		setState(STATE.OFFLINE);
 		// Send a failure message back to the Activity
 		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_TOAST);
 		Bundle bundle = new Bundle();
-		bundle.putString(MainActivity.TOAST, "Device connection was lost");
+		bundle.putString(MainActivity.TOAST, mContext.getString(R.string.connectionlost));
 		msg.setData(bundle);
 		mHandler.sendMessage(msg);
 	}

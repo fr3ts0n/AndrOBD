@@ -418,7 +418,6 @@ public class MainActivity extends ListActivity
 		switch(CommService.medium)
 		{
 			case BLUETOOTH:
-				mCommService = new BtCommService(this, mHandler);
 				// Get local Bluetooth adapter
 				mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 				Log.d(TAG, "Adapter: " + mBluetoothAdapter);
@@ -436,7 +435,6 @@ public class MainActivity extends ListActivity
 				break;
 
 			case USB:
-				mCommService = new UsbCommService(this, mHandler);
 				setMode(MODE.ONLINE);
 				break;
 		}
@@ -705,6 +703,7 @@ public class MainActivity extends ListActivity
 				// When BtDeviceListActivity returns with a device to connect
 				if (resultCode == Activity.RESULT_OK)
 				{
+					mCommService = new BtCommService(this, mHandler);
 					connectBtDevice(data, false);
 				}
 				else
@@ -717,6 +716,7 @@ public class MainActivity extends ListActivity
 				// DeviceListActivity returns with a device to connect
 				if (resultCode == Activity.RESULT_OK)
 				{
+					mCommService = new UsbCommService(this, mHandler);
 					mCommService.connect(UsbDeviceListActivity.selectedPort, true);
 				}
 				else
@@ -882,7 +882,7 @@ public class MainActivity extends ListActivity
 		// stop demo service if it was started
 		setMode(MODE.OFFLINE);
 
-		mCommService.stop();
+		if(mCommService != null) mCommService.stop();
 
 		// if bluetooth adapter was switched OFF before ...
 		if (mBluetoothAdapter != null && !initialBtStateEnabled)
@@ -1122,6 +1122,7 @@ public class MainActivity extends ListActivity
 	private void onConnect()
 	{
 		stopDemoService();
+
 		mode = MODE.ONLINE;
 		// handle further initialisations
 		setMenuItemEnable(R.id.secure_connect_scan, false);
@@ -1129,6 +1130,8 @@ public class MainActivity extends ListActivity
 		setMenuItemEnable(R.id.graph_actions, false);
 		// display connection status
 		setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
+		// send RESET to Elm adapter
+		CommService.elm.sendCommand(ElmProt.CMD.RESET, 0);
 	}
 
 	/**
@@ -1204,9 +1207,9 @@ public class MainActivity extends ListActivity
 					public void onClick(DialogInterface dialog, int which)
 					{
 						// set service CLEAR_CODES to clear the codes
-						mCommService.elm.setService(ObdProt.OBD_SVC_CLEAR_CODES);
+						CommService.elm.setService(ObdProt.OBD_SVC_CLEAR_CODES);
 						// set service READ_CODES to re-read the codes
-						mCommService.elm.setService(ObdProt.OBD_SVC_READ_CODES);
+						CommService.elm.setService(ObdProt.OBD_SVC_READ_CODES);
 					}
 				})
 			.setNegativeButton(android.R.string.no, null)

@@ -134,5 +134,8 @@ period of time while the ECU recalibrates itself.
 
     <string name="refreshing">scanning …</string>
     <string name="devices_found">%s USB device(s) found</string>
-    <string name="min_elm_timeout">Minimum ELM timeout</string>
+    <string name="min_elm_timeout">Min. ELM timeout [ms]</string>
+    <string name="unabletoconnect">Unable to connect device</string>
+    <string name="connectionlost">Device connection was lost</string>
+    <string name="elm_timeout_descr">Minimum timeout in [ms] to wait for ELM responses</string>
 </resources>

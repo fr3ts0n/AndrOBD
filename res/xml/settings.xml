@@ -70,6 +70,7 @@
                 android:key="elm_min_timeout"
                 android:numeric="integer"
                 android:title="@string/min_elm_timeout"
+                android:summary="@string/elm_timeout_descr"
                 android:icon="@android:drawable/ic_menu_edit"/>
 
         </PreferenceScreen>

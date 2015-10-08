@@ -96,4 +96,8 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="select_fault_code">Wähle Fehlercode …</string>
     <string name="devices_found">%s USB Gerät(e) gefunden</string>
     <string name="select_medium">Adapter-Typ …</string>
+    <string name="connectionlost">Verbindung beendet</string>
+    <string name="min_elm_timeout">Min. ELM Timeout [ms]</string>
+    <string name="unabletoconnect">Verbindung nicht möglich</string>
+    <string name="elm_timeout_descr">Minimaler Timeout [ms] für ELM Antworten</string>
 </resources>

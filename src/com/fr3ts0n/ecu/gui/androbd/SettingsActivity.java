@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
@@ -242,8 +243,14 @@ public class SettingsActivity
 
 			if (pref instanceof ListPreference)
 			{
-				ListPreference listPref = (ListPreference) pref;
-				pref.setSummary(listPref.getEntry());
+				ListPreference currPref = (ListPreference) pref;
+				currPref.setSummary(currPref.getEntry());
+			}
+			else
+			if (pref instanceof EditTextPreference)
+			{
+				EditTextPreference currPref = (EditTextPreference) pref;
+				currPref.setSummary(currPref.getText());
 			}
 		}
 	}

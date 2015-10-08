@@ -27,7 +27,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.fr3ts0n.ecu.prot.ElmProt;
 import com.fr3ts0n.prot.StreamHandler;
 
 import java.io.IOException;
@@ -339,8 +338,6 @@ public class BtCommService extends CommService
 		public void run()
 		{
 			log.info("BEGIN mBtWorkerThread");
-			// send RESET to Elm adapter
-			elm.sendCommand(ElmProt.CMD.RESET, 0);
 			try
 			{
 				// run the communication thread
