@@ -521,7 +521,7 @@ public class MainActivity extends ListActivity
 		if(filtered)
 		{
 			PvList filteredList = new PvList();
-			HashSet<Integer> selPids = new HashSet<>();
+			HashSet<Integer> selPids = new HashSet<Integer>();
 			for(int pos : getSelectedPositions())
 			{
 				EcuDataPv pv = (EcuDataPv)mPidAdapter.getItem(pos);

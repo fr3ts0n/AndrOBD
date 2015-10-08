@@ -79,7 +79,7 @@ public final class UsbDeviceListActivity extends Activity
 
 	};
 
-	private List<UsbSerialPort> mEntries = new ArrayList<>();
+	private List<UsbSerialPort> mEntries = new ArrayList<UsbSerialPort>();
 	private ArrayAdapter<UsbSerialPort> mAdapter;
 
 	@Override
@@ -173,7 +173,7 @@ public final class UsbDeviceListActivity extends Activity
 				Log.d(TAG, "Refreshing device list ...");
 				final List<UsbSerialDriver> drivers =
 					UsbSerialProber.getDefaultProber().findAllDrivers(mUsbManager);
-				final List<UsbSerialPort> result = new ArrayList<>();
+				final List<UsbSerialPort> result = new ArrayList<UsbSerialPort>();
 
 				for (final UsbSerialDriver driver : drivers)
 				{

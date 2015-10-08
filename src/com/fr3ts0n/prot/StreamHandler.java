@@ -25,7 +25,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Iterator;
 import java.util.Vector;
 
 
@@ -179,7 +178,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 	{
 		if (listenerList == null)
 		{
-			listenerList = new Vector<>();
+			listenerList = new Vector<PropertyChangeListener>();
 		}
 		listenerList.add(listener);
 	}
