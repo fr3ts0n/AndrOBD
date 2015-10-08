@@ -38,7 +38,6 @@
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="usbSerial" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -50,5 +49,6 @@
       </library>
     </orderEntry>
     <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
+    <orderEntry type="module" module-name="usbSerial" />
   </component>
 </module>
