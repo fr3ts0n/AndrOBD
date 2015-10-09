@@ -349,6 +349,9 @@ public class ElmProt
 	/**
 	 * Implementation of TelegramListener
 	 */
+
+	/** multiline response is pending, for responses w/o a length info */
+	private boolean responsePending = false;
 	/**
 	 * handle incoming protocol telegram
 	 *
@@ -489,6 +492,12 @@ public class ElmProt
 					case MODEL:
 					case OK:
 					default:
+						// if there is a pending data response, handle it now ...
+						if(responsePending)
+						{
+							result = handleDataMessage(lastRxMsg);
+						}
+
 						// queued commands will be sent first
 						if (cmdQueue.size() > 0)
 						{
@@ -546,6 +555,10 @@ public class ElmProt
 				int idx = bufferStr.indexOf(':');
 				if (idx >= 0)
 				{
+					/* no length known, set marker for pending response
+					   response will be finished on reception of prompt */
+					responsePending = (charsExpected == 0);
+
 					if(buffer[0] == '0')
 					{
 						// first line of a multiline message
@@ -562,6 +575,7 @@ public class ElmProt
 					// otherwise use this as last received message
 					lastRxMsg = bufferStr;
 					charsExpected = 0;
+					responsePending = false;
 				}
 
 				// if we haven't received complete result yet, then wait for the rest
@@ -570,23 +584,40 @@ public class ElmProt
 					return (result);
 				}
 
-				// otherwise process response
-				switch (service)
+				// if response is finished, handle it
+				if(!responsePending)
 				{
-					case OBD_SVC_NONE:
-						// ignore messages
-						break;
-
-					case OBD_SVC_CAN_MONITOR:
-						result = canProt.handleTelegram(lastRxMsg.toCharArray());
-						break;
-
-					default:
-						// Let the OBD protocol handle the telegram
-						result = super.handleTelegram(lastRxMsg.toCharArray());
+					result = handleDataMessage(lastRxMsg);
 				}
 		}
 		return (result);
+	}
+
+	/**
+	 * forward data message for further handling
+	 * @param lastRxMsg received message to be forwarded
+	 * @return number of bytes processed
+	 */
+	private int handleDataMessage(String lastRxMsg)
+	{
+		int result = 0;
+
+		// otherwise process response
+		switch (service)
+		{
+			case OBD_SVC_NONE:
+				// ignore messages
+				break;
+
+			case OBD_SVC_CAN_MONITOR:
+				result = canProt.handleTelegram(lastRxMsg.toCharArray());
+				break;
+
+			default:
+				// Let the OBD protocol handle the telegram
+				result = super.handleTelegram(lastRxMsg.toCharArray());
+		}
+		return result;
 	}
 
 	// switch to exit the demo thread
