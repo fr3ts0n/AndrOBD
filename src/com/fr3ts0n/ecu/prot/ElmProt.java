@@ -370,7 +370,7 @@ public class ElmProt
 	 * @return number of listeners notified
 	 */
 	@Override
-	public int handleTelegram(char[] buffer)
+	public synchronized int handleTelegram(char[] buffer)
 	{
 		int result = 0;
 		String bufferStr = new String(buffer);
@@ -665,7 +665,7 @@ public class ElmProt
 							handleTelegram("1:C002242A246E02".toCharArray());
 							handleTelegram("2:36010101162453".toCharArray());
 							// number of codes = 12 + MIL ON
-							// handleTelegram("41018C000000".toCharArray());
+							handleTelegram("41018C000000".toCharArray());
 							break;
 
 						case OBD_SVC_PENDINGCODES:
@@ -676,7 +676,7 @@ public class ElmProt
 							handleTelegram("4709023601010116".toCharArray());
 							handleTelegram("4709245300000000".toCharArray());
 							// number of codes = 12 + MIL OFF
-							// handleTelegram("41010C000000".toCharArray());
+							handleTelegram("41010C000000".toCharArray());
 							break;
 
 						case OBD_SVC_PERMACODES:
@@ -687,7 +687,7 @@ public class ElmProt
 							handleTelegram("1:C002242A246E02".toCharArray());
 							handleTelegram("2:36010101162453".toCharArray());
 							// number of codes = 12 + MIL ON
-							// handleTelegram("41018C000000".toCharArray());
+							handleTelegram("41018C000000".toCharArray());
 							break;
 
 						// otherwise send data ...
@@ -777,9 +777,6 @@ public class ElmProt
 					sendCommand(CMD.CANMONITOR, 0);
 					break;
 
-				case OBD_SVC_NONE:
-					queueCommand(CMD.LOWPOWER,0);
-					// intentionally no break here
 				default:
 					super.setService(service, clearLists);
 			}

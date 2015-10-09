@@ -881,6 +881,9 @@ public class MainActivity extends ListActivity
 	@Override
 	protected void onDestroy()
 	{
+		// Reduce ELM power consumption
+		CommService.elm.goToSleep();
+
 		// stop demo service if it was started
 		setMode(MODE.OFFLINE);
 

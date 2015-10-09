@@ -64,16 +64,16 @@ public class ObdProt extends ProtoHeader
   static int currSupportedPid = 0;
   static boolean pidsWrapped = false;
 
-  // content of last sent message
+  /** content of last sent message */
   protected static String lastTxMsg = "";
-  // content of last received message
+  /** content of last received message */
   protected static String lastRxMsg = "";
-  /**
-   * Holds value of property service.
-   */
+  /** Holds value of property service. */
   protected int service = OBD_SVC_NONE;
+  /** service of last incoming message */
+  protected int msgService = OBD_SVC_NONE;
 
-  // List of PIDs supported by the vehicle
+  /** List of PIDs supported by the vehicle */
   static Vector<Integer> pidSupported = new Vector<Integer>();
 
   public static final int ID_OBD_SVC          = 0;
@@ -171,7 +171,7 @@ public class ObdProt extends ProtoHeader
    */
   public int[][] getTelegramParams()
   {
-    return(getTelegramParams(service));
+    return(getTelegramParams(msgService));
   }
 
   /**
@@ -271,7 +271,7 @@ public class ObdProt extends ProtoHeader
    * prepare process variables for each PID
    * @param pvList list of process vars
    */
-  public void preparePidPvs(PvList pvList)
+  public void preparePidPvs(int obdService, PvList pvList)
   {
     // reset fixed PIDs
     resetFixedPid();
@@ -279,7 +279,7 @@ public class ObdProt extends ProtoHeader
     HashMap<String,EcuDataPv> newList = new HashMap<String,EcuDataPv>();
     for(Integer currPid : pidSupported)
     {
-      Vector<EcuDataItem> items = dataItems.getPidDataItems(service,currPid);
+      Vector<EcuDataItem> items = dataItems.getPidDataItems(obdService, currPid);
       // if no items defined, create dummy item
 	    if(items == null)
       {
@@ -291,10 +291,10 @@ public class ObdProt extends ProtoHeader
                                                "0x%X", null, null,
                                                String.format("PID %02X",currPid)
                                              );
-	      dataItems.appendItemToService(service, newItem);
+	      dataItems.appendItemToService(obdService, newItem);
 
 	      // re-load data items for this PID
-	      items = dataItems.getPidDataItems(service,currPid);
+	      items = dataItems.getPidDataItems(obdService, currPid);
       }
 	    // loop through all items found ...
 	    for(EcuDataItem pidPv : items)
@@ -313,7 +313,7 @@ public class ObdProt extends ProtoHeader
    * @param start Start PID (multiple of 0x20) to process bitmask for
    * @param bitmask 32-Bit bitmask which indicates support for the next 32 PIDs
    */
-  synchronized protected void markSupportedPids(int start, long bitmask, PvList pvList)
+  synchronized protected void markSupportedPids(int obdService, int start, long bitmask, PvList pvList)
   {
     currSupportedPid = 0;
 
@@ -329,10 +329,10 @@ public class ObdProt extends ProtoHeader
     // if next block may be requested
     if((bitmask & 1) != 0)
       // request next block
-      cmdQueue.add(String.format("%02X%02X", this.service,start+0x20));
+      cmdQueue.add(String.format("%02X%02X", obdService, start+0x20));
     else
       // setup PID PVs
-      preparePidPvs(pvList);
+      preparePidPvs(obdService, pvList);
   }
 
   /** Holds value of property numCodes. */
@@ -390,24 +390,18 @@ public class ObdProt extends ProtoHeader
  */
   @Override
   @SuppressWarnings("fallthrough")
-  public int handleTelegram(char[] buffer)
+  public synchronized int handleTelegram(char[] buffer)
   {
     int result = 0;
-    int msgSvc = 0;
-    int oldObdSvc = 0;
     int msgPid;
 
     if(checkTelegram(buffer))
     {
       try
       {
-        msgSvc = (Integer) getParamValue(ID_OBD_SVC, buffer) & ~0x40;
-        // remember last set OBD service
-        oldObdSvc = service;
-        // set OBD service to service of RX telegram
-        service = msgSvc;
+        msgService = (Integer) getParamValue(ID_OBD_SVC, buffer) & ~0x40;
         // check service of message
-        switch(msgSvc)
+        switch(msgService)
         {
           // OBD Data frame
           case OBD_SVC_FREEZEFRAME:
@@ -424,7 +418,7 @@ public class ObdProt extends ProtoHeader
               case 0xC0:
               case 0xE0:
 	              long msgPayload = Long.valueOf(new String(getPayLoad(buffer)), 16);
-                markSupportedPids(msgPid, msgPayload, PidPvs);
+                markSupportedPids(msgService, msgPid, msgPayload, PidPvs);
                 break;
 
               // OBD number of fault codes
@@ -433,7 +427,7 @@ public class ObdProt extends ProtoHeader
                 setNumCodes(Long.valueOf(msgPayload).intValue());
                 // no break here ...
               default:
-                dataItems.updateDataItems( msgSvc,
+                dataItems.updateDataItems(msgService,
                                            msgPid,
                                            hexToBytes(String.valueOf(getPayLoad(buffer))));
                 break;
@@ -454,11 +448,11 @@ public class ObdProt extends ProtoHeader
               case 0xC0:
               case 0xE0:
 	              long msgPayload = Long.valueOf(new String(getPayLoad(buffer)), 16);
-                markSupportedPids(msgPid, msgPayload, VidPvs);
+                markSupportedPids(msgService, msgPid, msgPayload, VidPvs);
                 break;
 
               default:
-                dataItems.updateDataItems( msgSvc,
+                dataItems.updateDataItems(msgService,
                                            msgPid,
                                            hexToBytes(String.valueOf(getPayLoad(buffer))));
                 break;
@@ -507,7 +501,7 @@ public class ObdProt extends ProtoHeader
             break;
 
           default:
-            log.warn("Service not (yet) supported: "+msgSvc);
+            log.warn("Service not (yet) supported: "+ msgService);
         }
       }
       catch(NumberFormatException e)
@@ -515,8 +509,6 @@ public class ObdProt extends ProtoHeader
         log.warn("'"+buffer.toString()+"':"+e.getMessage());
       }
     }
-    // restore last OBD service
-    service = oldObdSvc;
     return(result);
   }
 
