@@ -177,6 +177,7 @@ public class ElmProt
 	{
 		UNDEFINED     ( "Undefined"     ),
 		INITIALIZING  ( "Initializing"  ),
+		INITIALIZED   ( "Initialized"   ),
 		CONNECTING    ( "Connecting"    ),
 		CONNECTED     ( "Connected"     ),
 		NODATA        ( "No data"       ),
@@ -206,7 +207,9 @@ public class ElmProt
 	public enum CMD
 	{
 		RESET(        "Z"   , 0), ///< reset adapter
+		DEFAULTS(     "D"   , 0), ///< set all to defaults
 		INFO(         "I"   , 0), ///< request adapter info
+		LOWPOWER(     "LP"  , 0), ///< switch to low power mode
 		ECHO(         "E"   , 1), ///< enable/disable echo
 		SETLINEFEED(  "L"   , 1), ///< enable/disable line feeds
 		SETSPACES(    "S"   , 1), ///< enable/disable spaces
@@ -344,6 +347,14 @@ public class ElmProt
 		}
 		// return ID
 		return (result);
+	}
+
+	/**
+	 * send ELM adapter to sleep mode
+	 */
+	public void goToSleep()
+	{
+		sendCommand(CMD.LOWPOWER, 0);
 	}
 
 	/**
@@ -511,6 +522,10 @@ public class ElmProt
 						{
 							switch (service)
 							{
+								case OBD_SVC_NONE:
+									setStatus(STAT.INITIALIZED);
+									break;
+
 								case OBD_SVC_VEH_INFO:
 									// if all pid's have been read once ...
 									if(pidsWrapped)
@@ -762,6 +777,9 @@ public class ElmProt
 					sendCommand(CMD.CANMONITOR, 0);
 					break;
 
+				case OBD_SVC_NONE:
+					queueCommand(CMD.LOWPOWER,0);
+					// intentionally no break here
 				default:
 					super.setService(service, clearLists);
 			}
