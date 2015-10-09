@@ -8,7 +8,7 @@
         android:title="@string/action_connect"/>
     <item
         android:id="@+id/graph_actions"
-        android:icon="@drawable/ic_action_graph"
+        android:icon="@android:drawable/ic_menu_gallery"
         android:menuCategory="container"
         android:showAsAction="always"
         android:title="@string/graph_actions">
@@ -18,27 +18,27 @@
                 android:menuCategory="container" >
                 <item
                     android:id="@+id/chart_selected"
-                    android:icon="@drawable/ic_action_graph"
+                    android:icon="@android:drawable/ic_menu_gallery"
                     android:showAsAction="ifRoom"
                     android:title="@string/chart"/>
                 <item
                     android:id="@+id/dashboard_selected"
-                    android:icon="@drawable/ic_action_dashboard"
+                    android:icon="@android:drawable/ic_menu_gallery"
                     android:showAsAction="ifRoom"
                     android:title="@string/dashboard"/>
                 <item
                     android:id="@+id/hud_selected"
-                    android:icon="@drawable/ic_action_dashboard"
+                    android:icon="@android:drawable/ic_menu_gallery"
                     android:showAsAction="ifRoom"
                     android:title="@string/hud"/>
                 <item
                     android:id="@+id/filter_selected"
-                    android:icon="@mipmap/ic_ok"
+                    android:icon="@android:drawable/ic_menu_add"
                     android:showAsAction="never"
                     android:title="@string/filter"/>
                 <item
                     android:id="@+id/unfilter_selected"
-                    android:icon="@mipmap/ic_nok"
+                    android:icon="@android:drawable/ic_menu_delete"
                     android:showAsAction="never"
                     android:title="@string/unfilter"
                     android:enabled="false"/>
@@ -47,23 +47,23 @@
     </item>
     <item
         android:id="@+id/save"
-        android:icon="@drawable/ic_action_save"
+        android:icon="@android:drawable/ic_menu_save"
         android:showAsAction="ifRoom"
         android:title="@string/save"/>
     <item
         android:id="@+id/load"
-        android:icon="@drawable/ic_action_load"
+        android:icon="@android:drawable/ic_menu_search"
         android:showAsAction="ifRoom"
         android:title="@string/load"/>
     <item
         android:id="@+id/settings"
-        android:icon="@drawable/ic_action_settings"
+        android:icon="@android:drawable/ic_menu_manage"
         android:showAsAction="ifRoom"
         android:title="@string/settings" />
 
     <item
         android:id="@+id/obd_services"
-        android:icon="@drawable/ic_action_obd_service"
+        android:icon="@android:drawable/ic_menu_more"
         android:menuCategory="container"
         android:showAsAction="always"
         android:title="@string/obd_services">
