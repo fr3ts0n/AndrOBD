@@ -3,3 +3,4 @@ gen/*
 /doc
 *~
 local.properties
+.idea/workspace.xml
