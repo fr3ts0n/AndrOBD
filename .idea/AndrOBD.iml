@@ -49,6 +49,5 @@
       </library>
     </orderEntry>
     <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
-    <orderEntry type="module" module-name="usbSerial" />
   </component>
 </module>
