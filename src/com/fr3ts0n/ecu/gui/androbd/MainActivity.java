@@ -203,6 +203,8 @@ public class MainActivity extends ListActivity
 			{
 				case OFFLINE:
 					setMenuItemEnable(R.id.secure_connect_scan, true);
+					setMenuItemEnable(R.id.obd_services, false);
+					setMenuItemEnable(R.id.graph_actions, false);
 					break;
 
 				case ONLINE:
@@ -1140,13 +1142,6 @@ public class MainActivity extends ListActivity
 	private void onDisconnect()
 	{
 		// handle further initialisations
-		setMenuItemEnable(R.id.secure_connect_scan,
-		                  mBluetoothAdapter != null
-			                  && mBluetoothAdapter.isEnabled());
-		setMenuItemEnable(R.id.obd_services, false);
-		setMenuItemEnable(R.id.graph_actions, false);
-		// display connection status
-		setStatus(R.string.title_not_connected);
 		setMode(MODE.OFFLINE);
 	}
 
