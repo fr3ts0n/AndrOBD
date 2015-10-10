@@ -3,10 +3,10 @@
         android:id="@+id/snapshot"
         android:title="@string/snapshot"
         android:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_snapshot"/>
+        android:icon="@android:drawable/ic_menu_camera"/>
     <item
         android:id="@+id/share"
         android:title="@string/share"
         android:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_share"/>
+        android:icon="@android:drawable/ic_menu_share"/>
 </menu>

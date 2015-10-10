@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:prompt="@string/select_fault_code"
         android:spinnerMode="dialog"
-        android:theme="@android:style/Theme.Black"
-        android:visibility="gone"/>
+        android:visibility="visible"
+        />
 
     <ListView
         android:id="@android:id/list"
