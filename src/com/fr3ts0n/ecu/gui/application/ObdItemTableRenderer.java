@@ -31,15 +31,14 @@ import com.fr3ts0n.ecu.Conversion;
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataPv;
 
-
 /**
  * Renderer for EcuDataPv Elements
  *
  * @author erwin
  */
 public class ObdItemTableRenderer
-	extends JLabel
-	implements TableCellRenderer
+		extends JLabel
+		implements TableCellRenderer
 {
 
 	private static final long serialVersionUID = -1067775643797324582L;
@@ -48,7 +47,6 @@ public class ObdItemTableRenderer
 	Color bgColor = null;
 	Color selColor = null;
 	JTable parentTable = null;
-
 
 	/** Creates a new instance of ObdItemTableRenderer */
 	public ObdItemTableRenderer()
@@ -60,7 +58,8 @@ public class ObdItemTableRenderer
 	/**
 	 * set visualisation parameters referring to given table
 	 *
-	 * @param table - the table object to refer to ...
+	 * @param table
+	 *          - the table object to refer to ...
 	 */
 	private void setParentTable(JTable table)
 	{
@@ -76,16 +75,17 @@ public class ObdItemTableRenderer
 	}
 
 	public Component getTableCellRendererComponent(JTable table,
-	                                               Object value,
-	                                               boolean isSelected,
-	                                               boolean hasFocus,
-	                                               int row,
-	                                               int column)
+			Object value,
+			boolean isSelected,
+			boolean hasFocus,
+			int row,
+			int column)
 	{
 		String fmtText = null;
 
 		// if we don't know the parent table yet, set visual parameters
-		if (parentTable == null) setParentTable(table);
+		if (parentTable == null)
+			setParentTable(table);
 
 		// background is dependent on selection status
 		setBackground(isSelected ? selColor : bgColor);
@@ -113,23 +113,32 @@ public class ObdItemTableRenderer
 							break;
 
 						case EcuDataPv.FID_VALUE:
+						case EcuDataPv.FID_UNITS:
 							setHorizontalAlignment(RIGHT);
-								EcuDataPv currPv=(EcuDataPv)value;
-								Object cnvObj = currPv.get(EcuDataPv.FID_CNVID);
-								if ( cnvObj != null
-									   && cnvObj instanceof Conversion[]
-										 && ((Conversion[])cnvObj)[EcuDataItem.cnvSystem] != null
-									 )
+							EcuDataPv currPv = (EcuDataPv) value;
+							Object cnvObj = currPv.get(EcuDataPv.FID_CNVID);
+							if (cnvObj != null
+									&& cnvObj instanceof Conversion[]
+									&& ((Conversion[]) cnvObj)[EcuDataItem.cnvSystem] != null)
+							{
+								Conversion cnv;
+								cnv = ((Conversion[]) cnvObj)[EcuDataItem.cnvSystem];
+								if (column == EcuDataPv.FID_VALUE)
 								{
-									Conversion cnv;
-									cnv = ((Conversion[])cnvObj)[EcuDataItem.cnvSystem];
-									// set formatted text
-									fmtText = cnv.physToPhysFmtString((Number)colVal,
-											(String)currPv.get(EcuDataPv.FID_FORMAT));
-								} else
-								{
-									fmtText = String.valueOf(colVal);
+									// formated data
+									fmtText = cnv.physToPhysFmtString((Number) colVal,
+											(String) currPv.get(EcuDataPv.FID_FORMAT));
 								}
+								else
+								{
+									// formated units
+									fmtText = cnv.getUnits();
+								}
+							}
+							else
+							{
+								fmtText = String.valueOf(colVal);
+							}
 							break;
 
 						default:

@@ -34,7 +34,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-import com.fr3ts0n.ecu.Conversions;
+import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.prot.ElmProt;
 import com.fr3ts0n.ecu.prot.ObdProt;
@@ -457,11 +457,7 @@ public class ObdTestFrame extends javax.swing.JFrame
 	private void cbCnvSystemItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_cbCnvSystemItemStateChanged
 	{//GEN-HEADEREND:event_cbCnvSystemItemStateChanged
 		// set new conversion system
-		Conversions.cnvSystem = cbCnvSystem.getSelectedIndex();
-
-		// update process variables
-		prt.preparePidPvs(ElmProt.PidPvs);
-		ElmProt.canProt.preparePidPvs(true);
+		EcuDataItem.cnvSystem = cbCnvSystem.getSelectedIndex();
 
 		// update currently selected display
 		switch (tabMain.getSelectedIndex())

@@ -75,9 +75,6 @@ public class ObdItemTableModel
 	 */
 	public synchronized void updateAllRows(int columnId)
 	{
-		for (int rowId = 0; rowId < keys.length; rowId++)
-		{
-			fireTableCellUpdated(rowId, columnId);
-		}
+		fireTableRowsUpdated(0, getRowCount());
 	}
 }
