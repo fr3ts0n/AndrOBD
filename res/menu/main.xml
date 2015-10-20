@@ -7,6 +7,11 @@
         android:showAsAction="always"
         android:title="@string/action_connect"/>
     <item
+        android:id="@+id/day_night_mode"
+        android:icon="@android:drawable/ic_menu_view"
+        android:showAsAction="ifRoom"
+        android:title="@string/day_night_mode"/>
+    <item
         android:id="@+id/graph_actions"
         android:icon="@android:drawable/ic_menu_gallery"
         android:menuCategory="container"

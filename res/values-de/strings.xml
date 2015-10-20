@@ -100,4 +100,7 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="min_elm_timeout">Min. ELM Timeout [ms]</string>
     <string name="unabletoconnect">Verbindung nicht möglich</string>
     <string name="elm_timeout_descr">Minimaler Timeout [ms] für ELM Antworten</string>
+    <string name="day_night_mode">Tag/Nacht Ansicht</string>
+    <string name="night_mode">Nachmodus</string>
+    <string name="night_mode_description">Ansicht mit dunklem Hintergrund</string>
 </resources>

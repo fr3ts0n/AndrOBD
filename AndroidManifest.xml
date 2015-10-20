@@ -57,18 +57,19 @@
             android:name="ChartActivity"
             android:configChanges="touchscreen|orientation|screenSize"
             android:label="@string/chart"
-            android:theme="@android:style/Theme.Holo"
+            android:theme="@style/AppTheme.Dark"
             />
         <activity
             android:name="DashBoardActivity"
             android:configChanges="touchscreen|orientation|screenSize"
             android:label="@string/dashboard"
-            android:theme="@android:style/Theme.Holo"
+            android:theme="@style/AppTheme.Dark"
             />
         <activity
             android:name="SettingsActivity"
             android:configChanges="touchscreen|orientation|screenSize"
             android:label="@string/settings"
+            android:theme="@style/AppTheme.Dark"
             />
     </application>
 

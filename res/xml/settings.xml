@@ -13,6 +13,13 @@
             android:title="@string/keep_screen_on"
             />
 
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="night_mode"
+            android:summary="@string/night_mode_description"
+            android:title="@string/night_mode"
+            />
+
         <ListPreference
             android:defaultValue="0"
             android:dialogTitle="@string/measure_system"

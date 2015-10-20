@@ -9,13 +9,12 @@
 
     <ImageView
         android:id="@+id/imageView1"
-        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:alpha="1"
         android:contentDescription="@string/logo"
-        android:src="@drawable/sunfire"/>
+        android:src="@drawable/sunfire"
+        android:background="#20FFFFFF"/>
 
     <LinearLayout
         android:orientation="vertical"
