@@ -20,6 +20,7 @@ package com.fr3ts0n.ecu.gui.androbd;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 	private static int resourceId;
 	private transient int minWidth;
 	private transient int minHeight;
+	private DisplayMetrics mDisplayMetrics;
 
 	/** format for numeric labels */
 	protected static final NumberFormat labelFormat = new DecimalFormat("0;-#");
@@ -64,7 +66,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		TextView tvDescr;
 	}
 
-	public ObdGaugeAdapter(Context context, int resource, int minWidth, int minHeight)
+	public ObdGaugeAdapter(Context context, int resource, int minWidth, int minHeight, DisplayMetrics metrics)
 	{
 		super(context, resource);
 		mInflater = (LayoutInflater) context
@@ -72,6 +74,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		resourceId = resource;
 		this.minWidth = minWidth;
 		this.minHeight = minHeight;
+		mDisplayMetrics = metrics;
 	}
 
 	/* (non-Javadoc)
@@ -151,14 +154,14 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			if (maxValue == null) maxValue = 255f;
 
 			DialRenderer renderer = new DialRenderer();
-			renderer.setScale(1.2f);
+			renderer.setScale(1.25f);
 
 			// dial background
 			renderer.setPanEnabled(false);
 			renderer.setShowLegend(false);
 			renderer.setShowLabels(true);
 
-			renderer.setLabelsTextSize(16);
+			renderer.setLabelsTextSize(mDisplayMetrics.densityDpi / 10);
 			renderer.setLabelsColor(Color.WHITE);
 			renderer.setShowLabels(true);
 
@@ -167,9 +170,8 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			renderer.setMinValue(minValue.doubleValue());
 			renderer.setMaxValue(maxValue.doubleValue());
 
-			// renderer.setChartTitleTextSize(24);
 			renderer.setChartTitle(currPv.getUnits());
-			renderer.setChartTitleTextSize(18);
+			renderer.setChartTitleTextSize(mDisplayMetrics.densityDpi/10);
 
 			SimpleSeriesRenderer r = new SimpleSeriesRenderer();
 			r.setColor(ChartActivity.getColor(pid));
@@ -188,6 +190,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			chartView = new DialChart(category, renderer);
 			currPv.setRenderingComponent(chartView);
 		}
+		convertView.setBackgroundColor(ChartActivity.getColor(pid) & 0x08FFFFFF);
 
 		// set new values for display
 		holder.tvDescr.setTextColor(ChartActivity.getColor(pid));

@@ -55,7 +55,7 @@ public class DashBoardActivity extends Activity
 	/**
 	 * Minimum size for gauges to be displayed
 	 */
-	public static final int MIN_GAUGE_SIZE = 300; /* dp */
+	public static int MIN_GAUGE_SIZE = 300; /* dp */
 
 	/**
 	 * the wake lock to keep app communication alive
@@ -70,6 +70,8 @@ public class DashBoardActivity extends Activity
 	public static final int MESSAGE_UPDATE_VIEW = 7;
 
 	private static ListAdapter mAdapter = null;
+	/** display metrics */
+	private static DisplayMetrics metrics = new DisplayMetrics();
 
 	/** record positions to be charted */
 	private transient int[] positions;
@@ -79,6 +81,14 @@ public class DashBoardActivity extends Activity
 	{
 		return mAdapter;
 	}
+
+	// screen distribution matrix
+	private static final int[][] rowCols=
+	{
+		{1,1},{1,1},{2,1},{2,2},{2,2},{3,2},{3,2},{4,2},{4,2},{3,3},
+		{4,3},{4,3},{4,3},{4,4},{4,4},{4,4},{4,4},{5,4},{5,4},{5,4},{5,4}
+	};
+
 
 	/**
 	 * Set list adapter as data source of display
@@ -129,6 +139,7 @@ public class DashBoardActivity extends Activity
 		super.onCreate(savedInstanceState);
 		// set to full screen
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 		// keep main display on?
 		if(MainActivity.prefs.getBoolean("keep_screen_on", false))
 		{
@@ -175,23 +186,37 @@ public class DashBoardActivity extends Activity
 		int resId = getIntent().getIntExtra(RES_ID, R.layout.dashboard);
 		setContentView(resId);
 
-		DisplayMetrics metrics = new DisplayMetrics();
+		// calculate minimum gauge size (1.6 inch) based on screen density
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		MIN_GAUGE_SIZE = Math.min( metrics.densityDpi * 16 / 10,
+		                           Math.min(metrics.widthPixels, metrics.heightPixels));
+
 		int height = metrics.heightPixels;
 		int width = metrics.widthPixels;
-		int numColumns = Math.min(positions.length, Math.max(1, width / MIN_GAUGE_SIZE));
-		int numRows = Math.min(positions.length, Math.max(1, height / MIN_GAUGE_SIZE));
+		int numColumns = Math.max(1, Math.min(positions.length, width / MIN_GAUGE_SIZE));
+		int numRows = Math.max(1, Math.min(positions.length, height / MIN_GAUGE_SIZE));
 
+		// distribute gauges on screen
+		if(positions.length < numColumns*numRows)
+		{
+			// read for corresponding number of gauges & orientation
+			numColumns = rowCols[positions.length][(width>height)?0:1];
+			numRows    = rowCols[positions.length][(width>height)?1:0];
+		}
+		// calc max gauge size
 		int minWidth = width / numColumns;
 		int minHeight = height / numRows;
 
 		/* get grid object */
 		grid = (GridView) findViewById(android.R.id.list);
-		grid.setColumnWidth(minWidth);
 		grid.setNumColumns(numColumns);
 
 		// set data adapter
-		adapter = new ObdGaugeAdapter(this, R.layout.obd_gauge, minWidth, minHeight);
+		adapter = new ObdGaugeAdapter( this,
+		                               R.layout.obd_gauge,
+		                               minWidth,
+		                               minHeight,
+		                               metrics);
 
 		pidNumbers.clear();
 		for (int position : positions)
