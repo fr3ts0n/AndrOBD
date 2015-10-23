@@ -114,7 +114,6 @@ public class ObdItemTableRenderer
 
 						case EcuDataPv.FID_VALUE:
 						case EcuDataPv.FID_UNITS:
-							setHorizontalAlignment(RIGHT);
 							EcuDataPv currPv = (EcuDataPv) value;
 							Object cnvObj = currPv.get(EcuDataPv.FID_CNVID);
 							if (cnvObj != null
@@ -125,12 +124,14 @@ public class ObdItemTableRenderer
 								cnv = ((Conversion[]) cnvObj)[EcuDataItem.cnvSystem];
 								if (column == EcuDataPv.FID_VALUE)
 								{
+									setHorizontalAlignment(RIGHT);
 									// formated data
 									fmtText = cnv.physToPhysFmtString((Number) colVal,
 											(String) currPv.get(EcuDataPv.FID_FORMAT));
 								}
 								else
 								{
+									setHorizontalAlignment(LEFT);
 									// formated units
 									fmtText = cnv.getUnits();
 								}
