@@ -142,7 +142,7 @@ public class SettingsActivity
 			MultiSelectListPreference pref =
 				(MultiSelectListPreference) findPreference(ELM_CMD_DISABLE);
 			ElmProt.CMD[] values = ElmProt.CMD.values();
-			HashSet<String> selections = new HashSet<>();
+			HashSet<String> selections = new HashSet<String>();
 			CharSequence[] titles = new CharSequence[values.length];
 			CharSequence[] keys = new CharSequence[values.length];
 			int i = 0;
@@ -193,7 +193,7 @@ public class SettingsActivity
 
 			// collect data items for selection
 			items = ObdProt.dataItems.getSvcDataItems(ObdProt.OBD_SVC_DATA);
-			HashSet<String> selections = new HashSet<>();
+			HashSet<String> selections = new HashSet<String>();
 			CharSequence[] titles = new CharSequence[items.size()];
 			CharSequence[] keys = new CharSequence[items.size()];
 			// loop through data items
