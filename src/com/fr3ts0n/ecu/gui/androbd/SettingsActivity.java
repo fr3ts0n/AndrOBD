@@ -280,13 +280,6 @@ public class SettingsActivity
 				EditTextPreference currPref = (EditTextPreference) pref;
 				currPref.setSummary(currPref.getText());
 			}
-
-			if(MainActivity.ELM_ADAPTIVE_TIMING.equals(key))
-			{
-				// enable/disable ELM timeout setting based on adaptive timing
-				findPreference(ELM_MIN_TIMEOUT).setEnabled(
-					sharedPreferences.getBoolean(key, true));
-			}
 		}
 	}
 }

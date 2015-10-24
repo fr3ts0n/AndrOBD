@@ -82,21 +82,12 @@
 
             <EditTextPreference
                 android:defaultValue="12"
+                android:dependency="elm_adaptive_timing"
                 android:icon="@android:drawable/ic_menu_edit"
                 android:key="elm_min_timeout"
                 android:numeric="integer"
                 android:summary="@string/elm_timeout_descr"
-                android:title="@string/min_elm_timeout"/>
-
-            <MultiSelectListPreference
-                android:defaultValue="@array/empty"
-                android:dialogTitle="@string/disable_elm_cmds"
-                android:entries="@array/empty"
-                android:entryValues="@array/empty"
-                android:icon="@android:drawable/ic_menu_manage"
-                android:key="elm_cmd_disable"
-                android:summary="@string/disable_elm_cmds_descr"
-                android:title="@string/disable_elm_cmds"
+                android:title="@string/min_elm_timeout"
                 />
 
         </PreferenceScreen>
@@ -158,6 +149,22 @@
                         android:mimeType="*/*"
                         />
                 </Preference>
+            </PreferenceCategory>
+
+            <PreferenceCategory
+                android:title="@string/obd_options">
+
+                <MultiSelectListPreference
+                    android:defaultValue="@array/empty"
+                    android:dialogTitle="@string/disable_elm_cmds"
+                    android:entries="@array/empty"
+                    android:entryValues="@array/empty"
+                    android:icon="@android:drawable/ic_dialog_alert"
+                    android:key="elm_cmd_disable"
+                    android:summary="@string/disable_elm_cmds_descr"
+                    android:title="@string/disable_elm_cmds"
+                    />
+
             </PreferenceCategory>
 
         </PreferenceScreen>

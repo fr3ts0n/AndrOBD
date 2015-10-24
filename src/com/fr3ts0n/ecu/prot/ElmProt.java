@@ -152,31 +152,33 @@ public class ElmProt
 	 */
 	public enum CMD
 	{
-		RESET(        "Z"   , 0), ///< reset adapter
-		DEFAULTS(     "D"   , 0), ///< set all to defaults
-		INFO(         "I"   , 0), ///< request adapter info
-		LOWPOWER(     "LP"  , 0), ///< switch to low power mode
-		ECHO(         "E"   , 1), ///< enable/disable echo
-		SETLINEFEED(  "L"   , 1), ///< enable/disable line feeds
-		SETSPACES(    "S"   , 1), ///< enable/disable spaces
-		SETHEADER(    "H"   , 1), ///< enable/disable header response
-		GETPROT(      "DP"  , 0), ///< get protocol
-		SETPROT(      "SP"  , 1), ///< set protocol
-		CANMONITOR(   "MA"  , 0), ///< monitor CAN messages
-		SETPROTAUTO(  "SPA" , 1), ///< set protocol auto
-		SETTIMEOUT(   "ST"  , 2), ///< set timeout (x*4ms)
-		SETCANTXHDR(  "SH"  , 3), ///< set TX header
-		SETCANRXFLT(  "CRA" , 3); ///< set CAN RX filter
+		RESET(        "Z"   , 0, false), ///< reset adapter
+		DEFAULTS(     "D"   , 0, false), ///< set all to defaults
+		INFO(         "I"   , 0, true ), ///< request adapter info
+		LOWPOWER(     "LP"  , 0, true ), ///< switch to low power mode
+		ECHO(         "E"   , 1, false), ///< enable/disable echo
+		SETLINEFEED(  "L"   , 1, true ), ///< enable/disable line feeds
+		SETSPACES(    "S"   , 1, true ), ///< enable/disable spaces
+		SETHEADER(    "H"   , 1, false), ///< enable/disable header response
+		GETPROT(      "DP"  , 0, true ), ///< get protocol
+		SETPROT(      "SP"  , 1, true ), ///< set protocol
+		CANMONITOR(   "MA"  , 0, true ), ///< monitor CAN messages
+		SETPROTAUTO(  "SPA" , 1, true ), ///< set protocol auto
+		SETTIMEOUT(   "ST"  , 2, true ), ///< set timeout (x*4ms)
+		SETCANTXHDR(  "SH"  , 3, true ), ///< set TX header
+		SETCANRXFLT(  "CRA" , 3, true ); ///< set CAN RX filter
 
 		protected static final String CMD_HEADER = "AT";
 		private String command;
 		protected int paramDigits;
+		private boolean disablingAllowed;
 		private boolean enabled = true;
 
-		CMD(String cmd, int numDigitsParameter)
+		CMD(String cmd, int numDigitsParameter, boolean allowAdaption)
 		{
 			command = cmd;
 			paramDigits = numDigitsParameter;
+			disablingAllowed = allowAdaption;
 		}
 
 		@Override
@@ -192,7 +194,18 @@ public class ElmProt
 
 		public void setEnabled(boolean enabled)
 		{
-			this.enabled = enabled;
+			if(disablingAllowed)
+			{
+				log.info(String.format("ELM command '%s' -> %s",
+				                       toString(),
+				                       enabled ? "enabled" : "disabled"));
+				this.enabled = enabled;
+			}
+		}
+
+		public boolean isDisablingAllowed()
+		{
+			return disablingAllowed;
 		}
 	}
 
