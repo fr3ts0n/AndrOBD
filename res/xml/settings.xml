@@ -72,13 +72,32 @@
                 android:title="@string/select_protocol"
                 />
 
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:key="elm_adaptive_timing"
+                android:summary="@string/elm_adaptive_timing_descr"
+                android:title="@string/elm_adaptive_timing"
+                />
+
             <EditTextPreference
                 android:defaultValue="12"
+                android:icon="@android:drawable/ic_menu_edit"
                 android:key="elm_min_timeout"
                 android:numeric="integer"
-                android:title="@string/min_elm_timeout"
                 android:summary="@string/elm_timeout_descr"
-                android:icon="@android:drawable/ic_menu_edit"/>
+                android:title="@string/min_elm_timeout"/>
+
+            <MultiSelectListPreference
+                android:defaultValue="@array/empty"
+                android:dialogTitle="@string/disable_elm_cmds"
+                android:entries="@array/empty"
+                android:entryValues="@array/empty"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:key="elm_cmd_disable"
+                android:summary="@string/disable_elm_cmds_descr"
+                android:title="@string/disable_elm_cmds"
+                />
 
         </PreferenceScreen>
     </PreferenceCategory>

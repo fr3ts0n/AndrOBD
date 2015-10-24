@@ -59,6 +59,7 @@ public class SettingsActivity
 	static final String KEY_PROT_SELECT = "protocol";
 	static final String KEY_COMM_MEDIUM = "comm_medium";
 	static final String ELM_MIN_TIMEOUT = "elm_min_timeout";
+	static final String ELM_CMD_DISABLE = "elm_cmd_disable";
 
 	/*
 	 * (non-Javadoc)
@@ -100,6 +101,8 @@ public class SettingsActivity
 			setupCommMediaSelection();
 			// set up protocol selection
 			setupProtoSelection();
+			// set up ELM command selection
+			setupElmCmdSelection();
 			// set up selectable PID list
 			setupPidSelection();
 
@@ -129,6 +132,31 @@ public class SettingsActivity
 			pref.setDefaultValue(titles[0]);
 			// show current selection
 			pref.setSummary(pref.getEntry());
+		}
+
+		/**
+		 * set up protocol selection
+		 */
+		void setupElmCmdSelection()
+		{
+			MultiSelectListPreference pref =
+				(MultiSelectListPreference) findPreference(ELM_CMD_DISABLE);
+			ElmProt.CMD[] values = ElmProt.CMD.values();
+			HashSet<String> selections = new HashSet<>();
+			CharSequence[] titles = new CharSequence[values.length];
+			CharSequence[] keys = new CharSequence[values.length];
+			int i = 0;
+			for (ElmProt.CMD cmd : values)
+			{
+				titles[i] = cmd.toString();
+				keys[i] = cmd.toString();
+				if(!cmd.isEnabled()) selections.add(cmd.toString());
+				i++;
+			}
+			// set enries and keys
+			pref.setEntries(titles);
+			pref.setEntryValues(keys);
+			pref.setValues(selections);
 		}
 
 		/**
@@ -165,7 +193,7 @@ public class SettingsActivity
 
 			// collect data items for selection
 			items = ObdProt.dataItems.getSvcDataItems(ObdProt.OBD_SVC_DATA);
-			HashSet<String> selections = new HashSet<String>();
+			HashSet<String> selections = new HashSet<>();
 			CharSequence[] titles = new CharSequence[items.size()];
 			CharSequence[] keys = new CharSequence[items.size()];
 			// loop through data items
@@ -251,6 +279,13 @@ public class SettingsActivity
 			{
 				EditTextPreference currPref = (EditTextPreference) pref;
 				currPref.setSummary(currPref.getText());
+			}
+
+			if(MainActivity.ELM_ADAPTIVE_TIMING.equals(key))
+			{
+				// enable/disable ELM timeout setting based on adaptive timing
+				findPreference(ELM_MIN_TIMEOUT).setEnabled(
+					sharedPreferences.getBoolean(key, true));
 			}
 		}
 	}

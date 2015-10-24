@@ -141,4 +141,10 @@ period of time while the ECU recalibrates itself.
     <string name="day_night_mode">Day/Night view mode</string>
     <string name="night_mode_description">Set display to dark background</string>
     <string name="night_mode">Night mode</string>
+    <string name="disable_elm_cmds">Disabled ELM commands</string>
+    <string name="disable_elm_cmds_descr">enable/disable ELM commands</string>
+    <string name="elm_adaptive_timing">ELM adaptive timing</string>
+    <string name="disabled">disabled</string>
+    <string name="enabled">enabled</string>
+    <string name="elm_adaptive_timing_descr">Allow adaptive timing handling in ELM drivers?</string>
 </resources>

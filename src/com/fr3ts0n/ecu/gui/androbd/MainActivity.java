@@ -80,12 +80,13 @@ public class MainActivity extends ListActivity
 	SharedPreferences.OnSharedPreferenceChangeListener
 {
 	/**
-	 * Key names received from the BluetoothChatService Handler
+	 * Key names for preferences
 	 */
 	public static final String DEVICE_NAME = "device_name";
 	public static final String TOAST = "toast";
 	public static final String MEASURE_SYSTEM = "measure_system";
 	public static final String NIGHT_MODE = "night_mode";
+	public static final String ELM_ADAPTIVE_TIMING = "elm_adaptive_timing";
 
 	/**
 	 * Message types sent from the BluetoothChatService Handler
@@ -444,16 +445,21 @@ public class MainActivity extends ListActivity
 				CommService.MEDIUM.values()[
 					Integer.valueOf(prefs.getString(SettingsActivity.KEY_COMM_MEDIUM, "0"))];
 
+		// enable/disable ELM adaptive timing
+		if(key==null || ELM_ADAPTIVE_TIMING.equals(key))
+			CommService.elm.mAdaptiveTiming.setEnabled(prefs.getBoolean(ELM_ADAPTIVE_TIMING, true));
+
 		// ELM timeout
 		if(key==null || SettingsActivity.ELM_MIN_TIMEOUT.equals(key))
-			ElmProt.setElmTimeoutMin(Integer.valueOf(
-				prefs.getString(SettingsActivity.ELM_MIN_TIMEOUT,
-				                String.valueOf(ElmProt.getElmTimeoutMin()))));
+			CommService.elm.mAdaptiveTiming.setElmTimeoutMin(
+				Integer.valueOf(prefs.getString(SettingsActivity.ELM_MIN_TIMEOUT,
+				                                String.valueOf(CommService.elm.mAdaptiveTiming.getElmTimeoutMin()))));
 
 		// ... measurement system
 		if(key==null || MEASURE_SYSTEM.equals(key))
 			setConversionSystem(Integer.valueOf(
-				prefs.getString(MEASURE_SYSTEM, String.valueOf(EcuDataItem.SYSTEM_METRIC)))
+				                    prefs.getString(MEASURE_SYSTEM,
+				                                    String.valueOf(EcuDataItem.SYSTEM_METRIC)))
 			);
 
 		// ... preferred protocol
@@ -468,6 +474,12 @@ public class MainActivity extends ListActivity
 		// update from protocol extensions
 		if(key==null || key.startsWith("ext_file-"))
 			loadPreferredExtensions();
+
+		// set disabled ELM commands
+		if(key==null || SettingsActivity.ELM_CMD_DISABLE.equals(key))
+		{
+			ElmProt.disableCommands(prefs.getStringSet(SettingsActivity.ELM_CMD_DISABLE, null));
+		}
 	}
 
 	/**
