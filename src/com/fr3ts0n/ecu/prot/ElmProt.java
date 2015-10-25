@@ -278,7 +278,7 @@ public class ElmProt
 			if(!enabled) return;
 			// since device just restarted, assume device timeout
 			// to be set to default value ...
-			elmMsgTimeout = ELM_TIMEOUT_MAX;
+			elmMsgTimeout = ELM_TIMEOUT_DEFAULT;
 			// ... reset learned minimum timeout ...
 			setElmTimeoutLrnLow(getElmTimeoutMin());
 			// set default timeout
@@ -835,7 +835,7 @@ public class ElmProt
 
 							// send CAL-ID "GSPA..." without length id
 							handleTelegram("0:490401475350".toCharArray());
-              handleTelegram("1:412D3132333435".toCharArray());
+                            handleTelegram("1:412D3132333435".toCharArray());
 							handleTelegram("2:36373839303000".toCharArray());
 
 							// CAL-ID 01234567
