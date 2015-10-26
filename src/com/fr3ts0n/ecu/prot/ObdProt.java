@@ -60,6 +60,9 @@ public class ObdProt extends ProtoHeader
   public static final int OBD_SVC_VEH_INFO    = 0x09;
   public static final int OBD_SVC_PERMACODES  = 0x0A;
 
+  /** property name "number of codes" */
+  public static final String PROP_NUM_CODES   = "numCodes";
+
   // current supported PID
   static int currSupportedPid = 0;
   static boolean pidsWrapped = false;
@@ -537,11 +540,14 @@ public class ObdProt extends ProtoHeader
    * Setter for property numCodes.
    * @param numCodes New value of property numCodes.
    */
-  public void setNumCodes(int numCodes)
+  protected void setNumCodes(int numCodes)
   {
     int old = this.numCodes;
     this.numCodes = numCodes;
-    firePropertyChange(new PropertyChangeEvent(this,"numCodes",Integer.valueOf(old),Integer.valueOf(numCodes)));
+    firePropertyChange(new PropertyChangeEvent(this,
+                                               PROP_NUM_CODES,
+                                               Integer.valueOf(old),
+                                               Integer.valueOf(numCodes)));
   }
 
   /**

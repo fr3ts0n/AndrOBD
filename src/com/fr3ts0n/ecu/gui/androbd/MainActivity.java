@@ -67,6 +67,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Vector;
 
 import de.mindpipe.android.logging.log4j.LogConfigurator;
 
@@ -100,6 +101,7 @@ public class MainActivity extends ListActivity
 	public static final int MESSAGE_UPDATE_VIEW = 7;
 	public static final int MESSAGE_OBD_STATE_CHANGED = 8;
 	public static final int MESSAGE_OBD_NUMCODES = 9;
+	public static final int MESSAGE_OBD_ECUS = 10;
 	private static final String TAG = "AndrOBD";
 	/**
 	 * internal Intent request codes
@@ -165,8 +167,12 @@ public class MainActivity extends ListActivity
 	 * toast for showing exit message
 	 */
 	private static Toast exitToast = null;
+	/** file helper */
 	private static FileHelper fileHelper;
-	View mListView;
+	/** the local list view */
+	protected View mListView;
+
+	/** handler for freeze frame selection */
 	AdapterView.OnItemSelectedListener ff_selected = new AdapterView.OnItemSelectedListener()
 	{
 		@Override
@@ -181,6 +187,7 @@ public class MainActivity extends ListActivity
 
 		}
 	};
+
 	/**
 	 * activation of night mode
 	 */
@@ -191,6 +198,7 @@ public class MainActivity extends ListActivity
 	 * current operating mode
 	 */
 	private MODE mode = MODE.OFFLINE;
+
 	/**
 	 * Handle message requests
 	 */
@@ -199,6 +207,7 @@ public class MainActivity extends ListActivity
 		@Override
 		public void handleMessage(Message msg)
 		{
+			PropertyChangeEvent evt;
 
 			switch (msg.what)
 			{
@@ -276,19 +285,56 @@ public class MainActivity extends ListActivity
 					/* Show ELM status only in ONLINE mode */
 					if (getMode() != MODE.DEMO)
 					{
-						PropertyChangeEvent evt = (PropertyChangeEvent) msg.obj;
+						evt = (PropertyChangeEvent) msg.obj;
 						setStatus(String.valueOf(evt.getNewValue()));
 					}
 					break;
 
 				case MESSAGE_OBD_NUMCODES:
-					PropertyChangeEvent evt = (PropertyChangeEvent) msg.obj;
+					evt = (PropertyChangeEvent) msg.obj;
 					setNumCodes((Integer) evt.getNewValue());
 					break;
 
+				case MESSAGE_OBD_ECUS:
+					evt = (PropertyChangeEvent) msg.obj;
+					selectEcu((Vector<Integer>)evt.getNewValue());
+					break;
 			}
 		}
 	};
+
+	/**
+	 * Prompt for selection of a single ECU from list of available ECUs
+	 * @param ecuAdresses List of available ECUs
+	 */
+	protected void selectEcu(final Vector<Integer> ecuAdresses)
+	{
+		// if more than one ECUs available ...
+		if(ecuAdresses.size() > 1)
+		{
+			// .. allow selection of single ECU address ...
+			CharSequence[] entries = new CharSequence[ecuAdresses.size()];
+			// create list of entries
+			int i = 0;
+			for (Integer addr : ecuAdresses)
+			{
+				entries[i++] = String.format("0x%X", addr);
+			}
+			// show dialog ...
+			new AlertDialog.Builder(this)
+				.setTitle(R.string.select_ecu_addr)
+				.setItems(entries, new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(DialogInterface dialog, int which)
+					{
+						CommService.elm.setEcuAddress(ecuAdresses.get(which));
+					}
+				})
+				.show();
+		}
+	}
+
 	/**
 	 * Timer Task to cyclically update data screen
 	 */
@@ -1273,16 +1319,22 @@ public class MainActivity extends ListActivity
 	public void propertyChange(PropertyChangeEvent evt)
 	{
     /* handle protocol status changes */
-		if (evt.getPropertyName().equals("status"))
+		if (ElmProt.PROP_STATUS.equals(evt.getPropertyName()))
 		{
 			// forward property change to the UI Activity
 			Message msg = mHandler.obtainMessage(MESSAGE_OBD_STATE_CHANGED);
 			msg.obj = evt;
 			mHandler.sendMessage(msg);
-		} else if (evt.getPropertyName().equals("numCodes"))
+		} else if (ElmProt.PROP_NUM_CODES.equals(evt.getPropertyName()))
 		{
 			// forward property change to the UI Activity
 			Message msg = mHandler.obtainMessage(MESSAGE_OBD_NUMCODES);
+			msg.obj = evt;
+			mHandler.sendMessage(msg);
+		} else if (ElmProt.PROP_ECU_ADDRESS.equals(evt.getPropertyName()))
+		{
+			// forward property change to the UI Activity
+			Message msg = mHandler.obtainMessage(MESSAGE_OBD_ECUS);
 			msg.obj = evt;
 			mHandler.sendMessage(msg);
 		}

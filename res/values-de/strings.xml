@@ -109,4 +109,5 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="elm_adaptive_timing">Adaptives ELM timing</string>
     <string name="elm_adaptive_timing_descr">Erlaube adaptive Timeout-Behandlung in ELM Treiber?</string>
     <string name="enabled">erlaubt</string>
+    <string name="select_ecu_addr">Wähle SG Adresse …</string>
 </resources>

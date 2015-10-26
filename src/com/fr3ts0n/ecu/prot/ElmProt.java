@@ -23,6 +23,7 @@ import com.fr3ts0n.prot.TelegramWriter;
 
 import java.beans.PropertyChangeEvent;
 import java.util.Set;
+import java.util.Vector;
 
 
 /**
@@ -34,15 +35,29 @@ public class ElmProt
 	extends ObdProt
 	implements TelegramListener, TelegramWriter, Runnable
 {
-
+	/** virtual OBD service for CAN monitoring */
 	public static final int OBD_SVC_CAN_MONITOR = 256;
+
+	/** property name for ECU addresses */
+	public static final String PROP_ECU_ADDRESS = "ecuaddr";
+	/** property name for protocol status */
+	public static final String PROP_STATUS      = "status";
+
+	/** CAN protocol handler */
+	public static CanProtFord canProt = new CanProtFord();
+	/** Adaptive timing handler */
+	public AdaptiveTiming mAdaptiveTiming = new AdaptiveTiming();
+
 	/** number of bytes expected from opponent */
 	private int charsExpected = 0;
 	/** remember last command which was sent */
 	private char[] lastCommand;
+
 	/** preferred ELM protocol to be selected */
 	static private PROT preferredProtocol = PROT.ELM_PROT_AUTO;
 
+	/** list of identified ECU addresses */
+	private Vector<Integer> ecuAddresses = new Vector<Integer>();
 
 	/**
 	 * ELM protocol ID's
@@ -156,16 +171,16 @@ public class ElmProt
 		DEFAULTS(     "D"   , 0, false), ///< set all to defaults
 		INFO(         "I"   , 0, true ), ///< request adapter info
 		LOWPOWER(     "LP"  , 0, true ), ///< switch to low power mode
-		ECHO(         "E"   , 1, false), ///< enable/disable echo
+		ECHO(         "E"   , 1, true ), ///< enable/disable echo
 		SETLINEFEED(  "L"   , 1, true ), ///< enable/disable line feeds
 		SETSPACES(    "S"   , 1, true ), ///< enable/disable spaces
-		SETHEADER(    "H"   , 1, false), ///< enable/disable header response
+		SETHEADER(    "H"   , 1, true ), ///< enable/disable header response
 		GETPROT(      "DP"  , 0, true ), ///< get protocol
 		SETPROT(      "SP"  , 1, true ), ///< set protocol
 		CANMONITOR(   "MA"  , 0, true ), ///< monitor CAN messages
 		SETPROTAUTO(  "SPA" , 1, true ), ///< set protocol auto
 		SETTIMEOUT(   "ST"  , 2, true ), ///< set timeout (x*4ms)
-		SETCANTXHDR(  "SH"  , 3, true ), ///< set TX header
+		SETTXHDR(     "SH"  , 3, true ), ///< set TX header
 		SETCANRXFLT(  "CRA" , 3, true ); ///< set CAN RX filter
 
 		protected static final String CMD_HEADER = "AT";
@@ -349,15 +364,10 @@ public class ElmProt
 				// set the timeout variable
 				elmMsgTimeout = newTimeout;
 				// queue the new timeout message
-				queueCommand(CMD.SETTIMEOUT, newTimeout / 4);
+				pushCommand(CMD.SETTIMEOUT, newTimeout / 4);
 			}
 		}
 	}
-
-	/** CAN protocol handler */
-	public static CanProtFord canProt = new CanProtFord();
-	/** Adaptive timing handler */
-	public AdaptiveTiming mAdaptiveTiming = new AdaptiveTiming();
 
 	/**
 	 * Creates a new instance of ElmProtocol
@@ -374,6 +384,17 @@ public class ElmProt
 	{
 		preferredProtocol = PROT.values()[protoIndex];
 		log.info("Preferred protocol: "+preferredProtocol);
+	}
+
+	/**
+	 * set ECU address to be received
+	 * @param ecuAddress ECU address to be limited
+	 */
+	public void setEcuAddress(int ecuAddress)
+	{
+		log.info(String.format("Filtering ECU address to 0x%x", ecuAddress));
+		// set RX filter
+		sendCommand(CMD.SETCANRXFLT, ecuAddress);
 	}
 
 	/**
@@ -432,7 +453,7 @@ public class ElmProt
 	 * @param cmdID ID of ELM command
 	 * @param param parameter for ELM command (0 if not required)
 	 */
-	public void queueCommand(CMD cmdID, int param)
+	public void pushCommand(CMD cmdID, int param)
 	{
 		String cmd = createCommand(cmdID, param);
 		if(cmd != null)	cmdQueue.add(cmd);
@@ -475,6 +496,44 @@ public class ElmProt
 	}
 
 	/**
+	 * request addresses of all connected ECUs
+	 * (received IDs are evaluated in @ref:handleDataMessage)
+	 */
+	private void findConnectedEcus()
+	{
+		// clear all identified ECU addresses
+		ecuAddresses.clear();
+		// remember to disable headers again
+		pushCommand(CMD.SETHEADER, 0);
+		// request PIDs (from all devices)
+		cmdQueue.add("0100");
+		// enable headers
+		pushCommand(CMD.SETHEADER, 1);
+	}
+
+	private void initialize()
+	{
+		// set status to INITIALIZING
+		setStatus(STAT.INITIALIZING);
+
+		// find all connected ECUs
+		findConnectedEcus();
+
+		// set to preferred protocol
+		pushCommand(CMD.SETPROT, preferredProtocol.ordinal());
+
+		// initialize adaptive timing handler
+		mAdaptiveTiming.initialize();
+
+		// speed up protocol by removing spaces and line feeds from output
+		pushCommand(CMD.SETSPACES, 0);
+		pushCommand(CMD.SETLINEFEED, 0);
+
+		// immediate set echo off
+		pushCommand(CMD.ECHO, 0);
+	}
+
+	/**
 	 * Implementation of TelegramListener
 	 */
 
@@ -511,7 +570,7 @@ public class ElmProt
 		switch (getResponseId(bufferStr))
 		{
 			case SEARCH:
-				setStatus(STAT.CONNECTING);
+				setStatus(status != STAT.INITIALIZING ? STAT.CONNECTING : status);
 				// NO break here
 			case QMARK:
 			case NODATA:
@@ -537,16 +596,7 @@ public class ElmProt
 				break;
 
 			case MODEL:
-				setStatus(STAT.INITIALIZING);
-				// set to preferred protocol
-				queueCommand(CMD.SETPROT, preferredProtocol.ordinal());
-				// initialize adaptive timing handler
-				mAdaptiveTiming.initialize();
-				// speed up protocol by removing spaces and line feeds from output
-				queueCommand(CMD.SETSPACES, 0);
-				queueCommand(CMD.SETLINEFEED, 0);
-				// immediate set echo off
-				queueCommand(CMD.ECHO, 0);
+				initialize();
 				break;
 
 			// received a PROMPT, what was the last response?
@@ -588,14 +638,6 @@ public class ElmProt
 						sendCommand(CMD.RESET, 0);
 						break;
 
-					case SEARCH:
-						setStatus(STAT.CONNECTING);
-						break;
-
-					case STOPPED:
-						setStatus(STAT.STOPPED);
-						break;
-
 					case NODATA:
 						setStatus(STAT.NODATA);
 						// re-queue last command
@@ -604,9 +646,13 @@ public class ElmProt
 						mAdaptiveTiming.adapt(true);
 						// NO break here since reaction is only quqeued
 
+					case MODEL:
+					case SEARCH:
+					case STOPPED:
+						// was already handled before prompt
 					case QMARK:
 						// last command stays ignored
-					case MODEL:
+
 					case OK:
 					default:
 						// if there is a pending data response, handle it now ...
@@ -626,12 +672,11 @@ public class ElmProt
 							sendTelegram(cmd.toCharArray());
 						} else
 						{
+							// all queued commands are sent -> we are done initializing
+							setStatus(status==STAT.INITIALIZING ? STAT.INITIALIZED : status);
+
 							switch (service)
 							{
-								case OBD_SVC_NONE:
-									setStatus(STAT.INITIALIZED);
-									break;
-
 								case OBD_SVC_VEH_INFO:
 									// if all pid's have been read once ...
 									if(pidsWrapped)
@@ -650,6 +695,7 @@ public class ElmProt
 								}
 								break;
 
+								case OBD_SVC_NONE:
 								default:
 									// do nothing
 							}
@@ -659,7 +705,30 @@ public class ElmProt
 
 			// handle data response
 			default:
+				// if we are still initializing check for address entries
+				switch(status)
+				{
+					case INITIALIZING:
+					{
+						// start of 0100 response is end of address
+						int adrEnd = bufferStr.indexOf("41");
+						if(adrEnd > 0)
+						{
+							// odd address length -> CAN address length = 3 digits + 2 digits frame type
+							if(adrEnd % 2 != 0) adrEnd = 3;
+							// extract address
+							String address = bufferStr.substring(0,adrEnd);
+							log.info(String.format("Adding ECU address: 0x%s", address));
+							// and add to list of addresses
+							ecuAddresses.add(Integer.valueOf(address,16));
+						}
+						return lastRxMsg.length();
+					}
+				}
+
+				// we are connected ...
 				setStatus(STAT.CONNECTED);
+
 				// is this a length identifier?
 				if (buffer[0] == '0' && buffer.length == 3)
 				{
@@ -755,6 +824,12 @@ public class ElmProt
 		{
 			try
 			{
+				setStatus(STAT.INITIALIZING);
+				handleTelegram("SEARCHING...".toCharArray());
+				handleTelegram("7E8064100000000".toCharArray());
+				handleTelegram("7E9074100000000".toCharArray());
+				setStatus(STAT.INITIALIZED);
+
 				while (runDemo)
 				{
 					switch (service)
@@ -922,7 +997,13 @@ public class ElmProt
 		if (status != oldStatus)
 		{
 			log.info("Status change: " + oldStatus + "->" + status);
-			firePropertyChange(new PropertyChangeEvent(this, "status", oldStatus, status));
+			firePropertyChange(new PropertyChangeEvent(this, PROP_STATUS, oldStatus, status));
+
+			// initialisation finished -> send identified ECU addresses
+			if(status == STAT.INITIALIZED)
+			{
+				firePropertyChange(new PropertyChangeEvent(this, PROP_ECU_ADDRESS, null, ecuAddresses));
+			}
 		}
 	}
 }
