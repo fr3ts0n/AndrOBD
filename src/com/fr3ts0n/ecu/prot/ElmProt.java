@@ -23,7 +23,7 @@ import com.fr3ts0n.prot.TelegramWriter;
 
 import java.beans.PropertyChangeEvent;
 import java.util.Set;
-import java.util.Vector;
+import java.util.TreeSet;
 
 
 /**
@@ -57,7 +57,7 @@ public class ElmProt
 	static private PROT preferredProtocol = PROT.ELM_PROT_AUTO;
 
 	/** list of identified ECU addresses */
-	private Vector<Integer> ecuAddresses = new Vector<Integer>();
+	private TreeSet<Integer> ecuAddresses = new TreeSet<Integer>();
 
 	/**
 	 * ELM protocol ID's
@@ -720,7 +720,7 @@ public class ElmProt
 							String address = bufferStr.substring(0,adrEnd);
 							log.info(String.format("Adding ECU address: 0x%s", address));
 							// and add to list of addresses
-							ecuAddresses.add(Integer.valueOf(address,16));
+							ecuAddresses.add(Integer.valueOf(address, 16));
 						}
 						return lastRxMsg.length();
 					}
@@ -826,7 +826,9 @@ public class ElmProt
 			{
 				setStatus(STAT.INITIALIZING);
 				handleTelegram("SEARCHING...".toCharArray());
+				handleTelegram("7EA074100000000".toCharArray());
 				handleTelegram("7E8064100000000".toCharArray());
+				handleTelegram("7E9074100000000".toCharArray());
 				handleTelegram("7E9074100000000".toCharArray());
 				setStatus(STAT.INITIALIZED);
 

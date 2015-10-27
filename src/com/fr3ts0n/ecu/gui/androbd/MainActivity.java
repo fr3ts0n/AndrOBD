@@ -67,7 +67,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.Vector;
+import java.util.TreeSet;
 
 import de.mindpipe.android.logging.log4j.LogConfigurator;
 
@@ -297,7 +297,7 @@ public class MainActivity extends ListActivity
 
 				case MESSAGE_OBD_ECUS:
 					evt = (PropertyChangeEvent) msg.obj;
-					selectEcu((Vector<Integer>)evt.getNewValue());
+					selectEcu((TreeSet<Integer>)evt.getNewValue());
 					break;
 			}
 		}
@@ -307,13 +307,13 @@ public class MainActivity extends ListActivity
 	 * Prompt for selection of a single ECU from list of available ECUs
 	 * @param ecuAdresses List of available ECUs
 	 */
-	protected void selectEcu(final Vector<Integer> ecuAdresses)
+	protected void selectEcu(final TreeSet<Integer> ecuAdresses)
 	{
 		// if more than one ECUs available ...
 		if(ecuAdresses.size() > 1)
 		{
 			// .. allow selection of single ECU address ...
-			CharSequence[] entries = new CharSequence[ecuAdresses.size()];
+			final CharSequence[] entries = new CharSequence[ecuAdresses.size()];
 			// create list of entries
 			int i = 0;
 			for (Integer addr : ecuAdresses)
@@ -328,7 +328,8 @@ public class MainActivity extends ListActivity
 					@Override
 					public void onClick(DialogInterface dialog, int which)
 					{
-						CommService.elm.setEcuAddress(ecuAdresses.get(which));
+						CommService.elm.setEcuAddress(
+							Integer.parseInt(entries[which].toString().substring(2), 16));
 					}
 				})
 				.show();
