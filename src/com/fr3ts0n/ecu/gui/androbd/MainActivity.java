@@ -35,7 +35,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,6 +57,7 @@ import com.fr3ts0n.pvs.PvChangeListener;
 import com.fr3ts0n.pvs.PvList;
 
 import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -65,9 +65,9 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.TreeSet;
 
 import de.mindpipe.android.logging.log4j.LogConfigurator;
 
@@ -93,8 +93,8 @@ public class MainActivity extends ListActivity
 	 * Message types sent from the BluetoothChatService Handler
 	 */
 	public static final int MESSAGE_STATE_CHANGE = 1;
-	public static final int MESSAGE_READ = 2;
-	public static final int MESSAGE_WRITE = 3;
+	public static final int MESSAGE_FILE_READ = 2;
+	public static final int MESSAGE_FILE_WRITTEN = 3;
 	public static final int MESSAGE_DEVICE_NAME = 4;
 	public static final int MESSAGE_TOAST = 5;
 	public static final int MESSAGE_DATA_ITEMS_CHANGED = 6;
@@ -123,6 +123,12 @@ public class MainActivity extends ListActivity
 	private static final int DISPLAY_UPDATE_TIME = 300;
 	public static final String LOG_MASTER = "log_master";
 	public static final String KEEP_SCREEN_ON = "keep_screen_on";
+
+	public static final Logger log = Logger.getLogger(TAG);
+
+	/** dialog builder */
+	private static AlertDialog.Builder dlgBuilder;
+
 	/**
 	 * app preferences ...
 	 */
@@ -228,11 +234,11 @@ public class MainActivity extends ListActivity
 					}
 					break;
 
-				case MESSAGE_WRITE:
+				case MESSAGE_FILE_WRITTEN:
 					break;
 
 				// data has been read - finish up
-				case MESSAGE_READ:
+				case MESSAGE_FILE_READ:
 					// set listeners for data structure changes
 					setDataListeners();
 					// set adapters data source to loaded list instances
@@ -297,7 +303,7 @@ public class MainActivity extends ListActivity
 
 				case MESSAGE_OBD_ECUS:
 					evt = (PropertyChangeEvent) msg.obj;
-					selectEcu((TreeSet<Integer>)evt.getNewValue());
+					selectEcu((Set<Integer>)evt.getNewValue());
 					break;
 			}
 		}
@@ -307,7 +313,7 @@ public class MainActivity extends ListActivity
 	 * Prompt for selection of a single ECU from list of available ECUs
 	 * @param ecuAdresses List of available ECUs
 	 */
-	protected void selectEcu(final TreeSet<Integer> ecuAdresses)
+	protected void selectEcu(final Set<Integer> ecuAdresses)
 	{
 		// if more than one ECUs available ...
 		if(ecuAdresses.size() > 1)
@@ -321,7 +327,7 @@ public class MainActivity extends ListActivity
 				entries[i++] = String.format("0x%X", addr);
 			}
 			// show dialog ...
-			new AlertDialog.Builder(this)
+			dlgBuilder
 				.setTitle(R.string.select_ecu_addr)
 				.setItems(entries, new DialogInterface.OnClickListener()
 				{
@@ -399,6 +405,7 @@ public class MainActivity extends ListActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -409,6 +416,10 @@ public class MainActivity extends ListActivity
 		logCfg.setUseFileAppender(true);
 		logCfg.setFileName(
 			FileHelper.getPath(this).concat(File.separator).concat("log/AndrOBD.log"));
+
+		log.info(String.format("%s %s starting",
+		                       getString(R.string.app_name),
+		                       getString(R.string.app_version)));
 
 		// Set up all data adapters
 		mPidAdapter = new ObdItemAdapter(this, R.layout.obd_item, ObdProt.PidPvs);
@@ -433,6 +444,8 @@ public class MainActivity extends ListActivity
 
 		setContentView(R.layout.startup_layout);
 
+		dlgBuilder = new AlertDialog.Builder(this);
+
 		// create file helper instance
 		fileHelper = new FileHelper(this, CommService.elm);
 		// set listeners for data structure changes
@@ -451,7 +464,7 @@ public class MainActivity extends ListActivity
 			case BLUETOOTH:
 				// Get local Bluetooth adapter
 				mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-				Log.d(TAG, "Adapter: " + mBluetoothAdapter);
+				log.debug("Adapter: " + mBluetoothAdapter);
 				// If BT is not on, request that it be enabled.
 				if (getMode() != MODE.DEMO && mBluetoothAdapter != null)
 				{
@@ -550,6 +563,17 @@ public class MainActivity extends ListActivity
 	}
 
 	/**
+	 * set listeners for data structure changes
+	 */
+	private void removeDataListeners()
+	{
+		// remove pv change listeners
+		ObdProt.PidPvs.removePvChangeListener(this);
+		ObdProt.VidPvs.removePvChangeListener(this);
+		ObdProt.tCodes.removePvChangeListener(this);
+	}
+
+	/**
 	 * get current operating mode
 	 */
 	public MODE getMode()
@@ -614,7 +638,7 @@ public class MainActivity extends ListActivity
 	 */
 	void setConversionSystem(int cnvId)
 	{
-		Log.i(TAG, "Conversion: " + getResources().getStringArray(R.array.measure_options)[cnvId]);
+		log.info("Conversion: " + getResources().getStringArray(R.array.measure_options)[cnvId]);
 		if (EcuDataItem.cnvSystem != cnvId)
 		{
 			// set coversion system
@@ -645,13 +669,13 @@ public class MainActivity extends ListActivity
 			String filePath = prefs.getString(SettingsActivity.extKeys[2], null);
 			if (filePath != null)
 			{
-				Log.i(TAG, "Load ext. codelist: " + filePath);
+				log.info("Load ext. codelist: " + filePath);
 				InputStream inStr = getContentResolver().openInputStream(Uri.parse(filePath));
 				EcuConversions.codeList.loadFromStream(inStr);
 			}
 		} catch (Exception e)
 		{
-			Log.e(TAG, "Load ext. codelist: ", e);
+			log.error("Load ext. codelist: ", e);
 			e.printStackTrace();
 			errors += e.getLocalizedMessage() + "\n";
 		}
@@ -662,13 +686,13 @@ public class MainActivity extends ListActivity
 			String filePath = prefs.getString(SettingsActivity.extKeys[0], null);
 			if (filePath != null)
 			{
-				Log.i(TAG, "Load ext. conversions: " + filePath);
+				log.info("Load ext. conversions: " + filePath);
 				InputStream inStr = getContentResolver().openInputStream(Uri.parse(filePath));
 				EcuDataItems.cnv.loadFromStream(inStr);
 			}
 		} catch (Exception e)
 		{
-			Log.e(TAG, "Load ext. conversions: ", e);
+			log.error("Load ext. conversions: ", e);
 			e.printStackTrace();
 			errors += e.getLocalizedMessage() + "\n";
 		}
@@ -679,20 +703,20 @@ public class MainActivity extends ListActivity
 			String filePath = prefs.getString(SettingsActivity.extKeys[1], null);
 			if (filePath != null)
 			{
-				Log.i(TAG, "Load ext. conversions: " + filePath);
+				log.info("Load ext. conversions: " + filePath);
 				InputStream inStr = getContentResolver().openInputStream(Uri.parse(filePath));
 				ObdProt.dataItems.loadFromStream(inStr);
 			}
 		} catch (Exception e)
 		{
-			Log.e(TAG, "Load ext. PIDs: ", e);
+			log.error("Load ext. PIDs: ", e);
 			e.printStackTrace();
 			errors += e.getLocalizedMessage() + "\n";
 		}
 
 		if (errors.length() != 0)
 		{
-			new AlertDialog.Builder(this)
+			dlgBuilder
 				.setIcon(android.R.drawable.ic_dialog_alert)
 				.setTitle(R.string.extension_loading)
 				.setMessage(getString(R.string.check_cust_settings) + errors)
@@ -1005,9 +1029,9 @@ public class MainActivity extends ListActivity
 				{
 					// Get the Uri of the selected file
 					Uri uri = data.getData();
-					Log.i(TAG, "Load content: " + uri);
+					log.info("Load content: " + uri);
 					// load data ...
-					fileHelper.loadDataThreaded(uri, mHandler, MESSAGE_READ);
+					fileHelper.loadDataThreaded(uri, mHandler, MESSAGE_FILE_READ);
 					// don't allow saving it again
 					setMenuItemEnable(R.id.save, false);
 					setMenuItemEnable(R.id.obd_services, true);
@@ -1213,6 +1237,11 @@ public class MainActivity extends ListActivity
 			// do nothing
 		}
 
+		/* don't listen to ELM data changes any more */
+		removeDataListeners();
+		// don't listen to ELM property changes any more
+		CommService.elm.removePropertyChangeListener(this);
+
 		// stop demo service if it was started
 		setMode(MODE.OFFLINE);
 
@@ -1224,6 +1253,10 @@ public class MainActivity extends ListActivity
 			// ... turn it OFF again
 			mBluetoothAdapter.disable();
 		}
+
+		log.info(String.format("%s %s finished",
+		                       getString(R.string.app_name),
+		                       getString(R.string.app_version)));
 
 		super.onDestroy();
 	}
@@ -1347,7 +1380,7 @@ public class MainActivity extends ListActivity
 	 */
 	protected void clearObdFaultCodes()
 	{
-		new AlertDialog.Builder(this)
+		dlgBuilder
 			.setIcon(android.R.drawable.ic_dialog_alert)
 			.setTitle(R.string.obd_clearcodes)
 			.setMessage(R.string.obd_clear_info)
