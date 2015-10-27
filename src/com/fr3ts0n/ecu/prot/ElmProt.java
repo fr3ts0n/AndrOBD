@@ -846,6 +846,7 @@ public class ElmProt
 							handleTelegram("2:36010101162453".toCharArray());
 							// number of codes = 12 + MIL ON
 							handleTelegram("41018C000000".toCharArray());
+							Thread.sleep(500);
 							break;
 
 						case OBD_SVC_PENDINGCODES:
@@ -857,6 +858,7 @@ public class ElmProt
 							handleTelegram("4709245300000000".toCharArray());
 							// number of codes = 12 + MIL OFF
 							handleTelegram("41010C000000".toCharArray());
+							Thread.sleep(500);
 							break;
 
 						case OBD_SVC_PERMACODES:
@@ -868,6 +870,7 @@ public class ElmProt
 							handleTelegram("2:36010101162453".toCharArray());
 							// number of codes = 12 + MIL ON
 							handleTelegram("41018C000000".toCharArray());
+							Thread.sleep(500);
 							break;
 
 						// otherwise send data ...
