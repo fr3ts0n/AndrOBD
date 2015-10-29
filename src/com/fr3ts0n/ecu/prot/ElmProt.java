@@ -58,6 +58,8 @@ public class ElmProt
 
 	/** list of identified ECU addresses */
 	private TreeSet<Integer> ecuAddresses = new TreeSet<Integer>();
+	/** selected ECU address */
+	private int selectedEcuAddress = 0;
 
 	/**
 	 * ELM protocol ID's
@@ -393,8 +395,11 @@ public class ElmProt
 	public void setEcuAddress(int ecuAddress)
 	{
 		log.info(String.format("Filtering ECU address to 0x%x", ecuAddress));
+		selectedEcuAddress = ecuAddress;
+		// ensure headers are off
+		pushCommand(CMD.SETHEADER, 0);
 		// set RX filter
-		sendCommand(CMD.SETCANRXFLT, ecuAddress);
+		pushCommand(CMD.SETCANRXFLT, selectedEcuAddress);
 	}
 
 	/**
@@ -496,6 +501,16 @@ public class ElmProt
 	}
 
 	/**
+	 * reset ELM adapter
+	 */
+	public void reset()
+	{
+		// reset all learned protocol data
+		super.reset();
+		sendCommand(CMD.RESET, 0);
+	}
+
+	/**
 	 * request addresses of all connected ECUs
 	 * (received IDs are evaluated in @ref:handleDataMessage)
 	 */
@@ -503,6 +518,8 @@ public class ElmProt
 	{
 		// clear all identified ECU addresses
 		ecuAddresses.clear();
+		// clear selected ECU
+		selectedEcuAddress = 0;
 		// remember to disable headers again
 		pushCommand(CMD.SETHEADER, 0);
 		// request PIDs (from all devices)

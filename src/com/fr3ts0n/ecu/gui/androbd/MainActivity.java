@@ -401,6 +401,25 @@ public class MainActivity extends ListActivity
 		}
 	}
 
+	/**
+	 * Set enabled state for a specified menu item
+	 * * this includes shading disabled items to visualize state
+	 *
+	 * @param id      ID of menu item
+	 * @param enabled flag if to be visible/invisible
+	 */
+	private void setMenuItemVisible(int id, boolean enabled)
+	{
+		if (menu != null)
+		{
+			MenuItem item = menu.findItem(id);
+			if (item != null)
+			{
+				item.setVisible(enabled);
+			}
+		}
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -596,7 +615,9 @@ public class MainActivity extends ListActivity
 			switch (mode)
 			{
 				case OFFLINE:
-					setMenuItemEnable(R.id.secure_connect_scan, true);
+					setMenuItemVisible(R.id.disconnect, false);
+					setMenuItemVisible(R.id.secure_connect_scan, true);
+
 					setMenuItemEnable(R.id.obd_services, false);
 					setMenuItemEnable(R.id.graph_actions, false);
 					break;
@@ -745,9 +766,12 @@ public class MainActivity extends ListActivity
 		{
 			setStatus(getString(R.string.demo));
 			Toast.makeText(this, getString(R.string.demo_started), Toast.LENGTH_SHORT).show();
-			setMenuItemEnable(R.id.secure_connect_scan,
-			                  mBluetoothAdapter != null
-				                  && mBluetoothAdapter.isEnabled());
+
+			boolean allowConnect = mBluetoothAdapter != null
+															&& mBluetoothAdapter.isEnabled();
+			setMenuItemVisible(R.id.secure_connect_scan, allowConnect);
+			setMenuItemVisible(R.id.disconnect, !allowConnect);
+
 			setMenuItemEnable(R.id.obd_services, true);
 			setMenuItemEnable(R.id.graph_actions, false);
 			/* The Thread object for processing the demo mode loop */
@@ -872,6 +896,10 @@ public class MainActivity extends ListActivity
 
 			case R.id.secure_connect_scan:
 				setMode(MODE.ONLINE);
+				return true;
+
+			case R.id.disconnect:
+				setMode(MODE.OFFLINE);
 				return true;
 
 			case R.id.settings:
@@ -1311,13 +1339,15 @@ public class MainActivity extends ListActivity
 
 		mode = MODE.ONLINE;
 		// handle further initialisations
-		setMenuItemEnable(R.id.secure_connect_scan, false);
+		setMenuItemVisible(R.id.secure_connect_scan, false);
+		setMenuItemVisible(R.id.disconnect, true);
+
 		setMenuItemEnable(R.id.obd_services, true);
 		setMenuItemEnable(R.id.graph_actions, false);
 		// display connection status
 		setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
 		// send RESET to Elm adapter
-		CommService.elm.sendCommand(ElmProt.CMD.RESET, 0);
+		CommService.elm.reset();
 	}
 
 	/**

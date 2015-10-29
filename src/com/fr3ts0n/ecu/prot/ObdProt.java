@@ -560,6 +560,23 @@ public class ObdProt extends ProtoHeader
   }
 
   /**
+   * reset all protocol settings
+   */
+  public void reset()
+  {
+    // clear command queue
+    cmdQueue.clear();
+    // clear supported PIDs
+    pidSupported.clear();
+    // reset fixed PIDs
+    resetFixedPid();
+    // Clear data items
+    PidPvs.clear();
+    tCodes.clear();
+    VidPvs.clear();
+  }
+
+  /**
    * clear data lists for selected service
    * @param obdService OBD service to clear lists for
    */

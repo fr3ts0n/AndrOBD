@@ -5,7 +5,16 @@
         android:id="@+id/secure_connect_scan"
         android:icon="@drawable/action_connect"
         android:showAsAction="always"
-        android:title="@string/action_connect"/>
+        android:title="@string/action_connect"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/disconnect"
+        android:icon="@drawable/action_disconnect"
+        android:showAsAction="always"
+        android:title="@string/disconnect"
+        android:visible="false"
+        />
     <item
         android:id="@+id/day_night_mode"
         android:icon="@android:drawable/ic_menu_view"

@@ -148,4 +148,5 @@ period of time while the ECU recalibrates itself.
     <string name="enabled">enabled</string>
     <string name="elm_adaptive_timing_descr">Allow adaptive timing handling in ELM drivers?</string>
     <string name="select_ecu_addr">Select ECU address …</string>
+    <string name="disconnect">Disconnect</string>
 </resources>
