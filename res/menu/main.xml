@@ -60,6 +60,11 @@
         </menu>
     </item>
     <item
+        android:id="@+id/reset_preselections"
+        android:icon="@android:drawable/ic_menu_revert"
+        android:showAsAction="ifRoom"
+        android:title="@string/reset_preselections"/>
+    <item
         android:id="@+id/save"
         android:icon="@android:drawable/ic_menu_save"
         android:showAsAction="ifRoom"

@@ -43,14 +43,18 @@ public class EcuDataItem
 	};
 	// current conversion system
 	public static int cnvSystem = SYSTEM_METRIC;
-	public int pid;        // pid
-	public int bytes;        // number of data bytes expected from vehicle
-	public int ofs;        // Offset within message
-	public Conversion[] cnv;        // type of conversion
-	public String fmt;    // Format for text output
-	public String label;        // text label
-	public EcuDataPv pv;        // the process variable for displaying
-	public boolean enabled = true; // if not enabled, do not process
+
+	int pid;                    ///< pid
+	int bytes;                  ///<number of data bytes expected from vehicle
+	int ofs;                    ///< Offset within message
+	int bitOffset = 0;          ///< bit offset within extracted long
+	int numBits = 32;           ///< number of relevant bits within extracted long
+	long bitMask = 0xFFFFFFFF;  ///< mask for relevant bits within extracted long
+	Conversion[] cnv;           ///< type of conversion
+	String fmt;                 ///< Format for text output
+	public String label;        ///< text label
+	public EcuDataPv pv;        ///< the process variable for displaying
+	boolean enabled = true;     ///< if not enabled, do not process
 
 	// Logger object
 	public static final Logger log = Logger.getLogger("data.ecu");
@@ -77,6 +81,8 @@ public class EcuDataItem
 	 * @param newPid PID of data item
 	 * @param offset offset within PID data (in bytes)
 	 * @param numBytes length of parameter in bytes
+	 * @param bitOfs Bit offset of measurement within numeric value
+	 * @param numberOfBits Number of relevant bits within numeric value
 	 * @param conversions data conversion to be used with this item
 	 * @param format formatting string for text representation
 	 * @param minValue minimum physical value to display/scale
@@ -86,6 +92,9 @@ public class EcuDataItem
 	public EcuDataItem( int newPid,
 	                    int offset,
 	                    int numBytes,
+	                    int bitOfs,
+	                    int numberOfBits,
+	                    long maskingBits,
 	                    Conversion[] conversions,
 	                    String format,
 	                    Number minValue,
@@ -95,6 +104,9 @@ public class EcuDataItem
 		pid = newPid;
 		ofs = offset;
 		bytes = numBytes;
+		bitOffset = bitOfs;
+		numBits = numberOfBits;
+		bitMask = maskingBits;
 		cnv = conversions;
 		fmt = format;
 		label = labelText;
@@ -105,6 +117,7 @@ public class EcuDataItem
 		// initialize new PID with current data
 		pv.put(EcuDataPv.FID_PID, Integer.valueOf(pid));
 		pv.put(EcuDataPv.FID_OFS, Integer.valueOf(ofs));
+		pv.put(EcuDataPv.FID_BIT_OFS, Integer.valueOf(bitOffset));
 		pv.put(EcuDataPv.FID_DESCRIPT, label);
 		pv.put(EcuDataPv.FID_UNITS,
 		       (cnv != null && cnv[cnvSystem] != null)
@@ -116,7 +129,7 @@ public class EcuDataItem
 		if(cnv != null && cnv[cnvSystem] != null)
 		{
 			if(minVal == null) minVal = cnv[cnvSystem].memToPhys(0);
-			if(maxVal == null) maxVal = cnv[cnvSystem].memToPhys(byteValues[bytes]);
+			if(maxVal == null) maxVal = cnv[cnvSystem].memToPhys((1<<numBits)-1);
 		}
 		pv.put(EcuDataPv.FID_MIN, minVal);
 		pv.put(EcuDataPv.FID_MAX, maxVal);
@@ -125,7 +138,7 @@ public class EcuDataItem
 	@Override
 	public String toString()
 	{
-		return (String.format("%02X.%d", pid, ofs));
+		return (String.format("%02X.%d.%d", pid, ofs, bitOffset));
 	}
 
 	/**
@@ -141,7 +154,18 @@ public class EcuDataItem
 		{
 			if (cnv != null && cnv[cnvSystem] != null)
 			{
-				result = cnv[cnvSystem].memToPhys(ProtoHeader.getParamInt(ofs, bytes, buffer).longValue());
+				// extract value from buffer
+				long value = ProtoHeader.getParamInt(ofs, bytes, buffer).longValue();
+				// calculate effective value ...
+				// shift on bit offset
+				value = (value >> bitOffset);
+				// mask with bit lenth mask
+				value = (value & ((1 << numBits)-1));
+				// mask with specific bit mask
+				value = (value & bitMask);
+
+				// now run conversion to physical value on it ...
+				result = cnv[cnvSystem].memToPhys(value);
 			}
 			else
 			{

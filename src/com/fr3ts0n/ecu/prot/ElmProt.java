@@ -183,7 +183,8 @@ public class ElmProt
 		SETPROTAUTO(  "SPA" , 1, true ), ///< set protocol auto
 		SETTIMEOUT(   "ST"  , 2, true ), ///< set timeout (x*4ms)
 		SETTXHDR(     "SH"  , 3, true ), ///< set TX header
-		SETCANRXFLT(  "CRA" , 3, true ); ///< set CAN RX filter
+		SETCANRXFLT(  "CRA" , 3, true ), ///< set CAN RX filter
+		CLRCANRXFLT(  "CRA" , 0, true ); ///< clear CAN RX filter
 
 		protected static final String CMD_HEADER = "AT";
 		private String command;
@@ -211,11 +212,11 @@ public class ElmProt
 
 		public void setEnabled(boolean enabled)
 		{
-			if(disablingAllowed)
+			if (disablingAllowed)
 			{
-				log.info(String.format("ELM command '%s' -> %s",
-				                       toString(),
-				                       enabled ? "enabled" : "disabled"));
+				log.debug(String.format("ELM command '%s' -> %s",
+				                        toString(),
+				                        enabled ? "enabled" : "disabled"));
 				this.enabled = enabled;
 			}
 		}
@@ -390,16 +391,16 @@ public class ElmProt
 
 	/**
 	 * set ECU address to be received
-	 * @param ecuAddress ECU address to be limited
+	 * @param ecuAddress ECU address to be filtered / 0 = clear address filter
 	 */
 	public void setEcuAddress(int ecuAddress)
 	{
-		log.info(String.format("Filtering ECU address to 0x%x", ecuAddress));
+		log.info(String.format("Set ECU address: 0x%x", ecuAddress));
 		selectedEcuAddress = ecuAddress;
 		// ensure headers are off
 		pushCommand(CMD.SETHEADER, 0);
-		// set RX filter
-		pushCommand(CMD.SETCANRXFLT, selectedEcuAddress);
+		// set/clear RX filter
+		pushCommand((selectedEcuAddress != 0) ? CMD.SETCANRXFLT : CMD.CLRCANRXFLT, selectedEcuAddress);
 	}
 
 	/**
@@ -734,8 +735,8 @@ public class ElmProt
 							// odd address length -> CAN address length = 3 digits + 2 digits frame type
 							if(adrEnd % 2 != 0) adrEnd = 3;
 							// extract address
-							String address = bufferStr.substring(0,adrEnd);
-							log.info(String.format("Adding ECU address: 0x%s", address));
+							String address = bufferStr.substring(0, adrEnd);
+							log.debug(String.format("Found ECU address: 0x%s", address));
 							// and add to list of addresses
 							ecuAddresses.add(Integer.valueOf(address, 16));
 						}

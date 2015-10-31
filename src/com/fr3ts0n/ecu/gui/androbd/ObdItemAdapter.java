@@ -99,9 +99,8 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	{
 		public int compare(Object lhs, Object rhs)
 		{
-			// criteria 1: pid
-			int result =  ((IndexedProcessVar)lhs).getAsInt(EcuDataPv.FID_PID)
-				          - ((IndexedProcessVar)rhs).getAsInt(EcuDataPv.FID_PID);
+			// criteria 1: ID string
+			int result =  lhs.toString().compareTo(rhs.toString());
 
 			// criteria 2: description
 			if(result == 0)

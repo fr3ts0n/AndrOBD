@@ -47,16 +47,23 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	/** SerialVerion UID */
 	private static final long serialVersionUID = 5525561909111851836L;
 	/** CSV field positions */
-	static final int FLD_SVC = 0;
-	static final int FLD_PID = 1;
-	static final int FLD_OFS = 2;
-	static final int FLD_LEN = 3;
-	static final int FLD_FORMULA = 4;
-	static final int FLD_FORMAT = 5;
-	static final int FLD_MIN = 6;
-	static final int FLD_MAX = 7;
-	static final int FLD_LABEL = 8;
-	static final int FLD_DESCRIPTION = 9;
+	enum FLD
+	{
+		SVC,
+		PID,
+		OFS,
+		LEN,
+		BIT_OFS,
+		BIT_LEN,
+		BIT_MASK,
+		FORMULA,
+		FORMAT,
+		MIN,
+		MAX,
+		LABEL,
+		DESCRIPTION,
+		NUMBEROFFIELDS
+	}
 
 	// set of all conversions
 	public static EcuConversions cnv;
@@ -129,31 +136,34 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 				// split CSV line into parameters
 				params = currLine.split("\t");
 
-				currCnvSet = cnv.get(params[FLD_FORMULA]);
+				currCnvSet = cnv.get(params[FLD.FORMULA.ordinal()]);
 				if (currCnvSet == null)
 				{
-					log.warn("Conversion not found: " + params[FLD_FORMULA] + " " + currLine);
+					log.warn("Conversion not found: " + params[FLD.FORMULA.ordinal()] + " " + currLine);
 				}
 				// try to use MIN/MAX values from CSV
 				Float minVal = null;
 				Float maxVal = null;
-				try {	minVal = Float.parseFloat(params[FLD_MIN]);	}
+				try {	minVal = Float.parseFloat(params[FLD.MIN.ordinal()]);	}
 				catch(NumberFormatException ex) {	/* ignore */ }
-				try {	maxVal = Float.parseFloat(params[FLD_MAX]);	}
+				try {	maxVal = Float.parseFloat(params[FLD.MAX.ordinal()]);	}
 				catch(NumberFormatException e) { /* ignore */	}
 
 				// create linear conversion
-				newItm = new EcuDataItem(Integer.decode(params[FLD_PID]).intValue(),
-					Integer.parseInt(params[FLD_OFS]),
-					Integer.parseInt(params[FLD_LEN]),
-					currCnvSet,
-					params[FLD_FORMAT],
-					minVal,
-					maxVal,
-					params[FLD_LABEL]);
+				newItm = new EcuDataItem(Integer.decode(params[FLD.PID.ordinal()]).intValue(),
+ 																 Integer.parseInt(params[FLD.OFS.ordinal()]),
+																 Integer.parseInt(params[FLD.LEN.ordinal()]),
+					                       Integer.parseInt(params[FLD.BIT_OFS.ordinal()]),
+					                       Integer.parseInt(params[FLD.BIT_LEN.ordinal()]),
+					                       Integer.decode(params[FLD.BIT_MASK.ordinal()]).longValue(),
+					                       currCnvSet,
+																 params[FLD.FORMAT.ordinal()],
+																 minVal,
+																 maxVal,
+																 params[FLD.LABEL.ordinal()]);
 
 				// enter data item for all specified services
-				String[] services = params[FLD_SVC].split(",");
+				String[] services = params[FLD.SVC.ordinal()].split(",");
 				for (String service : services)
 				{
 					int svcId = Integer.decode(service);

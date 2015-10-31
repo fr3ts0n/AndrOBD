@@ -41,7 +41,8 @@ public class EcuDataPv extends IndexedProcessVar
 	public static final String FID_CNVID = "CNV_ID";
 	public static final String FID_MIN = "MIN";
 	public static final String FID_MAX = "MAX";
-	
+	public static final String FID_BIT_OFS = "BIT_OFS";
+
 	public static final String[] FIELDS =
 		{
 			"PID",
@@ -95,6 +96,6 @@ public class EcuDataPv extends IndexedProcessVar
 
 	public String toString()
 	{
-		return (String.format("%02X.%d", get(FID_PID), get(FID_OFS)));
+		return (String.format("%02X.%d.%d", get(FID_PID), get(FID_OFS), get(FID_BIT_OFS)));
 	}
 }

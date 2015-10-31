@@ -43,9 +43,9 @@ import org.achartengine.renderer.BasicStroke;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
-import java.util.HashSet;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.TreeSet;
 
 /**
  * <code>Activity</code> that displays the readout of one <code>Sensor</code>.
@@ -68,7 +68,7 @@ public class ChartActivity extends Activity
 	public static final String POSITIONS = "POSITIONS";
 
 	/** Map to uniquely collect PID numbers */
-	private HashSet<Integer> pidNumbers = new HashSet<Integer>();
+	private TreeSet<Integer> pidNumbers = new TreeSet<Integer>();
 
 	/**
 	 * List of colors to be used for series

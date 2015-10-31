@@ -64,10 +64,10 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.TreeSet;
 
 import de.mindpipe.android.logging.log4j.LogConfigurator;
 
@@ -88,6 +88,8 @@ public class MainActivity extends ListActivity
 	public static final String MEASURE_SYSTEM = "measure_system";
 	public static final String NIGHT_MODE = "night_mode";
 	public static final String ELM_ADAPTIVE_TIMING = "elm_adaptive_timing";
+	public static final String PREF_ECU_ADDRESS = "ecu_address";
+	public static final String PREF_DEV_ADDRESS = "device_address";
 
 	/**
 	 * Message types sent from the BluetoothChatService Handler
@@ -318,27 +320,40 @@ public class MainActivity extends ListActivity
 		// if more than one ECUs available ...
 		if(ecuAdresses.size() > 1)
 		{
-			// .. allow selection of single ECU address ...
-			final CharSequence[] entries = new CharSequence[ecuAdresses.size()];
-			// create list of entries
-			int i = 0;
-			for (Integer addr : ecuAdresses)
+			int preferredAddress = prefs.getInt(PREF_ECU_ADDRESS,0);
+			// check if last preferred address matches any of the reported addresses
+			if(ecuAdresses.contains(preferredAddress))
 			{
-				entries[i++] = String.format("0x%X", addr);
+				// set this as preference (preference change will trigger ELM command)
+				prefs.edit().putInt(PREF_ECU_ADDRESS, preferredAddress).apply();
 			}
-			// show dialog ...
-			dlgBuilder
-				.setTitle(R.string.select_ecu_addr)
-				.setItems(entries, new DialogInterface.OnClickListener()
+			else
+			{
+				// NO match with preference -> allow selection
+
+				// .. allow selection of single ECU address ...
+				final CharSequence[] entries = new CharSequence[ecuAdresses.size()];
+				// create list of entries
+				int i = 0;
+				for (Integer addr : ecuAdresses)
 				{
-					@Override
-					public void onClick(DialogInterface dialog, int which)
+					entries[i++] = String.format("0x%X", addr);
+				}
+				// show dialog ...
+				dlgBuilder
+					.setTitle(R.string.select_ecu_addr)
+					.setItems(entries, new DialogInterface.OnClickListener()
 					{
-						CommService.elm.setEcuAddress(
-							Integer.parseInt(entries[which].toString().substring(2), 16));
-					}
-				})
-				.show();
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							int address = Integer.parseInt(entries[which].toString().substring(2), 16);
+							// set this as preference (preference change will trigger ELM command)
+							prefs.edit().putInt(PREF_ECU_ADDRESS, address).apply();
+						}
+					})
+					.show();
+			}
 		}
 	}
 
@@ -371,6 +386,15 @@ public class MainActivity extends ListActivity
 
 	private void setNumCodes(int newNumCodes)
 	{
+		// set list background based on MIL status
+		View list = findViewById(R.id.obd_list);
+		if(list != null)
+		{
+			list.setBackgroundResource((newNumCodes & 0x80) != 0
+				                           ? R.drawable.mil_on
+				                           : R.drawable.mil_off);
+		}
+		// enable / disable freeze frames based on number of codes
 		setMenuItemEnable(R.id.service_freezeframes, (newNumCodes != 0));
 	}
 
@@ -533,6 +557,10 @@ public class MainActivity extends ListActivity
 			CommService.elm.mAdaptiveTiming.setElmTimeoutMin(
 				Integer.valueOf(prefs.getString(SettingsActivity.ELM_MIN_TIMEOUT,
 				                                String.valueOf(CommService.elm.mAdaptiveTiming.getElmTimeoutMin()))));
+
+		// ECU address
+		if(PREF_ECU_ADDRESS.equals(key))
+			CommService.elm.setEcuAddress(prefs.getInt(PREF_ECU_ADDRESS, 0));
 
 		// ... measurement system
 		if(key==null || MEASURE_SYSTEM.equals(key))
@@ -892,10 +920,16 @@ public class MainActivity extends ListActivity
 			case R.id.day_night_mode:
 				// toggle night mode setting
 				prefs.edit().putBoolean(NIGHT_MODE, !isNightMode()).apply();
-				break;
+				return true;
 
 			case R.id.secure_connect_scan:
 				setMode(MODE.ONLINE);
+				return true;
+
+			case R.id.reset_preselections:
+				prefs.edit().remove(PREF_DEV_ADDRESS).apply();
+				prefs.edit().remove(PREF_ECU_ADDRESS).apply();
+				recreate();
 				return true;
 
 			case R.id.disconnect:
@@ -951,11 +985,11 @@ public class MainActivity extends ListActivity
 
 			case R.id.filter_selected:
 				setFiltered(true);
-				break;
+				return true;
 
 			case R.id.unfilter_selected:
 				setFiltered(false);
-				break;
+				return true;
 
 			case R.id.save:
 				// save recorded data (threaded)
@@ -998,9 +1032,6 @@ public class MainActivity extends ListActivity
 				clearObdFaultCodes();
 				setObdService(ObdProt.OBD_SVC_READ_CODES, item.getTitle());
 				return true;
-
-			default:
-				break;
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -1085,6 +1116,7 @@ public class MainActivity extends ListActivity
 		// Get the device MAC address
 		String address = data.getExtras().getString(
 			BtDeviceListActivity.EXTRA_DEVICE_ADDRESS);
+		prefs.edit().putString(PREF_DEV_ADDRESS, address).apply();
 		// Get the BluetoothDevice object
 		BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
 		// Attempt to connect to the device
@@ -1164,7 +1196,7 @@ public class MainActivity extends ListActivity
 		if (filtered)
 		{
 			PvList filteredList = new PvList();
-			HashSet<Integer> selPids = new HashSet<Integer>();
+			TreeSet<Integer> selPids = new TreeSet<Integer>();
 			for (int pos : getSelectedPositions())
 			{
 				EcuDataPv pv = (EcuDataPv) mPidAdapter.getItem(pos);
@@ -1221,7 +1253,7 @@ public class MainActivity extends ListActivity
 	 *
 	 * @param pidNumbers List of PIDs
 	 */
-	public static void setFixedPids(HashSet<Integer> pidNumbers)
+	public static void setFixedPids(Set<Integer> pidNumbers)
 	{
 		int[] pids = new int[pidNumbers.size()];
 		int i = 0;

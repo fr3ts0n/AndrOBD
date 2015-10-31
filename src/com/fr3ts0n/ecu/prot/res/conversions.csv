@@ -3,18 +3,9 @@ OBD_TYPE	HASH	0	METRIC	1	1	0	0		OBD Type	1=OBD-II as defined by the CARB;2=OBD a
 FUEL_TYPE	HASH	0	METRIC	1	1	0	0		Fuel system type	0=Not available;1=Gasoline;2=Methanol;3=Ethanol;4=Diesel;5=LPG;6=CNG;7=Propane;8=Electric;9=Bifuel running Gasoline;10=Bifuel running Methanol;11=Bifuel running Ethanol;12=Bifuel running LPG;13=Bifuel running CNG;14=Bifuel running Propane;15=Bifuel running Electricity;16=Bifuel running electric and combustion engine;17=Hybrid gasoline;18=Hybrid Ethanol;19=Hybrid Diesel;20=Hybrid Electric;21=Hybrid running electric and combustion engine;22=Hybrid Regenerative;23=Bifuel running diesel	
 FUEL_SYS_STATUS	BITMAP	0	METRIC	1	1	0	0		Fuel system status	0=Open loop due to insufficient engine temperature;1=Closed loop, using oxygen sensor feedback to determine fuel mix;2=Open loop due to engine load OR fuel cut due to deceleration;3=Open loop due to system failure;4=Closed loop, using at least one oxygen sensor but there is a fault in the feedback system;	
 SEC_AIR_STATUS	BITMAP	0	METRIC	1	1	0	0		Secondary Air status	0=Upstream;1=Downstream of catalytic converter;2=From the outside atmosphere or off;3=Pump commanded on for diagnostics	
-MISFIRE_STATUS	BITMAP	0	METRIC	1	1	0	0		Misfire status	0=available;4=incomplete	
-FS_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Fuel system test status	1=available;5=incomplete	
-COMP_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Component test status	2=available;6=incomplete	
-IGN_MON_STATUS	BITMAP	0	METRIC	1	1	0	0		Ignition monitor status	3=Compression ignition monitor available	
-CAT_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Catalyst test status	0=available;8=incomplete	
-HCAT_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Heated Cat / Nox Monitor test status	1=available;9=incomplete	
-EVAP_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Evaporative system test status	2=available;10=incomplete	
-SECAIR_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Secondary air sys test status	3=available;11=incomplete	
-AC_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		A/C Refrigerant	4=available;12=incomplete	
-O2SENSOR_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Oxygen Sensor	5=available;13=incomplete	
-O2HEATER_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		Oxygen Sensor Heater	6=available;14=incomplete	
-EGR_TEST_STATUS	BITMAP	0	METRIC	1	1	0	0		EGR System	7=available;15=incomplete	
+TEST_STATUS_4	BITMAP	0	METRIC	1	1	0	0		8 Bit Status check	0=available;4=incomplete	
+IGN_MON_STATUS	BITMAP	0	METRIC	1	1	0	0		Ignition monitor status	0=Compression ignition monitor available	
+TEST_STATUS_8	BITMAP	0	METRIC	1	1	0	0		Catalyst test status	0=available;8=incomplete	
 O2_PRESENT_MAP	BITMAP	0	METRIC	1	1	0	0		O2-Sensors present	0=B1S1;1=B1S2;2=B2S1;3=B2S2;4=B3S1;5=B3S2;6=B4S1;7=B4S2	
 OBD_CODELIST	PCODELIST	0	METRIC	1	1	0	0		Code list conversion	prot/res/pcodes;prot/res/ucodes	
 AIRFLOW	LINEAR	0	METRIC	1	100	0	0	g/s	Air Flow		
@@ -61,3 +52,4 @@ VOLTAGE_MV	LINEAR	0	METRIC	1	1	0	0	mV	Voltage millivolt
 CONSUMPTION	LINEAR	0	METRIC	5	100	0	0	l/h	Fuel consumption		
 INTEGER	INTEGER	0	METRIC	1	1	0	0		INTEGER		
 ASCII	ASCII	0	METRIC	1	1	0	0		ASCII		
+GEN_SWITCH	HASH	0	METRIC	1	1	0	0		Generic Switch signal	0=Off;1=On	
