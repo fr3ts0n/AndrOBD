@@ -149,5 +149,7 @@ period of time while the ECU recalibrates itself.
     <string name="elm_adaptive_timing_descr">Allow adaptive timing handling in ELM drivers?</string>
     <string name="select_ecu_addr">Select ECU address …</string>
     <string name="disconnect">Disconnect</string>
-    <string name="reset_preselections">Reset pre-selections</string>
+    <string name="reset_preselections">Reset last pre-selections</string>
+    <string name="use_last_settings_description">Use last settings at startup (BT address, ECU address, Display items ...)</string>
+    <string name="use_last_settings">Use last settings</string>
 </resources>

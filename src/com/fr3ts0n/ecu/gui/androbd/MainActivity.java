@@ -90,6 +90,8 @@ public class MainActivity extends ListActivity
 	public static final String ELM_ADAPTIVE_TIMING = "elm_adaptive_timing";
 	public static final String PREF_ECU_ADDRESS = "ecu_address";
 	public static final String PREF_DEV_ADDRESS = "device_address";
+	public static final String PREF_USE_LAST = "use_last_settings";
+	public static final String PREF_LAST_ITEMS = "last_items";
 
 	/**
 	 * Message types sent from the BluetoothChatService Handler
@@ -122,7 +124,7 @@ public class MainActivity extends ListActivity
 	/**
 	 * time between display updates to represent data changes
 	 */
-	private static final int DISPLAY_UPDATE_TIME = 300;
+	private static final int DISPLAY_UPDATE_TIME = 200;
 	public static final String LOG_MASTER = "log_master";
 	public static final String KEEP_SCREEN_ON = "keep_screen_on";
 
@@ -274,6 +276,16 @@ public class MainActivity extends ListActivity
 							try
 							{
 								updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
+								// if last settings shall be used ...
+								if(prefs.getBoolean(PREF_USE_LAST, false)
+									&& event.getSource() == ObdProt.PidPvs)
+								{
+									// get preference for last seleted items
+									int[] lastSelectedItems =
+										toIntArray(prefs.getString(PREF_LAST_ITEMS, ""));
+									// select last selected items
+									selectDataItems(lastSelectedItems, true);
+								}
 							} catch (Exception ignored)
 							{
 							}
@@ -311,6 +323,22 @@ public class MainActivity extends ListActivity
 		}
 	};
 
+
+	/**
+	 * convert result of Arrays.toString(int[]) back into int[]
+	 * @param input String of array
+	 * @return int[] of String value
+	 */
+	private int[] toIntArray(String input) {
+		String beforeSplit = input.replaceAll("\\[|\\]|\\s", "");
+		String[] split = beforeSplit.split("\\,");
+		int[] result = new int[split.length];
+		for (int i = 0; i < split.length; i++) {
+			result[i] = Integer.parseInt(split[i]);
+		}
+		return result;
+	}
+
 	/**
 	 * Prompt for selection of a single ECU from list of available ECUs
 	 * @param ecuAdresses List of available ECUs
@@ -322,7 +350,8 @@ public class MainActivity extends ListActivity
 		{
 			int preferredAddress = prefs.getInt(PREF_ECU_ADDRESS,0);
 			// check if last preferred address matches any of the reported addresses
-			if(ecuAdresses.contains(preferredAddress))
+			if(prefs.getBoolean(PREF_USE_LAST,false)
+			   && ecuAdresses.contains(preferredAddress))
 			{
 				// set this as preference (preference change will trigger ELM command)
 				prefs.edit().putInt(PREF_ECU_ADDRESS, preferredAddress).apply();
@@ -654,9 +683,20 @@ public class MainActivity extends ListActivity
 					switch (CommService.medium)
 					{
 						case BLUETOOTH:
-							// Launch the BtDeviceListActivity to see devices and do scan
-							Intent serverIntent = new Intent(this, BtDeviceListActivity.class);
-							startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+							// if pre-settings shall be used ...
+							String address = prefs.getString(PREF_DEV_ADDRESS, null);
+							if(prefs.getBoolean(PREF_USE_LAST,false)
+								 && address != null)
+							{
+								// ... connect with previously connected device
+								connectBtDevice(address, true);
+							}
+							else
+							{
+								// ... otherwise launch the BtDeviceListActivity to see devices and do scan
+								Intent serverIntent = new Intent(this, BtDeviceListActivity.class);
+								startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+							}
 							break;
 
 						case USB:
@@ -1050,8 +1090,12 @@ public class MainActivity extends ListActivity
 				// When BtDeviceListActivity returns with a device to connect
 				if (resultCode == Activity.RESULT_OK)
 				{
-					mCommService = new BtCommService(this, mHandler);
-					connectBtDevice(data, false);
+					// Get the device MAC address
+					String address = data.getExtras().getString(
+						BtDeviceListActivity.EXTRA_DEVICE_ADDRESS);
+					// save reported address as last setting
+					prefs.edit().putString(PREF_DEV_ADDRESS, address).apply();
+					connectBtDevice(address, false);
 				} else
 				{
 					setMode(MODE.OFFLINE);
@@ -1108,18 +1152,15 @@ public class MainActivity extends ListActivity
 	/**
 	 * Initiate a connect to the selected bluetooth device
 	 *
-	 * @param data   Intent data which contains the bluetooth device address
+	 * @param address bluetooth device address
 	 * @param secure flag to indicate if the connection shall be secure, or not
 	 */
-	private void connectBtDevice(Intent data, boolean secure)
+	private void connectBtDevice(String address, boolean secure)
 	{
-		// Get the device MAC address
-		String address = data.getExtras().getString(
-			BtDeviceListActivity.EXTRA_DEVICE_ADDRESS);
-		prefs.edit().putString(PREF_DEV_ADDRESS, address).apply();
 		// Get the BluetoothDevice object
 		BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
 		// Attempt to connect to the device
+		mCommService = new BtCommService(this, mHandler);
 		mCommService.connect(device, secure);
 	}
 
@@ -1245,7 +1286,24 @@ public class MainActivity extends ListActivity
 				}
 			}
 		}
+		// save this as last seleted positions
+		prefs.edit().putString(PREF_LAST_ITEMS, Arrays.toString(selectedPositions)).apply();
 		return selectedPositions;
+	}
+
+	/**
+	 * Set selection status on specified list item positions
+	 * @param positions list of positions to be set
+	 * @param selectionStatus status to be set
+	 */
+	private void selectDataItems(int[] positions, boolean selectionStatus)
+	{
+		for(int i : positions)
+		{
+			getListView().setItemChecked(i, selectionStatus);
+		}
+		// enable graphic actions only on DATA service if min 1 item selected
+		setMenuItemEnable(R.id.graph_actions, positions.length > 0 && selectionStatus);
 	}
 
 	/**
@@ -1403,8 +1461,11 @@ public class MainActivity extends ListActivity
 	{
 		// forward PV change to the UI Activity
 		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DATA_ITEMS_CHANGED);
-		msg.obj = event;
-		mHandler.sendMessage(msg);
+		if(!event.isChildEvent())
+		{
+			msg.obj = event;
+			mHandler.sendMessage(msg);
+		}
 	}
 
 	/**

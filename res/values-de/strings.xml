@@ -110,4 +110,8 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="elm_adaptive_timing_descr">Erlaube adaptive Timeout-Behandlung in ELM Treiber?</string>
     <string name="enabled">erlaubt</string>
     <string name="select_ecu_addr">Wähle SG Adresse …</string>
+    <string name="disconnect">Verbindung trennen</string>
+    <string name="reset_preselections">Letzte Einstellungen löschen</string>
+    <string name="use_last_settings">Letzte Einstellungen verwenden</string>
+    <string name="use_last_settings_description">Letzte Einstellungen bei Start verwenden (BT Adresse, ECU Adresse, Anzeige ...)</string>
 </resources>

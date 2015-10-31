@@ -8,6 +8,13 @@
         >
         <CheckBoxPreference
             android:defaultValue="false"
+            android:key="use_last_settings"
+            android:summary="@string/use_last_settings_description"
+            android:title="@string/use_last_settings"
+            />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
             android:key="keep_screen_on"
             android:summary="@string/keep_screen_on_description"
             android:title="@string/keep_screen_on"
