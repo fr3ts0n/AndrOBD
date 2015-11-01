@@ -115,10 +115,7 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	label	desc
 0x09	0x03	0	1	0	8	0xFF	ONETOONE	%.0f			Message count CAL-ID				
 0x09	0x04	0	16	0	128	0x00	ASCII	%s			Calibration identifier				
 0x09	0x05	0	1	0	8	0xFF	ONETOONE	%.0f			Message count CVN				
-0x09	0x06	0	1	0	8	0xFF	INTEGER	0x%02x			Calibration verification [1]				
-0x09	0x06	1	1	0	8	0xFF	INTEGER	0x%02x			Calibration verification [2]				
-0x09	0x06	2	1	0	8	0xFF	INTEGER	0x%02x			Calibration verification [3]				
-0x09	0x06	3	1	0	8	0xFF	INTEGER	0x%02x			Calibration verification [4]				
+0x09	0x06	0	4	0	32	0xFFFFFFFF	INTEGER	0x%08x			Calibration verification				
 0x09	0x07	0	1	0	8	0xFF	ONETOONE	%.0f			Message count IPT				
 0x09	0x08	0	2	0	16	0xFFFF	ONETOONE	%.0f			OBD Monitoring Conditions Encountered Counts				
 0x09	0x08	2	2	0	16	0xFFFF	ONETOONE	%.0f			Ignition Cycle Counter				
