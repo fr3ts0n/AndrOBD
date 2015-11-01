@@ -33,7 +33,7 @@ import android.widget.TextView;
 import com.fr3ts0n.ecu.Conversion;
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataPv;
-import com.fr3ts0n.ecu.LinearConversion;
+import com.fr3ts0n.ecu.NumericConversion;
 import com.fr3ts0n.pvs.IndexedProcessVar;
 import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
@@ -195,7 +195,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 				// set progress bar only on LinearConversion
 				if(    min != null
 					  && max != null
-					  && cnv instanceof LinearConversion)
+					  && cnv instanceof NumericConversion)
 				{
 					pb.setVisibility(ProgressBar.VISIBLE);
 					pb.getProgressDrawable().setColorFilter(ChartActivity.getColor(pid), PorterDuff.Mode.SRC_IN);
