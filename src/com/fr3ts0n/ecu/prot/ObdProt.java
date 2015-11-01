@@ -290,8 +290,8 @@ public class ObdProt extends ProtoHeader
 
 	      // create new dummy item / OneToOne conversion
 	      Conversion[] dummyCnvs = { EcuConversions.dfltCnv, EcuConversions.dfltCnv };
-	      EcuDataItem newItem = new EcuDataItem( currPid, 0, 0, 0, 0, 0,dummyCnvs,
-                                               "0x%X", null, null,
+	      EcuDataItem newItem = new EcuDataItem( currPid, 0, 0, 0, 32,0xFFFFFFFF,dummyCnvs,
+                                               "%#08x", null, null,
                                                String.format("PID %02X",currPid)
                                              );
 	      dataItems.appendItemToService(obdService, newItem);

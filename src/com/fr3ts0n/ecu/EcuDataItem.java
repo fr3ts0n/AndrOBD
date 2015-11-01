@@ -44,13 +44,13 @@ public class EcuDataItem
 	// current conversion system
 	public static int cnvSystem = SYSTEM_METRIC;
 
-	int pid;                    ///< pid
-	int bytes;                  ///<number of data bytes expected from vehicle
-	int ofs;                    ///< Offset within message
+	public int pid;             ///< pid
+	public int ofs;             ///< Offset within message
+	public Conversion[] cnv;    ///< type of conversion
+	int bytes;                  ///< number of data bytes expected from vehicle
 	int bitOffset = 0;          ///< bit offset within extracted long
 	int numBits = 32;           ///< number of relevant bits within extracted long
 	long bitMask = 0xFFFFFFFF;  ///< mask for relevant bits within extracted long
-	Conversion[] cnv;           ///< type of conversion
 	String fmt;                 ///< Format for text output
 	public String label;        ///< text label
 	public EcuDataPv pv;        ///< the process variable for displaying
@@ -160,7 +160,7 @@ public class EcuDataItem
 				// shift on bit offset
 				value = (value >> bitOffset);
 				// mask with bit lenth mask
-				value = (value & ((1 << numBits)-1));
+				value = (value & ((1L << numBits)-1));
 				// mask with specific bit mask
 				value = (value & bitMask);
 

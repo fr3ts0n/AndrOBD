@@ -155,7 +155,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 																 Integer.parseInt(params[FLD.LEN.ordinal()]),
 					                       Integer.parseInt(params[FLD.BIT_OFS.ordinal()]),
 					                       Integer.parseInt(params[FLD.BIT_LEN.ordinal()]),
-					                       Integer.decode(params[FLD.BIT_MASK.ordinal()]).longValue(),
+					                       Long.decode(params[FLD.BIT_MASK.ordinal()]).longValue(),
 					                       currCnvSet,
 																 params[FLD.FORMAT.ordinal()],
 																 minVal,
