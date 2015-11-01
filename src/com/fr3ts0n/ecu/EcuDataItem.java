@@ -129,7 +129,7 @@ public class EcuDataItem
 		if(cnv != null && cnv[cnvSystem] != null)
 		{
 			if(minVal == null) minVal = cnv[cnvSystem].memToPhys(0);
-			if(maxVal == null) maxVal = cnv[cnvSystem].memToPhys((1<<numBits)-1);
+			if(maxVal == null) maxVal = cnv[cnvSystem].memToPhys((1L<<numBits)-1);
 		}
 		pv.put(EcuDataPv.FID_MIN, minVal);
 		pv.put(EcuDataPv.FID_MAX, maxVal);
