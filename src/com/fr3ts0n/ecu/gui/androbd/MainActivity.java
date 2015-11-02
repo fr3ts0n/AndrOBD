@@ -92,6 +92,8 @@ public class MainActivity extends ListActivity
 	public static final String PREF_DEV_ADDRESS = "device_address";
 	public static final String PREF_USE_LAST = "use_last_settings";
 	public static final String PREF_LAST_ITEMS = "last_items";
+	public static final String PREF_DATA_VIEW_MODE = "data_view_mode";
+	public static final String PREF_LAST_SERVICE = "last_service";
 
 	/**
 	 * Message types sent from the BluetoothChatService Handler
@@ -181,6 +183,9 @@ public class MainActivity extends ListActivity
 	private static FileHelper fileHelper;
 	/** the local list view */
 	protected View mListView;
+	/** current data view mode */
+	private DATA_VIEW_MODE dataViewMode = DATA_VIEW_MODE.LIST;
+
 
 	/** handler for freeze frame selection */
 	AdapterView.OnItemSelectedListener ff_selected = new AdapterView.OnItemSelectedListener()
@@ -281,10 +286,24 @@ public class MainActivity extends ListActivity
 									&& event.getSource() == ObdProt.PidPvs)
 								{
 									// get preference for last seleted items
-									int[] lastSelectedItems =
-										toIntArray(prefs.getString(PREF_LAST_ITEMS, ""));
+									int[] lastSelectedItems =	toIntArray(prefs.getString(PREF_LAST_ITEMS, ""));
 									// select last selected items
-									selectDataItems(lastSelectedItems, true);
+									if(lastSelectedItems.length > 0)
+									{
+										if(!selectDataItems(lastSelectedItems, true))
+										{
+											// if items could not be applied
+											// remove invalid preselection
+											prefs.edit().remove(PREF_LAST_ITEMS).apply();
+											log.warn(String.format("Invalid preselection: %s",
+											                       Arrays.toString(lastSelectedItems)));
+										}
+									}
+
+									// set last data view mode
+									DATA_VIEW_MODE lastMode =
+										DATA_VIEW_MODE.valueOf(prefs.getString(PREF_DATA_VIEW_MODE,DATA_VIEW_MODE.LIST.toString()));
+									setDataViewMode(lastMode);
 								}
 							} catch (Exception ignored)
 							{
@@ -302,11 +321,20 @@ public class MainActivity extends ListActivity
 					break;
 
 				case MESSAGE_OBD_STATE_CHANGED:
+					evt = (PropertyChangeEvent) msg.obj;
+					ElmProt.STAT state = (ElmProt.STAT)evt.getNewValue();
 					/* Show ELM status only in ONLINE mode */
 					if (getMode() != MODE.DEMO)
 					{
-						evt = (PropertyChangeEvent) msg.obj;
-						setStatus(String.valueOf(evt.getNewValue()));
+						setStatus(String.valueOf(state));
+					}
+					// if last selection shall be restored ...
+					if(prefs.getBoolean(PREF_USE_LAST,false))
+					{
+						if(state == ElmProt.STAT.INITIALIZED)
+						{
+							setObdService(prefs.getInt(PREF_LAST_SERVICE,0), null);
+						}
 					}
 					break;
 
@@ -913,7 +941,14 @@ public class MainActivity extends ListActivity
 	{
 		if (CommService.elm.getService() != ObdProt.OBD_SVC_NONE)
 		{
-			setObdService(ObdProt.OBD_SVC_NONE, null);
+			if(dataViewMode == DATA_VIEW_MODE.FILTERED)
+			{
+				setDataViewMode(DATA_VIEW_MODE.LIST);
+			}
+			else
+			{
+				setObdService(ObdProt.OBD_SVC_NONE, null);
+			}
 		} else
 		{
 			if (lastBackPressTime < System.currentTimeMillis() - EXIT_TIMEOUT)
@@ -946,6 +981,7 @@ public class MainActivity extends ListActivity
 		return true;
 	}
 
+
 	/**
 	 * Handler for Options menu selection
 	 */
@@ -967,8 +1003,7 @@ public class MainActivity extends ListActivity
 				return true;
 
 			case R.id.reset_preselections:
-				prefs.edit().remove(PREF_DEV_ADDRESS).apply();
-				prefs.edit().remove(PREF_ECU_ADDRESS).apply();
+				clearPreselections();
 				recreate();
 				return true;
 
@@ -983,52 +1018,23 @@ public class MainActivity extends ListActivity
 				return true;
 
 			case R.id.chart_selected:
-				/* if we are in OBD data mode:
-				 * -> Short click on an item starts the readout activity
-			     */
-				if (CommService.elm.getService() == ObdProt.OBD_SVC_DATA)
-				{
-					if (getListView().getCheckedItemCount() > 0)
-					{
-						ChartActivity.setAdapter(getListAdapter());
-						Intent intent = new Intent(this, ChartActivity.class);
-						intent.putExtra(ChartActivity.POSITIONS, getSelectedPositions());
-						startActivity(intent);
-					} else
-					{
-						setMenuItemEnable(R.id.chart_selected, false);
-					}
-				}
+				setDataViewMode(DATA_VIEW_MODE.CHART);
 				return true;
 
 			case R.id.hud_selected:
+				setDataViewMode(DATA_VIEW_MODE.HEADUP);
+				return true;
+
 			case R.id.dashboard_selected:
-				/* if we are in OBD data mode:
-				 * -> Short click on an item starts the readout activity
-			     */
-				if (CommService.elm.getService() == ObdProt.OBD_SVC_DATA)
-				{
-					if (getListView().getCheckedItemCount() > 0)
-					{
-						DashBoardActivity.setAdapter(getListAdapter());
-						Intent intent = new Intent(this, DashBoardActivity.class);
-						intent.putExtra(DashBoardActivity.POSITIONS, getSelectedPositions());
-						intent.putExtra(DashBoardActivity.RES_ID,
-						                item.getItemId() == R.id.dashboard_selected ? R.layout.dashboard : R.layout.head_up);
-						startActivity(intent);
-					} else
-					{
-						setMenuItemEnable(R.id.graph_actions, false);
-					}
-				}
+				setDataViewMode(DATA_VIEW_MODE.DASHBOARD);
 				return true;
 
 			case R.id.filter_selected:
-				setFiltered(true);
+				setDataViewMode(DATA_VIEW_MODE.FILTERED);
 				return true;
 
 			case R.id.unfilter_selected:
-				setFiltered(false);
+				setDataViewMode(DATA_VIEW_MODE.LIST);
 				return true;
 
 			case R.id.save:
@@ -1075,6 +1081,16 @@ public class MainActivity extends ListActivity
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * clear all preselections
+	 */
+	private void clearPreselections()
+	{
+		prefs.edit().remove(PREF_DEV_ADDRESS).apply();
+		prefs.edit().remove(PREF_ECU_ADDRESS).apply();
+		prefs.edit().remove(PREF_LAST_ITEMS).apply();
 	}
 
 	/**
@@ -1227,6 +1243,9 @@ public class MainActivity extends ListActivity
 				break;
 		}
 		setListAdapter(currDataAdapter);
+		// remember this as last selected service
+		if(newObdService > 0)
+			prefs.edit().putInt(PREF_LAST_SERVICE, newObdService).apply();
 	}
 
 	/**
@@ -1295,15 +1314,32 @@ public class MainActivity extends ListActivity
 	 * Set selection status on specified list item positions
 	 * @param positions list of positions to be set
 	 * @param selectionStatus status to be set
+	 * @return flag if selections could be applied
 	 */
-	private void selectDataItems(int[] positions, boolean selectionStatus)
+	private boolean selectDataItems(int[] positions, boolean selectionStatus)
 	{
-		for(int i : positions)
+		int count;
+		int max;
+		boolean positionsValid;
+
+		Arrays.sort(positions);
+		max = positions.length > 0 ? positions[positions.length-1] : 0;
+		count = getListAdapter().getCount();
+		positionsValid = (max < count);
+		// if all positions are valid for current list ...
+		if(positionsValid)
 		{
-			getListView().setItemChecked(i, selectionStatus);
+			// set list items as selected
+			for(int i : positions)
+			{
+				getListView().setItemChecked(i, selectionStatus);
+			}
 		}
 		// enable graphic actions only on DATA service if min 1 item selected
 		setMenuItemEnable(R.id.graph_actions, positions.length > 0 && selectionStatus);
+
+		// return validity of positions
+		return positionsValid;
 	}
 
 	/**
@@ -1524,6 +1560,76 @@ public class MainActivity extends ListActivity
 	}
 
 	/**
+	 * Set new data view mode
+	 * @param dataViewMode new data view mode
+	 */
+	private void setDataViewMode(DATA_VIEW_MODE dataViewMode)
+	{
+		// if this is a real change ...
+		if(dataViewMode != this.dataViewMode)
+		{
+			switch(dataViewMode)
+			{
+				case LIST:
+					setFiltered(false);
+					break;
+
+				case FILTERED:
+					setFiltered(true);
+					break;
+
+				case HEADUP:
+				case DASHBOARD:
+				/* if we are in OBD data mode:
+				 * -> Short click on an item starts the readout activity
+			     */
+					if (CommService.elm.getService() == ObdProt.OBD_SVC_DATA)
+					{
+						if (getListView().getCheckedItemCount() > 0)
+						{
+							DashBoardActivity.setAdapter(getListAdapter());
+							Intent intent = new Intent(this, DashBoardActivity.class);
+							intent.putExtra(DashBoardActivity.POSITIONS, getSelectedPositions());
+							intent.putExtra(DashBoardActivity.RES_ID,
+							                dataViewMode == DATA_VIEW_MODE.DASHBOARD
+								                ? R.layout.dashboard
+								                : R.layout.head_up);
+							startActivity(intent);
+						} else
+						{
+							setMenuItemEnable(R.id.graph_actions, false);
+						}
+					}
+					break;
+
+				case CHART:
+				/* if we are in OBD data mode:
+				 * -> Short click on an item starts the readout activity
+			     */
+					if (CommService.elm.getService() == ObdProt.OBD_SVC_DATA)
+					{
+						if (getListView().getCheckedItemCount() > 0)
+						{
+							ChartActivity.setAdapter(getListAdapter());
+							Intent intent = new Intent(this, ChartActivity.class);
+							intent.putExtra(ChartActivity.POSITIONS, getSelectedPositions());
+							startActivity(intent);
+						} else
+						{
+							setMenuItemEnable(R.id.chart_selected, false);
+						}
+					}
+					break;
+			}
+			this.dataViewMode = dataViewMode;
+
+			// remember this as the last data view mode (if not regular list)
+			if(dataViewMode != DATA_VIEW_MODE.LIST)
+				prefs.edit().putString(PREF_DATA_VIEW_MODE, dataViewMode.toString()).apply();
+		}
+	}
+
+	/**
 	 * operating modes
 	 */
 	public enum MODE
@@ -1532,6 +1638,18 @@ public class MainActivity extends ListActivity
 		ONLINE,
 		DEMO,
 		FILE
+	}
+
+	/**
+	 * data view modes
+	 */
+	public enum DATA_VIEW_MODE
+	{
+		LIST,       //< data list (un-filtered)
+		FILTERED,   //< data list (filtered)
+		DASHBOARD,  //< dashboard
+		HEADUP,     //< Head up display
+		CHART       //< chart display
 	}
 
 }
