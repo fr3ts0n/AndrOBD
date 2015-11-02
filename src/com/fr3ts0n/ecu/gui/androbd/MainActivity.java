@@ -64,6 +64,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -81,6 +82,41 @@ public class MainActivity extends ListActivity
 	SharedPreferences.OnSharedPreferenceChangeListener
 {
 	/**
+	 * operating modes
+	 */
+	public enum MODE
+	{
+		OFFLINE,
+		ONLINE,
+		DEMO,
+		FILE
+	}
+
+	/**
+	 * data view modes
+	 */
+	public enum DATA_VIEW_MODE
+	{
+		LIST,       //< data list (un-filtered)
+		FILTERED,   //< data list (filtered)
+		DASHBOARD,  //< dashboard
+		HEADUP,     //< Head up display
+		CHART       //< chart display
+	}
+
+	/**
+	 * Preselection types
+	 */
+	public enum PRESELECT
+	{
+		LAST_DEV_ADDRESS,
+		LAST_ECU_ADDRESS,
+		LAST_SERVICE,
+		LAST_ITEMS,
+		LAST_VIEW_MODE,
+	}
+	
+	/**
 	 * Key names for preferences
 	 */
 	public static final String DEVICE_NAME = "device_name";
@@ -88,12 +124,7 @@ public class MainActivity extends ListActivity
 	public static final String MEASURE_SYSTEM = "measure_system";
 	public static final String NIGHT_MODE = "night_mode";
 	public static final String ELM_ADAPTIVE_TIMING = "elm_adaptive_timing";
-	public static final String PREF_ECU_ADDRESS = "ecu_address";
-	public static final String PREF_DEV_ADDRESS = "device_address";
-	public static final String PREF_USE_LAST = "use_last_settings";
-	public static final String PREF_LAST_ITEMS = "last_items";
-	public static final String PREF_DATA_VIEW_MODE = "data_view_mode";
-	public static final String PREF_LAST_SERVICE = "last_service";
+	public static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
 
 	/**
 	 * Message types sent from the BluetoothChatService Handler
@@ -215,6 +246,17 @@ public class MainActivity extends ListActivity
 	private MODE mode = MODE.OFFLINE;
 
 	/**
+	 * Check if restore of specified preselection is wanted from settings
+	 * @param preselect specified preselect
+	 * @return flag if preselection shall be restored
+	 */
+	static final Set<String> emptyStringSet = new HashSet<String>();
+	boolean istRestoreWanted(PRESELECT preselect)
+	{
+		return prefs.getStringSet(PREF_USE_LAST, emptyStringSet).contains(preselect.toString());
+	}
+
+	/**
 	 * Handle message requests
 	 */
 	private transient final Handler mHandler = new Handler()
@@ -281,12 +323,12 @@ public class MainActivity extends ListActivity
 							try
 							{
 								updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
-								// if last settings shall be used ...
-								if(prefs.getBoolean(PREF_USE_LAST, false)
+								// if last data items shall be restored
+								if(istRestoreWanted(PRESELECT.LAST_ITEMS)
 									&& event.getSource() == ObdProt.PidPvs)
 								{
 									// get preference for last seleted items
-									int[] lastSelectedItems =	toIntArray(prefs.getString(PREF_LAST_ITEMS, ""));
+									int[] lastSelectedItems =	toIntArray(prefs.getString(PRESELECT.LAST_ITEMS.toString(), ""));
 									// select last selected items
 									if(lastSelectedItems.length > 0)
 									{
@@ -294,15 +336,18 @@ public class MainActivity extends ListActivity
 										{
 											// if items could not be applied
 											// remove invalid preselection
-											prefs.edit().remove(PREF_LAST_ITEMS).apply();
+											prefs.edit().remove(PRESELECT.LAST_ITEMS.toString()).apply();
 											log.warn(String.format("Invalid preselection: %s",
 											                       Arrays.toString(lastSelectedItems)));
 										}
 									}
-
+								}
+								// if last view mode shall be restored
+								if(istRestoreWanted(PRESELECT.LAST_VIEW_MODE))
+								{
 									// set last data view mode
 									DATA_VIEW_MODE lastMode =
-										DATA_VIEW_MODE.valueOf(prefs.getString(PREF_DATA_VIEW_MODE,DATA_VIEW_MODE.LIST.toString()));
+										DATA_VIEW_MODE.valueOf(prefs.getString(PRESELECT.LAST_VIEW_MODE.toString(),DATA_VIEW_MODE.LIST.toString()));
 									setDataViewMode(lastMode);
 								}
 							} catch (Exception ignored)
@@ -329,11 +374,11 @@ public class MainActivity extends ListActivity
 						setStatus(String.valueOf(state));
 					}
 					// if last selection shall be restored ...
-					if(prefs.getBoolean(PREF_USE_LAST,false))
+					if(istRestoreWanted(PRESELECT.LAST_SERVICE))
 					{
 						if(state == ElmProt.STAT.INITIALIZED)
 						{
-							setObdService(prefs.getInt(PREF_LAST_SERVICE,0), null);
+							setObdService(prefs.getInt(PRESELECT.LAST_SERVICE.toString(),0), null);
 						}
 					}
 					break;
@@ -376,13 +421,13 @@ public class MainActivity extends ListActivity
 		// if more than one ECUs available ...
 		if(ecuAdresses.size() > 1)
 		{
-			int preferredAddress = prefs.getInt(PREF_ECU_ADDRESS,0);
+			int preferredAddress = prefs.getInt(PRESELECT.LAST_ECU_ADDRESS.toString(),0);
 			// check if last preferred address matches any of the reported addresses
-			if(prefs.getBoolean(PREF_USE_LAST,false)
+			if(istRestoreWanted(PRESELECT.LAST_ECU_ADDRESS)
 			   && ecuAdresses.contains(preferredAddress))
 			{
 				// set this as preference (preference change will trigger ELM command)
-				prefs.edit().putInt(PREF_ECU_ADDRESS, preferredAddress).apply();
+				prefs.edit().putInt(PRESELECT.LAST_ECU_ADDRESS.toString(), preferredAddress).apply();
 			}
 			else
 			{
@@ -406,7 +451,7 @@ public class MainActivity extends ListActivity
 						{
 							int address = Integer.parseInt(entries[which].toString().substring(2), 16);
 							// set this as preference (preference change will trigger ELM command)
-							prefs.edit().putInt(PREF_ECU_ADDRESS, address).apply();
+							prefs.edit().putInt(PRESELECT.LAST_ECU_ADDRESS.toString(), address).apply();
 						}
 					})
 					.show();
@@ -616,8 +661,8 @@ public class MainActivity extends ListActivity
 				                                String.valueOf(CommService.elm.mAdaptiveTiming.getElmTimeoutMin()))));
 
 		// ECU address
-		if(PREF_ECU_ADDRESS.equals(key))
-			CommService.elm.setEcuAddress(prefs.getInt(PREF_ECU_ADDRESS, 0));
+		if(PRESELECT.LAST_ECU_ADDRESS.equals(key))
+			CommService.elm.setEcuAddress(prefs.getInt(PRESELECT.LAST_ECU_ADDRESS.toString(), 0));
 
 		// ... measurement system
 		if(key==null || MEASURE_SYSTEM.equals(key))
@@ -712,8 +757,8 @@ public class MainActivity extends ListActivity
 					{
 						case BLUETOOTH:
 							// if pre-settings shall be used ...
-							String address = prefs.getString(PREF_DEV_ADDRESS, null);
-							if(prefs.getBoolean(PREF_USE_LAST,false)
+							String address = prefs.getString(PRESELECT.LAST_DEV_ADDRESS.toString(), null);
+							if(istRestoreWanted(PRESELECT.LAST_DEV_ADDRESS)
 								 && address != null)
 							{
 								// ... connect with previously connected device
@@ -1088,9 +1133,8 @@ public class MainActivity extends ListActivity
 	 */
 	private void clearPreselections()
 	{
-		prefs.edit().remove(PREF_DEV_ADDRESS).apply();
-		prefs.edit().remove(PREF_ECU_ADDRESS).apply();
-		prefs.edit().remove(PREF_LAST_ITEMS).apply();
+		for(PRESELECT selection : PRESELECT.values())
+			prefs.edit().remove(selection.toString()).apply();
 	}
 
 	/**
@@ -1110,7 +1154,7 @@ public class MainActivity extends ListActivity
 					String address = data.getExtras().getString(
 						BtDeviceListActivity.EXTRA_DEVICE_ADDRESS);
 					// save reported address as last setting
-					prefs.edit().putString(PREF_DEV_ADDRESS, address).apply();
+					prefs.edit().putString(PRESELECT.LAST_DEV_ADDRESS.toString(), address).apply();
 					connectBtDevice(address, false);
 				} else
 				{
@@ -1245,7 +1289,7 @@ public class MainActivity extends ListActivity
 		setListAdapter(currDataAdapter);
 		// remember this as last selected service
 		if(newObdService > 0)
-			prefs.edit().putInt(PREF_LAST_SERVICE, newObdService).apply();
+			prefs.edit().putInt(PRESELECT.LAST_SERVICE.toString(), newObdService).apply();
 	}
 
 	/**
@@ -1306,7 +1350,7 @@ public class MainActivity extends ListActivity
 			}
 		}
 		// save this as last seleted positions
-		prefs.edit().putString(PREF_LAST_ITEMS, Arrays.toString(selectedPositions)).apply();
+		prefs.edit().putString(PRESELECT.LAST_ITEMS.toString(), Arrays.toString(selectedPositions)).apply();
 		return selectedPositions;
 	}
 
@@ -1625,31 +1669,8 @@ public class MainActivity extends ListActivity
 
 			// remember this as the last data view mode (if not regular list)
 			if(dataViewMode != DATA_VIEW_MODE.LIST)
-				prefs.edit().putString(PREF_DATA_VIEW_MODE, dataViewMode.toString()).apply();
+				prefs.edit().putString(PRESELECT.LAST_VIEW_MODE.toString(), dataViewMode.toString()).apply();
 		}
-	}
-
-	/**
-	 * operating modes
-	 */
-	public enum MODE
-	{
-		OFFLINE,
-		ONLINE,
-		DEMO,
-		FILE
-	}
-
-	/**
-	 * data view modes
-	 */
-	public enum DATA_VIEW_MODE
-	{
-		LIST,       //< data list (un-filtered)
-		FILTERED,   //< data list (filtered)
-		DASHBOARD,  //< dashboard
-		HEADUP,     //< Head up display
-		CHART       //< chart display
 	}
 
 }

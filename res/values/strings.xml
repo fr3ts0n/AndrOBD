@@ -15,7 +15,7 @@
     <string name="welcome_to">Welcome to</string>
     <string name="logo">Logo</string>
     <string name="back_again_to_exit">Press back again to close this app</string>
-    	<!-- menu  -->
+    <!-- menu  -->
     <string name="action_connect">Connect</string>
     <string name="obd_none">NO service</string>
     <string name="obd_services">OBD Services</string>
@@ -44,7 +44,7 @@ The loss of data may cause the vehicle to run poorly for a short \n
 period of time while the ECU recalibrates itself.
      </string>
 
-        <!--  BtDeviceListActivity -->
+    <!--  BtDeviceListActivity -->
     <string name="scanning">Scanning&#8230;</string>
     <string name="select_device">Select adapter</string>
     <string name="none_paired">No Devices Paired</string>
@@ -64,15 +64,15 @@ period of time while the ECU recalibrates itself.
     <string name="save">Save measurement</string>
     <string name="load">Load measurement</string>
     <string name="saved_data">Saved Data</string>
-	<string name="loaded">loaded</string>
-	<string name="saved">saved</string>
-	<string name="connected_to">"Connected to "</string>
-	<string name="demo">Demo…</string>
-	<string name="saving_data">Saving data …</string>
+    <string name="loaded">loaded</string>
+    <string name="saved">saved</string>
+    <string name="connected_to">"Connected to "</string>
+    <string name="demo">Demo…</string>
+    <string name="saving_data">Saving data …</string>
     <string name="loading_data">Loading data …</string>
-	<string name="dashboard">Dashboard</string>
-	<string name="graph_actions">Graph actions</string>
-	<string name="hud">Head Up Display</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="graph_actions">Graph actions</string>
+    <string name="hud">Head Up Display</string>
     <string name="filter">Filter selected</string>
     <string name="unfilter">Un-filter selected</string>
 
@@ -81,8 +81,8 @@ period of time while the ECU recalibrates itself.
     <string name="common_settings">Common settings</string>
     <string name="measure_system_description">Measurement units system (metric / imperial)</string>
     <string name="measure_system">Measurement units</string>
-	<string name="metric">metric</string>
-	<string name="imperial">imperial</string>
+    <string name="metric">metric</string>
+    <string name="imperial">imperial</string>
     <string-array name="measure_options" translatable="false">
         <item>@string/metric</item>
         <item>@string/imperial</item>
@@ -93,7 +93,7 @@ period of time while the ECU recalibrates itself.
     </string-array>
     <string name="items_for_display">Data items to display</string>
     <string name="items_for_display_descr">Select all data items to be displayed …</string>
-    <string-array name="empty" translatable="false" />
+    <string-array name="empty" translatable="false"/>
 
     <string name="debugging">Debugging</string>
     <string name="logging_level">Logging level</string>
@@ -113,6 +113,36 @@ period of time while the ECU recalibrates itself.
         <item>TRACE</item>
         <item>ALL</item>
     </string-array>
+
+    <!--
+    * key values for restore options
+    * - must align with enum MainActivity.PRESELECT
+    -->
+    <string-array name="restore_keys" translatable="false">
+        <item>LAST_DEV_ADDRESS</item>
+        <item>LAST_ECU_ADDRESS</item>
+        <item>LAST_SERVICE</item>
+        <item>LAST_ITEMS</item>
+        <item>LAST_VIEW_MODE</item>
+    </string-array>
+
+    <!--
+    * display values for restore options
+    * - must align with enum MainActivity.PRESELECT
+    -->
+    <string-array name="restore_options" translatable="false">
+        <item>@string/last_elm</item>
+        <item>@string/last_ecu</item>
+        <item>@string/last_service</item>
+        <item>@string/last_data_items</item>
+        <item>@string/last_view_mode</item>
+    </string-array>
+
+    <string name="last_elm">re-connect last ELM-adapter</string>
+    <string name="last_ecu">re-connect last ECU</string>
+    <string name="last_service">last OBD service</string>
+    <string name="last_data_items">last selected data items</string>
+    <string name="last_view_mode">last data view mode</string>
 
     <string name="keep_screen_on">Keep main screen on</string>
     <string name="keep_screen_on_description">Do not turn OFF screen if main/data screen is on display</string>

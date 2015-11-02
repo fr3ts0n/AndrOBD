@@ -103,7 +103,7 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="day_night_mode">Tag/Nacht Ansicht</string>
     <string name="night_mode">Nachmodus</string>
     <string name="night_mode_description">Ansicht mit dunklem Hintergrund</string>
-    <string name="disable_elm_cmds">Verbotene ELM-Befehle ...</string>
+    <string name="disable_elm_cmds">Verbotene ELM-Befehle …</string>
     <string name="disable_elm_cmds_descr">ELM Befehle verbieten / erlauben</string>
     <string name="disabled">verboten</string>
     <string name="elm_adaptive_timing">Adaptives ELM timing</string>
@@ -113,5 +113,11 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="disconnect">Verbindung trennen</string>
     <string name="reset_preselections">Letzte Einstellungen löschen</string>
     <string name="use_last_settings">Letzte Einstellungen verwenden</string>
-    <string name="use_last_settings_description">Letzte Einstellungen bei Start verwenden (BT Adresse, ECU Adresse, Anzeige ...)</string>
+    <string name="use_last_settings_description">Letzte Einstellungen bei Start verwenden (BT Adresse, ECU Adresse, Anzeige …)</string>
+    <string name="last_data_items">letze Datenauswahl</string>
+    <string name="last_ecu">letzte ECU Adresse</string>
+    <string name="last_elm">letzter ELM-Adapter</string>
+    <string name="last_none">Nicht verwenden</string>
+    <string name="last_service">letzter OBD service</string>
+    <string name="last_view_mode">letzter Datenanzeige-Modus</string>
 </resources>
