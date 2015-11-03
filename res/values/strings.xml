@@ -182,4 +182,5 @@ period of time while the ECU recalibrates itself.
     <string name="reset_preselections">Reset last pre-selections</string>
     <string name="use_last_settings_description">Use last settings at startup (BT address, ECU address, Display items ...)</string>
     <string name="use_last_settings">Use last settings</string>
+    <string name="common_settings_description">Common settings for app control</string>
 </resources>

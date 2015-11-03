@@ -160,6 +160,7 @@ public class MainActivity extends ListActivity
 	private static final int DISPLAY_UPDATE_TIME = 200;
 	public static final String LOG_MASTER = "log_master";
 	public static final String KEEP_SCREEN_ON = "keep_screen_on";
+	public static final String ELM_CUSTOM_INIT_CMDS = "elm_custom_init_cmds";
 
 	public static final Logger log = Logger.getLogger(TAG);
 
@@ -653,6 +654,10 @@ public class MainActivity extends ListActivity
 		// enable/disable ELM adaptive timing
 		if(key==null || ELM_ADAPTIVE_TIMING.equals(key))
 			CommService.elm.mAdaptiveTiming.setEnabled(prefs.getBoolean(ELM_ADAPTIVE_TIMING, true));
+
+		// set custom ELM init commands
+		if(key==null || ELM_CUSTOM_INIT_CMDS.equals(key))
+			CommService.elm.setCustomInitCommands(prefs.getString(ELM_CUSTOM_INIT_CMDS,"").split("\n"));
 
 		// ELM timeout
 		if(key==null || SettingsActivity.ELM_MIN_TIMEOUT.equals(key))

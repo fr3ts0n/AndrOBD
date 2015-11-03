@@ -34,6 +34,7 @@ import com.fr3ts0n.ecu.Conversion;
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.NumericConversion;
+import com.fr3ts0n.ecu.prot.ObdProt;
 import com.fr3ts0n.pvs.IndexedProcessVar;
 import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
@@ -56,6 +57,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	implements PvChangeListener
 {
 	transient protected PvList pvs;
+	transient protected boolean isPidList = false;
 	transient protected LayoutInflater mInflater;
 	transient public static final String FID_DATA_SERIES = "SERIES";
 	/** allow data updates to be handled */
@@ -80,6 +82,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	public synchronized void setPvList(PvList pvs)
 	{
 		this.pvs = pvs;
+		isPidList = (pvs == ObdProt.PidPvs);
 		// get set to be displayed (filtered with preferences */
 		Collection<Object> filtered = getPreferredItems(pvs, SettingsActivity.KEY_DATA_ITEMS);
 		// make it a sorted array
@@ -170,7 +173,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		TextView tvValue = (TextView) convertView.findViewById(R.id.obd_value);
 		TextView tvUnits = (TextView) convertView.findViewById(R.id.obd_units);
 		ProgressBar pb = (ProgressBar) convertView.findViewById(R.id.bar);
-		cbChecked.setVisibility(View.VISIBLE);
+		cbChecked.setVisibility(isPidList ? View.VISIBLE : View.GONE);
 
 		// format value string
 		String fmtText;

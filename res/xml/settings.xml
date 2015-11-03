@@ -6,50 +6,56 @@
     <PreferenceCategory
         android:title="@string/common_settings"
         >
-        <MultiSelectListPreference
-            android:defaultValue="@array/empty"
-            android:dialogTitle="@string/use_last_settings"
-            android:entries="@array/restore_options"
-            android:entryValues="@array/restore_keys"
-            android:key="USE_LAST_SETTINGS"
-            android:summary="@string/use_last_settings_description"
-            android:title="@string/use_last_settings"
-            />
+        <PreferenceScreen
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="@string/common_settings"
+            android:summary="@string/common_settings_description">
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="keep_screen_on"
-            android:summary="@string/keep_screen_on_description"
-            android:title="@string/keep_screen_on"
-            />
+            <MultiSelectListPreference
+                android:defaultValue="@array/empty"
+                android:dialogTitle="@string/use_last_settings"
+                android:entries="@array/restore_options"
+                android:entryValues="@array/restore_keys"
+                android:key="USE_LAST_SETTINGS"
+                android:summary="@string/use_last_settings_description"
+                android:title="@string/use_last_settings"
+                />
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="night_mode"
-            android:summary="@string/night_mode_description"
-            android:title="@string/night_mode"
-            />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="keep_screen_on"
+                android:summary="@string/keep_screen_on_description"
+                android:title="@string/keep_screen_on"
+                />
 
-        <ListPreference
-            android:defaultValue="0"
-            android:dialogTitle="@string/measure_system"
-            android:entries="@array/measure_options"
-            android:entryValues="@array/measure_option_values"
-            android:key="measure_system"
-            android:summary="@string/measure_system_description"
-            android:title="@string/measure_system"
-            />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="night_mode"
+                android:summary="@string/night_mode_description"
+                android:title="@string/night_mode"
+                />
 
-        <MultiSelectListPreference
-            android:defaultValue="@array/empty"
-            android:dialogTitle="@string/items_for_display"
-            android:entries="@array/empty"
-            android:entryValues="@array/empty"
-            android:key="data_items"
-            android:summary="@string/items_for_display_descr"
-            android:title="@string/items_for_display"
-            />
+            <ListPreference
+                android:defaultValue="0"
+                android:dialogTitle="@string/measure_system"
+                android:entries="@array/measure_options"
+                android:entryValues="@array/measure_option_values"
+                android:key="measure_system"
+                android:summary="@string/measure_system_description"
+                android:title="@string/measure_system"
+                />
 
+            <MultiSelectListPreference
+                android:defaultValue="@array/empty"
+                android:dialogTitle="@string/items_for_display"
+                android:entries="@array/empty"
+                android:entryValues="@array/empty"
+                android:key="data_items"
+                android:summary="@string/items_for_display_descr"
+                android:title="@string/items_for_display"
+                />
+
+        </PreferenceScreen>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -76,6 +82,15 @@
                 android:entryValues="@array/empty"
                 android:key="protocol"
                 android:title="@string/select_protocol"
+                />
+
+            <EditTextPreference
+                android:capitalize="characters"
+                android:defaultValue=""
+                android:key="elm_custom_init_cmds"
+                android:minLines="5"
+                android:summary="ELM custom initialisation commands"
+                android:title="ELM custom init"
                 />
 
             <CheckBoxPreference

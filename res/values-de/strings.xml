@@ -120,4 +120,5 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="last_none">Nicht verwenden</string>
     <string name="last_service">letzter OBD service</string>
     <string name="last_view_mode">letzter Datenanzeige-Modus</string>
+    <string name="common_settings_description">Allgemeine Einstellungen zur Programmsteuerung</string>
 </resources>

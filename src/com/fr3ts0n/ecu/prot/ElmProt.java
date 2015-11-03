@@ -22,8 +22,12 @@ import com.fr3ts0n.prot.TelegramListener;
 import com.fr3ts0n.prot.TelegramWriter;
 
 import java.beans.PropertyChangeEvent;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.Vector;
 
 
 /**
@@ -60,6 +64,8 @@ public class ElmProt
 	private TreeSet<Integer> ecuAddresses = new TreeSet<Integer>();
 	/** selected ECU address */
 	private int selectedEcuAddress = 0;
+	/** custom ELM initialisation commands */
+	Vector<String> customInitCommands = new Vector<String>();
 
 	/**
 	 * ELM protocol ID's
@@ -386,7 +392,7 @@ public class ElmProt
 	public static void setPreferredProtocol(int protoIndex)
 	{
 		preferredProtocol = PROT.values()[protoIndex];
-		log.info("Preferred protocol: "+preferredProtocol);
+		log.info("Preferred protocol: " + preferredProtocol);
 	}
 
 	/**
@@ -537,6 +543,9 @@ public class ElmProt
 		// find all connected ECUs
 		findConnectedEcus();
 
+		// queue custom init commands
+		cmdQueue.addAll(customInitCommands);
+
 		// set to preferred protocol
 		pushCommand(CMD.SETPROT, preferredProtocol.ordinal());
 
@@ -633,7 +642,7 @@ public class ElmProt
 					case FBERROR:
 						setStatus(STAT.DISCONNECTED);
 						// re-queue last command
-						if(service != OBD_SVC_NONE)	cmdQueue.add(String.valueOf(lastCommand));
+						cmdQueue.add(String.valueOf(lastCommand));
 						// Initialize adaptive timing
 						mAdaptiveTiming.initialize();
 						// set to AUTO protocol
@@ -954,6 +963,21 @@ public class ElmProt
 			}
 		}
 		log.info("ELM DEMO thread finished");
+	}
+
+	/**
+	 * set custom initialisation commands
+	 * @param commands custom initialisation commands
+	 */
+	public void setCustomInitCommands(String[] commands)
+	{
+		List<String> cmds = Arrays.asList(commands);
+		// reverse list, since all commands are pushed rather than queued
+		Collections.reverse(cmds);
+		// clear list
+		customInitCommands.clear();
+		// add all entries
+		customInitCommands.addAll(cmds);
 	}
 
 	/**
