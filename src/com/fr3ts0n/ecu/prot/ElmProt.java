@@ -147,6 +147,8 @@ public class ElmProt
 		UNDEFINED     ( "Undefined"     ),
 		INITIALIZING  ( "Initializing"  ),
 		INITIALIZED   ( "Initialized"   ),
+		ECU_DETECT    ( "ECU detect"    ),
+		ECU_DETECTED  ( "ECU detected"  ),
 		CONNECTING    ( "Connecting"    ),
 		CONNECTED     ( "Connected"     ),
 		NODATA        ( "No data"       ),
@@ -521,8 +523,11 @@ public class ElmProt
 	 * request addresses of all connected ECUs
 	 * (received IDs are evaluated in @ref:handleDataMessage)
 	 */
-	private void findConnectedEcus()
+	private void queryEcus()
 	{
+		// set status to INITIALIZING
+		setStatus(STAT.ECU_DETECT);
+
 		// clear all identified ECU addresses
 		ecuAddresses.clear();
 		// clear selected ECU
@@ -532,7 +537,7 @@ public class ElmProt
 		// request PIDs (from all devices)
 		cmdQueue.add("0100");
 		// enable headers
-		pushCommand(CMD.SETHEADER, 1);
+		sendCommand(CMD.SETHEADER, 1);
 	}
 
 	private void initialize()
@@ -540,10 +545,7 @@ public class ElmProt
 		// set status to INITIALIZING
 		setStatus(STAT.INITIALIZING);
 
-		// find all connected ECUs
-		findConnectedEcus();
-
-		// queue custom init commands
+		// push custom init commands
 		cmdQueue.addAll(customInitCommands);
 
 		// set to preferred protocol
@@ -597,7 +599,7 @@ public class ElmProt
 		switch (getResponseId(bufferStr))
 		{
 			case SEARCH:
-				setStatus(status != STAT.INITIALIZING ? STAT.CONNECTING : status);
+				setStatus(status != STAT.ECU_DETECT ? STAT.CONNECTING : status);
 				// NO break here
 			case QMARK:
 			case NODATA:
@@ -700,7 +702,17 @@ public class ElmProt
 						} else
 						{
 							// all queued commands are sent -> we are done initializing
-							setStatus(status==STAT.INITIALIZING ? STAT.INITIALIZED : status);
+							if(status == STAT.INITIALIZING)
+							{
+								// set status to initialized
+								setStatus(STAT.INITIALIZED);
+								// initiate query of connected ECUs
+								queryEcus();
+								break;
+							}
+
+							// all queued commands are sent -> we are done detecting ECUs
+							setStatus(status == STAT.ECU_DETECT ? STAT.ECU_DETECTED : status);
 
 							switch (service)
 							{
@@ -735,7 +747,7 @@ public class ElmProt
 				// if we are still initializing check for address entries
 				switch(status)
 				{
-					case INITIALIZING:
+					case ECU_DETECT:
 					{
 						// start of 0100 response is end of address
 						int adrEnd = bufferStr.indexOf("41");
@@ -851,13 +863,14 @@ public class ElmProt
 		{
 			try
 			{
-				setStatus(STAT.INITIALIZING);
+				handleTelegram(RSP_ID.MODEL.toString().toCharArray());
+				setStatus(STAT.ECU_DETECT);
 				handleTelegram("SEARCHING...".toCharArray());
 				handleTelegram("7EA074100000000".toCharArray());
 				handleTelegram("7E8064100000000".toCharArray());
 				handleTelegram("7E9074100000000".toCharArray());
 				handleTelegram("7E9074100000000".toCharArray());
-				setStatus(STAT.INITIALIZED);
+				setStatus(STAT.ECU_DETECTED);
 
 				while (runDemo)
 				{
@@ -1044,13 +1057,14 @@ public class ElmProt
 		if (status != oldStatus)
 		{
 			log.info("Status change: " + oldStatus + "->" + status);
-			firePropertyChange(new PropertyChangeEvent(this, PROP_STATUS, oldStatus, status));
-
-			// initialisation finished -> send identified ECU addresses
-			if(status == STAT.INITIALIZED)
+			// ECUs detected -> send identified ECU addresses
+			if(status == STAT.ECU_DETECTED)
 			{
 				firePropertyChange(new PropertyChangeEvent(this, PROP_ECU_ADDRESS, null, ecuAddresses));
 			}
+
+			// now fire regular status change
+			firePropertyChange(new PropertyChangeEvent(this, PROP_STATUS, oldStatus, status));
 		}
 	}
 }

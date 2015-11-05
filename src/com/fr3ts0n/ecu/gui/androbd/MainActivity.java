@@ -259,6 +259,39 @@ public class MainActivity extends ListActivity
 	}
 
 	/**
+	 * Check if last data selection shall be restored
+	 * * check if previously selected items shall be re-selected
+	 */
+	public void checkToRestoreLastDataSelection()
+	{
+		// if last data items shall be restored
+		if(istRestoreWanted(PRESELECT.LAST_ITEMS))
+		{
+			// get preference for last seleted items
+			int[] lastSelectedItems =	toIntArray(prefs.getString(PRESELECT.LAST_ITEMS.toString(), ""));
+			// select last selected items
+			if(lastSelectedItems.length > 0)
+			{
+				if(!selectDataItems(lastSelectedItems, true))
+				{
+					// if items could not be applied
+					// remove invalid preselection
+					prefs.edit().remove(PRESELECT.LAST_ITEMS.toString()).apply();
+					log.warn(String.format("Invalid preselection: %s",
+					                       Arrays.toString(lastSelectedItems)));
+				}
+			}
+		}
+		// if last view mode shall be restored
+		if(istRestoreWanted(PRESELECT.LAST_VIEW_MODE))
+		{
+			// set last data view mode
+			DATA_VIEW_MODE lastMode =
+				DATA_VIEW_MODE.valueOf(prefs.getString(PRESELECT.LAST_VIEW_MODE.toString(),DATA_VIEW_MODE.LIST.toString()));
+			setDataViewMode(lastMode);
+		}
+	}
+	/**
 	 * Handle message requests
 	 */
 	private transient final Handler mHandler = new Handler()
@@ -300,6 +333,8 @@ public class MainActivity extends ListActivity
 					mDfcAdapter.setPvList(ObdProt.tCodes);
 					// set OBD data mode to the one selected by input file
 					setObdService(CommService.elm.getService(), getString(R.string.saved_data));
+					// Check if last data selection shall be restored
+					if(obdService == ObdProt.OBD_SVC_DATA) checkToRestoreLastDataSelection();
 					break;
 
 				case MESSAGE_DEVICE_NAME:
@@ -324,34 +359,13 @@ public class MainActivity extends ListActivity
 							currDataAdapter.setPvList(currDataAdapter.pvs);
 							try
 							{
+								if(event.getSource() == ObdProt.PidPvs)
+								{
+									// Check if last data selection shall be restored
+									checkToRestoreLastDataSelection();
+								}
+								// set up data update timer
 								updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
-								// if last data items shall be restored
-								if(istRestoreWanted(PRESELECT.LAST_ITEMS)
-									&& event.getSource() == ObdProt.PidPvs)
-								{
-									// get preference for last seleted items
-									int[] lastSelectedItems =	toIntArray(prefs.getString(PRESELECT.LAST_ITEMS.toString(), ""));
-									// select last selected items
-									if(lastSelectedItems.length > 0)
-									{
-										if(!selectDataItems(lastSelectedItems, true))
-										{
-											// if items could not be applied
-											// remove invalid preselection
-											prefs.edit().remove(PRESELECT.LAST_ITEMS.toString()).apply();
-											log.warn(String.format("Invalid preselection: %s",
-											                       Arrays.toString(lastSelectedItems)));
-										}
-									}
-								}
-								// if last view mode shall be restored
-								if(istRestoreWanted(PRESELECT.LAST_VIEW_MODE))
-								{
-									// set last data view mode
-									DATA_VIEW_MODE lastMode =
-										DATA_VIEW_MODE.valueOf(prefs.getString(PRESELECT.LAST_VIEW_MODE.toString(),DATA_VIEW_MODE.LIST.toString()));
-									setDataViewMode(lastMode);
-								}
 							} catch (Exception ignored)
 							{
 							}
@@ -378,7 +392,7 @@ public class MainActivity extends ListActivity
 					// if last selection shall be restored ...
 					if(istRestoreWanted(PRESELECT.LAST_SERVICE))
 					{
-						if(state == ElmProt.STAT.INITIALIZED)
+						if(state == ElmProt.STAT.ECU_DETECTED)
 						{
 							setObdService(prefs.getInt(PRESELECT.LAST_SERVICE.toString(),0), null);
 						}
@@ -428,8 +442,8 @@ public class MainActivity extends ListActivity
 			if(istRestoreWanted(PRESELECT.LAST_ECU_ADDRESS)
 			   && ecuAdresses.contains(preferredAddress))
 			{
-				// set this as preference (preference change will trigger ELM command)
-				prefs.edit().putInt(PRESELECT.LAST_ECU_ADDRESS.toString(), preferredAddress).apply();
+				// set addrerss
+				CommService.elm.setEcuAddress(preferredAddress);
 			}
 			else
 			{
@@ -452,6 +466,8 @@ public class MainActivity extends ListActivity
 						public void onClick(DialogInterface dialog, int which)
 						{
 							int address = Integer.parseInt(entries[which].toString().substring(2), 16);
+							// set address
+							CommService.elm.setEcuAddress(address);
 							// set this as preference (preference change will trigger ELM command)
 							prefs.edit().putInt(PRESELECT.LAST_ECU_ADDRESS.toString(), address).apply();
 						}
@@ -658,17 +674,17 @@ public class MainActivity extends ListActivity
 
 		// set custom ELM init commands
 		if(key==null || ELM_CUSTOM_INIT_CMDS.equals(key))
-			CommService.elm.setCustomInitCommands(prefs.getString(ELM_CUSTOM_INIT_CMDS,"").split("\n"));
+		{
+			String value = prefs.getString(ELM_CUSTOM_INIT_CMDS, null);
+			if(value != null && value.length() > 0)
+				CommService.elm.setCustomInitCommands(value.split("\n"));
+		}
 
 		// ELM timeout
 		if(key==null || SettingsActivity.ELM_MIN_TIMEOUT.equals(key))
 			CommService.elm.mAdaptiveTiming.setElmTimeoutMin(
 				Integer.valueOf(prefs.getString(SettingsActivity.ELM_MIN_TIMEOUT,
 				                                String.valueOf(CommService.elm.mAdaptiveTiming.getElmTimeoutMin()))));
-
-		// ECU address
-		if(PRESELECT.LAST_ECU_ADDRESS.equals(key))
-			CommService.elm.setEcuAddress(prefs.getInt(PRESELECT.LAST_ECU_ADDRESS.toString(), 0));
 
 		// ... measurement system
 		if(key==null || MEASURE_SYSTEM.equals(key))
@@ -751,9 +767,9 @@ public class MainActivity extends ListActivity
 			switch (mode)
 			{
 				case OFFLINE:
+					// update menu item states
 					setMenuItemVisible(R.id.disconnect, false);
 					setMenuItemVisible(R.id.secure_connect_scan, true);
-
 					setMenuItemEnable(R.id.obd_services, false);
 					setMenuItemEnable(R.id.graph_actions, false);
 					break;
@@ -1059,6 +1075,8 @@ public class MainActivity extends ListActivity
 				return true;
 
 			case R.id.disconnect:
+				// stop communication service
+				if (mCommService != null) mCommService.stop();
 				setMode(MODE.OFFLINE);
 				return true;
 
@@ -1365,6 +1383,8 @@ public class MainActivity extends ListActivity
 					selectedPositions[j++] = checkedItems.keyAt(i);
 				}
 			}
+			// trim to really detected value (workaround for invalid length reported)
+			selectedPositions = Arrays.copyOf(selectedPositions,j);
 		}
 		// save this as last seleted positions
 		prefs.edit().putString(PRESELECT.LAST_ITEMS.toString(), Arrays.toString(selectedPositions)).apply();
@@ -1464,6 +1484,7 @@ public class MainActivity extends ListActivity
 		// stop demo service if it was started
 		setMode(MODE.OFFLINE);
 
+		// stop communication service
 		if (mCommService != null) mCommService.stop();
 
 		// if bluetooth adapter was switched OFF before ...
@@ -1633,6 +1654,8 @@ public class MainActivity extends ListActivity
 		// if this is a real change ...
 		if(dataViewMode != this.dataViewMode)
 		{
+			log.info(String.format("Set view mode: %s -> %s", this.dataViewMode, dataViewMode));
+
 			switch(dataViewMode)
 			{
 				case LIST:
