@@ -149,6 +149,7 @@ public class MainActivity extends ListActivity
 	private static final int REQUEST_SELECT_FILE = 4;
 	private static final int REQUEST_SETTINGS = 5;
 	private static final int REQUEST_CONNECT_DEVICE_USB = 6;
+	private static final int REQUEST_GRAPH_DISPLAY_DONE = 7;
 
 	/**
 	 * app exit parameters
@@ -1150,6 +1151,7 @@ public class MainActivity extends ListActivity
 	{
 		switch (requestCode)
 		{
+			// device is connected
 			case REQUEST_CONNECT_DEVICE_SECURE:
 			case REQUEST_CONNECT_DEVICE_INSECURE:
 				// When BtDeviceListActivity returns with a device to connect
@@ -1167,6 +1169,7 @@ public class MainActivity extends ListActivity
 				}
 				break;
 
+			// USB device selected
 			case REQUEST_CONNECT_DEVICE_USB:
 				// DeviceListActivity returns with a device to connect
 				if (resultCode == Activity.RESULT_OK)
@@ -1179,6 +1182,7 @@ public class MainActivity extends ListActivity
 				}
 				break;
 
+			// bluetooth enabled
 			case REQUEST_ENABLE_BT:
 				// When the request to enable Bluetooth returns
 				if (resultCode == Activity.RESULT_OK)
@@ -1192,6 +1196,7 @@ public class MainActivity extends ListActivity
 				}
 				break;
 
+			// file selected
 			case REQUEST_SELECT_FILE:
 				if (resultCode == RESULT_OK)
 				{
@@ -1206,11 +1211,18 @@ public class MainActivity extends ListActivity
 				}
 				break;
 
+			// settings finished
 			case REQUEST_SETTINGS:
 			{
 				// change handling done by callbacks
 			}
 			break;
+
+			// graphical data view finished
+			case REQUEST_GRAPH_DISPLAY_DONE:
+				// let context know that we are in list mode again ...
+				dataViewMode = DATA_VIEW_MODE.LIST;
+				break;
 		}
 	}
 
@@ -1412,7 +1424,11 @@ public class MainActivity extends ListActivity
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id)
 	{
-		super.onListItemClick(l, v, position, id);
+		if(DATA_VIEW_MODE.LIST == dataViewMode
+			 && ObdProt.OBD_SVC_DATA == CommService.elm.getService())
+		{
+			super.onListItemClick(l, v, position, id);
+		}
 		// enable graphic actions only on DATA service if min 1 item selected
 		setMenuItemEnable(R.id.graph_actions,
 		                  ((CommService.elm.getService() == ObdProt.OBD_SVC_DATA)
@@ -1643,7 +1659,7 @@ public class MainActivity extends ListActivity
 							                dataViewMode == DATA_VIEW_MODE.DASHBOARD
 								                ? R.layout.dashboard
 								                : R.layout.head_up);
-							startActivity(intent);
+							startActivityForResult(intent, REQUEST_GRAPH_DISPLAY_DONE);
 						} else
 						{
 							setMenuItemEnable(R.id.graph_actions, false);
@@ -1662,7 +1678,7 @@ public class MainActivity extends ListActivity
 							ChartActivity.setAdapter(getListAdapter());
 							Intent intent = new Intent(this, ChartActivity.class);
 							intent.putExtra(ChartActivity.POSITIONS, getSelectedPositions());
-							startActivity(intent);
+							startActivityForResult(intent, REQUEST_GRAPH_DISPLAY_DONE);
 						} else
 						{
 							setMenuItemEnable(R.id.chart_selected, false);
