@@ -121,4 +121,23 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="last_service">letzter OBD service</string>
     <string name="last_view_mode">letzter Datenanzeige-Modus</string>
     <string name="common_settings_description">Allgemeine Einstellungen zur Programmsteuerung</string>
+    <string name="BUSERROR">BUS Fehler</string>
+    <string name="CONNECTED">Verbunden</string>
+    <string name="CONNECTING">Verbinde…</string>
+    <string name="DATAERROR">Datenfehler</string>
+    <string name="DISCONNECTED">Keine Verbindung</string>
+    <string name="ECU_DETECT">ECU Suche…</string>
+    <string name="ECU_DETECTED">ECU gefunden</string>
+    <string name="ERROR">Fehler</string>
+    <string name="INITIALIZED">Initialisiert</string>
+    <string name="INITIALIZING">Initialisiere…</string>
+    <string name="NODATA">Keine Daten</string>
+    <string name="RXERROR">RX Fehler</string>
+    <string name="STOPPED">Gestoppt</string>
+    <string name="UNDEFINED">Undefiniert</string>
+    <string name="secure_connect">Sichere Verbindung</string>
+    <string name="secure_connect_description">Benutze verschlüsselte Bluetooth-Verbindung</string>
+    <string name="elm_options">ELM Einstellungen</string>
+    <string name="elm_custom_init">ELM Initialisierung</string>
+    <string name="elm_custom_init_descr">eigene ELM Befehle zur Initialisierung</string>
 </resources>

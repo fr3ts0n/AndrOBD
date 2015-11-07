@@ -240,7 +240,7 @@ public class BtCommService extends CommService
 					tmp = device.createRfcommSocketToServiceRecord(SPP_UUID);
 				} else
 				{
-					tmp = device.createRfcommSocketToServiceRecord(SPP_UUID);
+					tmp = device.createInsecureRfcommSocketToServiceRecord(SPP_UUID);
 				}
 			} catch (IOException e)
 			{

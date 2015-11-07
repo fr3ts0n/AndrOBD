@@ -387,7 +387,7 @@ public class MainActivity extends ListActivity
 					/* Show ELM status only in ONLINE mode */
 					if (getMode() != MODE.DEMO)
 					{
-						setStatus(String.valueOf(state));
+						setStatus(getResources().getStringArray(R.array.elmcomm_states)[state.ordinal()]);
 					}
 					// if last selection shall be restored ...
 					if(istRestoreWanted(PRESELECT.LAST_SERVICE))
@@ -784,13 +784,16 @@ public class MainActivity extends ListActivity
 								 && address != null)
 							{
 								// ... connect with previously connected device
-								connectBtDevice(address, true);
+								connectBtDevice(address, prefs.getBoolean("bt_secure_connection", false));
 							}
 							else
 							{
 								// ... otherwise launch the BtDeviceListActivity to see devices and do scan
 								Intent serverIntent = new Intent(this, BtDeviceListActivity.class);
-								startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
+								startActivityForResult(serverIntent,
+								                       prefs.getBoolean("bt_secure_connection", false)
+								                        ? REQUEST_CONNECT_DEVICE_SECURE
+																				: REQUEST_CONNECT_DEVICE_INSECURE );
 							}
 							break;
 
@@ -1167,10 +1170,14 @@ public class MainActivity extends ListActivity
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
+		boolean secureConnection = false;
+
 		switch (requestCode)
 		{
 			// device is connected
 			case REQUEST_CONNECT_DEVICE_SECURE:
+				secureConnection = true;
+				// no break here ...
 			case REQUEST_CONNECT_DEVICE_INSECURE:
 				// When BtDeviceListActivity returns with a device to connect
 				if (resultCode == Activity.RESULT_OK)
@@ -1180,7 +1187,7 @@ public class MainActivity extends ListActivity
 						BtDeviceListActivity.EXTRA_DEVICE_ADDRESS);
 					// save reported address as last setting
 					prefs.edit().putString(PRESELECT.LAST_DEV_ADDRESS.toString(), address).apply();
-					connectBtDevice(address, false);
+					connectBtDevice(address, secureConnection);
 				} else
 				{
 					setMode(MODE.OFFLINE);

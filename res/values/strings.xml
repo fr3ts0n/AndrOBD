@@ -180,7 +180,47 @@ period of time while the ECU recalibrates itself.
     <string name="select_ecu_addr">Select ECU address …</string>
     <string name="disconnect">Disconnect</string>
     <string name="reset_preselections">Reset last pre-selections</string>
-    <string name="use_last_settings_description">Use last settings at startup (BT address, ECU address, Display items ...)</string>
+    <string name="use_last_settings_description">Use last settings at startup (BT address, ECU address, Display items …)</string>
     <string name="use_last_settings">Use last settings</string>
     <string name="common_settings_description">Common settings for app control</string>
+    <string name="secure_connect">Secure connection</string>
+    <string name="secure_connect_description">Use encrypted Bluetooth connection</string>
+    <string name="elm_options">ELM options</string>
+    <string name="last_none">NONE</string>
+    <string name="elm_custom_init">ELM custom init</string>
+    <string name="elm_custom_init_descr">ELM custom initialisation commands</string>
+
+    <!-- ELM communication states -->
+    <string name="UNDEFINED">Undefined</string>
+    <string name="INITIALIZING">Initializing…</string>
+    <string name="INITIALIZED">Initialized</string>
+    <string name="ECU_DETECT">ECU detect…</string>
+    <string name="ECU_DETECTED">ECU detected</string>
+    <string name="CONNECTING">Connecting…</string>
+    <string name="CONNECTED">Connected</string>
+    <string name="NODATA">No data</string>
+    <string name="STOPPED">Stopped</string>
+    <string name="DISCONNECTED">Disconnected</string>
+    <string name="BUSERROR">BUS error</string>
+    <string name="DATAERROR">DATA error</string>
+    <string name="RXERROR">RX error</string>
+    <string name="ERROR">Error</string>
+    <!-- the string array corresponding to state enum -->
+    <string-array name="elmcomm_states" translatable="false">
+        <item>@string/UNDEFINED</item>
+        <item>@string/INITIALIZING</item>
+        <item>@string/INITIALIZED</item>
+        <item>@string/ECU_DETECT</item>
+        <item>@string/ECU_DETECTED</item>
+        <item>@string/CONNECTING</item>
+        <item>@string/CONNECTED</item>
+        <item>@string/NODATA</item>
+        <item>@string/STOPPED</item>
+        <item>@string/DISCONNECTED</item>
+        <item>@string/BUSERROR</item>
+        <item>@string/DATAERROR</item>
+        <item>@string/RXERROR</item>
+        <item>@string/ERROR</item>
+    </string-array>
+
 </resources>

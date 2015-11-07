@@ -8,8 +8,8 @@
         >
         <PreferenceScreen
             android:icon="@android:drawable/ic_menu_manage"
-            android:title="@string/common_settings"
-            android:summary="@string/common_settings_description">
+            android:summary="@string/common_settings_description"
+            android:title="@string/common_settings">
 
             <MultiSelectListPreference
                 android:defaultValue="@array/empty"
@@ -45,16 +45,6 @@
                 android:title="@string/measure_system"
                 />
 
-            <MultiSelectListPreference
-                android:defaultValue="@array/empty"
-                android:dialogTitle="@string/items_for_display"
-                android:entries="@array/empty"
-                android:entryValues="@array/empty"
-                android:key="data_items"
-                android:summary="@string/items_for_display_descr"
-                android:title="@string/items_for_display"
-                />
-
         </PreferenceScreen>
     </PreferenceCategory>
 
@@ -66,6 +56,9 @@
             android:summary="@string/obd_opt_description"
             android:title="@string/obd_options">
 
+            <PreferenceCategory
+                android:title="@string/obd_options">
+
             <ListPreference
                 android:defaultValue="0"
                 android:dialogTitle="@string/select_medium"
@@ -74,6 +67,15 @@
                 android:key="comm_medium"
                 android:title="@string/select_medium"
                 />
+
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:dependency="comm_medium"
+                android:key="bt_secure_connection"
+                android:summary="@string/secure_connect_description"
+                android:title="@string/secure_connect"
+                />
+
 
             <ListPreference
                 android:defaultValue="0"
@@ -84,31 +86,47 @@
                 android:title="@string/select_protocol"
                 />
 
-            <EditTextPreference
-                android:capitalize="characters"
-                android:defaultValue=""
-                android:key="elm_custom_init_cmds"
-                android:minLines="5"
-                android:summary="ELM custom initialisation commands"
-                android:title="ELM custom init"
+            <MultiSelectListPreference
+                android:defaultValue="@array/empty"
+                android:dialogTitle="@string/items_for_display"
+                android:entries="@array/empty"
+                android:entryValues="@array/empty"
+                android:key="data_items"
+                android:summary="@string/items_for_display_descr"
+                android:title="@string/items_for_display"
                 />
 
-            <CheckBoxPreference
-                android:defaultValue="true"
-                android:key="elm_adaptive_timing"
-                android:summary="@string/elm_adaptive_timing_descr"
-                android:title="@string/elm_adaptive_timing"
-                />
+            </PreferenceCategory>
 
-            <EditTextPreference
-                android:defaultValue="12"
-                android:dependency="elm_adaptive_timing"
-                android:key="elm_min_timeout"
-                android:numeric="integer"
-                android:summary="@string/elm_timeout_descr"
-                android:title="@string/min_elm_timeout"
-                />
+            <PreferenceCategory
+                android:title="@string/elm_options">
 
+                <EditTextPreference
+                    android:capitalize="characters"
+                    android:defaultValue=""
+                    android:key="elm_custom_init_cmds"
+                    android:minLines="5"
+                    android:summary="@string/elm_custom_init_descr"
+                    android:title="@string/elm_custom_init"
+                    />
+
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:key="elm_adaptive_timing"
+                    android:summary="@string/elm_adaptive_timing_descr"
+                    android:title="@string/elm_adaptive_timing"
+                    />
+
+                <EditTextPreference
+                    android:defaultValue="12"
+                    android:dependency="elm_adaptive_timing"
+                    android:key="elm_min_timeout"
+                    android:numeric="integer"
+                    android:summary="@string/elm_timeout_descr"
+                    android:title="@string/min_elm_timeout"
+                    />
+
+            </PreferenceCategory>
         </PreferenceScreen>
     </PreferenceCategory>
 
