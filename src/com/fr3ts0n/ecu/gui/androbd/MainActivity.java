@@ -418,12 +418,18 @@ public class MainActivity extends ListActivity
 	 * @param input String of array
 	 * @return int[] of String value
 	 */
-	private int[] toIntArray(String input) {
-		String beforeSplit = input.replaceAll("\\[|\\]|\\s", "");
-		String[] split = beforeSplit.split("\\,");
-		int[] result = new int[split.length];
-		for (int i = 0; i < split.length; i++) {
-			result[i] = Integer.parseInt(split[i]);
+	private int[] toIntArray(String input)
+	{
+		int[] result = {};
+		if(input.length() > 0)
+		{
+			String beforeSplit = input.replaceAll("\\[|\\]|\\s", "");
+			String[] split = beforeSplit.split("\\,");
+			result = new int[split.length];
+			for (int i = 0; i < split.length; i++)
+			{
+				result[i] = Integer.parseInt(split[i]);
+			}
 		}
 		return result;
 	}

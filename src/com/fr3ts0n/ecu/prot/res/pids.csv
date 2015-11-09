@@ -29,16 +29,24 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	label	desc
 0x01,0x02	0x0F	0	1	0	8	0xFF	TEMPERATURE	%.1f			Intake Air Temperature				
 0x01,0x02	0x10	0	2	0	16	0xFFFF	AIRFLOW	%.2f			Air Flow Rate (MAF sensor)				
 0x01,0x02	0x11	0	1	0	8	0xFF	PERCENT	%.1f			Absolute Throttle Position				
-0x01,0x02	0x12	0	1	0	8	0xFF	ONETOONE	%.0f			Secondary air status	secondary_air_status_formula			
-0x01,0x02	0x13	0	1	0	8	0xFF	ONETOONE	%.0f			Number of Oxygen sensors	secondary_air_status_formula			
-0x01,0x02	0x14	0	2	0	16	0xFFFF	ONETOONE	%.0f			O2 Sensor 1	Bank 1	o2_sensor_formula		
-0x01,0x02	0x15	0	2	0	16	0xFFFF	ONETOONE	%.0f			O2 Sensor 2	Bank 1	o2_sensor_formula		
-0x01,0x02	0x16	0	2	0	16	0xFFFF	ONETOONE	%.0f			O2 Sensor 3	Bank 1	o2_sensor_formula		
-0x01,0x02	0x17	0	2	0	16	0xFFFF	ONETOONE	%.0f			O2 Sensor 4	Bank 1	o2_sensor_formula		
-0x01,0x02	0x18	0	2	0	16	0xFFFF	ONETOONE	%.0f			O2 Sensor 1	Bank 2	o2_sensor_formula		
-0x01,0x02	0x19	0	2	0	16	0xFFFF	ONETOONE	%.0f			O2 Sensor 2	Bank 2	o2_sensor_formula		
-0x01,0x02	0x1A	0	2	0	16	0xFFFF	ONETOONE	%.0f			O2 Sensor 3	Bank 2	o2_sensor_formula		
-0x01,0x02	0x1B	0	2	0	16	0xFFFF	ONETOONE	%.0f			O2 Sensor 4	Bank 2	o2_sensor_formula		
+0x01,0x02	0x12	0	1	0	8	0xFF	SEC_AIR_STATUS	%.0f			Secondary air status	secondary_air_status_formula			
+0x01,0x02	0x13	0	1	0	8	0xFF	O2_PRESENT13	%.0f			Oxygen sensors present	secondary_air_status_formula			
+0x01,0x02	0x14	0	1	0	8	0xFF	O2_VOLTAGE	%.3f			O2 Sensor B1S1	Bank 1	o2_sensor_formula		
+0x01,0x02	0x14	1	1	0	8	0xFF	O2_PERCENT	%.0f			O2 Sensor B1S1	Bank 1	o2_sensor_formula		
+0x01,0x02	0x15	0	1	0	8	0xFF	O2_VOLTAGE	%.3f			O2 Sensor B1S2	Bank 1	o2_sensor_formula		
+0x01,0x02	0x15	1	1	0	8	0xFF	O2_PERCENT	%.0f			O2 Sensor B1S2	Bank 1	o2_sensor_formula		
+0x01,0x02	0x16	0	1	0	8	0xFF	O2_VOLTAGE	%.3f			O2 Sensor B1S3	Bank 1	o2_sensor_formula		
+0x01,0x02	0x16	1	1	0	8	0xFF	O2_PERCENT	%.0f			O2 Sensor B1S3	Bank 1	o2_sensor_formula		
+0x01,0x02	0x17	0	1	0	8	0xFF	O2_VOLTAGE	%.3f			O2 Sensor B1S4	Bank 1	o2_sensor_formula		
+0x01,0x02	0x17	1	1	0	8	0xFF	O2_PERCENT	%.0f			O2 Sensor B1S4	Bank 1	o2_sensor_formula		
+0x01,0x02	0x18	0	1	0	8	0xFF	O2_VOLTAGE	%.3f			O2 Sensor B2S1	Bank 2	o2_sensor_formula		
+0x01,0x02	0x18	1	1	0	8	0xFF	O2_PERCENT	%.0f			O2 Sensor B2S1	Bank 2	o2_sensor_formula		
+0x01,0x02	0x19	0	1	0	8	0xFF	O2_VOLTAGE	%.3f			O2 Sensor B2S2	Bank 2	o2_sensor_formula		
+0x01,0x02	0x19	1	1	0	8	0xFF	O2_PERCENT	%.0f			O2 Sensor B2S2	Bank 2	o2_sensor_formula		
+0x01,0x02	0x1A	0	1	0	8	0xFF	O2_VOLTAGE	%.3f			O2 Sensor B2S3	Bank 2	o2_sensor_formula		
+0x01,0x02	0x1A	1	1	0	8	0xFF	O2_PERCENT	%.0f			O2 Sensor B2S3	Bank 2	o2_sensor_formula		
+0x01,0x02	0x1B	0	1	0	8	0xFF	O2_VOLTAGE	%.3f			O2 Sensor B2S4	Bank 2	o2_sensor_formula		
+0x01,0x02	0x1B	1	1	0	8	0xFF	O2_PERCENT	%.0f			O2 Sensor B2S4	Bank 2	o2_sensor_formula		
 0x01,0x02	0x1C	0	1	0	8	0xFF	OBD_TYPE	%.0f			OBD conforms to	obd_requirements_formula			
 0x01,0x02	0x1D	0	1	0	8	0xFF	O2_PRESENT_MAP	%.0f			Oxygen sensors present	obd_requirements_formula			
 0x01,0x02	0x1E	0	1	0	8	0xFF	ONETOONE	%.0f			Power Take-Off Status	pto_status_formula			
@@ -46,14 +54,14 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	label	desc
 0x01,0x02	0x21	0	2	0	16	0xFFFF	DISTANCE	%.0f			Distance since MIL activated				
 0x01,0x02	0x22	0	2	0	16	0xFFFF	PRESS_REL	%.3f			FRP rel. to manifold vacuum	fuel rail pressure relative to manifold vacuum			
 0x01,0x02	0x23	0	2	0	16	0xFFFF	PRESS_WIDERANGE	%.1f			Fuel Pressure (gauge)	fuel rail pressure (gauge	wide range		
-0x01,0x02	0x24	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor 1	Bank 1 (WR)	o2_sensor_wrv_formula	-o2 sensors (wide range	voltage
-0x01,0x02	0x25	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor 2	Bank 1 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x26	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor 3	Bank 1 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x27	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor 4	Bank 1 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x28	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor 1	Bank 2 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x29	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor 2	Bank 2 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x2A	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor 3	Bank 2 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x2B	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor 4	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x24	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor B1S1	Bank 1 (WR)	o2_sensor_wrv_formula	-o2 sensors (wide range	voltage
+0x01,0x02	0x25	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor B1S2	Bank 1 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x26	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor B1S3	Bank 1 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x27	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor B1S4	Bank 1 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x28	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor B2S1	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x29	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor B2S2	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x2A	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor B2S3	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x2B	0	2	0	16	0xFFFF	VOLTAGE_HIGHRES	%.3f			O2 Sensor B2S4	Bank 2 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x2C	0	1	0	8	0xFF	PERCENT	%.1f			Commanded EGR				
 0x01,0x02	0x2D	0	1	0	8	0xFF	PERCENT_REL	%.2f			EGR Error				
 0x01,0x02	0x2E	0	1	0	8	0xFF	PERCENT	%.1f			Commanded Evaporative Purge				
@@ -62,14 +70,14 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	label	desc
 0x01,0x02	0x31	0	2	0	16	0xFFFF	DISTANCE	%.0f			Distance since ECU reset				
 0x01,0x02	0x32	0	2	0	16	0xFFFF	PRESS_VAPOR	%.2f			Evap System Vapor Pressure				
 0x01,0x02	0x33	0	1	0	8	0xFF	PRESS_AIR	%.1f			Barometric Pressure (absolute)				
-0x01,0x02	0x34	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor 1	Bank 1 (WR)	o2_sensor_wrc_formula	-o2 sensors (wide range	current
-0x01,0x02	0x35	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor 2	Bank 1 (WR)	o2_sensor_wrc_formula		
-0x01,0x02	0x36	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor 3	Bank 1 (WR)	o2_sensor_wrc_formula		
-0x01,0x02	0x37	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor 4	Bank 1 (WR)	o2_sensor_wrc_formula		
-0x01,0x02	0x38	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor 1	Bank 2 (WR)	o2_sensor_wrc_formula		
-0x01,0x02	0x39	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor 2	Bank 2 (WR)	o2_sensor_wrc_formula		
-0x01,0x02	0x3A	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor 3	Bank 2 (WR)	o2_sensor_wrc_formula		
-0x01,0x02	0x3B	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor 4	Bank 2 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x34	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor B1S1	Bank 1 (WR)	o2_sensor_wrc_formula	-o2 sensors (wide range	current
+0x01,0x02	0x35	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor B1S2	Bank 1 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x36	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor B1S3	Bank 1 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x37	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor B1S4	Bank 1 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x38	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor B2S1	Bank 2 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x39	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor B2S2	Bank 2 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x3A	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor B2S3	Bank 2 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x3B	0	2	0	16	0xFFFF	RATIO_WIDERANGE	%.1f			O2 Sensor B2S4	Bank 2 (WR)	o2_sensor_wrc_formula		
 0x01,0x02	0x3C	0	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			CAT Temperature B1S1	B1S1			
 0x01,0x02	0x3D	0	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			CAT Temperature B2S2	B2S1			
 0x01,0x02	0x3E	0	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			CAT Temperature B1S2	B1S2			

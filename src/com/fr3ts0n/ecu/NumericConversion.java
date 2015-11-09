@@ -18,8 +18,6 @@
 
 package com.fr3ts0n.ecu;
 
-import java.text.DecimalFormat;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -33,11 +31,6 @@ public abstract class NumericConversion implements Conversion
 	private static final long serialVersionUID = 5506104864792893549L;
 	/** Logger object */
 	public static final Logger log = Logger.getLogger("data.ecu");
-	/** Formatter to format numeric values to strings */
-	protected static DecimalFormat decimalFormat = new DecimalFormat();
-	/** format templates to format numeric values to strings */
-	static String[] formats = {"0;-#", "0.0;-#",
-		"0.00;-#", "0.000;-#", "0.0000;-#"};
 
 	/** physical units of data item */
 	String units = "";
@@ -45,8 +38,7 @@ public abstract class NumericConversion implements Conversion
 	@Override
 	public String physToPhysFmtString(Number physVal, String format)
 	{
-		String result = String.format(format, physVal);
-		return result;
+		return String.format(format, physVal);
 	}
 
 	public NumericConversion()
