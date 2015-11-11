@@ -8,6 +8,7 @@ CONSUMPTION	LINEAR	0	METRIC	5	100	0	0	l/h	Fuel consumption
 CURRENT	LINEAR	0	METRIC	1	1	0	0	mA	Current 		
 DISTANCE	LINEAR	0	IMPERIAL	1000	1609	0	0	miles	Distance		
 DISTANCE	LINEAR	0	METRIC	1	1	0	0	km	Distance		
+EGT_SENSORS	BITMAP	0	METRIC	1	1	0	0		Exhaust Gas Temperature sensors	0=S1;1=S2;2=S3;3=S4	
 FUEL_SYS_STATUS	BITMAP	0	METRIC	1	1	0	0		Fuel system status	0=Open loop due to insufficient engine temperature;1=Closed loop, using oxygen sensor feedback to determine fuel mix;2=Open loop due to engine load OR fuel cut due to deceleration;3=Open loop due to system failure;4=Closed loop, using at least one oxygen sensor but there is a fault in the feedback system;	
 FUEL_TYPE	HASH	0	METRIC	1	1	0	0		Fuel system type	0=Not available;1=Gasoline;2=Methanol;3=Ethanol;4=Diesel;5=LPG;6=CNG;7=Propane;8=Electric;9=Bifuel running Gasoline;10=Bifuel running Methanol;11=Bifuel running Ethanol;12=Bifuel running LPG;13=Bifuel running CNG;14=Bifuel running Propane;15=Bifuel running Electricity;16=Bifuel running electric and combustion engine;17=Hybrid gasoline;18=Hybrid Ethanol;19=Hybrid Diesel;20=Hybrid Electric;21=Hybrid running electric and combustion engine;22=Hybrid Regenerative;23=Bifuel running diesel	
 GEN_SWITCH	HASH	0	METRIC	1	1	0	0		Generic Switch signal	0=Off;1=On	
