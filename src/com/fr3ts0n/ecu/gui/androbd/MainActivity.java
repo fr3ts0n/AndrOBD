@@ -585,6 +585,7 @@ public class MainActivity extends ListActivity
 		logCfg.setUseFileAppender(true);
 		logCfg.setFileName(
 			FileHelper.getPath(this).concat(File.separator).concat("log/AndrOBD.log"));
+		logCfg.configure();
 
 		log.info(String.format("%s %s starting",
 		                       getString(R.string.app_name),

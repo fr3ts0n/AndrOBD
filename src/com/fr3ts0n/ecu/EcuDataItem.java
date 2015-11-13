@@ -175,6 +175,7 @@ public class EcuDataItem
 		{
 			result = "n/a";
 			log.warn(String.format("%s: %s - [%s]", toString(), ex.getMessage(), ProtUtils.hexDumpBuffer(buffer)));
+			enabled = false;
 		}
 		return (result);
 	}
