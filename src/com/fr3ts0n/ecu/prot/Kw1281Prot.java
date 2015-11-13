@@ -148,7 +148,7 @@ public class Kw1281Prot extends ProtoHeader
 			"Command ",
 		};
 	// data items to be used for data display
-	EcuDataItems itms = new EcuDataItems("prot/res/vag_pids.csv", "prot/res/vag_conversions.csv");
+	EcuDataItems itms = new EcuDataItems("prot/res/vag/vag_pids.csv", "prot/res/vag/vag_conversions.csv");
 	/** List of ECU data items */
 	public static PvList PidPvs = new PvList();
 	/** ECU vehicle identification items */
@@ -157,7 +157,7 @@ public class Kw1281Prot extends ProtoHeader
 	public static PvList tCodes = new PvList();
 	static final String[] codeListFiles =
 		{
-			"prot/res/vag_codes.csv"
+			"prot/res/vag/vag_codes.csv"
 		};
 	/** list of known fault codes */
 	public static EcuCodeList knownCodes = new EcuCodeList(codeListFiles);
