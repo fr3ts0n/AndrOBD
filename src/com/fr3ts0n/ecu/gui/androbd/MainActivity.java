@@ -579,13 +579,18 @@ public class MainActivity extends ListActivity
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+		// get preferences
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		// register for later changes
+		prefs.registerOnSharedPreferenceChangeListener(this);
+
 		// set up log4j logging ...
 		logCfg = new LogConfigurator();
 		logCfg.setUseLogCatAppender(true);
 		logCfg.setUseFileAppender(true);
 		logCfg.setFileName(
 			FileHelper.getPath(this).concat(File.separator).concat("log/AndrOBD.log"));
-		logCfg.configure();
+		setLogLevels();
 
 		log.info(String.format("%s %s starting",
 		                       getString(R.string.app_name),
@@ -597,13 +602,11 @@ public class MainActivity extends ListActivity
 		mDfcAdapter = new DfcItemAdapter(this, R.layout.obd_item, ObdProt.tCodes);
 		currDataAdapter = mPidAdapter;
 
+		// get list view
 		mListView = getWindow().getLayoutInflater().inflate(R.layout.obd_list, null);
 
-		// get preferences
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		// update all settings from preferences
 		onSharedPreferenceChanged(prefs, null);
-		// register for later changes
-		prefs.registerOnSharedPreferenceChangeListener(this);
 
 		// set up action bar
 		ActionBar actionBar = getActionBar();
