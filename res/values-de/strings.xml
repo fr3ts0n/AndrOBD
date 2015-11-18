@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="action_connect">Verbinden</string>
     <string name="app_description">Android OBD Fahrzeugdisagnose für ELM327 Bluetooth Adapter</string>
@@ -17,7 +17,7 @@
     <string name="obd_permanentcodes">OBD Fehlercodes (permanent)</string>
     <string name="obd_services">OBD Dienste</string>
     <string name="obd_veh_info">OBD Fahrzeug Info</string>
-    <string name="scanning">Suche&#8230;</string>
+    <string name="scanning">Suche…</string>
     <string name="select_device">Wähle Adapter</string>
     <string name="send">Senden</string>
     <string name="send_to">Senden an</string>
@@ -26,25 +26,12 @@
     <string name="time">Zeit [s]</string>
     <string name="title">Titel</string>
     <string name="title_connected_to">Verbunden %s</string>
-    <string name="title_connecting">Verbinde&#8230;</string>
+    <string name="title_connecting">Verbinde…</string>
     <string name="title_not_connected">Nicht verbunden</string>
     <string name="title_other_devices">Andere verfügbare Geräte</string>
     <string name="title_paired_devices">Gepaarte Geräte</string>
     <string name="welcome_to">Willkommen zu</string>
-    <string name="obd_clear_info">
-Dies wird die MIL zurücksetzen und löscht alle abgasrelevanten Diagnoseinformationen, inklusive:\n
-- Diagnose-Fehlercodes\n
-- Freeze Frame Daten\n
-- Lambdasonden Testdaten\n
-- Status der System-Tests\n
-- Status der On-board Tests\n
-- Fahrstrecke seit MIL aktiv\n
-- Warmläufe seit MIL aktiv\n
-- Motorlaufzeit seit MIL aktiv\n
-- Zeit seit Löschung\n
-- Fahrstrecke seit Löschung\n
-Andere, herstellerspezifische Einstellungen können dadurch verloren gehen.\n
-Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichmässig läuft.</string>
+    <string name="obd_clear_info">" Dies wird die MIL zurücksetzen und löscht alle abgasrelevanten Diagnoseinformationen, inklusive:\n - Diagnose-Fehlercodes\n - Freeze Frame Daten\n - Lambdasonden Testdaten\n - Status der System-Tests\n - Status der On-board Tests\n - Fahrstrecke seit MIL aktiv\n - Warmläufe seit MIL aktiv\n - Motorlaufzeit seit MIL aktiv\n - Zeit seit Löschung\n - Fahrstrecke seit Löschung\n Andere, herstellerspezifische Einstellungen können dadurch verloren gehen.\n Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichmässig läuft. "</string>
     <string name="demo_started">DEMO gestartet</string>
     <string name="demo_stopped">DEMO beendet</string>
     <string name="load">Messung laden</string>
@@ -103,7 +90,7 @@ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichm�
     <string name="day_night_mode">Tag/Nacht Ansicht</string>
     <string name="night_mode">Nachmodus</string>
     <string name="night_mode_description">Ansicht mit dunklem Hintergrund</string>
-    <string name="disable_elm_cmds">Verbotene ELM-Befehle …</string>
+    <string name="disable_elm_cmds">Verbotene ELM-Befehle</string>
     <string name="disable_elm_cmds_descr">ELM Befehle verbieten / erlauben</string>
     <string name="disabled">verboten</string>
     <string name="elm_adaptive_timing">Adaptives ELM timing</string>
