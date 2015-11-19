@@ -1,2 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='utf-8'?>
+<resources><string name="send">Odeslat</string>
+    <string name="not_connected">Zařízení není připojeno</string>
+    <string name="title_connecting">Připojuji…</string>
+    <string name="title_connected_to">Připojeno k %s</string>
+    <string name="title_not_connected">Nepřipojeno</string>
+    <string name="title"/>
+    <string name="welcome_to"/>
+    <string name="logo"/>
+    <string name="back_again_to_exit"/>
+    <string name="action_connect">Připojit</string>
+    <string name="obd_none"/>
+    <string name="obd_services"/>
+    <string name="scanning">Vyhledávám…</string>
+    <string name="select_device">Zvolte adaptér</string>
+    <string name="none_paired">Žádná spárovaná zařízení</string>
+    <string name="none_found">Nebylo nalezeno žádné zařízení</string>
+    <string name="title_paired_devices">Spárovaná zařízení</string>
+    <string name="title_other_devices">Další dostupná zařízení</string>
+    <string name="button_scan">Vyhledat zařízení</string>
+
+    <string name="send_to">Odeslat</string>
+    <string name="share">sdíled</string>
+    <string name="chart">Graf</string>
+    <string name="save">Uložit měření</string>
+    <string name="load">Nahrát měření</string>
+    <string name="saved_data">Uložená data</string>
+    <string name="loaded">nahráno</string>
+    <string name="saved">uloženo</string>
+    <string name="connected_to">"Připojeno k "</string>
+    <string name="saving_data">Ukládám data …</string>
+    <string name="loading_data">Načítám data …</string>
+    <string name="dashboard">Nástěnka</string>
+    <string name="settings">Nastavení</string>
+    <string name="common_settings">Obecná nastavení</string>
+    <string name="measure_system_description">Jednotky měření (metrické / imperiální)</string>
+    <string name="measure_system">Jednotky měření</string>
+    <string name="metric">metrické</string>
+    <string name="imperial">imperiální</string>
+    <string name="debugging">Ladění</string>
+    <string name="refreshing">vyhledávám …</string>
+    <string name="CONNECTING">Připojuji…</string>
+    <string name="CONNECTED">Připojeno</string>
+    <string name="STOPPED">Zastaveno</string>
+    <string name="DISCONNECTED">Odpojeno</string>
+    <string name="ERROR">Chyba</string>
+    </resources>
