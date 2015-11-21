@@ -22,29 +22,51 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvAppName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/app_name"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:contentDescription="@string/url_app_mainpage"
+            android:onClick="clickHandler"
+            android:clickable="true"
+            />
 
         <TextView
-            android:id="@+id/TextView01"
+            android:id="@+id/tvVersion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/app_version"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:enabled="true"
+            android:contentDescription="@string/url_app_releases"
+            android:onClick="clickHandler"
+            android:clickable="true"
+            />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvCopyright"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/copyright_fr3ts0n"
-            android:textAppearance="?android:attr/textAppearanceSmall"/>
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            />
+
+        <TextView
+            android:id="@+id/tvTranslation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/translation_credits"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:contentDescription="@string/url_app_translation"
+            android:onClick="clickHandler"
+            android:clickable="true"
+            />
     </LinearLayout>
 
     <ListView
