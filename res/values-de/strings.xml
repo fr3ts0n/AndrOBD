@@ -127,4 +127,5 @@
     <string name="elm_options">ELM Einstellungen</string>
     <string name="elm_custom_init">ELM Initialisierung</string>
     <string name="elm_custom_init_descr">eigene ELM Befehle zur Initialisierung</string>
+    <string name="translation_credits">Übersetzung von fr3ts0n</string>
 </resources>

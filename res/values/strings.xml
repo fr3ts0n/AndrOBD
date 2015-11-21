@@ -3,9 +3,13 @@
 
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
-    <string name="app_version" translatable="false">V1.3.6</string>
+    <string name="app_version" translatable="false">V1.3.7</string>
     <string name="copyright_fr3ts0n" translatable="false">&#169; 2015 fr3ts0n</string>
+    <string name="translation_credits">Translation by fr3ts0n</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 bluetooth adapter</string>
+    <string name="url_app_mainpage" translatable="false">https://github.com/fr3ts0n/AndrOBD/</string>
+    <string name="url_app_releases" translatable="false">https://github.com/fr3ts0n/AndrOBD/releases/</string>
+    <string name="url_app_translation" translatable="false">https://hosted.weblate.org/projects/androbd/strings/</string>
     <string name="send">Send</string>
     <string name="not_connected">You are not connected to a device</string>
     <string name="title_connecting">Connecting&#8230;</string>
@@ -222,5 +226,4 @@ period of time while the ECU recalibrates itself.
         <item>@string/RXERROR</item>
         <item>@string/ERROR</item>
     </string-array>
-
 </resources>

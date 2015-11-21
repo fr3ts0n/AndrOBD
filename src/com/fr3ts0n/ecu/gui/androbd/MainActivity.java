@@ -443,7 +443,7 @@ public class MainActivity extends ListActivity
 		// if more than one ECUs available ...
 		if(ecuAdresses.size() > 1)
 		{
-			int preferredAddress = prefs.getInt(PRESELECT.LAST_ECU_ADDRESS.toString(),0);
+			int preferredAddress = prefs.getInt(PRESELECT.LAST_ECU_ADDRESS.toString(), 0);
 			// check if last preferred address matches any of the reported addresses
 			if(istRestoreWanted(PRESELECT.LAST_ECU_ADDRESS)
 			   && ecuAdresses.contains(preferredAddress))
@@ -655,6 +655,16 @@ public class MainActivity extends ListActivity
 				setMode(MODE.ONLINE);
 				break;
 		}
+	}
+
+	/**
+	 * OnClick handler - Browse URL from content description
+	 * @param view view source of click event
+	 */
+	public void clickHandler(View view)
+	{
+		String url = view.getContentDescription().toString();
+		startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url)));
 	}
 
 	@Override
