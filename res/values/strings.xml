@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
     <string name="app_version" translatable="false">V1.3.7</string>
@@ -43,7 +42,7 @@ information, including:\n
  - Distance travelled since DTCs cleared\n
  - Engine run time while MIL activated\n
  - Time since DTCs cleared\n\n
-Other manufacturer-specific clearing/resetting actions may occur.\n
+Other manufacturer specific clearing/resetting actions may occur.\n
 The loss of data may cause the vehicle to run poorly for a short \n
 period of time while the ECU recalibrates itself.
      </string>
@@ -70,6 +69,7 @@ period of time while the ECU recalibrates itself.
     <string name="saved_data">Saved Data</string>
     <string name="loaded">loaded</string>
     <string name="saved">saved</string>
+
     <string name="connected_to">"Connected to "</string>
     <string name="demo">Demo…</string>
     <string name="saving_data">Saving data …</string>
