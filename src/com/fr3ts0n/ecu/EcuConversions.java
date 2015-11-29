@@ -67,6 +67,7 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 
 	/** code list conversion */
 	public static EcuCodeList codeList = null;
+
 	/**
 	 * Create conversion list from default resource file (tab delimited csv)
 	 * (prot/res/conversion.csv)

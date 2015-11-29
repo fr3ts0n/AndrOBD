@@ -1,0 +1,204 @@
+svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	label	mnemonic (openxc mapping?, translations?)	description	formula_remark	options	remark2
+0x01,0x02	0x01	0	1	0	7	0x7F	ONETOONE	%.0f			Anzahl Fehlercodes	number_fault_codes	fuel_system1_status_formula -fuel_system2_status_formula			
+0x01,0x02	0x01	0	1	7	1	0x1	GEN_SWITCH	%.0f			Status Fehlerleuchte (MIL)	status_mil	Status of Malfunction Indicator Light (MIL)			
+0x01,0x02	0x01	1	1	0	5	0x11	TEST_STATUS_4	%.0f			Status Fehlzündungen	status_misfires	fuel_system1_status_formula -fuel_system2_status_formula			
+0x01,0x02	0x01	1	1	1	5	0x11	TEST_STATUS_4	%.0f			Status Kraftstoffsystem	status_fuel_system_test	fuel_system1_status_formula -fuel_system2_status_formula			
+0x01,0x02	0x01	1	1	2	5	0x11	TEST_STATUS_4	%.0f			Status Komponententests	status_component_test	fuel_system1_status_formula -fuel_system2_status_formula			
+0x01,0x02	0x01	1	1	3	5	0x11	IGN_MON_STATUS	%.0f			Status Zünd- Überwachung	status_ignistion_monitoring	fuel_system1_status_formula -fuel_system2_status_formula			
+0x01,0x02	0x01	2	2	0	9	0x101	TEST_STATUS_8	%.0f			Status Katalysator-Test	status_catalyst_test				
+0x01,0x02	0x01	2	2	1	9	0x101	TEST_STATUS_8	%.0f			Status Katalysator-Test / NOX-Überwachung	status_catalyst_test_nox_monitor				
+0x01,0x02	0x01	2	2	2	9	0x101	TEST_STATUS_8	%.0f			Status Kraftstoffdampf Rückführsystem-Test	status_evaporative_system_test				
+0x01,0x02	0x01	2	2	3	9	0x101	TEST_STATUS_8	%.0f			Status Sekundärluftsystem-Test	status_secondary_air_system_test				
+0x01,0x02	0x01	2	2	4	9	0x101	TEST_STATUS_8	%.0f			Status Klima Kühlmittel-Test	status_ac_refrigerant_test				
+0x01,0x02	0x01	2	2	5	9	0x101	TEST_STATUS_8	%.0f			Status Lambdasonden-Test	status_oxygen_sensor_test				
+0x01,0x02	0x01	2	2	6	9	0x101	TEST_STATUS_8	%.0f			Status Lambdasonden Heizungs-Test	status_oxygen_sensor_heater_test				
+0x01,0x02	0x01	2	2	7	9	0x101	TEST_STATUS_8	%.0f			Status Abgasrückführsystem-Test	status_egr_system_test				
+0x01,0x02	0x02	0	2	0	16	0xFFFF	OBD_CODELIST	%.0f			Fehlercode Position	location_fault_code	DFC which caused freeze frame			
+0x01,0x02	0x03	0	1	0	8	0xFF	FUEL_SYS_STATUS	%.0f			Status Kraftstoffsystem 1	status_fuel_system_1	fuel_system1_status_formula -fuel_system2_status_formula			
+0x01,0x02	0x03	1	1	0	8	0xFF	FUEL_SYS_STATUS	%.0f			Status Kraftstoffsystem 2	status_fuel_system_2	fuel_system1_status_formula -fuel_system2_status_formula			
+0x01,0x02	0x04	0	1	0	8	0xFF	PERCENT	%.1f			Berechnete Motorlast	engine_load_calculated				
+0x01,0x02	0x05	0	1	0	8	0xFF	TEMPERATURE	%.1f	-40	120	Kühlmitteltemperatur	engine_coolant_temperature				
+0x01,0x02	0x06	0	1	0	8	0xFF	PERCENT7_REL	%.1f			Short Term Fuel Trim (Bank 1)	fuel_trim_short_b1	short_term_fuel_trim			
+0x01,0x02	0x07	0	1	0	8	0xFF	PERCENT7_REL	%.1f			Long Term Fuel Trim (Bank 1)	fuel_trim_long_b1	long_term_fuel_trim			
+0x01,0x02	0x08	0	1	0	8	0xFF	PERCENT7_REL	%.1f			Short Term Fuel Trim (Bank 2)	fuel_trim_short_b2	short_term_fuel_trim			
+0x01,0x02	0x09	0	1	0	8	0xFF	PERCENT7_REL	%.1f			Long Term Fuel Trim (Bank 2)	fuel_trim_long_b2	long_term_fuel_trim			
+0x01,0x02	0x0A	0	1	0	8	0xFF	PRESS	%.1f			Fuel Pressure (gauge)	fuel_pressure				
+0x01,0x02	0x0B	0	1	0	8	0xFF	PRESS_AIR	%.1f			Intake Manifold Pressure	intake_manifold_pressure				
+0x01,0x02	0x0C	0	2	0	16	0xFFFF	RPM	%.0f	0	8000	Engine RPM	engine_speed				
+0x01,0x02	0x0D	0	1	0	8	0xFF	VEHSPEED	%.0f	0	250	Vehicle Speed	vehicle_speed				
+0x01,0x02	0x0E	0	1	0	8	0xFF	ANGLE	%.2f			Timing Advance (Cyl. #1)	ignition_timing_advance_cyl1				
+0x01,0x02	0x0F	0	1	0	8	0xFF	TEMPERATURE	%.1f			Intake Air Temperature	intake_air_temperature				
+0x01,0x02	0x10	0	2	0	16	0xFFFF	AIRFLOW	%.2f			Air Flow Rate (MAF sensor)	mass_airflow				
+0x01,0x02	0x11	0	1	0	8	0xFF	PERCENT	%.1f			Absolute Throttle Position	throttle_position				
+0x01,0x02	0x12	0	1	0	8	0xFF	SEC_AIR_STATUS	%.0f			Secondary air status	status_secondary_air_system	secondary_air_status_formula			
+0x01,0x02	0x13	0	1	0	8	0xFF	O2_PRESENT13	%.0f			Oxygen sensors present	number_oxygen_sensors	secondary_air_status_formula			
+0x01,0x02	0x14	0	1	0	8	0xFF	O2_VOLTAGE	%.0f			O2 Sensor B1S1	o2_sensor_lambda_s1	Bank 1	o2_sensor_formula		
+0x01,0x02	0x14	1	1	0	8	0xFF	O2_PERCENT	%.1f			O2 Sensor B1S1	o2_sensor_voltage_s1	Bank 1	o2_sensor_formula		
+0x01,0x02	0x15	0	1	0	8	0xFF	O2_VOLTAGE	%.0f			O2 Sensor B1S2	o2_sensor_lambda_s2	Bank 1	o2_sensor_formula		
+0x01,0x02	0x15	1	1	0	8	0xFF	O2_PERCENT	%.1f			O2 Sensor B1S2	o2_sensor_voltage_s2	Bank 1	o2_sensor_formula		
+0x01,0x02	0x16	0	1	0	8	0xFF	O2_VOLTAGE	%.0f			O2 Sensor B1S3	o2_sensor_lambda_s3	Bank 1	o2_sensor_formula		
+0x01,0x02	0x16	1	1	0	8	0xFF	O2_PERCENT	%.1f			O2 Sensor B1S3	o2_sensor_voltage_s3	Bank 1	o2_sensor_formula		
+0x01,0x02	0x17	0	1	0	8	0xFF	O2_VOLTAGE	%.0f			O2 Sensor B1S4	o2_sensor_lambda_s4	Bank 1	o2_sensor_formula		
+0x01,0x02	0x17	1	1	0	8	0xFF	O2_PERCENT	%.1f			O2 Sensor B1S4	o2_sensor_voltage_s4	Bank 1	o2_sensor_formula		
+0x01,0x02	0x18	0	1	0	8	0xFF	O2_VOLTAGE	%.0f			O2 Sensor B2S1	o2_sensor_lambda_s5	Bank 2	o2_sensor_formula		
+0x01,0x02	0x18	1	1	0	8	0xFF	O2_PERCENT	%.1f			O2 Sensor B2S1	o2_sensor_voltage_s5	Bank 2	o2_sensor_formula		
+0x01,0x02	0x19	0	1	0	8	0xFF	O2_VOLTAGE	%.0f			O2 Sensor B2S2	o2_sensor_lambda_s6	Bank 2	o2_sensor_formula		
+0x01,0x02	0x19	1	1	0	8	0xFF	O2_PERCENT	%.1f			O2 Sensor B2S2	o2_sensor_voltage_s6	Bank 2	o2_sensor_formula		
+0x01,0x02	0x1A	0	1	0	8	0xFF	O2_VOLTAGE	%.0f			O2 Sensor B2S3	o2_sensor_lambda_s7	Bank 2	o2_sensor_formula		
+0x01,0x02	0x1A	1	1	0	8	0xFF	O2_PERCENT	%.1f			O2 Sensor B2S3	o2_sensor_voltage_s7	Bank 2	o2_sensor_formula		
+0x01,0x02	0x1B	0	1	0	8	0xFF	O2_VOLTAGE	%.0f			O2 Sensor B2S4	o2_sensor_lambda_s8	Bank 2	o2_sensor_formula		
+0x01,0x02	0x1B	1	1	0	8	0xFF	O2_PERCENT	%.1f			O2 Sensor B2S4	o2_sensor_voltage_s8	Bank 2	o2_sensor_formula		
+0x01,0x02	0x1C	0	1	0	8	0xFF	OBD_TYPE	%.0f			OBD conforms to	obd_type	obd_requirements_formula			
+0x01,0x02	0x1D	0	1	0	8	0xFF	O2_PRESENT_MAP	%.0f			Oxygen sensors present	map_oxygen_sensors_present	obd_requirements_formula			
+0x01,0x02	0x1E	0	1	0	8	0xFF	ONETOONE	%.0f			Power Take-Off Status	status_power_take_off	pto_status_formula			
+0x01,0x02	0x1F	0	2	0	16	0xFFFF	HOURS	%.2f			Time Since Engine Start	running_time				
+0x01,0x02	0x21	0	2	0	16	0xFFFF	DISTANCE	%.0f			Distance since MIL activated	distance_sine_mil_active				
+0x01,0x02	0x22	0	2	0	16	0xFFFF	PRESS_REL	%.3f			Fuel Rail Pressure (rel. to manifold vacuum)	fuel_pressure_rel	fuel rail pressure relative to manifold vacuum			
+0x01,0x02	0x23	0	2	0	16	0xFFFF	PRESS_WIDERANGE	%.1f			Fuel Pressure (gauge)	fuel_pressure	fuel rail pressure (gauge	wide range		
+0x01,0x02	0x24	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor B1S1 lambda	o2_sensor_lambda_s1	Bank 1 (WR)	o2_sensor_wrv_formula	-o2 sensors (wide range	voltage
+0x01,0x02	0x24	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			O2 Sensor B1S1	o2_sensor_voltage_s1	Bank 1 (WR)	o2_sensor_wrv_formula	-o2 sensors (wide range	voltage
+0x01,0x02	0x25	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor B1S2 lambda	o2_sensor_lambda_s2	Bank 1 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x25	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			O2 Sensor B1S2	o2_sensor_voltage_s2	Bank 1 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x26	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor B1S3 lambda	o2_sensor_lambda_s3	Bank 1 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x26	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			O2 Sensor B1S3	o2_sensor_voltage_s3	Bank 1 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x27	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor B1S4 lambda	o2_sensor_lambda_s4	Bank 1 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x27	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			O2 Sensor B1S4	o2_sensor_voltage_s4	Bank 1 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x28	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor B2S1 lambda	o2_sensor_lambda_s5	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x28	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			O2 Sensor B2S1	o2_sensor_voltage_s5	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x29	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor B2S2 lambda	o2_sensor_lambda_s6	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x29	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			O2 Sensor B2S2	o2_sensor_voltage_s6	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x2A	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor B2S3 lambda	o2_sensor_lambda_s7	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x2A	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			O2 Sensor B2S3	o2_sensor_voltage_s7	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x2B	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor B2S4 lambda	o2_sensor_lambda_s8	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x2B	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			O2 Sensor B2S4	o2_sensor_voltage_s8	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x2C	0	1	0	8	0xFF	PERCENT	%.1f			Commanded EGR	egr_ratio_commanded				
+0x01,0x02	0x2D	0	1	0	8	0xFF	PERCENT_REL	%.2f			EGR Error	egr_error				
+0x01,0x02	0x2E	0	1	0	8	0xFF	PERCENT	%.1f			Commanded Evaporative Purge	evaporative_purge_ratio				
+0x01,0x02	0x2F	0	1	0	8	0xFF	PERCENT	%.1f			Fuel Level Input	fuel_level				
+0x01,0x02	0x30	0	1	0	8	0xFF	ONETOONE	%.0f			Warm-ups since ECU reset	counts_warmups_since_ecu_reset				
+0x01,0x02	0x31	0	2	0	16	0xFFFF	DISTANCE	%.0f			Distance since ECU reset	distance_since_ecu_reset				
+0x01,0x02	0x32	0	2	0	16	0xFFFF	PRESS_VAPOR	%.2f			Evap System Vapor Pressure	pressure_vapor_evaporative_purge				
+0x01,0x02	0x33	0	1	0	8	0xFF	PRESS_AIR	%.1f			Barometric Pressure (absolute)	barometric_pressure				
+0x01,0x02	0x34	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor 1 lambda	o2_sensor_lambda_s1	Bank 1 (WR)	o2_sensor_wrc_formula	-o2 sensors (wide range	current
+0x01,0x02	0x34	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			O2 Sensor 1 current	o2_sensor_current_s1	Bank 1 (WR)	o2_sensor_wrc_formula	-o2 sensors (wide range	current
+0x01,0x02	0x35	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor 2 lambda	o2_sensor_lambda_s2	Bank 1 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x35	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			O2 Sensor 2 current	o2_sensor_current_s2	Bank 1 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x36	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor 3 lambda	o2_sensor_lambda_s3	Bank 1 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x36	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			O2 Sensor 3 current	o2_sensor_current_s3	Bank 1 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x37	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor 4 lambda	o2_sensor_lambda_s4	Bank 1 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x37	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			O2 Sensor 4 current	o2_sensor_current_s4	Bank 1 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x38	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor 5 lambda	o2_sensor_lambda_s5	Bank 2 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x38	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			O2 Sensor 5 current	o2_sensor_current_s5	Bank 2 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x39	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor 6 lambda	o2_sensor_lambda_s6	Bank 2 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x39	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			O2 Sensor 6 current	o2_sensor_current_s6	Bank 2 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x3A	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor 7 lambda	o2_sensor_lambda_s7	Bank 2 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x3A	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			O2 Sensor 7 current	o2_sensor_current_s7	Bank 2 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x3B	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	O2 Sensor 8 lambda	o2_sensor_lambda_s8	Bank 2 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x3B	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			O2 Sensor 8 current	o2_sensor_current_s8	Bank 2 (WR)	o2_sensor_wrc_formula		
+0x01,0x02	0x3C	0	2	0	16	0xFFFF	TEMP_WIDERANGE	%.0f	-40	950	CAT Temperature B1S1	cat_temperature_b1s1	B1S1			
+0x01,0x02	0x3D	0	2	0	16	0xFFFF	TEMP_WIDERANGE	%.0f	-40	950	CAT Temperature B2S1	cat_temperature_b2s1	B2S1			
+0x01,0x02	0x3E	0	2	0	16	0xFFFF	TEMP_WIDERANGE	%.0f	-40	950	CAT Temperature B1S2	cat_temperature_b1s2	B1S2			
+0x01,0x02	0x3F	0	2	0	16	0xFFFF	TEMP_WIDERANGE	%.0f	-40	950	CAT Temperature B2S2	cat_temperature_b2s2	B2S2			
+0x01,0x02	0x42	0	2	0	16	0xFFFF	VOLTAGE	%.3f			ECU voltage	ecu_voltage				
+0x01,0x02	0x43	0	2	0	16	0xFFFF	PERCENT	%.1f			Absolute Engine Load	engine_load				
+0x01,0x02	0x44	0	2	0	16	0xFFFF	RATIO	%.3f			Commanded Equivalence Ratio	equiv_ratio_commanded				
+0x01,0x02	0x45	0	1	0	8	0xFF	PERCENT	%.1f			Relative Throttle Position	throttle_position				
+0x01,0x02	0x46	0	1	0	8	0xFF	TEMPERATURE	%.1f			Ambient Air Temperature	ambient_air_temperature	same scaling as $0F			
+0x01,0x02	0x47	0	1	0	8	0xFF	PERCENT	%.1f			Absolute Throttle Position B	throttle_position				
+0x01,0x02	0x48	0	1	0	8	0xFF	PERCENT	%.1f			Absolute Throttle Position C	throttle_position				
+0x01,0x02	0x49	0	1	0	8	0xFF	PERCENT	%.1f			Accelerator Pedal Position D	throttle_position				
+0x01,0x02	0x4A	0	1	0	8	0xFF	PERCENT	%.1f			Accelerator Pedal Position E	throttle_position				
+0x01,0x02	0x4B	0	1	0	8	0xFF	PERCENT	%.1f			Accelerator Pedal Position F	throttle_position				
+0x01,0x02	0x4C	0	1	0	8	0xFF	PERCENT	%.1f			Comm. Throttle Actuator Cntrl	commanded_throttle_position	commanded TAC			
+0x01,0x02	0x4D	0	2	0	16	0xFFFF	HOURS	%.2f			Engine running while MIL on	time_since_mil_on	minutes run by the engine while MIL activated			
+0x01,0x02	0x4E	0	2	0	16	0xFFFF	HOURS	%.2f			Time since DTCs cleared	time_since_ecu_reset				
+0x01,0x02	0x4F	0	1	0	8	0xFF	ONETOONE	%.0f			Maximum equivalence ratio	equiv_ratio_max				
+0x01,0x02	0x4F	1	1	0	8	0xFF	VOLTAGE_MV	%.0f			Maximum oxygen sensor voltage	o2_sensor_voltage_max				
+0x01,0x02	0x4F	2	1	0	8	0xFF	CURRENT	%.0f			Maximum oxygen sensor current	o2_sensor_current_max				
+0x01,0x02	0x4F	3	1	0	8	0xFF	PRESS_WIDERANGE	%.0f			Maximum intake manifold absolute pressure	fuel_pressure_max				
+0x01,0x02	0x50	0	1	0	8	0xFF	AIRFLOW	%.0f			Maximum air flow rate from mass air flow sensor	mass_airflow_max				
+0x01,0x02	0x51	0	1	0	8	0xFF	FUEL_TYPE	%.0f			Fuel type	fuel_type				
+0x01,0x02	0x52	0	1	0	8	0xFF	PERCENT	%.0f			Ethanol fuel %	ethanol_fuel_percentage				
+0x01,0x02	0x53	0	2	0	16	0xFFFF	PRESS_VAPOR_ABS	%.3f			Absolute Evap system Vapor Pressure	pressure_vapor_evaporative_purge_absolute				
+0x01,0x02	0x54	0	2	0	16	0xFFFF	PRESS_VAPOR_REL	%.0f			Evap System Vapor Pressure	pressure_vapor_evaporative_purge				
+0x01,0x02	0x55	0	1	0	8	0xFF	PERCENT_REL	%.1f			Short term secondary oxygen sensor trim bank 1	fuel_trim_short_b1				
+0x01,0x02	0x55	1	1	0	8	0xFF	PERCENT_REL	%.1f			Short term secondary oxygen sensor trim bank 3	fuel_trim_short_b3				
+0x01,0x02	0x56	0	1	0	8	0xFF	PERCENT_REL	%.1f			Long term secondary oxygen sensor trim bank 1	fuel_trim_long_b1				
+0x01,0x02	0x56	1	1	0	8	0xFF	PERCENT_REL	%.1f			Long term secondary oxygen sensor trim bank 3	fuel_trim_long_b3				
+0x01,0x02	0x57	0	1	0	8	0xFF	PERCENT_REL	%.1f			Short term secondary oxygen sensor trim bank 2	fuel_trim_short_b2				
+0x01,0x02	0x57	1	1	0	8	0xFF	PERCENT_REL	%.1f			Short term secondary oxygen sensor trim bank 4	fuel_trim_short_b4				
+0x01,0x02	0x58	0	1	0	8	0xFF	PERCENT_REL	%.1f			Long term secondary oxygen sensor trim bank 2	fuel_trim_long_b2				
+0x01,0x02	0x58	1	1	0	8	0xFF	PERCENT_REL	%.1f			Long term secondary oxygen sensor trim bank 4	fuel_trim_long_b4				
+0x01,0x02	0x59	0	2	0	16	0xFFFF	PRESS_WIDERANGE	%.1f			Fuel rail pressure (absolute)	fuel_pressure				
+0x01,0x02	0x5A	0	1	0	8	0xFF	PERCENT	%.1f			Relative accelerator pedal position	accelerator_pedal_position				
+0x01,0x02	0x5B	0	1	0	8	0xFF	PERCENT	%.1f			Hybrid battery pack remaining life	time_remaining_life_battery_pack				
+0x01,0x02	0x5C	0	1	0	8	0xFF	TEMPERATURE	%.0f			Engine oil temperature	engine_oil_temperature				
+0x01,0x02	0x5D	0	2	0	16	0xFFFF	ANGLE_WIDERANGE	%.2f			Fuel injection timing	fuel_injection_timing				
+0x01,0x02	0x5E	0	2	0	16	0xFFFF	CONSUMPTION	%.2f			Engine fuel rate	engine_fuel_rate				
+0x01,0x02	0x61	0	1	0	8	0xFF	PERCENT7_REL	%.1f			Torque Driver demand	engine_torque_demand				
+0x01,0x02	0x62	0	1	0	8	0xFF	PERCENT7_REL	%.1f			Torque Engine	engine_torque				
+0x01,0x02	0x63	0	2	0	16	0xFFFF	TORQUE	%.0f			Torque Engine reference	engine_torque_reference				
+0x01,0x02	0x64	0	1	0	8	0xFF	PERCENT7_REL	%.1f			Torque Idle	engine_torque_idle				
+0x01,0x02	0x64	1	1	0	8	0xFF	PERCENT7_REL	%.1f			Torque Engine Point 1	engine_torque_point_1				
+0x01,0x02	0x64	2	1	0	8	0xFF	PERCENT7_REL	%.1f			Torque Engine Point 2	engine_torque_point_2				
+0x01,0x02	0x64	3	1	0	8	0xFF	PERCENT7_REL	%.1f			Torque Engine Point 3	engine_torque_point_3				
+0x01,0x02	0x64	4	1	0	8	0xFF	PERCENT7_REL	%.1f			Torque Engine Point 4	engine_torque_point_4				
+0x01,0x02	0x78	0	1	0	8	0xFF	EGT_SENSORS	%.0f			Exhaust Temperature Sensors B1	map_exhaust_temperature_sensors_b1				
+0x01,0x02	0x78	1	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			Exhaust Temperature B1S1	exhaust_temperature_b1s1				
+0x01,0x02	0x78	3	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			Exhaust Temperature B1S2	exhaust_temperature_b1s2				
+0x01,0x02	0x78	5	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			Exhaust Temperature B1S3	exhaust_temperature_b1s3				
+0x01,0x02	0x78	7	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			Exhaust Temperature B1S4	exhaust_temperature_b1s4				
+0x01,0x02	0x79	0	1	0	8	0xFF	EGT_SENSORS	%.0f			Exhaust Temperature Sensors B2	map_exhaust_temperature_sensors_b2				
+0x01,0x02	0x79	1	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			Exhaust Temperature B2S1	exhaust_temperature_b2s1				
+0x01,0x02	0x79	3	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			Exhaust Temperature B2S2	exhaust_temperature_b2s2				
+0x01,0x02	0x79	5	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			Exhaust Temperature B2S3	exhaust_temperature_b2s3				
+0x01,0x02	0x79	7	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			Exhaust Temperature B2S4	exhaust_temperature_b2s4				
+0x01,0x02	0xC4	1	1	5	1	0xFF	GEN_SWITCH	%.0f			Engine IDLE Request	status_engine_idle_request				
+0x01,0x02	0xC4	1	1	6	1	0xFF	GEN_SWITCH	%.0f			Engine STOP Request	status_engine_stop_request				
+0x09	0x01	0	1	0	8	0xFF	ONETOONE	%.0f			Message count VIN	counts_vin_length				
+0x09	0x02	0	17	0	136	0x00	ASCII	%s			Vehicle identification number	vehicle_identification_number				
+0x09	0x03	0	1	0	8	0xFF	ONETOONE	%.0f			Message count CAL-ID	counts_calibration_identifier_length				
+0x09	0x04	0	16	0	128	0x00	ASCII	%s			Calibration identifier	calibration_identifiert				
+0x09	0x05	0	1	0	8	0xFF	ONETOONE	%.0f			Message count CVN	counts_calibration_verification				
+0x09	0x06	0	4	0	32	0xFFFFFFFF	INTEGER	0x%08x			Calibration verification	calibration_verification				
+0x09	0x07	0	1	0	8	0xFF	ONETOONE	%.0f			Message count IPT	counts_ipt				
+0x09	0x08	0	2	0	16	0xFFFF	ONETOONE	%.0f			OBD Monitoring Conditions Encountered Counts	OBDCOND	OBDCOND			
+0x09	0x08	2	2	0	16	0xFFFF	ONETOONE	%.0f			Ignition Counter	IGNCNTR	IGNCNTR			
+0x09	0x08	4	2	0	16	0xFFFF	ONETOONE	%.0f			Catalyst Monitor Completion Counts Bank 1	CATCOMP1	CATCOMP1			
+0x09	0x08	6	2	0	16	0xFFFF	ONETOONE	%.0f			Catalyst Monitor Conditions Encountered Counts Bank 1	CATCOND1	CATCOND1			
+0x09	0x08	8	2	0	16	0xFFFF	ONETOONE	%.0f			Catalyst Monitor Completion Counts Bank 2	CATCOMP2	CATCOMP2			
+0x09	0x08	10	2	0	16	0xFFFF	ONETOONE	%.0f			Catalyst Monitor Conditions Encountered Counts Bank 2	CATCOND2	CATCOND2			
+0x09	0x08	12	2	0	16	0xFFFF	ONETOONE	%.0f			O2 Sensor Monitor Completion Counts Bank 1	O2SCOMP1	O2SCOMP1			
+0x09	0x08	14	2	0	16	0xFFFF	ONETOONE	%.0f			O2 Sensor Monitor Conditions Encountered Counts Bank 1	O2SCOND1	O2SCOND1			
+0x09	0x08	16	2	0	16	0xFFFF	ONETOONE	%.0f			O2 Sensor Monitor Completion Counts Bank 2	O2SCOMP2	O2SCOMP2			
+0x09	0x08	18	2	0	16	0xFFFF	ONETOONE	%.0f			O2 Sensor Monitor Conditions Encountered Counts Bank 2	O2SCOND2	O2SCOND2			
+0x09	0x08	20	2	0	16	0xFFFF	ONETOONE	%.0f			EGR Monitor Completion Condition Counts	EGRCOMP	EGRCOMP			
+0x09	0x08	22	2	0	16	0xFFFF	ONETOONE	%.0f			EGR Monitor Conditions Encountered Counts	EGRCOND	EGRCOND			
+0x09	0x08	24	2	0	16	0xFFFF	ONETOONE	%.0f			AIR Monitor Completion Condition Counts (Secondary Air)	AIRCOMP	AIRCOMP			
+0x09	0x08	26	2	0	16	0xFFFF	ONETOONE	%.0f			AIR Monitor Conditions Encountered Counts (Secondary Air)	AIRCOND	AIRCOND			
+0x09	0x08	28	2	0	16	0xFFFF	ONETOONE	%.0f			EVAP Monitor Completion Condition Counts	EVAPCOMP	EVAPCOMP			
+0x09	0x08	30	2	0	16	0xFFFF	ONETOONE	%.0f			EVAP Monitor Conditions Encountered Counts	EVAPCOND	EVAPCOND			
+0x09	0x08	32	2	0	16	0xFFFF	ONETOONE	%.0f			Secondary O2 Sensor Monitor Completion Counts Bank 1	SO2SCOMP1	SO2SCOMP1			
+0x09	0x08	34	2	0	16	0xFFFF	ONETOONE	%.0f			Secondary O2 Sensor Monitor Conditions Encountered Counts Bank 1	SO2SCOND1	SO2SCOND1			
+0x09	0x08	36	2	0	16	0xFFFF	ONETOONE	%.0f			Secondary O2 Sensor Monitor Completion Counts Bank 2	SO2SCOMP2	SO2SCOMP2			
+0x09	0x08	38	2	0	16	0xFFFF	ONETOONE	%.0f			Secondary O2 Sensor Monitor Conditions Encountered Counts Bank 2	SO2SCOND2	SO2SCOND2			
+0x09	0x09	0	2	0	16	0xFFFF	ONETOONE	%.0f			ECU name length	counts_ecu_name_length				
+0x09	0x0A	0	20	0	160	0x00	ASCII	%s			ECU name	ecu_name				
+0x09	0x0B	0	2	0	16	0xFFFF	ONETOONE	%.0f			OBD Monitoring Conditions Encountered Counts	OBDCOND	OBDCOND			
+0x09	0x0B	2	2	0	16	0xFFFF	ONETOONE	%.0f			Ignition Counter	IGNCNTR	IGNCNTR			
+0x09	0x0B	4	2	0	16	0xFFFF	ONETOONE	%.0f			NMHC Catalyst Monitor Completion Condition Counts	HCCATCOMP	HCCATCOMP			
+0x09	0x0B	6	2	0	16	0xFFFF	ONETOONE	%.0f			NMHC Catalyst Monitor Conditions Encountered Counts	HCCATCOND	HCCATCOND			
+0x09	0x0B	8	2	0	16	0xFFFF	ONETOONE	%.0f			NOx/SCR Catalyst Monitor Completion Condition Counts	NCATCOMP	NCATCOMP			
+0x09	0x0B	10	2	0	16	0xFFFF	ONETOONE	%.0f			NOx/SCR Catalyst Monitor Conditions Encountered Counts	NCATCOND	NCATCOND			
+0x09	0x0B	12	2	0	16	0xFFFF	ONETOONE	%.0f			NOx Adsorber Monitor Completion Condition Counts	NADSCOMP	NADSCOMP			
+0x09	0x0B	14	2	0	16	0xFFFF	ONETOONE	%.0f			NOx Adsorber Monitor Conditions Encountered Counts	NADSCOND	NADSCOND			
+0x09	0x0B	16	2	0	16	0xFFFF	ONETOONE	%.0f			PM Filter Monitor Completion Condition Counts	PMCOMP	PMCOMP			
+0x09	0x0B	18	2	0	16	0xFFFF	ONETOONE	%.0f			PM Filter Monitor Conditions Encountered Counts	PMCOND	PMCOND			
+0x09	0x0B	20	2	0	16	0xFFFF	ONETOONE	%.0f			Exhaust Gas Sensor Monitor Completion Condition Counts	EGSCOMP	EGSCOMP			
+0x09	0x0B	22	2	0	16	0xFFFF	ONETOONE	%.0f			Exhaust Gas Sensor Monitor Conditions Encountered Counts	EGSCOND	EGSCOND			
+0x09	0x0B	24	2	0	16	0xFFFF	ONETOONE	%.0f			EGR and/or VVT Monitor Completion Condition Counts	EGRCOMP	EGRCOMP			
+0x09	0x0B	26	2	0	16	0xFFFF	ONETOONE	%.0f			EGR and/or VVT Monitor Conditions Encountered Counts	EGRCOND	EGRCOND			
+0x09	0x0B	28	2	0	16	0xFFFF	ONETOONE	%.0f			Boost Pressure Monitor Completion Condition Counts	BPCOMP	BPCOMP			
+0x09	0x0B	30	2	0	16	0xFFFF	ONETOONE	%.0f			Boost Pressure Monitor Conditions Encountered Counts	BPCOND	BPCOND			
+0x09	0x0B	32	2	0	16	0xFFFF	ONETOONE	%.0f			Fuel Monitor Completion Condition Counts	FUELCOMP	FUELCOMP			
+0x09	0x0B	34	2	0	16	0xFFFF	ONETOONE	%.0f			Fuel Monitor Conditions Encountered Counts	FUELCOND	FUELCOND			

@@ -623,8 +623,6 @@ public class MainActivity extends ListActivity
 		fileHelper = new FileHelper(this, CommService.elm);
 		// set listeners for data structure changes
 		setDataListeners();
-		// automate elm status display
-		CommService.elm.addPropertyChangeListener(this);
 
 		// override comm medium with USB connect intent
 		if ("android.hardware.usb.action.USB_DEVICE_ATTACHED".equals(getIntent().getAction()))
@@ -689,19 +687,19 @@ public class MainActivity extends ListActivity
 					Integer.valueOf(prefs.getString(SettingsActivity.KEY_COMM_MEDIUM, "0"))];
 
 		// enable/disable ELM adaptive timing
-		if(key==null || ELM_ADAPTIVE_TIMING.equals(key))
+		if(CommService.elm != null && ELM_ADAPTIVE_TIMING.equals(key))
 			CommService.elm.mAdaptiveTiming.setEnabled(prefs.getBoolean(ELM_ADAPTIVE_TIMING, true));
 
 		// set custom ELM init commands
-		if(key==null || ELM_CUSTOM_INIT_CMDS.equals(key))
+		if(ELM_CUSTOM_INIT_CMDS.equals(key))
 		{
 			String value = prefs.getString(ELM_CUSTOM_INIT_CMDS, null);
-			if(value != null && value.length() > 0)
+			if(CommService.elm != null && value != null && value.length() > 0)
 				CommService.elm.setCustomInitCommands(value.split("\n"));
 		}
 
 		// ELM timeout
-		if(key==null || SettingsActivity.ELM_MIN_TIMEOUT.equals(key))
+		if(CommService.elm != null && SettingsActivity.ELM_MIN_TIMEOUT.equals(key))
 			CommService.elm.mAdaptiveTiming.setElmTimeoutMin(
 				Integer.valueOf(prefs.getString(SettingsActivity.ELM_MIN_TIMEOUT,
 				                                String.valueOf(CommService.elm.mAdaptiveTiming.getElmTimeoutMin()))));
@@ -714,8 +712,8 @@ public class MainActivity extends ListActivity
 			);
 
 		// ... preferred protocol
-		if(key==null || SettingsActivity.KEY_PROT_SELECT.equals(key))
-			ElmProt.setPreferredProtocol(
+		if(CommService.elm != null &&  SettingsActivity.KEY_PROT_SELECT.equals(key))
+			CommService.elm.setPreferredProtocol(
 				Integer.valueOf(prefs.getString(SettingsActivity.KEY_PROT_SELECT, "0")));
 
 		// log levels
@@ -727,9 +725,9 @@ public class MainActivity extends ListActivity
 			loadPreferredExtensions();
 
 		// set disabled ELM commands
-		if(key==null || SettingsActivity.ELM_CMD_DISABLE.equals(key))
+		if(CommService.elm != null && SettingsActivity.ELM_CMD_DISABLE.equals(key))
 		{
-			ElmProt.disableCommands(prefs.getStringSet(SettingsActivity.ELM_CMD_DISABLE, null));
+			CommService.elm.disableCommands(prefs.getStringSet(SettingsActivity.ELM_CMD_DISABLE, null));
 		}
 	}
 
@@ -1220,6 +1218,8 @@ public class MainActivity extends ListActivity
 				if (resultCode == Activity.RESULT_OK)
 				{
 					mCommService = new UsbCommService(this, mHandler);
+					// automate elm status display
+					mCommService.elm.addPropertyChangeListener(this);
 					mCommService.connect(UsbDeviceListActivity.selectedPort, true);
 				} else
 				{
@@ -1283,6 +1283,8 @@ public class MainActivity extends ListActivity
 		BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
 		// Attempt to connect to the device
 		mCommService = new BtCommService(this, mHandler);
+		// automate elm status display
+		mCommService.elm.addPropertyChangeListener(this);
 		mCommService.connect(device, secure);
 	}
 
@@ -1320,7 +1322,8 @@ public class MainActivity extends ListActivity
 		setMenuItemEnable(R.id.graph_actions, false);
 		getListView().setOnItemLongClickListener(this);
 		// set protocol service
-		CommService.elm.setService(newObdService, (getMode() != MODE.FILE));
+		if(CommService.elm != null)
+			CommService.elm.setService(newObdService, (getMode() != MODE.FILE));
 		// show / hide freeze frame selector */
 		Spinner ff_selector = (Spinner) findViewById(R.id.ff_selector);
 		ff_selector.setOnItemSelectedListener(ff_selected);

@@ -19,6 +19,7 @@
 
 package com.fr3ts0n.ecu.prot;
 
+import com.fr3ts0n.common.LanguageProvider;
 import com.fr3ts0n.ecu.Conversion;
 import com.fr3ts0n.ecu.EcuCodeList;
 import com.fr3ts0n.ecu.EcuConversions;
@@ -132,7 +133,7 @@ public class ObdProt extends ProtoHeader
   };
 
   /** new style data items */
-  public static final EcuDataItems dataItems = new EcuDataItems();
+  public static EcuDataItems dataItems;
 
   /** OBD data items */
   public static PvList PidPvs  = new PvList();
@@ -150,7 +151,16 @@ public class ObdProt extends ProtoHeader
   /** Creates a new instance of ObdProt */
   public ObdProt()
   {
+    this(null);
+  }
+
+  /** Creates a new instance of ObdProt
+   * @param langProvider Language provider for data item translations
+   */
+  public ObdProt(LanguageProvider langProvider)
+  {
     paddingChr = '0';
+    dataItems = new EcuDataItems(langProvider);
     // prepare PID PV list
     PidPvs.put(0, new EcuDataPv());
     VidPvs.put(0, new EcuDataPv());

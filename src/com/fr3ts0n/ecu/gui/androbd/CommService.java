@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
+import com.fr3ts0n.common.LanguageProvider;
 import com.fr3ts0n.ecu.prot.ElmProt;
 
 import org.apache.log4j.Logger;
@@ -32,6 +33,7 @@ import org.apache.log4j.Logger;
  * Abstract communication service
  */
 public abstract class CommService
+	implements LanguageProvider
 {
 	/** communication media */
 	public enum MEDIUM
@@ -57,7 +59,7 @@ public abstract class CommService
 
 	public static final Logger log = Logger.getLogger(TAG);
 
-	public static final ElmProt elm = new ElmProt();
+	public static ElmProt elm;
 
 	protected Context mContext;
 	protected Handler mHandler = null;
@@ -82,6 +84,7 @@ public abstract class CommService
 	{
 		this();
 		mHandler = handler;
+		elm = new ElmProt(this);
 	}
 
 	/**
@@ -175,4 +178,13 @@ public abstract class CommService
 		msg.setData(bundle);
 		mHandler.sendMessage(msg);
 	}
+
+	@Override
+	public String getNativeString(String key, String defaultString)
+	{
+		String result;
+		int id = mContext.getResources().getIdentifier(key,"string",null);
+		return (id != 0) ? mContext.getString(id) : defaultString;
+	}
+
 }

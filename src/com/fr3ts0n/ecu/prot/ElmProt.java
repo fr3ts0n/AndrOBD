@@ -18,6 +18,7 @@
 
 package com.fr3ts0n.ecu.prot;
 
+import com.fr3ts0n.common.LanguageProvider;
 import com.fr3ts0n.prot.TelegramListener;
 import com.fr3ts0n.prot.TelegramWriter;
 
@@ -385,6 +386,15 @@ public class ElmProt
 	 */
 	public ElmProt()
 	{
+	}
+
+	/**
+	 * Creates a new instance of ElmProtocol
+	 * @param langProvider Language provider for data item translations (null if none available)
+	 */
+	public ElmProt(LanguageProvider langProvider)
+	{
+		super(langProvider);
 	}
 
 	/**

@@ -18,6 +18,8 @@
 
 package com.fr3ts0n.ecu;
 
+import com.fr3ts0n.common.LanguageProvider;
+
 import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
@@ -46,6 +48,18 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 {
 	/** SerialVerion UID */
 	private static final long serialVersionUID = 5525561909111851836L;
+	private LanguageProvider languageProvider = null;
+
+	public LanguageProvider getLanguageProvider()
+	{
+		return languageProvider;
+	}
+
+	public void setLanguageProvider(LanguageProvider languageProvider)
+	{
+		this.languageProvider = languageProvider;
+	}
+
 	/** CSV field positions */
 	enum FLD
 	{
@@ -60,6 +74,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		FORMAT,
 		MIN,
 		MAX,
+		MNEMONIC,
 		LABEL,
 		DESCRIPTION,
 		NUMBEROFFIELDS
@@ -76,7 +91,17 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	 */
 	public EcuDataItems()
 	{
-		this("prot/res/pids.csv", "prot/res/conversions.csv");
+		this(null);
+	}
+
+	/**
+	 * Create data items from default CSV pidResource file using specified language
+	 * provider for translation
+	 * @param langProvider Language provider for text translations
+	 */
+	public EcuDataItems(LanguageProvider langProvider)
+	{
+		this(langProvider, "prot/res/pids.csv", "prot/res/conversions.csv");
 	}
 
 	/**
@@ -84,8 +109,9 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	 * @param pidResource resource file for PIDs (csv)
 	 * @param conversionResource resource file for conversions (csv)
 	 */
-	public EcuDataItems(String pidResource, String conversionResource)
+	public EcuDataItems(LanguageProvider langProvider, String pidResource, String conversionResource)
 	{
+		setLanguageProvider(langProvider);
 		cnv = new EcuConversions(conversionResource);
 		loadFromResource(pidResource);
 	}
@@ -148,6 +174,13 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 				catch(NumberFormatException ex) {	/* ignore */ }
 				try {	maxVal = Float.parseFloat(params[FLD.MAX.ordinal()]);	}
 				catch(NumberFormatException e) { /* ignore */	}
+				String label = params[FLD.LABEL.ordinal()];
+
+				// if there is a native language provider registered, ask for translation ...
+				if(languageProvider != null)
+				{
+					label = languageProvider.getNativeString(params[FLD.MNEMONIC.ordinal()], label);
+				}
 
 				// create linear conversion
 				newItm = new EcuDataItem(Integer.decode(params[FLD.PID.ordinal()]).intValue(),
@@ -160,7 +193,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 																 params[FLD.FORMAT.ordinal()],
 																 minVal,
 																 maxVal,
-																 params[FLD.LABEL.ordinal()]);
+																 label);
 
 				// enter data item for all specified services
 				String[] services = params[FLD.SVC.ordinal()].split(",");
