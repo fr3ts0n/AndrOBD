@@ -36,8 +36,8 @@ import javax.swing.JOptionPane;
 
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataPv;
-import com.fr3ts0n.ecu.prot.ElmProt;
-import com.fr3ts0n.ecu.prot.ObdProt;
+import com.fr3ts0n.ecu.prot.obd.ElmProt;
+import com.fr3ts0n.ecu.prot.obd.ObdProt;
 import com.fr3ts0n.prot.gui.SerialHandler;
 import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;

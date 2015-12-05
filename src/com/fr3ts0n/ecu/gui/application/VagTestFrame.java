@@ -22,7 +22,7 @@ import com.fr3ts0n.ecu.EcuCodeItem;
 import com.fr3ts0n.ecu.EcuCodeList;
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataPv;
-import com.fr3ts0n.ecu.prot.Kw1281Prot;
+import com.fr3ts0n.ecu.prot.vag.Kw1281Prot;
 import com.fr3ts0n.prot.gui.KLHandlerGeneric;
 import com.fr3ts0n.pvs.PvList;
 
@@ -88,7 +88,7 @@ public class VagTestFrame extends javax.swing.JFrame
 	/** is this a simulation, or the real world? */
 	static boolean isSimulation = false;
 	/** ECU addresses */
-	static EcuCodeList AddressList = new EcuCodeList(new String[]{"/com/fr3ts0n/ecu/prot/res/vag/ecuadr"}, 16);
+	static EcuCodeList AddressList = new EcuCodeList(new String[]{"/com/fr3ts0n/ecu/prot/vag/res/ecuadr"}, 16);
 	/**
 	 * Action listener to handle read/clear code actions
 	 */

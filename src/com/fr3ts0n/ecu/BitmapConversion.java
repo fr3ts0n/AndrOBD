@@ -18,6 +18,8 @@
 
 package com.fr3ts0n.ecu;
 
+import com.fr3ts0n.ecu.prot.obd.res.Messages;
+
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -79,6 +81,14 @@ public class BitmapConversion extends NumericConversion
 				String[] words = aData.split("=");
 				key = (long) (1 << Long.valueOf(words[0]));
 				value = words[1];
+				
+				// attempt to translate ...
+				String xlatKey = value;
+				xlatKey = xlatKey.replaceAll("[ -]", "_").toLowerCase();
+				value = Messages.getString(xlatKey, value);
+				// debug log translated message
+				log.debug(String.format("%s=%s\n", xlatKey, value));
+				
 				// ... and enter into hash map
 				hashData.put(key, value);
 			}

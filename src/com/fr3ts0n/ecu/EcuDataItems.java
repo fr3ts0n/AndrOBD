@@ -18,6 +18,8 @@
 
 package com.fr3ts0n.ecu;
 
+import com.fr3ts0n.ecu.prot.obd.res.Messages;
+
 import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
@@ -60,6 +62,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		FORMAT,
 		MIN,
 		MAX,
+		MNEMONIC,
 		LABEL,
 		DESCRIPTION,
 		NUMBEROFFIELDS
@@ -72,11 +75,11 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 
 	/**
 	 * Create data items from default CSV pidResource files
-	 * (prot/res/pids.csv, prot/res/conversions.csv)
+	 * (prot/obd/res/pids.csv, prot/obd/res/conversions.csv)
 	 */
 	public EcuDataItems()
 	{
-		this("prot/res/pids.csv", "prot/res/conversions.csv");
+		this("prot/obd/res/pids.csv", "prot/obd/res/conversions.csv");
 	}
 
 	/**
@@ -127,19 +130,19 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 			while ((currLine = rdr.readLine()) != null)
 			{
 				// ignore first line
-				if (++line == 1 || currLine.startsWith("#"))
+				if (++line == 1 || currLine.startsWith("#")) //$NON-NLS-1$
 				{
 					continue;
 				}
 				// repalce all optional quotes from CSV code list
-				currLine = currLine.replaceAll("\"", "");
+				currLine = currLine.replaceAll("\"", ""); //$NON-NLS-1$ //$NON-NLS-2$
 				// split CSV line into parameters
-				params = currLine.split("\t");
+				params = currLine.split("\t"); //$NON-NLS-1$
 
 				currCnvSet = cnv.get(params[FLD.FORMULA.ordinal()]);
 				if (currCnvSet == null)
 				{
-					log.warn("Conversion not found: " + params[FLD.FORMULA.ordinal()] + " " + currLine);
+					log.warn("Conversion not found: " + params[FLD.FORMULA.ordinal()] + " " + currLine); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				// try to use MIN/MAX values from CSV
 				Float minVal = null;
@@ -148,7 +151,8 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 				catch(NumberFormatException ex) {	/* ignore */ }
 				try {	maxVal = Float.parseFloat(params[FLD.MAX.ordinal()]);	}
 				catch(NumberFormatException e) { /* ignore */	}
-
+				String label = Messages.getString(params[FLD.MNEMONIC.ordinal()],
+				                                  params[FLD.LABEL.ordinal()]);
 				// create linear conversion
 				newItm = new EcuDataItem(Integer.decode(params[FLD.PID.ordinal()]).intValue(),
  																 Integer.parseInt(params[FLD.OFS.ordinal()]),
@@ -160,10 +164,10 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 																 params[FLD.FORMAT.ordinal()],
 																 minVal,
 																 maxVal,
-																 params[FLD.LABEL.ordinal()]);
+																 label);
 
 				// enter data item for all specified services
-				String[] services = params[FLD.SVC.ordinal()].split(",");
+				String[] services = params[FLD.SVC.ordinal()].split(","); //$NON-NLS-1$
 				for (String service : services)
 				{
 					int svcId = Integer.decode(service);
@@ -228,7 +232,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		if (currSvc == null)
 		{
 			currSvc = new HashMap<Integer, Vector<EcuDataItem>>();
-			log.debug("+SVC: " + service + " - " + currSvc);
+			log.debug("+SVC: " + service + " - " + currSvc); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		// check if item list exists for current PID
@@ -237,7 +241,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		if (currVec == null)
 		{
 			currVec = new Vector<EcuDataItem>();
-			log.debug("+PID: " + newItem.pid + " - " + currVec);
+			log.debug("+PID: " + newItem.pid + " - " + currVec); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		// enter data item into list of items / PID
 		currVec.add(newItem);
@@ -246,7 +250,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		// update map of services
 		put(service, currSvc);
 		// debug message of new enty
-		log.debug("+" + service + "/" + String.format("0x%02X",newItem.pid) + " - " + currVec);
+		log.debug("+" + service + "/" + String.format("0x%02X",newItem.pid) + " - " + currVec); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 	}
 
 	/**

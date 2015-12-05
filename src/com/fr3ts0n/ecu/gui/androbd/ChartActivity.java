@@ -33,7 +33,7 @@ import android.view.WindowManager;
 import android.widget.ListAdapter;
 
 import com.fr3ts0n.ecu.EcuDataPv;
-import com.fr3ts0n.ecu.prot.ObdProt;
+import com.fr3ts0n.ecu.prot.obd.ObdProt;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;

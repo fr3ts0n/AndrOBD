@@ -16,7 +16,7 @@
  * MA 02111-1307 USA
  */
 
-package com.fr3ts0n.ecu.prot;
+package com.fr3ts0n.ecu.prot.obd;
 
 import com.fr3ts0n.ecu.Conversions;
 import com.fr3ts0n.ecu.EcuDataPv;

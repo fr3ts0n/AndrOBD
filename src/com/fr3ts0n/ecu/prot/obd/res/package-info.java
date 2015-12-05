@@ -19,6 +19,6 @@
 /**
  * ECU/OBD protocol specific resources
  *
- * @author erwin
+ * @author fr3ts0n
  */
-package com.fr3ts0n.ecu.prot.res;
+package com.fr3ts0n.ecu.prot.obd.res;

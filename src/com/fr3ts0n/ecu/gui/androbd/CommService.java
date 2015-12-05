@@ -24,7 +24,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.fr3ts0n.ecu.prot.ElmProt;
+import com.fr3ts0n.ecu.prot.obd.ElmProt;
 
 import org.apache.log4j.Logger;
 

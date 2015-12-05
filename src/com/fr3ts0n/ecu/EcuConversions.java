@@ -74,7 +74,7 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 	public EcuConversions()
 	{
 		// add dynamic entris from csv file(s)
-		this("prot/res/conversions.csv");
+		this("prot/res/obd/conversions.csv");
 	}
 
 	/**

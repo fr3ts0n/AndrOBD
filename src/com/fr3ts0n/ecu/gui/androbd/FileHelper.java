@@ -27,8 +27,8 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.fr3ts0n.ecu.prot.ElmProt;
-import com.fr3ts0n.ecu.prot.ObdProt;
+import com.fr3ts0n.ecu.prot.obd.ElmProt;
+import com.fr3ts0n.ecu.prot.obd.ObdProt;
 import com.fr3ts0n.pvs.PvList;
 
 import java.io.File;

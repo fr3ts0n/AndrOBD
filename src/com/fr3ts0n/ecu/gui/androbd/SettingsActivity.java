@@ -31,8 +31,8 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 import com.fr3ts0n.ecu.EcuDataItem;
-import com.fr3ts0n.ecu.prot.ElmProt;
-import com.fr3ts0n.ecu.prot.ObdProt;
+import com.fr3ts0n.ecu.prot.obd.ElmProt;
+import com.fr3ts0n.ecu.prot.obd.ObdProt;
 
 import java.util.HashSet;
 import java.util.Vector;

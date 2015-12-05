@@ -43,8 +43,8 @@ public class ObdCodeList
 	public ObdCodeList()
 	{
 		// load code list from text files
-		loadFromResource("prot/res/pcodes");
-		loadFromResource("prot/res/ucodes");
+		loadFromResource("prot/obd/res/pcodes");
+		loadFromResource("prot/obd/res/ucodes");
 	}
 
 	/**

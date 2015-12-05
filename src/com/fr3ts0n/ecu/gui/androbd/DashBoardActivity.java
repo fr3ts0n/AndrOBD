@@ -30,7 +30,7 @@ import android.widget.GridView;
 import android.widget.ListAdapter;
 
 import com.fr3ts0n.ecu.EcuDataPv;
-import com.fr3ts0n.ecu.prot.ObdProt;
+import com.fr3ts0n.ecu.prot.obd.ObdProt;
 
 import java.util.HashSet;
 import java.util.Timer;
