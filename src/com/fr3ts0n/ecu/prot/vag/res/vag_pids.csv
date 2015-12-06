@@ -68,7 +68,7 @@ svc	pid	ofs	len	bit_ofs	bit_len	bit_mask	formula	digits	min	max	mnemonic	label	d
 0xE7,0xF4	0x43	0	2	0	16	0xFFFF	43	%.1f			steering_wheel_angle	steering angle	Lenkwinkel			
 0xE7,0xF4	0x44	0	2	0	16	0xFFFF	44	%.3f			velocity	Velocity	Drehrate			
 0xE7,0xF4	0x45	0	2	0	16	0xFFFF	45	%.3f			pressure	Pressure	Druck			
-0xE7,0xF4	0x46	0	2	0	16	0xFFFF	46	%.2f			acceleration_cross	Cross acceleration	Querbeschleunigung			
+0xE7,0xF4	0x46	0	2	0	16	0xFFFF	46	%.2f			cross_acceleration	Cross acceleration	Querbeschleunigung			
 0xE7,0xF4	0x47	0	2	0	16	0xFFFF	47	%.0f			distance	Distance	Abstand			
 0xE7,0xF4	0x48	0	2	0	16	0xFFFF	48	%.2f			voltage	Voltage decimal	Spannung dezimal			
 0xE7,0xF4	0x49	0	2	0	16	0xFFFF	49	%.3f			resistance	Resistance	Widerstand			

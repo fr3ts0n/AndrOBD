@@ -26,6 +26,7 @@ import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataItems;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.ObdCodeItem;
+import com.fr3ts0n.ecu.prot.obd.res.Messages;
 import com.fr3ts0n.prot.ProtoHeader;
 import com.fr3ts0n.prot.TelegramListener;
 import com.fr3ts0n.prot.TelegramWriter;
@@ -487,7 +488,10 @@ public class ObdProt extends ProtoHeader
                 }
                 else
                 {
-                  tCodes.put(key,new ObdCodeItem(key.intValue(),"Customer specific trouble code. See manual ..."));
+                  tCodes.put(key,
+                             new ObdCodeItem(key.intValue(),
+                                             Messages.getString(
+                                               "customer.specific.trouble.code.see.manual")));
                 }
                 // only increment number of codes if it was not set already
                 nCodes++;
@@ -495,7 +499,7 @@ public class ObdProt extends ProtoHeader
             }
             if(nCodes == 0)
             {
-              tCodes.put(0,new ObdCodeItem(0,"No trouble codes set"));
+              tCodes.put(0,new ObdCodeItem(0, Messages.getString("no.trouble.codes.set")));
             }
             break;
 
