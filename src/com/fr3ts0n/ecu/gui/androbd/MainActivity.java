@@ -579,6 +579,8 @@ public class MainActivity extends ListActivity
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+		dlgBuilder = new AlertDialog.Builder(this);
+
 		// get preferences
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		// register for later changes
@@ -616,8 +618,6 @@ public class MainActivity extends ListActivity
 		}
 
 		setContentView(R.layout.startup_layout);
-
-		dlgBuilder = new AlertDialog.Builder(this);
 
 		// create file helper instance
 		fileHelper = new FileHelper(this, CommService.elm);
@@ -877,7 +877,8 @@ public class MainActivity extends ListActivity
 			if (filePath != null)
 			{
 				log.info("Load ext. codelist: " + filePath);
-				InputStream inStr = getContentResolver().openInputStream(Uri.parse(filePath));
+				Uri uri = Uri.parse(filePath);
+				InputStream inStr = getContentResolver().openInputStream(uri);
 				EcuConversions.codeList.loadFromStream(inStr);
 			}
 		} catch (Exception e)
@@ -894,7 +895,8 @@ public class MainActivity extends ListActivity
 			if (filePath != null)
 			{
 				log.info("Load ext. conversions: " + filePath);
-				InputStream inStr = getContentResolver().openInputStream(Uri.parse(filePath));
+				Uri uri = Uri.parse(filePath);
+				InputStream inStr = getContentResolver().openInputStream(uri);
 				EcuDataItems.cnv.loadFromStream(inStr);
 			}
 		} catch (Exception e)
@@ -911,7 +913,8 @@ public class MainActivity extends ListActivity
 			if (filePath != null)
 			{
 				log.info("Load ext. conversions: " + filePath);
-				InputStream inStr = getContentResolver().openInputStream(Uri.parse(filePath));
+				Uri uri = Uri.parse(filePath);
+				InputStream inStr = getContentResolver().openInputStream(uri);
 				ObdProt.dataItems.loadFromStream(inStr);
 			}
 		} catch (Exception e)

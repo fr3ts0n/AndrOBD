@@ -160,7 +160,7 @@
                     android:title="@string/conversions"
                     >
                     <intent
-                        android:action="android.intent.action.GET_CONTENT"
+                        android:action="android.intent.action.OPEN_DOCUMENT"
                         android:mimeType="*/*"
                         />
                 </Preference>
@@ -171,7 +171,7 @@
                     android:title="@string/data_items"
                     >
                     <intent
-                        android:action="android.intent.action.GET_CONTENT"
+                        android:action="android.intent.action.OPEN_DOCUMENT"
                         android:mimeType="*/*"
                         />
                 </Preference>
@@ -182,7 +182,7 @@
                     android:title="@string/fault_codes"
                     >
                     <intent
-                        android:action="android.intent.action.GET_CONTENT"
+                        android:action="android.intent.action.OPEN_DOCUMENT"
                         android:mimeType="*/*"
                         />
                 </Preference>
