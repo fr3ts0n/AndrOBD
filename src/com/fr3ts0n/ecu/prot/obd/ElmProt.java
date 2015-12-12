@@ -957,7 +957,7 @@ public class ElmProt
 
 							// send CAL-ID "GSPA..." without length id
 							handleTelegram("0:490401475350".toCharArray());
-                            handleTelegram("1:412D3132333435".toCharArray());
+							handleTelegram("1:412D3132333435".toCharArray());
 							handleTelegram("2:36373839303000".toCharArray());
 
 							// CAL-ID 01234567
@@ -965,8 +965,13 @@ public class ElmProt
 							break;
 
 						case OBD_SVC_NONE:
-						default:
 							// just keep quiet until soneone requests something
+							break;
+
+						default:
+							// respond "service not supported"
+							handleTelegram(String.format("7F%02X11", service).toCharArray());
+							Thread.sleep(500);
 							break;
 
 					}

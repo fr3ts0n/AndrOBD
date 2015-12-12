@@ -117,7 +117,7 @@ public class BitmapConversion extends NumericConversion
 			if (result == null)
 				result = "";
 			else
-				result += "\n";
+				result += System.lineSeparator();
 			// now add the result
 			result += String.format("%s  %s",
 									((val & item.getKey()) != 0) ? "(*)" : "(  )",

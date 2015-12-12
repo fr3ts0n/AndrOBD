@@ -61,8 +61,72 @@ public class ObdProt extends ProtoHeader
   public static final int OBD_SVC_VEH_INFO    = 0x09;
   public static final int OBD_SVC_PERMACODES  = 0x0A;
 
+  /** negative response ID */
+  public static final int OBD_ID_NRC          = 0x7F;
+  /** negative response codes */
+  public enum NRC
+  {
+    GR	    ( 0x10	, "General reject"),
+    SNS	    ( 0x11	, "Service 0x%02X not supported"),
+    SFNS    ( 0x12	, "Sub-Function not supported (SVC:0x%02X)"),
+    IMLOIF	( 0x13	, "Incorrect message length or invalid format"),
+    RTL	    ( 0x14	, "Response too long"),
+    BRR	    ( 0x21	, "Busy repeat request"),
+    CNC	    ( 0x22	, "Conditions not correct"),
+    RSE	    ( 0x24	, "Request sequence error"),
+    NRFSC	  ( 0x25	, "No response from sub-net component"),
+    FPEORA	( 0x26	, "Failure prevents execution of requested action"),
+    ROOR	  ( 0x31	, "Request out of range (SVC:0x%02X)"),
+    SAD	    ( 0x33	, "Security access denied"),
+    IK	    ( 0x35	, "Invalid key"),
+    ENOA	  ( 0x36	, "Exceeded number of attempts"),
+    RTDNE	  ( 0x37	, "Required time delay not expired"),
+    UDNA	  ( 0x70	, "Upload/Download not accepted"),
+    TDS	    ( 0x71	, "Transfer data suspended"),
+    GPF	    ( 0x72	, "General programming failure"),
+    WBSC	  ( 0x73	, "Wrong Block Sequence Counter"),
+    RCRRP	  ( 0x78	, "Request correctly received  but response is pending"),
+    SFNSIAS	( 0x7E	, "Sub-Function not supported in active session (SVC:0x%02X)"),
+    SNSIAS	( 0x7F	, "Service 0x%02X not supported in active session");
+
+    public int code;
+    public String description;
+
+    NRC(int _code, String _description)
+    {
+      code = _code;
+      description = _description;
+    }
+
+	  /**
+	   * Get NRC with specified ID (NRC-code)
+	   * @param id ID (NRC-code) to search
+	   * @return specified NRC, or null if not found
+	   */
+	  public static NRC get(int id)
+	  {
+		  NRC result = null;
+		  for(NRC nrc : values())
+		  {
+			  if(nrc.code == id)
+			  {
+				  result = nrc;
+				  break;
+			  }
+		  }
+		  return result;
+	  }
+
+	  /** return String representative */
+	  public String toString(int service)
+	  {
+		  return String.format("(NRC:0x%02X) %s", code, String.format(description, service));
+	  }
+  }
+
   /** property name "number of codes" */
   public static final String PROP_NUM_CODES   = "numCodes";
+	public static final String PROP_NRC         = "NRC";
 
   // current supported PID
   static int currSupportedPid = 0;
@@ -80,9 +144,27 @@ public class ObdProt extends ProtoHeader
   /** List of PIDs supported by the vehicle */
   static Vector<Integer> pidSupported = new Vector<Integer>();
 
+	/** positive response fields */
   public static final int ID_OBD_SVC          = 0;
   public static final int ID_OBD_PID          = 1;
   public static final int ID_OBD_FRAMEID      = 2;
+
+	/** negative response fields */
+	public static final int ID_NR_ID            = 0;
+	public static final int ID_NR_SVC           = 1;
+	public static final int ID_NR_CODE          = 2;
+
+	/**
+	 * Negative response parameters
+	 * List of telegram parameters in order of appearance
+	 */
+	static final int NR_PARAMETERS[][] =
+    /*  START,  LEN,     PARAM-TYPE     // REMARKS */
+    /* ------------------------------------------- */
+		{ {     0,    2,     PT_HEX},     // ID_NR_ID
+			{     2,    2,     PT_HEX},     // ID_NR_SVC
+			{     4,    2,     PT_HEX},     // ID_NR_CODE
+		};
 
   /**
    * List of telegram parameters in order of appearance
@@ -188,7 +270,12 @@ public class ObdProt extends ProtoHeader
     int fldMap[][];
     switch(service)
     {
-      case OBD_SVC_FREEZEFRAME:
+	    // negative response
+	    case OBD_ID_NRC:
+		    fldMap = NR_PARAMETERS;
+		    break;
+
+	    case OBD_SVC_FREEZEFRAME:
         fldMap = FRZFRM_PARAMETERS;
         break;
 
@@ -403,7 +490,28 @@ public class ObdProt extends ProtoHeader
     {
       try
       {
-        msgService = (Integer) getParamValue(ID_OBD_SVC, buffer) & ~0x40;
+	      msgService = (Integer) getParamValue(ID_OBD_SVC, buffer);
+	      // check for negative result
+	      if(msgService == OBD_ID_NRC)
+	      {
+		      // get NR service
+		      int svc = (Integer) getParamValue(ID_NR_SVC, buffer);
+		      // get NRC code
+		      int nrcCode = (Integer) getParamValue(ID_NR_CODE, buffer);
+		      // get NRC object
+		      NRC nrc = NRC.get( nrcCode );
+		      // create NRC error message
+		      String error = String.format(nrc.toString(svc));
+		      // log error
+		      log.error(error);
+		      // notify change listeners
+		      firePropertyChange(new PropertyChangeEvent(this, PROP_NRC, null, error));
+		      // handling finished
+		      return result;
+	      }
+
+	      // positive response -> mask service ID
+        msgService &= ~0x40;
         // check service of message
         switch(msgService)
         {
@@ -653,7 +761,15 @@ public class ObdProt extends ProtoHeader
       case OBD_SVC_CLEAR_CODES:
         // clear trouble codes
         writeTelegram(emptyBuffer,obdService,0);
-        break;
+	      // wait for codes to be cleared
+	      try
+	      {
+		      Thread.sleep(500);
+	      } catch (InterruptedException e)
+	      {
+		      // Intentionally do nothing
+	      }
+	      break;
 
       case OBD_SVC_VEH_INFO:
         // read vehicle information

@@ -209,6 +209,7 @@ period of time while the ECU recalibrates itself.
     <string name="DATAERROR">DATA error</string>
     <string name="RXERROR">RX error</string>
     <string name="ERROR">Error</string>
+    <string name="obd_error">OBD protocol error</string>
     <!-- the string array corresponding to state enum -->
     <string-array name="elmcomm_states" translatable="false">
         <item>@string/UNDEFINED</item>

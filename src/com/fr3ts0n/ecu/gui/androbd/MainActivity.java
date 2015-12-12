@@ -139,6 +139,7 @@ public class MainActivity extends ListActivity
 	public static final int MESSAGE_OBD_STATE_CHANGED = 8;
 	public static final int MESSAGE_OBD_NUMCODES = 9;
 	public static final int MESSAGE_OBD_ECUS = 10;
+	public static final int MESSAGE_OBD_NRC = 11;
 	private static final String TAG = "AndrOBD";
 	/**
 	 * internal Intent request codes
@@ -406,7 +407,18 @@ public class MainActivity extends ListActivity
 
 				case MESSAGE_OBD_ECUS:
 					evt = (PropertyChangeEvent) msg.obj;
-					selectEcu((Set<Integer>)evt.getNewValue());
+					selectEcu((Set<Integer>) evt.getNewValue());
+					break;
+
+				case MESSAGE_OBD_NRC:
+					evt = (PropertyChangeEvent) msg.obj;
+					String nrcMessage = (String)evt.getNewValue();
+					dlgBuilder
+						.setIcon(android.R.drawable.ic_dialog_alert)
+						.setTitle(R.string.obd_error)
+						.setMessage(nrcMessage)
+						.setPositiveButton(null,null)
+						.show();
 					break;
 			}
 		}
@@ -1644,6 +1656,12 @@ public class MainActivity extends ListActivity
 		{
 			// forward property change to the UI Activity
 			Message msg = mHandler.obtainMessage(MESSAGE_OBD_ECUS);
+			msg.obj = evt;
+			mHandler.sendMessage(msg);
+		} else if (ObdProt.PROP_NRC.equals(evt.getPropertyName()))
+		{
+			// forward property change to the UI Activity
+			Message msg = mHandler.obtainMessage(MESSAGE_OBD_NRC);
 			msg.obj = evt;
 			mHandler.sendMessage(msg);
 		}
