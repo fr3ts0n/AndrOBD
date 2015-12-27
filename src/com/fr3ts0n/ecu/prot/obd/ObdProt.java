@@ -20,13 +20,13 @@
 package com.fr3ts0n.ecu.prot.obd;
 
 import com.fr3ts0n.ecu.Conversion;
+import com.fr3ts0n.ecu.EcuCodeItem;
 import com.fr3ts0n.ecu.EcuCodeList;
 import com.fr3ts0n.ecu.EcuConversions;
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataItems;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.ObdCodeItem;
-import com.fr3ts0n.ecu.prot.obd.res.Messages;
 import com.fr3ts0n.prot.ProtoHeader;
 import com.fr3ts0n.prot.TelegramListener;
 import com.fr3ts0n.prot.TelegramWriter;
@@ -578,7 +578,7 @@ public class ObdProt extends ProtoHeader
           case OBD_SVC_PERMACODES:
             int currCode;
             Integer key;
-            ObdCodeItem code;
+            EcuCodeItem code;
 
             int nCodes = Integer.valueOf(new String(buffer, 2, 2),16);
             setNumCodes(nCodes);
@@ -590,7 +590,7 @@ public class ObdProt extends ProtoHeader
               currCode = key.intValue();
               if(currCode != 0)
               {
-                if((code = (ObdCodeItem)knownCodes.get(key))!=null)
+                if((code = (EcuCodeItem)knownCodes.get(key))!=null)
                 {
                   tCodes.put(key,code);
                 }

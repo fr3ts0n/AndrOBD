@@ -134,5 +134,4 @@
     <string name="obd_clear_info">" これは MIL をリセットし、次の排出に関する診断情報を\n すべてクリアします:\n - 診断トラブル コード\n - フリーズ フレーム データ\n - 酸素センサーのテスト データ\n - システム監視テストの状態\n - オンボード監視テスト結果\n - MIL 有効時の走行距離\n - DTC クリア以降のウォーム アップ数\n - DTC クリア以降の走行距離\n - MIL 有効時のエンジンランタイム\n - DTC クリア以降の時間\n\n 他のメーカー固有のクリア/リセット動作が発生することがあります。\n データの損失は、ECU 自体が再校正するまでの短い時間、\n 車両の走行性能の劣化を引き起こす可能性があります。 "</string>
 
     <string name="translation_credits">翻訳 naofum</string>
-    <string name="obd_error">OBD プロトコル エラー</string>
     </resources>

@@ -18,12 +18,6 @@
 
 package com.fr3ts0n.ecu;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
-
 /**
  * List of all known OBD failure codes
  * This list is initialized by reading data files 'res/pcodes' and 'res/ucodes'
@@ -42,67 +36,22 @@ public class ObdCodeList
 	/** Creates a new instance of ObdCodeList */
 	public ObdCodeList()
 	{
-		// load code list from text files
-		loadFromResource("prot/obd/res/pcodes");
-		loadFromResource("prot/obd/res/ucodes");
+		super("com.fr3ts0n.ecu.prot.obd.res.codes");
 	}
 
 	/**
 	 * Construct a new code list and initialize it with ressources files
 	 *
-	 * @param ressources Array of ressources file names
+	 * @param resourceBundleName name of used resource bundle
 	 */
-	public ObdCodeList(String[] ressources)
+	public ObdCodeList(String resourceBundleName)
 	{
-		// init from ressources list
-		for (String ressource : ressources)
-		{
-			loadFromResource(ressource);
-		}
-	}
-
-	/**
-	 * load code list from stream (tab delimited)
-	 *
-	 * @param inStr Input stream to be loaded
-	 */
-	@Override
-	public void loadFromStream(InputStream inStr)
-	{
-		BufferedReader rdr;
-		String currLine;
-		String[] params;
-
-		try
-		{
-			rdr = new BufferedReader(new InputStreamReader(inStr));
-			// loop through all lines of the file ...
-			while ((currLine = rdr.readLine()) != null)
-			{
-				// replace all optional quotes from CSV code list
-				currLine = currLine.replaceAll("\"", "");
-				// split CSV line into parameters
-				params = currLine.split("\t");
-				// insert fault code element
-				put(ObdCodeItem.getNumericCode(params[0]), new ObdCodeItem(params[0], params[1]));
-			}
-			rdr.close();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		super(resourceBundleName);
 	}
 
 	@Override
-	public String physToPhysFmtString(Number value, String format)
+	protected String getCode(Number value)
 	{
-		String result = "Fault code unknown";
-		EcuCodeItem code = get(value.intValue());
-		if (code != null)
-		{
-			result = code.get(ObdCodeItem.FID_DESCRIPT).toString();
-		}
-		result = ObdCodeItem.getPCode(value.intValue()) + " - " + result;
-		return (result);
+		return ObdCodeItem.getPCode(value.intValue());
 	}
 }

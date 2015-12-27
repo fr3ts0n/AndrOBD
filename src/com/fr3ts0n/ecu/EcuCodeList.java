@@ -18,156 +18,113 @@
 
 package com.fr3ts0n.ecu;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.HashMap;
+import com.fr3ts0n.ecu.prot.obd.Messages;
+
+import java.util.HashSet;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+import java.util.Set;
 
 /**
  * Vehicle fault code list
  *
  * @author erwin
  */
-public class EcuCodeList extends HashMap<Integer, EcuCodeItem>
+public class EcuCodeList
 	implements Conversion
 {
 	private static final long serialVersionUID = 219865459629423028L;
+	protected transient ResourceBundle codes;
+	protected transient int radix = 10;
 
 	/**
 	 * construct a new code list
 	 */
 	public EcuCodeList()
 	{
+		this("com.fr3ts0n.ecu.prot.obd.res.codes");
 	}
 
 	/**
 	 * Construct a new code list and initialize it with ressources files
 	 *
-	 * @param ressources Array of ressources file names
+	 * @param resourceBundleName name of used resource bundle
 	 */
-	public EcuCodeList(String[] ressources)
+	public EcuCodeList(String resourceBundleName)
 	{
-		// init from ressources list
-		for (String ressource : ressources)
-		{
-			loadFromResource(ressource);
-		}
+		codes = ResourceBundle.getBundle(resourceBundleName);
 	}
 
 	/**
 	 * Construct a new code list and initialize it with ressources files
 	 *
-	 * @param ressources Array of ressources file names
+	 * @param resourceBundleName name of used resource bundle
 	 * @param idRadix    radix of numeric code id
 	 */
-	public EcuCodeList(String[] ressources, int idRadix)
+	public EcuCodeList(String resourceBundleName, int idRadix)
 	{
-		// init from ressources list
-		for (String ressource : ressources)
-		{
-			loadFromResource(ressource, idRadix);
-		}
+		this(resourceBundleName);
+		radix = idRadix;
 	}
 
+	protected String getCode(Number value)
+	{
+		return(Long.toString(value.longValue(),radix));
+	}
+
+	public EcuCodeItem get(Number value)
+	{
+		EcuCodeItem result = null;
+		if (codes != null)
+		{
+			String key = getCode(value);
+			try
+			{
+				result = new EcuCodeItem(key, codes.getString(key));
+			} catch (MissingResourceException e)
+			{
+				result = new EcuCodeItem(key,
+				                         Messages.getString(
+					                         "customer.specific.trouble.code.see.manual"));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * return all known values
+	 * @return all known ressource values
+	 */
+	public Set<String> values()
+	{
+		Set<String> values = new HashSet<String>();
+		for( String key : codes.keySet())
+		{
+			values.add(codes.getString(key));
+		}
+		return values;
+	}
+
+	@Override
 	public String getUnits()
 	{
 		return "";
 	}
 
-	/**
-	 * initialize list from resource file (tab delimited)
-	 *
-	 * @param resource name of resource to be loaded
-	 */
-	protected void loadFromResource(String resource)
-	{
-		try
-		{
-			loadFromStream(getClass().getResource(resource).openStream());
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * initialize list from resource file (tab delimited)
-	 *
-	 * @param resource name of resource to be loaded
-	 * @param idRadix   radix of numeric code id
-	 */
-	protected void loadFromResource(String resource, int idRadix)
-	{
-		try
-		{
-			loadFromStream(getClass().getResource(resource).openStream(), idRadix);
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * initialize list from stream (tab delimited)
-	 *
-	 * @param inStr Input stream to be loaded
-	 */
-	public void loadFromStream(InputStream inStr)
-	{
-		loadFromStream(inStr, 10);
-	}
-
-	/**
-	 * initialize list from stream (tab delimited)
-	 *
-	 * @param inStr Input stream to be loaded
-	 * @param idRadix   radix of numeric code id
-	 */
-	protected void loadFromStream(InputStream inStr, int idRadix)
-	{
-		BufferedReader rdr;
-		String currLine;
-		String[] params;
-
-		try
-		{
-			rdr = new BufferedReader(new InputStreamReader(inStr));
-			// loop through all lines of the file ...
-			while ((currLine = rdr.readLine()) != null)
-			{
-				// if line is not empty and is not a remark
-				if (currLine.trim().length() > 0 && !currLine.startsWith("#") && !currLine.startsWith("//"))
-				{
-					// repalce all optional quotes from CSV code list
-					currLine = currLine.replaceAll("\"", "");
-					// split CSV line into parameters
-					params = currLine.split("\t");
-					// insert fault code element
-					put(Integer.valueOf(params[0], idRadix), new EcuCodeItem(params[0], params[1]));
-				}
-			}
-			rdr.close();
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-
+	@Override
 	public Number memToPhys(long value)
 	{
 		return (float) value;
 	}
 
+	@Override
 	public String memToString(Number value, int numDecimals)
 	{
 		String fmt = "%." + numDecimals + "f";
 		return physToPhysFmtString(memToPhys(value.longValue()), fmt);
 	}
 
+	@Override
 	public Number physToMem(Number value)
 	{
 		return value;
@@ -176,18 +133,6 @@ public class EcuCodeList extends HashMap<Integer, EcuCodeItem>
 	@Override
 	public String physToPhysFmtString(Number value, String format)
 	{
-		String result;
-		EcuCodeItem code = get(value.intValue());
-		if (code != null)
-		{
-			result = code.get(EcuCodeItem.FID_CODE).toString()
-				+ " - "
-				+ code.get(EcuCodeItem.FID_DESCRIPT).toString();
-		} else
-		{
-			result = value.toString() + " - Fault code unknown";
-		}
-		return (result);
+		return (get(value).toString());
 	}
-
 }

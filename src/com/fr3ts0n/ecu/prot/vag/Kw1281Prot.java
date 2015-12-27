@@ -155,12 +155,8 @@ public class Kw1281Prot extends ProtoHeader
 	public static PvList VidPvs = new PvList();
 	/** current fault codes */
 	public static PvList tCodes = new PvList();
-	static final String[] codeListFiles =
-		{
-			"prot/vag/res/vag_codes.csv"
-		};
 	/** list of known fault codes */
-	public static EcuCodeList knownCodes = new EcuCodeList(codeListFiles);
+	public static EcuCodeList knownCodes = new EcuCodeList("com.fr3ts0n.ecu.prot.vag.res.codes");
 	/** running telegram block counter */
 	char blockCounter = 0;
 	/** current data group which was requested */
@@ -876,7 +872,6 @@ public class Kw1281Prot extends ProtoHeader
 						{
 							// create new one and add it to list of known codes
 							code = new EcuCodeItem(dfcNum, "Unknown Fault code");
-							knownCodes.put(dfcNum, code);
 						}
 						code.put(EcuCodeItem.FID_STATUS, Integer.valueOf(dfcStat));
 						tCodes.put(dfcNum, code);

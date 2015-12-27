@@ -46,7 +46,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.fr3ts0n.ecu.EcuCodeItem;
-import com.fr3ts0n.ecu.EcuConversions;
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataItems;
 import com.fr3ts0n.ecu.EcuDataPv;
@@ -881,24 +880,6 @@ public class MainActivity extends ListActivity
 	public void loadPreferredExtensions()
 	{
 		String errors = "";
-
-		// custom code list
-		try
-		{
-			String filePath = prefs.getString(SettingsActivity.extKeys[2], null);
-			if (filePath != null)
-			{
-				log.info("Load ext. codelist: " + filePath);
-				Uri uri = Uri.parse(filePath);
-				InputStream inStr = getContentResolver().openInputStream(uri);
-				EcuConversions.codeList.loadFromStream(inStr);
-			}
-		} catch (Exception e)
-		{
-			log.error("Load ext. codelist: ", e);
-			e.printStackTrace();
-			errors += e.getLocalizedMessage() + "\n";
-		}
 
 		// custom conversions
 		try

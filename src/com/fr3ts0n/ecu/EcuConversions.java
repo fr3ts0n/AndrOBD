@@ -136,14 +136,14 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 				}
 				else if (params[FLD_TYPE].equals(CNV_TYPE_CODELIST))
 				{
-					// create BitmapConversion based on CSV parameters
-					codeList = new EcuCodeList( String.valueOf(params[FLD_PARAMETERS]).split(";") );
+					// create ECU code list based on ResourceBundle
+					codeList = new EcuCodeList( String.valueOf(params[FLD_PARAMETERS]));
 					newCnv = codeList;
 				}
 				else if (params[FLD_TYPE].equals(CNV_TYPE_PCODELIST))
 				{
-					// create BitmapConversion based on CSV parameters
-					codeList = new ObdCodeList( String.valueOf(params[FLD_PARAMETERS]).split(";") );
+					// create OBD code list based on ResourceBundle
+					codeList = new ObdCodeList( String.valueOf(params[FLD_PARAMETERS]));
 					newCnv = codeList;
 				}
 				else if (params[FLD_TYPE].equals(CNV_TYPE_VAG))

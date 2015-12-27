@@ -18,7 +18,7 @@
 
 package com.fr3ts0n.ecu;
 
-import com.fr3ts0n.ecu.prot.obd.res.Messages;
+import com.fr3ts0n.ecu.prot.obd.Messages;
 
 import java.util.Map;
 import java.util.TreeMap;

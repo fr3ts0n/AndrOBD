@@ -22,7 +22,7 @@ O2_PRESENT_MAP	BITMAP	0	METRIC	1	1	0	0		O2-Sensors present	0=B1S1;1=B1S2;2=B2S1;
 O2_PRESENT13	BITMAP	0	METRIC	1	1	0	0		O2-Sensors present	0=B1S1;1=B1S2;2=B1S3;3=B1S4;4=B2S1;5=B2S2;6=B2S3;7=B2S4	
 O2_VOLT_WIDE	LINEAR	0	METRIC	8000	65536	0	0	mV	16-Bit O2 Voltage (0-8V)		
 O2_VOLTAGE	LINEAR	0	METRIC	5	1	0	0	mV	8-Bit O2 Voltage		
-OBD_CODELIST	PCODELIST	0	METRIC	1	1	0	0		Code list conversion	prot/obd/res/pcodes;prot/obd/res/ucodes
+OBD_CODELIST	PCODELIST	0	METRIC	1	1	0	0		Code list conversion	com.fr3ts0n.ecu.prot.obd.res.codes	
 OBD_TYPE	HASH	0	METRIC	1	1	0	0		OBD Type	1=OBD-II as defined by the CARB;2=OBD as defined by the EPA;3=OBD and OBD-II;4=OBD-I;5=Not OBD compliant;6=EOBD (Europe);7=EOBD and OBD-II;8=EOBD and OBD;9=EOBD, OBD and OBD II;10=JOBD (Japan);11=JOBD and OBD II;12=JOBD and EOBD;13=JOBD, EOBD, and OBD II;14=Reserved;15=Reserved;16=Reserved;17=Engine Manufacturer Diagnostics (EMD);18=Engine Manufacturer Diagnostics Enhanced (EMD+);19=Heavy Duty On-Board Diagnostics (Child/Partial) (HD OBD-C);20=Heavy Duty On-Board Diagnostics (HD OBD);21=World Wide Harmonized OBD (WWH OBD);22=Reserved;23=Heavy Duty Euro OBD Stage I without NOx control (HD EOBD-I);24=Heavy Duty Euro OBD Stage I with NOx control (HD EOBD-I N);25=Heavy Duty Euro OBD Stage II without NOx control (HD EOBD-II);26=Heavy Duty Euro OBD Stage II with NOx control (HD EOBD-II N);27=Reserved;28=Brazil OBD Phase 1 (OBDBr-1);29=Brazil OBD Phase 2 (OBDBr-2);30=Korean OBD (KOBD);31=India OBD I (IOBD I);32=India OBD II (IOBD II);33=Heavy Duty Euro OBD Stage VI (HD EOBD-IV)	
 ONETOONE	LINEAR	0	METRIC	1	1	0	0		OneToOne		
 PERCENT	LINEAR	0	METRIC	100	255	0	0	%	Percent		
