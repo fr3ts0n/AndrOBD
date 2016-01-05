@@ -29,5 +29,11 @@ You are invited to contribute a translation into your favourite language.
 * Data charts
 * Dashboard
 * Head up display
-* Custom PID data
 * Day/Night view
+* Customisation of PID data
+  + PID data items
+  + Data conversions
+* Native language support (translatable via https://hosted.weblate.org/projects/androbd/strings/)
+  + Program dialogs
+  + Data item descriptions
+  + Fault code descriptions
