@@ -50,8 +50,7 @@ public class SettingsActivity
 	static final String[] extKeys =
 		{
 			"ext_file_conversions",
-			"ext_file_dataitems",
-			"ext_file_faultcodes"
+			"ext_file_dataitems"
 		};
 
 	// Preference key for data items

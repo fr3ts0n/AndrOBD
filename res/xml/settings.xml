@@ -175,17 +175,6 @@
                         android:mimeType="*/*"
                         />
                 </Preference>
-                <Preference
-                    android:icon="@drawable/ic_action_load"
-                    android:key="ext_file_faultcodes"
-                    android:summary="@string/select_extension"
-                    android:title="@string/fault_codes"
-                    >
-                    <intent
-                        android:action="android.intent.action.OPEN_DOCUMENT"
-                        android:mimeType="*/*"
-                        />
-                </Preference>
             </PreferenceCategory>
 
             <PreferenceCategory
