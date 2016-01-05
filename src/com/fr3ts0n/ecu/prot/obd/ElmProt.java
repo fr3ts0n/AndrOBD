@@ -669,8 +669,11 @@ public class ElmProt
 
 					case NODATA:
 						setStatus(STAT.NODATA);
-						// re-queue last command
-						if(service != OBD_SVC_NONE)	cmdQueue.add(String.valueOf(lastCommand));
+						// re-queue next data item
+						if(service != OBD_SVC_NONE)
+							cmdQueue.add(
+								String.valueOf(createTelegram(emptyBuffer, service, getNextSupportedPid()))
+							);
 						// increase OBD timeout since we may expect answers too fast
 						mAdaptiveTiming.adapt(true);
 						// NO break here since reaction is only quqeued
