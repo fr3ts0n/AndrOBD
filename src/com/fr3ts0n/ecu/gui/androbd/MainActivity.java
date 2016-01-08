@@ -381,6 +381,7 @@ public class MainActivity extends ListActivity
 					getListView().invalidateViews();
 					break;
 
+				// handle state change in OBD protocol
 				case MESSAGE_OBD_STATE_CHANGED:
 					evt = (PropertyChangeEvent) msg.obj;
 					ElmProt.STAT state = (ElmProt.STAT)evt.getNewValue();
@@ -399,17 +400,23 @@ public class MainActivity extends ListActivity
 					}
 					break;
 
+				// handle change in number of fault codes
 				case MESSAGE_OBD_NUMCODES:
 					evt = (PropertyChangeEvent) msg.obj;
 					setNumCodes((Integer) evt.getNewValue());
 					break;
 
+				// handle ECU detection event
 				case MESSAGE_OBD_ECUS:
 					evt = (PropertyChangeEvent) msg.obj;
 					selectEcu((Set<Integer>) evt.getNewValue());
 					break;
 
+				// handle negative result code from OBD protocol
 				case MESSAGE_OBD_NRC:
+					// reset OBD mode to prevent infinite error loop
+					setObdService(ObdProt.OBD_SVC_NONE, getText(R.string.obd_error));
+					// show error dialog ...
 					evt = (PropertyChangeEvent) msg.obj;
 					String nrcMessage = (String)evt.getNewValue();
 					dlgBuilder
