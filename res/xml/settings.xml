@@ -126,6 +126,13 @@
                     android:title="@string/min_elm_timeout"
                     />
 
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="elm_reset_on_nrc"
+                    android:summary="@string/elm_reset_on_nrc_descr"
+                    android:title="@string/elm_reset_on_nrc"
+                    />
+
             </PreferenceCategory>
         </PreferenceScreen>
     </PreferenceCategory>

@@ -2,7 +2,7 @@
 <resources>
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
-    <string name="app_version" translatable="false">V1.3.11</string>
+    <string name="app_version" translatable="false">V1.3.12</string>
     <string name="copyright_fr3ts0n" translatable="false">&#169; 2015 fr3ts0n</string>
     <string name="translation_credits">Translation by fr3ts0n</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 bluetooth adapter</string>
@@ -181,6 +181,8 @@ period of time while the ECU recalibrates itself.
     <string name="disabled">disabled</string>
     <string name="enabled">enabled</string>
     <string name="elm_adaptive_timing_descr">Allow adaptive timing handling in ELM drivers?</string>
+    <string name="elm_reset_on_nrc">Reset on NRC</string>
+    <string name="elm_reset_on_nrc_descr">Reset ELM adapter on NRC error?</string>
     <string name="select_ecu_addr">Select ECU address …</string>
     <string name="disconnect">Disconnect</string>
     <string name="reset_preselections">Reset last pre-selections</string>

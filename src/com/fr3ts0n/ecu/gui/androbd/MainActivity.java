@@ -123,6 +123,7 @@ public class MainActivity extends ListActivity
 	public static final String MEASURE_SYSTEM = "measure_system";
 	public static final String NIGHT_MODE = "night_mode";
 	public static final String ELM_ADAPTIVE_TIMING = "elm_adaptive_timing";
+	public static final String ELM_RESET_ON_NRC = "elm_reset_on_nrc";
 	public static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
 
 	/**
@@ -247,12 +248,14 @@ public class MainActivity extends ListActivity
 	 */
 	private MODE mode = MODE.OFFLINE;
 
+	/** empty string set as default parameter*/
+	static final Set<String> emptyStringSet = new HashSet<String>();
+
 	/**
 	 * Check if restore of specified preselection is wanted from settings
 	 * @param preselect specified preselect
 	 * @return flag if preselection shall be restored
 	 */
-	static final Set<String> emptyStringSet = new HashSet<String>();
 	boolean istRestoreWanted(PRESELECT preselect)
 	{
 		return prefs.getStringSet(PREF_USE_LAST, emptyStringSet).contains(preselect.toString());
@@ -416,6 +419,11 @@ public class MainActivity extends ListActivity
 				case MESSAGE_OBD_NRC:
 					// reset OBD mode to prevent infinite error loop
 					setObdService(ObdProt.OBD_SVC_NONE, getText(R.string.obd_error));
+					// if elm should be reset on NRC, then do it now
+					if(prefs.getBoolean(ELM_RESET_ON_NRC, false))
+					{
+						mCommService.elm.reset();
+					}
 					// show error dialog ...
 					evt = (PropertyChangeEvent) msg.obj;
 					String nrcMessage = (String)evt.getNewValue();

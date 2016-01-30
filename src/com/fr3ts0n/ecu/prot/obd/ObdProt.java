@@ -504,6 +504,8 @@ public class ObdProt extends ProtoHeader
 		      String error = String.format(nrc.toString(svc));
 		      // log error
 		      log.error(error);
+		      // switch off any active service
+		      setService(OBD_SVC_NONE, true);
 		      // notify change listeners
 		      firePropertyChange(new PropertyChangeEvent(this, PROP_NRC, null, error));
 		      // handling finished
@@ -676,6 +678,8 @@ public class ObdProt extends ProtoHeader
    */
   public void reset()
   {
+    // switch off any active service
+    setService(OBD_SVC_NONE, true);
     // clear command queue
     cmdQueue.clear();
     // clear supported PIDs
