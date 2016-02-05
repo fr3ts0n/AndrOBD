@@ -63,6 +63,22 @@ public class ObdProt extends ProtoHeader
 
   /** negative response ID */
   public static final int OBD_ID_NRC          = 0x7F;
+
+  /** perform immediate reset on NRC reception? */
+  public boolean isResetOnNrc()
+  {
+    return resetOnNrc;
+  }
+
+  /** Set protocol parameter
+   * @param resetOnNrc  perform immediate reset on NRC reception?
+   */
+  public void setResetOnNrc(boolean resetOnNrc)
+  {
+    log.info(String.format("Reset on NRC = %b", resetOnNrc));
+    this.resetOnNrc = resetOnNrc;
+  }
+
   /** negative response codes */
   public enum NRC
   {
@@ -229,6 +245,8 @@ public class ObdProt extends ProtoHeader
   static Vector<String> cmdQueue      = new Vector<String>();
   /** freeze frame ID to request */
 	private int freezeFrame_Id = 0;
+  /** perform reset on NRC reception */
+  private boolean resetOnNrc = false;
 
   /** Creates a new instance of ObdProt */
   public ObdProt()
@@ -504,8 +522,16 @@ public class ObdProt extends ProtoHeader
 		      String error = String.format(nrc.toString(svc));
 		      // log error
 		      log.error(error);
-		      // switch off any active service
-		      setService(OBD_SVC_NONE, true);
+          if(isResetOnNrc())
+          {
+            // perform immediate reset because NRC reception
+            reset();
+          }
+          else
+          {
+            // otherwise just switch off any active service
+            setService(OBD_SVC_NONE, true);
+          }
 		      // notify change listeners
 		      firePropertyChange(new PropertyChangeEvent(this, PROP_NRC, null, error));
 		      // handling finished

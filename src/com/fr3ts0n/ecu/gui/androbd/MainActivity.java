@@ -419,11 +419,6 @@ public class MainActivity extends ListActivity
 				case MESSAGE_OBD_NRC:
 					// reset OBD mode to prevent infinite error loop
 					setObdService(ObdProt.OBD_SVC_NONE, getText(R.string.obd_error));
-					// if elm should be reset on NRC, then do it now
-					if(prefs.getBoolean(ELM_RESET_ON_NRC, false))
-					{
-						mCommService.elm.reset();
-					}
 					// show error dialog ...
 					evt = (PropertyChangeEvent) msg.obj;
 					String nrcMessage = (String)evt.getNewValue();
@@ -717,6 +712,10 @@ public class MainActivity extends ListActivity
 		// enable/disable ELM adaptive timing
 		if(key==null || ELM_ADAPTIVE_TIMING.equals(key))
 			CommService.elm.mAdaptiveTiming.setEnabled(prefs.getBoolean(ELM_ADAPTIVE_TIMING, true));
+
+		// set protocol flag to initiate immediate reset on NRC reception
+		if(key==null || ELM_RESET_ON_NRC.equals(key))
+			CommService.elm.setResetOnNrc(prefs.getBoolean(ELM_RESET_ON_NRC, false));
 
 		// set custom ELM init commands
 		if(key==null || ELM_CUSTOM_INIT_CMDS.equals(key))
