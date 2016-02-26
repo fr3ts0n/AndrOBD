@@ -112,31 +112,41 @@ public class StreamHandler implements TelegramWriter, Runnable
 		log.info("RX Thread started");
 		try
 		{
-			while ((chr = in.read()) >= 0)
+			// loop until stream reading throws error
+			while(true)
 			{
-				log.trace(this.toString() + " RX: '"
-					+ String.format("%02X : %1c", (byte) chr, chr < 32 ? '.' : chr)
-					+ "'");
-
-				switch (chr)
+				// if data available, then read- and process it
+				if ((in.available() > 0) && (chr = in.read()) >= 0)
 				{
-					// ignore special characters
-					case 32:
-						break;
+					log.trace(this.toString() + " RX: '"
+						          + String.format("%02X : %1c", (byte) chr, chr < 32 ? '.' : chr)
+						          + "'");
 
-					// trigger message handling for new request
-					case '>':
-						message += (char) chr;
-						// trigger message handling
-					case 10:
-					case 13:
-						if (messageHandler != null && !message.isEmpty())
-							messageHandler.handleTelegram(message.toCharArray());
-						message = "";
-						break;
+					switch (chr)
+					{
+						// ignore special characters
+						case 32:
+							break;
 
-					default:
-						message += (char) chr;
+						// trigger message handling for new request
+						case '>':
+							message += (char) chr;
+							// trigger message handling
+						case 10:
+						case 13:
+							if (messageHandler != null && !message.isEmpty())
+								messageHandler.handleTelegram(message.toCharArray());
+							message = "";
+							break;
+
+						default:
+							message += (char) chr;
+					}
+				}
+				else
+				{
+					// wait 500 ns for incoming data
+					Thread.sleep(0, 500);
 				}
 			}
 		} catch (Exception ex)
