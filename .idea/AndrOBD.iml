@@ -29,6 +29,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/.navigation" />
       <excludeFolder url="file://$MODULE_DIR$/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/AndrOBD.wiki" />
       <excludeFolder url="file://$MODULE_DIR$/awt_startup" />
       <excludeFolder url="file://$MODULE_DIR$/captures" />
       <excludeFolder url="file://$MODULE_DIR$/customisation" />
