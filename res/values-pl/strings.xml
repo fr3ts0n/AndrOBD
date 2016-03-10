@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="translation_credits">Przetłumaczone przez LafarM</string>
     <string name="app_description">Aplikacja dla systemu Android do diagnostyki pojazdów poprzez OBD poprzez adapter bluetooth ELM327</string>
     <string name="send">Wyślij</string>
@@ -135,4 +135,7 @@
     <string name="DATAERROR">Błąd danych</string>
     <string name="RXERROR">Błąd RX</string>
     <string name="ERROR">Błąd</string>
+    <string name="elm_reset_on_nrc">Resetowanie NRC</string>
+    <string name="elm_reset_on_nrc_descr">Czy zresetować adapter ELM w przypadku błędu NRC?</string>
+    <string name="obd_error">Błąd protokołu OBD</string>
     </resources>
