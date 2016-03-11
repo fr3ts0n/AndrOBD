@@ -50,7 +50,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 	/**
 	 * Construct new StreamHandler using specified input and output stream
 	 *
-	 * @param inStream stream for incoming messages
+	 * @param inStream  stream for incoming messages
 	 * @param outStream stream for outgoing messages
 	 */
 	public StreamHandler(InputStream inStream, OutputStream outStream)
@@ -61,7 +61,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 	/**
 	 * Set the input and output stream
 	 *
-	 * @param inStream stream for incoming messages
+	 * @param inStream  stream for incoming messages
 	 * @param outStream stream for outgoing messages
 	 */
 	public void setStreams(InputStream inStream, OutputStream outStream)
@@ -102,6 +102,39 @@ public class StreamHandler implements TelegramWriter, Runnable
 	}
 
 	/**
+	 * process incoming character
+	 * @param chr the received char
+	 */
+	void processRxChar(int chr)
+	{
+		// process incoming data
+		log.trace(this.toString() + " RX: '"
+			          + String.format("%02X : %1c", (byte) chr, chr < 32 ? '.' : chr)
+			          + "'");
+
+		switch (chr)
+		{
+			// ignore special characters
+			case 32:
+				break;
+
+			// trigger message handling for new request
+			case '>':
+				message += (char) chr;
+				// trigger message handling
+			case 10:
+			case 13:
+				if (messageHandler != null && !message.isEmpty())
+					messageHandler.handleTelegram(message.toCharArray());
+				message = "";
+				break;
+
+			default:
+				message += (char) chr;
+		}
+	}
+
+	/**
 	 * start the thread
 	 */
 	@Override
@@ -112,47 +145,40 @@ public class StreamHandler implements TelegramWriter, Runnable
 		log.info("RX Thread started");
 		try
 		{
-			// loop until stream reading throws error
-			while(true)
+			// loop until stream closed / invalid
+			while (true)
 			{
-				// if data available, then read- and process it
-				if ((in.available() > 0) && (chr = in.read()) >= 0)
+				// if no data available, then wait for it
+				if (in.available() > 0)
 				{
-					log.trace(this.toString() + " RX: '"
-						          + String.format("%02X : %1c", (byte) chr, chr < 32 ? '.' : chr)
-						          + "'");
+					// otherwise read- and process ...
 
-					switch (chr)
+					// Is end of stream reached?
+					if ((chr = in.read()) >= 0)
 					{
-						// ignore special characters
-						case 32:
-							break;
-
-						// trigger message handling for new request
-						case '>':
-							message += (char) chr;
-							// trigger message handling
-						case 10:
-						case 13:
-							if (messageHandler != null && !message.isEmpty())
-								messageHandler.handleTelegram(message.toCharArray());
-							message = "";
-							break;
-
-						default:
-							message += (char) chr;
+						// process incoming data
+						processRxChar(chr);
+					}
+					else
+					{
+						log.warn(this.toString() + " RX: End of stream!");
+						// stream finished - break loop
+						break;
 					}
 				}
 				else
 				{
-					// wait 500 ns for incoming data
-					Thread.sleep(0, 500);
+					// wait 1 ms for incoming data
+					Thread.sleep(1);
 				}
+
 			}
-		} catch (Exception ex)
+		}
+		catch (	Exception ex )
 		{
 			log.warn("RX error", ex);
 		}
+
 		log.info("RX Thread stopped");
 	}
 
