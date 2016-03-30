@@ -137,5 +137,5 @@
     <string name="RXERROR">Erreur de réception</string>
     <string name="ERROR">Erreur</string>
     <string name="obd_error">Erreur du protocole OBD</string>
-    <string name="welcome_to">Bienvenue à</string>
+    <string name="welcome_to">Bienvenue sur</string>
     </resources>
