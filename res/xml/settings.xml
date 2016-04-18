@@ -76,6 +76,22 @@
                 android:title="@string/secure_connect"
                 />
 
+            <EditTextPreference
+                android:capitalize="characters"
+                android:defaultValue="192.168.0.10"
+                android:key="device_address"
+                android:summary="@string/device_address_description"
+                android:title="@string/device_address"
+                />
+
+            <EditTextPreference
+                android:capitalize="characters"
+                android:defaultValue="35000"
+                android:key="device_port"
+                android:summary="@string/device_port_description"
+                android:title="@string/device_port"
+                />
+
 
             <ListPreference
                 android:defaultValue="0"

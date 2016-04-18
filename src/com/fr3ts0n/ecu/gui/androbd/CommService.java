@@ -36,20 +36,22 @@ public abstract class CommService
 	/** communication media */
 	public enum MEDIUM
 	{
-		BLUETOOTH,
-		USB
+		BLUETOOTH,    ///< Bluetooth device
+		USB,          ///< USB device
+		NETWORK       ///< Network/WIFI device
 	}
+
 	/** media type selection */
 	public static MEDIUM medium = MEDIUM.BLUETOOTH;
 
 	// Constants that indicate the current connection state
 	public enum STATE
 	{
-		NONE,           // we're doing nothing
-		LISTEN,         // listening for incoming connections
-		CONNECTING,     // initiating an outgoing connection
-		CONNECTED,      // connected to a remote device
-		OFFLINE         // we are offline
+		NONE,           ///< we're doing nothing
+		LISTEN,         ///< listening for incoming connections
+		CONNECTING,     ///< initiating an outgoing connection
+		CONNECTED,      ///< connected to a remote device
+		OFFLINE         ///< we are offline
 	}
 
 	// Debugging
@@ -174,5 +176,21 @@ public abstract class CommService
 		bundle.putString(MainActivity.TOAST, mContext.getString(R.string.connectionlost));
 		msg.setData(bundle);
 		mHandler.sendMessage(msg);
+	}
+
+	/**
+	 * Indicate that the connection was established and notify the UI Activity.
+	 */
+	protected void connectionEstablished(String deviceName)
+	{
+		// Send the name of the connectionEstablished device back to the UI Activity
+		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DEVICE_NAME);
+		Bundle bundle = new Bundle();
+		bundle.putString(MainActivity.DEVICE_NAME, deviceName);
+		msg.setData(bundle);
+		mHandler.sendMessage(msg);
+
+		// set state to connected
+		setState(STATE.CONNECTED);
 	}
 }

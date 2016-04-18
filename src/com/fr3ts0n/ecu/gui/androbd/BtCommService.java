@@ -23,9 +23,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
-import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 
 import com.fr3ts0n.prot.StreamHandler;
 
@@ -159,15 +157,8 @@ public class BtCommService extends CommService
 			mBtWorkerThread.cancel();
 			mBtWorkerThread = null;
 		}
-
-		// Send the name of the connected device back to the UI Activity
-		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DEVICE_NAME);
-		Bundle bundle = new Bundle();
-		bundle.putString(MainActivity.DEVICE_NAME, device.getName());
-		msg.setData(bundle);
-		mHandler.sendMessage(msg);
-
-		setState(STATE.CONNECTED);
+		// we are connected -> signal connection established
+		connectionEstablished(device.getName());
 
 		// Start the thread to manage the connection and perform transmissions
 		mBtWorkerThread = new BtWorkerThread(socket, socketType);

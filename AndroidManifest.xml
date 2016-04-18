@@ -2,7 +2,7 @@
 <manifest
     package="com.fr3ts0n.ecu.gui.androbd"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="10313"
+    android:versionCode="10400"
     android:versionName="@string/app_version">
 
     <uses-sdk
@@ -17,6 +17,9 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <!-- allow saving screenshots -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- allow access to WIFI adapter -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 
     <application

@@ -22,9 +22,7 @@ package com.fr3ts0n.ecu.gui.androbd;
 import android.content.Context;
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
-import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 
 import com.fr3ts0n.prot.ProtUtils;
 import com.fr3ts0n.prot.TelegramWriter;
@@ -135,14 +133,8 @@ public class UsbCommService extends CommService
 				runner.setPriority(Thread.MAX_PRIORITY);
 				runner.start();
 
-				// Send the name of the connected device back to the UI Activity
-				Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DEVICE_NAME);
-				Bundle bundle = new Bundle();
-				bundle.putString(MainActivity.DEVICE_NAME, sPort.toString());
-				msg.setData(bundle);
-				mHandler.sendMessage(msg);
-
-				setState(STATE.CONNECTED);
+				// we are connected -> signal connectionEstablished
+				connectionEstablished(sPort.toString());
 			}
 			catch (IOException e)
 			{

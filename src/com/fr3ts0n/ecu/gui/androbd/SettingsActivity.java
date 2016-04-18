@@ -48,10 +48,26 @@ public class SettingsActivity
 	 * preference keys for extension files
 	 */
 	static final String[] extKeys =
-		{
-			"ext_file_conversions",
-			"ext_file_dataitems"
-		};
+	{
+		"ext_file_conversions",
+		"ext_file_dataitems"
+	};
+
+	/**
+	 * key ids for device network settings
+	 */
+	static final String[] networkKeys =
+	{
+		"device_address",
+		"device_port"
+	};
+	/**
+	 * key ids for device network settings
+	 */
+	static final String[] bluetoothKeys =
+	{
+		"bt_secure_connection"
+	};
 
 	// Preference key for data items
 	static final String KEY_DATA_ITEMS = "data_items";
@@ -104,6 +120,8 @@ public class SettingsActivity
 			setupElmCmdSelection();
 			// set up selectable PID list
 			setupPidSelection();
+			// update network selection fields
+			updateNetworkSelections();
 
 			// add handler for selection update
 			prefs.registerOnSharedPreferenceChangeListener(this);
@@ -231,6 +249,36 @@ public class SettingsActivity
 			}
 		}
 
+		/**
+		 * Update fields for network parameters
+		 *
+		 * enable/disable elements for network parameters
+		 * based on selection of communication medium
+		 */
+		public void updateNetworkSelections()
+		{
+			boolean networkSelected =
+				String.valueOf(CommService.MEDIUM.NETWORK.ordinal())
+					.equals(prefs.getString(KEY_COMM_MEDIUM,""));
+			boolean bluetoothSelected =
+				String.valueOf(CommService.MEDIUM.BLUETOOTH.ordinal())
+					.equals(prefs.getString(KEY_COMM_MEDIUM,""));
+
+			// enable/disable network specific entries
+			for(String key : networkKeys)
+			{
+				Preference pref = findPreference(key);
+				pref.setEnabled(networkSelected);
+			}
+
+			// enable/disable bluetooth specific entries
+			for(String key : bluetoothKeys)
+			{
+				Preference pref = findPreference(key);
+				pref.setEnabled(bluetoothSelected);
+			}
+		}
+
 		@Override
 		public boolean onPreferenceClick(Preference preference)
 		{
@@ -279,6 +327,9 @@ public class SettingsActivity
 				EditTextPreference currPref = (EditTextPreference) pref;
 				currPref.setSummary(currPref.getText());
 			}
+
+			if(KEY_COMM_MEDIUM.equals(key))
+				updateNetworkSelections();
 		}
 	}
 }

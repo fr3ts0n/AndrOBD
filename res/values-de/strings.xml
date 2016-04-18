@@ -129,4 +129,10 @@
     <string name="elm_custom_init_descr">eigene ELM Befehle zur Initialisierung</string>
     <string name="translation_credits">Übersetzung von fr3ts0n</string>
     <string name="obd_error">OBD Protkollfehler</string>
+    <string name="device_address">ELM IP Adresse</string>
+    <string name="device_address_description">IP Adresse des ELM Adapters</string>
+    <string name="device_port">ELM IP Port</string>
+    <string name="device_port_description">IP Port des ELM Adapters</string>
+    <string name="elm_reset_on_nrc">Reset bei NRC</string>
+    <string name="elm_reset_on_nrc_descr">ELM Reset bei NRC-Fehler?</string>
 </resources>

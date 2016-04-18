@@ -119,6 +119,8 @@ public class MainActivity extends ListActivity
 	 * Key names for preferences
 	 */
 	public static final String DEVICE_NAME = "device_name";
+	public static final String DEVICE_ADDRESS = "device_address";
+	public static final String DEVICE_PORT = "device_port";
 	public static final String TOAST = "toast";
 	public static final String MEASURE_SYSTEM = "measure_system";
 	public static final String NIGHT_MODE = "night_mode";
@@ -845,6 +847,12 @@ public class MainActivity extends ListActivity
 						case USB:
 							Intent enableIntent = new Intent(this, UsbDeviceListActivity.class);
 							startActivityForResult(enableIntent, REQUEST_CONNECT_DEVICE_USB);
+							break;
+
+						case NETWORK:
+							connectNetworkDevice(prefs.getString(DEVICE_ADDRESS, null),
+							                     Integer.valueOf(prefs.getString(DEVICE_PORT, "23")));
+							break;
 					}
 					break;
 
@@ -1294,6 +1302,19 @@ public class MainActivity extends ListActivity
 		// Attempt to connect to the device
 		mCommService = new BtCommService(this, mHandler);
 		mCommService.connect(device, secure);
+	}
+
+	/**
+	 * Initiate a connect to the selected network device
+	 *
+	 * @param address IP device address
+	 * @param port IP port to connect to
+	 */
+	private void connectNetworkDevice(String address, int port)
+	{
+		// Attempt to connect to the device
+		mCommService = new NetworkCommService(this, mHandler);
+		((NetworkCommService)mCommService).connect(address, port);
 	}
 
 	/**
