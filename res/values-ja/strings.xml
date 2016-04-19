@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="app_description">ELM327 Bluetooth アダプター用 Android OBD 車両診断アプリ</string>
     <string name="send">送信</string>
     <string name="not_connected">デバイスに接続していません</string>
@@ -137,4 +137,8 @@
     <string name="obd_error">OBD プロトコル エラー</string>
     <string name="elm_reset_on_nrc">NRC のリセット</string>
     <string name="elm_reset_on_nrc_descr">NRC エラーの ELM アダプターをリセットしますか?</string>
+    <string name="device_address_description">ELM デバイス ネットワーク IP アドレス</string>
+    <string name="device_address">ELM IP アドレス</string>
+    <string name="device_port_description">ELM デバイス ネットワーク IP ポート</string>
+    <string name="device_port">ELM IP ポート</string>
     </resources>
