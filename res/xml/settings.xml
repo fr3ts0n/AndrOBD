@@ -80,6 +80,7 @@
                 android:capitalize="characters"
                 android:defaultValue="192.168.0.10"
                 android:key="device_address"
+                android:inputType="textUri"
                 android:summary="@string/device_address_description"
                 android:title="@string/device_address"
                 />
@@ -88,6 +89,7 @@
                 android:capitalize="characters"
                 android:defaultValue="35000"
                 android:key="device_port"
+                android:inputType="number"
                 android:summary="@string/device_port_description"
                 android:title="@string/device_port"
                 />

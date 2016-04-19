@@ -76,7 +76,7 @@
     <string name="items_for_display">Daten zur Anzeige</string>
     <string name="items_for_display_descr">Datenpunkte zur Anzeige auswählen …</string>
     <string name="loading_data">Daten laden …</string>
-    <string name="obd_opt_description">Einstellungen für OBD Protokill / Fahrzeugkommunikation</string>
+    <string name="obd_opt_description">Einstellungen für OBD Protokoll / Fahrzeugkommunikation</string>
     <string name="obd_options">OBD Einstellungen </string>
     <string name="select_protocol">Bevorzugtes OBD Protokoll </string>
     <string name="refreshing">aktualisiere …</string>
