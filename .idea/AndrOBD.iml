@@ -10,12 +10,8 @@
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../assets" />
         <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../libs" />
         <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../proguard_logs" />
-        <proGuardCfgFiles>
-          <file>file:///usr/lib/jvm/java-1.7.0-openjdk-amd64/tools/proguard/proguard-android.txt</file>
-        </proGuardCfgFiles>
         <option name="UPDATE_PROPERTY_FILES" value="true" />
         <option name="ENABLE_MANIFEST_MERGING" value="true" />
-        <option name="ENABLE_PRE_DEXING" value="false" />
         <includeAssetsFromLibraries>true</includeAssetsFromLibraries>
       </configuration>
     </facet>
