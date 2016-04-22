@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:onClick="unHideActionBar"
     >
 
     <ImageView
@@ -30,7 +31,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold"
             android:contentDescription="@string/url_app_mainpage"
-            android:onClick="clickHandler"
+            android:onClick="browseClickedUrl"
             android:clickable="true"
             />
 
@@ -43,7 +44,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:enabled="true"
             android:contentDescription="@string/url_app_releases"
-            android:onClick="clickHandler"
+            android:onClick="browseClickedUrl"
             android:clickable="true"
             />
 
@@ -64,7 +65,7 @@
             android:text="@string/translation_credits"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:contentDescription="@string/url_app_translation"
-            android:onClick="clickHandler"
+            android:onClick="browseClickedUrl"
             android:clickable="true"
             />
     </LinearLayout>

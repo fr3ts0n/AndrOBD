@@ -216,6 +216,8 @@ period of time while the ECU recalibrates itself.
     <string name="device_address">ELM IP address</string>
     <string name="device_port_description">ELM device network IP port</string>
     <string name="device_port">ELM IP port</string>
+    <string name="autohide_toolbar">Hide toolbar</string>
+    <string name="autohide_toolbar_description">Automatically hide toolbar after 15 seconds w/o activity</string>
     <!-- the string array corresponding to state enum -->
     <string-array name="elmcomm_states" translatable="false">
         <item>@string/UNDEFINED</item>

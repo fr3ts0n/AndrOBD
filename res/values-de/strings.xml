@@ -135,4 +135,6 @@
     <string name="device_port_description">IP Port des ELM Adapters</string>
     <string name="elm_reset_on_nrc">Reset bei NRC</string>
     <string name="elm_reset_on_nrc_descr">ELM Reset bei NRC-Fehler?</string>
+    <string name="autohide_toolbar">Toolbar verstecken</string>
+    <string name="autohide_toolbar_description">Toolbar automatisch nach 15 Sekunden Inaktivität verstecken</string>
 </resources>

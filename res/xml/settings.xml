@@ -30,6 +30,13 @@
 
             <CheckBoxPreference
                 android:defaultValue="false"
+                android:key="autohide_toolbar"
+                android:summary="@string/autohide_toolbar_description"
+                android:title="@string/autohide_toolbar"
+                />
+
+            <CheckBoxPreference
+                android:defaultValue="false"
                 android:key="night_mode"
                 android:summary="@string/night_mode_description"
                 android:title="@string/night_mode"

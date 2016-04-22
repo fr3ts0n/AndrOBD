@@ -127,6 +127,7 @@ public class MainActivity extends ListActivity
 	public static final String ELM_ADAPTIVE_TIMING = "elm_adaptive_timing";
 	public static final String ELM_RESET_ON_NRC = "elm_reset_on_nrc";
 	public static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
+	public static final String PREF_AUTOHIDE = "autohide_toolbar";
 
 	/**
 	 * Message types sent from the BluetoothChatService Handler
@@ -142,6 +143,7 @@ public class MainActivity extends ListActivity
 	public static final int MESSAGE_OBD_NUMCODES = 9;
 	public static final int MESSAGE_OBD_ECUS = 10;
 	public static final int MESSAGE_OBD_NRC = 11;
+	public static final int MESSAGE_TOOLBAR_VISIBLE = 12;
 	private static final String TAG = "AndrOBD";
 	/**
 	 * internal Intent request codes
@@ -221,6 +223,8 @@ public class MainActivity extends ListActivity
 	protected View mListView;
 	/** current data view mode */
 	private DATA_VIEW_MODE dataViewMode = DATA_VIEW_MODE.LIST;
+	/** AutoHider for the toolbar */
+	private AutoHider toolbarAutoHider;
 
 
 	/** handler for freeze frame selection */
@@ -431,10 +435,28 @@ public class MainActivity extends ListActivity
 						.setPositiveButton(null,null)
 						.show();
 					break;
+
+				// set toolbar visibility
+				case MESSAGE_TOOLBAR_VISIBLE:
+					boolean visible = (boolean)msg.obj;
+					// log action
+					log.debug(String.format("ActionBar: %s", visible ? "show" : "hide"));
+					// set action bar visibility
+					ActionBar ab = getActionBar();
+					if(ab != null)
+					{
+						if(visible)
+						{
+							ab.show();
+						} else
+						{
+							ab.hide();
+						}
+					}
+					break;
 			}
 		}
 	};
-
 
 	/**
 	 * convert result of Arrays.toString(int[]) back into int[]
@@ -504,6 +526,26 @@ public class MainActivity extends ListActivity
 					.show();
 			}
 		}
+	}
+
+	/**
+	 * OnClick handler - Browse URL from content description
+	 * @param view view source of click event
+	 */
+	public void browseClickedUrl(View view)
+	{
+		String url = view.getContentDescription().toString();
+		startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url)));
+	}
+
+	/**
+	 * OnClick handler - Unhide action bar
+	 * @param view view source of click event
+	 */
+	public void unHideActionBar(View view)
+	{
+		if(toolbarAutoHider != null)
+			toolbarAutoHider.showComponent();
 	}
 
 	/**
@@ -675,19 +717,36 @@ public class MainActivity extends ListActivity
 				break;
 
 			case USB:
+			case NETWORK:
 				setMode(MODE.ONLINE);
 				break;
 		}
+		// start automatich toolbar hider
+		setAutoHider(prefs.getBoolean(PREF_AUTOHIDE,false));
 	}
 
 	/**
-	 * OnClick handler - Browse URL from content description
-	 * @param view view source of click event
+	 * Start the autmatic toolbar hider
 	 */
-	public void clickHandler(View view)
+	void setAutoHider(boolean active)
 	{
-		String url = view.getContentDescription().toString();
-		startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url)));
+		if(active)
+		{
+			// enable hider
+			toolbarAutoHider = new AutoHider(this, mHandler, MESSAGE_TOOLBAR_VISIBLE, 15000);
+			toolbarAutoHider.start(1000);
+		}
+		else
+		{
+			// disable hider
+			if(toolbarAutoHider != null)
+			{
+				// cancel auto hider
+				toolbarAutoHider.cancel();
+				// forget about it
+				toolbarAutoHider = null;
+			}
+		}
 	}
 
 	@Override
@@ -758,6 +817,11 @@ public class MainActivity extends ListActivity
 		{
 			ElmProt.disableCommands(prefs.getStringSet(SettingsActivity.ELM_CMD_DISABLE, null));
 		}
+
+		// AutoHide ToolBar
+		if(key==null || PREF_AUTOHIDE.equals(key))
+			setAutoHider(prefs.getBoolean(PREF_AUTOHIDE,false));
+
 	}
 
 	/**
@@ -1523,6 +1587,9 @@ public class MainActivity extends ListActivity
 	@Override
 	protected void onDestroy()
 	{
+		// Stop toolbar hider thread
+		setAutoHider(false);
+
 		try
 		{
 			// Reduce ELM power consumption by setting it to sleep
