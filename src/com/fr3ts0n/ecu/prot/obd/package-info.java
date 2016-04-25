@@ -1,5 +1,5 @@
 /*
- * (C) Copyright 2015 by fr3ts0n <erwin.scheuch-heilig@gmx.at>
+ * (C) Copyright 2016 by fr3ts0n <erwin.scheuch-heilig@gmx.at>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -14,11 +14,12 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston,
  * MA 02111-1307 USA
+ *
  */
 
 /**
- * ECU specific protocol stuff
+ * OBD specific protocol stuff
  *
  * @author Erwin Scheuch-Heilig
  */
-package com.fr3ts0n.ecu.prot;
+package com.fr3ts0n.ecu.prot.obd;

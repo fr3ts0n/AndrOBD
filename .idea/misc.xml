@@ -20,6 +20,7 @@
     <option name="LOCALE" />
     <option name="OPEN_IN_BROWSER" value="true" />
     <option name="OPTION_INCLUDE_LIBS" value="false" />
+    <option name="OPTION_LINK_TO_JDK_DOCS" value="true" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

@@ -24,6 +24,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -33,7 +34,7 @@ import java.util.TimerTask;
  */
 public class AutoHider
 	extends TimerTask
-	implements View.OnTouchListener
+	implements OnTouchListener
 {
 	/** parent activity */
 	private ListActivity mActivity;
@@ -45,7 +46,7 @@ public class AutoHider
 	private int mMessageId;
 	/** current visibility state of component */
 	private boolean visible = true;
-	/** delay time before component gets hidden */
+	/** delay time[ms] before component gets hidden */
 	long TB_HIDE_DELAY = 15000;
 
 	/**
@@ -53,9 +54,12 @@ public class AutoHider
 	 * @param activity parent activity
 	 * @param handler activity's message handler
 	 * @param hideMessageId message ID of hide/sho message
-	 * @param hideDelayTime delay time befor component gets hidden
+	 * @param hideDelayTime delay time[ms] before component gets hidden
 	 */
-	public AutoHider(ListActivity activity, Handler handler,  int hideMessageId, long hideDelayTime )
+	public AutoHider(ListActivity activity,
+	                 Handler handler,
+	                 int hideMessageId,
+	                 long hideDelayTime )
 	{
 		TB_HIDE_DELAY = hideDelayTime;
 		mMessageId = hideMessageId;
@@ -82,7 +86,7 @@ public class AutoHider
 	public void run()
 	{
 		// update component visibility based on hide timer
-		setCompnentVisibility(System.currentTimeMillis() < componentHideTime);
+		setComponentVisibility(System.currentTimeMillis() < componentHideTime);
 	}
 
 	/**
@@ -99,7 +103,7 @@ public class AutoHider
 	 * set Visibility of component
 	 * @param visible visible/invisible?
 	 */
-	private void setCompnentVisibility(boolean visible)
+	private void setComponentVisibility(boolean visible)
 	{
 		// set OnTouch listener to current view to allow wakeup
 		View cntView = mActivity.getListView();
@@ -125,6 +129,6 @@ public class AutoHider
 		// set next hiding time
 		componentHideTime = System.currentTimeMillis() + TB_HIDE_DELAY;
 		// now show the component
-		setCompnentVisibility(true);
+		setComponentVisibility(true);
 	}
 }
