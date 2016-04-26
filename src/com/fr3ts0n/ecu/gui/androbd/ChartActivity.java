@@ -119,6 +119,8 @@ public class ChartActivity extends Activity
 	 * Renderer for actually drawing the graph
 	 */
 	private XYMultipleSeriesRenderer renderer;
+	/** automatic hiding toolbar */
+	private AutoHider toolBarHider;
 
 	/**
 	 * the wake lock to keep app communication alive
@@ -144,7 +146,7 @@ public class ChartActivity extends Activity
 	 * @param id id to get color for
 	 * @return color for given ID
 	 */
-	public static int getColor(int id)
+	public static int getItemColor(int id)
 	{
 		return colors[id % colors.length];
 	}
@@ -216,6 +218,15 @@ public class ChartActivity extends Activity
 		setContentView(chartView);
 		// limit selected PIDs to selection
 		MainActivity.setFixedPids(pidNumbers);
+		// if auto hiding selected ...
+		if(MainActivity.prefs.getBoolean(MainActivity.PREF_AUTOHIDE,false))
+		{
+			// auto hide toolbar
+			toolBarHider = new AutoHider(this, mHandler, MainActivity.MESSAGE_TOOLBAR_VISIBLE, 15000);
+			toolBarHider.start(1000);
+			// wake up on touch
+			chartView.setOnTouchListener(toolBarHider);
+		}
 	}
 
 	/**
@@ -232,6 +243,23 @@ public class ChartActivity extends Activity
 				case MainActivity.MESSAGE_UPDATE_VIEW:
 					/* update chart */
 					chartView.invalidate();
+					break;
+
+				// set toolbar visibility
+				case MainActivity.MESSAGE_TOOLBAR_VISIBLE:
+					boolean visible = (boolean)msg.obj;
+					// set action bar visibility
+					ActionBar ab = getActionBar();
+					if(ab != null)
+					{
+						if(visible)
+						{
+							ab.show();
+						} else
+						{
+							ab.hide();
+						}
+					}
 					break;
 			}
 		}
@@ -265,6 +293,13 @@ public class ChartActivity extends Activity
 	@Override
 	protected void onDestroy()
 	{
+		if(toolBarHider != null)
+		{
+			// cancel hiding thread
+			toolBarHider.cancel();
+			// forget about it
+			toolBarHider = null;
+		}
 		ObdProt.resetFixedPid();
 		// allow sleeping again
 		wakeLock.release();
@@ -355,10 +390,10 @@ public class ChartActivity extends Activity
 			renderer.setYTitle(String.valueOf(currPv.get(EcuDataPv.FID_UNITS)), i);
 			renderer.setYAxisAlign(((i % 2) == 0) ? Align.LEFT : Align.RIGHT, i);
 			renderer.setYLabelsAlign(((i % 2) == 0) ? Align.LEFT : Align.RIGHT, i);
-			renderer.setYLabelsColor(i, getColor(pid));
+			renderer.setYLabelsColor(i, getItemColor(pid));
 			/* set up new line renderer */
 			XYSeriesRenderer r = new XYSeriesRenderer();
-			r.setColor(getColor(pid));
+			r.setColor(getItemColor(pid));
 			r.setStroke(getStroke(pid));
 			// register line renderer
 			renderer.addSeriesRenderer(i, r);

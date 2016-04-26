@@ -19,6 +19,7 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.os.Handler;
 import android.os.Message;
@@ -29,15 +30,17 @@ import android.view.View.OnTouchListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.view.View.OnClickListener;
+
 /**
  * Automatically hide components after timeout and show again on touch action
  */
 public class AutoHider
 	extends TimerTask
-	implements OnTouchListener
+	implements OnTouchListener, OnClickListener
 {
 	/** parent activity */
-	private ListActivity mActivity;
+	private Activity mActivity;
 	/** activities message handler */
 	private Handler mHandler;
 	/** timestamp when component was hidden */
@@ -56,7 +59,7 @@ public class AutoHider
 	 * @param hideMessageId message ID of hide/sho message
 	 * @param hideDelayTime delay time[ms] before component gets hidden
 	 */
-	public AutoHider(ListActivity activity,
+	public AutoHider(Activity activity,
 	                 Handler handler,
 	                 int hideMessageId,
 	                 long hideDelayTime )
@@ -83,6 +86,12 @@ public class AutoHider
 	}
 
 	@Override
+	public void onClick(View v)
+	{
+		showComponent();
+	}
+
+	@Override
 	public void run()
 	{
 		// update component visibility based on hide timer
@@ -105,9 +114,12 @@ public class AutoHider
 	 */
 	private void setComponentVisibility(boolean visible)
 	{
-		// set OnTouch listener to current view to allow wakeup
-		View cntView = mActivity.getListView();
-		cntView.setOnTouchListener(this);
+		if(mActivity instanceof ListActivity)
+		{
+			// set OnTouch listener to current view to allow wakeup
+			View cntView = ((ListActivity)mActivity).getListView();
+			cntView.setOnTouchListener(this);
+		}
 
 		// if visibility changed ...
 		if(this.visible != visible)
