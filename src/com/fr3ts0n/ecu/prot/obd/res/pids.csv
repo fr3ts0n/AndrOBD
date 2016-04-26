@@ -26,7 +26,7 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	mnemonic (
 0x01,0x02	0x0B	0	1	0	8	0xFF	PRESS_AIR	%.1f			intake_manifold_pressure	Intake Manifold Pressure				
 0x01,0x02	0x0C	0	2	0	16	0xFFFF	RPM	%.0f	0	8000	engine_speed	Engine RPM				
 0x01,0x02	0x0D	0	1	0	8	0xFF	VEHSPEED	%.0f	0	250	vehicle_speed	Vehicle Speed				
-0x01,0x02	0x0E	0	1	0	8	0xFF	ANGLE	%.2f			ignition_timing_advance_cyl1	Timing Advance (Cyl. #1)				
+0x01,0x02	0x0E	0	1	0	8	0xFF	ANGLE	%.1f			ignition_timing_advance_cyl1	Timing Advance (Cyl. #1)				
 0x01,0x02	0x0F	0	1	0	8	0xFF	TEMPERATURE	%.1f			intake_air_temperature	Intake Air Temperature				
 0x01,0x02	0x10	0	2	0	16	0xFFFF	AIRFLOW	%.2f			mass_airflow	Air Flow Rate (MAF sensor)				
 0x01,0x02	0x11	0	1	0	8	0xFF	PERCENT	%.1f			throttle_position	Absolute Throttle Position				
