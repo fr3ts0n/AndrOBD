@@ -128,6 +128,7 @@ public class MainActivity extends ListActivity
 	public static final String ELM_RESET_ON_NRC = "elm_reset_on_nrc";
 	public static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
 	public static final String PREF_AUTOHIDE = "autohide_toolbar";
+	public static final String PREF_AUTOHIDE_DELAY = "autohide_delay";
 
 	/**
 	 * Message types sent from the BluetoothChatService Handler
@@ -438,7 +439,7 @@ public class MainActivity extends ListActivity
 
 				// set toolbar visibility
 				case MESSAGE_TOOLBAR_VISIBLE:
-					boolean visible = (boolean)msg.obj;
+					Boolean visible = (Boolean)msg.obj;
 					// log action
 					log.debug(String.format("ActionBar: %s", visible ? "show" : "hide"));
 					// set action bar visibility
@@ -726,26 +727,31 @@ public class MainActivity extends ListActivity
 	}
 
 	/**
-	 * Start the autmatic toolbar hider
+	 * start/stop the autmatic toolbar hider
 	 */
 	void setAutoHider(boolean active)
 	{
+		// disable existing hider
+		if(toolbarAutoHider != null)
+		{
+			// cancel auto hider
+			toolbarAutoHider.cancel();
+			// forget about it
+			toolbarAutoHider = null;
+		}
+
+		// if new hider shall be activated
 		if(active)
 		{
-			// enable hider
-			toolbarAutoHider = new AutoHider(this, mHandler, MESSAGE_TOOLBAR_VISIBLE, 15000);
+			// enable new hider
+			int timeout = Integer.valueOf(
+				prefs.getString(MainActivity.PREF_AUTOHIDE_DELAY,"15") );
+			toolbarAutoHider = new AutoHider( this,
+			                                  mHandler,
+			                                  MESSAGE_TOOLBAR_VISIBLE,
+			                                  timeout * 1000);
+			// start with update resolution of 1 second
 			toolbarAutoHider.start(1000);
-		}
-		else
-		{
-			// disable hider
-			if(toolbarAutoHider != null)
-			{
-				// cancel auto hider
-				toolbarAutoHider.cancel();
-				// forget about it
-				toolbarAutoHider = null;
-			}
 		}
 	}
 
@@ -819,9 +825,8 @@ public class MainActivity extends ListActivity
 		}
 
 		// AutoHide ToolBar
-		if(key==null || PREF_AUTOHIDE.equals(key))
+		if(key==null || PREF_AUTOHIDE.equals(key) || PREF_AUTOHIDE_DELAY.equals(key))
 			setAutoHider(prefs.getBoolean(PREF_AUTOHIDE,false));
-
 	}
 
 	/**

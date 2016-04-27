@@ -35,6 +35,15 @@
                 android:title="@string/autohide_toolbar"
                 />
 
+            <EditTextPreference
+                android:dependency="autohide_toolbar"
+                android:defaultValue="15"
+                android:key="autohide_delay"
+                android:inputType="numberDecimal"
+                android:summary="@string/autohide_delay_description"
+                android:title="@string/autohide_delay"
+                />
+
             <CheckBoxPreference
                 android:defaultValue="false"
                 android:key="night_mode"

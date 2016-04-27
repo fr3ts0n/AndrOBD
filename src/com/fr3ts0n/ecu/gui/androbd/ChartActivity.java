@@ -221,8 +221,14 @@ public class ChartActivity extends Activity
 		// if auto hiding selected ...
 		if(MainActivity.prefs.getBoolean(MainActivity.PREF_AUTOHIDE,false))
 		{
+			// get autohide timeout [s]
+			int timeout = Integer.valueOf(
+				MainActivity.prefs.getString(MainActivity.PREF_AUTOHIDE_DELAY,"15") );
 			// auto hide toolbar
-			toolBarHider = new AutoHider(this, mHandler, MainActivity.MESSAGE_TOOLBAR_VISIBLE, 15000);
+			toolBarHider = new AutoHider( this,
+			                              mHandler,
+			                              MainActivity.MESSAGE_TOOLBAR_VISIBLE,
+			                              timeout * 1000);
 			toolBarHider.start(1000);
 			// wake up on touch
 			chartView.setOnTouchListener(toolBarHider);
@@ -247,7 +253,7 @@ public class ChartActivity extends Activity
 
 				// set toolbar visibility
 				case MainActivity.MESSAGE_TOOLBAR_VISIBLE:
-					boolean visible = (boolean)msg.obj;
+					Boolean visible = (Boolean)msg.obj;
 					// set action bar visibility
 					ActionBar ab = getActionBar();
 					if(ab != null)
