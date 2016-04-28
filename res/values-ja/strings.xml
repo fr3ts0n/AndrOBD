@@ -142,5 +142,7 @@
     <string name="device_port_description">ELM デバイス ネットワーク IP ポート</string>
     <string name="device_port">ELM IP ポート</string>
     <string name="autohide_toolbar">ツールバーを非表示</string>
-    <string name="autohide_toolbar_description">アクティビティがないと 15 秒後に自動的にツールバーを非表示にします</string>
+    <string name="autohide_toolbar_description">アクティビティがないと、自動的にツールバーを非表示にします</string>
+    <string name="autohide_delay">ツールバーを非表示するまでの秒数</string>
+    <string name="autohide_delay_description">アクティビティがないときに、ツールバーを非表示にするまでの秒数</string>
     </resources>
