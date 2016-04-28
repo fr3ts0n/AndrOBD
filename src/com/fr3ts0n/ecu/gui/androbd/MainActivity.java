@@ -39,6 +39,7 @@ import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -651,6 +652,9 @@ public class MainActivity extends ListActivity
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		// register for later changes
 		prefs.registerOnSharedPreferenceChangeListener(this);
+		// Overlay feature has to be set before window content is set
+		if(prefs.getBoolean(PREF_AUTOHIDE,false))
+			getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
 
 		// set up log4j logging ...
 		logCfg = new LogConfigurator();
