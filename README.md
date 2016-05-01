@@ -11,6 +11,7 @@ Android OBD diagnostics with any ELM327 adapter
 [![ja](https://hosted.weblate.org/widgets/androbd/ja/shields-badge.svg)](https://hosted.weblate.org/projects/androbd/strings/ja/)
 [![cs](https://hosted.weblate.org/widgets/androbd/cs/shields-badge.svg)](https://hosted.weblate.org/projects/androbd/strings/cs/)
 [![pl](https://hosted.weblate.org/widgets/androbd/pl/shields-badge.svg)](https://hosted.weblate.org/projects/androbd/strings/pl/)
+
 Thanks to all hard-working translators for their contributions.
 
 You are invited to contribute a translation into your favourite language. 
