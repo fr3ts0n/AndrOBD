@@ -1,2 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="translation_credits">Переведено www.makedonov.ru</string>
+    <string name="app_description">Android приложение для OBD диагностики с Bluetooth адаптером ELM327</string>
+    <string name="send">Отправить</string>
+    <string name="not_connected">Нет подключения к устройству</string>
+    <string name="title_connecting">Соединение…</string>
+    <string name="title_connected_to">Подключено к %s</string>
+    <string name="title_not_connected">Нет подключения</string>
+    <string name="title">заголовок</string>
+    <string name="welcome_to">Добро пожаловать</string>
+    <string name="logo">Логотип</string>
+    <string name="back_again_to_exit">Нажмите назад еще раз, чтобы закрыть приложение</string>
+    <string name="action_connect">Соединение</string>
+    <string name="obd_none">Не поддерживается</string>
+    <string name="obd_veh_info">Информация об авто</string>
+    <string name="obd_data">Данные</string>
+    <string name="obd_codes">Коды ошибок</string>
+    <string name="obd_permanentcodes">Коды ошибок (сохраненные)</string>
+    <string name="obd_pendingcodes">Коды ошибок (текущие)</string>
+    <string name="obd_clearcodes">Сброс ошибок</string>
+    <string name="scanning">Поиск…</string>
+    <string name="select_device">Выбор адаптера</string>
+    <string name="none_paired">Нет сопряженных устройств</string>
+    <string name="none_found">Не найдено</string>
+    <string name="title_paired_devices">Сопряженные устройства</string>
+    <string name="title_other_devices">Другие доступные устройства</string>
+    <string name="button_scan">Поиск устройств</string>
+
+    <string name="send_to">Отправить</string>
+    <string name="share">Поделиться</string>
+    <string name="time">Время [s]</string>
+    <string name="chart">График</string>
+    <string name="demo_stopped">ДЕМО режим Выкл</string>
+    <string name="demo_started">ДЕМО режим Вкл</string>
+    <string name="snapshot">снимок</string>
+    <string name="loaded">загружено</string>
+    <string name="saved">сохранено</string>
+
+    <string name="connected_to">"Подключено к "</string>
+    <string name="demo">ДЕМО…</string>
+    <string name="saving_data">Сохранение…</string>
+    <string name="loading_data">Загрузка…</string>
+    <string name="settings">Настройки</string>
+    <string name="common_settings">Общие настройки</string>
+    <string name="save">Сохранить измерение</string>
+    <string name="load">Загрузить измерение</string>
+    <string name="saved_data">Сохраненные данные</string>
+    <string name="dashboard">Приборная панель</string>
+    <string name="graph_actions">Действия с графиком</string>
+    <string name="hud">Главный экран</string>
+    <string name="filter">Выбранный фильтр</string>
+    <string name="measure_system_description">Система измерения (метрическая / имперская)</string>
+    <string name="measure_system">Единицы измерения</string>
+    <string name="metric">метрическая</string>
+    <string name="imperial">имперская</string>
+    <string name="items_for_display">Данные на экране</string>
+    <string name="items_for_display_descr">Выберите данные для отображения…</string>
+    <string name="debugging">Отладка</string>
+    <string name="logging_level">Уровень лога</string>
+    <string name="logging_level_description">Уровень деталей лога при отладке</string>
+    <string name="master">мастер</string>
+    <string name="comm_io">связь</string>
+    <string name="protocol">протокол</string>
+    <string name="process_vars">переменные процесса</string>
+    <string name="data">данные</string>
+    <string name="last_elm">переподключение к последнему ELM-адаптеру</string>
+    <string name="last_ecu">переподключение к последнему ЭБУ</string>
+    <string name="keep_screen_on">Оставлять экран включенным</string>
+    <string name="keep_screen_on_description">Не выключать экран, если отображаются данные</string>
+
+    <string name="development_options">Опции разработчика</string>
+    <string name="dev_opt_description">Опции для отладки и персонализации</string>
+    <string name="extension_files">Файлы персонализации протокола (csv)</string>
+    <string name="conversions">Преобразование данных</string>
+    </resources>
