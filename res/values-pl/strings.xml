@@ -20,7 +20,38 @@
     <string name="obd_permanentcodes">Kody błędów OBD (permanentne)</string>
     <string name="obd_pendingcodes">Kody błędów OBD (nierozstrzygnięte)</string>
     <string name="obd_clearcodes">Czyść kody błędów</string>
-    <string name="obd_clear_info">" Spowoduje to zresetowanie diagnostyki MIL i usunięcie wszystkich\n informacji diagnostycznych związanych z emisją spalin, w tym:\n  - diagnostyki kodów błędów\n  - dane zamrożonych ramek\n  - dane z sondy lambda\n  - status testów monitorowania systemu\n  - wyniki monitoringu urządzeń pokładowych\n  - dystans podróży z aktywnym MIL\n  - liczba ostrzeżeń od wyczyszczenia DTC\n  - dystans przebyty od wyczyszczenia DTC\n  - czas pracy silnika z aktywnym MIL\n  - czas od wyczyszczenia DTC\n\n Mogą wystąpić inne akcje specyficzne dla czyszczenia/kasowanie.\n Utrata danych może spowodować, że pojazd będzie miał gorsze\n osiągi na krótki okres, podczas kalibracji ECU. "</string>
+    <string name="obd_clear_info">"
+Spowoduje to zresetowanie diagnostyki MIL i usunięcie wszystkich
+
+ informacji diagnostycznych związanych z emisją spalin, w tym:
+
+  - diagnostyki kodów błędów
+
+  - dane zamrożonych ramek
+
+  - dane z sondy lambda
+
+  - status testów monitorowania systemu
+
+  - wyniki monitoringu urządzeń pokładowych
+
+  - dystans podróży z aktywnym MIL
+
+  - liczba ostrzeżeń od wyczyszczenia DTC
+
+  - dystans przebyty od wyczyszczenia DTC
+
+  - czas pracy silnika z aktywnym MIL
+
+  - czas od wyczyszczenia DTC
+
+
+ Mogą wystąpić inne akcje specyficzne dla czyszczenia/kasowanie.
+
+ Utrata danych może spowodować, że pojazd będzie miał gorsze
+
+ osiągi na krótki okres, podczas kalibracji ECU.
+ "</string>
 
     <string name="scanning">Skanowanie…</string>
     <string name="select_device">Wybierz adapter</string>
@@ -138,4 +169,12 @@
     <string name="elm_reset_on_nrc">Resetowanie NRC</string>
     <string name="elm_reset_on_nrc_descr">Czy zresetować adapter ELM w przypadku błędu NRC?</string>
     <string name="obd_error">Błąd protokołu OBD</string>
+    <string name="device_address_description">Adres IP urządzenia ELM</string>
+    <string name="device_address">Adres IP ELM</string>
+    <string name="device_port_description">Port sieciowy urządzenia ELM</string>
+    <string name="device_port">Port ELM</string>
+    <string name="autohide_toolbar">Ukryj pasek narzędzi</string>
+    <string name="autohide_toolbar_description">Automatyczne ukrywanie paska przy braku aktywności</string>
+    <string name="autohide_delay">Opóźnienie ukrywania paska narzędzi [s]</string>
+    <string name="autohide_delay_description">Opóźnienie w sekundach braku aktywności przed ukryciem paska narzędzi</string>
     </resources>
