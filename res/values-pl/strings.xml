@@ -16,7 +16,7 @@
     <string name="obd_veh_info">Informacja OBD</string>
     <string name="obd_data">Dane OBD</string>
     <string name="service_freezeframes">Zamrożone ramki OBD</string>
-    <string name="obd_codes">Cody błędów OBD</string>
+    <string name="obd_codes">Kody błędów OBD</string>
     <string name="obd_permanentcodes">Kody błędów OBD (permanentne)</string>
     <string name="obd_pendingcodes">Kody błędów OBD (nierozstrzygnięte)</string>
     <string name="obd_clearcodes">Czyść kody błędów</string>
