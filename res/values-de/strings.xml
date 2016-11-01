@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="action_connect">Verbinden</string>
     <string name="app_description">Android OBD Fahrzeugdisagnose für ELM327 Bluetooth Adapter</string>
@@ -31,7 +31,21 @@
     <string name="title_other_devices">Andere verfügbare Geräte</string>
     <string name="title_paired_devices">Gepaarte Geräte</string>
     <string name="welcome_to">Willkommen zu</string>
-    <string name="obd_clear_info">" Dies wird die MIL zurücksetzen und löscht alle abgasrelevanten Diagnoseinformationen, inklusive:\n - Diagnose-Fehlercodes\n - Freeze Frame Daten\n - Lambdasonden Testdaten\n - Status der System-Tests\n - Status der On-board Tests\n - Fahrstrecke seit MIL aktiv\n - Warmläufe seit MIL aktiv\n - Motorlaufzeit seit MIL aktiv\n - Zeit seit Löschung\n - Fahrstrecke seit Löschung\n Andere, herstellerspezifische Einstellungen können dadurch verloren gehen.\n Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichmässig läuft. "</string>
+    <string name="obd_clear_info">"
+Dies wird die MIL zurücksetzen und löscht alle abgasrelevanten Diagnoseinformationen, inklusive:
+ - Diagnose-Fehlercodes
+ - Freeze Frame Daten
+ - Lambdasonden Testdaten
+ - Status der System-Tests
+ - Status der On-board Tests
+ - Fahrstrecke seit MIL aktiv
+ - Warmläufe seit MIL aktiv
+ - Motorlaufzeit seit MIL aktiv
+ - Zeit seit Löschung
+ - Fahrstrecke seit Löschung
+ Andere, herstellerspezifische Einstellungen können dadurch verloren gehen.
+ Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichmässig läuft.
+ "</string>
     <string name="demo_started">DEMO gestartet</string>
     <string name="demo_stopped">DEMO beendet</string>
     <string name="load">Messung laden</string>
@@ -136,5 +150,7 @@
     <string name="elm_reset_on_nrc">Reset bei NRC</string>
     <string name="elm_reset_on_nrc_descr">ELM Reset bei NRC-Fehler?</string>
     <string name="autohide_toolbar">Toolbar verstecken</string>
-    <string name="autohide_toolbar_description">Toolbar automatisch nach 15 Sekunden Inaktivität verstecken</string>
-</resources>
+    <string name="autohide_toolbar_description">Toolbar automatisch nach Inaktivität verstecken</string>
+<string name="autohide_delay_description">Sekunden ohne Aktivität, bevor Toolbar versteckt wird</string>
+    <string name="autohide_delay">Ausblenden Symbolleisten Verzögerung [s]</string>
+    </resources>
