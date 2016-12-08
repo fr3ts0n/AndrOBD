@@ -237,4 +237,38 @@ period of time while the ECU recalibrates itself.
         <item>@string/RXERROR</item>
         <item>@string/ERROR</item>
     </string-array>
+
+    <!-- CSV export options -->
+    <string name="csv_export_options">CSV export options</string>
+    <string name="csv_export_description">Options for formatting CSV export files</string>
+    <string name="csv_field_delimiter">CSV field delimiter</string>
+    <string name="csv_field_delimiter_description">Delimiter character(s) between CSV data fields</string>
+    <string name="csv_rec_delimiter">CSV record delimiter</string>
+    <string name="csv_rec_delimiter_description">Delimiter character(s) between CSV data records</string>
+    <string name="csv_text_quoted">CSV text quoted</string>
+    <string name="csv_text_quoted_description">CSV text fields are included within quotes</string>
+    <string name="tab">TAB</string>
+    <string name="comma">COMMA</string>
+    <string name="semicolon">SEMICOLON</string>
+    <string-array name="csv_field_delim_options" translatable="false">
+        <item>@string/tab</item>
+        <item>@string/comma</item>
+        <item>@string/semicolon</item>
+    </string-array>
+    <string-array name="csv_field_delim_values" translatable="false">
+        <item>\t</item>
+        <item>,</item>
+        <item>;</item>
+    </string-array>
+    <string-array name="csv_record_delim_options" translatable="false">
+        <item>CR</item>
+        <item>LF</item>
+        <item>CRLF</item>
+    </string-array>
+    <string-array name="csv_record_delim_values" translatable="false">
+        <item>\r</item>
+        <item>\n</item>
+        <item>\r\n</item>
+    </string-array>
+
 </resources>
