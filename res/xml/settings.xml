@@ -172,7 +172,46 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/development_options">
+        android:title="@string/csv_export_options"
+        >
+        <PreferenceScreen
+            android:title="@string/csv_export_options"
+            android:icon="@android:drawable/ic_menu_save"
+            android:summary="@string/csv_export_description"
+            >
+
+            <ListPreference
+                android:key="csv_field_delimiter"
+                android:title="@string/csv_field_delimiter"
+                android:dialogTitle="@string/csv_field_delimiter"
+                android:summary="@string/csv_field_delimiter_description"
+                android:entries="@array/csv_field_delim_options"
+                android:entryValues="@array/csv_field_delim_values"
+                android:defaultValue=","
+                />
+
+            <ListPreference
+                android:key="csv_record_delimiter"
+                android:title="@string/csv_rec_delimiter"
+                android:dialogTitle="@string/csv_rec_delimiter"
+                android:summary="@string/csv_rec_delimiter_description"
+                android:entries="@array/csv_record_delim_options"
+                android:entryValues="@array/csv_record_delim_values"
+                android:defaultValue="\n"
+                />
+
+            <CheckBoxPreference
+                android:key="csv_text_quoted"
+                android:title="@string/csv_text_quoted"
+                android:summary="@string/csv_text_quoted_description"
+                />
+
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/development_options"
+        >
 
         <PreferenceScreen
             android:icon="@android:drawable/ic_menu_manage"
@@ -180,7 +219,8 @@
             android:title="@string/development_options"
             >
             <PreferenceCategory
-                android:title="@string/debugging">
+                android:title="@string/debugging"
+                >
                 <ListPreference
                     android:defaultValue="INFO"
                     android:dialogTitle="@string/logging_level"

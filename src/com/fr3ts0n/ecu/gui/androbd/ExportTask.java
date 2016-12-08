@@ -20,13 +20,22 @@ package com.fr3ts0n.ecu.gui.androbd;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
 
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.model.XYSeries;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.SortedMap;
 
 /**
@@ -38,14 +47,38 @@ class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
 {
 
 	private Activity activity;
-	private static DateFormat tagFormat = new SimpleDateFormat("yyyyMMddkkmmss");
+	private static final DateFormat tagFormat  = new SimpleDateFormat("yyyyMMddkkmmss");
+    private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
-	public static final String CSV_FIELD_DELIMITER = ",";
-	public static final String CSV_LINE_DELIMITER = "\n";
+	private static final String OPT_FIELD_DELIM		= "csv_field_delimiter";
+	private static final String OPT_RECORD_DELIM	= "csv_record_delimiter";
+	private static final String OPT_TEXT_QUOTED 	= "csv_text_quoted";
+
+	private static String CSV_FIELD_DELIMITER = ",";
+	private static String CSV_LINE_DELIMITER = "\n";
+	private static boolean CSV_TEXT_QUOTED = false;
+
+	// file name to be saved
+    private String path;
+	private String fileName;
 
 	public ExportTask(Activity activity)
 	{
 		this.activity = activity;
+        path = FileHelper.getPath(activity).concat(File.separator+"csv");
+		fileName = path.concat(File.separator+FileHelper.getFileName()
+                       .concat(".csv"));
+
+		// get preferences
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+		CSV_FIELD_DELIMITER = prefs.getString(OPT_FIELD_DELIM,",");
+		CSV_LINE_DELIMITER  = prefs.getString(OPT_RECORD_DELIM,"\n");
+		CSV_TEXT_QUOTED     = prefs.getBoolean(OPT_TEXT_QUOTED,false);
+	}
+
+	private static String quoteStringIfNeeded(String string)
+	{
+		return String.format( CSV_TEXT_QUOTED ? "\"%s\"" : "%s", string);
 	}
 
 	@Override
@@ -58,7 +91,6 @@ class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
 
 		XYSeries series[] = params[0].getSeries();
 
-		StringBuilder sb = new StringBuilder();
 		// find channel with highest x-resolution
 		for (int i = 0; i < series.length; i++)
 		{
@@ -68,46 +100,52 @@ class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
 				highestResChannel = i;
 			}
 		}
-		// create measurement header (may be used as filename)
-		long startTime = (long) series[highestResChannel].getX(0);
-		sb.append(activity.getString(R.string.app_name)).append(".");
-		sb.append(tagFormat.format(startTime)).append(".csv");
-		sb.append(CSV_LINE_DELIMITER);
 
-		// create header line
-		sb.append(activity.getString(R.string.time));
-		sb.append(CSV_FIELD_DELIMITER);
-		for (XYSeries sery : series)
+        new File(path).mkdirs();
+		FileWriter writer = null;
+		try
 		{
-			sb.append("\"").append(sery.getTitle()).append("\"");
-			sb.append(CSV_FIELD_DELIMITER);
-		}
-		sb.append(CSV_LINE_DELIMITER);
+			writer = new FileWriter(new File(fileName));
 
-		// generate data
-		int samples = maxCounts;
-		for (int i = 0; i < samples; i++)
-		{
-			currX = series[highestResChannel].getX(i);
-			sb.append((currX - startTime) / 1000);
-			sb.append(CSV_FIELD_DELIMITER);
+			// create header line
+			writer.append(quoteStringIfNeeded(activity.getString(R.string.time)));
+			writer.append(CSV_FIELD_DELIMITER);
 			for (XYSeries sery : series)
 			{
-				try
-				{
-					SortedMap<Double, Double> map = sery.getRange(currX, currX, true);
-					currY = map.get(map.firstKey());
-					sb.append(currY);
-					sb.append(CSV_FIELD_DELIMITER);
-				} catch (Exception ex)
-				{
-					// do nothing, just catch the error
-				}
+				writer.append(quoteStringIfNeeded(sery.getTitle()));
+				writer.append(CSV_FIELD_DELIMITER);
 			}
-			sb.append(CSV_LINE_DELIMITER);
-			publishProgress(10000 * i / samples);
+			writer.append(CSV_LINE_DELIMITER);
+
+			// generate data
+			for (int i = 0; i < maxCounts; i++)
+			{
+				currX = series[highestResChannel].getX(i);
+				writer.append(dateFormat.format(new Date((long)currX)));
+				writer.append(CSV_FIELD_DELIMITER);
+				for (XYSeries sery : series)
+				{
+					try
+					{
+						SortedMap<Double, Double> map = sery.getRange(currX, currX, true);
+						currY = map.get(map.firstKey());
+						writer.append(String.valueOf(currY));
+						writer.append(CSV_FIELD_DELIMITER);
+					} catch (Exception ex)
+					{
+						// do nothing, just catch the error
+					}
+				}
+				writer.append(CSV_LINE_DELIMITER);
+				publishProgress(10000 * i / maxCounts);
+			}
+			writer.close();
 		}
-		return sb.toString();
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		return fileName;
 	}
 
 	@Override
@@ -126,11 +164,20 @@ class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
 	public void onPostExecute(String result)
 	{
 		activity.setProgressBarVisibility(false);
-		Intent sendIntent = new Intent();
-		sendIntent.setAction(Intent.ACTION_SEND);
-		sendIntent.putExtra(Intent.EXTRA_TEXT, result);
-		sendIntent.setType("text/plain");
-		activity.startActivity(Intent.createChooser(sendIntent, activity
-			.getResources().getText(R.string.send_to)));
+
+		// show saved message
+		String msg = String.format("CSV %s to %s",
+								   activity.getString(R.string.saved),
+								   fileName);
+		Log.i(activity.getString(R.string.saved), msg);
+		Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+
+		// allow sending the generated file ...
+		Intent sendIntent = new Intent(Intent.ACTION_SEND);
+		sendIntent.setType("*/*");
+        sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(fileName)));
+		activity.startActivity(
+				Intent.createChooser(sendIntent,
+									 activity.getResources().getText(R.string.send_to)));
 	}
 }

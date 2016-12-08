@@ -18,6 +18,7 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.Manifest;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -31,6 +32,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -645,6 +647,18 @@ public class MainActivity extends ListActivity
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		requestWindowFeature(Window.FEATURE_PROGRESS);
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+		{
+			// Storage Permissions
+			final int REQUEST_EXTERNAL_STORAGE = 1;
+			final String[] PERMISSIONS_STORAGE = {
+					Manifest.permission.READ_EXTERNAL_STORAGE,
+					Manifest.permission.WRITE_EXTERNAL_STORAGE
+			};
+			requestPermissions(PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+		}
 
 		dlgBuilder = new AlertDialog.Builder(this);
 

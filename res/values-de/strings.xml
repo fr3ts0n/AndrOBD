@@ -153,4 +153,12 @@ Dies wird die MIL zurücksetzen und löscht alle abgasrelevanten Diagnoseinforma
     <string name="autohide_toolbar_description">Toolbar automatisch nach Inaktivität verstecken</string>
 <string name="autohide_delay_description">Sekunden ohne Aktivität, bevor Toolbar versteckt wird</string>
     <string name="autohide_delay">Ausblenden Symbolleisten Verzögerung [s]</string>
-    </resources>
+    <string name="csv_export_description">Optionen zur Formatierung von CSV Export-Dateien</string>
+    <string name="csv_export_options">CSV Export Optionen</string>
+    <string name="csv_field_delimiter">CSV Feld-Trennzeichen</string>
+    <string name="csv_field_delimiter_description">Trennzeichen zwischen CSV Datenfeldern</string>
+    <string name="csv_rec_delimiter">CSV Datensatz-Trennzeichen</string>
+    <string name="csv_rec_delimiter_description">Trennzeichen zwischen CSV Datenzeilen</string>
+    <string name="csv_text_quoted">CSV Textfelder in Anführungszeichen</string>
+    <string name="csv_text_quoted_description">CSV Textfelder werden in Anführungszeichen eingebettet</string>
+</resources>
