@@ -53,10 +53,13 @@ class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
 	private static final String OPT_FIELD_DELIM		= "csv_field_delimiter";
 	private static final String OPT_RECORD_DELIM	= "csv_record_delimiter";
 	private static final String OPT_TEXT_QUOTED 	= "csv_text_quoted";
+	private static final String OPT_SEND_EXPORT 	= "send_after_export";
 
 	private static String CSV_FIELD_DELIMITER = ",";
 	private static String CSV_LINE_DELIMITER = "\n";
 	private static boolean CSV_TEXT_QUOTED = false;
+
+	SharedPreferences prefs;
 
 	// file name to be saved
     private String path;
@@ -70,7 +73,7 @@ class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
                        .concat(".csv"));
 
 		// get preferences
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+		prefs = PreferenceManager.getDefaultSharedPreferences(activity);
 		CSV_FIELD_DELIMITER = prefs.getString(OPT_FIELD_DELIM,",");
 		CSV_LINE_DELIMITER  = prefs.getString(OPT_RECORD_DELIM,"\n");
 		CSV_TEXT_QUOTED     = prefs.getBoolean(OPT_TEXT_QUOTED,false);
@@ -172,12 +175,16 @@ class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
 		Log.i(activity.getString(R.string.saved), msg);
 		Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
 
-		// allow sending the generated file ...
-		Intent sendIntent = new Intent(Intent.ACTION_SEND);
-		sendIntent.setType("*/*");
-        sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(fileName)));
-		activity.startActivity(
-				Intent.createChooser(sendIntent,
-									 activity.getResources().getText(R.string.send_to)));
+		// if export file should be sent immediately ...
+		if(prefs.getBoolean(OPT_SEND_EXPORT, false))
+		{
+			// allow sending the generated file ...
+			Intent sendIntent = new Intent(Intent.ACTION_SEND);
+			sendIntent.setType("*/*");
+			sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(fileName)));
+			activity.startActivity(
+					Intent.createChooser(sendIntent,
+										 activity.getResources().getText(R.string.send_to)));
+		}
 	}
 }

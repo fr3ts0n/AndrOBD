@@ -161,4 +161,9 @@ Dies wird die MIL zurücksetzen und löscht alle abgasrelevanten Diagnoseinforma
     <string name="csv_rec_delimiter_description">Trennzeichen zwischen CSV Datenzeilen</string>
     <string name="csv_text_quoted">CSV Textfelder in Anführungszeichen</string>
     <string name="csv_text_quoted_description">CSV Textfelder werden in Anführungszeichen eingebettet</string>
+    <string name="semicolon">Strichpunkt</string>
+    <string name="send_after_export">Nach Export Senden</string>
+    <string name="send_after_export_descr">Direkt nach CSV Export Datei versenden?</string>
+    <string name="tab">Tab</string>
+    <string name="comma">Komma</string>
 </resources>

@@ -250,6 +250,8 @@ period of time while the ECU recalibrates itself.
     <string name="tab">TAB</string>
     <string name="comma">COMMA</string>
     <string name="semicolon">SEMICOLON</string>
+    <string name="send_after_export">Send after export</string>
+    <string name="send_after_export_descr">Prompt for sending CSV file right after export?</string>
     <string-array name="csv_field_delim_options" translatable="false">
         <item>@string/tab</item>
         <item>@string/comma</item>

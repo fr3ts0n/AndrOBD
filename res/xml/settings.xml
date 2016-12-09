@@ -206,6 +206,13 @@
                 android:summary="@string/csv_text_quoted_description"
                 />
 
+            <CheckBoxPreference
+                android:key="send_after_export"
+                android:defaultValue="false"
+                android:title="@string/send_after_export"
+                android:summary="@string/send_after_export_descr"
+                />
+
         </PreferenceScreen>
     </PreferenceCategory>
 
