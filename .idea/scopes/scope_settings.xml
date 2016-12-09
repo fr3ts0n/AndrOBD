@@ -1,8 +1,0 @@
-<component name="DependencyValidationManager">
-  <state>
-    <unnamed_scope value="src[AndrOBD]:com.fr3ts0n.ecu.gui.androbd..*" />
-    <unnamed_scope value="test:*..*" />
-    <deny_rule from_scope="src[AndrOBD]:com.fr3ts0n.ecu.gui.androbd..*" to_scope="test:*..*" is_deny="true" />
-    <deny_rule from_scope="src[AndrOBD]:com.fr3ts0n.ecu.gui.androbd..*" to_scope="test:*..*" is_deny="true" />
-  </state>
-</component>
