@@ -176,4 +176,17 @@
     <string name="autohide_toolbar_description">アクティビティがないと、自動的にツールバーを非表示にします</string>
     <string name="autohide_delay">ツールバーを非表示するまでの秒数</string>
     <string name="autohide_delay_description">アクティビティがないときに、ツールバーを非表示にするまでの秒数</string>
+    <string name="csv_export_options">CSV エクスポート オプション</string>
+    <string name="csv_export_description">CSV エクスポート ファイルの書式設定オプション</string>
+    <string name="csv_field_delimiter">CSV フィールド区切り文字</string>
+    <string name="csv_field_delimiter_description">CSV データ フィールド間の区切り文字</string>
+    <string name="csv_rec_delimiter">CSV レコード区切り記号</string>
+    <string name="csv_rec_delimiter_description">CSV データ レコード間の区切り記号</string>
+    <string name="csv_text_quoted">CSV テキスト引用符</string>
+    <string name="csv_text_quoted_description">CSV テキスト フィールドが引用符で囲まれます</string>
+    <string name="tab">タブ</string>
+    <string name="comma">カンマ</string>
+    <string name="semicolon">セミコロン</string>
+    <string name="send_after_export">エクスポート後に送信</string>
+    <string name="send_after_export_descr">正しくエクスポートした後に CSV ファイルを送信するプロンプトを表示しますか?</string>
     </resources>
