@@ -2,12 +2,12 @@
 <manifest
     package="com.fr3ts0n.ecu.gui.androbd"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="10404"
+    android:versionCode="10405"
     android:versionName="@string/app_version">
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="24"/>
+        android:targetSdkVersion="25"/>
 
     <!-- start/stop bluetooth adapter -->
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
@@ -31,7 +31,7 @@
         android:description="@string/app_description"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.fr3ts0n.ecu.gui.androbd.MainActivity"
+            android:name="MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             >
@@ -48,13 +48,13 @@
                 android:resource="@xml/device_filter"/>
         </activity>
         <activity
-            android:name=".UsbDeviceListActivity"
+            android:name="UsbDeviceListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/select_device"
             android:theme="@android:style/Theme.Holo.Dialog"
             />
         <activity
-            android:name=".BtDeviceListActivity"
+            android:name="BtDeviceListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/select_device"
             android:theme="@android:style/Theme.Holo.Dialog"

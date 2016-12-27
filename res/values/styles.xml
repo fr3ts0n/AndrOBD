@@ -1,8 +1,5 @@
 <resources>
-
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme" />
-    <style name="AppTheme.Dark" parent="AppBaseTheme.Dark" />
-
-    <color name="AppColor">#5D0081</color>
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light" />
+    <style name="AppTheme.Dark" parent="@android:style/Theme.Holo" />
 </resources>

@@ -36,6 +36,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
@@ -658,6 +659,9 @@ public class MainActivity extends ListActivity
 					Manifest.permission.WRITE_EXTERNAL_STORAGE
 			};
 			requestPermissions(PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+			// Workaround for FileUriExposedException in Android >= M
+			StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+			StrictMode.setVmPolicy(builder.build());
 		}
 
 		dlgBuilder = new AlertDialog.Builder(this);
