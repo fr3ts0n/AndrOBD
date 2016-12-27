@@ -27,7 +27,7 @@
       <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/ecu/gui/application" />
       <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/prot/gui" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 24 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 25 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" exported="">
       <library>
