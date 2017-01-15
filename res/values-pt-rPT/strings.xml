@@ -1,2 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="translation_credits">Tradução por Manuela Silva</string>
+    <string name="send">Enviar</string>
+    <string name="not_connected">Não está ligado a nenhum dispositivo</string>
+    <string name="title_connecting">A ligar…</string>
+    <string name="title_connected_to">Ligado %s</string>
+    <string name="title_not_connected">Não Ligado</string>
+    <string name="title">título</string>
+    <string name="welcome_to">Bem-vindo ao</string>
+    <string name="logo">Logótipo</string>
+    <string name="action_connect">Ligar</string>
+    <string name="obd_none">SEM Serviço</string>
+    <string name="obd_services">Serviços OBD</string>
+    <string name="back_again_to_exit">Pressione novamente em voltar para fechar esta aplicação</string>
+    <string name="obd_veh_info">Informação do Veículo OBD</string>
+    <string name="obd_data">Dados OBD</string>
+    <string name="obd_clearcodes">Limpar códigos de falha</string>
+    <string name="scanning">A pesquisar…</string>
+    <string name="select_device">Selecionar adaptador</string>
+    <string name="none_paired">Sem Dispositivos Emparelhados</string>
+    <string name="none_found">Nenhuns Dispositivos Encontrados</string>
+    <string name="title_paired_devices">Dispositivos Emparelhados</string>
+    <string name="title_other_devices">Outros Dispositivos Disponíveis</string>
+    <string name="button_scan">Pesquisar por Dispositivos</string>
+
+    <string name="send_to">Enviar para</string>
+    <string name="share">partilhar</string>
+    <string name="chart">Gráfico</string>
+    <string name="snapshot">captura de ecrã</string>
+    <string name="saved_data">Dados Guardados</string>
+    <string name="demo">Demonstração…</string>
+    <string name="saving_data">A guardar os dados…</string>
+    <string name="loading_data">A carregar os dados…</string>
+    <string name="dashboard">Painel</string>
+    <string name="settings">Definições</string>
+    <string name="common_settings">Definições Comuns</string>
+    <string name="metric">métrico</string>
+    <string name="imperial">imperial</string>
+    <string name="debugging">Depuração</string>
+    <string name="protocol">protocolo</string>
+    <string name="data">dados</string>
+    <string name="comm_io">comunicação i/o</string>
+    <string name="logging_level">Nível de registo</string>
+    <string name="development_options">Opções de desenvolvimento</string>
+    <string name="conversions">Conversões de Dados</string>
+    </resources>
