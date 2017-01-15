@@ -71,7 +71,7 @@
         android:title="@string/save"/>
     <item
         android:id="@+id/load"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/ic_action_load"
         android:showAsAction="ifRoom"
         android:title="@string/load"/>
     <item
