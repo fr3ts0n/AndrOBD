@@ -23,8 +23,10 @@ import org.apache.log4j.Logger;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.BufferedWriter;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.Vector;
 
 
@@ -35,13 +37,13 @@ import java.util.Vector;
  */
 public class StreamHandler implements TelegramWriter, Runnable
 {
-	static final Logger log = Logger.getLogger("stream");
-	InputStream in;
-	OutputStream out;
+	private static final Logger log = Logger.getLogger("stream");
+	private InputStream    in;
+	private BufferedWriter out;
 
-	TelegramListener messageHandler;
+	private TelegramListener messageHandler;
 	// current receive message
-	String message = "";
+	private String message = "";
 
 	public StreamHandler()
 	{
@@ -67,7 +69,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 	public void setStreams(InputStream inStream, OutputStream outStream)
 	{
 		in = inStream;
-		out = outStream;
+		out = new BufferedWriter(new OutputStreamWriter(outStream), 1);
 	}
 
 	/* (non-Javadoc)
@@ -91,7 +93,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 			String msg = new String(buffer);
 			msg += "\r";
 			log.trace(this.toString() + " TX:" + ProtUtils.hexDumpBuffer(msg.toCharArray()));
-			out.write(msg.getBytes());
+			out.write(msg.toCharArray());
 			out.flush();
 			result = buffer.length;
 		} catch (Exception ex)
@@ -105,7 +107,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 	 * process incoming character
 	 * @param chr the received char
 	 */
-	void processRxChar(int chr)
+	private void processRxChar(int chr)
 	{
 		// process incoming data
 		log.trace(this.toString() + " RX: '"
@@ -154,7 +156,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 					// otherwise read- and process ...
 
 					// Is end of stream reached?
-					if ((chr = in.read()) >= 0)
+					if ((chr = in.read()) > 0)
 					{
 						// process incoming data
 						processRxChar(chr);
