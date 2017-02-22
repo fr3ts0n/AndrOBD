@@ -69,6 +69,8 @@ public class StreamHandler implements TelegramWriter, Runnable
 	public void setStreams(InputStream inStream, OutputStream outStream)
 	{
 		in = inStream;
+		/* Output uses BufferedWriter with buffer size 1 byte to trigger
+		   flushing on every outgoing byte [$Fix #AndrOBD-27] */
 		out = new BufferedWriter(new OutputStreamWriter(outStream), 1);
 	}
 

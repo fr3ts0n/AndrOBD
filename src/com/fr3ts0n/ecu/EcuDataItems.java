@@ -232,7 +232,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		if (currSvc == null)
 		{
 			currSvc = new HashMap<Integer, Vector<EcuDataItem>>();
-			log.debug("+SVC: " + service + " - " + currSvc); //$NON-NLS-1$ //$NON-NLS-2$
+			log.trace("+SVC: " + service + " - " + currSvc); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		// check if item list exists for current PID
@@ -241,7 +241,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		if (currVec == null)
 		{
 			currVec = new Vector<EcuDataItem>();
-			log.debug("+PID: " + newItem.pid + " - " + currVec); //$NON-NLS-1$ //$NON-NLS-2$
+			log.trace("+PID: " + newItem.pid + " - " + currVec); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		// enter data item into list of items / PID
 		currVec.add(newItem);
@@ -250,7 +250,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		// update map of services
 		put(service, currSvc);
 		// debug message of new enty
-		log.debug("+" + service + "/" + String.format("0x%02X",newItem.pid) + " - " + currVec); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		log.trace("+" + service + "/" + String.format("0x%02X",newItem.pid) + " - " + currVec); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 	}
 
 	/**

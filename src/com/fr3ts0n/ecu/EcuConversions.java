@@ -178,7 +178,7 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 					for (int i = 0; i < EcuDataItem.SYSTEM_TYPES; i++)
 					{
 						currCnvSet[i] = newCnv;
-						log.debug("+" + params[FLD_NAME] + "/" + params[FLD_SYSTEM] + " - " + String.valueOf(newCnv));
+						log.trace("+" + params[FLD_NAME] + "/" + params[FLD_SYSTEM] + " - " + String.valueOf(newCnv));
 					}
 				} else
 				{
@@ -188,7 +188,7 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 						if (EcuDataItem.cnvSystems[i].equals(params[FLD_SYSTEM]))
 						{
 							currCnvSet[i] = newCnv;
-							log.debug("+" + params[FLD_NAME] + "/" + params[FLD_SYSTEM] + " - " + newCnv.toString());
+							log.trace("+" + params[FLD_NAME] + "/" + params[FLD_SYSTEM] + " - " + newCnv.toString());
 						}
 					}
 				}
