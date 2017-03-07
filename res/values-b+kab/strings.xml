@@ -1,3 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="translation_credits">Tasuqilt sɣur fr3ts0n</string>
+    <string name="app_description">Asnas Android n tesleṭ n tkerrust OBD i umezgay Bluetooth ELM327</string>
+    <string name="send">Azen</string>
+    <string name="not_connected">Ur teqqineḍ ara ar yibenk</string>
+    <string name="title_connecting">Tuqqna…</string>
+    <string name="title_connected_to">Yeqqen ar %s</string>
+    <string name="title_not_connected">Ur iqqin ara</string>
+    <string name="title">azwel</string>
+    <string name="welcome_to">Anṣuf ar</string>
+    <string name="logo">Alugu</string>
+    <string name="back_again_to_exit">Senned tikelt-nniḍen af Uɣal akken ad teffɣeḍ</string>
+    <string name="action_connect">Qqen</string>
+    <string name="obd_none">Ulac ameẓlu</string>
+    <string name="obd_services">Imeẓla OBD</string>
+    <string name="obd_veh_info">Talɣut OBD n tkerrust</string>
+    <string name="obd_data">Isefka OBD</string>
+    <string name="service_freezeframes">OBD tilmiyin tusbiḍin</string>
     </resources>
