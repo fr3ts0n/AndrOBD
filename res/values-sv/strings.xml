@@ -1,2 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="translation_credits">Översättning av fr3ts0n</string>
+    <string name="send">Skicka</string>
+    <string name="not_connected">Du är inte ansluten till en enhet</string>
+    <string name="title_connecting">Ansluter…</string>
+    <string name="title_connected_to">Anslöt %s</string>
+    <string name="title_not_connected">Inte ansluten</string>
+    <string name="title">titel</string>
+    <string name="welcome_to">Välkommen till</string>
+    <string name="logo">Logotyp</string>
+    <string name="back_again_to_exit">Tryck bakåt igen för att stänga den här appen</string>
+    <string name="action_connect">_meny_</string>
+    <string name="obd_none">INGEN tjänst</string>
+    <string name="obd_services">OBD-tjänster</string>
+    <string name="obd_veh_info">OBD fordonsinfo</string>
+    <string name="obd_data">ODB-data</string>
+    <string name="obd_codes">OBD-felkoder</string>
+    <string name="obd_permanentcodes">OBD-felkoder (permanenta)</string>
+    <string name="obd_pendingcodes">OBD-felkoder (pendlande)</string>
+    <string name="obd_clearcodes">Rensa bort felkoder</string>
+    <string name="select_device">Välj adapter</string>
+    <string name="none_paired">Inga parade enheter</string>
+    <string name="none_found">Inga enheter hittades</string>
+    <string name="title_paired_devices">Parade enheter</string>
+    <string name="title_other_devices">Andra tillgängliga enheter</string>
+    <string name="button_scan">Sök efter enheter</string>
+
+    <string name="share">dela</string>
+    <string name="time">Klockslag [s]</string>
+    <string name="chart">Kartlägg</string>
+    <string name="demo_stopped">DEMO-läget stoppades</string>
+    <string name="demo_started">DEMO-läget startades</string>
+    <string name="snapshot">ögonblicksbild</string>
+    <string name="save">Spara mätning</string>
+    <string name="load">Ladda mätning</string>
+    <string name="saved_data">Sparade data</string>
+    <string name="loaded">laddad</string>
+    <string name="saved">sparat</string>
+
+    <string name="connected_to">"Ansluten till "</string>
+    <string name="demo">Demo…</string>
+    <string name="saving_data">Sparar data …</string>
+    <string name="loading_data">Laddar data …</string>
+    <string name="dashboard">Instrumentbräda</string>
+    <string name="filter">Valda filter</string>
+    <string name="settings">Inställningar</string>
+    <string name="common_settings">Vanliga inställningar</string>
+    <string name="metric">metrisk</string>
+    <string name="imperial">imperialistisk</string>
+    <string name="items_for_display_descr">Välj alla dataobjekt som ska visas …</string>
+    <string name="debugging">Avlusar</string>
+    <string name="logging_level">Loggningsnivå</string>
+    <string name="comm_io">kommunikation i/o</string>
+    <string name="protocol">protokoll</string>
+    <string name="process_vars">process-variabler</string>
+    <string name="data">data</string>
+    <string name="keep_screen_on">Behåll den huvudsakliga skärmen på</string>
+    </resources>
