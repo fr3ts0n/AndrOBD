@@ -1,5 +1,7 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">Traduction par (Wouazo)</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  AndrOBD -->
+    <string name="translation_credits">Traduction par (Wouazo)</string>
     <string name="app_description">Application Android de diagnostic véhicule OBD pour adaptateur Bluetooth ELM327</string>
     <string name="send">Envoyer</string>
     <string name="not_connected">Vous n\'êtes pas connecté a un périphérique</string>
@@ -7,8 +9,10 @@
     <string name="title_connected_to">Connecté à %s</string>
     <string name="title_not_connected">Non connecté</string>
     <string name="title">Titre</string>
+    <string name="welcome_to">Bienvenue sur</string>
     <string name="logo">Logo</string>
     <string name="back_again_to_exit">Appuyer à nouveau sur Retour pour Quitter</string>
+    <!-- menu  -->
     <string name="action_connect">Connecter</string>
     <string name="obd_none">Pas de service</string>
     <string name="obd_services">Services OBD</string>
@@ -19,8 +23,23 @@
     <string name="obd_permanentcodes">codes erreurs OBD (permanent)</string>
     <string name="obd_pendingcodes">Codes erreur OBD (en cours)</string>
     <string name="obd_clearcodes">Effacer Codes Erreurs</string>
-    <string name="obd_clear_info">" Cela va remettre à zéro la prochaine révision et effacer toutes les infos de diagnostic dont :\n- Les codes Erreurs\n- Les trames de données figées\n- Les données du test du capteur O2\n- L\'état du test du système de surveillance\n- Les résultats des test du système de surveillance\n- La distance parcourue depuis la dernière révision\n- Le nombre de démarrage depuis la dernière RàZ\n- La distance parcourue depuis la dernière RàZ\n- La durée de fonctionnement moteur depuis la dernière révision\n- Le temps écoulé depuis la dernière RàZ\n\nD\'autres remises à zéro ou effacement peuvent se produire selon les véhicules.\nL\'effacement des certaines données peut faire que le véhicule fonctionne moins\nbien le temps que l\'ECU se recalibre. "</string>
+    <string name="obd_clear_info">" Cela va remettre à zéro la prochaine révision et effacer toutes les infos de diagnostic dont :\n
+  - Les codes Erreurs\n
+  - Les trames de données figées\n
+  - Les données du test du capteur O2\n
+  - L\'état du test du système de surveillance\n
+  - Les résultats des test du système de surveillance\n
+  - La distance parcourue depuis la dernière révision\n
+  - Le nombre de démarrage depuis la dernière RàZ\n
+  - La distance parcourue depuis la dernière RàZ\n
+  - La durée de fonctionnement moteur depuis la dernière révision\n
+  - Le temps écoulé depuis la dernière RàZ\n
+  \n
+  D\'autres remises à zéro ou effacement peuvent se produire selon les véhicules.\n
+  L\'effacement des certaines données peut faire que le véhicule fonctionne moins\n
+  bien le temps que l\'ECU se recalibre. "</string>
 
+    <!--  BtDeviceListActivity -->
     <string name="scanning">Scan en cours…</string>
     <string name="select_device">Choisir un adaptateur</string>
     <string name="none_paired">Aucun appareil appairé</string>
@@ -29,6 +48,7 @@
     <string name="title_other_devices">Autres appareils disponibles</string>
     <string name="button_scan">Recherche d\'appareil</string>
 
+    <!-- ExportTask -->
     <string name="send_to">Envoyer à</string>
     <string name="share">partager</string>
     <string name="time">Temps (s)</string>
@@ -52,6 +72,7 @@
     <string name="filter">Filtre choisi</string>
     <string name="unfilter">Retirer le filtre</string>
 
+    <!-- Settings -->
     <string name="settings">Paramètres</string>
     <string name="common_settings">Paramètres communs</string>
     <string name="measure_system_description">Unités de mesures (Métrique/impérial)</string>
@@ -60,6 +81,8 @@
     <string name="imperial">impérial</string>
     <string name="items_for_display">Données à afficher</string>
     <string name="items_for_display_descr">Choisir toutes les informations à afficher…</string>
+    <string-array name="empty" translatable="false"/>
+
     <string name="debugging">Debug</string>
     <string name="logging_level">Niveau d\'enregistrement</string>
     <string name="logging_level_description">Niveau de détail à enregistrer dans le fichier de debug</string>
@@ -68,6 +91,17 @@
     <string name="protocol">protocole</string>
     <string name="process_vars">variables du processus</string>
     <string name="data">données</string>
+
+    <!--
+    * key values for restore options
+    * - must align with enum MainActivity.PRESELECT
+    -->
+
+    <!--
+    * display values for restore options
+    * - must align with enum MainActivity.PRESELECT
+    -->
+
     <string name="last_elm">reconnecter le dernier ELM</string>
     <string name="last_ecu">reconnecter le dernier ECU</string>
     <string name="last_service">dernier service OBD</string>
@@ -85,7 +119,7 @@
     <string name="fault_codes">Codes d\'erreurs</string>
     <string name="select_extension">Choisir un fichier .csv…</string>
     <string name="extension_loading">Chargement de la personnalisation</string>
-    <string name="check_cust_settings">Vérifier vos paramètres de personnalisation\n</string>
+    <string name="check_cust_settings">Vérifier vos paramètres de personnalisation</string>
     <string name="obd_options">"Options OBD "</string>
     <string name="obd_opt_description">Options du protocole OBD / communication véhicule</string>
     <string name="select_protocol">"Protocole OBD préféré "</string>
@@ -122,6 +156,7 @@
     <string name="elm_custom_init">Init. perso. de l\'ELM</string>
     <string name="elm_custom_init_descr">Commandes perso. d\'init. de l\'ELM</string>
 
+    <!-- ELM communication states -->
     <string name="UNDEFINED">Non défini(e)</string>
     <string name="INITIALIZING">Initialisation…</string>
     <string name="INITIALIZED">Initialisé(e)</string>
@@ -137,5 +172,22 @@
     <string name="RXERROR">Erreur de réception</string>
     <string name="ERROR">Erreur</string>
     <string name="obd_error">Erreur du protocole OBD</string>
-    <string name="welcome_to">Bienvenue sur</string>
-    </resources>
+    <string name="device_address_description">Adresse IP de l\'appareil ELM</string>
+    <string name="device_address">Adresse IP de l\'ELM</string>
+    <string name="device_port">Port de l\'ELM</string>
+    <string name="autohide_toolbar">Cacher la barre d\'outils</string>
+    <string name="autohide_delay">Délai de disparition de la barre d\'outils [s]</string>
+    <!-- the string array corresponding to state enum -->
+
+    <!-- CSV export options -->
+    <string name="csv_export_options">Options d\'export CSV</string>
+    <string name="csv_export_description">Options de formatage des fichiers CSV exportés</string>
+    <string name="csv_field_delimiter_description">Caractère(s) de séparation des champs de données CSV</string>
+    <string name="csv_rec_delimiter">Séparateur d\'enregistrements CSV</string>
+    <string name="csv_rec_delimiter_description">Caractère(s) de séparation de champs CSV</string>
+    <string name="tab">Tabulation</string>
+    <string name="semicolon">POINT-VIRGULE</string>
+    <string name="send_after_export">Envoyer après l\'export</string>
+    <string name="send_after_export_descr">Confirmer l\'envoi du fichier CSV juste après l\'export ?</string>
+
+</resources>
