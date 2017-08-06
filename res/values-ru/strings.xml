@@ -72,4 +72,6 @@
     <string name="dev_opt_description">Опции для отладки и персонализации</string>
     <string name="extension_files">Файлы персонализации протокола (csv)</string>
     <string name="conversions">Преобразование данных</string>
+    <string name="obd_services">Сервисы</string>
+    <string name="last_service">Последний сервис</string>
     </resources>
