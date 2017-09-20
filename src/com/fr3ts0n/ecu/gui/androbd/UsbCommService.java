@@ -30,6 +30,7 @@ import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.util.SerialInputOutputManager;
 
 import java.io.IOException;
+import java.util.logging.Level;
 
 /**
  * USB device communication service
@@ -48,14 +49,14 @@ public class UsbCommService extends CommService
 			@Override
 			public void onRunError(Exception e)
 			{
-				log.error("onRunError: ", e);
+				log.log(Level.SEVERE, "onRunError: ", e);
 				connectionLost();
 			}
 
 			@Override
 			public void onNewData(final byte[] data)
 			{
-				log.trace("RX: " +
+				log.finer("RX: " +
 					          ProtUtils.hexDumpBuffer(new String(data).toCharArray()));
 				for(byte chr : data)
 				{
@@ -138,7 +139,7 @@ public class UsbCommService extends CommService
 			}
 			catch (IOException e)
 			{
-				log.error("Error setting up device: " + e.getMessage(), e);
+				log.log(Level.SEVERE, "Error setting up device: " + e.getMessage(), e);
 				try
 				{
 					sPort.close();
@@ -176,7 +177,7 @@ public class UsbCommService extends CommService
 	@Override
 	public void write(byte[] out)
 	{
-		log.trace("RX: " +
+		log.finer("RX: " +
 			          ProtUtils.hexDumpBuffer(new String(out).toCharArray()));
 		try
 		{
@@ -184,7 +185,7 @@ public class UsbCommService extends CommService
 		}
 		catch(Exception ex)
 		{
-			log.error("TX error", ex);
+			log.log(Level.SEVERE, "TX error", ex);
 			connectionLost();
 		}
 	}

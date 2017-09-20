@@ -18,13 +18,12 @@
 
 package com.fr3ts0n.prot;
 
-import org.apache.log4j.Logger;
-
 import java.io.IOException;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.util.logging.Logger;
 
 /**
  * Wrapper work class to create InputStream from a Datagram Socket
@@ -88,7 +87,7 @@ public class UdpInputStream extends PipedInputStream
     }
     catch(InterruptedException e)
     {
-    log.error(e);
+    log.severe(e);
     }
      */
 		}
@@ -143,11 +142,11 @@ public class UdpInputStream extends PipedInputStream
 								socket.receive(packet);
 								charsReceived += packet.getLength();
 								out.write(packet.getData(), 0, packet.getLength());
-								log.debug("RX:" + new String(packet.getData()));
+								log.fine("RX:" + new String(packet.getData()));
 							}
 						} catch (IOException e)
 						{
-							log.error(e);
+							log.severe(e.toString());
 						}
 						log.info("UdpReader finished");
 					}
@@ -160,7 +159,7 @@ public class UdpInputStream extends PipedInputStream
 				readerThread.start();
 			} catch (IOException e)
 			{
-				log.error(e);
+				log.severe(e.toString());
 			}
 		}
 	}
@@ -182,7 +181,7 @@ public class UdpInputStream extends PipedInputStream
   }
   catch(IOException e)
   {
-  log.error(e);
+  log.severe(e);
   }
   }
    */

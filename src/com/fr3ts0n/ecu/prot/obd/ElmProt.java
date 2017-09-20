@@ -222,7 +222,7 @@ public class ElmProt
 		{
 			if (disablingAllowed)
 			{
-				log.debug(String.format("ELM command '%s' -> %s",
+				log.fine(String.format("ELM command '%s' -> %s",
 				                        toString(),
 				                        enabled ? "enabled" : "disabled"));
 				this.enabled = enabled;
@@ -476,7 +476,7 @@ public class ElmProt
 	@Override
 	public void sendTelegram(char[] buffer)
 	{
-		log.debug(this.toString() + " TX:'" + String.valueOf(buffer) + "'");
+		log.fine(this.toString() + " TX:'" + String.valueOf(buffer) + "'");
 		lastCommand = buffer;
 		super.sendTelegram(buffer);
 	}
@@ -580,7 +580,7 @@ public class ElmProt
 		int result = 0;
 		String bufferStr = new String(buffer);
 
-		log.debug(this.toString() + " RX:'" + bufferStr + "'");
+		log.fine(this.toString() + " RX:'" + bufferStr + "'");
 
 		// empty result
 		if (buffer.length == 0)
@@ -760,7 +760,7 @@ public class ElmProt
 							if(adrEnd % 2 != 0) adrEnd = 3;
 							// extract address
 							String address = bufferStr.substring(0, adrEnd);
-							log.debug(String.format("Found ECU address: 0x%s", address));
+							log.fine(String.format("Found ECU address: 0x%s", address));
 							// and add to list of addresses
 							ecuAddresses.add(Integer.valueOf(address, 16));
 						}
@@ -982,7 +982,7 @@ public class ElmProt
 				}
 			} catch (Exception ex)
 			{
-				log.error(ex.getLocalizedMessage());
+				log.severe(ex.getLocalizedMessage());
 			}
 		}
 		log.info("ELM DEMO thread finished");

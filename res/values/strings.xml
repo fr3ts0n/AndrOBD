@@ -109,12 +109,13 @@ period of time while the ECU recalibrates itself.
     <string name="data">data</string>
     <string-array name="logging_options" translatable="false">
         <item>OFF</item>
-        <item>FATAL</item>
-        <item>ERROR</item>
-        <item>WARN</item>
+        <item>SEVERE</item>
+        <item>WARNING</item>
         <item>INFO</item>
-        <item>DEBUG</item>
-        <item>TRACE</item>
+        <item>CONFIG</item>
+        <item>FINE</item>
+        <item>FINER</item>
+        <item>FINEST</item>
         <item>ALL</item>
     </string-array>
 

@@ -74,7 +74,7 @@ public class PvTransferHandler extends TransferHandler
 				return (Transferable) pv;
 			} catch (ClassCastException ex)
 			{
-				ProcessVar.log.error(this.toString() + ":" + ex.getMessage());
+				ProcessVar.log.severe(this.toString() + ":" + ex.getMessage());
 			}
 		} else if (c instanceof PvTable)
 		{
@@ -101,10 +101,10 @@ public class PvTransferHandler extends TransferHandler
 			}
 		} catch (UnsupportedFlavorException e)
 		{
-			ProcessVar.log.error(this.toString() + ":" + e.getMessage());
+			ProcessVar.log.severe(this.toString() + ":" + e.getMessage());
 		} catch (IOException e)
 		{
-			ProcessVar.log.error(this.toString() + ":" + e.getMessage());
+			ProcessVar.log.severe(this.toString() + ":" + e.getMessage());
 		}
 	}
 
@@ -136,10 +136,10 @@ public class PvTransferHandler extends TransferHandler
 			}
 		} catch (UnsupportedFlavorException e)
 		{
-			ProcessVar.log.error(this.toString() + ":" + e.getMessage());
+			ProcessVar.log.severe(this.toString() + ":" + e.getMessage());
 		} catch (IOException e)
 		{
-			ProcessVar.log.error(this.toString() + ":" + e.getMessage());
+			ProcessVar.log.severe(this.toString() + ":" + e.getMessage());
 		}
 		// anything else is handled by superclass
 		return super.importData(support);

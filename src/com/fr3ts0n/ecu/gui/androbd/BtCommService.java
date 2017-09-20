@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
+import java.util.logging.Level;
 
 /**
  * This class does all the work for setting up and managing Bluetooth
@@ -79,7 +80,7 @@ public class BtCommService extends CommService
 	@Override
 	public synchronized void start()
 	{
-		log.debug("start");
+		log.fine("start");
 
 		// Cancel any thread attempting to make a connection
 		if (mBtConnectThread != null)
@@ -107,7 +108,7 @@ public class BtCommService extends CommService
 	@Override
 	public synchronized void connect(Object device, boolean secure)
 	{
-		log.debug("connect to: " + device);
+		log.fine("connect to: " + device);
 
 		// Cancel any thread attempting to make a connection
 		if (mState == STATE.CONNECTING)
@@ -142,7 +143,7 @@ public class BtCommService extends CommService
 	public synchronized void connected(BluetoothSocket socket, BluetoothDevice
 		device, final String socketType)
 	{
-		log.debug("connected, Socket Type:" + socketType);
+		log.fine("connected, Socket Type:" + socketType);
 
 		// Cancel the thread that completed the connection
 		if (mBtConnectThread != null)
@@ -171,7 +172,7 @@ public class BtCommService extends CommService
 	@Override
 	public synchronized void stop()
 	{
-		log.debug("stop");
+		log.fine("stop");
 		elm.removeTelegramWriter(ser);
 
 		if (mBtConnectThread != null)
@@ -235,7 +236,7 @@ public class BtCommService extends CommService
 				}
 			} catch (IOException e)
 			{
-				log.error("Socket Type: " + mSocketType + "create() failed", e);
+				log.log(Level.SEVERE, "Socket Type: " + mSocketType + "create() failed", e);
 			}
 			mmSocket = tmp;
 		}
@@ -262,7 +263,7 @@ public class BtCommService extends CommService
 					mmSocket.close();
 				} catch (IOException e2)
 				{
-					log.error("unable to close() " + mSocketType +
+					log.log(Level.SEVERE, "unable to close() " + mSocketType +
 						          " socket during connection failure", e2);
 				}
 				connectionFailed();
@@ -286,7 +287,7 @@ public class BtCommService extends CommService
 				mmSocket.close();
 			} catch (IOException e)
 			{
-				log.error("close() of connect " + mSocketType + " socket failed", e);
+				log.log(Level.SEVERE, "close() of connect " + mSocketType + " socket failed", e);
 			}
 		}
 	}
@@ -303,7 +304,7 @@ public class BtCommService extends CommService
 
 		public BtWorkerThread(BluetoothSocket socket, String socketType)
 		{
-			log.debug("create BtWorkerThread: " + socketType);
+			log.fine("create BtWorkerThread: " + socketType);
 			mmSocket = socket;
 			InputStream tmpIn = null;
 			OutputStream tmpOut = null;
@@ -315,7 +316,7 @@ public class BtCommService extends CommService
 				tmpOut = socket.getOutputStream();
 			} catch (IOException e)
 			{
-				log.error("temp sockets not created", e);
+				log.log(Level.SEVERE, "temp sockets not created", e);
 			}
 
 			mmInStream = tmpIn;
@@ -358,7 +359,7 @@ public class BtCommService extends CommService
 				mmSocket.close();
 			} catch (IOException e)
 			{
-				log.error("close() of connect socket failed", e);
+				log.log(Level.SEVERE, "close() of connect socket failed", e);
 			}
 		}
 

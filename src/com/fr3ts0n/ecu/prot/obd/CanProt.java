@@ -26,6 +26,7 @@ import com.fr3ts0n.pvs.PvList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.logging.Level;
 
 
 /**
@@ -228,7 +229,7 @@ public abstract class CanProt extends ProtoHeader
 			}
 		} catch (Exception e)
 		{
-			log.error(e);
+			log.log(Level.SEVERE, e.toString(), e);
 		}
 		return retValue;
 	}

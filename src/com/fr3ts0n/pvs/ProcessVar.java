@@ -18,14 +18,13 @@
 
 package com.fr3ts0n.pvs;
 
-import org.apache.log4j.Logger;
-
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 // For logging ...
 
@@ -145,7 +144,7 @@ public class ProcessVar
 	 */
 	public synchronized void pvChanged(PvChangeEvent event)
 	{
-		log.trace(toString() + ":Child PvChange:" + event.toString());
+		log.finer(toString() + ":Child PvChange:" + event.toString());
 		firePvChanged(new PvChangeEvent(this,
 			((ProcessVar) event.getSource()).getKeyValue(),
 			event.getSource(),
@@ -375,7 +374,7 @@ public class ProcessVar
 		ensurePvChangeListeners();
 		PvChangeListeners.remove(l);
 		allowEvents = !PvChangeListeners.isEmpty();
-		log.trace("-PvListener:" + toString() + "->" + String.valueOf(l));
+		log.finer("-PvListener:" + toString() + "->" + String.valueOf(l));
 	}
 
 	/**
@@ -389,7 +388,7 @@ public class ProcessVar
 		ensurePvChangeListeners();
 		PvChangeListeners.put(l, new Integer(eventMask));
 		allowEvents = true;
-		log.trace("+PvListener:" + toString() + "->" + String.valueOf(l));
+		log.finer("+PvListener:" + toString() + "->" + String.valueOf(l));
 	}
 
 	/**
@@ -411,7 +410,7 @@ public class ProcessVar
 	{
 		if (allowEvents && e.getType() != PvChangeEvent.PV_NOACTION)
 		{
-			log.trace("PvChange:" + e.toString());
+			log.finer("PvChange:" + e.toString());
 
 			Integer evtMask;
 			Map.Entry curr;
@@ -432,7 +431,7 @@ public class ProcessVar
 
 					if ((evtMask.intValue() & e.getType()) != 0)
 					{
-						log.trace("Notify:" + curr);
+						log.finer("Notify:" + curr);
 						((PvChangeListener) curr.getKey()).pvChanged(e);
 					}
 				}

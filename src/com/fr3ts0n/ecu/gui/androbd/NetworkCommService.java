@@ -61,7 +61,7 @@ public class NetworkCommService
 	@Override
 	public void start()
 	{
-		log.debug("start");
+		log.fine("start");
 		// set up protocol handlers
 		elm.addTelegramWriter(ser);
 		// create communication thread
@@ -72,7 +72,7 @@ public class NetworkCommService
 	@Override
 	public void stop()
 	{
-		log.debug("stop");
+		log.fine("stop");
 		elm.removeTelegramWriter(ser);
 		// close socket
 		try
@@ -80,7 +80,7 @@ public class NetworkCommService
 			mSocket.close();
 		} catch (Exception e)
 		{
-			log.error(e.getMessage());
+			log.severe(e.getMessage());
 		}
 		setState(STATE.OFFLINE);
 	}
@@ -138,7 +138,7 @@ public class NetworkCommService
 				svc.start();
 			} catch (Exception e)
 			{
-				log.error(e.getMessage());
+				log.severe(e.getMessage());
 				connectionFailed();
 			}
 		}

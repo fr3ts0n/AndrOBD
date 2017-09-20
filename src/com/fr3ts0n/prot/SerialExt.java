@@ -18,9 +18,8 @@
 
 package com.fr3ts0n.prot;
 
-import org.apache.log4j.Logger;
-
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /**
  * Extension to native serial selectedPort to allow odd baud rates and 5-Baud operations
@@ -158,7 +157,7 @@ public class SerialExt
 	public static int setBreak(int newStatus)
 		throws IOException
 	{
-		log.debug(String.format("BREAK %s", newStatus != 0 ? "ON" : "OFF"));
+		log.fine(String.format("BREAK %s", newStatus != 0 ? "ON" : "OFF"));
 		int result = setBreak(serialPortDescriptor, newStatus);
 		if (result != 0)
 		{
@@ -177,7 +176,7 @@ public class SerialExt
 	public static int setCustomBaudrate(int baudrate)
 		throws IOException
 	{
-		log.debug(String.format("Setting custom baudrate %d", baudrate));
+		log.fine(String.format("Setting custom baudrate %d", baudrate));
 		int result = setCustomBaudrate(serialPortDescriptor, baudrate);
 		if (result != 0)
 		{
@@ -196,7 +195,7 @@ public class SerialExt
 		throws IOException
 	{
 		int result = getCustomBaudrate(serialPortDescriptor);
-		log.debug(String.format("getting custom baudrate %d", result));
+		log.fine(String.format("getting custom baudrate %d", result));
 		if (result <= 0)
 		{
 			throw new IOException("getCustomBaudrate");
@@ -212,7 +211,7 @@ public class SerialExt
 	public static int receiveChar()
 		throws IOException
 	{
-		log.trace(String.format("waiting for RX char"));
+		log.finer(String.format("waiting for RX char"));
 		int result = receiveChar(serialPortDescriptor);
 		if (result < 0)
 		{
@@ -230,7 +229,7 @@ public class SerialExt
 	public static int sendChar(byte txChar)
 		throws IOException
 	{
-		log.trace(String.format("sending char:%02X", (byte) txChar));
+		log.finer(String.format("sending char:%02X", (byte) txChar));
 		int result = sendChar(serialPortDescriptor, (char) txChar);
 		if (result < 0)
 		{

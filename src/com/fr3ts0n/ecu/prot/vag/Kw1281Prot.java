@@ -31,8 +31,6 @@ import com.fr3ts0n.prot.TelegramWriter;
 import com.fr3ts0n.prot.gui.KLHandler;
 import com.fr3ts0n.pvs.PvList;
 
-import org.apache.log4j.Logger;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -46,6 +44,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Vector;
+import java.util.logging.Logger;
 
 
 /**
@@ -273,7 +272,7 @@ public class Kw1281Prot extends ProtoHeader
 						rdr.close();
 					} catch (IOException ex)
 					{
-						log.warn("LoadPreset: " + ex.toString());
+						log.warning("LoadPreset: " + ex.toString());
 					}
 				}
 			}
@@ -335,7 +334,7 @@ public class Kw1281Prot extends ProtoHeader
 						log.info("Preset saved: " + fileName);
 					} catch (IOException ex)
 					{
-						log.error("SavePreset: " + ex.toString());
+						log.severe("SavePreset: " + ex.toString());
 					} finally
 					{
 						try
@@ -343,7 +342,7 @@ public class Kw1281Prot extends ProtoHeader
 							wtr.close();
 						} catch (IOException ex)
 						{
-							log.error("SavePreset: " + ex.toString());
+							log.severe("SavePreset: " + ex.toString());
 						}
 					}
 				} else
@@ -646,7 +645,7 @@ public class Kw1281Prot extends ProtoHeader
 	{
 		int cnt = 0;
 
-		log.debug("RX:" + ProtUtils.hexDumpBuffer(buffer));
+		log.fine("RX:" + ProtUtils.hexDumpBuffer(buffer));
 
 		// if telegram is OK
 		if (checkTelegram(buffer))
@@ -724,7 +723,7 @@ public class Kw1281Prot extends ProtoHeader
 				case ID_GRPINFO_DATA:
 					if (currGrpItems == null || currGrpItems.size() < BLK_NUM_ITEMS)
 					{
-						log.error(String.format("Missing/Incomplete Metadata for GRP:%d", (int) getCurrDataGroup()));
+						log.severe(String.format("Missing/Incomplete Metadata for GRP:%d", (int) getCurrDataGroup()));
 					}
 				{
 					for (int i = 0; i < Math.min(payLoad.length, currGrpItems.size()); i++)
@@ -736,7 +735,7 @@ public class Kw1281Prot extends ProtoHeader
 							currItm.updatePvFomBuffer(payLoad);
 						} else
 						{
-							log.error(String.format("Data w/o meta GRP:%d, ITM:%d", (int) getCurrDataGroup(), i));
+							log.severe(String.format("Data w/o meta GRP:%d, ITM:%d", (int) getCurrDataGroup(), i));
 						}
 					}
 				}
@@ -786,7 +785,7 @@ public class Kw1281Prot extends ProtoHeader
 							}
 						} else
 						{
-							log.warn("Unknown data ID:" + dId);
+							log.warning("Unknown data ID:" + dId);
 						}
 					}
 					// if we do group reading and desired group has not changed ...
@@ -992,7 +991,7 @@ public class Kw1281Prot extends ProtoHeader
 			{
 				public void actionPerformed(ActionEvent arg0)
 				{
-					log.warn("CommTimeout -> re-initializing");
+					log.warning("CommTimeout -> re-initializing");
 					adapt.init5Baud(adress);
 				}
 			});
@@ -1009,7 +1008,7 @@ public class Kw1281Prot extends ProtoHeader
 						Thread.sleep(500);
 					} catch (Exception e)
 					{
-						log.error(null, e);
+						log.severe(null, e);
 					}
 				}
 			}

@@ -22,6 +22,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.Vector;
+import java.util.logging.Level;
 
 /**
  * Database backed process variable
@@ -135,7 +136,7 @@ public class DbProcessVar extends IndexedProcessVar
 			}
 		} catch (Exception e)
 		{
-			log.error(e.getStackTrace());
+			log.log(Level.SEVERE, e.toString(), e);
 		}
 		return (set);
 	}

@@ -18,8 +18,6 @@
 
 package com.fr3ts0n.prot;
 
-import org.apache.log4j.Logger;
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DecimalFormat;
@@ -28,6 +26,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Generic Base Class of Protocol header hadling
@@ -479,7 +479,7 @@ public abstract class ProtoHeader
 				break;
 
 			default:
-				log.error("Invalid Parameter Type" + String.valueOf(currParam[ID_TYPE]));
+				log.severe("Invalid Parameter Type" + String.valueOf(currParam[ID_TYPE]));
 				break;
 		}
 		return (result);
@@ -538,7 +538,7 @@ public abstract class ProtoHeader
 				break;
 
 			default:
-				log.error("Invalid Parameter Type" + String.valueOf(currParam[ID_TYPE]));
+				log.severe("Invalid Parameter Type" + String.valueOf(currParam[ID_TYPE]));
 				break;
 		}
 		return (result);
@@ -774,7 +774,7 @@ public abstract class ProtoHeader
 				break;
 
 			default:
-				log.error("Invalid Parameter Type" + String.valueOf(currParam[ID_TYPE]));
+				log.severe("Invalid Parameter Type" + String.valueOf(currParam[ID_TYPE]));
 				break;
 		}
 		return (result);
@@ -875,16 +875,16 @@ public abstract class ProtoHeader
 			{
 				try
 				{
-					log.debug(this.toString() + " " + getParamDescriptors()[cnt] + ": " + getParamInt(cnt, buffer));
+					log.fine(this.toString() + " " + getParamDescriptors()[cnt] + ": " + getParamInt(cnt, buffer));
 				} catch (Exception e)
 				{
 					// we don't want to do anything here ...
 				}
 			}
-			log.debug(this.toString() + " Payload : " + ProtUtils.hexDumpBuffer(getPayLoad(buffer)));
+			log.fine(this.toString() + " Payload : " + ProtUtils.hexDumpBuffer(getPayLoad(buffer)));
 		} else
 		{
-			log.error(this.toString() + " Invalid Telegram: '" + new String(buffer) + "' " + String.valueOf(buffer.length - getHeaderLength()));
+			log.severe(this.toString() + " Invalid Telegram: '" + new String(buffer) + "' " + String.valueOf(buffer.length - getHeaderLength()));
 		}
 	}
 
@@ -903,8 +903,8 @@ public abstract class ProtoHeader
 	{
 		int cnt = 0;
 
-		log.debug(this.toString() + " RX:" + ProtUtils.hexDumpBuffer(buffer));
-		if (log.isDebugEnabled())
+		log.fine(this.toString() + " RX:" + ProtUtils.hexDumpBuffer(buffer));
+		if (log.isLoggable(Level.FINE))
 		{
 			dumpParameters(buffer);
 		}
