@@ -21,7 +21,7 @@ package com.fr3ts0n.ecu;
 import com.fr3ts0n.prot.ProtUtils;
 import com.fr3ts0n.prot.ProtoHeader;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 /**
  * Definition of a single ECU Data item (EcuDataItem)
@@ -174,7 +174,7 @@ public class EcuDataItem
 		} catch(Exception ex)
 		{
 			result = "n/a";
-			log.warn(String.format("%s: %s - [%s]", toString(), ex.getMessage(), ProtUtils.hexDumpBuffer(buffer)));
+			log.warning(String.format("%s: %s - [%s]", toString(), ex.getMessage(), ProtUtils.hexDumpBuffer(buffer)));
 			enabled = false;
 		}
 		return (result);
@@ -194,7 +194,7 @@ public class EcuDataItem
 				// get physical value
 				Object result = physFromBuffer(buffer);
 				pv.put(EcuDataPv.FID_VALUE, result);
-				log.debug(String.format("%02X %-30s %16s %s",
+				log.fine(String.format("%02X %-30s %16s %s",
 				                        pid,
 				                        label,
 				                        pv.get(EcuDataPv.FID_VALUE),
@@ -202,7 +202,7 @@ public class EcuDataItem
 			}
 			catch(Exception ex)
 			{
-				log.error(ex);
+				log.severe(ex.toString());
 			}
 		}
 	}

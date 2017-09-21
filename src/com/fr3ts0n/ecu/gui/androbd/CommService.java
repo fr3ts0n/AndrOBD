@@ -26,7 +26,7 @@ import android.os.Message;
 
 import com.fr3ts0n.ecu.prot.obd.ElmProt;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 /**
  * Abstract communication service
@@ -105,7 +105,7 @@ public abstract class CommService
 	 */
 	protected synchronized void setState(STATE state)
 	{
-		log.debug("setState() " + mState + " -> " + state);
+		log.fine("setState() " + mState + " -> " + state);
 		mState = state;
 
 		// Give the new state to the Handler so the UI Activity can update

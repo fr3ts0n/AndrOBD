@@ -18,7 +18,7 @@
 
 package com.fr3ts0n.ecu;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 /**
  * Base class for numeric diagnostic data conversions

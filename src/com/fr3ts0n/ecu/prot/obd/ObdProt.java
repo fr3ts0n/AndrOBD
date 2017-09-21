@@ -392,7 +392,7 @@ public class ObdProt extends ProtoHeader
             // if no items defined, create dummy item
             if (items == null)
             {
-                log.warn(String.format("unknown PID %02X", currPid));
+                log.warning(String.format("unknown PID %02X", currPid));
 
                 // create new dummy item / OneToOne conversion
                 Conversion[] dummyCnvs = {EcuConversions.dfltCnv, EcuConversions.dfltCnv};
@@ -435,7 +435,7 @@ public class ObdProt extends ProtoHeader
                 pidSupported.add(i + start + 1);
             }
         }
-        log.debug(Long.toHexString(bitmask).toUpperCase() + "(" + Long.toHexString(
+        log.fine(Long.toHexString(bitmask).toUpperCase() + "(" + Long.toHexString(
                 start) + "):" + pidSupported);
         // if next block may be requested
         if ((bitmask & 1) != 0)
@@ -523,7 +523,7 @@ public class ObdProt extends ProtoHeader
                     // create NRC error message
                     String error = String.format(nrc.toString(svc));
                     // log error
-                    log.error(error);
+                    log.severe(error);
                     if (isResetOnNrc())
                     {
                         // perform immediate reset because NRC reception
@@ -638,7 +638,7 @@ public class ObdProt extends ProtoHeader
                                                            Messages.getString(
                                                            "customer.specific.trouble.code.see.manual"));
                                 }
-                                log.debug(String.format("+DFC: %04x: %s", key, code.toString()));
+                                log.fine(String.format("+DFC: %04x: %s", key, code.toString()));
                                 tCodes.put(key, code);
                                 // increment number of codes
                                 nCodes++;
@@ -656,11 +656,11 @@ public class ObdProt extends ProtoHeader
                         break;
 
                     default:
-                        log.warn("Service not (yet) supported: " + msgService);
+                        log.warning("Service not (yet) supported: " + msgService);
                 }
             } catch (NumberFormatException e)
             {
-                log.warn("'" + buffer.toString() + "':" + e.getMessage());
+                log.warning("'" + buffer.toString() + "':" + e.getMessage());
             }
         }
         return (result);
@@ -821,7 +821,7 @@ public class ObdProt extends ProtoHeader
             case OBD_SVC_O2_RESULT:
             case OBD_SVC_MON_RESULT:
             default:
-                log.warn("Service not supported: " + obdService);
+                log.warning("Service not supported: " + obdService);
         }
     }
 }

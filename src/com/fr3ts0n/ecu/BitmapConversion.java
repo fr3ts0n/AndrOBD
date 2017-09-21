@@ -87,7 +87,7 @@ public class BitmapConversion extends NumericConversion
 				xlatKey = xlatKey.replaceAll("[ -]", "_").toLowerCase();
 				value = Messages.getString(xlatKey, value);
 				// debug log translated message
-				log.trace(String.format("%s=%s", xlatKey, value));
+				log.finer(String.format("%s=%s", xlatKey, value));
 				
 				// ... and enter into hash map
 				hashData.put(key, value);

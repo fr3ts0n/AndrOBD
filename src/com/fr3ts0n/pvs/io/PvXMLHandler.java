@@ -23,7 +23,6 @@ import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
 import com.fr3ts0n.pvs.PvList;
 
-import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -34,6 +33,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -132,7 +133,7 @@ public class PvXMLHandler
 		// If this is a valid String, then handle it as the new data
 		if (currStr.length() > 0)
 		{
-			log.debug("Chars:'" + currStr + "'");
+			log.fine("Chars:'" + currStr + "'");
 			currValue = currStr;
 		}
 	}
@@ -147,14 +148,14 @@ public class PvXMLHandler
 	 */
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts)
 	{
-		if (log.isDebugEnabled())
+		if (log.isLoggable(Level.FINE))
 		{
 			StringBuffer sb = new StringBuffer("StartElement:" + qName + ":");
 			for (int i = 0; i < atts.getLength(); i++)
 			{
 				sb.append(atts.getQName(i) + "=" + atts.getValue(i) + ",");
 			}
-			log.debug(sb.toString());
+			log.fine(sb.toString());
 		}
 
 		int tagID = getTagID(qName);
@@ -190,12 +191,12 @@ public class PvXMLHandler
 	 */
 	public void endElement(String namespaceURI, String localName, String qName)
 	{
-		log.debug("EndElement:" + qName);
+		log.fine("EndElement:" + qName);
 		int tagID = getTagID(qName);
 		switch (tagID)
 		{
 			case TAG_ID_PROCESSVAR:
-				log.debug("PV:" + currPv.toString());
+				log.fine("PV:" + currPv.toString());
 				firePvChanged(new PvChangeEvent(this, currPv.getKeyValue(), currPv, PvChangeEvent.PV_CONFIRMED));
 				currValue = currPv;
 				// If we have PV's on stack, the new PV is a recursive attribute
@@ -206,7 +207,7 @@ public class PvXMLHandler
 					currAttrib = (String) stackElems[1];
 				} else
 				{
-					log.error("NO more PV's on Stack");
+					log.severe("NO more PV's on Stack");
 				}
 				if (currPv == rootPv)
 				{
@@ -238,7 +239,7 @@ public class PvXMLHandler
 	 */
 	public synchronized void removePvChangeListener(PvChangeListener l)
 	{
-		log.debug("-PvListener:" + String.valueOf(this) + "->" + String.valueOf(l));
+		log.fine("-PvListener:" + String.valueOf(this) + "->" + String.valueOf(l));
 
 		PvChangeListeners.remove(l);
 	}
@@ -256,7 +257,7 @@ public class PvXMLHandler
 
 		if (oldListener == null)
 		{
-			log.debug("+PvListener:" + String.valueOf(this) + "->" + String.valueOf(l));
+			log.fine("+PvListener:" + String.valueOf(this) + "->" + String.valueOf(l));
 		}
 	}
 
@@ -278,7 +279,7 @@ public class PvXMLHandler
 	@SuppressWarnings("rawtypes")
 	protected void firePvChanged(PvChangeEvent e)
 	{
-		log.debug("PvChange:" + e.toString());
+		log.fine("PvChange:" + e.toString());
 
 		Integer evtMask;
 		Map.Entry curr;
@@ -297,7 +298,7 @@ public class PvXMLHandler
 
 				if ((evtMask.intValue() & e.getType()) != 0)
 				{
-					log.debug("Notify:" + curr);
+					log.fine("Notify:" + curr);
 					((PvChangeListener) curr.getKey()).pvChanged(e);
 				}
 			}

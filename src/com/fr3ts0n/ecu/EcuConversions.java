@@ -18,13 +18,12 @@
 
 package com.fr3ts0n.ecu;
 
-import org.apache.log4j.Logger;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 /**
  * Diagnostic data conversions
@@ -178,7 +177,7 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 					for (int i = 0; i < EcuDataItem.SYSTEM_TYPES; i++)
 					{
 						currCnvSet[i] = newCnv;
-						log.trace("+" + params[FLD_NAME] + "/" + params[FLD_SYSTEM] + " - " + String.valueOf(newCnv));
+						log.finer("+" + params[FLD_NAME] + "/" + params[FLD_SYSTEM] + " - " + String.valueOf(newCnv));
 					}
 				} else
 				{
@@ -188,7 +187,7 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 						if (EcuDataItem.cnvSystems[i].equals(params[FLD_SYSTEM]))
 						{
 							currCnvSet[i] = newCnv;
-							log.trace("+" + params[FLD_NAME] + "/" + params[FLD_SYSTEM] + " - " + newCnv.toString());
+							log.finer("+" + params[FLD_NAME] + "/" + params[FLD_SYSTEM] + " - " + newCnv.toString());
 						}
 					}
 				}

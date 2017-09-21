@@ -59,12 +59,10 @@ import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
 import com.fr3ts0n.pvs.PvList;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -72,8 +70,11 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.TreeSet;
-
-import de.mindpipe.android.logging.log4j.LogConfigurator;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  * Main Activity for AndrOBD app
@@ -173,7 +174,7 @@ public class MainActivity extends ListActivity
 	public static final String KEEP_SCREEN_ON = "keep_screen_on";
 	public static final String ELM_CUSTOM_INIT_CMDS = "elm_custom_init_cmds";
 
-	public static final Logger log = Logger.getLogger(TAG);
+    public static final Logger log = Logger.getLogger(TAG);
 
 	/** dialog builder */
 	private static AlertDialog.Builder dlgBuilder;
@@ -197,7 +198,6 @@ public class MainActivity extends ListActivity
 	/**
 	 * log4j configurator
 	 */
-	private static LogConfigurator logCfg;
 	private static Menu menu;
 	/**
 	 * Data list adapters
@@ -291,7 +291,7 @@ public class MainActivity extends ListActivity
 					// if items could not be applied
 					// remove invalid preselection
 					prefs.edit().remove(PRESELECT.LAST_ITEMS.toString()).apply();
-					log.warn(String.format("Invalid preselection: %s",
+					log.warning(String.format("Invalid preselection: %s",
 					                       Arrays.toString(lastSelectedItems)));
 				}
 			}
@@ -445,7 +445,7 @@ public class MainActivity extends ListActivity
 				case MESSAGE_TOOLBAR_VISIBLE:
 					Boolean visible = (Boolean)msg.obj;
 					// log action
-					log.debug(String.format("ActionBar: %s", visible ? "show" : "hide"));
+					log.fine(String.format("ActionBar: %s", visible ? "show" : "hide"));
 					// set action bar visibility
 					ActionBar ab = getActionBar();
 					if(ab != null)
@@ -674,13 +674,23 @@ public class MainActivity extends ListActivity
 		if(prefs.getBoolean(PREF_AUTOHIDE,false))
 			getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
 
-		// set up log4j logging ...
-		logCfg = new LogConfigurator();
-		logCfg.setUseLogCatAppender(true);
-		logCfg.setUseFileAppender(true);
-		logCfg.setFileName(
-			FileHelper.getPath(this).concat(File.separator).concat("log/AndrOBD.log"));
-		setLogLevels();
+		// set up logging ...
+        String logFileName = FileHelper.getPath(this).concat(File.separator).concat("log/AndrOBD.log");
+        try
+		{
+            LogManager lMgr = LogManager.getLogManager();
+            InputStream inStr = getAssets().open("logging.properties");
+			lMgr.readConfiguration(inStr);
+            FileHandler hdlr = new FileHandler(logFileName);
+            hdlr.setFormatter(new SimpleFormatter());
+            Logger.getLogger("").addHandler(hdlr);
+			setLogLevels();
+		}
+		catch(IOException e)
+		{
+			// try to log error
+			log.log(Level.SEVERE, logFileName, e);
+		}
 
 		log.info(String.format("%s %s starting",
 		                       getString(R.string.app_name),
@@ -725,7 +735,7 @@ public class MainActivity extends ListActivity
 			case BLUETOOTH:
 				// Get local Bluetooth adapter
 				mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-				log.debug("Adapter: " + mBluetoothAdapter);
+				log.fine("Adapter: " + mBluetoothAdapter);
 				// If BT is not on, request that it be enabled.
 				if (getMode() != MODE.DEMO && mBluetoothAdapter != null)
 				{
@@ -978,12 +988,20 @@ public class MainActivity extends ListActivity
 	}
 
 	/**
-	 * Setr logging levels from shared preferences
+	 * Set logging levels from shared preferences
 	 */
 	private void setLogLevels()
 	{
-		logCfg.setRootLevel(Level.toLevel(prefs.getString(LOG_MASTER, "INFO")));
-		logCfg.configure();
+        Level level;
+        try
+        {
+            level = Level.parse(prefs.getString(LOG_MASTER, "INFO"));
+        }
+        catch(Exception e)
+        {
+            level = Level.INFO;
+        }
+		Logger.getLogger("").setLevel(level);
 	}
 
 	/**
@@ -1007,7 +1025,7 @@ public class MainActivity extends ListActivity
 			}
 		} catch (Exception e)
 		{
-			log.error("Load ext. conversions: ", e);
+			log.log(Level.SEVERE, "Load ext. conversions: ", e);
 			e.printStackTrace();
 			errors += e.getLocalizedMessage() + "\n";
 		}
@@ -1025,7 +1043,7 @@ public class MainActivity extends ListActivity
 			}
 		} catch (Exception e)
 		{
-			log.error("Load ext. PIDs: ", e);
+			log.log(Level.SEVERE, "Load ext. PIDs: ", e);
 			e.printStackTrace();
 			errors += e.getLocalizedMessage() + "\n";
 		}

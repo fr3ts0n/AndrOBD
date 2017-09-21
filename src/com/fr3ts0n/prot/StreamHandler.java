@@ -19,8 +19,6 @@
 package com.fr3ts0n.prot;
 
 
-import org.apache.log4j.Logger;
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.BufferedWriter;
@@ -28,6 +26,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -94,13 +94,13 @@ public class StreamHandler implements TelegramWriter, Runnable
 		{
 			String msg = new String(buffer);
 			msg += "\r";
-			log.trace(this.toString() + " TX:" + ProtUtils.hexDumpBuffer(msg.toCharArray()));
+			log.finer(this.toString() + " TX:" + ProtUtils.hexDumpBuffer(msg.toCharArray()));
 			out.write(msg.toCharArray());
 			out.flush();
 			result = buffer.length;
 		} catch (Exception ex)
 		{
-			log.warn("TX error:'" + ProtUtils.hexDumpBuffer(buffer) + "':" + ex);
+			log.warning("TX error:'" + ProtUtils.hexDumpBuffer(buffer) + "':" + ex);
 		}
 		return (result);
 	}
@@ -112,7 +112,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 	private void processRxChar(int chr)
 	{
 		// process incoming data
-		log.trace(this.toString() + " RX: '"
+		log.finer(this.toString() + " RX: '"
 			          + String.format("%02X : %1c", (byte) chr, chr < 32 ? '.' : chr)
 			          + "'");
 
@@ -165,7 +165,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 					}
 					else
 					{
-						log.warn(this.toString() + " RX: End of stream!");
+						log.warning(this.toString() + " RX: End of stream!");
 						// stream finished - break loop
 						break;
 					}
@@ -180,7 +180,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 		}
 		catch (	Exception ex )
 		{
-			log.warn("RX error", ex);
+			log.log(Level.WARNING, "RX error", ex);
 		}
 
 		log.info("RX Thread stopped");

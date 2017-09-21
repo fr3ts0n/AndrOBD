@@ -72,7 +72,7 @@ public class TelegramSender
 		Iterator it = telegramWriters.iterator();
 		Object currWriter;
 
-		ProtoHeader.log.debug(this.toString() + " TX:" + ProtUtils.hexDumpBuffer(buffer));
+		ProtoHeader.log.fine(this.toString() + " TX:" + ProtUtils.hexDumpBuffer(buffer));
 
 		while (it.hasNext())
 		{
