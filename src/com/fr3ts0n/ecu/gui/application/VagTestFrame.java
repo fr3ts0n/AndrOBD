@@ -26,10 +26,9 @@ import com.fr3ts0n.ecu.prot.vag.Kw1281Prot;
 import com.fr3ts0n.prot.gui.KLHandlerGeneric;
 import com.fr3ts0n.pvs.PvList;
 
-import org.apache.log4j.AppenderSkeleton;
-import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
-import org.apache.log4j.spi.LoggingEvent;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 import org.jfree.data.time.TimeSeries;
 
 import java.awt.event.ActionEvent;
@@ -123,7 +122,7 @@ public class VagTestFrame extends javax.swing.JFrame
 	/* handle protocol status changes */
 		if ("status".equals(evt.getPropertyName()))
 		{
-			log.debug("Com status:" + val.toString());
+			log.fine("Com status:" + val.toString());
 			if (val != null) lblStatus.setText(val.toString());
 			lblStatus.setBackground(KLHandlerGeneric.statColor[((KLHandlerGeneric.ProtStatus) val).ordinal()]);
 
@@ -193,30 +192,28 @@ public class VagTestFrame extends javax.swing.JFrame
 		cbAddress.setModel(new DefaultComboBoxModel(adresses));
 
 		// put logging messages of root logger to the status bar
-		Logger.getRootLogger().addAppender(new AppenderSkeleton()
-		{
+		Logger.getLogger("").addHandler(new Handler(){
+
 			@Override
-			@SuppressWarnings("deprecation")
-			protected void append(LoggingEvent arg0)
-			{
-				if (arg0.getLevel().isGreaterOrEqual(Priority.INFO))
-				{
-					lblMessage.setText(arg0.getRenderedMessage());
-				}
+			public void close() throws SecurityException {
+				// TODO Auto-generated method stub
+				
 			}
 
 			@Override
-			public void close()
-			{
-				// do nothing
+			public void flush() {
+				// TODO Auto-generated method stub
+				
 			}
 
 			@Override
-			public boolean requiresLayout()
-			{
-				return true;
+			public void publish(LogRecord arg0) {
+				lblMessage.setText(arg0.getMessage());
+				
 			}
+			
 		});
+
 		// initially update group selector
 		updateGroupSelector();
 	}
