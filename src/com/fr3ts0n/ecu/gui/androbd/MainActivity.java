@@ -65,6 +65,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Timer;
@@ -72,7 +73,7 @@ import java.util.TimerTask;
 import java.util.TreeSet;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
@@ -174,7 +175,7 @@ public class MainActivity extends ListActivity
 	public static final String KEEP_SCREEN_ON = "keep_screen_on";
 	public static final String ELM_CUSTOM_INIT_CMDS = "elm_custom_init_cmds";
 
-    public static final Logger log = Logger.getLogger(TAG);
+	private static final Logger log = Logger.getLogger(TAG);
 
 	/** dialog builder */
 	private static AlertDialog.Builder dlgBuilder;
@@ -678,20 +679,34 @@ public class MainActivity extends ListActivity
         String logFileName = FileHelper.getPath(this).concat(File.separator).concat("log/AndrOBD.log");
         try
 		{
-            LogManager lMgr = LogManager.getLogManager();
-            InputStream inStr = getAssets().open("logging.properties");
-			lMgr.readConfiguration(inStr);
-            FileHandler hdlr = new FileHandler(logFileName);
-            hdlr.setFormatter(new SimpleFormatter());
+            // Create new log file handler (max. 250 MB, 5 files rotated, non appending)
+            FileHandler hdlr = new FileHandler(logFileName, 250*1024*1024, 5, false);
+            // Set log message formatter
+            hdlr.setFormatter(new SimpleFormatter() {
+                String format = "%1$tF\t%1$tT.%1$tL\t%4$s\t%3$s\t%5$s%n";
+
+                @Override
+                public synchronized String format(LogRecord lr) {
+                    return String.format(format,
+                                         new Date(lr.getMillis()),
+                                         lr.getSourceClassName(),
+                                         lr.getLoggerName(),
+                                         lr.getLevel().getLocalizedName(),
+                                         lr.getMessage()
+                    );
+                }
+            });
+            // add file logging ...
             Logger.getLogger("").addHandler(hdlr);
-			setLogLevels();
+			// set
+            setLogLevels();
 		}
 		catch(IOException e)
 		{
-			// try to log error
+			// try to log error (at least with system logging)
 			log.log(Level.SEVERE, logFileName, e);
 		}
-
+        // Log program startup
 		log.info(String.format("%s %s starting",
 		                       getString(R.string.app_name),
 		                       getString(R.string.app_version)));
