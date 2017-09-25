@@ -44,6 +44,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Vector;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
@@ -1008,7 +1009,7 @@ public class Kw1281Prot extends ProtoHeader
 						Thread.sleep(500);
 					} catch (Exception e)
 					{
-						log.severe(null, e);
+						log.log(Level.SEVERE, null, e);
 					}
 				}
 			}

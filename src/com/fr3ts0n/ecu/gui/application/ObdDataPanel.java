@@ -29,6 +29,7 @@ import org.jfree.data.time.TimeSeries;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.logging.Level;
 
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
@@ -314,7 +315,7 @@ public class ObdDataPanel extends JPanel
 						ts.addOrUpdate(new Second(), ((Number)pv.get(EcuDataPv.FID_VALUE)).floatValue());
 					} catch (Exception e)
 					{
-						ProcessVar.log.error(e);
+						ProcessVar.log.log(Level.SEVERE, "", e);
 					}
 				break;
 

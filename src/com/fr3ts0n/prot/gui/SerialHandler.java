@@ -18,7 +18,8 @@
 
 package com.fr3ts0n.prot.gui;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.fr3ts0n.prot.SerialExt;
 import com.fr3ts0n.prot.TelegramListener;
@@ -110,7 +111,7 @@ public class SerialHandler extends Thread
 			setDeviceName(device);
 		} catch (IOException ex)
 		{
-			log.error("SerialHandler", ex);
+			log.log(Level.SEVERE, "SerialHandler", ex);
 		}
 	}
 
@@ -220,7 +221,7 @@ public class SerialHandler extends Thread
 			result = dscrField.getLong(dscr);
 		} catch (Exception ex)
 		{
-			log.error("getFD", ex);
+			log.log(Level.SEVERE, "getFD", ex);
 		}
 		return result;
 	}
