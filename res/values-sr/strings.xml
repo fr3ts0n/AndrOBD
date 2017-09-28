@@ -1,2 +1,177 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="translation_credits">Prevod by Nenad163</string>
+    <string name="app_description">Android aplikacija za dijagnostiku automobila putem ELM327 ODB adaptera</string>
+    <string name="send">Posalji</string>
+    <string name="not_connected">Niste povezani sa uredjajem</string>
+    <string name="title_connecting">Povezivanje…</string>
+    <string name="title_connected_to">Povezan %s</string>
+    <string name="title_not_connected">Nema Konekcije</string>
+    <string name="title">Naslov</string>
+    <string name="welcome_to">Dobrodosli u</string>
+    <string name="logo">Logo</string>
+    <string name="back_again_to_exit">Pritisnite nazad ponovo da biste izasli iz aplikacije</string>
+    <string name="action_connect">Povezi se</string>
+    <string name="obd_none">Nema servisa</string>
+    <string name="obd_services">OBD Servisi</string>
+    <string name="obd_veh_info">OBD Informacije o Vozilu</string>
+    <string name="obd_data">OBD Podaci</string>
+    <string name="service_freezeframes">OBD Zaustavi Frejm</string>
+    <string name="obd_codes">OBD kodovi gresaka</string>
+    <string name="obd_permanentcodes">OBD kodovi gresaka (trajni)</string>
+    <string name="obd_pendingcodes">ODB kodovi gresaka (nereseni)</string>
+    <string name="obd_clearcodes">Ocisti kodove gresaka</string>
+    <string name="obd_clear_info">Ovo ce resetovati MIL i ocistiti sve emisiono-vezane informacije
+\ndijagnostike, ukljucujuci:
+\n- Kodove gresaka vezane za probleme
+\n- Zamrznute slike podataka
+\n- Test podatke vezane za senzor vazduha
+\n- Status testova sistema za monitoring
+\n- On-Board rezultate testova za monitoring
+\n- Predjenu daljinu dok je MIL bio ukljucen
+\n- Broj grejanja od kada su DTC-ovi obrisani
+\n- Predjenu daljinu od kada su DTC-ovi obrisani
+\n- Vreme od kada su DTC-ovi obrisani
+\n
+\nDruga brisanja/resetovanja vezana za proizvodjace mogu biti pokrenuta.
+\nGubitak podataka moze izazvati da vozilo ide usporeno na kraci
+\nvremenski period dok se ECU ne rekalibrise.</string>
+
+    <string name="scanning">Skeniranje…</string>
+    <string name="select_device">Izaberite adapter</string>
+    <string name="none_paired">Nema uparenih uredjaja</string>
+    <string name="none_found">Nema pronadjenih uredjaja</string>
+    <string name="title_paired_devices">Upareni uredjaji</string>
+    <string name="title_other_devices">Drugi dostupni uredjaji</string>
+    <string name="button_scan">Trazi uredjaje</string>
+
+    <string name="send_to">Posalji dalje</string>
+    <string name="share">Podeli</string>
+    <string name="time">Vreme [s]</string>
+    <string name="chart">Grafikon</string>
+    <string name="demo_stopped">DEMO mod zaustavljen</string>
+    <string name="demo_started">DEMO mod pokrenut</string>
+    <string name="snapshot">Snimak</string>
+    <string name="save">Snimi merenja</string>
+    <string name="load">Ucitaj merenja</string>
+    <string name="saved_data">Snimljeni podaci</string>
+    <string name="loaded">ucitano</string>
+    <string name="saved">snimljeno</string>
+
+    <string name="connected_to">"Povezan sa "</string>
+    <string name="demo">DEMO…</string>
+    <string name="saving_data">Snimanje podataka …</string>
+    <string name="loading_data">Ucitavanje podataka …</string>
+    <string name="dashboard">Komandna tabla</string>
+    <string name="graph_actions">Akcije grafika</string>
+    <string name="hud">Displej za prikaz informacija</string>
+    <string name="filter">Filter izabran</string>
+    <string name="unfilter">De-filter izabran</string>
+
+    <string name="settings">Podesavanja</string>
+    <string name="common_settings">Zajednicka podesavanja</string>
+    <string name="measure_system_description">Sistem mernih jedinica (metricni / imperijalni )</string>
+    <string name="measure_system">Merne jedinice</string>
+    <string name="metric">metricni</string>
+    <string name="imperial">imperijalni</string>
+    <string name="items_for_display">Stavke podataka za prikaz</string>
+    <string name="items_for_display_descr">Izaberi sve stavke podataka za prikaz …</string>
+    <string name="debugging">Debagiranje</string>
+    <string name="logging_level">Nivo logovanja</string>
+    <string name="logging_level_description">Nivo detalja za logovanje u debag log fajlu</string>
+    <string name="master">glavni</string>
+    <string name="comm_io">komunikacijski ulaz/izlaz</string>
+    <string name="protocol">protokol</string>
+    <string name="process_vars">promenljive procesa</string>
+    <string name="data">podaci</string>
+    <string name="last_elm">povezi se ponovo na poslednji ELM-adapter</string>
+    <string name="last_ecu">povezi se ponovo na poslednji ECU</string>
+    <string name="last_service">poslednji OBD servis</string>
+    <string name="last_data_items">poslednje izabrane stavke podataka</string>
+    <string name="last_view_mode">poslednji mod prikaza podataka</string>
+
+    <string name="keep_screen_on">Drzi glavni ekran ukljucen</string>
+    <string name="keep_screen_on_description">Ne iskljucuj ekran ako su glavni ekran ili podaci prikazani na displeju</string>
+
+    <string name="development_options">Opcije razvoja</string>
+    <string name="dev_opt_description">Opcije za debagiranje i prilagodjavanje</string>
+    <string name="extension_files">Fajlovi za prilagodjavanje protokola (csv)</string>
+    <string name="conversions">Konverzije podataka</string>
+    <string name="data_items">Stavke podataka</string>
+    <string name="fault_codes">Kodovi gresaka</string>
+    <string name="select_extension">Izaberi .csv ekstenzijski fajl …</string>
+    <string name="extension_loading">Ucitavanje prilagodjavanja</string>
+    <string name="check_cust_settings">Molimo vas proverite svoje stavke prilagodjavanja
+\n</string>
+    <string name="obd_options">OBD opcije</string>
+    <string name="obd_opt_description">Opcije za OBD protokol / komunikaciju sa vozilom</string>
+    <string name="select_protocol">Preferirani OBD protokol</string>
+    <string name="select_fault_code">Izaberite kod greske …</string>
+    <string name="select_medium">Tip adaptera …</string>
+
+    <string name="refreshing">skeniranje …</string>
+    <string name="devices_found">%s USB uredjaj(a) pronadjeno</string>
+    <string name="min_elm_timeout">Min. ELM istek vremena [ms]</string>
+    <string name="unabletoconnect">Nemoguce povezivanje sa uredjajem</string>
+    <string name="connectionlost">Veza sa uredjajem je prekinuta</string>
+    <string name="elm_timeout_descr">Minmalni istek vremena u [ms] za odgovor od ELM uredjaja</string>
+    <string name="day_night_mode">Dan/Noc mod prikaza</string>
+    <string name="night_mode_description">Postavi tamnu pozadinu na ekranu</string>
+    <string name="night_mode">Nocni rezim</string>
+    <string name="disable_elm_cmds">Onemogucene ELM komande</string>
+    <string name="disable_elm_cmds_descr">omoguci/onemoguci ELM komande</string>
+    <string name="elm_adaptive_timing">ELM adaptivni tajming</string>
+    <string name="disabled">onemoguceno</string>
+    <string name="enabled">omoguceno</string>
+    <string name="elm_adaptive_timing_descr">Dozvoli adaptivno baratanje tajmingom u ELM drajverima?</string>
+    <string name="elm_reset_on_nrc">Resetuj pri NRC</string>
+    <string name="elm_reset_on_nrc_descr">Resetuj ELM adapter pri NRC gresci?</string>
+    <string name="select_ecu_addr">Izaberite ECU adresu …</string>
+    <string name="disconnect">Prekini vezu</string>
+    <string name="reset_preselections">Resetuj poslednje pre-selekcije</string>
+    <string name="use_last_settings_description">Koristi poslednja podesavanja pri pokretanju(BT adresu, ECU adresu, prikazane podatke ...)</string>
+    <string name="use_last_settings">Koristi poslednja podesavanja</string>
+    <string name="common_settings_description">Zajednicka podesavanja za kontrolu aplikacije</string>
+    <string name="secure_connect">Sigurna konekcija</string>
+    <string name="secure_connect_description">Koristi enkriptovanu Bluetooth konekciju</string>
+    <string name="elm_options">ELM opcije</string>
+    <string name="last_none">NISTA</string>
+    <string name="elm_custom_init">ELM posebna inicijalizacija</string>
+    <string name="elm_custom_init_descr">Posebne komande za ELM inicijalizaciju</string>
+
+    <string name="UNDEFINED">Nedefinisano</string>
+    <string name="INITIALIZING">Inicijalizacija …</string>
+    <string name="INITIALIZED">Inicijalizovano</string>
+    <string name="ECU_DETECT">ECU detektovanje …</string>
+    <string name="ECU_DETECTED">ECU detektovan</string>
+    <string name="CONNECTING">Povezivanje …</string>
+    <string name="CONNECTED">Povezan</string>
+    <string name="NODATA">Nema podataka</string>
+    <string name="STOPPED">Zaustavljeno</string>
+    <string name="DISCONNECTED">Prekinuta veza</string>
+    <string name="BUSERROR">Greska magistrale</string>
+    <string name="DATAERROR">DATA greska</string>
+    <string name="RXERROR">RX greska</string>
+    <string name="ERROR">Greska</string>
+    <string name="obd_error">Greska OBD protokola</string>
+    <string name="device_address_description">Mrezna IP adresa ELM uredjaja</string>
+    <string name="device_address">ELM IP adresa</string>
+    <string name="device_port_description">Mrezni IP port ELM uredjaja</string>
+    <string name="device_port">IP port ELM uredjaja</string>
+    <string name="autohide_toolbar">Sakrij traku sa alatima</string>
+    <string name="autohide_toolbar_description">Automatski sakrij traku sa alatima posle kasnjenja sa/bez aktivnosti</string>
+    <string name="autohide_delay">Kasnjenje za sakrivanje trake sa alatima [s]</string>
+    <string name="autohide_delay_description">Kasnjenje u sekundama sa/bez aktivnosti, pre nego sto je traka sa alatima sakrivena</string>
+    <string name="csv_export_options">CSV opcije za izvoz</string>
+    <string name="csv_export_description">Opcije za formatiranje CSV izvezenih fajlova</string>
+    <string name="csv_field_delimiter">CSV delitelj polja</string>
+    <string name="csv_field_delimiter_description">Karakteri delitelja izmedju CSV polja podataka</string>
+    <string name="csv_rec_delimiter">Delitelj CSV polja</string>
+    <string name="csv_rec_delimiter_description">Karakteri delitelja izmedju CSV polja podataka</string>
+    <string name="csv_text_quoted">Naveden CVS tekst</string>
+    <string name="csv_text_quoted_description">CSV tekst polja su prikljucena medju navodnicima</string>
+    <string name="tab">Jezicak</string>
+    <string name="comma">Zarez</string>
+    <string name="semicolon">Kolona</string>
+    <string name="send_after_export">Posalji posle izvezivanja</string>
+    <string name="send_after_export_descr">Pitaj za slanje CSV fajla odmah posle izvezivanja?</string>
+    </resources>
