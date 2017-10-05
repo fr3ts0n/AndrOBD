@@ -190,4 +190,5 @@
     <string name="send_after_export">Envoyer après l\'export</string>
     <string name="send_after_export_descr">Confirmer l\'envoi du fichier CSV juste après l\'export ?</string>
 
-</resources>
+<string name="device_port_description">Adresse IP de l\'ELM</string>
+    </resources>
