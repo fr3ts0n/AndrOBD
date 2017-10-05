@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <!--  AndrOBD -->
     <string name="translation_credits">Traduction par (Wouazo)</string>
     <string name="app_description">Application Android de diagnostic véhicule OBD pour adaptateur Bluetooth ELM327</string>
     <string name="send">Envoyer</string>
-    <string name="not_connected">Vous n\'êtes pas connecté a un périphérique</string>
+    <string name="not_connected">Vous n\'êtes pas connecté à un périphérique</string>
     <string name="title_connecting">Connexion en cours…</string>
     <string name="title_connected_to">Connecté à %s</string>
     <string name="title_not_connected">Non connecté</string>
@@ -16,12 +16,12 @@
     <string name="action_connect">Connecter</string>
     <string name="obd_none">Pas de service</string>
     <string name="obd_services">Services OBD</string>
-    <string name="obd_veh_info">Infos OBD Véhicule</string>
+    <string name="obd_veh_info">Infos OBD du Véhicule</string>
     <string name="obd_data">Données OBD</string>
     <string name="service_freezeframes">OBD Trames figées</string>
     <string name="obd_codes">Codes d\'erreurs OBD</string>
     <string name="obd_permanentcodes">codes erreurs OBD (permanent)</string>
-    <string name="obd_pendingcodes">Codes erreur OBD (en cours)</string>
+    <string name="obd_pendingcodes">Codes erreur OBD (actuels)</string>
     <string name="obd_clearcodes">Effacer Codes Erreurs</string>
     <string name="obd_clear_info">" Cela va remettre à zéro la prochaine révision et effacer toutes les infos de diagnostic dont :\n
   - Les codes Erreurs\n
