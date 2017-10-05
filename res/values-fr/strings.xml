@@ -172,7 +172,7 @@
     <string name="RXERROR">Erreur de réception</string>
     <string name="ERROR">Erreur</string>
     <string name="obd_error">Erreur du protocole OBD</string>
-    <string name="device_address_description">Adresse IP de l\'appareil ELM</string>
+    <string name="device_address_description">Adresse IP de l\'ELM</string>
     <string name="device_address">Adresse IP de l\'ELM</string>
     <string name="device_port">Port de l\'ELM</string>
     <string name="autohide_toolbar">Cacher la barre d\'outils</string>
