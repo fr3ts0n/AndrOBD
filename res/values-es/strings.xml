@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">Traducido por RamLinux</string>
+<resources><string name="translation_credits">Traducido por RamLinux, eltiobarbas, isalgueiro</string>
     <string name="app_description">Aplicacion android para diagnostico de vehiculos usando el adaptador bluetooth ELM327</string>
     <string name="send">Enviar</string>
     <string name="not_connected">No estas conectado al dispositivo</string>
@@ -116,5 +116,32 @@ periodo corto de tiempo mientras el ECU se recalibra el mismo.
     <string name="fault_codes">Codigos de Falla</string>
     <string name="select_extension">Selecione el archivo .csv …</string>
     <string name="extension_loading">Personalizacion de carga</string>
-    <string name="obd_options">"Opciones OBD "</string>
+    <string name="obd_options">Opciones OBD</string>
+    <string name="check_cust_settings">Compruebe sus ajustes de personalización
+\n</string>
+    <string name="select_protocol">Protocolo OBD preferido</string>
+    <string name="select_fault_code">Seleccione el código de error …</string>
+    <string name="select_medium">Tipo de adaptador …</string>
+
+    <string name="refreshing">escaneando …</string>
+    <string name="devices_found">%s dispositivo(s) USB encontrado(s)</string>
+    <string name="unabletoconnect">Imposible conectar con el dispositivo</string>
+    <string name="night_mode">Modo noche</string>
+    <string name="disabled">desactivado</string>
+    <string name="enabled">activado</string>
+    <string name="disconnect">Desconectar</string>
+    <string name="use_last_settings">Utilizar los últimos ajustes</string>
+    <string name="secure_connect">Conexión segura</string>
+    <string name="INITIALIZING">Inicializando…</string>
+    <string name="INITIALIZED">Inicializado</string>
+    <string name="ECU_DETECTED">ECU detectada</string>
+    <string name="CONNECTING">Conectando…</string>
+    <string name="CONNECTED">Conectado</string>
+    <string name="NODATA">Sin datos</string>
+    <string name="BUSERROR">Error de BUS</string>
+    <string name="RXERROR">Error de recepción</string>
+    <string name="ERROR">Error</string>
+    <string name="obd_error">Error de protocolo OBD</string>
+    <string name="autohide_toolbar">Ocultar barra de herramientas</string>
+    <string name="csv_export_options">Opciones de exportación a CSV</string>
     </resources>
