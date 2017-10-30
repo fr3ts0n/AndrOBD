@@ -69,9 +69,10 @@ public class EcuDataPv extends IndexedProcessVar
 	}
 
 	/**
-	 * get units of a data PV
+	 * get physical measurement units of a data PV.
 	 * Units may change because of the conversion system changed (metric/imperial)
-	 * @return
+	 *
+	 * @return string of physical measurement units
 	 */
 	public String getUnits()
 	{
