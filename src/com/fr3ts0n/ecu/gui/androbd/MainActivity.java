@@ -231,6 +231,8 @@ public class MainActivity extends ListActivity
 	private DATA_VIEW_MODE dataViewMode = DATA_VIEW_MODE.LIST;
 	/** AutoHider for the toolbar */
 	private AutoHider toolbarAutoHider;
+    /** log file handler */
+    private FileHandler logFileHandler;
 
 
 	/** handler for freeze frame selection */
@@ -676,13 +678,18 @@ public class MainActivity extends ListActivity
 			getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
 
 		// set up logging ...
-        String logFileName = FileHelper.getPath(this).concat(File.separator).concat("log/AndrOBD.log");
+        String logFileName = FileHelper.getPath(this).concat(File.separator).concat("log");
         try
 		{
-            // Create new log file handler (max. 250 MB, 5 files rotated, non appending)
-            FileHandler hdlr = new FileHandler(logFileName, 250*1024*1024, 5, false);
+            // ensure log directory is available
+            new File(logFileName).mkdirs();
+			// Create new log file handler (max. 250 MB, 5 files rotated, non appending)
+            logFileHandler = new FileHandler( logFileName.concat("/AndrOBD.log.%g.txt"),
+                                              250*1024*1024,
+                                              5,
+                                              false);
             // Set log message formatter
-            hdlr.setFormatter(new SimpleFormatter() {
+            logFileHandler.setFormatter(new SimpleFormatter() {
                 String format = "%1$tF\t%1$tT.%1$tL\t%4$s\t%3$s\t%5$s%n";
 
                 @Override
@@ -697,7 +704,7 @@ public class MainActivity extends ListActivity
                 }
             });
             // add file logging ...
-            Logger.getLogger("").addHandler(hdlr);
+            Logger.getLogger("").addHandler(logFileHandler);
 			// set
             setLogLevels();
 		}
@@ -1683,7 +1690,11 @@ public class MainActivity extends ListActivity
 		                       getString(R.string.app_name),
 		                       getString(R.string.app_version)));
 
-		super.onDestroy();
+		/* remove log file handler */
+        Logger.getLogger("").removeHandler(logFileHandler);
+        logFileHandler.close();
+
+        super.onDestroy();
 	}
 
 	/**
