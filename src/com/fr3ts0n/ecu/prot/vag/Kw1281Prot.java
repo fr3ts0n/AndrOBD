@@ -148,7 +148,9 @@ public class Kw1281Prot extends ProtoHeader
 			"Command ",
 		};
 	// data items to be used for data display
-	EcuDataItems itms = new EcuDataItems("prot/vag/res/vag_pids.csv", "prot/vag/res/vag_conversions.csv");
+	EcuDataItems itms = new EcuDataItems( "prot/vag/res/vag_pids.csv",
+			                              "prot/vag/res/vag_conversions.csv",
+                                          "com.fr3ts0n.ecu.prot.vag.res.messages");
 	/** List of ECU data items */
 	public static PvList PidPvs = new PvList();
 	/** ECU vehicle identification items */
