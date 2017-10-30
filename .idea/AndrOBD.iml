@@ -19,12 +19,19 @@
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/ecu/gui/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/ecu/prot/obd/res" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/AndrOBD.wiki" />
+      <excludeFolder url="file://$MODULE_DIR$/apidoc" />
       <excludeFolder url="file://$MODULE_DIR$/awt_startup" />
       <excludeFolder url="file://$MODULE_DIR$/customisation" />
       <excludeFolder url="file://$MODULE_DIR$/manual" />
+      <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/common/res" />
       <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/ecu/gui/application" />
+      <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/ecu/prot/vag" />
       <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/prot/gui" />
+      <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/pvs/gui" />
+      <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/pvs/io" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 25 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
