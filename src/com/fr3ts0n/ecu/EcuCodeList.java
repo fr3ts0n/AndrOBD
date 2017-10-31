@@ -18,7 +18,7 @@
 
 package com.fr3ts0n.ecu;
 
-import com.fr3ts0n.common.UTF8Control;
+import com.fr3ts0n.common.UTF8Bundle;
 import com.fr3ts0n.ecu.prot.obd.Messages;
 
 import java.util.HashSet;
@@ -35,7 +35,6 @@ public class EcuCodeList
 	implements Conversion
 {
 	private static final long serialVersionUID = 219865459629423028L;
-	private static final ResourceBundle.Control utf8 = new UTF8Control();
 	protected transient ResourceBundle codes;
 	protected transient int radix = 10;
 
@@ -54,7 +53,7 @@ public class EcuCodeList
 	 */
 	public EcuCodeList(String resourceBundleName)
 	{
-		codes = ResourceBundle.getBundle(resourceBundleName, utf8);
+		codes = UTF8Bundle.getBundle(resourceBundleName);
 	}
 
 	/**
