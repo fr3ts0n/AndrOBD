@@ -18,6 +18,7 @@
 
 package com.fr3ts0n.ecu;
 
+import com.fr3ts0n.common.UTF8Bundle;
 import com.fr3ts0n.ecu.prot.obd.Messages;
 
 import java.util.HashSet;
@@ -52,7 +53,7 @@ public class EcuCodeList
 	 */
 	public EcuCodeList(String resourceBundleName)
 	{
-		codes = ResourceBundle.getBundle(resourceBundleName);
+		codes = UTF8Bundle.getBundle(resourceBundleName);
 	}
 
 	/**

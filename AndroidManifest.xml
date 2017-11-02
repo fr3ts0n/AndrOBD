@@ -2,12 +2,12 @@
 <manifest
     package="com.fr3ts0n.ecu.gui.androbd"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="10502"
+    android:versionCode="10503"
     android:versionName="@string/app_version">
 
     <uses-sdk
-        android:minSdkVersion="11"
-        android:targetSdkVersion="25"/>
+        android:minSdkVersion="14"
+        android:targetSdkVersion="26"/>
 
     <!-- start/stop bluetooth adapter -->
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>

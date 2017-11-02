@@ -78,7 +78,9 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	 */
 	public EcuDataItems()
 	{
-		this("prot/obd/res/pids.csv", "prot/obd/res/conversions.csv");
+		this( "prot/obd/res/pids.csv",
+              "prot/obd/res/conversions.csv",
+              "com.fr3ts0n.ecu.prot.obd.res.messages");
 	}
 
 	/**
@@ -86,8 +88,9 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	 * @param pidResource resource file for PIDs (csv)
 	 * @param conversionResource resource file for conversions (csv)
 	 */
-	public EcuDataItems(String pidResource, String conversionResource)
+	public EcuDataItems(String pidResource, String conversionResource, String resourceBundleName)
 	{
+		Messages.init(resourceBundleName);
 		cnv = new EcuConversions(conversionResource);
 		loadFromResource(pidResource);
 	}

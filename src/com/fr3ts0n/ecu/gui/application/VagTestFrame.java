@@ -18,6 +18,8 @@
 
 package com.fr3ts0n.ecu.gui.application;
 
+import com.fr3ts0n.common.UTF8Bundle;
+import com.fr3ts0n.common.UTF8Control;
 import com.fr3ts0n.ecu.EcuCodeItem;
 import com.fr3ts0n.ecu.EcuCodeList;
 import com.fr3ts0n.ecu.EcuDataItem;
@@ -73,6 +75,8 @@ public class VagTestFrame extends javax.swing.JFrame
 	static final String version = "V0.8.0";
 	/** copyright string */
 	static final String copyright = "Copyright (C) 2009-2010 Erwin Scheuch-Heilig";
+	/** Initialize UTF8 resource bundle */
+	static UTF8Bundle res = new UTF8Bundle(new UTF8Control());
 	/** application icon */
 	static final ImageIcon appIcon = new ImageIcon(VagTestFrame.class.getResource("/com/fr3ts0n/ecu/gui/res/JaVAG_Logo.png"));
 	/** Application Logger */

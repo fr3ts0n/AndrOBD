@@ -34,6 +34,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+import com.fr3ts0n.common.UTF8Control;
+import com.fr3ts0n.common.UTF8Bundle;
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.prot.obd.ElmProt;
@@ -60,7 +62,10 @@ public class ObdTestFrame extends javax.swing.JFrame
 	static final String version = "Version 0.9.7";
 	static final String copyright = "Copyright (C) 2007-2009 Erwin Scheuch-Heilig";
 
-	/** icons */
+    /** Initialize UTF8 resource bundle */
+    static UTF8Bundle res = new UTF8Bundle(new UTF8Control());
+
+    /** icons */
 	public ImageIcon icoCar = new javax.swing.ImageIcon(getClass().getResource("/com/fr3ts0n/ecu/gui/res/SUNFIRE.png"));
 
 	/** protocol handler */
