@@ -797,9 +797,7 @@ public class MainActivity extends ListActivity
 		// if new hider shall be activated
 		if(active)
 		{
-			// enable new hider
-			int timeout = Integer.valueOf(
-				prefs.getString(MainActivity.PREF_AUTOHIDE_DELAY,"15") );
+			int timeout = getPrefsInt(MainActivity.PREF_AUTOHIDE_DELAY, 15);
 			toolbarAutoHider = new AutoHider( this,
 			                                  mHandler,
 			                                  MESSAGE_TOOLBAR_VISIBLE,
@@ -807,6 +805,31 @@ public class MainActivity extends ListActivity
 			// start with update resolution of 1 second
 			toolbarAutoHider.start(1000);
 		}
+	}
+
+	/**
+	 * Get preference int value
+	 *
+	 * @param key preference key name
+	 * @param defaultValue numeric default value
+	 *
+	 * @return preference int value
+	 */
+	private int getPrefsInt(String key, int defaultValue)
+	{
+		int result = defaultValue;
+
+		try
+		{
+			result = Integer.valueOf(prefs.getString(key, String.valueOf(defaultValue)));
+		}
+		catch( Exception ex)
+		{
+			// log error message
+			log.severe(String.format("Preference '%s'(%d): %s", key, result, ex.toString()));
+		}
+
+		return result;
 	}
 
 	@Override
@@ -828,7 +851,7 @@ public class MainActivity extends ListActivity
 		if(key==null || SettingsActivity.KEY_COMM_MEDIUM.equals(key))
 			CommService.medium =
 				CommService.MEDIUM.values()[
-					Integer.valueOf(prefs.getString(SettingsActivity.KEY_COMM_MEDIUM, "0"))];
+					getPrefsInt(SettingsActivity.KEY_COMM_MEDIUM, 0)];
 
 		// enable/disable ELM adaptive timing
 		if(key==null || ELM_ADAPTIVE_TIMING.equals(key))
@@ -849,20 +872,16 @@ public class MainActivity extends ListActivity
 		// ELM timeout
 		if(key==null || SettingsActivity.ELM_MIN_TIMEOUT.equals(key))
 			CommService.elm.mAdaptiveTiming.setElmTimeoutMin(
-				Integer.valueOf(prefs.getString(SettingsActivity.ELM_MIN_TIMEOUT,
-				                                String.valueOf(CommService.elm.mAdaptiveTiming.getElmTimeoutMin()))));
+				getPrefsInt(SettingsActivity.ELM_MIN_TIMEOUT,
+				            CommService.elm.mAdaptiveTiming.getElmTimeoutMin()));
 
 		// ... measurement system
 		if(key==null || MEASURE_SYSTEM.equals(key))
-			setConversionSystem(Integer.valueOf(
-				                    prefs.getString(MEASURE_SYSTEM,
-				                                    String.valueOf(EcuDataItem.SYSTEM_METRIC)))
-			);
+			setConversionSystem(getPrefsInt(MEASURE_SYSTEM, EcuDataItem.SYSTEM_METRIC));
 
 		// ... preferred protocol
 		if(key==null || SettingsActivity.KEY_PROT_SELECT.equals(key))
-			ElmProt.setPreferredProtocol(
-				Integer.valueOf(prefs.getString(SettingsActivity.KEY_PROT_SELECT, "0")));
+			ElmProt.setPreferredProtocol(getPrefsInt(SettingsActivity.KEY_PROT_SELECT, 0));
 
 		// log levels
 		if(key==null || LOG_MASTER.equals(key))
@@ -974,7 +993,7 @@ public class MainActivity extends ListActivity
 
 						case NETWORK:
 							connectNetworkDevice(prefs.getString(DEVICE_ADDRESS, null),
-							                     Integer.valueOf(prefs.getString(DEVICE_PORT, "23")));
+							                     getPrefsInt(DEVICE_PORT, 23));
 							break;
 					}
 					break;
