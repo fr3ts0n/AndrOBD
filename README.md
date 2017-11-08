@@ -1,9 +1,10 @@
-# AndrOBD [![AndrOBD](https://f-droid.org/repo/icons/com.fr3ts0n.ecu.gui.androbd.10305.png)](https://f-droid.org/repository/browse/?fdfilter=AndrOBD&fdid=com.fr3ts0n.ecu.gui.androbd)
+# AndrOBD [![AndrOBD](https://f-droid.org/repo/icons/com.fr3ts0n.ecu.gui.androbd.10305.png)](https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/)
 Android OBD diagnostics with any ELM327 adapter
 
 [![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=AndrOBD&fdid=com.fr3ts0n.ecu.gui.androbd)
 
 Thanks to all hard-working translators for their contributions.
+<br>You all do a incredible job!
 
 [![Translation status](https://hosted.weblate.org/widgets/androbd/-/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/?utm_source=widget)
 
