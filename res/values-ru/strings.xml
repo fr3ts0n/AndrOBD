@@ -154,4 +154,9 @@
     <string name="autohide_toolbar">Спрятать инструменты</string>
     <string name="autohide_toolbar_description">Автоматически скрывать панель инструментов при бездействии</string>
     <string name="autohide_delay">Задержка скрытия панели инструментов [с]</string>
+    <string name="unfilter">Фильтр очищен</string>
+
+    <string name="last_data_items">Последние выбранные данные</string>
+    <string name="last_view_mode">Последний режим представления данных</string>
+
     </resources>
