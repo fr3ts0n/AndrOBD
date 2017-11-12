@@ -158,13 +158,13 @@ public class BtCommService extends CommService
 			mBtWorkerThread.cancel();
 			mBtWorkerThread = null;
 		}
-		// we are connected -> signal connection established
-		connectionEstablished(device.getName());
-
 		// Start the thread to manage the connection and perform transmissions
 		mBtWorkerThread = new BtWorkerThread(socket, socketType);
 		mBtWorkerThread.start();
-	}
+
+        // we are connected -> signal connection established
+        connectionEstablished(device.getName());
+    }
 
 	/**
 	 * Stop all threads
