@@ -118,9 +118,9 @@ Spowoduje to zresetowanie diagnostyki MIL i usunięcie wszystkich
     <string name="select_extension">Wybierz plik z rozszerzeniem .csv…</string>
     <string name="extension_loading">Ładowania personalizacji</string>
     <string name="check_cust_settings">Proszę sprawdź ustawienia personalizacji\n</string>
-    <string name="obd_options">"Opcje ODB "</string>
-    <string name="obd_opt_description">"Opcje protokołu OBD / komunikacji pojazdu "</string>
-    <string name="select_protocol">"Preferowany protokół OBD "</string>
+    <string name="obd_options">Opcje ODB</string>
+    <string name="obd_opt_description">Opcje protokołu OBD / komunikacja pojazdu</string>
+    <string name="select_protocol">Preferowany protokół OBD</string>
     <string name="select_fault_code">Wybierz kod błędu…</string>
     <string name="select_medium">Typ adaptera …</string>
 
@@ -177,4 +177,17 @@ Spowoduje to zresetowanie diagnostyki MIL i usunięcie wszystkich
     <string name="autohide_toolbar_description">Automatyczne ukrywanie paska przy braku aktywności</string>
     <string name="autohide_delay">Opóźnienie ukrywania paska narzędzi [s]</string>
     <string name="autohide_delay_description">Opóźnienie w sekundach braku aktywności przed ukryciem paska narzędzi</string>
+    <string name="csv_export_options">Opcje eksportu CSV</string>
+    <string name="csv_export_description">Opcje formatowania plików eksportu CSV</string>
+    <string name="csv_field_delimiter">Ogranicznik pola CSV</string>
+    <string name="csv_field_delimiter_description">Znaki separatora między polami danych CSV</string>
+    <string name="csv_rec_delimiter">Ogranicznik rekordów CSV</string>
+    <string name="csv_rec_delimiter_description">Znaki separatora między rekordami danych CSV</string>
+    <string name="csv_text_quoted">Cytowany tekst CSV</string>
+    <string name="csv_text_quoted_description">Pola tekstowe CSV są zawarte w cudzysłowach</string>
+    <string name="tab">Tabulator</string>
+    <string name="comma">Przecinek</string>
+    <string name="semicolon">Średnik</string>
+    <string name="send_after_export">Wyślij po eksporcie</string>
+    <string name="send_after_export_descr">Pytaj o wysłanie pliku CSV zaraz po wyeksportowaniu?</string>
     </resources>
