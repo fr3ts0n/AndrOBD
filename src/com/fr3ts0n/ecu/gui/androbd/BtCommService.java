@@ -338,6 +338,7 @@ public class BtCommService extends CommService
 			} catch (Exception ex)
 			{
 				// Intentionally ignore
+                log.log(Level.SEVERE, "Comm thread aborted", ex);
 			}
 			connectionLost();
 		}

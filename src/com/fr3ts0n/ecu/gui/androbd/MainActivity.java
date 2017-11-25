@@ -318,9 +318,14 @@ public class MainActivity extends ListActivity
 		{
 			PropertyChangeEvent evt;
 
+			// log trace message for received handler notification event
+			log.log(Level.FINEST, String.format("Handler notification: %s", msg.toString()));
+
 			switch (msg.what)
 			{
 				case MESSAGE_STATE_CHANGE:
+                    // log trace message for received handler notification event
+                    log.log(Level.FINEST, String.format("State change: %s", msg.toString()));
 					switch ((CommService.STATE) msg.obj)
 					{
 						case CONNECTED:
@@ -385,6 +390,7 @@ public class MainActivity extends ListActivity
 								updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
 							} catch (Exception ignored)
 							{
+                                log.log(Level.FINER, "Error adding PV", ignored);
 							}
 							break;
 
@@ -1685,6 +1691,7 @@ public class MainActivity extends ListActivity
 		} catch (InterruptedException e)
 		{
 			// do nothing
+            log.log(Level.FINER, e.getLocalizedMessage());
 		}
 
 		/* don't listen to ELM data changes any more */
