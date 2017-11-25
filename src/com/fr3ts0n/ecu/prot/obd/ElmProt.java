@@ -177,8 +177,8 @@ public class ElmProt
 	 */
 	public enum CMD
 	{
-		RESET(        "Z"   , 0, false), ///< reset adapter
-		DEFAULTS(     "D"   , 0, false), ///< set all to defaults
+		RESET(        "Z"   , 0, true ), ///< reset adapter
+		DEFAULTS(     "D"   , 0, true ), ///< set all to defaults
 		INFO(         "I"   , 0, true ), ///< request adapter info
 		LOWPOWER(     "LP"  , 0, true ), ///< switch to low power mode
 		ECHO(         "E"   , 1, true ), ///< enable/disable echo
@@ -222,11 +222,12 @@ public class ElmProt
 		{
 			if (disablingAllowed)
 			{
-				log.fine(String.format("ELM command '%s' -> %s",
-				                        toString(),
-				                        enabled ? "enabled" : "disabled"));
 				this.enabled = enabled;
 			}
+			// log current state
+			log.fine(String.format("ELM command '%s' -> %s",
+					toString(),
+					this.enabled ? "enabled" : "disabled"));
 		}
 
 		public boolean isDisablingAllowed()
@@ -516,7 +517,11 @@ public class ElmProt
 	{
 		// reset all learned protocol data
 		super.reset();
-		sendCommand(CMD.RESET, 0);
+		// either RESET or INFO command needs to be enabled
+		if(CMD.RESET.isEnabled())
+			sendCommand(CMD.RESET, 0);
+		else
+			sendCommand(CMD.INFO, 0);
 	}
 
 	/**
