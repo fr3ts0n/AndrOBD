@@ -316,159 +316,166 @@ public class MainActivity extends ListActivity
 		@Override
 		public void handleMessage(Message msg)
 		{
-			PropertyChangeEvent evt;
+			try
+            {
+                PropertyChangeEvent evt;
 
-			// log trace message for received handler notification event
-			log.log(Level.FINEST, String.format("Handler notification: %s", msg.toString()));
+                // log trace message for received handler notification event
+                log.log(Level.FINEST, String.format("Handler notification: %s", msg.toString()));
 
-			switch (msg.what)
-			{
-				case MESSAGE_STATE_CHANGE:
-                    // log trace message for received handler notification event
-                    log.log(Level.FINEST, String.format("State change: %s", msg.toString()));
-					switch ((CommService.STATE) msg.obj)
-					{
-						case CONNECTED:
-							onConnect();
-							break;
+                switch (msg.what)
+                {
+                    case MESSAGE_STATE_CHANGE:
+                        // log trace message for received handler notification event
+                        log.log(Level.FINEST, String.format("State change: %s", msg.toString()));
+                        switch ((CommService.STATE) msg.obj)
+                        {
+                            case CONNECTED:
+                                onConnect();
+                                break;
 
-						case CONNECTING:
-							setStatus(R.string.title_connecting);
-							break;
+                            case CONNECTING:
+                                setStatus(R.string.title_connecting);
+                                break;
 
-						default:
-							onDisconnect();
-							break;
-					}
-					break;
+                            default:
+                                onDisconnect();
+                                break;
+                        }
+                        break;
 
-				case MESSAGE_FILE_WRITTEN:
-					break;
+                    case MESSAGE_FILE_WRITTEN:
+                        break;
 
-				// data has been read - finish up
-				case MESSAGE_FILE_READ:
-					// set listeners for data structure changes
-					setDataListeners();
-					// set adapters data source to loaded list instances
-					mPidAdapter.setPvList(ObdProt.PidPvs);
-					mVidAdapter.setPvList(ObdProt.VidPvs);
-					mDfcAdapter.setPvList(ObdProt.tCodes);
-					// set OBD data mode to the one selected by input file
-					setObdService(CommService.elm.getService(), getString(R.string.saved_data));
-					// Check if last data selection shall be restored
-					if(obdService == ObdProt.OBD_SVC_DATA) checkToRestoreLastDataSelection();
-					break;
+                    // data has been read - finish up
+                    case MESSAGE_FILE_READ:
+                        // set listeners for data structure changes
+                        setDataListeners();
+                        // set adapters data source to loaded list instances
+                        mPidAdapter.setPvList(ObdProt.PidPvs);
+                        mVidAdapter.setPvList(ObdProt.VidPvs);
+                        mDfcAdapter.setPvList(ObdProt.tCodes);
+                        // set OBD data mode to the one selected by input file
+                        setObdService(CommService.elm.getService(), getString(R.string.saved_data));
+                        // Check if last data selection shall be restored
+                        if(obdService == ObdProt.OBD_SVC_DATA) checkToRestoreLastDataSelection();
+                        break;
 
-				case MESSAGE_DEVICE_NAME:
-					// save the connected device's name
-					mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
-					Toast.makeText(getApplicationContext(),
-					               getString(R.string.connected_to) + mConnectedDeviceName,
-					               Toast.LENGTH_SHORT).show();
-					break;
+                    case MESSAGE_DEVICE_NAME:
+                        // save the connected device's name
+                        mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
+                        Toast.makeText(getApplicationContext(),
+                                       getString(R.string.connected_to) + mConnectedDeviceName,
+                                       Toast.LENGTH_SHORT).show();
+                        break;
 
-				case MESSAGE_TOAST:
-					Toast.makeText(getApplicationContext(),
-					               msg.getData().getString(TOAST),
-					               Toast.LENGTH_SHORT).show();
-					break;
+                    case MESSAGE_TOAST:
+                        Toast.makeText(getApplicationContext(),
+                                       msg.getData().getString(TOAST),
+                                       Toast.LENGTH_SHORT).show();
+                        break;
 
-				case MESSAGE_DATA_ITEMS_CHANGED:
-					PvChangeEvent event = (PvChangeEvent) msg.obj;
-					switch (event.getType())
-					{
-						case PvChangeEvent.PV_ADDED:
-							currDataAdapter.setPvList(currDataAdapter.pvs);
-							try
-							{
-								if(event.getSource() == ObdProt.PidPvs)
-								{
-									// Check if last data selection shall be restored
-									checkToRestoreLastDataSelection();
-								}
-								// set up data update timer
-								updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
-							} catch (Exception ignored)
-							{
-                                log.log(Level.FINER, "Error adding PV", ignored);
-							}
-							break;
+                    case MESSAGE_DATA_ITEMS_CHANGED:
+                        PvChangeEvent event = (PvChangeEvent) msg.obj;
+                        switch (event.getType())
+                        {
+                            case PvChangeEvent.PV_ADDED:
+                                currDataAdapter.setPvList(currDataAdapter.pvs);
+                                try
+                                {
+                                    if(event.getSource() == ObdProt.PidPvs)
+                                    {
+                                        // Check if last data selection shall be restored
+                                        checkToRestoreLastDataSelection();
+                                    }
+                                    // set up data update timer
+                                    updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
+                                } catch (Exception ignored)
+                                {
+                                    log.log(Level.FINER, "Error adding PV", ignored);
+                                }
+                                break;
 
-						case PvChangeEvent.PV_CLEARED:
-							currDataAdapter.clear();
-							break;
-					}
-					break;
+                            case PvChangeEvent.PV_CLEARED:
+                                currDataAdapter.clear();
+                                break;
+                        }
+                        break;
 
-				case MESSAGE_UPDATE_VIEW:
-					getListView().invalidateViews();
-					break;
+                    case MESSAGE_UPDATE_VIEW:
+                        getListView().invalidateViews();
+                        break;
 
-				// handle state change in OBD protocol
-				case MESSAGE_OBD_STATE_CHANGED:
-					evt = (PropertyChangeEvent) msg.obj;
-					ElmProt.STAT state = (ElmProt.STAT)evt.getNewValue();
-					/* Show ELM status only in ONLINE mode */
-					if (getMode() != MODE.DEMO)
-					{
-						setStatus(getResources().getStringArray(R.array.elmcomm_states)[state.ordinal()]);
-					}
-					// if last selection shall be restored ...
-					if(istRestoreWanted(PRESELECT.LAST_SERVICE))
-					{
-						if(state == ElmProt.STAT.ECU_DETECTED)
-						{
-							setObdService(prefs.getInt(PRESELECT.LAST_SERVICE.toString(),0), null);
-						}
-					}
-					break;
+                    // handle state change in OBD protocol
+                    case MESSAGE_OBD_STATE_CHANGED:
+                        evt = (PropertyChangeEvent) msg.obj;
+                        ElmProt.STAT state = (ElmProt.STAT)evt.getNewValue();
+                        /* Show ELM status only in ONLINE mode */
+                        if (getMode() != MODE.DEMO)
+                        {
+                            setStatus(getResources().getStringArray(R.array.elmcomm_states)[state.ordinal()]);
+                        }
+                        // if last selection shall be restored ...
+                        if(istRestoreWanted(PRESELECT.LAST_SERVICE))
+                        {
+                            if(state == ElmProt.STAT.ECU_DETECTED)
+                            {
+                                setObdService(prefs.getInt(PRESELECT.LAST_SERVICE.toString(),0), null);
+                            }
+                        }
+                        break;
 
-				// handle change in number of fault codes
-				case MESSAGE_OBD_NUMCODES:
-					evt = (PropertyChangeEvent) msg.obj;
-					setNumCodes((Integer) evt.getNewValue());
-					break;
+                    // handle change in number of fault codes
+                    case MESSAGE_OBD_NUMCODES:
+                        evt = (PropertyChangeEvent) msg.obj;
+                        setNumCodes((Integer) evt.getNewValue());
+                        break;
 
-				// handle ECU detection event
-				case MESSAGE_OBD_ECUS:
-					evt = (PropertyChangeEvent) msg.obj;
-					selectEcu((Set<Integer>) evt.getNewValue());
-					break;
+                    // handle ECU detection event
+                    case MESSAGE_OBD_ECUS:
+                        evt = (PropertyChangeEvent) msg.obj;
+                        selectEcu((Set<Integer>) evt.getNewValue());
+                        break;
 
-				// handle negative result code from OBD protocol
-				case MESSAGE_OBD_NRC:
-					// reset OBD mode to prevent infinite error loop
-					setObdService(ObdProt.OBD_SVC_NONE, getText(R.string.obd_error));
-					// show error dialog ...
-					evt = (PropertyChangeEvent) msg.obj;
-					String nrcMessage = (String)evt.getNewValue();
-					dlgBuilder
-						.setIcon(android.R.drawable.ic_dialog_alert)
-						.setTitle(R.string.obd_error)
-						.setMessage(nrcMessage)
-						.setPositiveButton(null,null)
-						.show();
-					break;
+                    // handle negative result code from OBD protocol
+                    case MESSAGE_OBD_NRC:
+                        // reset OBD mode to prevent infinite error loop
+                        setObdService(ObdProt.OBD_SVC_NONE, getText(R.string.obd_error));
+                        // show error dialog ...
+                        evt = (PropertyChangeEvent) msg.obj;
+                        String nrcMessage = (String)evt.getNewValue();
+                        dlgBuilder
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setTitle(R.string.obd_error)
+                            .setMessage(nrcMessage)
+                            .setPositiveButton(null,null)
+                            .show();
+                        break;
 
-				// set toolbar visibility
-				case MESSAGE_TOOLBAR_VISIBLE:
-					Boolean visible = (Boolean)msg.obj;
-					// log action
-					log.fine(String.format("ActionBar: %s", visible ? "show" : "hide"));
-					// set action bar visibility
-					ActionBar ab = getActionBar();
-					if(ab != null)
-					{
-						if(visible)
-						{
-							ab.show();
-						} else
-						{
-							ab.hide();
-						}
-					}
-					break;
-			}
+                    // set toolbar visibility
+                    case MESSAGE_TOOLBAR_VISIBLE:
+                        Boolean visible = (Boolean)msg.obj;
+                        // log action
+                        log.fine(String.format("ActionBar: %s", visible ? "show" : "hide"));
+                        // set action bar visibility
+                        ActionBar ab = getActionBar();
+                        if(ab != null)
+                        {
+                            if(visible)
+                            {
+                                ab.show();
+                            } else
+                            {
+                                ab.hide();
+                            }
+                        }
+                        break;
+                }
+            }
+            catch(Exception ex)
+            {
+                log.log(Level.SEVERE, "Error in mHandler", ex);
+            }
 		}
 	};
 
