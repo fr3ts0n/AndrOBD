@@ -43,6 +43,8 @@ public class EcuDataItem
 	};
 	// current conversion system
 	public static int cnvSystem = SYSTEM_METRIC;
+	// maximum number of conversion errors before disabling data item
+    public static int MAX_ERROR_COUNT = 3;
 
 	public int pid;             ///< pid
 	public int ofs;             ///< Offset within message
@@ -54,7 +56,7 @@ public class EcuDataItem
 	String fmt;                 ///< Format for text output
 	public String label;        ///< text label
 	public EcuDataPv pv;        ///< the process variable for displaying
-	boolean enabled = true;     ///< if not enabled, do not process
+	int currErrorCount = 0;     ///< current number of consecutive conversion errors
 
 	// Logger object
 	public static final Logger log = Logger.getLogger("data.ecu");
@@ -62,7 +64,7 @@ public class EcuDataItem
 	public static int[] byteValues =
 	{
 		    0xFFFF, // fake default max value for length 0
-				  0xFF,
+			  0xFF,
 		    0xFFFF,
 		  0xFFFFFF,
 		0xFFFFFFFF
@@ -171,11 +173,15 @@ public class EcuDataItem
 			{
 				result = String.copyValueOf(buffer, ofs, bytes);
 			}
+            // decrement error counter
+            currErrorCount = Math.max(0, currErrorCount -1);
 		} catch(Exception ex)
 		{
 			result = "n/a";
 			log.warning(String.format("%s: %s - [%s]", toString(), ex.getMessage(), ProtUtils.hexDumpBuffer(buffer)));
-			enabled = false;
+
+            // increment error counter
+            currErrorCount = Math.min(MAX_ERROR_COUNT, currErrorCount +1);
 		}
 		return (result);
 	}
@@ -187,8 +193,10 @@ public class EcuDataItem
 	 */
 	public void updatePvFomBuffer(char[] buffer)
 	{
-		if(enabled)
+		// if consecutive conversion error counter not exceeded
+        if(currErrorCount < MAX_ERROR_COUNT)
 		{
+            // process data item
 			try
 			{
 				// get physical value
@@ -202,9 +210,16 @@ public class EcuDataItem
 			}
 			catch(Exception ex)
 			{
-				log.severe(ex.toString());
+				log.warning(ex.toString());
 			}
 		}
+		else
+        {
+            log.warning(String.format("Item disabled: %s (%d/%d)",
+                                      toString(),
+                                      currErrorCount,
+                                      MAX_ERROR_COUNT));
+        }
 	}
 
 	@Override
