@@ -193,33 +193,33 @@ public class EcuDataItem
 	 */
 	public void updatePvFomBuffer(char[] buffer)
 	{
-		// if consecutive conversion error counter not exceeded
-        if(currErrorCount < MAX_ERROR_COUNT)
+		// process data item
+		try
 		{
-            // process data item
-			try
+			// get physical value
+			Object result = physFromBuffer(buffer);
+			// if consecutive conversion error counter not exceeded
+			if(currErrorCount < MAX_ERROR_COUNT)
 			{
-				// get physical value
-				Object result = physFromBuffer(buffer);
 				pv.put(EcuDataPv.FID_VALUE, result);
 				log.fine(String.format("%02X %-30s %16s %s",
-				                        pid,
-				                        label,
-				                        pv.get(EcuDataPv.FID_VALUE),
-				                        pv.get(EcuDataPv.FID_UNITS)));
+										pid,
+										label,
+										pv.get(EcuDataPv.FID_VALUE),
+										pv.get(EcuDataPv.FID_UNITS)));
 			}
-			catch(Exception ex)
+			else
 			{
-				log.warning(ex.toString());
+				log.warning(String.format("Item disabled: %s (%d/%d)",
+										  toString(),
+										  currErrorCount,
+										  MAX_ERROR_COUNT));
 			}
 		}
-		else
-        {
-            log.warning(String.format("Item disabled: %s (%d/%d)",
-                                      toString(),
-                                      currErrorCount,
-                                      MAX_ERROR_COUNT));
-        }
+		catch(Exception ex)
+		{
+			log.warning(ex.toString());
+		}
 	}
 
 	@Override
