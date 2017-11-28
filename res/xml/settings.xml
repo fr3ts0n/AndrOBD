@@ -167,6 +167,15 @@
                     android:title="@string/elm_reset_on_nrc"
                     />
 
+                <EditTextPreference
+                    android:capitalize="characters"
+                    android:defaultValue="3"
+                    android:key="data_disable_max"
+                    android:inputType="number"
+                    android:summary="@string/data_disable_max_description"
+                    android:title="@string/data_disable_max"
+                    />
+
             </PreferenceCategory>
         </PreferenceScreen>
     </PreferenceCategory>

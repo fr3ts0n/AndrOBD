@@ -135,6 +135,7 @@ public class MainActivity extends ListActivity
 	public static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
 	public static final String PREF_AUTOHIDE = "autohide_toolbar";
 	public static final String PREF_AUTOHIDE_DELAY = "autohide_delay";
+	public static final String PREF_DATA_DISABLE_MAX = "data_disable_max";
 
 	/**
 	 * Message types sent from the BluetoothChatService Handler
@@ -913,6 +914,10 @@ public class MainActivity extends ListActivity
 		// AutoHide ToolBar
 		if(key==null || PREF_AUTOHIDE.equals(key) || PREF_AUTOHIDE_DELAY.equals(key))
 			setAutoHider(prefs.getBoolean(PREF_AUTOHIDE,false));
+
+        // Max. data disabling debounce counter
+        if(key==null || PREF_DATA_DISABLE_MAX.equals(key))
+            EcuDataItem.MAX_ERROR_COUNT = getPrefsInt(PREF_DATA_DISABLE_MAX, 3);
 	}
 
 	/**

@@ -217,6 +217,8 @@ period of time while the ECU recalibrates itself.
     <string name="device_address">ELM IP address</string>
     <string name="device_port_description">ELM device network IP port</string>
     <string name="device_port">ELM IP port</string>
+    <string name="data_disable_max">Data item disable limit</string>
+    <string name="data_disable_max_description">Number of invalid consecutive data responses before item will be disabled</string>
     <string name="autohide_toolbar">Hide toolbar</string>
     <string name="autohide_toolbar_description">Automatically hide toolbar after delay w/o activity</string>
     <string name="autohide_delay">Hide toolbar delay [s]</string>
