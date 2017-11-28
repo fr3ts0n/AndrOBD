@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string name="translation_credits">Honosítás: gidano | sympda.blog.hu</string>
+    <string name="app_description">Android OBD járműdiagnosztika app ELM327 bluetooth adapterhez</string>
+    <string name="send">Küld</string>
+    <string name="not_connected">Nincs csatlakozás az eszközhöz</string>
+    <string name="title_connecting">Csatlakozás…</string>
+    <string name="title_connected_to">Kapcsolódva: %s</string>
+    <string name="title_not_connected">Nincs kapcsolat</string>
+    <string name="title">cím</string>
+    <string name="welcome_to">Köszönt a</string>
+    <string name="logo">Logo</string>
+    <string name="back_again_to_exit">Kilépéshez nyomd ismét a Vissza gombot</string>
+    <string name="action_connect">Csatlakozás</string>
+    <string name="obd_none">NINCS szolgáltatás</string>
+    <string name="obd_services">OBD Szolgáltatások</string>
+    <string name="obd_veh_info">OBD Jármű Infó</string>
+    <string name="obd_data">OBD Adat</string>
+    <string name="service_freezeframes">OBD Pillanatkép Adatok</string>
+    <string name="obd_codes">OBD hibakódok</string>
+    <string name="obd_permanentcodes">OBD hibakódok (állandó)</string>
+    <string name="obd_pendingcodes">OBD hibakódok (kérdéses)</string>
+    <string name="obd_clearcodes">Hibakódok törlése</string>
+    <string name="obd_clear_info">"Ez visszaállítja a MIL-t és törli az összes kibocsátással kapcsolatos diagnosztikai információt, beleértve:
+ - Diagnosztikai hibakódok
+  - Emissziós Pillanatkép Adatok
+  - Oxigén szenzor vizsgálati adatok
+  - Rendszerállapot ellenőrző tesztek
+  - Fedélzeti monitoring vizsgálatok eredményei
+  - Aktivált MIL közben megtett út
+  - Bemelegítések száma DTC törlése óta
+  - Megtett út, DTC törlése óta
+  - Motor futási idő, aktivált MIL közben
+  - DTC törlés óta eltelt idő
+
+ Egyéb gyártó-specifikus törlési/visszaállítási műveletek történhetnek.
+ Egy rövid ideig tartó adatvesztést okozhat, míg az ECU újrakalibrálja magát."</string>
+    <string name="scanning">Vizsgálat…</string>
+    <string name="select_device">Válassz ki egy eszközt</string>
+    <string name="none_paired">Nincs párosított eszköz</string>
+    <string name="none_found">Nem található eszköz</string>
+    <string name="title_paired_devices">Párosított eszközök</string>
+    <string name="title_other_devices">Egyéb elérhető eszközök</string>
+    <string name="button_scan">Eszközök keresése</string>
+    <string name="send_to">Küld ...</string>
+    <string name="share">Megoszt</string>
+    <string name="time">Idő [mp]</string>
+    <string name="chart">Grafikon</string>
+    <string name="demo_stopped">DEMO mód leállítva</string>
+    <string name="demo_started">DEMO mód elindítva</string>
+    <string name="snapshot">pillanatkép</string>
+    <string name="save">Mérések mentése</string>
+    <string name="load">Mérések betöltése</string>
+    <string name="saved_data">Mentett Adatok</string>
+    <string name="loaded">betöltve</string>
+    <string name="saved">mentve</string>
+    <string name="connected_to">"Csatlakozás ... "</string>
+    <string name="demo">Demo...</string>
+    <string name="saving_data">Adat mentése ...</string>
+    <string name="loading_data">Adat betöltés …</string>
+    <string name="dashboard">Kezelőpult</string>
+    <string name="graph_actions">Ábrázolási műveletek</string>
+    <string name="hud">Kivetített Kijelző</string>
+    <string name="filter">Szűrő kiválasztva</string>
+    <string name="unfilter">Nincs szűrés</string>
+    <string name="settings">Beállítások</string>
+    <string name="common_settings">Közös beállítások</string>
+    <string name="measure_system_description">Mértékegység rendszer (metrikus / angolszász)</string>
+    <string name="measure_system">Mértékegység</string>
+    <string name="metric">metrikus</string>
+    <string name="imperial">angolszász</string>
+    <string name="items_for_display">Megjelenő adatok</string>
+    <string name="items_for_display_descr">Jelöld ki a megjeleníteni kívánt elemeket …</string>
+    <string name="debugging">Hibakeresés</string>
+    <string name="logging_level">Naplózási szint</string>
+    <string name="logging_level_description">A hibakeresési napló részletességi szintje</string>
+    <string name="master">mester</string>
+    <string name="comm_io">Kommunikáció i/o</string>
+    <string name="protocol">protokol</string>
+    <string name="process_vars">folyamat változók</string>
+    <string name="data">adat</string>
+    <string name="last_elm">legutóbbi ELM adapter újracsatlakoztatása</string>
+    <string name="last_ecu">legutóbbi ECU újracsatlakoztatása</string>
+    <string name="last_service">legutóbbi OBD szolgáltatás</string>
+    <string name="last_data_items">utoljára kijelölt adatelemek</string>
+    <string name="last_view_mode">legutóbbi adatnézet</string>
+    <string name="keep_screen_on">Képernyő bekapcsolva marad</string>
+    <string name="keep_screen_on_description">NE kapcsolja ki a képernyőt, ha a fő, ill. adat képernyőn tartózkodik</string>
+    <string name="development_options">Fejlesztői lehetőségek</string>
+    <string name="dev_opt_description">Hibakeresési és testreszabási lehetőségek</string>
+    <string name="extension_files">Naplófájlok testreszabása (csv)</string>
+    <string name="conversions">Adat konverziók</string>
+    <string name="data_items">Adat elemek</string>
+    <string name="fault_codes">Hibakódok</string>
+    <string name="select_extension">Válassz .csv kiterjesztésű fájlt …</string>
+    <string name="extension_loading">Testreszabások betöltése</string>
+    <string name="check_cust_settings">Jelöld ki a saját testreszabási beállításaidat</string>
+    <string name="obd_options">OBD lehetőségek</string>
+    <string name="obd_opt_description">OBD protokol / jármű kommunikáció lehetőségek</string>
+    <string name="select_protocol">Előnyben részesített OBD protokol</string>
+    <string name="select_fault_code">Hibakód kiválasztás …</string>
+    <string name="select_medium">Adapter típus …</string>
+    <string name="refreshing">vizsgálat …</string>
+    <string name="devices_found">%s USB eszköz található</string>
+    <string name="min_elm_timeout">Min. ELM várakozás [ms]</string>
+    <string name="unabletoconnect">Nem lehet csatlakozni az eszközhöz</string>
+    <string name="connectionlost">A készülék kapcsolata megszakadt</string>
+    <string name="elm_timeout_descr">Minimum várakozási idő [ms] az ELM válaszaira</string>
+    <string name="day_night_mode">Nappali/Éjszakai nézet</string>
+    <string name="night_mode_description">A kijelző sötét hátterű beállítása</string>
+    <string name="night_mode">Éjszakai mód</string>
+    <string name="disable_elm_cmds">ELM parancsok kikapcsolása</string>
+    <string name="disable_elm_cmds_descr">ELM parancsok be/ki kapcsolása</string>
+    <string name="elm_adaptive_timing">ELM adaptív időzítés</string>
+    <string name="disabled">kikapcsolva</string>
+    <string name="enabled">engedélyezve</string>
+    <string name="elm_adaptive_timing_descr">Engedélyezed, hogy az ELM illesztőprogramok kezeljék az adaptív időzítést?</string>
+    <string name="elm_reset_on_nrc">Törlés NRC esetén</string>
+    <string name="elm_reset_on_nrc_descr">ELM adapter alaphelyzetbe állítása NRC hiba esetén?</string>
+    <string name="select_ecu_addr">ECU cím kiválasztása …</string>
+    <string name="disconnect">Kapcsolat bontás</string>
+    <string name="reset_preselections">Utolsó előzetes beállítások törlése</string>
+    <string name="use_last_settings_description">Legutóbbi beállítások használata indításkor (BT cím, ECU cím, megjelenő elemek …)</string>
+    <string name="use_last_settings">Legutóbbi beállítások használata</string>
+    <string name="common_settings_description">App vezérlés közös beállításai</string>
+    <string name="secure_connect">Biztonságos kapcsolat</string>
+    <string name="secure_connect_description">Titkosított Bluetooth kapcsolat használata</string>
+    <string name="elm_options">ELM lehetőségek</string>
+    <string name="last_none">NONE</string>
+    <string name="elm_custom_init">ELM egyedi inicializálás</string>
+    <string name="elm_custom_init_descr">ELM egyedi inicializálási parancs</string>
+    <string name="UNDEFINED">Nem definiált</string>
+    <string name="INITIALIZING">Inicializálás…</string>
+    <string name="INITIALIZED">Inicializált</string>
+    <string name="ECU_DETECT">ECU keresése…</string>
+    <string name="ECU_DETECTED">ECU megtalálva</string>
+    <string name="CONNECTING">Csatlakozás…</string>
+    <string name="CONNECTED">Csatlakoztatva</string>
+    <string name="NODATA">Nincs adat</string>
+    <string name="STOPPED">Leállítva</string>
+    <string name="DISCONNECTED">Kapcsolat bontva</string>
+    <string name="BUSERROR">BUSZ hiba</string>
+    <string name="DATAERROR">ADAT hiba</string>
+    <string name="RXERROR">RX hiba</string>
+    <string name="ERROR">Hiba</string>
+    <string name="obd_error">OBD protokol hiba</string>
+    <string name="device_address_description">ELM eszköz hálózati IP címe</string>
+    <string name="device_address">ELM IP címe</string>
+    <string name="device_port_description">ELM eszköz hálózati IP port</string>
+    <string name="device_port">ELM IP port</string>
+    <string name="autohide_toolbar">Eszközsáv elrejtése</string>
+    <string name="autohide_toolbar_description">Az eszközsáv auto. elrejtése w/o tevékenység késleltetés után</string>
+    <string name="autohide_delay">Eszközsáv elrejtés késleltetése [mp]</string>
+    <string name="autohide_delay_description">w/o tevékenység utáni késleltetés, mielőtt elrejti az eszközsávot</string>
+</resources>
