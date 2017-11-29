@@ -178,6 +178,8 @@ public class ElmProt
 	public enum CMD
 	{
 		RESET(        "Z"   , 0, true ), ///< reset adapter
+		WARMSTART(    "WS"  , 0, true ), ///< warm start
+		PROTOCLOSE(   "PC"  , 0, true ), ///< protocol close
 		DEFAULTS(     "D"   , 0, true ), ///< set all to defaults
 		INFO(         "I"   , 0, true ), ///< request adapter info
 		LOWPOWER(     "LP"  , 0, true ), ///< switch to low power mode
@@ -189,6 +191,7 @@ public class ElmProt
 		SETPROT(      "SP"  , 1, true ), ///< set protocol
 		CANMONITOR(   "MA"  , 0, true ), ///< monitor CAN messages
 		SETPROTAUTO(  "SPA" , 1, true ), ///< set protocol auto
+		ADAPTTIMING(  "AT"  , 1, true ), ///< Set ELM internal adaptive timing (0-2)
 		SETTIMEOUT(   "ST"  , 2, true ), ///< set timeout (x*4ms)
 		SETTXHDR(     "SH"  , 3, true ), ///< set TX header
 		SETCANRXFLT(  "CRA" , 3, true ), ///< set CAN RX filter
@@ -310,6 +313,8 @@ public class ElmProt
 			setElmTimeoutLrnLow(getElmTimeoutMin());
 			// set default timeout
 			setElmMsgTimeout(ELM_TIMEOUT_DEFAULT);
+			// switch OFF ELM internal adaptive timing
+			pushCommand(CMD.ADAPTTIMING, 0);
 		}
 
 		/**
@@ -530,7 +535,7 @@ public class ElmProt
 	 */
 	private void queryEcus()
 	{
-		// set status to INITIALIZING
+		// set status to ECU detection
 		setStatus(STAT.ECU_DETECT);
 
 		// clear all identified ECU addresses
@@ -652,24 +657,24 @@ public class ElmProt
 						cmdQueue.add(String.valueOf(lastCommand));
 						// Initialize adaptive timing
 						mAdaptiveTiming.initialize();
-						// set to AUTO protocol
-						sendCommand(CMD.SETPROT, PROT.ELM_PROT_AUTO.ordinal());
+						// close current protocol
+						sendCommand(CMD.PROTOCLOSE, 0);
 						break;
 
 					case DATAERROR:
 						setStatus(STAT.DATAERROR);
-						sendCommand(CMD.RESET, 0);
+						sendCommand(CMD.WARMSTART, 0);
 						break;
 
 					case BUFFERFULL:
 					case RXERROR:
 						setStatus(STAT.RXERROR);
-						sendCommand(CMD.RESET, 0);
+						sendCommand(CMD.WARMSTART, 0);
 						break;
 
 					case ERROR:
 						setStatus(STAT.ERROR);
-						sendCommand(CMD.RESET, 0);
+						sendCommand(CMD.WARMSTART, 0);
 						break;
 
 					case NODATA:
