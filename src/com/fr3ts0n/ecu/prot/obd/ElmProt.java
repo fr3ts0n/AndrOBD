@@ -306,9 +306,6 @@ public class ElmProt
 		public void initialize()
 		{
 			if(!enabled) return;
-			// since device just restarted, assume device timeout
-			// to be set to default value ...
-			elmMsgTimeout = ELM_TIMEOUT_DEFAULT;
 			// ... reset learned minimum timeout ...
 			setElmTimeoutLrnLow(getElmTimeoutMin());
 			// set default timeout
@@ -605,6 +602,9 @@ public class ElmProt
 			return result;
 		}
 
+		// log message reception as answer to last TX message
+		log.fine("ELM rx:'" + bufferStr + "' ("+lastTxMsg+")");
+
 		// handle response
 		switch (getResponseId(bufferStr))
 		{
@@ -631,7 +631,6 @@ public class ElmProt
 				// remember this as last received message
 				// do NOT respond immediately
 				lastRxMsg = bufferStr;
-				log.info("ELM rx:'" + bufferStr + "' ("+lastTxMsg+")");
 				break;
 
 			case MODEL:
@@ -655,9 +654,11 @@ public class ElmProt
 						setStatus(STAT.DISCONNECTED);
 						// re-queue last command
 						cmdQueue.add(String.valueOf(lastCommand));
+						// queue setting to preferred protocol
+						pushCommand(CMD.SETPROT, preferredProtocol.ordinal());
 						// Initialize adaptive timing
 						mAdaptiveTiming.initialize();
-						// close current protocol
+						// immediately close current protocol
 						sendCommand(CMD.PROTOCLOSE, 0);
 						break;
 
