@@ -1159,10 +1159,23 @@ public class MainActivity extends ListActivity
 	 */
 	private void setStatus(int resId)
 	{
+		setStatus(getString(resId));
+	}
+
+	/**
+	 * set status message in status bar
+	 *
+	 * @param subTitle status text to be set
+	 */
+	private void setStatus(CharSequence subTitle)
+	{
 		final ActionBar actionBar = getActionBar();
 		if (actionBar != null)
 		{
-			actionBar.setSubtitle(resId);
+			actionBar.setSubtitle(subTitle);
+			// if actionBar currently hidden, show status as toast
+			if(!actionBar.isShowing())
+				Toast.makeText(this, subTitle, Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -1178,20 +1191,6 @@ public class MainActivity extends ListActivity
 		String type = "*/*";
 		intent.setDataAndType(data, type);
 		startActivityForResult(intent, REQUEST_SELECT_FILE);
-	}
-
-	/**
-	 * set status message in status bar
-	 *
-	 * @param subTitle status text to be set
-	 */
-	private void setStatus(CharSequence subTitle)
-	{
-		final ActionBar actionBar = getActionBar();
-		if (actionBar != null)
-		{
-			actionBar.setSubtitle(subTitle);
-		}
 	}
 
 	/**
