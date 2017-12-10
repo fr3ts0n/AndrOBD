@@ -77,6 +77,8 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import static com.fr3ts0n.ecu.gui.androbd.SettingsActivity.ELM_TIMING_SELECT;
+
 /**
  * Main Activity for AndrOBD app
  */
@@ -130,7 +132,7 @@ public class MainActivity extends ListActivity
 	public static final String TOAST = "toast";
 	public static final String MEASURE_SYSTEM = "measure_system";
 	public static final String NIGHT_MODE = "night_mode";
-	public static final String ELM_ADAPTIVE_TIMING = "elm_adaptive_timing";
+	public static final String ELM_ADAPTIVE_TIMING = ELM_TIMING_SELECT;
 	public static final String ELM_RESET_ON_NRC = "elm_reset_on_nrc";
 	public static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
 	public static final String PREF_AUTOHIDE = "autohide_toolbar";
@@ -869,7 +871,10 @@ public class MainActivity extends ListActivity
 
 		// enable/disable ELM adaptive timing
 		if(key==null || ELM_ADAPTIVE_TIMING.equals(key))
-			CommService.elm.mAdaptiveTiming.setEnabled(prefs.getBoolean(ELM_ADAPTIVE_TIMING, true));
+			CommService.elm.mAdaptiveTiming.setMode(
+			    ElmProt.AdaptTimingMode.valueOf(
+			        prefs.getString(ELM_ADAPTIVE_TIMING,
+                                    ElmProt.AdaptTimingMode.OFF.toString())));
 
 		// set protocol flag to initiate immediate reset on NRC reception
 		if(key==null || ELM_RESET_ON_NRC.equals(key))

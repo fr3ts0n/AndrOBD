@@ -240,6 +240,17 @@ public class ElmProt
 	}
 
 	/**
+	 * Adaptive timing mode
+	 */
+	public enum AdaptTimingMode
+	{
+		OFF,
+		ELM_AT1,
+		ELM_AT2,
+		SOFTWARE
+	}
+
+	/**
 	 * Adaptive ELM timing handler
 	 * * optimizes ELM message timeout at runtime
 	 */
@@ -260,24 +271,24 @@ public class ElmProt
 		protected int ELM_TIMEOUT_LRN_LOW = 12;
 		/** ELM message timeout: defaults to approx 200 [ms] */
 		protected int elmMsgTimeout = ELM_TIMEOUT_MAX;
-		/** adaptive timing handling enabled? */
-		private boolean enabled = true;
 
-		/**
-		 * adaptive timing handling enabled?
-		 */
-		public boolean isEnabled()
+		/** adaptive timing handling enabled? */
+		private AdaptTimingMode mode = AdaptTimingMode.OFF;
+
+		public AdaptTimingMode getMode()
 		{
-			return enabled;
+			return mode;
 		}
 
-		/**
-		 * enable/disable adaptive timing handler
-		 * @param newEnabled enable/disable
-		 */
-		public void setEnabled(boolean newEnabled)
+		public void setMode(AdaptTimingMode mode)
 		{
-			enabled = newEnabled;
+
+			log.info(String.format("AdaptiveTiming mode: %s -> %s",
+									this.mode.toString(),
+									mode.toString()));
+			this.mode = mode;
+			// initialize with new mode
+			initialize();
 		}
 
 		/**
@@ -305,13 +316,19 @@ public class ElmProt
 		 */
 		public void initialize()
 		{
-			if(!enabled) return;
-			// ... reset learned minimum timeout ...
-			setElmTimeoutLrnLow(getElmTimeoutMin());
-			// set default timeout
-			setElmMsgTimeout(ELM_TIMEOUT_DEFAULT);
-			// switch OFF ELM internal adaptive timing
-			pushCommand(CMD.ADAPTTIMING, 0);
+			if(mode == AdaptTimingMode.SOFTWARE)
+			{
+				// ... reset learned minimum timeout ...
+				setElmTimeoutLrnLow(getElmTimeoutMin());
+				// set default timeout
+				setElmMsgTimeout(ELM_TIMEOUT_DEFAULT);
+				// switch OFF ELM internal adaptive timing
+				pushCommand(CMD.ADAPTTIMING, 0);
+			}
+			else
+			{
+				pushCommand(CMD.ADAPTTIMING, mode.ordinal());
+			}
 		}
 
 		/**
@@ -320,7 +337,7 @@ public class ElmProt
 		 */
 		public void adapt(boolean increaseTimeout)
 		{
-			if(!enabled) return;
+			if(mode != AdaptTimingMode.SOFTWARE) return;
 			if(increaseTimeout)
 			{
 				// increase OBD timeout since we may expect answers too fast
@@ -687,6 +704,8 @@ public class ElmProt
 							);
 						// increase OBD timeout since we may expect answers too fast
 						mAdaptiveTiming.adapt(true);
+						// close current protocol
+						pushCommand(CMD.PROTOCLOSE, 0);
 						// NO break here since reaction is only quqeued
 
 					case MODEL:

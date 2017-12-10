@@ -144,20 +144,20 @@
                     android:title="@string/elm_custom_init"
                     />
 
-                <CheckBoxPreference
-                    android:defaultValue="true"
-                    android:key="elm_adaptive_timing"
-                    android:summary="@string/elm_adaptive_timing_descr"
+                <ListPreference
+                    android:key="adaptive_timing_mode"
+                    android:dialogTitle="@string/elm_adaptive_timing"
                     android:title="@string/elm_adaptive_timing"
+                    android:summary="@string/elm_adaptive_timing_descr"
                     />
 
                 <EditTextPreference
                     android:defaultValue="12"
-                    android:dependency="elm_adaptive_timing"
                     android:key="elm_min_timeout"
                     android:numeric="integer"
                     android:summary="@string/elm_timeout_descr"
                     android:title="@string/min_elm_timeout"
+                    android:enabled="false"
                     />
 
                 <CheckBoxPreference
