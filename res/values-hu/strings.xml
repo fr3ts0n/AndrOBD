@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-   <string name="translation_credits">Honosítás: gidano | sympda.blog.hu</string>
+    <string name="translation_credits">Honosítás: gidano | sympda.blog.hu</string>
     <string name="app_description">Android OBD járműdiagnosztika app ELM327 bluetooth adapterhez</string>
     <string name="send">Küld</string>
-    <string name="not_connected">Nincs csatlakozás az eszközhöz</string>
+    <string name="not_connected">Nem csatlakozol eszközhöz</string>
     <string name="title_connecting">Csatlakozás…</string>
-    <string name="title_connected_to">Kapcsolódva: %s</string>
+    <string name="title_connected_to">Csatlakozva: %s</string>
     <string name="title_not_connected">Nincs kapcsolat</string>
     <string name="title">cím</string>
     <string name="welcome_to">Köszönt a</string>
-    <string name="logo">Logo</string>
+    <string name="logo">Logó</string>
     <string name="back_again_to_exit">Kilépéshez nyomd ismét a Vissza gombot</string>
     <string name="action_connect">Csatlakozás</string>
     <string name="obd_none">NINCS szolgáltatás</string>
@@ -21,7 +21,8 @@
     <string name="obd_permanentcodes">OBD hibakódok (állandó)</string>
     <string name="obd_pendingcodes">OBD hibakódok (kérdéses)</string>
     <string name="obd_clearcodes">Hibakódok törlése</string>
-    <string name="obd_clear_info">"Ez visszaállítja a MIL-t és törli az összes kibocsátással kapcsolatos diagnosztikai információt, beleértve:
+    <string name="obd_clear_info">"Ez visszaállítja a MIL-t és törli az összes emissziós diagnosztikai
+információt, beleértve:
  - Diagnosztikai hibakódok
   - Emissziós Pillanatkép Adatok
   - Oxigén szenzor vizsgálati adatok
@@ -34,7 +35,8 @@
   - DTC törlés óta eltelt idő
 
  Egyéb gyártó-specifikus törlési/visszaállítási műveletek történhetnek.
- Egy rövid ideig tartó adatvesztést okozhat, míg az ECU újrakalibrálja magát."</string>
+ Az adatvesztés miatt a jármű rosszul futhat rövid ideig,
+ míg az ECU újrakalibrálódik."</string>
     <string name="scanning">Vizsgálat…</string>
     <string name="select_device">Válassz ki egy eszközt</string>
     <string name="none_paired">Nincs párosított eszköz</string>
@@ -42,7 +44,7 @@
     <string name="title_paired_devices">Párosított eszközök</string>
     <string name="title_other_devices">Egyéb elérhető eszközök</string>
     <string name="button_scan">Eszközök keresése</string>
-    <string name="send_to">Küld ...</string>
+    <string name="send_to">Küld …</string>
     <string name="share">Megoszt</string>
     <string name="time">Idő [mp]</string>
     <string name="chart">Grafikon</string>
@@ -54,9 +56,9 @@
     <string name="saved_data">Mentett Adatok</string>
     <string name="loaded">betöltve</string>
     <string name="saved">mentve</string>
-    <string name="connected_to">"Csatlakozás ... "</string>
-    <string name="demo">Demo...</string>
-    <string name="saving_data">Adat mentése ...</string>
+    <string name="connected_to">"Csatlakozás … "</string>
+    <string name="demo">Demo…</string>
+    <string name="saving_data">Adat mentése …</string>
     <string name="loading_data">Adat betöltés …</string>
     <string name="dashboard">Kezelőpult</string>
     <string name="graph_actions">Ábrázolási műveletek</string>
@@ -94,7 +96,7 @@
     <string name="fault_codes">Hibakódok</string>
     <string name="select_extension">Válassz .csv kiterjesztésű fájlt …</string>
     <string name="extension_loading">Testreszabások betöltése</string>
-    <string name="check_cust_settings">Jelöld ki a saját testreszabási beállításaidat</string>
+    <string name="check_cust_settings">"Jelöld ki a saját testreszabási beállításaidat"</string>
     <string name="obd_options">OBD lehetőségek</string>
     <string name="obd_opt_description">OBD protokol / jármű kommunikáció lehetőségek</string>
     <string name="select_protocol">Előnyben részesített OBD protokol</string>
@@ -126,7 +128,7 @@
     <string name="secure_connect">Biztonságos kapcsolat</string>
     <string name="secure_connect_description">Titkosított Bluetooth kapcsolat használata</string>
     <string name="elm_options">ELM lehetőségek</string>
-    <string name="last_none">NONE</string>
+    <string name="last_none">NINCS SEMMI</string>
     <string name="elm_custom_init">ELM egyedi inicializálás</string>
     <string name="elm_custom_init_descr">ELM egyedi inicializálási parancs</string>
     <string name="UNDEFINED">Nem definiált</string>
@@ -152,4 +154,17 @@
     <string name="autohide_toolbar_description">Az eszközsáv auto. elrejtése w/o tevékenység késleltetés után</string>
     <string name="autohide_delay">Eszközsáv elrejtés késleltetése [mp]</string>
     <string name="autohide_delay_description">w/o tevékenység utáni késleltetés, mielőtt elrejti az eszközsávot</string>
+    <string name="csv_export_options">CSV export lehetőségek</string>
+    <string name="csv_export_description">CSV export fájlok formázási lehetőségei</string>
+    <string name="csv_field_delimiter">CSV mező elválasztó</string>
+    <string name="csv_field_delimiter_description">Elválasztó karakter(ek) a CSV adat mezői között</string>
+    <string name="csv_rec_delimiter">CSV record elválasztó</string>
+    <string name="csv_rec_delimiter_description">Elválasztó karakter(ek) a CSV rekord mezői között</string>
+    <string name="csv_text_quoted">CSV idézett szöveg</string>
+    <string name="csv_text_quoted_description">CSV szövegmezők idézőjelek között legyenek</string>
+    <string name="tab">FÜL</string>
+    <string name="comma">VESSZŐ</string>
+    <string name="semicolon">PONTOSVESSZŐ</string>
+    <string name="send_after_export">Küld, miután exportál</string>
+    <string name="send_after_export_descr">Kérdezzen rá a CSV fájl elküldésére közvetlenül az exportálás után?</string>
 </resources>
