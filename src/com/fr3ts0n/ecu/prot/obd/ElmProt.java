@@ -704,8 +704,8 @@ public class ElmProt
 							);
 						// increase OBD timeout since we may expect answers too fast
 						mAdaptiveTiming.adapt(true);
-						// close current protocol
-						pushCommand(CMD.PROTOCLOSE, 0);
+                        // set to preferred protocol
+                        pushCommand(CMD.SETPROT, preferredProtocol.ordinal());
 						// NO break here since reaction is only quqeued
 
 					case MODEL:
