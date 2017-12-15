@@ -1178,9 +1178,8 @@ public class MainActivity extends ListActivity
 		if (actionBar != null)
 		{
 			actionBar.setSubtitle(subTitle);
-			// if actionBar currently hidden, show status as toast
-			if(!actionBar.isShowing())
-				Toast.makeText(this, subTitle, Toast.LENGTH_SHORT).show();
+			// show action bar to make state change visible
+			unHideActionBar(getListView());
 		}
 	}
 
