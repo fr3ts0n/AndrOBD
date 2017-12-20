@@ -223,8 +223,8 @@ class FileHelper
 			Toast.makeText(context, context.getString(R.string.loaded).concat(" ").concat(msg), Toast.LENGTH_SHORT).show();
 		} catch (Exception ex)
 		{
-			Toast.makeText(context, ex.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-			Log.e(context.getString(R.string.load), ex.getMessage());
+			Toast.makeText(context, ex.toString(), Toast.LENGTH_SHORT).show();
+			Log.e(context.getString(R.string.load), uri.toString(), ex);
 		}
 		return numBytesLoaded;
 	}
