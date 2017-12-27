@@ -398,8 +398,9 @@ public class ObdProt extends ProtoHeader
                 Conversion[] dummyCnvs = {EcuConversions.dfltCnv, EcuConversions.dfltCnv};
                 EcuDataItem newItem = new EcuDataItem(currPid, 0, 0, 0, 32, 0xFFFFFFFF, dummyCnvs,
                                                       "%#08x", null, null,
-                                                      String.format("PID %02X", currPid)
-                );
+                                                      String.format("PID %02X", currPid),
+                                                      String.format("PID_%02X", currPid)
+                                                     );
                 dataItems.appendItemToService(obdService, newItem);
 
                 // re-load data items for this PID

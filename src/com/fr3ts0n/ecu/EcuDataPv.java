@@ -42,6 +42,7 @@ public class EcuDataPv extends IndexedProcessVar
 	public static final String FID_MIN = "MIN";
 	public static final String FID_MAX = "MAX";
 	public static final String FID_BIT_OFS = "BIT_OFS";
+	public static final String FID_MNEMONIC = "MNEMONIC";
 
 	public static final String[] FIELDS =
 		{

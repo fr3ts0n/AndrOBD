@@ -157,16 +157,17 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 				                                  params[FLD.LABEL.ordinal()]);
 				// create linear conversion
 				newItm = new EcuDataItem(Integer.decode(params[FLD.PID.ordinal()]).intValue(),
- 																 Integer.parseInt(params[FLD.OFS.ordinal()]),
-																 Integer.parseInt(params[FLD.LEN.ordinal()]),
-					                       Integer.parseInt(params[FLD.BIT_OFS.ordinal()]),
-					                       Integer.parseInt(params[FLD.BIT_LEN.ordinal()]),
-					                       Long.decode(params[FLD.BIT_MASK.ordinal()]).longValue(),
-					                       currCnvSet,
-																 params[FLD.FORMAT.ordinal()],
-																 minVal,
-																 maxVal,
-																 label);
+										 Integer.parseInt(params[FLD.OFS.ordinal()]),
+										 Integer.parseInt(params[FLD.LEN.ordinal()]),
+									     Integer.parseInt(params[FLD.BIT_OFS.ordinal()]),
+									     Integer.parseInt(params[FLD.BIT_LEN.ordinal()]),
+									     Long.decode(params[FLD.BIT_MASK.ordinal()]).longValue(),
+									     currCnvSet,
+										 params[FLD.FORMAT.ordinal()],
+										 minVal,
+										 maxVal,
+										 label,
+					                     params[FLD.MNEMONIC.ordinal()]);
 
 				// enter data item for all specified services
 				String[] services = params[FLD.SVC.ordinal()].split(","); //$NON-NLS-1$

@@ -55,6 +55,7 @@ public class EcuDataItem
 	long bitMask = 0xFFFFFFFF;  ///< mask for relevant bits within extracted long
 	String fmt;                 ///< Format for text output
 	public String label;        ///< text label
+	public String mnemonic;     ///< unique textual mnemonic
 	public EcuDataPv pv;        ///< the process variable for displaying
 	int currErrorCount = 0;     ///< current number of consecutive conversion errors
 
@@ -101,7 +102,8 @@ public class EcuDataItem
 	                    String format,
 	                    Number minValue,
 	                    Number maxValue,
-	                    String labelText)
+	                    String labelText,
+						String _mnemonic)
 	{
 		pid = newPid;
 		ofs = offset;
@@ -112,6 +114,7 @@ public class EcuDataItem
 		cnv = conversions;
 		fmt = format;
 		label = labelText;
+		mnemonic = _mnemonic;
 		pv = new EcuDataPv();
 		Number minVal = minValue;
 		Number maxVal = maxValue;
@@ -121,6 +124,7 @@ public class EcuDataItem
 		pv.put(EcuDataPv.FID_OFS, Integer.valueOf(ofs));
 		pv.put(EcuDataPv.FID_BIT_OFS, Integer.valueOf(bitOffset));
 		pv.put(EcuDataPv.FID_DESCRIPT, label);
+		pv.put(EcuDataPv.FID_MNEMONIC, mnemonic);
 		pv.put(EcuDataPv.FID_UNITS,
 		       (cnv != null && cnv[cnvSystem] != null)
 		       ? cnv[cnvSystem].getUnits()
