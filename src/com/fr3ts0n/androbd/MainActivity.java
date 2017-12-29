@@ -16,13 +16,12 @@
  * MA 02111-1307 USA
  */
 
-package com.fr3ts0n.ecu.gui.androbd;
+package com.fr3ts0n.androbd;
 
 import android.Manifest;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.app.SearchManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -49,6 +48,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.fr3ts0n.androbd.plugin.mgr.PluginManager;
 import com.fr3ts0n.ecu.EcuCodeItem;
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataItems;
@@ -77,26 +77,28 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-import static com.fr3ts0n.ecu.gui.androbd.SettingsActivity.ELM_TIMING_SELECT;
+import static com.fr3ts0n.androbd.SettingsActivity.ELM_TIMING_SELECT;
 
 /**
  * Main Activity for AndrOBD app
  */
-public class MainActivity extends ListActivity
+public class MainActivity extends PluginManager
 	implements PvChangeListener,
 	AdapterView.OnItemLongClickListener,
+	AdapterView.OnItemClickListener,
 	PropertyChangeListener,
 	SharedPreferences.OnSharedPreferenceChangeListener
 {
+
 	/**
 	 * operating modes
 	 */
 	public enum MODE
 	{
-		OFFLINE,
-		ONLINE,
-		DEMO,
-		FILE
+		OFFLINE,//< OFFLINE mode
+		ONLINE,	//< ONLINE mode
+		DEMO,	//< DEMO mode
+		FILE,   //< FILE mode
 	}
 
 	/**
@@ -108,7 +110,7 @@ public class MainActivity extends ListActivity
 		FILTERED,   //< data list (filtered)
 		DASHBOARD,  //< dashboard
 		HEADUP,     //< Head up display
-		CHART       //< chart display
+		CHART,		//< Chart display
 	}
 
 	/**
@@ -200,7 +202,7 @@ public class MainActivity extends ListActivity
 	 */
 	private static String mConnectedDeviceName = null;
 	/**
-	 * log4j configurator
+	 * menu object
 	 */
 	private static Menu menu;
 	/**
@@ -237,7 +239,6 @@ public class MainActivity extends ListActivity
     /** log file handler */
     private FileHandler logFileHandler;
 
-
 	/** handler for freeze frame selection */
 	AdapterView.OnItemSelectedListener ff_selected = new AdapterView.OnItemSelectedListener()
 	{
@@ -267,6 +268,11 @@ public class MainActivity extends ListActivity
 
 	/** empty string set as default parameter*/
 	static final Set<String> emptyStringSet = new HashSet<String>();
+
+	public MainActivity()
+	{
+		super();
+	}
 
 	/**
 	 * Check if restore of specified preselection is wanted from settings
@@ -662,13 +668,15 @@ public class MainActivity extends ListActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		super.onCreate(savedInstanceState);
-
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		requestWindowFeature(Window.FEATURE_PROGRESS);
 
+		// instantiate superclass
+		super.onCreate(savedInstanceState);
+
+		// get additional permissions
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
 		{
 			// Storage Permissions
@@ -956,6 +964,8 @@ public class MainActivity extends ListActivity
 		ObdProt.tCodes.removePvChangeListener(this);
 	}
 
+	MODE previousMode;
+
 	/**
 	 * get current operating mode
 	 */
@@ -1029,7 +1039,10 @@ public class MainActivity extends ListActivity
 					setStatus(R.string.saved_data);
 					selectFileToLoad();
 					break;
+
 			}
+			// remember previous mode
+			previousMode = this.mode;
 			// set new mode
 			this.mode = mode;
 			setStatus(mode.toString());
@@ -1218,9 +1231,14 @@ public class MainActivity extends ListActivity
 	@Override
 	public void onBackPressed()
 	{
+		if(getListAdapter() == pluginHandler)
+		{
+			setObdService(ObdProt.OBD_SVC_NONE, null);
+		}
+		else
 		if (CommService.elm.getService() != ObdProt.OBD_SVC_NONE)
 		{
-			if(dataViewMode == DATA_VIEW_MODE.FILTERED)
+			if(dataViewMode != DATA_VIEW_MODE.LIST)
 			{
 				setDataViewMode(DATA_VIEW_MODE.LIST);
 			}
@@ -1228,7 +1246,8 @@ public class MainActivity extends ListActivity
 			{
 				setObdService(ObdProt.OBD_SVC_NONE, null);
 			}
-		} else
+		}
+		else
 		{
 			if (lastBackPressTime < System.currentTimeMillis() - EXIT_TIMEOUT)
 			{
@@ -1296,6 +1315,10 @@ public class MainActivity extends ListActivity
 				// Launch the BtDeviceListActivity to see devices and do scan
 				Intent settingsIntent = new Intent(this, SettingsActivity.class);
 				startActivityForResult(settingsIntent, REQUEST_SETTINGS);
+				return true;
+
+			case R.id.plugin_manager:
+				setManagerView();
 				return true;
 
 			case R.id.chart_selected:
@@ -1521,6 +1544,9 @@ public class MainActivity extends ListActivity
 		// update controls
 		setMenuItemEnable(R.id.graph_actions, false);
 		getListView().setOnItemLongClickListener(this);
+		getListView().setOnTouchListener(toolbarAutoHider);
+		getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		// getListView().setOnItemClickListener(this);
 		// set protocol service
 		CommService.elm.setService(newObdService, (getMode() != MODE.FILE));
 		// show / hide freeze frame selector */
@@ -1535,6 +1561,7 @@ public class MainActivity extends ListActivity
 			case ObdProt.OBD_SVC_DATA:
 			case ObdProt.OBD_SVC_FREEZEFRAME:
 				currDataAdapter = mPidAdapter;
+				getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 				break;
 
 			case ObdProt.OBD_SVC_PENDINGCODES:
@@ -1552,7 +1579,7 @@ public class MainActivity extends ListActivity
 		}
 		setListAdapter(currDataAdapter);
 		// remember this as last selected service
-		if(newObdService > 0)
+		if(newObdService > ObdProt.OBD_SVC_NONE)
 			prefs.edit().putInt(PRESELECT.LAST_SERVICE.toString(), newObdService).apply();
 	}
 
@@ -1561,6 +1588,12 @@ public class MainActivity extends ListActivity
 	 */
 	private void setFiltered(boolean filtered)
 	{
+		/*
+	    getListView().setChoiceMode( filtered
+									 ? ListView.CHOICE_MODE_NONE
+									 : ListView.CHOICE_MODE_MULTIPLE);
+		 */
+
 		if (filtered)
 		{
 			PvList filteredList = new PvList();
@@ -1736,6 +1769,25 @@ public class MainActivity extends ListActivity
         logFileHandler.close();
 
         super.onDestroy();
+	}
+
+	/**
+	 * Callback method to be invoked when an item in this AdapterView has
+	 * been clicked.
+	 * <p>
+	 * Implementers can call getItemAtPosition(position) if they need
+	 * to access the data associated with the selected item.
+	 *
+	 * @param parent   The AdapterView where the click happened.
+	 * @param view     The view within the AdapterView that was clicked (this
+	 *                 will be a view provided by the adapter)
+	 * @param position The position of the view in the adapter.
+	 * @param id       The row id of the item that was clicked.
+	 */
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+	{
+		unHideActionBar(view);
 	}
 
 	/**

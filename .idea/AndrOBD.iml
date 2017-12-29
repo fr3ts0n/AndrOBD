@@ -3,14 +3,16 @@
   <component name="FacetManager">
     <facet type="android" name="Android">
       <configuration>
-        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../../AndrOBD/gen" />
-        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../../AndrOBD/gen" />
-        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../../AndrOBD/AndroidManifest.xml" />
-        <option name="RES_FOLDER_RELATIVE_PATH" value="/../../AndrOBD/res" />
-        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../../AndrOBD/assets" />
-        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../../AndrOBD/libs" />
-        <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../../AndrOBD/proguard_logs" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../gen" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../gen" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/../res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../assets" />
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../libs" />
+        <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../proguard_logs" />
         <option name="ENABLE_MANIFEST_MERGING" value="true" />
+        <option name="ENABLE_PRE_DEXING" value="false" />
+        <includeAssetsFromLibraries>true</includeAssetsFromLibraries>
       </configuration>
     </facet>
   </component>
@@ -33,7 +35,6 @@
       <excludeFolder url="file://$MODULE_DIR$/src/com/fr3ts0n/pvs/io" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 25 Platform" jdkType="Android SDK" />
-    <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -44,5 +45,7 @@
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="plugin" />
+    <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

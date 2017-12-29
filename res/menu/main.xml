@@ -75,6 +75,11 @@
         android:showAsAction="ifRoom"
         android:title="@string/load"/>
     <item
+        android:id="@+id/plugin_manager"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:showAsAction="ifRoom"
+        android:title="@string/plugin_manager" />
+    <item
         android:id="@+id/settings"
         android:icon="@android:drawable/ic_menu_manage"
         android:showAsAction="ifRoom"

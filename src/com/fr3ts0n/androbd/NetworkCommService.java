@@ -17,7 +17,7 @@
  *
  */
 
-package com.fr3ts0n.ecu.gui.androbd;
+package com.fr3ts0n.androbd;
 
 import android.content.Context;
 import android.os.Handler;

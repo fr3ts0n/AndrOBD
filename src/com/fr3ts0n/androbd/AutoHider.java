@@ -17,10 +17,9 @@
  *
  */
 
-package com.fr3ts0n.ecu.gui.androbd;
+package com.fr3ts0n.androbd;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.os.Handler;
 import android.os.Message;
 import android.view.MotionEvent;
@@ -30,14 +29,12 @@ import android.view.View.OnTouchListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static android.view.View.OnClickListener;
-
 /**
  * Automatically hide components after timeout and show again on touch action
  */
 public class AutoHider
 	extends TimerTask
-	implements OnTouchListener, OnClickListener
+	implements OnTouchListener
 {
 	/** parent activity */
 	private Activity mActivity;
@@ -68,6 +65,7 @@ public class AutoHider
 		mMessageId = hideMessageId;
 		mActivity = activity;
 		mHandler  = handler;
+		activity.getWindow().getDecorView().setOnTouchListener(this);
 	}
 
 	@Override
@@ -83,12 +81,6 @@ public class AutoHider
 	{
 		showComponent();
 		return false;
-	}
-
-	@Override
-	public void onClick(View v)
-	{
-		showComponent();
 	}
 
 	@Override
@@ -114,13 +106,6 @@ public class AutoHider
 	 */
 	private void setComponentVisibility(boolean visible)
 	{
-		if(mActivity instanceof ListActivity)
-		{
-			// set OnTouch listener to current view to allow wakeup
-			View cntView = ((ListActivity)mActivity).getListView();
-			cntView.setOnTouchListener(this);
-		}
-
 		// if visibility changed ...
 		if(this.visible != visible)
 		{

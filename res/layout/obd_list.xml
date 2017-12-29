@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/mil_off">
+    android:background="@drawable/mil_off" >
 
     <Spinner
         android:id="@+id/ff_selector"
@@ -23,6 +23,6 @@
         android:layout_gravity="center_horizontal"
         android:choiceMode="multipleChoice"
         android:dividerHeight="2dp"
-        android:fastScrollEnabled="true"/>
+        android:fastScrollEnabled="true" />
 
 </LinearLayout>

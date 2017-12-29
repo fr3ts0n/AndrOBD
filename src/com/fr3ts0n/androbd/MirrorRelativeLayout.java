@@ -16,7 +16,7 @@
  * MA 02111-1307 USA
  */
 
-package com.fr3ts0n.ecu.gui.androbd;
+package com.fr3ts0n.androbd;
 
 import android.content.Context;
 import android.graphics.Canvas;

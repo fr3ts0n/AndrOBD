@@ -2,7 +2,7 @@
 <resources>
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
-    <string name="app_version" translatable="false">V1.5.5</string>
+    <string name="app_version" translatable="false">V1.6.0</string>
     <string name="copyright_fr3ts0n" translatable="false">&#169; 2015-2017 fr3ts0n</string>
     <string name="translation_credits">Translation by fr3ts0n</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 bluetooth adapter</string>
@@ -164,6 +164,12 @@ period of time while the ECU recalibrates itself.
     <string name="obd_options">OBD options </string>
     <string name="obd_opt_description">Options for OBD protocol / vehicle communication </string>
     <string name="select_protocol">Preferred OBD protocol </string>
+
+    <string name="plugins">Plugins</string>
+    <string name="plugin_manager">Plugin manager</string>
+    <string name="configure">Configure</string>
+    <string name="perform_action">Perform action</string>
+
     <string name="select_fault_code">Select fault code …</string>
     <string name="select_medium">Adapter type …</string>
 
@@ -255,6 +261,7 @@ period of time while the ECU recalibrates itself.
     <string name="semicolon">SEMICOLON</string>
     <string name="send_after_export">Send after export</string>
     <string name="send_after_export_descr">Prompt for sending CSV file right after export?</string>
+    <string name="plugin_manager_desc">Manage installed plugins</string>
     <string-array name="csv_field_delim_options" translatable="false">
         <item>@string/tab</item>
         <item>@string/comma</item>

@@ -16,20 +16,21 @@
  * MA 02111-1307 USA
  */
 
-package com.fr3ts0n.ecu.gui.androbd;
+package com.fr3ts0n.androbd;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.preference.PreferenceManager;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.fr3ts0n.androbd.plugin.mgr.PluginManager;
 import com.fr3ts0n.ecu.Conversion;
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataPv;
@@ -63,6 +64,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	/** allow data updates to be handled */
 	public static boolean allowDataUpdates = true;
 	transient SharedPreferences prefs;
+
 
 	public ObdItemAdapter(Context context, int resource, PvList pvs)
 	{
@@ -169,11 +171,23 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		// description text
 		TextView tvDescr = (TextView) convertView.findViewById(R.id.obd_label);
 		tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
-		CheckBox cbChecked = (CheckBox) convertView.findViewById(R.id.check);
 		TextView tvValue = (TextView) convertView.findViewById(R.id.obd_value);
 		TextView tvUnits = (TextView) convertView.findViewById(R.id.obd_units);
 		ProgressBar pb = (ProgressBar) convertView.findViewById(R.id.bar);
+		/*
+		CheckBox cbChecked = (CheckBox) convertView.findViewById(R.id.check);
 		cbChecked.setVisibility(isPidList ? View.VISIBLE : View.GONE);
+		*/
+		if(isPidList)
+		{
+			TypedValue typedValue = new TypedValue();
+			getContext().getTheme().resolveAttribute(android.R.attr.activatedBackgroundIndicator, typedValue, true);
+			convertView.setBackgroundResource(typedValue.resourceId);
+		}
+		else
+		{
+			convertView.setBackground(null);
+		}
 
 		// format value string
 		String fmtText;
@@ -228,6 +242,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	 */
 	protected synchronized void addAllDataSeries()
 	{
+		String pluginStr = "";
 		for (IndexedProcessVar pv : (Iterable<IndexedProcessVar>) pvs.values())
 		{
 			XYSeries series = (XYSeries) pv.get(FID_DATA_SERIES);
@@ -236,6 +251,19 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 				pv.put(FID_DATA_SERIES, series);
 				pv.addPvChangeListener(this, PvChangeEvent.PV_MODIFIED);
 			}
+
+			// assemble data items for plugin notification
+			pluginStr += String.format( "%s;%s;%s\n",
+				                        pv.get(EcuDataPv.FID_MNEMONIC),
+										pv.get(EcuDataPv.FID_DESCRIPT),
+				                        pv.get(EcuDataPv.FID_UNITS)
+			                          );
+		}
+
+		// notify plugins
+		if(PluginManager.pluginHandler != null)
+		{
+			PluginManager.pluginHandler.sendDataList(pluginStr);
 		}
 	}
 
@@ -254,6 +282,14 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 						((Number)event.getValue()).doubleValue());
 
 				}
+			}
+
+			// send update to plugin handler
+			if(PluginManager.pluginHandler != null)
+			{
+				PluginManager.pluginHandler.sendDataUpdate(
+					pv.get(EcuDataPv.FID_MNEMONIC).toString(),
+					event.getValue().toString());
 			}
 		}
 	}
