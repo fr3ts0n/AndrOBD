@@ -253,9 +253,10 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 			}
 
 			// assemble data items for plugin notification
-			pluginStr += String.format( "%s;%s;%s\n",
+			pluginStr += String.format( "%s;%s;%s;%s\n",
 				                        pv.get(EcuDataPv.FID_MNEMONIC),
 										pv.get(EcuDataPv.FID_DESCRIPT),
+										String.valueOf(pv.get(EcuDataPv.FID_VALUE)),
 				                        pv.get(EcuDataPv.FID_UNITS)
 			                          );
 		}

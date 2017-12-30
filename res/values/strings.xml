@@ -165,10 +165,8 @@ period of time while the ECU recalibrates itself.
     <string name="obd_opt_description">Options for OBD protocol / vehicle communication </string>
     <string name="select_protocol">Preferred OBD protocol </string>
 
-    <string name="plugins">Plugins</string>
     <string name="plugin_manager">Plugin manager</string>
     <string name="configure">Configure</string>
-    <string name="perform_action">Perform action</string>
 
     <string name="select_fault_code">Select fault code …</string>
     <string name="select_medium">Adapter type …</string>

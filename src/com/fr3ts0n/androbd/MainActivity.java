@@ -85,7 +85,6 @@ import static com.fr3ts0n.androbd.SettingsActivity.ELM_TIMING_SELECT;
 public class MainActivity extends PluginManager
 	implements PvChangeListener,
 	AdapterView.OnItemLongClickListener,
-	AdapterView.OnItemClickListener,
 	PropertyChangeListener,
 	SharedPreferences.OnSharedPreferenceChangeListener
 {
@@ -269,10 +268,802 @@ public class MainActivity extends PluginManager
 	/** empty string set as default parameter*/
 	static final Set<String> emptyStringSet = new HashSet<String>();
 
-	public MainActivity()
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
 	{
-		super();
+		// instantiate superclass
+		super.onCreate(savedInstanceState);
+
+		// requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		requestWindowFeature(Window.FEATURE_PROGRESS);
+
+		// get additional permissions
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+		{
+			// Storage Permissions
+			final int REQUEST_EXTERNAL_STORAGE = 1;
+			final String[] PERMISSIONS_STORAGE = {
+					Manifest.permission.READ_EXTERNAL_STORAGE,
+					Manifest.permission.WRITE_EXTERNAL_STORAGE
+			};
+			requestPermissions(PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+			// Workaround for FileUriExposedException in Android >= M
+			StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+			StrictMode.setVmPolicy(builder.build());
+		}
+
+		dlgBuilder = new AlertDialog.Builder(this);
+
+		// get preferences
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		// register for later changes
+		prefs.registerOnSharedPreferenceChangeListener(this);
+		// Overlay feature has to be set before window content is set
+		if(prefs.getBoolean(PREF_AUTOHIDE,false))
+			getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+
+		// set up logging ...
+        String logFileName = FileHelper.getPath(this).concat(File.separator).concat("log");
+        try
+		{
+            // ensure log directory is available
+            new File(logFileName).mkdirs();
+			// Create new log file handler (max. 250 MB, 5 files rotated, non appending)
+            logFileHandler = new FileHandler( logFileName.concat("/AndrOBD.log.%g.txt"),
+                                              250*1024*1024,
+                                              5,
+                                              false);
+            // Set log message formatter
+            logFileHandler.setFormatter(new SimpleFormatter() {
+                String format = "%1$tF\t%1$tT.%1$tL\t%4$s\t%3$s\t%5$s%n";
+
+                @Override
+                public synchronized String format(LogRecord lr) {
+                    return String.format(format,
+                                         new Date(lr.getMillis()),
+                                         lr.getSourceClassName(),
+                                         lr.getLoggerName(),
+                                         lr.getLevel().getLocalizedName(),
+                                         lr.getMessage()
+                    );
+                }
+            });
+            // add file logging ...
+            Logger.getLogger("").addHandler(logFileHandler);
+			// set
+            setLogLevels();
+		}
+		catch(IOException e)
+		{
+			// try to log error (at least with system logging)
+			log.log(Level.SEVERE, logFileName, e);
+		}
+        // Log program startup
+		log.info(String.format("%s %s starting",
+		                       getString(R.string.app_name),
+		                       getString(R.string.app_version)));
+
+		// Set up all data adapters
+		mPidAdapter = new ObdItemAdapter(this, R.layout.obd_item, ObdProt.PidPvs);
+		mVidAdapter = new VidItemAdapter(this, R.layout.obd_item, ObdProt.VidPvs);
+		mDfcAdapter = new DfcItemAdapter(this, R.layout.obd_item, ObdProt.tCodes);
+		currDataAdapter = mPidAdapter;
+
+		// create file helper instance
+		fileHelper = new FileHelper(this, CommService.elm);
+		// set listeners for data structure changes
+		setDataListeners();
+		// automate elm status display
+		CommService.elm.addPropertyChangeListener(this);
+
+		// set up action bar
+		ActionBar actionBar = getActionBar();
+		if (actionBar != null)
+		{
+			actionBar.setDisplayShowTitleEnabled(true);
+		}
+		// start automatic toolbar hider
+		setAutoHider(prefs.getBoolean(PREF_AUTOHIDE,false));
+
+		// get list view
+		mListView = getWindow().getLayoutInflater().inflate(R.layout.obd_list, null);
+
+		// update all settings from preferences
+		onSharedPreferenceChanged(prefs, null);
+
+		// set content view
+		setContentView(R.layout.startup_layout);
+
+		// override comm medium with USB connect intent
+		if ("android.hardware.usb.action.USB_DEVICE_ATTACHED".equals(getIntent().getAction()))
+		{
+			CommService.medium = CommService.MEDIUM.USB;
+		}
+
+		switch (CommService.medium)
+		{
+			case BLUETOOTH:
+				// Get local Bluetooth adapter
+				mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+				log.fine("Adapter: " + mBluetoothAdapter);
+				// If BT is not on, request that it be enabled.
+				if (getMode() != MODE.DEMO && mBluetoothAdapter != null)
+				{
+					// remember initial bluetooth state
+					initialBtStateEnabled = mBluetoothAdapter.isEnabled();
+					if (!initialBtStateEnabled)
+					{
+						Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+						startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+					}
+				}
+				break;
+
+			case USB:
+			case NETWORK:
+				setMode(MODE.ONLINE);
+				break;
+		}
 	}
+
+	/**
+	 * Handler for application start event
+	 */
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+
+		// If the adapter is null, then Bluetooth is not supported
+		if (CommService.medium == CommService.MEDIUM.BLUETOOTH && mBluetoothAdapter == null)
+		{
+			// start ELM protocol demo loop
+			setMode(MODE.DEMO);
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see android.app.Activity#onDestroy()
+	 */
+	@Override
+	protected void onDestroy()
+	{
+		// Stop toolbar hider thread
+		setAutoHider(false);
+
+		try
+		{
+			// Reduce ELM power consumption by setting it to sleep
+			CommService.elm.goToSleep();
+			// wait until message is out ...
+			Thread.sleep(100, 0);
+		} catch (InterruptedException e)
+		{
+			// do nothing
+			log.log(Level.FINER, e.getLocalizedMessage());
+		}
+
+		/* don't listen to ELM data changes any more */
+		removeDataListeners();
+		// don't listen to ELM property changes any more
+		CommService.elm.removePropertyChangeListener(this);
+
+		// stop demo service if it was started
+		setMode(MODE.OFFLINE);
+
+		// stop communication service
+		if (mCommService != null) mCommService.stop();
+
+		// if bluetooth adapter was switched OFF before ...
+		if (mBluetoothAdapter != null && !initialBtStateEnabled)
+		{
+			// ... turn it OFF again
+			mBluetoothAdapter.disable();
+		}
+
+		log.info(String.format("%s %s finished",
+			getString(R.string.app_name),
+			getString(R.string.app_version)));
+
+		/* remove log file handler */
+		Logger.getLogger("").removeHandler(logFileHandler);
+		logFileHandler.close();
+
+		super.onDestroy();
+	}
+
+	@Override
+	public void setContentView(int layoutResID)
+	{
+		setContentView(getLayoutInflater().inflate(layoutResID, null));
+	}
+
+	@Override
+	public void setContentView(View view)
+	{
+		super.setContentView(view);
+		getListView().setOnTouchListener(toolbarAutoHider);
+	}
+
+	/**
+	 * handle pressing of the BACK-KEY
+	 */
+	@Override
+	public void onBackPressed()
+	{
+		if(getListAdapter() == pluginHandler)
+		{
+			setObdService(ObdProt.OBD_SVC_NONE, null);
+		}
+		else
+			if (CommService.elm.getService() != ObdProt.OBD_SVC_NONE)
+			{
+				if(dataViewMode != DATA_VIEW_MODE.LIST)
+				{
+					setDataViewMode(DATA_VIEW_MODE.LIST);
+				}
+				else
+				{
+					setObdService(ObdProt.OBD_SVC_NONE, null);
+				}
+			}
+			else
+			{
+				if (lastBackPressTime < System.currentTimeMillis() - EXIT_TIMEOUT)
+				{
+					exitToast = Toast.makeText(this, R.string.back_again_to_exit, Toast.LENGTH_SHORT);
+					exitToast.show();
+					lastBackPressTime = System.currentTimeMillis();
+				} else
+				{
+					if (exitToast != null)
+					{
+						exitToast.cancel();
+					}
+					super.onBackPressed();
+				}
+			}
+	}
+
+	/**
+	 * Handler for options menu creation event
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		MainActivity.menu = menu;
+		// update menu item status for current conversion
+		setConversionSystem(EcuDataItem.cnvSystem);
+		return true;
+	}
+
+
+	/**
+	 * Handler for Options menu selection
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		// Handle presses on the action bar items
+		updateTimer.purge();
+
+		switch (item.getItemId())
+		{
+			case R.id.day_night_mode:
+				// toggle night mode setting
+				prefs.edit().putBoolean(NIGHT_MODE, !isNightMode()).apply();
+				return true;
+
+			case R.id.secure_connect_scan:
+				setMode(MODE.ONLINE);
+				return true;
+
+			case R.id.reset_preselections:
+				clearPreselections();
+				recreate();
+				return true;
+
+			case R.id.disconnect:
+				// stop communication service
+				if (mCommService != null) mCommService.stop();
+				setMode(MODE.OFFLINE);
+				return true;
+
+			case R.id.settings:
+				// Launch the BtDeviceListActivity to see devices and do scan
+				Intent settingsIntent = new Intent(this, SettingsActivity.class);
+				startActivityForResult(settingsIntent, REQUEST_SETTINGS);
+				return true;
+
+			case R.id.plugin_manager:
+				setManagerView();
+				return true;
+
+			case R.id.chart_selected:
+				setDataViewMode(DATA_VIEW_MODE.CHART);
+				return true;
+
+			case R.id.hud_selected:
+				setDataViewMode(DATA_VIEW_MODE.HEADUP);
+				return true;
+
+			case R.id.dashboard_selected:
+				setDataViewMode(DATA_VIEW_MODE.DASHBOARD);
+				return true;
+
+			case R.id.filter_selected:
+				setDataViewMode(DATA_VIEW_MODE.FILTERED);
+				return true;
+
+			case R.id.unfilter_selected:
+				setDataViewMode(DATA_VIEW_MODE.LIST);
+				return true;
+
+			case R.id.save:
+				// save recorded data (threaded)
+				fileHelper.saveDataThreaded();
+				return true;
+
+			case R.id.load:
+				setMode(MODE.FILE);
+				return true;
+
+			case R.id.service_none:
+				setObdService(ObdProt.OBD_SVC_NONE, item.getTitle());
+				return true;
+
+			case R.id.service_data:
+				setObdService(ObdProt.OBD_SVC_DATA, item.getTitle());
+				return true;
+
+			case R.id.service_vid_data:
+				setObdService(ObdProt.OBD_SVC_VEH_INFO, item.getTitle());
+				return true;
+
+			case R.id.service_freezeframes:
+				setObdService(ObdProt.OBD_SVC_FREEZEFRAME, item.getTitle());
+				return true;
+
+			case R.id.service_codes:
+				setObdService(ObdProt.OBD_SVC_READ_CODES, item.getTitle());
+				return true;
+
+			case R.id.service_permacodes:
+				setObdService(ObdProt.OBD_SVC_PERMACODES, item.getTitle());
+				return true;
+
+			case R.id.service_pendingcodes:
+				setObdService(ObdProt.OBD_SVC_PENDINGCODES, item.getTitle());
+				return true;
+
+			case R.id.service_clearcodes:
+				clearObdFaultCodes();
+				setObdService(ObdProt.OBD_SVC_READ_CODES, item.getTitle());
+				return true;
+		}
+
+		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * Handler for result messages from other activities
+	 */
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		boolean secureConnection = false;
+
+		switch (requestCode)
+		{
+			// device is connected
+			case REQUEST_CONNECT_DEVICE_SECURE:
+				secureConnection = true;
+				// no break here ...
+			case REQUEST_CONNECT_DEVICE_INSECURE:
+				// When BtDeviceListActivity returns with a device to connect
+				if (resultCode == Activity.RESULT_OK)
+				{
+					// Get the device MAC address
+					String address = data.getExtras().getString(
+						BtDeviceListActivity.EXTRA_DEVICE_ADDRESS);
+					// save reported address as last setting
+					prefs.edit().putString(PRESELECT.LAST_DEV_ADDRESS.toString(), address).apply();
+					connectBtDevice(address, secureConnection);
+				} else
+				{
+					setMode(MODE.OFFLINE);
+				}
+				break;
+
+			// USB device selected
+			case REQUEST_CONNECT_DEVICE_USB:
+				// DeviceListActivity returns with a device to connect
+				if (resultCode == Activity.RESULT_OK)
+				{
+					mCommService = new UsbCommService(this, mHandler);
+					mCommService.connect(UsbDeviceListActivity.selectedPort, true);
+				} else
+				{
+					setMode(MODE.OFFLINE);
+				}
+				break;
+
+			// bluetooth enabled
+			case REQUEST_ENABLE_BT:
+				// When the request to enable Bluetooth returns
+				if (resultCode == Activity.RESULT_OK)
+				{
+					// Start online mode
+					setMode(MODE.ONLINE);
+				} else
+				{
+					// Start demo service Thread
+					setMode(MODE.DEMO);
+				}
+				break;
+
+			// file selected
+			case REQUEST_SELECT_FILE:
+				if (resultCode == RESULT_OK)
+				{
+					// Get the Uri of the selected file
+					Uri uri = data.getData();
+					log.info("Load content: " + uri);
+					// load data ...
+					fileHelper.loadDataThreaded(uri, mHandler, MESSAGE_FILE_READ);
+					// don't allow saving it again
+					setMenuItemEnable(R.id.save, false);
+					setMenuItemEnable(R.id.obd_services, true);
+				}
+				break;
+
+			// settings finished
+			case REQUEST_SETTINGS:
+			{
+				// change handling done by callbacks
+			}
+			break;
+
+			// graphical data view finished
+			case REQUEST_GRAPH_DISPLAY_DONE:
+				// let context know that we are in list mode again ...
+				dataViewMode = DATA_VIEW_MODE.LIST;
+				break;
+		}
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences prefs, String key)
+	{
+		// keep main display on?
+		if (key==null || KEEP_SCREEN_ON.equals(key))
+		{
+			getWindow().addFlags(prefs.getBoolean(KEEP_SCREEN_ON, false)
+								 ? WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+								 : 0);
+		}
+
+		// night mode
+		if(key==null || NIGHT_MODE.equals(key))
+			setNightMode(prefs.getBoolean(NIGHT_MODE, false));
+
+		// set default comm medium
+		if(key==null || SettingsActivity.KEY_COMM_MEDIUM.equals(key))
+			CommService.medium =
+				CommService.MEDIUM.values()[
+					getPrefsInt(SettingsActivity.KEY_COMM_MEDIUM, 0)];
+
+		// enable/disable ELM adaptive timing
+		if(key==null || ELM_ADAPTIVE_TIMING.equals(key))
+			CommService.elm.mAdaptiveTiming.setMode(
+				ElmProt.AdaptTimingMode.valueOf(
+					prefs.getString(ELM_ADAPTIVE_TIMING,
+						ElmProt.AdaptTimingMode.OFF.toString())));
+
+		// set protocol flag to initiate immediate reset on NRC reception
+		if(key==null || ELM_RESET_ON_NRC.equals(key))
+			CommService.elm.setResetOnNrc(prefs.getBoolean(ELM_RESET_ON_NRC, false));
+
+		// set custom ELM init commands
+		if(key==null || ELM_CUSTOM_INIT_CMDS.equals(key))
+		{
+			String value = prefs.getString(ELM_CUSTOM_INIT_CMDS, null);
+			if(value != null && value.length() > 0)
+				CommService.elm.setCustomInitCommands(value.split("\n"));
+		}
+
+		// ELM timeout
+		if(key==null || SettingsActivity.ELM_MIN_TIMEOUT.equals(key))
+			CommService.elm.mAdaptiveTiming.setElmTimeoutMin(
+				getPrefsInt(SettingsActivity.ELM_MIN_TIMEOUT,
+					CommService.elm.mAdaptiveTiming.getElmTimeoutMin()));
+
+		// ... measurement system
+		if(key==null || MEASURE_SYSTEM.equals(key))
+			setConversionSystem(getPrefsInt(MEASURE_SYSTEM, EcuDataItem.SYSTEM_METRIC));
+
+		// ... preferred protocol
+		if(key==null || SettingsActivity.KEY_PROT_SELECT.equals(key))
+			ElmProt.setPreferredProtocol(getPrefsInt(SettingsActivity.KEY_PROT_SELECT, 0));
+
+		// log levels
+		if(key==null || LOG_MASTER.equals(key))
+			setLogLevels();
+
+		// update from protocol extensions
+		if(key==null || key.startsWith("ext_file-"))
+			loadPreferredExtensions();
+
+		// set disabled ELM commands
+		if(key==null || SettingsActivity.ELM_CMD_DISABLE.equals(key))
+		{
+			ElmProt.disableCommands(prefs.getStringSet(SettingsActivity.ELM_CMD_DISABLE, null));
+		}
+
+		// AutoHide ToolBar
+		if(key==null || PREF_AUTOHIDE.equals(key) || PREF_AUTOHIDE_DELAY.equals(key))
+			setAutoHider(prefs.getBoolean(PREF_AUTOHIDE,false));
+
+		// Max. data disabling debounce counter
+		if(key==null || PREF_DATA_DISABLE_MAX.equals(key))
+			EcuDataItem.MAX_ERROR_COUNT = getPrefsInt(PREF_DATA_DISABLE_MAX, 3);
+	}
+
+	/**
+	 * Handle short clicks in OBD data list items
+	 */
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id)
+	{
+		if(DATA_VIEW_MODE.LIST == dataViewMode
+		   && ObdProt.OBD_SVC_DATA == CommService.elm.getService())
+		{
+			super.onListItemClick(l, v, position, id);
+		}
+		// enable graphic actions only on DATA service if min 1 item selected
+		setMenuItemEnable(R.id.graph_actions,
+			((CommService.elm.getService() == ObdProt.OBD_SVC_DATA)
+			 && (getListView().getCheckedItemCount() > 0)
+			)
+		);
+	}
+
+	/**
+	 * Handle long licks on OBD data list items
+	 */
+	@Override
+	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
+	{
+		Intent intent;
+
+		switch (CommService.elm.getService())
+		{
+		    /* if we are in OBD data mode:
+		     * ->Long click on an item starts the single item dashboard activity
+		     */
+			case ObdProt.OBD_SVC_DATA:
+				EcuDataPv pv = (EcuDataPv) getListAdapter().getItem(position);
+				/* only numeric values may be shown as graph/dashboard */
+				if (pv.get(EcuDataPv.FID_VALUE) instanceof Number)
+				{
+					DashBoardActivity.setAdapter(getListAdapter());
+					intent = new Intent(this, DashBoardActivity.class);
+					intent.putExtra(DashBoardActivity.POSITIONS, new int[]{position});
+					startActivity(intent);
+				}
+				break;
+
+			/* If we are in DFC mode of any kind
+			 * -> Long click leads to a web search for selected DFC
+			 */
+			case ObdProt.OBD_SVC_READ_CODES:
+			case ObdProt.OBD_SVC_PERMACODES:
+			case ObdProt.OBD_SVC_PENDINGCODES:
+				intent = new Intent(Intent.ACTION_SEARCH);
+				EcuCodeItem dfc = (EcuCodeItem) getListAdapter().getItem(position);
+				intent.putExtra(SearchManager.QUERY,
+					"OBD " + String.valueOf(dfc.get(EcuCodeItem.FID_CODE)));
+				startActivity(intent);
+				break;
+		}
+		return true;
+	}
+
+	/**
+	 * Handler for PV change events This handler just forwards the PV change
+	 * events to the android handler, since all adapter / GUI actions have to be
+	 * performed from the main handler
+	 *
+	 * @param event PvChangeEvent which is reported
+	 */
+	@Override
+	public synchronized void pvChanged(PvChangeEvent event)
+	{
+		// forward PV change to the UI Activity
+		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DATA_ITEMS_CHANGED);
+		if(!event.isChildEvent())
+		{
+			msg.obj = event;
+			mHandler.sendMessage(msg);
+		}
+	}
+
+	/**
+	 * Handle message requests
+	 */
+	private transient final Handler mHandler = new Handler()
+	{
+		@Override
+		public void handleMessage(Message msg)
+		{
+			try
+			{
+				PropertyChangeEvent evt;
+
+				// log trace message for received handler notification event
+				log.log(Level.FINEST, String.format("Handler notification: %s", msg.toString()));
+
+				switch (msg.what)
+				{
+					case MESSAGE_STATE_CHANGE:
+						// log trace message for received handler notification event
+						log.log(Level.FINEST, String.format("State change: %s", msg.toString()));
+						switch ((CommService.STATE) msg.obj)
+						{
+							case CONNECTED:
+								onConnect();
+								break;
+
+							case CONNECTING:
+								setStatus(R.string.title_connecting);
+								break;
+
+							default:
+								onDisconnect();
+								break;
+						}
+						break;
+
+					case MESSAGE_FILE_WRITTEN:
+						break;
+
+					// data has been read - finish up
+					case MESSAGE_FILE_READ:
+						// set listeners for data structure changes
+						setDataListeners();
+						// set adapters data source to loaded list instances
+						mPidAdapter.setPvList(ObdProt.PidPvs);
+						mVidAdapter.setPvList(ObdProt.VidPvs);
+						mDfcAdapter.setPvList(ObdProt.tCodes);
+						// set OBD data mode to the one selected by input file
+						setObdService(CommService.elm.getService(), getString(R.string.saved_data));
+						// Check if last data selection shall be restored
+						if(obdService == ObdProt.OBD_SVC_DATA) checkToRestoreLastDataSelection();
+						break;
+
+					case MESSAGE_DEVICE_NAME:
+						// save the connected device's name
+						mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
+						Toast.makeText(getApplicationContext(),
+							getString(R.string.connected_to) + mConnectedDeviceName,
+							Toast.LENGTH_SHORT).show();
+						break;
+
+					case MESSAGE_TOAST:
+						Toast.makeText(getApplicationContext(),
+							msg.getData().getString(TOAST),
+							Toast.LENGTH_SHORT).show();
+						break;
+
+					case MESSAGE_DATA_ITEMS_CHANGED:
+						PvChangeEvent event = (PvChangeEvent) msg.obj;
+						switch (event.getType())
+						{
+							case PvChangeEvent.PV_ADDED:
+								currDataAdapter.setPvList(currDataAdapter.pvs);
+								try
+								{
+									if(event.getSource() == ObdProt.PidPvs)
+									{
+										// Check if last data selection shall be restored
+										checkToRestoreLastDataSelection();
+									}
+									// set up data update timer
+									updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
+								} catch (Exception ignored)
+								{
+									log.log(Level.FINER, "Error adding PV", ignored);
+								}
+								break;
+
+							case PvChangeEvent.PV_CLEARED:
+								currDataAdapter.clear();
+								break;
+						}
+						break;
+
+					case MESSAGE_UPDATE_VIEW:
+						getListView().invalidateViews();
+						break;
+
+					// handle state change in OBD protocol
+					case MESSAGE_OBD_STATE_CHANGED:
+						evt = (PropertyChangeEvent) msg.obj;
+						ElmProt.STAT state = (ElmProt.STAT)evt.getNewValue();
+                        /* Show ELM status only in ONLINE mode */
+						if (getMode() != MODE.DEMO)
+						{
+							setStatus(getResources().getStringArray(R.array.elmcomm_states)[state.ordinal()]);
+						}
+						// if last selection shall be restored ...
+						if(istRestoreWanted(PRESELECT.LAST_SERVICE))
+						{
+							if(state == ElmProt.STAT.ECU_DETECTED)
+							{
+								setObdService(prefs.getInt(PRESELECT.LAST_SERVICE.toString(),0), null);
+							}
+						}
+						break;
+
+					// handle change in number of fault codes
+					case MESSAGE_OBD_NUMCODES:
+						evt = (PropertyChangeEvent) msg.obj;
+						setNumCodes((Integer) evt.getNewValue());
+						break;
+
+					// handle ECU detection event
+					case MESSAGE_OBD_ECUS:
+						evt = (PropertyChangeEvent) msg.obj;
+						selectEcu((Set<Integer>) evt.getNewValue());
+						break;
+
+					// handle negative result code from OBD protocol
+					case MESSAGE_OBD_NRC:
+						// reset OBD mode to prevent infinite error loop
+						setObdService(ObdProt.OBD_SVC_NONE, getText(R.string.obd_error));
+						// show error dialog ...
+						evt = (PropertyChangeEvent) msg.obj;
+						String nrcMessage = (String)evt.getNewValue();
+						dlgBuilder
+							.setIcon(android.R.drawable.ic_dialog_alert)
+							.setTitle(R.string.obd_error)
+							.setMessage(nrcMessage)
+							.setPositiveButton(null,null)
+							.show();
+						break;
+
+					// set toolbar visibility
+					case MESSAGE_TOOLBAR_VISIBLE:
+						Boolean visible = (Boolean)msg.obj;
+						// log action
+						log.fine(String.format("ActionBar: %s", visible ? "show" : "hide"));
+						// set action bar visibility
+						ActionBar ab = getActionBar();
+						if(ab != null)
+						{
+							if(visible)
+							{
+								ab.show();
+							} else
+							{
+								ab.hide();
+							}
+						}
+						break;
+				}
+			}
+			catch(Exception ex)
+			{
+				log.log(Level.SEVERE, "Error in mHandler", ex);
+			}
+		}
+	};
 
 	/**
 	 * Check if restore of specified preselection is wanted from settings
@@ -304,7 +1095,7 @@ public class MainActivity extends PluginManager
 					// remove invalid preselection
 					prefs.edit().remove(PRESELECT.LAST_ITEMS.toString()).apply();
 					log.warning(String.format("Invalid preselection: %s",
-					                       Arrays.toString(lastSelectedItems)));
+						Arrays.toString(lastSelectedItems)));
 				}
 			}
 		}
@@ -317,176 +1108,6 @@ public class MainActivity extends PluginManager
 			setDataViewMode(lastMode);
 		}
 	}
-	/**
-	 * Handle message requests
-	 */
-	private transient final Handler mHandler = new Handler()
-	{
-		@Override
-		public void handleMessage(Message msg)
-		{
-			try
-            {
-                PropertyChangeEvent evt;
-
-                // log trace message for received handler notification event
-                log.log(Level.FINEST, String.format("Handler notification: %s", msg.toString()));
-
-                switch (msg.what)
-                {
-                    case MESSAGE_STATE_CHANGE:
-                        // log trace message for received handler notification event
-                        log.log(Level.FINEST, String.format("State change: %s", msg.toString()));
-                        switch ((CommService.STATE) msg.obj)
-                        {
-                            case CONNECTED:
-                                onConnect();
-                                break;
-
-                            case CONNECTING:
-                                setStatus(R.string.title_connecting);
-                                break;
-
-                            default:
-                                onDisconnect();
-                                break;
-                        }
-                        break;
-
-                    case MESSAGE_FILE_WRITTEN:
-                        break;
-
-                    // data has been read - finish up
-                    case MESSAGE_FILE_READ:
-                        // set listeners for data structure changes
-                        setDataListeners();
-                        // set adapters data source to loaded list instances
-                        mPidAdapter.setPvList(ObdProt.PidPvs);
-                        mVidAdapter.setPvList(ObdProt.VidPvs);
-                        mDfcAdapter.setPvList(ObdProt.tCodes);
-                        // set OBD data mode to the one selected by input file
-                        setObdService(CommService.elm.getService(), getString(R.string.saved_data));
-                        // Check if last data selection shall be restored
-                        if(obdService == ObdProt.OBD_SVC_DATA) checkToRestoreLastDataSelection();
-                        break;
-
-                    case MESSAGE_DEVICE_NAME:
-                        // save the connected device's name
-                        mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
-                        Toast.makeText(getApplicationContext(),
-                                       getString(R.string.connected_to) + mConnectedDeviceName,
-                                       Toast.LENGTH_SHORT).show();
-                        break;
-
-                    case MESSAGE_TOAST:
-                        Toast.makeText(getApplicationContext(),
-                                       msg.getData().getString(TOAST),
-                                       Toast.LENGTH_SHORT).show();
-                        break;
-
-                    case MESSAGE_DATA_ITEMS_CHANGED:
-                        PvChangeEvent event = (PvChangeEvent) msg.obj;
-                        switch (event.getType())
-                        {
-                            case PvChangeEvent.PV_ADDED:
-                                currDataAdapter.setPvList(currDataAdapter.pvs);
-                                try
-                                {
-                                    if(event.getSource() == ObdProt.PidPvs)
-                                    {
-                                        // Check if last data selection shall be restored
-                                        checkToRestoreLastDataSelection();
-                                    }
-                                    // set up data update timer
-                                    updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
-                                } catch (Exception ignored)
-                                {
-                                    log.log(Level.FINER, "Error adding PV", ignored);
-                                }
-                                break;
-
-                            case PvChangeEvent.PV_CLEARED:
-                                currDataAdapter.clear();
-                                break;
-                        }
-                        break;
-
-                    case MESSAGE_UPDATE_VIEW:
-                        getListView().invalidateViews();
-                        break;
-
-                    // handle state change in OBD protocol
-                    case MESSAGE_OBD_STATE_CHANGED:
-                        evt = (PropertyChangeEvent) msg.obj;
-                        ElmProt.STAT state = (ElmProt.STAT)evt.getNewValue();
-                        /* Show ELM status only in ONLINE mode */
-                        if (getMode() != MODE.DEMO)
-                        {
-                            setStatus(getResources().getStringArray(R.array.elmcomm_states)[state.ordinal()]);
-                        }
-                        // if last selection shall be restored ...
-                        if(istRestoreWanted(PRESELECT.LAST_SERVICE))
-                        {
-                            if(state == ElmProt.STAT.ECU_DETECTED)
-                            {
-                                setObdService(prefs.getInt(PRESELECT.LAST_SERVICE.toString(),0), null);
-                            }
-                        }
-                        break;
-
-                    // handle change in number of fault codes
-                    case MESSAGE_OBD_NUMCODES:
-                        evt = (PropertyChangeEvent) msg.obj;
-                        setNumCodes((Integer) evt.getNewValue());
-                        break;
-
-                    // handle ECU detection event
-                    case MESSAGE_OBD_ECUS:
-                        evt = (PropertyChangeEvent) msg.obj;
-                        selectEcu((Set<Integer>) evt.getNewValue());
-                        break;
-
-                    // handle negative result code from OBD protocol
-                    case MESSAGE_OBD_NRC:
-                        // reset OBD mode to prevent infinite error loop
-                        setObdService(ObdProt.OBD_SVC_NONE, getText(R.string.obd_error));
-                        // show error dialog ...
-                        evt = (PropertyChangeEvent) msg.obj;
-                        String nrcMessage = (String)evt.getNewValue();
-                        dlgBuilder
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .setTitle(R.string.obd_error)
-                            .setMessage(nrcMessage)
-                            .setPositiveButton(null,null)
-                            .show();
-                        break;
-
-                    // set toolbar visibility
-                    case MESSAGE_TOOLBAR_VISIBLE:
-                        Boolean visible = (Boolean)msg.obj;
-                        // log action
-                        log.fine(String.format("ActionBar: %s", visible ? "show" : "hide"));
-                        // set action bar visibility
-                        ActionBar ab = getActionBar();
-                        if(ab != null)
-                        {
-                            if(visible)
-                            {
-                                ab.show();
-                            } else
-                            {
-                                ab.hide();
-                            }
-                        }
-                        break;
-                }
-            }
-            catch(Exception ex)
-            {
-                log.log(Level.SEVERE, "Error in mHandler", ex);
-            }
-		}
-	};
 
 	/**
 	 * convert result of Arrays.toString(int[]) back into int[]
@@ -612,8 +1233,8 @@ public class MainActivity extends PluginManager
 		if(list != null)
 		{
 			list.setBackgroundResource((newNumCodes & 0x80) != 0
-				                           ? R.drawable.mil_on
-				                           : R.drawable.mil_off);
+									   ? R.drawable.mil_on
+									   : R.drawable.mil_off);
 		}
 		// enable / disable freeze frames based on number of codes
 		setMenuItemEnable(R.id.service_freezeframes, (newNumCodes != 0));
@@ -663,145 +1284,6 @@ public class MainActivity extends PluginManager
 				item.setVisible(enabled);
 			}
 		}
-	}
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		// requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		requestWindowFeature(Window.FEATURE_PROGRESS);
-
-		// instantiate superclass
-		super.onCreate(savedInstanceState);
-
-		// get additional permissions
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-		{
-			// Storage Permissions
-			final int REQUEST_EXTERNAL_STORAGE = 1;
-			final String[] PERMISSIONS_STORAGE = {
-					Manifest.permission.READ_EXTERNAL_STORAGE,
-					Manifest.permission.WRITE_EXTERNAL_STORAGE
-			};
-			requestPermissions(PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
-			// Workaround for FileUriExposedException in Android >= M
-			StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-			StrictMode.setVmPolicy(builder.build());
-		}
-
-		dlgBuilder = new AlertDialog.Builder(this);
-
-		// get preferences
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		// register for later changes
-		prefs.registerOnSharedPreferenceChangeListener(this);
-		// Overlay feature has to be set before window content is set
-		if(prefs.getBoolean(PREF_AUTOHIDE,false))
-			getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-
-		// set up logging ...
-        String logFileName = FileHelper.getPath(this).concat(File.separator).concat("log");
-        try
-		{
-            // ensure log directory is available
-            new File(logFileName).mkdirs();
-			// Create new log file handler (max. 250 MB, 5 files rotated, non appending)
-            logFileHandler = new FileHandler( logFileName.concat("/AndrOBD.log.%g.txt"),
-                                              250*1024*1024,
-                                              5,
-                                              false);
-            // Set log message formatter
-            logFileHandler.setFormatter(new SimpleFormatter() {
-                String format = "%1$tF\t%1$tT.%1$tL\t%4$s\t%3$s\t%5$s%n";
-
-                @Override
-                public synchronized String format(LogRecord lr) {
-                    return String.format(format,
-                                         new Date(lr.getMillis()),
-                                         lr.getSourceClassName(),
-                                         lr.getLoggerName(),
-                                         lr.getLevel().getLocalizedName(),
-                                         lr.getMessage()
-                    );
-                }
-            });
-            // add file logging ...
-            Logger.getLogger("").addHandler(logFileHandler);
-			// set
-            setLogLevels();
-		}
-		catch(IOException e)
-		{
-			// try to log error (at least with system logging)
-			log.log(Level.SEVERE, logFileName, e);
-		}
-        // Log program startup
-		log.info(String.format("%s %s starting",
-		                       getString(R.string.app_name),
-		                       getString(R.string.app_version)));
-
-		// Set up all data adapters
-		mPidAdapter = new ObdItemAdapter(this, R.layout.obd_item, ObdProt.PidPvs);
-		mVidAdapter = new VidItemAdapter(this, R.layout.obd_item, ObdProt.VidPvs);
-		mDfcAdapter = new DfcItemAdapter(this, R.layout.obd_item, ObdProt.tCodes);
-		currDataAdapter = mPidAdapter;
-
-		// get list view
-		mListView = getWindow().getLayoutInflater().inflate(R.layout.obd_list, null);
-
-		// update all settings from preferences
-		onSharedPreferenceChanged(prefs, null);
-
-		// set up action bar
-		ActionBar actionBar = getActionBar();
-		if (actionBar != null)
-		{
-			actionBar.setDisplayShowTitleEnabled(true);
-		}
-
-		setContentView(R.layout.startup_layout);
-
-		// create file helper instance
-		fileHelper = new FileHelper(this, CommService.elm);
-		// set listeners for data structure changes
-		setDataListeners();
-		// automate elm status display
-		CommService.elm.addPropertyChangeListener(this);
-
-		// override comm medium with USB connect intent
-		if ("android.hardware.usb.action.USB_DEVICE_ATTACHED".equals(getIntent().getAction()))
-		{
-			CommService.medium = CommService.MEDIUM.USB;
-		}
-
-		switch (CommService.medium)
-		{
-			case BLUETOOTH:
-				// Get local Bluetooth adapter
-				mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-				log.fine("Adapter: " + mBluetoothAdapter);
-				// If BT is not on, request that it be enabled.
-				if (getMode() != MODE.DEMO && mBluetoothAdapter != null)
-				{
-					// remember initial bluetooth state
-					initialBtStateEnabled = mBluetoothAdapter.isEnabled();
-					if (!initialBtStateEnabled)
-					{
-						Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-						startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-					}
-				}
-				break;
-
-			case USB:
-			case NETWORK:
-				setMode(MODE.ONLINE);
-				break;
-		}
-		// start automatich toolbar hider
-		setAutoHider(prefs.getBoolean(PREF_AUTOHIDE,false));
 	}
 
 	/**
@@ -854,83 +1336,6 @@ public class MainActivity extends PluginManager
 		}
 
 		return result;
-	}
-
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences prefs, String key)
-	{
-		// keep main display on?
-		if (key==null || KEEP_SCREEN_ON.equals(key))
-		{
-			getWindow().addFlags(prefs.getBoolean(KEEP_SCREEN_ON, false)
-			                     ? WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-		                         : 0);
-		}
-
-		// night mode
-		if(key==null || NIGHT_MODE.equals(key))
-			setNightMode(prefs.getBoolean(NIGHT_MODE, false));
-
-		// set default comm medium
-		if(key==null || SettingsActivity.KEY_COMM_MEDIUM.equals(key))
-			CommService.medium =
-				CommService.MEDIUM.values()[
-					getPrefsInt(SettingsActivity.KEY_COMM_MEDIUM, 0)];
-
-		// enable/disable ELM adaptive timing
-		if(key==null || ELM_ADAPTIVE_TIMING.equals(key))
-			CommService.elm.mAdaptiveTiming.setMode(
-			    ElmProt.AdaptTimingMode.valueOf(
-			        prefs.getString(ELM_ADAPTIVE_TIMING,
-                                    ElmProt.AdaptTimingMode.OFF.toString())));
-
-		// set protocol flag to initiate immediate reset on NRC reception
-		if(key==null || ELM_RESET_ON_NRC.equals(key))
-			CommService.elm.setResetOnNrc(prefs.getBoolean(ELM_RESET_ON_NRC, false));
-
-		// set custom ELM init commands
-		if(key==null || ELM_CUSTOM_INIT_CMDS.equals(key))
-		{
-			String value = prefs.getString(ELM_CUSTOM_INIT_CMDS, null);
-			if(value != null && value.length() > 0)
-				CommService.elm.setCustomInitCommands(value.split("\n"));
-		}
-
-		// ELM timeout
-		if(key==null || SettingsActivity.ELM_MIN_TIMEOUT.equals(key))
-			CommService.elm.mAdaptiveTiming.setElmTimeoutMin(
-				getPrefsInt(SettingsActivity.ELM_MIN_TIMEOUT,
-				            CommService.elm.mAdaptiveTiming.getElmTimeoutMin()));
-
-		// ... measurement system
-		if(key==null || MEASURE_SYSTEM.equals(key))
-			setConversionSystem(getPrefsInt(MEASURE_SYSTEM, EcuDataItem.SYSTEM_METRIC));
-
-		// ... preferred protocol
-		if(key==null || SettingsActivity.KEY_PROT_SELECT.equals(key))
-			ElmProt.setPreferredProtocol(getPrefsInt(SettingsActivity.KEY_PROT_SELECT, 0));
-
-		// log levels
-		if(key==null || LOG_MASTER.equals(key))
-			setLogLevels();
-
-		// update from protocol extensions
-		if(key==null || key.startsWith("ext_file-"))
-			loadPreferredExtensions();
-
-		// set disabled ELM commands
-		if(key==null || SettingsActivity.ELM_CMD_DISABLE.equals(key))
-		{
-			ElmProt.disableCommands(prefs.getStringSet(SettingsActivity.ELM_CMD_DISABLE, null));
-		}
-
-		// AutoHide ToolBar
-		if(key==null || PREF_AUTOHIDE.equals(key) || PREF_AUTOHIDE_DELAY.equals(key))
-			setAutoHider(prefs.getBoolean(PREF_AUTOHIDE,false));
-
-        // Max. data disabling debounce counter
-        if(key==null || PREF_DATA_DISABLE_MAX.equals(key))
-            EcuDataItem.MAX_ERROR_COUNT = getPrefsInt(PREF_DATA_DISABLE_MAX, 3);
 	}
 
 	/**
@@ -1211,276 +1616,12 @@ public class MainActivity extends PluginManager
 	}
 
 	/**
-	 * Handler for application start event
-	 */
-	@Override
-	public void onStart()
-	{
-		super.onStart();
-		// If the adapter is null, then Bluetooth is not supported
-		if (CommService.medium == CommService.MEDIUM.BLUETOOTH && mBluetoothAdapter == null)
-		{
-			// start ELM protocol demo loop
-			setMode(MODE.DEMO);
-		}
-	}
-
-	/**
-	 * handle pressing of the BACK-KEY
-	 */
-	@Override
-	public void onBackPressed()
-	{
-		if(getListAdapter() == pluginHandler)
-		{
-			setObdService(ObdProt.OBD_SVC_NONE, null);
-		}
-		else
-		if (CommService.elm.getService() != ObdProt.OBD_SVC_NONE)
-		{
-			if(dataViewMode != DATA_VIEW_MODE.LIST)
-			{
-				setDataViewMode(DATA_VIEW_MODE.LIST);
-			}
-			else
-			{
-				setObdService(ObdProt.OBD_SVC_NONE, null);
-			}
-		}
-		else
-		{
-			if (lastBackPressTime < System.currentTimeMillis() - EXIT_TIMEOUT)
-			{
-				exitToast = Toast.makeText(this, R.string.back_again_to_exit, Toast.LENGTH_SHORT);
-				exitToast.show();
-				lastBackPressTime = System.currentTimeMillis();
-			} else
-			{
-				if (exitToast != null)
-				{
-					exitToast.cancel();
-				}
-				super.onBackPressed();
-			}
-		}
-	}
-
-	/**
-	 * Handler for options menu creation event
-	 */
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		MainActivity.menu = menu;
-		// update menu item status for current conversion
-		setConversionSystem(EcuDataItem.cnvSystem);
-		return true;
-	}
-
-
-	/**
-	 * Handler for Options menu selection
-	 */
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		// Handle presses on the action bar items
-		updateTimer.purge();
-
-		switch (item.getItemId())
-		{
-			case R.id.day_night_mode:
-				// toggle night mode setting
-				prefs.edit().putBoolean(NIGHT_MODE, !isNightMode()).apply();
-				return true;
-
-			case R.id.secure_connect_scan:
-				setMode(MODE.ONLINE);
-				return true;
-
-			case R.id.reset_preselections:
-				clearPreselections();
-				recreate();
-				return true;
-
-			case R.id.disconnect:
-				// stop communication service
-				if (mCommService != null) mCommService.stop();
-				setMode(MODE.OFFLINE);
-				return true;
-
-			case R.id.settings:
-				// Launch the BtDeviceListActivity to see devices and do scan
-				Intent settingsIntent = new Intent(this, SettingsActivity.class);
-				startActivityForResult(settingsIntent, REQUEST_SETTINGS);
-				return true;
-
-			case R.id.plugin_manager:
-				setManagerView();
-				return true;
-
-			case R.id.chart_selected:
-				setDataViewMode(DATA_VIEW_MODE.CHART);
-				return true;
-
-			case R.id.hud_selected:
-				setDataViewMode(DATA_VIEW_MODE.HEADUP);
-				return true;
-
-			case R.id.dashboard_selected:
-				setDataViewMode(DATA_VIEW_MODE.DASHBOARD);
-				return true;
-
-			case R.id.filter_selected:
-				setDataViewMode(DATA_VIEW_MODE.FILTERED);
-				return true;
-
-			case R.id.unfilter_selected:
-				setDataViewMode(DATA_VIEW_MODE.LIST);
-				return true;
-
-			case R.id.save:
-				// save recorded data (threaded)
-				fileHelper.saveDataThreaded();
-				return true;
-
-			case R.id.load:
-				setMode(MODE.FILE);
-				return true;
-
-			case R.id.service_none:
-				setObdService(ObdProt.OBD_SVC_NONE, item.getTitle());
-				return true;
-
-			case R.id.service_data:
-				setObdService(ObdProt.OBD_SVC_DATA, item.getTitle());
-				return true;
-
-			case R.id.service_vid_data:
-				setObdService(ObdProt.OBD_SVC_VEH_INFO, item.getTitle());
-				return true;
-
-			case R.id.service_freezeframes:
-				setObdService(ObdProt.OBD_SVC_FREEZEFRAME, item.getTitle());
-				return true;
-
-			case R.id.service_codes:
-				setObdService(ObdProt.OBD_SVC_READ_CODES, item.getTitle());
-				return true;
-
-			case R.id.service_permacodes:
-				setObdService(ObdProt.OBD_SVC_PERMACODES, item.getTitle());
-				return true;
-
-			case R.id.service_pendingcodes:
-				setObdService(ObdProt.OBD_SVC_PENDINGCODES, item.getTitle());
-				return true;
-
-			case R.id.service_clearcodes:
-				clearObdFaultCodes();
-				setObdService(ObdProt.OBD_SVC_READ_CODES, item.getTitle());
-				return true;
-		}
-
-		return super.onOptionsItemSelected(item);
-	}
-
-	/**
 	 * clear all preselections
 	 */
 	private void clearPreselections()
 	{
 		for(PRESELECT selection : PRESELECT.values())
 			prefs.edit().remove(selection.toString()).apply();
-	}
-
-	/**
-	 * Handler for result messages from other activities
-	 */
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data)
-	{
-		boolean secureConnection = false;
-
-		switch (requestCode)
-		{
-			// device is connected
-			case REQUEST_CONNECT_DEVICE_SECURE:
-				secureConnection = true;
-				// no break here ...
-			case REQUEST_CONNECT_DEVICE_INSECURE:
-				// When BtDeviceListActivity returns with a device to connect
-				if (resultCode == Activity.RESULT_OK)
-				{
-					// Get the device MAC address
-					String address = data.getExtras().getString(
-						BtDeviceListActivity.EXTRA_DEVICE_ADDRESS);
-					// save reported address as last setting
-					prefs.edit().putString(PRESELECT.LAST_DEV_ADDRESS.toString(), address).apply();
-					connectBtDevice(address, secureConnection);
-				} else
-				{
-					setMode(MODE.OFFLINE);
-				}
-				break;
-
-			// USB device selected
-			case REQUEST_CONNECT_DEVICE_USB:
-				// DeviceListActivity returns with a device to connect
-				if (resultCode == Activity.RESULT_OK)
-				{
-					mCommService = new UsbCommService(this, mHandler);
-					mCommService.connect(UsbDeviceListActivity.selectedPort, true);
-				} else
-				{
-					setMode(MODE.OFFLINE);
-				}
-				break;
-
-			// bluetooth enabled
-			case REQUEST_ENABLE_BT:
-				// When the request to enable Bluetooth returns
-				if (resultCode == Activity.RESULT_OK)
-				{
-					// Start online mode
-					setMode(MODE.ONLINE);
-				} else
-				{
-					// Start demo service Thread
-					setMode(MODE.DEMO);
-				}
-				break;
-
-			// file selected
-			case REQUEST_SELECT_FILE:
-				if (resultCode == RESULT_OK)
-				{
-					// Get the Uri of the selected file
-					Uri uri = data.getData();
-					log.info("Load content: " + uri);
-					// load data ...
-					fileHelper.loadDataThreaded(uri, mHandler, MESSAGE_FILE_READ);
-					// don't allow saving it again
-					setMenuItemEnable(R.id.save, false);
-					setMenuItemEnable(R.id.obd_services, true);
-				}
-				break;
-
-			// settings finished
-			case REQUEST_SETTINGS:
-			{
-				// change handling done by callbacks
-			}
-			break;
-
-			// graphical data view finished
-			case REQUEST_GRAPH_DISPLAY_DONE:
-				// let context know that we are in list mode again ...
-				dataViewMode = DATA_VIEW_MODE.LIST;
-				break;
-		}
 	}
 
 	/**
@@ -1522,8 +1663,12 @@ public class MainActivity extends PluginManager
 		obdService = newObdService;
 		// set list view
 		setContentView(mListView);
+		getListView().setOnItemLongClickListener(this);
+		getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
 		// un-filter display
 		setFiltered(false);
+
 		// set title
 		ActionBar ab = getActionBar();
 		if (ab != null)
@@ -1543,10 +1688,6 @@ public class MainActivity extends PluginManager
 		}
 		// update controls
 		setMenuItemEnable(R.id.graph_actions, false);
-		getListView().setOnItemLongClickListener(this);
-		getListView().setOnTouchListener(toolbarAutoHider);
-		getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-		// getListView().setOnItemClickListener(this);
 		// set protocol service
 		CommService.elm.setService(newObdService, (getMode() != MODE.FILE));
 		// show / hide freeze frame selector */
@@ -1701,137 +1842,6 @@ public class MainActivity extends PluginManager
 	}
 
 	/**
-	 * Handle short clicks in OBD data list items
-	 */
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id)
-	{
-		if(DATA_VIEW_MODE.LIST == dataViewMode
-			 && ObdProt.OBD_SVC_DATA == CommService.elm.getService())
-		{
-			super.onListItemClick(l, v, position, id);
-		}
-		// enable graphic actions only on DATA service if min 1 item selected
-		setMenuItemEnable(R.id.graph_actions,
-		                  ((CommService.elm.getService() == ObdProt.OBD_SVC_DATA)
-			                  && (getListView().getCheckedItemCount() > 0)
-		                  )
-		);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.app.Activity#onDestroy()
-	 */
-	@Override
-	protected void onDestroy()
-	{
-		// Stop toolbar hider thread
-		setAutoHider(false);
-
-		try
-		{
-			// Reduce ELM power consumption by setting it to sleep
-			CommService.elm.goToSleep();
-			// wait until message is out ...
-			Thread.sleep(100, 0);
-		} catch (InterruptedException e)
-		{
-			// do nothing
-            log.log(Level.FINER, e.getLocalizedMessage());
-		}
-
-		/* don't listen to ELM data changes any more */
-		removeDataListeners();
-		// don't listen to ELM property changes any more
-		CommService.elm.removePropertyChangeListener(this);
-
-		// stop demo service if it was started
-		setMode(MODE.OFFLINE);
-
-		// stop communication service
-		if (mCommService != null) mCommService.stop();
-
-		// if bluetooth adapter was switched OFF before ...
-		if (mBluetoothAdapter != null && !initialBtStateEnabled)
-		{
-			// ... turn it OFF again
-			mBluetoothAdapter.disable();
-		}
-
-		log.info(String.format("%s %s finished",
-		                       getString(R.string.app_name),
-		                       getString(R.string.app_version)));
-
-		/* remove log file handler */
-        Logger.getLogger("").removeHandler(logFileHandler);
-        logFileHandler.close();
-
-        super.onDestroy();
-	}
-
-	/**
-	 * Callback method to be invoked when an item in this AdapterView has
-	 * been clicked.
-	 * <p>
-	 * Implementers can call getItemAtPosition(position) if they need
-	 * to access the data associated with the selected item.
-	 *
-	 * @param parent   The AdapterView where the click happened.
-	 * @param view     The view within the AdapterView that was clicked (this
-	 *                 will be a view provided by the adapter)
-	 * @param position The position of the view in the adapter.
-	 * @param id       The row id of the item that was clicked.
-	 */
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-	{
-		unHideActionBar(view);
-	}
-
-	/**
-	 * Handle long licks on OBD data list items
-	 */
-	@Override
-	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
-	{
-		Intent intent;
-
-		switch (CommService.elm.getService())
-		{
-		    /* if we are in OBD data mode:
-		     * ->Long click on an item starts the single item dashboard activity
-		     */
-			case ObdProt.OBD_SVC_DATA:
-				EcuDataPv pv = (EcuDataPv) getListAdapter().getItem(position);
-				/* only numeric values may be shown as graph/dashboard */
-				if (pv.get(EcuDataPv.FID_VALUE) instanceof Number)
-				{
-					DashBoardActivity.setAdapter(getListAdapter());
-					intent = new Intent(this, DashBoardActivity.class);
-					intent.putExtra(DashBoardActivity.POSITIONS, new int[]{position});
-					startActivity(intent);
-				}
-				break;
-
-			/* If we are in DFC mode of any kind
-			 * -> Long click leads to a web search for selected DFC
-			 */
-			case ObdProt.OBD_SVC_READ_CODES:
-			case ObdProt.OBD_SVC_PERMACODES:
-			case ObdProt.OBD_SVC_PENDINGCODES:
-				intent = new Intent(Intent.ACTION_WEB_SEARCH);
-				EcuCodeItem dfc = (EcuCodeItem) getListAdapter().getItem(position);
-				intent.putExtra(SearchManager.QUERY,
-				                "OBD " + String.valueOf(dfc.get(EcuCodeItem.FID_CODE)));
-				startActivity(intent);
-				break;
-		}
-		return true;
-	}
-
-	/**
 	 * Handle bluetooth connection established ...
 	 */
 	private void onConnect()
@@ -1858,25 +1868,6 @@ public class MainActivity extends PluginManager
 	{
 		// handle further initialisations
 		setMode(MODE.OFFLINE);
-	}
-
-	/**
-	 * Handler for PV change events This handler just forwards the PV change
-	 * events to the android handler, since all adapter / GUI actions have to be
-	 * performed from the main handler
-	 *
-	 * @param event PvChangeEvent which is reported
-	 */
-	@Override
-	public synchronized void pvChanged(PvChangeEvent event)
-	{
-		// forward PV change to the UI Activity
-		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DATA_ITEMS_CHANGED);
-		if(!event.isChildEvent())
-		{
-			msg.obj = event;
-			mHandler.sendMessage(msg);
-		}
 	}
 
 	/**
