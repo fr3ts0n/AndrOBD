@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/AndrOBD.iml" filepath="$PROJECT_DIR$/.idea/AndrOBD.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../MqttService1/plugin/src/main/plugin.iml" filepath="$PROJECT_DIR$/../MqttService1/plugin/src/main/plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugin/src/main/plugin.iml" filepath="$PROJECT_DIR$/plugin/src/main/plugin.iml" />
     </modules>
   </component>
 </project>
