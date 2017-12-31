@@ -300,9 +300,24 @@ public class MainActivity extends PluginManager
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		// register for later changes
 		prefs.registerOnSharedPreferenceChangeListener(this);
+
+		/*
 		// Overlay feature has to be set before window content is set
 		if(prefs.getBoolean(PREF_AUTOHIDE,false))
 			getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+		*/
+
+		// Set up all data adapters
+		mPidAdapter = new ObdItemAdapter(this, R.layout.obd_item, ObdProt.PidPvs);
+		mVidAdapter = new VidItemAdapter(this, R.layout.obd_item, ObdProt.VidPvs);
+		mDfcAdapter = new DfcItemAdapter(this, R.layout.obd_item, ObdProt.tCodes);
+		currDataAdapter = mPidAdapter;
+
+		// get list view
+		mListView = getWindow().getLayoutInflater().inflate(R.layout.obd_list, null);
+
+		// update all settings from preferences
+		onSharedPreferenceChanged(prefs, null);
 
 		// set up logging ...
         String logFileName = FileHelper.getPath(this).concat(File.separator).concat("log");
@@ -345,12 +360,6 @@ public class MainActivity extends PluginManager
 		                       getString(R.string.app_name),
 		                       getString(R.string.app_version)));
 
-		// Set up all data adapters
-		mPidAdapter = new ObdItemAdapter(this, R.layout.obd_item, ObdProt.PidPvs);
-		mVidAdapter = new VidItemAdapter(this, R.layout.obd_item, ObdProt.VidPvs);
-		mDfcAdapter = new DfcItemAdapter(this, R.layout.obd_item, ObdProt.tCodes);
-		currDataAdapter = mPidAdapter;
-
 		// create file helper instance
 		fileHelper = new FileHelper(this, CommService.elm);
 		// set listeners for data structure changes
@@ -366,12 +375,6 @@ public class MainActivity extends PluginManager
 		}
 		// start automatic toolbar hider
 		setAutoHider(prefs.getBoolean(PREF_AUTOHIDE,false));
-
-		// get list view
-		mListView = getWindow().getLayoutInflater().inflate(R.layout.obd_list, null);
-
-		// update all settings from preferences
-		onSharedPreferenceChanged(prefs, null);
 
 		// set content view
 		setContentView(R.layout.startup_layout);
@@ -497,14 +500,14 @@ public class MainActivity extends PluginManager
 	{
 		if(getListAdapter() == pluginHandler)
 		{
-			setObdService(ObdProt.OBD_SVC_NONE, null);
+			setObdService(obdService, null);
 		}
 		else
 			if (CommService.elm.getService() != ObdProt.OBD_SVC_NONE)
 			{
 				if(dataViewMode != DATA_VIEW_MODE.LIST)
 				{
-					setDataViewMode(DATA_VIEW_MODE.LIST);
+					setDataViewMode(DATA_VIEW_MODE.LIST, false);
 				}
 				else
 				{
@@ -586,23 +589,23 @@ public class MainActivity extends PluginManager
 				return true;
 
 			case R.id.chart_selected:
-				setDataViewMode(DATA_VIEW_MODE.CHART);
+				setDataViewMode(DATA_VIEW_MODE.CHART, false);
 				return true;
 
 			case R.id.hud_selected:
-				setDataViewMode(DATA_VIEW_MODE.HEADUP);
+				setDataViewMode(DATA_VIEW_MODE.HEADUP, false);
 				return true;
 
 			case R.id.dashboard_selected:
-				setDataViewMode(DATA_VIEW_MODE.DASHBOARD);
+				setDataViewMode(DATA_VIEW_MODE.DASHBOARD, false);
 				return true;
 
 			case R.id.filter_selected:
-				setDataViewMode(DATA_VIEW_MODE.FILTERED);
+				setDataViewMode(DATA_VIEW_MODE.FILTERED, false);
 				return true;
 
 			case R.id.unfilter_selected:
-				setDataViewMode(DATA_VIEW_MODE.LIST);
+				setDataViewMode(DATA_VIEW_MODE.LIST, false);
 				return true;
 
 			case R.id.save:
@@ -1105,7 +1108,7 @@ public class MainActivity extends PluginManager
 			// set last data view mode
 			DATA_VIEW_MODE lastMode =
 				DATA_VIEW_MODE.valueOf(prefs.getString(PRESELECT.LAST_VIEW_MODE.toString(),DATA_VIEW_MODE.LIST.toString()));
-			setDataViewMode(lastMode);
+			setDataViewMode(lastMode, false);
 		}
 	}
 
@@ -1935,10 +1938,10 @@ public class MainActivity extends PluginManager
 	 * Set new data view mode
 	 * @param dataViewMode new data view mode
 	 */
-	private void setDataViewMode(DATA_VIEW_MODE dataViewMode)
+	private void setDataViewMode(DATA_VIEW_MODE dataViewMode, boolean force)
 	{
 		// if this is a real change ...
-		if(dataViewMode != this.dataViewMode)
+		if(force || dataViewMode != this.dataViewMode)
 		{
 			log.info(String.format("Set view mode: %s -> %s", this.dataViewMode, dataViewMode));
 

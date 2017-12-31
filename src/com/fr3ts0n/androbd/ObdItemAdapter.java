@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.preference.PreferenceManager;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -166,6 +165,13 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		{
 			convertView = mInflater.inflate(R.layout.obd_item, parent, false);
 		}
+
+		// Set background based on selection state
+		convertView.setBackgroundColor(isPidList && convertView.isActivated()
+									   ? 0x80808080
+									   : 0x00FFFFFF
+		                              );
+
 		// fill view fields with data
 
 		// description text
@@ -174,20 +180,6 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		TextView tvValue = (TextView) convertView.findViewById(R.id.obd_value);
 		TextView tvUnits = (TextView) convertView.findViewById(R.id.obd_units);
 		ProgressBar pb = (ProgressBar) convertView.findViewById(R.id.bar);
-		/*
-		CheckBox cbChecked = (CheckBox) convertView.findViewById(R.id.check);
-		cbChecked.setVisibility(isPidList ? View.VISIBLE : View.GONE);
-		*/
-		if(isPidList)
-		{
-			TypedValue typedValue = new TypedValue();
-			getContext().getTheme().resolveAttribute(android.R.attr.activatedBackgroundIndicator, typedValue, true);
-			convertView.setBackgroundResource(typedValue.resourceId);
-		}
-		else
-		{
-			convertView.setBackground(null);
-		}
 
 		// format value string
 		String fmtText;
