@@ -28,21 +28,34 @@
                 android:title="@string/keep_screen_on"
                 />
 
-            <CheckBoxPreference
-                android:defaultValue="false"
-                android:key="autohide_toolbar"
-                android:summary="@string/autohide_toolbar_description"
-                android:title="@string/autohide_toolbar"
-                />
+            <PreferenceCategory
+                android:title="@string/autohide_toolbar">
 
-            <EditTextPreference
-                android:dependency="autohide_toolbar"
-                android:defaultValue="15"
-                android:key="autohide_delay"
-                android:inputType="numberDecimal"
-                android:summary="@string/autohide_delay_description"
-                android:title="@string/autohide_delay"
-                />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="autohide_toolbar"
+                    android:summary="@string/autohide_toolbar_description"
+                    android:title="@string/autohide_toolbar"
+                    />
+
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="toolbar_overlay"
+                    android:dependency="autohide_toolbar"
+                    android:title="@string/toolbar_overlay"
+                    android:summary="@string/toolbar_overlay_sum"
+                    />
+
+                <EditTextPreference
+                    android:dependency="autohide_toolbar"
+                    android:defaultValue="15"
+                    android:key="autohide_delay"
+                    android:inputType="numberDecimal"
+                    android:summary="@string/autohide_delay_description"
+                    android:title="@string/autohide_delay"
+                    />
+
+            </PreferenceCategory>
 
             <CheckBoxPreference
                 android:defaultValue="false"

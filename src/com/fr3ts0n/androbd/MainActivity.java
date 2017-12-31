@@ -137,6 +137,7 @@ public class MainActivity extends PluginManager
 	public static final String ELM_RESET_ON_NRC = "elm_reset_on_nrc";
 	public static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
 	public static final String PREF_AUTOHIDE = "autohide_toolbar";
+	public static final String PREF_OVERLAY = "toolbar_overlay";
 	public static final String PREF_AUTOHIDE_DELAY = "autohide_delay";
 	public static final String PREF_DATA_DISABLE_MAX = "data_disable_max";
 
@@ -301,11 +302,10 @@ public class MainActivity extends PluginManager
 		// register for later changes
 		prefs.registerOnSharedPreferenceChangeListener(this);
 
-		/*
 		// Overlay feature has to be set before window content is set
-		if(prefs.getBoolean(PREF_AUTOHIDE,false))
+		if( prefs.getBoolean(PREF_AUTOHIDE, false)
+		    && prefs.getBoolean(PREF_OVERLAY, false))
 			getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-		*/
 
 		// Set up all data adapters
 		mPidAdapter = new ObdItemAdapter(this, R.layout.obd_item, ObdProt.PidPvs);
@@ -1732,12 +1732,6 @@ public class MainActivity extends PluginManager
 	 */
 	private void setFiltered(boolean filtered)
 	{
-		/*
-	    getListView().setChoiceMode( filtered
-									 ? ListView.CHOICE_MODE_NONE
-									 : ListView.CHOICE_MODE_MULTIPLE);
-		 */
-
 		if (filtered)
 		{
 			PvList filteredList = new PvList();

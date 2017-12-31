@@ -260,6 +260,8 @@ period of time while the ECU recalibrates itself.
     <string name="send_after_export">Send after export</string>
     <string name="send_after_export_descr">Prompt for sending CSV file right after export?</string>
     <string name="plugin_manager_desc">Manage installed plugins</string>
+    <string name="toolbar_overlay">Show als overlay</string>
+    <string name="toolbar_overlay_sum">Show toolbar overlapping main screen</string>
     <string-array name="csv_field_delim_options" translatable="false">
         <item>@string/tab</item>
         <item>@string/comma</item>
