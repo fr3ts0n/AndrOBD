@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.fr3ts0n.androbd.plugin"
+          android:versionCode="10000"
+          android:versionName="@string/app_version">
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="25"/>
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name" >
+
+        <activity
+            android:name=".mgr.PluginManager"
+            android:configChanges="touchscreen|orientation|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Dark"
+            />
+
+    </application>
+
+</manifest>
