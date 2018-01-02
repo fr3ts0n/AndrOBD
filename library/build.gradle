@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+jar { }
+
+sourceSets {
+    main {
+        java {
+            exclude(
+                'com/fr3ts0n/common/res',
+                'com/fr3ts0n/pvs/gui',
+                'com/fr3ts0n/prot/gui',
+                'com/fr3ts0n/ecu/gui',
+                'com/fr3ts0n/ecu/prot/vag',
+            )
+        }
+        resources {
+            srcDirs( "src/main/java" )
+            include ( 'com/fr3ts0n/ecu/prot/obd/res/*' )
+        }
+    }
+}
+
