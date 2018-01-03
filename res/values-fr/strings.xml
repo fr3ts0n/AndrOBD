@@ -175,7 +175,7 @@
     <string name="device_address">Adresse IP de l\'ELM</string>
     <string name="device_port">Port de l\'adaptateur ELM</string>
     <string name="autohide_toolbar">Masquer la barre d\'outils</string>
-    <string name="autohide_delay">Délais pour masquer la barre d\'outils (s)</string>
+    <string name="autohide_delay">Délai pour masquer la barre d\'outils [s]</string>
     <!-- the string array corresponding to state enum -->
 
     <!-- CSV export options -->
