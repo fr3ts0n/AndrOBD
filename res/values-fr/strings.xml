@@ -180,7 +180,7 @@
 
     <!-- CSV export options -->
     <string name="csv_export_options">Options d\'export CSV</string>
-    <string name="csv_export_description">Options de formatage des fichiers CSV exportés</string>
+    <string name="csv_export_description">Option de format d\'export des fichiers CSV</string>
     <string name="csv_field_delimiter_description">Caractère(s) de séparation des champs de données CSV</string>
     <string name="csv_rec_delimiter">Séparateur d\'enregistrements CSV</string>
     <string name="csv_rec_delimiter_description">Caractère(s) de séparation de champs CSV</string>
