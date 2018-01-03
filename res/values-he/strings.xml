@@ -175,4 +175,6 @@
     <string name="semicolon">נקודה פסיק</string>
     <string name="send_after_export">שליחה לאחר הייצוא</string>
     <string name="send_after_export_descr">להציג הצעה לשליחת קובץ ה־CSV מיד לאחר הייצוא?</string>
+    <string name="data_disable_max">מגבלת השבתת פריט נתונים</string>
+    <string name="data_disable_max_description">מספר תגובות נתונים שגויות ברצף בטרם השבתת פריט</string>
     </resources>
