@@ -38,11 +38,14 @@ import android.os.Message;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.SparseBooleanArray;
+import android.view.ActionMode;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -86,9 +89,9 @@ public class MainActivity extends PluginManager
 	implements PvChangeListener,
 	AdapterView.OnItemLongClickListener,
 	PropertyChangeListener,
-	SharedPreferences.OnSharedPreferenceChangeListener
+	SharedPreferences.OnSharedPreferenceChangeListener,
+	AbsListView.MultiChoiceModeListener
 {
-
 	/**
 	 * operating modes
 	 */
@@ -508,6 +511,7 @@ public class MainActivity extends PluginManager
 				if(dataViewMode != DATA_VIEW_MODE.LIST)
 				{
 					setDataViewMode(DATA_VIEW_MODE.LIST, false);
+					checkToRestoreLastDataSelection();
 				}
 				else
 				{
@@ -588,26 +592,6 @@ public class MainActivity extends PluginManager
 				setManagerView();
 				return true;
 
-			case R.id.chart_selected:
-				setDataViewMode(DATA_VIEW_MODE.CHART, false);
-				return true;
-
-			case R.id.hud_selected:
-				setDataViewMode(DATA_VIEW_MODE.HEADUP, false);
-				return true;
-
-			case R.id.dashboard_selected:
-				setDataViewMode(DATA_VIEW_MODE.DASHBOARD, false);
-				return true;
-
-			case R.id.filter_selected:
-				setDataViewMode(DATA_VIEW_MODE.FILTERED, false);
-				return true;
-
-			case R.id.unfilter_selected:
-				setDataViewMode(DATA_VIEW_MODE.LIST, false);
-				return true;
-
 			case R.id.save:
 				// save recorded data (threaded)
 				fileHelper.saveDataThreaded();
@@ -652,6 +636,61 @@ public class MainActivity extends PluginManager
 		}
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked)
+	{
+		// Intentionally do nothing
+	}
+
+	@Override
+	public boolean onCreateActionMode(ActionMode mode, Menu menu)
+	{
+		MenuInflater inflater = mode.getMenuInflater();
+		inflater.inflate(R.menu.context_graph, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onPrepareActionMode(ActionMode mode, Menu menu)
+	{
+		return false;
+	}
+
+	@Override
+	public boolean onActionItemClicked(ActionMode mode, MenuItem item)
+	{
+		switch(item.getItemId())
+		{
+			case R.id.chart_selected:
+				setDataViewMode(DATA_VIEW_MODE.CHART, false);
+				return true;
+
+			case R.id.hud_selected:
+				setDataViewMode(DATA_VIEW_MODE.HEADUP, false);
+				return true;
+
+			case R.id.dashboard_selected:
+				setDataViewMode(DATA_VIEW_MODE.DASHBOARD, false);
+				return true;
+
+			case R.id.filter_selected:
+				setDataViewMode(DATA_VIEW_MODE.FILTERED, false);
+				return true;
+
+			case R.id.unfilter_selected:
+				setDataViewMode(DATA_VIEW_MODE.LIST, false);
+				return true;
+
+		}
+		return false;
+	}
+
+	@Override
+	public void onDestroyActionMode(ActionMode mode)
+	{
+
 	}
 
 	/**
@@ -819,25 +858,6 @@ public class MainActivity extends PluginManager
 	}
 
 	/**
-	 * Handle short clicks in OBD data list items
-	 */
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id)
-	{
-		if(DATA_VIEW_MODE.LIST == dataViewMode
-		   && ObdProt.OBD_SVC_DATA == CommService.elm.getService())
-		{
-			super.onListItemClick(l, v, position, id);
-		}
-		// enable graphic actions only on DATA service if min 1 item selected
-		setMenuItemEnable(R.id.graph_actions,
-			((CommService.elm.getService() == ObdProt.OBD_SVC_DATA)
-			 && (getListView().getCheckedItemCount() > 0)
-			)
-		);
-	}
-
-	/**
 	 * Handle long licks on OBD data list items
 	 */
 	@Override
@@ -868,11 +888,18 @@ public class MainActivity extends PluginManager
 			case ObdProt.OBD_SVC_READ_CODES:
 			case ObdProt.OBD_SVC_PERMACODES:
 			case ObdProt.OBD_SVC_PENDINGCODES:
-				intent = new Intent(Intent.ACTION_SEARCH);
-				EcuCodeItem dfc = (EcuCodeItem) getListAdapter().getItem(position);
-				intent.putExtra(SearchManager.QUERY,
-					"OBD " + String.valueOf(dfc.get(EcuCodeItem.FID_CODE)));
-				startActivity(intent);
+				try
+				{
+					intent = new Intent(Intent.ACTION_WEB_SEARCH);
+					EcuCodeItem dfc = (EcuCodeItem) getListAdapter().getItem(position);
+					intent.putExtra(SearchManager.QUERY,
+						"OBD " + String.valueOf(dfc.get(EcuCodeItem.FID_CODE)));
+					startActivity(intent);
+				}
+				catch(Exception e)
+				{
+					log.log(Level.SEVERE,"WebSearch DFC", e);
+				}
 				break;
 		}
 		return true;
@@ -947,7 +974,11 @@ public class MainActivity extends PluginManager
 						// set OBD data mode to the one selected by input file
 						setObdService(CommService.elm.getService(), getString(R.string.saved_data));
 						// Check if last data selection shall be restored
-						if(obdService == ObdProt.OBD_SVC_DATA) checkToRestoreLastDataSelection();
+						if(obdService == ObdProt.OBD_SVC_DATA)
+						{
+							checkToRestoreLastDataSelection();
+							checkToRestoreLastViewMode();
+						}
 						break;
 
 					case MESSAGE_DEVICE_NAME:
@@ -976,6 +1007,7 @@ public class MainActivity extends PluginManager
 									{
 										// Check if last data selection shall be restored
 										checkToRestoreLastDataSelection();
+										checkToRestoreLastViewMode();
 									}
 									// set up data update timer
 									updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
@@ -1080,7 +1112,8 @@ public class MainActivity extends PluginManager
 
 	/**
 	 * Check if last data selection shall be restored
-	 * * check if previously selected items shall be re-selected
+	 *
+	 * If previously selected items shall be re-selected, then re-select them
 	 */
 	public void checkToRestoreLastDataSelection()
 	{
@@ -1102,6 +1135,16 @@ public class MainActivity extends PluginManager
 				}
 			}
 		}
+	}
+
+	/**
+	 * Check if last view mode shall be restored
+	 *
+	 * If last view mode shall be restored by user settings,
+	 * then restore the last selected view mode
+	 */
+	void checkToRestoreLastViewMode()
+	{
 		// if last view mode shall be restored
 		if(istRestoreWanted(PRESELECT.LAST_VIEW_MODE))
 		{
@@ -1401,7 +1444,6 @@ public class MainActivity extends PluginManager
 					setMenuItemVisible(R.id.disconnect, false);
 					setMenuItemVisible(R.id.secure_connect_scan, true);
 					setMenuItemEnable(R.id.obd_services, false);
-					setMenuItemEnable(R.id.graph_actions, false);
 					break;
 
 				case ONLINE:
@@ -1571,7 +1613,6 @@ public class MainActivity extends PluginManager
 			setMenuItemVisible(R.id.disconnect, !allowConnect);
 
 			setMenuItemEnable(R.id.obd_services, true);
-			setMenuItemEnable(R.id.graph_actions, false);
 			/* The Thread object for processing the demo mode loop */
 			Thread demoThread = new Thread(CommService.elm);
 			demoThread.start();
@@ -1667,6 +1708,7 @@ public class MainActivity extends PluginManager
 		// set list view
 		setContentView(mListView);
 		getListView().setOnItemLongClickListener(this);
+		getListView().setMultiChoiceModeListener(this);
 		getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
 		// un-filter display
@@ -1689,8 +1731,6 @@ public class MainActivity extends PluginManager
 				}
 			}
 		}
-		// update controls
-		setMenuItemEnable(R.id.graph_actions, false);
 		// set protocol service
 		CommService.elm.setService(newObdService, (getMode() != MODE.FILE));
 		// show / hide freeze frame selector */
@@ -1703,9 +1743,10 @@ public class MainActivity extends PluginManager
 		switch (newObdService)
 		{
 			case ObdProt.OBD_SVC_DATA:
+				getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+				// no break here
 			case ObdProt.OBD_SVC_FREEZEFRAME:
 				currDataAdapter = mPidAdapter;
-				getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 				break;
 
 			case ObdProt.OBD_SVC_PENDINGCODES:
@@ -1749,12 +1790,6 @@ public class MainActivity extends PluginManager
 			ObdProt.resetFixedPid();
 			mPidAdapter.setPvList(ObdProt.PidPvs);
 		}
-
-		setMenuItemEnable(R.id.filter_selected, !filtered);
-		setMenuItemEnable(R.id.unfilter_selected, filtered);
-		setMenuItemEnable(R.id.chart_selected, !filtered);
-		setMenuItemEnable(R.id.dashboard_selected, !filtered);
-		setMenuItemEnable(R.id.hud_selected, !filtered);
 	}
 
 	/**
@@ -1816,8 +1851,6 @@ public class MainActivity extends PluginManager
 				getListView().setItemChecked(i, selectionStatus);
 			}
 		}
-		// enable graphic actions only on DATA service if min 1 item selected
-		setMenuItemEnable(R.id.graph_actions, positions.length > 0 && selectionStatus);
 
 		// return validity of positions
 		return positionsValid;
@@ -1851,7 +1884,6 @@ public class MainActivity extends PluginManager
 		setMenuItemVisible(R.id.disconnect, true);
 
 		setMenuItemEnable(R.id.obd_services, true);
-		setMenuItemEnable(R.id.graph_actions, false);
 		// display connection status
 		setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
 		// send RESET to Elm adapter
@@ -1943,10 +1975,12 @@ public class MainActivity extends PluginManager
 			{
 				case LIST:
 					setFiltered(false);
+					getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 					break;
 
 				case FILTERED:
 					setFiltered(true);
+					getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 					break;
 
 				case HEADUP:
@@ -1966,9 +2000,6 @@ public class MainActivity extends PluginManager
 								                ? R.layout.dashboard
 								                : R.layout.head_up);
 							startActivityForResult(intent, REQUEST_GRAPH_DISPLAY_DONE);
-						} else
-						{
-							setMenuItemEnable(R.id.graph_actions, false);
 						}
 					}
 					break;
@@ -1999,5 +2030,4 @@ public class MainActivity extends PluginManager
 				prefs.edit().putString(PRESELECT.LAST_VIEW_MODE.toString(), dataViewMode.toString()).apply();
 		}
 	}
-
 }
