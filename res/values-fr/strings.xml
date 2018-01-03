@@ -2,7 +2,7 @@
 <resources>
     <!--  AndrOBD -->
     <string name="translation_credits">Traduction par (Wouazo)</string>
-    <string name="app_description">Application Android de diagnostic des véhicules OBD pour adaptateur Bluetooth ELM327</string>
+    <string name="app_description">Application Android de diagnostic des véhicules OBD pour adaptateurs ELM327</string>
     <string name="send">Envoyer</string>
     <string name="not_connected">Vous n\'êtes pas connecté à un périphérique</string>
     <string name="title_connecting">Connexion en cours…</string>
@@ -189,7 +189,7 @@
     <string name="send_after_export">Envoyer après l\'export</string>
     <string name="send_after_export_descr">Confirmer l\'envoi du fichier CSV juste après l\'export ?</string>
 
-<string name="device_port_description">Adresse IP de l\'ELM</string>
+<string name="device_port_description">Adresse IP de l\'adaptateur ELM</string>
     <string name="autohide_toolbar_description">Masquer automatiquement la barre d\'outil après un certain délai</string>
     <string name="csv_text_quoted">Délimiteur de texte CSV</string>
     <string name="csv_field_delimiter">Séparateur de champs CSV</string>
