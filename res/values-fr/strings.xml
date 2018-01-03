@@ -194,4 +194,5 @@
     <string name="autohide_toolbar_description">Masquer automatiquement la barre d\'outil après un certain délai</string>
     <string name="csv_text_quoted">Délimiteur de texte CSV</string>
     <string name="csv_field_delimiter">Séparateur de champs CSV</string>
+    <string name="csv_text_quoted_description">"Les chaînes de caractère sont délimités par des guillemets "</string>
     </resources>
