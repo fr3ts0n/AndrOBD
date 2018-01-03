@@ -2,7 +2,7 @@
 <resources>
     <!--  AndrOBD -->
     <string name="translation_credits">Traduction par (Wouazo)</string>
-    <string name="app_description">Application Android de diagnostic véhicule OBD pour adaptateur Bluetooth ELM327</string>
+    <string name="app_description">Application Android de diagnostic des véhicules OBD pour adaptateur Bluetooth ELM327</string>
     <string name="send">Envoyer</string>
     <string name="not_connected">Vous n\'êtes pas connecté à un périphérique</string>
     <string name="title_connecting">Connexion en cours…</string>
@@ -11,33 +11,32 @@
     <string name="title">Titre</string>
     <string name="welcome_to">Bienvenue sur</string>
     <string name="logo">Logo</string>
-    <string name="back_again_to_exit">Appuyer à nouveau sur Retour pour Quitter</string>
+    <string name="back_again_to_exit">Appuyer à nouveau sur retour pour quitter cette application</string>
     <!-- menu  -->
     <string name="action_connect">Connecter</string>
     <string name="obd_none">Pas de service</string>
     <string name="obd_services">Services OBD</string>
     <string name="obd_veh_info">Infos OBD du Véhicule</string>
     <string name="obd_data">Données OBD</string>
-    <string name="service_freezeframes">OBD Trames figées</string>
+    <string name="service_freezeframes">Trames OBD figées</string>
     <string name="obd_codes">Codes d\'erreurs OBD</string>
-    <string name="obd_permanentcodes">codes erreurs OBD (permanent)</string>
-    <string name="obd_pendingcodes">Codes erreur OBD (actuels)</string>
-    <string name="obd_clearcodes">Effacer Codes Erreurs</string>
-    <string name="obd_clear_info">" Cela va remettre à zéro la prochaine révision et effacer toutes les infos de diagnostic dont :\n
-  - Les codes Erreurs\n
-  - Les trames de données figées\n
-  - Les données du test du capteur O2\n
-  - L\'état du test du système de surveillance\n
-  - Les résultats des test du système de surveillance\n
-  - La distance parcourue depuis la dernière révision\n
-  - Le nombre de démarrage depuis la dernière RàZ\n
-  - La distance parcourue depuis la dernière RàZ\n
-  - La durée de fonctionnement moteur depuis la dernière révision\n
-  - Le temps écoulé depuis la dernière RàZ\n
-  \n
-  D\'autres remises à zéro ou effacement peuvent se produire selon les véhicules.\n
-  L\'effacement des certaines données peut faire que le véhicule fonctionne moins\n
-  bien le temps que l\'ECU se recalibre. "</string>
+    <string name="obd_permanentcodes">Codes d\'erreur OBD (permanents)</string>
+    <string name="obd_pendingcodes">Codes d\'erreur OBD (actuels)</string>
+    <string name="obd_clearcodes">Effacer les codes d\'erreur</string>
+    <string name="obd_clear_info">"Cela va remettre à zéro le voyant moteur et effacer toutes les infos de diagnostic dont :
+\n  - Les codes Erreurs
+\n  - Les trames de données figées
+\n  - Les données du test du capteur O2
+\n  - L\'état du test du système de surveillance
+\n  - Les résultats des test du système de surveillance
+\n  - La distance parcourue depuis la dernière révision
+\n  - Le nombre de démarrage depuis la dernière RàZ
+\n  - La distance parcourue depuis la dernière RàZ
+\n  - La durée de fonctionnement moteur depuis la dernière révision
+\n  - Le temps écoulé depuis la dernière RàZ des codes défauts standards (DTC)
+\n  
+\n  D\'autres remises à zéro ou suppression peuvent se produire selon les véhicules.
+\n  L\'effacement de certaines données peut détériorer le fonctionnement du véhicule le temps que l\'ECU se recalibre."</string>
 
     <!--  BtDeviceListActivity -->
     <string name="scanning">Scan en cours…</string>
@@ -196,4 +195,6 @@
     <string name="csv_field_delimiter">Séparateur de champs CSV</string>
     <string name="csv_text_quoted_description">Les chaînes de caractères sont délimitées par des guillemets</string>
     <string name="comma">Virgule</string>
+    <string name="data_disable_max">Désactiver la limite pour cette donnée</string>
+    <string name="data_disable_max_description">Limite de réponses erronées consécutives pour une donnée avant sa désactivation</string>
     </resources>
