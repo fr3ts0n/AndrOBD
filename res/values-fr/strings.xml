@@ -197,4 +197,5 @@
     <string name="comma">Virgule</string>
     <string name="data_disable_max">Désactiver la limite pour cette donnée</string>
     <string name="data_disable_max_description">Limite de réponses erronées consécutives pour une donnée avant sa désactivation</string>
+    <string name="autohide_delay_description">Délai en secondes avant de masquer la barre d\'outils en cas d\'inactivité</string>
     </resources>
