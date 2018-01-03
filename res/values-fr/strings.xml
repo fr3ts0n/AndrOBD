@@ -173,9 +173,9 @@
     <string name="obd_error">Erreur du protocole OBD</string>
     <string name="device_address_description">Adresse IP de l\'ELM</string>
     <string name="device_address">Adresse IP de l\'ELM</string>
-    <string name="device_port">Port de l\'ELM</string>
-    <string name="autohide_toolbar">Cacher la barre d\'outils</string>
-    <string name="autohide_delay">Délai de disparition de la barre d\'outils [s]</string>
+    <string name="device_port">Port de l\'adaptateur ELM</string>
+    <string name="autohide_toolbar">Masquer la barre d\'outils</string>
+    <string name="autohide_delay">"Délai de masquage de la barre [s] "</string>
     <!-- the string array corresponding to state enum -->
 
     <!-- CSV export options -->
