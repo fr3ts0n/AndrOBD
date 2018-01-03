@@ -191,5 +191,6 @@
     <string name="send_after_export_descr">Confirmer l\'envoi du fichier CSV juste après l\'export ?</string>
 
 <string name="device_port_description">Adresse IP de l\'ELM</string>
-    <string name="autohide_toolbar_description">Masquer la barre de menus après un certain délai</string>
+    <string name="autohide_toolbar_description">Masquer automatiquement la barre d\'outil après un certain délai</string>
+    <string name="csv_text_quoted">Délimiteur de texte CSV</string>
     </resources>
