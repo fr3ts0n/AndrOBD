@@ -120,7 +120,7 @@
     <string name="select_extension">Choisir un fichier .csv…</string>
     <string name="extension_loading">Chargement de la personnalisation</string>
     <string name="check_cust_settings">Vérifier vos paramètres de personnalisation</string>
-    <string name="obd_options">"Options OBD "</string>
+    <string name="obd_options">Options OBD</string>
     <string name="obd_opt_description">Options du protocole OBD / communication véhicule</string>
     <string name="select_protocol">"Protocole OBD préféré "</string>
     <string name="select_fault_code">Choisir un code d\'erreur…</string>
@@ -191,4 +191,5 @@
     <string name="send_after_export_descr">Confirmer l\'envoi du fichier CSV juste après l\'export ?</string>
 
 <string name="device_port_description">Adresse IP de l\'ELM</string>
+    <string name="autohide_toolbar_description">Masquer la barre de menus après un certain délai</string>
     </resources>
