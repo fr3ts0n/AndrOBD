@@ -2,7 +2,7 @@
 **/build
 **/gen
 **/doc
+**/.idea
+**/.gradle
 *~
 local.properties
-.idea/workspace.xml
-.gradle
