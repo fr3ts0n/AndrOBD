@@ -4,7 +4,7 @@
     <string name="send">Enviar</string>
     <string name="not_connected">No estas conectado al dispositivo</string>
     <string name="title_connecting">Conectando…</string>
-    <string name="title_connected_to">Conectado al s%</string>
+    <string name="title_connected_to">Conectado a %s</string>
     <string name="title_not_connected">No conectado</string>
     <string name="title">titulo</string>
     <string name="welcome_to">Bienvenido a</string>

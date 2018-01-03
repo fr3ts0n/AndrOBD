@@ -177,8 +177,10 @@ public class ElmProt
 	 */
 	public enum CMD
 	{
-		RESET(        "Z"   , 0, false), ///< reset adapter
-		DEFAULTS(     "D"   , 0, false), ///< set all to defaults
+		RESET(        "Z"   , 0, true ), ///< reset adapter
+		WARMSTART(    "WS"  , 0, true ), ///< warm start
+		PROTOCLOSE(   "PC"  , 0, true ), ///< protocol close
+		DEFAULTS(     "D"   , 0, true ), ///< set all to defaults
 		INFO(         "I"   , 0, true ), ///< request adapter info
 		LOWPOWER(     "LP"  , 0, true ), ///< switch to low power mode
 		ECHO(         "E"   , 1, true ), ///< enable/disable echo
@@ -189,6 +191,7 @@ public class ElmProt
 		SETPROT(      "SP"  , 1, true ), ///< set protocol
 		CANMONITOR(   "MA"  , 0, true ), ///< monitor CAN messages
 		SETPROTAUTO(  "SPA" , 1, true ), ///< set protocol auto
+		ADAPTTIMING(  "AT"  , 1, true ), ///< Set ELM internal adaptive timing (0-2)
 		SETTIMEOUT(   "ST"  , 2, true ), ///< set timeout (x*4ms)
 		SETTXHDR(     "SH"  , 3, true ), ///< set TX header
 		SETCANRXFLT(  "CRA" , 3, true ), ///< set CAN RX filter
@@ -222,17 +225,29 @@ public class ElmProt
 		{
 			if (disablingAllowed)
 			{
-				log.fine(String.format("ELM command '%s' -> %s",
-				                        toString(),
-				                        enabled ? "enabled" : "disabled"));
 				this.enabled = enabled;
 			}
+			// log current state
+			log.fine(String.format("ELM command '%s' -> %s",
+					toString(),
+					this.enabled ? "enabled" : "disabled"));
 		}
 
 		public boolean isDisablingAllowed()
 		{
 			return disablingAllowed;
 		}
+	}
+
+	/**
+	 * Adaptive timing mode
+	 */
+	public enum AdaptTimingMode
+	{
+		OFF,
+		ELM_AT1,
+		ELM_AT2,
+		SOFTWARE
 	}
 
 	/**
@@ -256,24 +271,24 @@ public class ElmProt
 		protected int ELM_TIMEOUT_LRN_LOW = 12;
 		/** ELM message timeout: defaults to approx 200 [ms] */
 		protected int elmMsgTimeout = ELM_TIMEOUT_MAX;
-		/** adaptive timing handling enabled? */
-		private boolean enabled = true;
 
-		/**
-		 * adaptive timing handling enabled?
-		 */
-		public boolean isEnabled()
+		/** adaptive timing handling enabled? */
+		private AdaptTimingMode mode = AdaptTimingMode.OFF;
+
+		public AdaptTimingMode getMode()
 		{
-			return enabled;
+			return mode;
 		}
 
-		/**
-		 * enable/disable adaptive timing handler
-		 * @param newEnabled enable/disable
-		 */
-		public void setEnabled(boolean newEnabled)
+		public void setMode(AdaptTimingMode mode)
 		{
-			enabled = newEnabled;
+
+			log.info(String.format("AdaptiveTiming mode: %s -> %s",
+									this.mode.toString(),
+									mode.toString()));
+			this.mode = mode;
+			// initialize with new mode
+			initialize();
 		}
 
 		/**
@@ -301,14 +316,19 @@ public class ElmProt
 		 */
 		public void initialize()
 		{
-			if(!enabled) return;
-			// since device just restarted, assume device timeout
-			// to be set to default value ...
-			elmMsgTimeout = ELM_TIMEOUT_DEFAULT;
-			// ... reset learned minimum timeout ...
-			setElmTimeoutLrnLow(getElmTimeoutMin());
-			// set default timeout
-			setElmMsgTimeout(ELM_TIMEOUT_DEFAULT);
+			if(mode == AdaptTimingMode.SOFTWARE)
+			{
+				// ... reset learned minimum timeout ...
+				setElmTimeoutLrnLow(getElmTimeoutMin());
+				// set default timeout
+				setElmMsgTimeout(ELM_TIMEOUT_DEFAULT);
+				// switch OFF ELM internal adaptive timing
+				pushCommand(CMD.ADAPTTIMING, 0);
+			}
+			else
+			{
+				pushCommand(CMD.ADAPTTIMING, mode.ordinal());
+			}
 		}
 
 		/**
@@ -317,7 +337,7 @@ public class ElmProt
 		 */
 		public void adapt(boolean increaseTimeout)
 		{
-			if(!enabled) return;
+			if(mode != AdaptTimingMode.SOFTWARE) return;
 			if(increaseTimeout)
 			{
 				// increase OBD timeout since we may expect answers too fast
@@ -516,7 +536,11 @@ public class ElmProt
 	{
 		// reset all learned protocol data
 		super.reset();
-		sendCommand(CMD.RESET, 0);
+		// either RESET or INFO command needs to be enabled
+		if(CMD.RESET.isEnabled())
+			sendCommand(CMD.RESET, 0);
+		else
+			sendCommand(CMD.INFO, 0);
 	}
 
 	/**
@@ -525,7 +549,7 @@ public class ElmProt
 	 */
 	private void queryEcus()
 	{
-		// set status to INITIALIZING
+		// set status to ECU detection
 		setStatus(STAT.ECU_DETECT);
 
 		// clear all identified ECU addresses
@@ -595,6 +619,9 @@ public class ElmProt
 			return result;
 		}
 
+		// log message reception as answer to last TX message
+		log.fine("ELM rx:'" + bufferStr + "' ("+lastTxMsg+")");
+
 		// handle response
 		switch (getResponseId(bufferStr))
 		{
@@ -621,7 +648,6 @@ public class ElmProt
 				// remember this as last received message
 				// do NOT respond immediately
 				lastRxMsg = bufferStr;
-				log.info("ELM rx:'" + bufferStr + "' ("+lastTxMsg+")");
 				break;
 
 			case MODEL:
@@ -645,26 +671,28 @@ public class ElmProt
 						setStatus(STAT.DISCONNECTED);
 						// re-queue last command
 						cmdQueue.add(String.valueOf(lastCommand));
+						// queue setting to preferred protocol
+						pushCommand(CMD.SETPROT, preferredProtocol.ordinal());
 						// Initialize adaptive timing
 						mAdaptiveTiming.initialize();
-						// set to AUTO protocol
-						sendCommand(CMD.SETPROT, PROT.ELM_PROT_AUTO.ordinal());
+						// immediately close current protocol
+						sendCommand(CMD.PROTOCLOSE, 0);
 						break;
 
 					case DATAERROR:
 						setStatus(STAT.DATAERROR);
-						sendCommand(CMD.RESET, 0);
+						sendCommand(CMD.WARMSTART, 0);
 						break;
 
 					case BUFFERFULL:
 					case RXERROR:
 						setStatus(STAT.RXERROR);
-						sendCommand(CMD.RESET, 0);
+						sendCommand(CMD.WARMSTART, 0);
 						break;
 
 					case ERROR:
 						setStatus(STAT.ERROR);
-						sendCommand(CMD.RESET, 0);
+						sendCommand(CMD.WARMSTART, 0);
 						break;
 
 					case NODATA:
@@ -676,6 +704,8 @@ public class ElmProt
 							);
 						// increase OBD timeout since we may expect answers too fast
 						mAdaptiveTiming.adapt(true);
+                        // set to preferred protocol
+                        pushCommand(CMD.SETPROT, preferredProtocol.ordinal());
 						// NO break here since reaction is only quqeued
 
 					case MODEL:

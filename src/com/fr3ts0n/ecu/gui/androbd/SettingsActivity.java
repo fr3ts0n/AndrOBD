@@ -75,6 +75,7 @@ public class SettingsActivity
 	static final String KEY_COMM_MEDIUM = "comm_medium";
 	static final String ELM_MIN_TIMEOUT = "elm_min_timeout";
 	static final String ELM_CMD_DISABLE = "elm_cmd_disable";
+    static final String ELM_TIMING_SELECT = "adaptive_timing_mode";
 
 	/*
 	 * (non-Javadoc)
@@ -118,6 +119,8 @@ public class SettingsActivity
 			setupProtoSelection();
 			// set up ELM command selection
 			setupElmCmdSelection();
+            // set up ELM adaptive timing mode selection
+            setupElmTimingSelection();
 			// set up selectable PID list
 			setupPidSelection();
 			// update network selection fields
@@ -150,6 +153,30 @@ public class SettingsActivity
 			// show current selection
 			pref.setSummary(pref.getEntry());
 		}
+
+        /**
+         * set up protocol selection
+         */
+        void setupElmTimingSelection()
+        {
+            ListPreference pref = (ListPreference) findPreference(ELM_TIMING_SELECT);
+            ElmProt.AdaptTimingMode[] values = ElmProt.AdaptTimingMode.values();
+            CharSequence[] titles = new CharSequence[values.length];
+            CharSequence[] keys = new CharSequence[values.length];
+            int i = 0;
+            for (ElmProt.AdaptTimingMode mode : values)
+            {
+                titles[i] = mode.toString();
+                keys[i] = mode.toString();;
+                i++;
+            }
+            // set enries and keys
+            pref.setEntries(titles);
+            pref.setEntryValues(keys);
+            pref.setDefaultValue(titles[0]);
+            // show current selection
+            pref.setSummary(pref.getEntry());
+        }
 
 		/**
 		 * set up protocol selection
@@ -330,6 +357,12 @@ public class SettingsActivity
 
 			if(KEY_COMM_MEDIUM.equals(key))
 				updateNetworkSelections();
+
+			if(ELM_TIMING_SELECT.equals(key))
+				findPreference(ELM_MIN_TIMEOUT)
+					.setEnabled(ElmProt.AdaptTimingMode.SOFTWARE.toString()
+						          .equals(((ListPreference)pref).getValue())
+					           );
 		}
 	}
 }

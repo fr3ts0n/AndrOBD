@@ -658,7 +658,7 @@ public class ObdProt extends ProtoHeader
                     default:
                         log.warning("Service not (yet) supported: " + msgService);
                 }
-            } catch (NumberFormatException e)
+            } catch (Exception e)
             {
                 log.warning("'" + buffer.toString() + "':" + e.getMessage());
             }

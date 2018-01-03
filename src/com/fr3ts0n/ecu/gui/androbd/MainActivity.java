@@ -77,6 +77,8 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import static com.fr3ts0n.ecu.gui.androbd.SettingsActivity.ELM_TIMING_SELECT;
+
 /**
  * Main Activity for AndrOBD app
  */
@@ -130,11 +132,12 @@ public class MainActivity extends ListActivity
 	public static final String TOAST = "toast";
 	public static final String MEASURE_SYSTEM = "measure_system";
 	public static final String NIGHT_MODE = "night_mode";
-	public static final String ELM_ADAPTIVE_TIMING = "elm_adaptive_timing";
+	public static final String ELM_ADAPTIVE_TIMING = ELM_TIMING_SELECT;
 	public static final String ELM_RESET_ON_NRC = "elm_reset_on_nrc";
 	public static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
 	public static final String PREF_AUTOHIDE = "autohide_toolbar";
 	public static final String PREF_AUTOHIDE_DELAY = "autohide_delay";
+	public static final String PREF_DATA_DISABLE_MAX = "data_disable_max";
 
 	/**
 	 * Message types sent from the BluetoothChatService Handler
@@ -316,153 +319,166 @@ public class MainActivity extends ListActivity
 		@Override
 		public void handleMessage(Message msg)
 		{
-			PropertyChangeEvent evt;
+			try
+            {
+                PropertyChangeEvent evt;
 
-			switch (msg.what)
-			{
-				case MESSAGE_STATE_CHANGE:
-					switch ((CommService.STATE) msg.obj)
-					{
-						case CONNECTED:
-							onConnect();
-							break;
+                // log trace message for received handler notification event
+                log.log(Level.FINEST, String.format("Handler notification: %s", msg.toString()));
 
-						case CONNECTING:
-							setStatus(R.string.title_connecting);
-							break;
+                switch (msg.what)
+                {
+                    case MESSAGE_STATE_CHANGE:
+                        // log trace message for received handler notification event
+                        log.log(Level.FINEST, String.format("State change: %s", msg.toString()));
+                        switch ((CommService.STATE) msg.obj)
+                        {
+                            case CONNECTED:
+                                onConnect();
+                                break;
 
-						default:
-							onDisconnect();
-							break;
-					}
-					break;
+                            case CONNECTING:
+                                setStatus(R.string.title_connecting);
+                                break;
 
-				case MESSAGE_FILE_WRITTEN:
-					break;
+                            default:
+                                onDisconnect();
+                                break;
+                        }
+                        break;
 
-				// data has been read - finish up
-				case MESSAGE_FILE_READ:
-					// set listeners for data structure changes
-					setDataListeners();
-					// set adapters data source to loaded list instances
-					mPidAdapter.setPvList(ObdProt.PidPvs);
-					mVidAdapter.setPvList(ObdProt.VidPvs);
-					mDfcAdapter.setPvList(ObdProt.tCodes);
-					// set OBD data mode to the one selected by input file
-					setObdService(CommService.elm.getService(), getString(R.string.saved_data));
-					// Check if last data selection shall be restored
-					if(obdService == ObdProt.OBD_SVC_DATA) checkToRestoreLastDataSelection();
-					break;
+                    case MESSAGE_FILE_WRITTEN:
+                        break;
 
-				case MESSAGE_DEVICE_NAME:
-					// save the connected device's name
-					mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
-					Toast.makeText(getApplicationContext(),
-					               getString(R.string.connected_to) + mConnectedDeviceName,
-					               Toast.LENGTH_SHORT).show();
-					break;
+                    // data has been read - finish up
+                    case MESSAGE_FILE_READ:
+                        // set listeners for data structure changes
+                        setDataListeners();
+                        // set adapters data source to loaded list instances
+                        mPidAdapter.setPvList(ObdProt.PidPvs);
+                        mVidAdapter.setPvList(ObdProt.VidPvs);
+                        mDfcAdapter.setPvList(ObdProt.tCodes);
+                        // set OBD data mode to the one selected by input file
+                        setObdService(CommService.elm.getService(), getString(R.string.saved_data));
+                        // Check if last data selection shall be restored
+                        if(obdService == ObdProt.OBD_SVC_DATA) checkToRestoreLastDataSelection();
+                        break;
 
-				case MESSAGE_TOAST:
-					Toast.makeText(getApplicationContext(),
-					               msg.getData().getString(TOAST),
-					               Toast.LENGTH_SHORT).show();
-					break;
+                    case MESSAGE_DEVICE_NAME:
+                        // save the connected device's name
+                        mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
+                        Toast.makeText(getApplicationContext(),
+                                       getString(R.string.connected_to) + mConnectedDeviceName,
+                                       Toast.LENGTH_SHORT).show();
+                        break;
 
-				case MESSAGE_DATA_ITEMS_CHANGED:
-					PvChangeEvent event = (PvChangeEvent) msg.obj;
-					switch (event.getType())
-					{
-						case PvChangeEvent.PV_ADDED:
-							currDataAdapter.setPvList(currDataAdapter.pvs);
-							try
-							{
-								if(event.getSource() == ObdProt.PidPvs)
-								{
-									// Check if last data selection shall be restored
-									checkToRestoreLastDataSelection();
-								}
-								// set up data update timer
-								updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
-							} catch (Exception ignored)
-							{
-							}
-							break;
+                    case MESSAGE_TOAST:
+                        Toast.makeText(getApplicationContext(),
+                                       msg.getData().getString(TOAST),
+                                       Toast.LENGTH_SHORT).show();
+                        break;
 
-						case PvChangeEvent.PV_CLEARED:
-							currDataAdapter.clear();
-							break;
-					}
-					break;
+                    case MESSAGE_DATA_ITEMS_CHANGED:
+                        PvChangeEvent event = (PvChangeEvent) msg.obj;
+                        switch (event.getType())
+                        {
+                            case PvChangeEvent.PV_ADDED:
+                                currDataAdapter.setPvList(currDataAdapter.pvs);
+                                try
+                                {
+                                    if(event.getSource() == ObdProt.PidPvs)
+                                    {
+                                        // Check if last data selection shall be restored
+                                        checkToRestoreLastDataSelection();
+                                    }
+                                    // set up data update timer
+                                    updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
+                                } catch (Exception ignored)
+                                {
+                                    log.log(Level.FINER, "Error adding PV", ignored);
+                                }
+                                break;
 
-				case MESSAGE_UPDATE_VIEW:
-					getListView().invalidateViews();
-					break;
+                            case PvChangeEvent.PV_CLEARED:
+                                currDataAdapter.clear();
+                                break;
+                        }
+                        break;
 
-				// handle state change in OBD protocol
-				case MESSAGE_OBD_STATE_CHANGED:
-					evt = (PropertyChangeEvent) msg.obj;
-					ElmProt.STAT state = (ElmProt.STAT)evt.getNewValue();
-					/* Show ELM status only in ONLINE mode */
-					if (getMode() != MODE.DEMO)
-					{
-						setStatus(getResources().getStringArray(R.array.elmcomm_states)[state.ordinal()]);
-					}
-					// if last selection shall be restored ...
-					if(istRestoreWanted(PRESELECT.LAST_SERVICE))
-					{
-						if(state == ElmProt.STAT.ECU_DETECTED)
-						{
-							setObdService(prefs.getInt(PRESELECT.LAST_SERVICE.toString(),0), null);
-						}
-					}
-					break;
+                    case MESSAGE_UPDATE_VIEW:
+                        getListView().invalidateViews();
+                        break;
 
-				// handle change in number of fault codes
-				case MESSAGE_OBD_NUMCODES:
-					evt = (PropertyChangeEvent) msg.obj;
-					setNumCodes((Integer) evt.getNewValue());
-					break;
+                    // handle state change in OBD protocol
+                    case MESSAGE_OBD_STATE_CHANGED:
+                        evt = (PropertyChangeEvent) msg.obj;
+                        ElmProt.STAT state = (ElmProt.STAT)evt.getNewValue();
+                        /* Show ELM status only in ONLINE mode */
+                        if (getMode() != MODE.DEMO)
+                        {
+                            setStatus(getResources().getStringArray(R.array.elmcomm_states)[state.ordinal()]);
+                        }
+                        // if last selection shall be restored ...
+                        if(istRestoreWanted(PRESELECT.LAST_SERVICE))
+                        {
+                            if(state == ElmProt.STAT.ECU_DETECTED)
+                            {
+                                setObdService(prefs.getInt(PRESELECT.LAST_SERVICE.toString(),0), null);
+                            }
+                        }
+                        break;
 
-				// handle ECU detection event
-				case MESSAGE_OBD_ECUS:
-					evt = (PropertyChangeEvent) msg.obj;
-					selectEcu((Set<Integer>) evt.getNewValue());
-					break;
+                    // handle change in number of fault codes
+                    case MESSAGE_OBD_NUMCODES:
+                        evt = (PropertyChangeEvent) msg.obj;
+                        setNumCodes((Integer) evt.getNewValue());
+                        break;
 
-				// handle negative result code from OBD protocol
-				case MESSAGE_OBD_NRC:
-					// reset OBD mode to prevent infinite error loop
-					setObdService(ObdProt.OBD_SVC_NONE, getText(R.string.obd_error));
-					// show error dialog ...
-					evt = (PropertyChangeEvent) msg.obj;
-					String nrcMessage = (String)evt.getNewValue();
-					dlgBuilder
-						.setIcon(android.R.drawable.ic_dialog_alert)
-						.setTitle(R.string.obd_error)
-						.setMessage(nrcMessage)
-						.setPositiveButton(null,null)
-						.show();
-					break;
+                    // handle ECU detection event
+                    case MESSAGE_OBD_ECUS:
+                        evt = (PropertyChangeEvent) msg.obj;
+                        selectEcu((Set<Integer>) evt.getNewValue());
+                        break;
 
-				// set toolbar visibility
-				case MESSAGE_TOOLBAR_VISIBLE:
-					Boolean visible = (Boolean)msg.obj;
-					// log action
-					log.fine(String.format("ActionBar: %s", visible ? "show" : "hide"));
-					// set action bar visibility
-					ActionBar ab = getActionBar();
-					if(ab != null)
-					{
-						if(visible)
-						{
-							ab.show();
-						} else
-						{
-							ab.hide();
-						}
-					}
-					break;
-			}
+                    // handle negative result code from OBD protocol
+                    case MESSAGE_OBD_NRC:
+                        // reset OBD mode to prevent infinite error loop
+                        setObdService(ObdProt.OBD_SVC_NONE, getText(R.string.obd_error));
+                        // show error dialog ...
+                        evt = (PropertyChangeEvent) msg.obj;
+                        String nrcMessage = (String)evt.getNewValue();
+                        dlgBuilder
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setTitle(R.string.obd_error)
+                            .setMessage(nrcMessage)
+                            .setPositiveButton(null,null)
+                            .show();
+                        break;
+
+                    // set toolbar visibility
+                    case MESSAGE_TOOLBAR_VISIBLE:
+                        Boolean visible = (Boolean)msg.obj;
+                        // log action
+                        log.fine(String.format("ActionBar: %s", visible ? "show" : "hide"));
+                        // set action bar visibility
+                        ActionBar ab = getActionBar();
+                        if(ab != null)
+                        {
+                            if(visible)
+                            {
+                                ab.show();
+                            } else
+                            {
+                                ab.hide();
+                            }
+                        }
+                        break;
+                }
+            }
+            catch(Exception ex)
+            {
+                log.log(Level.SEVERE, "Error in mHandler", ex);
+            }
 		}
 	};
 
@@ -855,7 +871,10 @@ public class MainActivity extends ListActivity
 
 		// enable/disable ELM adaptive timing
 		if(key==null || ELM_ADAPTIVE_TIMING.equals(key))
-			CommService.elm.mAdaptiveTiming.setEnabled(prefs.getBoolean(ELM_ADAPTIVE_TIMING, true));
+			CommService.elm.mAdaptiveTiming.setMode(
+			    ElmProt.AdaptTimingMode.valueOf(
+			        prefs.getString(ELM_ADAPTIVE_TIMING,
+                                    ElmProt.AdaptTimingMode.OFF.toString())));
 
 		// set protocol flag to initiate immediate reset on NRC reception
 		if(key==null || ELM_RESET_ON_NRC.equals(key))
@@ -900,6 +919,10 @@ public class MainActivity extends ListActivity
 		// AutoHide ToolBar
 		if(key==null || PREF_AUTOHIDE.equals(key) || PREF_AUTOHIDE_DELAY.equals(key))
 			setAutoHider(prefs.getBoolean(PREF_AUTOHIDE,false));
+
+        // Max. data disabling debounce counter
+        if(key==null || PREF_DATA_DISABLE_MAX.equals(key))
+            EcuDataItem.MAX_ERROR_COUNT = getPrefsInt(PREF_DATA_DISABLE_MAX, 3);
 	}
 
 	/**
@@ -1141,10 +1164,22 @@ public class MainActivity extends ListActivity
 	 */
 	private void setStatus(int resId)
 	{
+		setStatus(getString(resId));
+	}
+
+	/**
+	 * set status message in status bar
+	 *
+	 * @param subTitle status text to be set
+	 */
+	private void setStatus(CharSequence subTitle)
+	{
 		final ActionBar actionBar = getActionBar();
 		if (actionBar != null)
 		{
-			actionBar.setSubtitle(resId);
+			actionBar.setSubtitle(subTitle);
+			// show action bar to make state change visible
+			unHideActionBar(getListView());
 		}
 	}
 
@@ -1160,20 +1195,6 @@ public class MainActivity extends ListActivity
 		String type = "*/*";
 		intent.setDataAndType(data, type);
 		startActivityForResult(intent, REQUEST_SELECT_FILE);
-	}
-
-	/**
-	 * set status message in status bar
-	 *
-	 * @param subTitle status text to be set
-	 */
-	private void setStatus(CharSequence subTitle)
-	{
-		final ActionBar actionBar = getActionBar();
-		if (actionBar != null)
-		{
-			actionBar.setSubtitle(subTitle);
-		}
 	}
 
 	/**
@@ -1685,6 +1706,7 @@ public class MainActivity extends ListActivity
 		} catch (InterruptedException e)
 		{
 			// do nothing
+            log.log(Level.FINER, e.getLocalizedMessage());
 		}
 
 		/* don't listen to ELM data changes any more */
