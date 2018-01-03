@@ -180,14 +180,14 @@
 
     <!-- CSV export options -->
     <string name="csv_export_options">Options d\'export CSV</string>
-    <string name="csv_export_description">Option de format d\'export des fichiers CSV</string>
+    <string name="csv_export_description">Options du format d\'export des fichiers CSV</string>
     <string name="csv_field_delimiter_description">Caractère(s) de séparation des champs de données CSV</string>
     <string name="csv_rec_delimiter">Séparateur d\'enregistrements CSV</string>
     <string name="csv_rec_delimiter_description">Caractère(s) de séparation de champs CSV</string>
     <string name="tab">Tabulation</string>
     <string name="semicolon">POINT-VIRGULE</string>
     <string name="send_after_export">Envoyer après l\'export</string>
-    <string name="send_after_export_descr">Confirmer l\'envoi du fichier CSV juste après l\'export ?</string>
+    <string name="send_after_export_descr">Proposer l\'envoi du fichier CSV juste après l\'export ?</string>
 
 <string name="device_port_description">Adresse IP de l\'adaptateur ELM</string>
     <string name="autohide_toolbar_description">Masquer automatiquement la barre d\'outil après un certain délai</string>
