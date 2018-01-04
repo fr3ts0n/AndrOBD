@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name" translatable="false">Plugin library</string>
-    <string name="app_version" translatable="false">V1.0.0</string>
     <string name="configure">Configure</string>
     <string name="perform_action">Perform action</string>
     <string name="identify_plugins">Identify plugins</string>
