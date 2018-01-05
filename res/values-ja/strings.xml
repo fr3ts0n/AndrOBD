@@ -189,4 +189,6 @@
     <string name="semicolon">セミコロン</string>
     <string name="send_after_export">エクスポート後に送信</string>
     <string name="send_after_export_descr">正しくエクスポートした後に CSV ファイルを送信するプロンプトを表示しますか?</string>
+    <string name="data_disable_max">データ項目を無効にする制限</string>
+    <string name="data_disable_max_description">アイテムが無効になるまでの無効な連続データ応答の数</string>
     </resources>
