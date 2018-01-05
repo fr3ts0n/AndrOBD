@@ -6,7 +6,7 @@ Android OBD diagnostics with any ELM327 adapter
 <table>
   <tr><td colspan="2">Thank you for any donation:</td></tr>
   <tr>
-    <td><a href="https://blockchain.info/address/12xyTZnMMDaKMcHaeseXPd8e4NNbMFF8rt"><img src="https://f-droid.org/assets/bitcoin.png" /></a></td>
+    <td><a href="bitcoin:12xyTZnMMDaKMcHaeseXPd8e4NNbMFF8rt"><img src="https://f-droid.org/assets/bitcoin.png" /></a></td>
     <td><a href="bitcoin:12xyTZnMMDaKMcHaeseXPd8e4NNbMFF8rt">12xyTZnMMDaKMcHaeseXPd8e4NNbMFF8rt</a></td>
   </tr>
 </table>
