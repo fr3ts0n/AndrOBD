@@ -32,6 +32,7 @@ public class PluginManager extends ListActivity
     {
         pluginHandler.closeAllPlugins();
         pluginHandler.cleanup();
+        pluginHandler = null;
         super.onDestroy();
     }
 
