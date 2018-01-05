@@ -9,7 +9,7 @@ Android OBD diagnostics with any ELM327 adapter
   </tr>
   <tr>
     <td><a href="bitcoin:12xyTZnMMDaKMcHaeseXPd8e4NNbMFF8rt"><img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin"/></a></td>
-    <td><a href="bitcoin:12xyTZnMMDaKMcHaeseXPd8e4NNbMFF8rt"><img src="manual/bitcoin_qr_code.png" alt="bitcoin:12xyTZnMMDaKMcHaeseXPd8e4NNbMFF8rt"></a></td>
+    <td><a href="bitcoin:12xyTZnMMDaKMcHaeseXPd8e4NNbMFF8rt"><img src="manual/bitcoin_qr_code.png" alt="bitcoin:12xyTZnMMDaKMcHaeseXPd8e4NNbMFF8rt" width="128px"></a></td>
     <td><a href="bitcoin:12xyTZnMMDaKMcHaeseXPd8e4NNbMFF8rt">12xyTZnMMDaKMcHaeseXPd8e4NNbMFF8rt</a></td>
   </tr>
 </table>
