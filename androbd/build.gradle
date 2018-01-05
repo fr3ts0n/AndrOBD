@@ -11,20 +11,27 @@ android {
         versionName 'V2.0.0'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
+
     applicationVariants.all { variant ->
         variant.resValue "string", "app_version", variant.versionName
     }
+
     buildTypes {
         release {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
     productFlavors {
     }
 }
