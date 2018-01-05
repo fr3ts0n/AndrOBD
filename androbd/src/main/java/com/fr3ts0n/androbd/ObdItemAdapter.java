@@ -166,12 +166,6 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 			convertView = mInflater.inflate(R.layout.obd_item, parent, false);
 		}
 
-		// Set background based on selection state
-		convertView.setBackgroundColor(isPidList && convertView.isActivated()
-									   ? 0x80808080
-									   : 0x00FFFFFF
-		                              );
-
 		// fill view fields with data
 
 		// description text
