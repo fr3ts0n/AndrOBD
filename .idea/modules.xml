@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AndrOBD.iml" filepath="$PROJECT_DIR$/.idea/AndrOBD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndrOBD.iml" filepath="$PROJECT_DIR$/AndrOBD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androbd/androbd.iml" filepath="$PROJECT_DIR$/androbd/androbd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugin/plugin.iml" filepath="$PROJECT_DIR$/plugin/plugin.iml" />
     </modules>
   </component>
 </project>

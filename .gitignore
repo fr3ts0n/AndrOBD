@@ -1,6 +1,8 @@
-bin/*
-gen/*
-/doc
+**/bin
+**/build
+**/gen
+**/doc
+**/.idea
+**/.gradle
 *~
 local.properties
-.idea/workspace.xml

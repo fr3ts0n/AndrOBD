@@ -1,0 +1,9 @@
+<resources>
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.Light.DarkActionBar" >
+        <item name="android:activatedBackgroundIndicator">@drawable/activated_background</item>
+    </style>
+    <style name="AppTheme.Dark" parent="@android:style/Theme.DeviceDefault" >
+        <item name="android:activatedBackgroundIndicator">@drawable/activated_background</item>
+    </style>
+</resources>

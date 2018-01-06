@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="configure">Konfiguration</string>
+    <string name="perform_action">Ausführen</string>
+    <string name="identify_plugins">Plugins suchen</string>
+</resources>
