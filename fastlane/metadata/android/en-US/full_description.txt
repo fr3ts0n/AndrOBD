@@ -1,0 +1,39 @@
+Use your phone/tablet to connect to your car's on-board diagnostics system via
+any ELM327 bluetooth adapter.
+
+OBD connections
+* Bluetooth
+* USB
+* Wifi
+
+OBD Features
+* Read fault codes
+* Clear fault codes
+* Read/record live data
+* Read freeze frame data
+* Read vehicle info data
+
+Additional features
+* Day/Night view
+* Data charts
+* Dashboard
+* Head up display
+* Save recorded data
+* Load recorded data (for analysis)
+* CSV export
+
+Customisation of PID data
+* PID data items
+* Data conversions
+
+Plugin extension support
+* Avalilable Plugins:
+  * MQTT publisher
+  * ...
+
+Native language support
+* translatable via weblate.org
+  * Program dialogs
+  * Data item descriptions
+  * Fault code descriptions
+.
