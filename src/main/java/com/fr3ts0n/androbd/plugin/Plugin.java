@@ -3,11 +3,8 @@ package com.fr3ts0n.androbd.plugin;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
-
-import java.lang.ref.WeakReference;
 
 
 /**
@@ -39,7 +36,7 @@ public abstract class Plugin
          * Handle configuration request.
          * Perform plugin configuration
          */
-        public void performConfigure();
+        void performConfigure();
     }
 
     /**
@@ -50,7 +47,7 @@ public abstract class Plugin
         /**
          * Perform intended action of the plugin
          */
-        public void performAction();
+        void performAction();
     }
 
     /**
@@ -65,14 +62,14 @@ public abstract class Plugin
          * CSV data string in format key;description;value;units.
          * One line per data item
          */
-        public void onDataListUpdate(String csvString);
+        void onDataListUpdate(String csvString);
 
         /**
          * Handle data update.
          * @param key Key of data change
          * @param value New value of data change
          */
-        public void onDataUpdate(String key, String value);
+        void onDataUpdate(String key, String value);
     }
 
     /**
@@ -88,7 +85,7 @@ public abstract class Plugin
          *                ...
          *                mnemonic;description;value;units
          */
-        public void sendDataList(String csvData);
+        void sendDataList(String csvData);
 
         /**
          * Send data update to all enabled plugins which support DATA requests
@@ -96,7 +93,7 @@ public abstract class Plugin
          * @param key Key of data change
          * @param value New value of data change
          */
-        public void sendDataUpdate(String key, String value);
+        void sendDataUpdate(String key, String value);
     }
 
     /**
@@ -104,17 +101,10 @@ public abstract class Plugin
      */
     PluginInfo hostInfo;
 
-    /** service binder object */
-    private LocalBinder<Plugin> mBinder;
-
     @Override
     public void onCreate()
     {
         super.onCreate();
-
-        // create a binder that will let the Activity UI send
-        //   commands to the Service
-        mBinder = new LocalBinder<>(this);
     }
 
     /**
@@ -172,7 +162,9 @@ public abstract class Plugin
 
     /**
      * Handle IDENTIFY intent
-     * @param intent
+     *
+     * @param context Context of intent handler
+     * @param intent Intent object of identify request
      */
     private void handleIdentify(Context context, Intent intent)
     {
@@ -186,31 +178,13 @@ public abstract class Plugin
         Log.d(toString(), "Sending response: " + identifyIntent);
         sendBroadcast(identifyIntent);
     }
-
-    public class LocalBinder<S> extends Binder
-    {
-        private WeakReference<S> mService;
-
-        public LocalBinder(S service)
-        {
-            mService = new WeakReference<S>(service);
-        }
-        public S getService()
-        {
-            return mService.get();
-        }
-        public void close()
-        {
-            mService = null;
-        }
-    }
-
+    
     @Override
     public IBinder onBind(Intent intent)
     {
-        return mBinder;
+        return null;
     }
-
+    
     /**
      * get own plugin info
      */
