@@ -114,12 +114,12 @@
     <string name="reset_preselections">Letzte Einstellungen löschen</string>
     <string name="use_last_settings">Letzte Einstellungen verwenden</string>
     <string name="use_last_settings_description">Letzte Einstellungen bei Start verwenden (BT Adresse, ECU Adresse, Anzeige …)</string>
-    <string name="last_data_items">letze Datenauswahl</string>
-    <string name="last_ecu">letzte ECU wieder verbinden</string>
-    <string name="last_elm">letzter ELM-Adapter</string>
+    <string name="last_data_items">Letzte Datenauswahl</string>
+    <string name="last_ecu">Letzte ECU wieder verbinden</string>
+    <string name="last_elm">Letzter ELM-Adapter</string>
     <string name="last_none">Nicht verwenden</string>
-    <string name="last_service">letzter OBD service</string>
-    <string name="last_view_mode">letzter Datenanzeige-Modus</string>
+    <string name="last_service">Letzter OBD service</string>
+    <string name="last_view_mode">Letzter Datenanzeige-Modus</string>
     <string name="common_settings_description">Allgemeine Einstellungen zur Programmsteuerung</string>
     <string name="BUSERROR">BUS Fehler</string>
     <string name="CONNECTED">Verbunden</string>
@@ -172,4 +172,9 @@
     <string name="plugin_manager_desc">Verwaltung von installierten Plugins</string>
     <string name="toolbar_overlay">Überlagernd einblenden</string>
     <string name="toolbar_overlay_sum">Einblendung der Toolbar überlagert Datenanzeige</string>
+    <string name="donation">Projekt unterstützen …</string>
+    <string name="license">Lizenzen …</string>
+    <string name="libraries">Bibliotheken</string>
+    <string name="libraries_sum">Im Projekt verwendete Bibliotheken …</string>
+    <string name="release_history">Versionen …</string>
 </resources>

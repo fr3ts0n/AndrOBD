@@ -29,6 +29,8 @@ import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.prot.obd.ElmProt;
@@ -76,6 +78,7 @@ public class SettingsActivity
 	static final String ELM_MIN_TIMEOUT = "elm_min_timeout";
 	static final String ELM_CMD_DISABLE = "elm_cmd_disable";
     static final String ELM_TIMING_SELECT = "adaptive_timing_mode";
+    static final String KEY_BITCOIN = "bitcoin";
 
 	/*
 	 * (non-Javadoc)
@@ -125,7 +128,7 @@ public class SettingsActivity
 			setupPidSelection();
 			// update network selection fields
 			updateNetworkSelections();
-
+			findPreference(KEY_BITCOIN).setOnPreferenceClickListener(this);
 			// add handler for selection update
 			prefs.registerOnSharedPreferenceChangeListener(this);
 		}
@@ -310,8 +313,25 @@ public class SettingsActivity
 		public boolean onPreferenceClick(Preference preference)
 		{
 			Intent intent = preference.getIntent();
-			intent.addCategory(Intent.CATEGORY_OPENABLE);
-			startActivityForResult(intent, preference.hashCode());
+			try
+			{
+				if(KEY_BITCOIN.equals(preference.getKey()))
+				{
+					// special handling for bitcoin VIEW intent
+					startActivity(intent);
+				}
+				else
+				{
+					// OPEN intents require result handling
+					intent.addCategory(Intent.CATEGORY_OPENABLE);
+					startActivityForResult(intent, preference.hashCode());
+				}
+			}
+			catch(Exception e)
+			{
+				Log.e("Settings", e.getMessage());
+				Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+			}
 			return true;
 		}
 

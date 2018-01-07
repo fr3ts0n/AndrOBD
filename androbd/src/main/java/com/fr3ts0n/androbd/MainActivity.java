@@ -476,8 +476,8 @@ public class MainActivity extends PluginManager
 			getString(R.string.app_version)));
 
 		/* remove log file handler */
-		Logger.getLogger("").removeHandler(logFileHandler);
 		logFileHandler.close();
+		Logger.getLogger("").removeHandler(logFileHandler);
 
 		super.onDestroy();
 	}
@@ -894,6 +894,7 @@ public class MainActivity extends PluginManager
 				catch(Exception e)
 				{
 					log.log(Level.SEVERE,"WebSearch DFC", e);
+					Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
 				}
 				break;
 		}

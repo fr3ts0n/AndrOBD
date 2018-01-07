@@ -5,9 +5,6 @@
     <string name="copyright_fr3ts0n" translatable="false">&#169; 2015-2018 fr3ts0n</string>
     <string name="translation_credits">Translation by fr3ts0n</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 bluetooth adapter</string>
-    <string name="url_app_mainpage" translatable="false">https://github.com/fr3ts0n/AndrOBD/</string>
-    <string name="url_app_releases" translatable="false">https://github.com/fr3ts0n/AndrOBD/releases/</string>
-    <string name="url_app_translation" translatable="false">https://hosted.weblate.org/projects/androbd/strings/</string>
     <string name="send">Send</string>
     <string name="not_connected">You are not connected to a device</string>
     <string name="title_connecting">Connecting&#8230;</string>
@@ -261,6 +258,30 @@ period of time while the ECU recalibrates itself.
     <string name="plugin_manager_desc">Manage installed plugins</string>
     <string name="toolbar_overlay">Show als overlay</string>
     <string name="toolbar_overlay_sum">Show toolbar overlapping main screen</string>
+    <string name="license">Licensing …</string>
+    <string name="donation">Support project …</string>
+    <string name="libraries">Libraries …</string>
+    <string name="libraries_sum">Libraries used in project …</string>
+    <string name="release_history">Release history …</string>
+
+    <string name="app_license_sum" translatable="false">
+        Connect to your car\'s OBD system\n
+        * GNU General Public License v3.0
+    </string>
+    <string name="url_app_license" translatable="false">https://github.com/fr3ts0n/AndrOBD/blob/master/LICENSE</string>
+    <string name="url_app_mainpage" translatable="false">https://github.com/fr3ts0n/AndrOBD/</string>
+    <string name="url_app_releases" translatable="false">https://github.com/fr3ts0n/AndrOBD/releases/</string>
+    <string name="url_app_translation" translatable="false">https://hosted.weblate.org/projects/androbd/strings/</string>
+    <string name="lib_usb_serial" translatable="false">usb-serial-for-android</string>
+    <string name="lib_usb_serial_sum" translatable="false">
+        Library for USB serial connections\n
+        * GNU Lesser General Public License v2.1
+    </string>
+    <string name="lib_achart" translatable="false">AChartEngine</string>
+    <string name="lib_achart_sum" translatable="false">
+        Charting library for Android\n
+        * Apache 2.0 license
+    </string>
     <string-array name="csv_field_delim_options" translatable="false">
         <item>@string/tab</item>
         <item>@string/comma</item>

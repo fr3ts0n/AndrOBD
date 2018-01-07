@@ -3,6 +3,75 @@
                   android:icon="@android:drawable/ic_menu_manage"
                   android:title="@string/settings">
 
+    <PreferenceScreen
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="@string/app_name"
+        android:summary="@string/app_version"
+        >
+        <Preference
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="@string/app_name"
+            android:summary="@string/copyright_fr3ts0n"
+            >
+            <intent android:action="android.intent.action.VIEW"
+                    android:data="@string/url_app_mainpage"/>>
+        </Preference>
+        <Preference
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="@string/release_history"
+            android:summary="@string/app_version"
+            >
+            <intent android:action="android.intent.action.VIEW"
+                    android:data="@string/url_app_releases"/>>
+        </Preference>
+        <Preference
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="@string/translation_credits"
+            >
+            <intent android:action="android.intent.action.VIEW"
+                    android:data="@string/url_app_translation"/>>
+        </Preference>
+        <PreferenceScreen
+            android:icon="@drawable/ic_scale"
+            android:title="@string/license"
+            >
+            <Preference
+                android:icon="@drawable/ic_scale"
+                android:title="@string/app_name"
+                android:summary="@string/app_license_sum">
+                <intent android:action="android.intent.action.VIEW"
+                        android:data="@string/url_app_license"/>>
+            </Preference>
+            <PreferenceCategory
+                android:icon="@drawable/ic_scale"
+                android:title="@string/libraries"
+                android:summary="@string/libraries_sum">
+                <Preference
+                    android:icon="@drawable/ic_scale"
+                    android:title="@string/lib_usb_serial"
+                    android:summary="@string/lib_usb_serial_sum">
+                    <intent android:action="android.intent.action.VIEW"
+                            android:data="https://github.com/mik3y/usb-serial-for-android"/>>
+                </Preference>
+                <Preference
+                    android:icon="@drawable/ic_scale"
+                    android:title="@string/lib_achart"
+                    android:summary="@string/lib_achart_sum">
+                    <intent android:action="android.intent.action.VIEW"
+                            android:data="http://achartengine.org"/>>
+                </Preference>
+            </PreferenceCategory>
+        </PreferenceScreen>
+        <Preference
+            android:key="bitcoin"
+            android:icon="@drawable/ic_coin"
+            android:title="@string/donation"
+            >
+            <intent android:action="android.intent.action.VIEW"
+                    android:data="bitcoin:12xyTZnMMDaKMcHaeseXPd8e4NNbMFF8rt" />
+        </Preference>
+    </PreferenceScreen>
+
     <PreferenceCategory
         android:title="@string/common_settings"
         >
