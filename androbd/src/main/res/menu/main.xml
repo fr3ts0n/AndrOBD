@@ -17,7 +17,7 @@
         />
     <item
         android:id="@+id/day_night_mode"
-        android:icon="@android:drawable/ic_menu_view"
+        android:icon="@drawable/ic_daynight"
         android:showAsAction="ifRoom"
         android:title="@string/day_night_mode"/>
     <item

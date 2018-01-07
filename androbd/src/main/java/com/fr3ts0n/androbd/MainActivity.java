@@ -678,11 +678,6 @@ public class MainActivity extends PluginManager
 			case R.id.filter_selected:
 				setDataViewMode(DATA_VIEW_MODE.FILTERED, false);
 				return true;
-
-			case R.id.unfilter_selected:
-				setDataViewMode(DATA_VIEW_MODE.LIST, false);
-				return true;
-
 		}
 		return false;
 	}
