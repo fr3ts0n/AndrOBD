@@ -1,2 +1,193 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="translation_credits">Tradotto da Lesto</string>
+    <string name="app_description">Applicazione Android di diagnostica veicoli OBD con adattatori bluetooth ELM327</string>
+    <string name="send">Invia</string>
+    <string name="not_connected">Non sei connesso ad alcun adattatore</string>
+    <string name="title_connecting">Connessione in corso…</string>
+    <string name="title_connected_to">Connesso: %s</string>
+    <string name="title_not_connected">Non connesso</string>
+    <string name="title">titolo</string>
+    <string name="welcome_to">Benvenuti in</string>
+    <string name="logo">Logo</string>
+    <string name="back_again_to_exit">Premi indietro ancora per uscire</string>
+    <string name="action_connect">Connesso</string>
+    <string name="obd_none">Nessun servizio</string>
+    <string name="obd_services">Servizi OBD</string>
+    <string name="obd_veh_info">OBD Informazioni veicolo</string>
+    <string name="obd_data">OBD Dati</string>
+    <string name="service_freezeframes">OBD Eventi congelati</string>
+    <string name="obd_codes">OBD Codici di errore</string>
+    <string name="obd_permanentcodes">OBD Codici di errore (permanenti)</string>
+    <string name="obd_pendingcodes">OBD Codici di errore (in attesa)</string>
+    <string name="obd_clearcodes">Cancella errori</string>
+    <string name="obd_clear_info">Questo resettarà il MIL e cacellerà tuttti i dati relativi alla 
+\ndiagnostica delle emissioni, compresi:
+\n- Errori
+\n- Misurazioni congelate
+\n- Data di test dei sensori di ossigeno
+\n- Stato dei test dei sistemi diagnostici
+\n- Stato dei test dei sistemi diagnostici di bordo
+\n- Distanza percorsa con MIL attivato
+\n- Numero di riscaldamenti dall\'ultimo DTCs
+\n- Distanza percorsa dall\'ultimo DTCs
+\n- Tempo di accensione del motore dall\'ultimo DTCs
+\n- Tempo dall\'ultimo DTCs
+\n
+\nPotrebbero avvenire altre azioni di azzeramento/reset specifici del costruttore.
+\nLa perdita dei dati può causare basso rendimento del veicolo 
+\nper un breve periodo ti tempo, nel quale ECU si autoricalibra.</string>
+
+    <string name="scanning">Ricerca…</string>
+    <string name="select_device">Seleziona adattatore</string>
+    <string name="none_paired">Nessun adattatore connesso</string>
+    <string name="none_found">Nessun adattatore trovato</string>
+    <string name="title_paired_devices">Adattatori connessi</string>
+    <string name="title_other_devices">Altri dispositivi disponibili</string>
+    <string name="button_scan">Ricerca dispositivi</string>
+
+    <string name="send_to">Invia a</string>
+    <string name="share">condividi</string>
+    <string name="time">Tempo [s]</string>
+    <string name="chart">Grafico</string>
+    <string name="demo_stopped">modalità DEMO fermata</string>
+    <string name="demo_started">modalità DEMO iniziata</string>
+    <string name="snapshot">foto</string>
+    <string name="save">Salva misurazione</string>
+    <string name="load">Carica misurazione</string>
+    <string name="saved_data">Dati salvati</string>
+    <string name="loaded">caricato</string>
+    <string name="saved">salvato</string>
+
+    <string name="connected_to">"Connesso a "</string>
+    <string name="demo">Demo…</string>
+    <string name="saving_data">Salvataggio dati…</string>
+    <string name="loading_data">Caricamento dati…</string>
+    <string name="dashboard">Cruscotto</string>
+    <string name="graph_actions">Azioni grafico</string>
+    <string name="hud">Sovraimpressione</string>
+    <string name="filter">Filtro selezionato</string>
+    <string name="unfilter">De-filtro selezionato</string>
+
+    <string name="settings">Opzioni</string>
+    <string name="common_settings">Opzioni comuni</string>
+    <string name="measure_system_description">Sistema di misurazione (metrico/imperiale)</string>
+    <string name="measure_system">Unità di misurazione</string>
+    <string name="metric">metrico</string>
+    <string name="imperial">imperiale</string>
+    <string name="items_for_display">Oggetti dati da visualizzare</string>
+    <string name="items_for_display_descr">Visualizza tutti gli oggetti dati…</string>
+    <string name="debugging">Debugging</string>
+    <string name="logging_level">Livello di log</string>
+    <string name="logging_level_description">Livello di dettaglio di informazioni nel file di log</string>
+    <string name="master">controllore</string>
+    <string name="comm_io">comunicazione i/o</string>
+    <string name="protocol">protocollo</string>
+    <string name="process_vars">variabili di processo</string>
+    <string name="data">dati</string>
+    <string name="last_elm">riconnetti ultimo adattatore ELM</string>
+    <string name="last_ecu">riconnetti ultimo ECU</string>
+    <string name="last_service">ultimo servizio OBD</string>
+    <string name="last_data_items">ultima modalità selezione dati</string>
+    <string name="last_view_mode">ultima modalità visualizzazione dati</string>
+
+    <string name="keep_screen_on">Mantieni lo schermo acceso</string>
+    <string name="keep_screen_on_description">Non spegere lo schermo se visualitta il menu principale o dati</string>
+
+    <string name="development_options">Opzioni sviluppatore</string>
+    <string name="dev_opt_description">Opzioni per debug e personalizzazione</string>
+    <string name="extension_files">File di personalizzazione protocollo (CSV)</string>
+    <string name="conversions">Conversione dati</string>
+    <string name="data_items">Ogetti dati</string>
+    <string name="fault_codes">Codici di errore</string>
+    <string name="select_extension">Seleziona un file con estensione .csv…</string>
+    <string name="extension_loading">Caricamento personalizzazione</string>
+    <string name="check_cust_settings">Per favore controlla le tue impostazioni di personalizzazione
+\n</string>
+    <string name="obd_options">OBD opzioni</string>
+    <string name="obd_opt_description">Opzioni per protocollo OBD / comunicazione con il veicolo</string>
+    <string name="select_protocol">Protocollo OBD preferito</string>
+
+    <string name="plugin_manager">Gestore plugin</string>
+    <string name="configure">Configura</string>
+
+    <string name="select_fault_code">Seleziona codice di erroe…</string>
+    <string name="select_medium">Tipo di adattatore…</string>
+
+    <string name="refreshing">ricerca…</string>
+    <string name="devices_found">"%s  Dispositvi USB rilevato"</string>
+    <string name="min_elm_timeout">Timeout ELM min. [ms]</string>
+    <string name="unabletoconnect">Impossibile collegare il dispositivo</string>
+    <string name="connectionlost">Connessione con il dispositivo persa</string>
+    <string name="elm_timeout_descr">Timeout minimo in [ms] per attenedere una risposta dall\'ELM</string>
+    <string name="day_night_mode">Modalità giorno/notte</string>
+    <string name="night_mode_description">Imposta uno sfondo scuro</string>
+    <string name="night_mode">Modalità notturna</string>
+    <string name="disable_elm_cmds">Disabilita comandi ELM</string>
+    <string name="disable_elm_cmds_descr">attiva/disattiva comandi ELM</string>
+    <string name="elm_adaptive_timing">Tempi adattativi per ELM</string>
+    <string name="disabled">disabilitato</string>
+    <string name="enabled">abilitato</string>
+    <string name="elm_adaptive_timing_descr">Permetti tempi adattativi per il driver ELM?</string>
+    <string name="elm_reset_on_nrc">Riavvio via NRC</string>
+    <string name="elm_reset_on_nrc_descr">Riavviare l\'adattatore ELM quando NRC è in errore?</string>
+    <string name="select_ecu_addr">Seleziona indirizzi ECU…</string>
+    <string name="disconnect">Disconnesso</string>
+    <string name="reset_preselections">Riavvia ultima preselezione</string>
+    <string name="use_last_settings_description">Usa le utilme impostazioni all\'avvio (indirizzo BT, indirizzo ECU, oggetti visualizzati....)</string>
+    <string name="use_last_settings">Usa ultime impostazioni</string>
+    <string name="common_settings_description">Impostazioni comuni per controllo dell\'applicazione</string>
+    <string name="secure_connect">Connessione sicura</string>
+    <string name="secure_connect_description">Usa connessione Bluetooth criptata</string>
+    <string name="elm_options">ELM opzioni</string>
+    <string name="last_none">Nessuna</string>
+    <string name="elm_custom_init">ELM Inizializzazione personalizzata</string>
+    <string name="elm_custom_init_descr">ELM Comandi di inizializzazione personalizzata</string>
+
+    <string name="UNDEFINED">Indefinito</string>
+    <string name="INITIALIZING">Inizializzazione.…</string>
+    <string name="INITIALIZED">Inizializzato</string>
+    <string name="ECU_DETECT">ECU ricerca…</string>
+    <string name="ECU_DETECTED">ECU rilevato</string>
+    <string name="CONNECTING">Connessione…</string>
+    <string name="CONNECTED">Connesso</string>
+    <string name="NODATA">Nessun dato</string>
+    <string name="STOPPED">Fermato</string>
+    <string name="DISCONNECTED">Disconnesso</string>
+    <string name="BUSERROR">Errore BUS</string>
+    <string name="DATAERROR">Errore DATI</string>
+    <string name="RXERROR">Errore RX</string>
+    <string name="ERROR">Errore</string>
+    <string name="obd_error">Errore protocollo OBD</string>
+    <string name="device_address_description">Indirizzo IP dispositivo ELM</string>
+    <string name="device_address">Indirizzo IP ELM</string>
+    <string name="device_port_description">Porta di rete del dispositivo ELM</string>
+    <string name="device_port">ELM porta IP</string>
+    <string name="data_disable_max">Disabilita limite oggetti dati</string>
+    <string name="data_disable_max_description">Numero di risposte invalide consetutive prima che l\'oggetto sia diabilitato</string>
+    <string name="autohide_toolbar">Nascondi barra degli oggetti</string>
+    <string name="autohide_toolbar_description">Nascondi barra degli oggetti dopo in caso di inattività</string>
+    <string name="autohide_delay">Tempo inattività per nascondere la barra oggeti [s]</string>
+    <string name="autohide_delay_description">Attesa in secondi con attività, prima che la barra oggetti sia nascosta</string>
+    <string name="csv_export_options">Opzioni di esportazione CSV</string>
+    <string name="csv_export_description">Opzioni per formattare il file CSV</string>
+    <string name="csv_field_delimiter">Delimitatore campi CSV</string>
+    <string name="csv_field_delimiter_description">Delimitatori tra campi dati CSV</string>
+    <string name="csv_rec_delimiter">Delimitatore riga CSV</string>
+    <string name="csv_rec_delimiter_description">Delimitatori tra linee dati CSV</string>
+    <string name="csv_text_quoted">Quota il testo CSV</string>
+    <string name="csv_text_quoted_description">I campi di testo sono aggiunti tra quote nel CSV</string>
+    <string name="tab">TAB</string>
+    <string name="comma">VIRGOLA</string>
+    <string name="semicolon">PUNTO E VIRGOLA</string>
+    <string name="send_after_export">invia dopo l\'esportazione</string>
+    <string name="send_after_export_descr">Richiesta di invio file CSV dopo l\'esportazione?</string>
+    <string name="plugin_manager_desc">Gestisci plugin installati</string>
+    <string name="toolbar_overlay">Mostra sovraimpressione Als</string>
+    <string name="toolbar_overlay_sum">Mostra la barra degli oggetti sopra lo schermo principale</string>
+    <string name="license">Verifica…</string>
+    <string name="donation">Supoprta il progetto…</string>
+    <string name="libraries">Librerie…</string>
+    <string name="libraries_sum">Librerie usate nel progetto…</string>
+    <string name="release_history">Storico rilasci…</string>
+
+    </resources>
