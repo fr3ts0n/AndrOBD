@@ -2,24 +2,24 @@
 <resources><string name="translation_credits">Tradotto da Lesto</string>
     <string name="app_description">Applicazione Android di diagnostica veicoli OBD con adattatori bluetooth ELM327</string>
     <string name="send">Invia</string>
-    <string name="not_connected">Non sei connesso ad alcun adattatore</string>
-    <string name="title_connecting">Connessione in corso…</string>
+    <string name="not_connected">Non sei connesso ad alcun dispositivo</string>
+    <string name="title_connecting">Connessione…</string>
     <string name="title_connected_to">Connesso: %s</string>
     <string name="title_not_connected">Non connesso</string>
     <string name="title">titolo</string>
-    <string name="welcome_to">Benvenuti in</string>
+    <string name="welcome_to">Benvenuto in</string>
     <string name="logo">Logo</string>
-    <string name="back_again_to_exit">Premi indietro ancora per uscire</string>
+    <string name="back_again_to_exit">Premi ancora indietro per uscire</string>
     <string name="action_connect">Connesso</string>
     <string name="obd_none">Nessun servizio</string>
-    <string name="obd_services">Servizi OBD</string>
+    <string name="obd_services">OBD Servizi</string>
     <string name="obd_veh_info">OBD Informazioni veicolo</string>
     <string name="obd_data">OBD Dati</string>
     <string name="service_freezeframes">OBD Eventi congelati</string>
     <string name="obd_codes">OBD Codici di errore</string>
     <string name="obd_permanentcodes">OBD Codici di errore (permanenti)</string>
     <string name="obd_pendingcodes">OBD Codici di errore (in attesa)</string>
-    <string name="obd_clearcodes">Cancella errori</string>
+    <string name="obd_clearcodes">Cancella codici di errore</string>
     <string name="obd_clear_info">Questo resettarà il MIL e cacellerà tuttti i dati relativi alla 
 \ndiagnostica delle emissioni, compresi:
 \n- Errori
@@ -39,9 +39,9 @@
 
     <string name="scanning">Ricerca…</string>
     <string name="select_device">Seleziona adattatore</string>
-    <string name="none_paired">Nessun adattatore connesso</string>
-    <string name="none_found">Nessun adattatore trovato</string>
-    <string name="title_paired_devices">Adattatori connessi</string>
+    <string name="none_paired">Nessun dispositivo connesso</string>
+    <string name="none_found">Nessun dispositivo trovato</string>
+    <string name="title_paired_devices">Dispositivi connessi</string>
     <string name="title_other_devices">Altri dispositivi disponibili</string>
     <string name="button_scan">Ricerca dispositivi</string>
 
@@ -49,8 +49,8 @@
     <string name="share">condividi</string>
     <string name="time">Tempo [s]</string>
     <string name="chart">Grafico</string>
-    <string name="demo_stopped">modalità DEMO fermata</string>
-    <string name="demo_started">modalità DEMO iniziata</string>
+    <string name="demo_stopped">modalità DEMO arrestata</string>
+    <string name="demo_started">modalità DEMO avviata</string>
     <string name="snapshot">foto</string>
     <string name="save">Salva misurazione</string>
     <string name="load">Carica misurazione</string>
@@ -76,7 +76,7 @@
     <string name="imperial">imperiale</string>
     <string name="items_for_display">Oggetti dati da visualizzare</string>
     <string name="items_for_display_descr">Visualizza tutti gli oggetti dati…</string>
-    <string name="debugging">Debugging</string>
+    <string name="debugging">Debug</string>
     <string name="logging_level">Livello di log</string>
     <string name="logging_level_description">Livello di dettaglio di informazioni nel file di log</string>
     <string name="master">controllore</string>
