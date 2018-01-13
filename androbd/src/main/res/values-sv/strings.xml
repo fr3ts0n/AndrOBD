@@ -47,7 +47,7 @@
     <string name="common_settings">Vanliga inställningar</string>
     <string name="metric">metrisk</string>
     <string name="imperial">imperialistisk</string>
-    <string name="items_for_display_descr">Välj alla dataobjekt som ska visas …</string>
+    <string name="items_for_display_descr">Välj alla dataobjekt som ska visas…</string>
     <string name="debugging">Avlusar</string>
     <string name="logging_level">Loggningsnivå</string>
     <string name="comm_io">kommunikation i/o</string>
@@ -55,4 +55,139 @@
     <string name="process_vars">process-variabler</string>
     <string name="data">data</string>
     <string name="keep_screen_on">Behåll den huvudsakliga skärmen på</string>
+    <string name="app_description">Android ODB fordonsdiagnostiksapp för ELM327 bluetooth-adapter</string>
+    <string name="service_freezeframes">OBD-frysta ramar</string>
+    <string name="obd_clear_info">Detta kommer att åẗerställa MIL och rensa all utsläppsrelaterad
+\n diagnostikinformation, inklusive
+\n - Diagnostiska felkoder
+\n - Stillbildsdata
+\n - Syresensorns testdata
+\n - Status för systemövervakningstester
+\n - Testresultat för övervakning på systemet
+\n - Rest avstånd under vilket MIL varit aktiverat
+\n - Antal uppvärmingar sedan DTCs rensades
+\n - Rest avstånd sedan DTCs rensades
+\n - Körtid för motor under vilken MIL varit aktiverat
+\n - Tid sedan DTCs rensades
+\n
+\n Andra tillverkarspecificka rensnings-/återställningsåtgärder kan inträffa.
+\n Förlusten av data kan få fordonet att köra dåligt under en kort period
+\n medan ECU:n återkalibrerar sig själv.</string>
+
+    <string name="scanning">Söker…</string>
+    <string name="send_to">Skicka till</string>
+    <string name="graph_actions">Grafåtgärder</string>
+    <string name="hud">Heads-up-display</string>
+    <string name="unfilter">Avfiltrera valda</string>
+
+    <string name="measure_system_description">Mätsystemsenheter (metriska / brittiska)</string>
+    <string name="measure_system">Mätsystemsenheter</string>
+    <string name="items_for_display">Dataobjekt att visa</string>
+    <string name="logging_level_description">Detaljnivå som ska loggas i loggfil för felsökning</string>
+    <string name="master">huvud</string>
+    <string name="last_elm">återanslut senaste ELM-adapter</string>
+    <string name="last_ecu">återanslut senaste ECU</string>
+    <string name="last_service">senaste OBD-tjänst</string>
+    <string name="last_data_items">senast valda dataobjekt</string>
+    <string name="last_view_mode">senaste läge för datavy</string>
+
+    <string name="keep_screen_on_description">Stäng inte AV skärmen om huvud-/dataskärm visas</string>
+
+    <string name="development_options">Utvecklingsalternativ</string>
+    <string name="dev_opt_description">Alternativ för felsökning och anpassning</string>
+    <string name="extension_files">Anpassningsfiler för protokoll (csv)</string>
+    <string name="conversions">Datakonverteringar</string>
+    <string name="data_items">Dataobjekt</string>
+    <string name="fault_codes">Felkoder</string>
+    <string name="select_extension">Välj fil med .csv-filändelse…</string>
+    <string name="extension_loading">Läser in anpassning</string>
+    <string name="check_cust_settings">Kontroller dina anpassade inställningar
+\n</string>
+    <string name="obd_options">OBD-alternativ</string>
+    <string name="obd_opt_description">Alternativ för OBD-protokoll/fordonskommunikation</string>
+    <string name="select_protocol">Önskat OBD-protokoll</string>
+
+    <string name="plugin_manager">Instickshanterare</string>
+    <string name="configure">Konfigurera</string>
+
+    <string name="select_fault_code">Välj felkod…</string>
+    <string name="select_medium">Adaptertyp…</string>
+
+    <string name="refreshing">söker…</string>
+    <string name="devices_found">%s USB-enheter funna</string>
+    <string name="min_elm_timeout">Min. ELM-tidsgräns [ms]</string>
+    <string name="unabletoconnect">Kan inte ansluta till enhet</string>
+    <string name="connectionlost">Enhetsanslutning förlorades</string>
+    <string name="elm_timeout_descr">Minsta tidsgräns i [ms] att vänta på ELM-svar</string>
+    <string name="day_night_mode">Dag-/Nattläge</string>
+    <string name="night_mode_description">Stället in visning av mörk bakgrund</string>
+    <string name="night_mode">Nattläge</string>
+    <string name="disable_elm_cmds">Inaktiverade ELM-kommandon</string>
+    <string name="disable_elm_cmds_descr">aktivera/inaktivera ELM-kommandon</string>
+    <string name="elm_adaptive_timing">Adaptiv ELM-tidtagning</string>
+    <string name="disabled">inaktiverad</string>
+    <string name="enabled">aktiverad</string>
+    <string name="elm_adaptive_timing_descr">Tillåt adaptiv tidtagning i ELM-drivrutiner?</string>
+    <string name="elm_reset_on_nrc">Återställ vid NRC</string>
+    <string name="elm_reset_on_nrc_descr">Återställ ELM-adapter vid NRC-fel?</string>
+    <string name="select_ecu_addr">Välj ECU-adress…</string>
+    <string name="disconnect">Koppla från</string>
+    <string name="reset_preselections">Återställ senaste förval</string>
+    <string name="use_last_settings_description">Använd senaste inställningarna vid uppstart (BT-adress, ECU-adress, visade objekt…)</string>
+    <string name="use_last_settings">Använd senaste inställningar</string>
+    <string name="common_settings_description">Vanliga inställningar för app-styrning</string>
+    <string name="secure_connect">Säker anslutning</string>
+    <string name="secure_connect_description">Använd krypterad Bluetooth-anslutning</string>
+    <string name="elm_options">ELM-alternativ</string>
+    <string name="last_none">INGA</string>
+    <string name="elm_custom_init">Anpassad ELM-initialisering</string>
+    <string name="elm_custom_init_descr">Anpassade ELM-initialiseringskommandon</string>
+
+    <string name="UNDEFINED">Odefinierad</string>
+    <string name="INITIALIZING">Initialiserar…</string>
+    <string name="INITIALIZED">Intialiserad</string>
+    <string name="ECU_DETECT">ECU-detektering…</string>
+    <string name="ECU_DETECTED">ECU detekterad</string>
+    <string name="CONNECTING">Ansluter…</string>
+    <string name="CONNECTED">Ansluten</string>
+    <string name="NODATA">Ingen data</string>
+    <string name="STOPPED">Stoppad</string>
+    <string name="DISCONNECTED">Frånkopplad</string>
+    <string name="BUSERROR">BUSS-fel</string>
+    <string name="DATAERROR">DATA-fel</string>
+    <string name="RXERROR">RX-fel</string>
+    <string name="ERROR">Fel</string>
+    <string name="obd_error">OBD-protokollfel</string>
+    <string name="device_address_description">IP-adress för nätverk för ELM-enhet</string>
+    <string name="device_address">IP-adress för ELM</string>
+    <string name="device_port_description">IP port för nätverk för ELM-enhet</string>
+    <string name="device_port">IP-port för ELM</string>
+    <string name="data_disable_max">Inaktiveringsgräns för dataobjekt</string>
+    <string name="data_disable_max_description">Antal ogiltigt konsekutiva datasvar innan objekt kommer att inaktiveras</string>
+    <string name="autohide_toolbar">Göm verktygsfält</string>
+    <string name="autohide_toolbar_description">Göm automatiskt verktygsfält efter fördröjning utan aktivitet</string>
+    <string name="autohide_delay">Fördröjning för gömning av verktygsfält [s]</string>
+    <string name="autohide_delay_description">Fördröjning i sekunder utan aktivitet innan verktygsfälet göms</string>
+    <string name="csv_export_options">Exportalternativ för CSV</string>
+    <string name="csv_export_description">Formateringsalternativ för CSV-filer vid export</string>
+    <string name="csv_field_delimiter">CSV-fältavgränsare</string>
+    <string name="csv_field_delimiter_description">Avgränsningstecken mellan CSV-datafält</string>
+    <string name="csv_rec_delimiter">CSV-postavgränsare</string>
+    <string name="csv_rec_delimiter_description">Avgränsningstecken mellan CSV-dataposter</string>
+    <string name="csv_text_quoted">CSV-text citerad</string>
+    <string name="csv_text_quoted_description">CSV-textfält placeras inom citattecken</string>
+    <string name="tab">TAB</string>
+    <string name="comma">KOMMA</string>
+    <string name="semicolon">SEMIKOLON</string>
+    <string name="send_after_export">Skicka efter export</string>
+    <string name="send_after_export_descr">Fråga om CSV-fil ska skickas direkt efter export?</string>
+    <string name="plugin_manager_desc">Hantera installerade instick</string>
+    <string name="toolbar_overlay">Visa als-överlägg</string>
+    <string name="toolbar_overlay_sum">Visa verktygsfält ovan på huvudskärm</string>
+    <string name="license">Licensiering…</string>
+    <string name="donation">Stöd projektet…</string>
+    <string name="libraries">Bibliotek…</string>
+    <string name="libraries_sum">Bibliotek som använts i projektet…</string>
+    <string name="release_history">Versionshistorik…</string>
+
     </resources>
