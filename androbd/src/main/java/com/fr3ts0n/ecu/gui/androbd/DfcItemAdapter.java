@@ -16,22 +16,27 @@
  * MA 02111-1307 USA
  */
 
-package com.fr3ts0n.androbd;
+package com.fr3ts0n.ecu.gui.androbd;
 
 import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.fr3ts0n.ecu.EcuCodeItem;
+import com.fr3ts0n.pvs.IndexedProcessVar;
 import com.fr3ts0n.pvs.PvList;
 
 import java.util.Collection;
 
 /**
- * Adapter to display OBD VID items from a process variable list
+ * Adapter to display OBD DFCs
  *
  * @author erwin
  */
-public class VidItemAdapter extends ObdItemAdapter
+public class DfcItemAdapter extends ObdItemAdapter
 {
-	public VidItemAdapter(Context context, int resource, PvList pvs)
+	public DfcItemAdapter(Context context, int resource, PvList pvs)
 	{
 		super(context, resource, pvs);
 	}
@@ -43,17 +48,33 @@ public class VidItemAdapter extends ObdItemAdapter
 	}
 
 	/* (non-Javadoc)
-	 * @see com.fr3ts0n.androbd.ObdItemAdapter#getView(int, android.view.View, android.view.ViewGroup)
+	 * @see com.fr3ts0n.ecu.gui.androbd.ObdItemAdapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
 	@Override
 	public View getView(int position, View v, ViewGroup parent)
 	{
-		// let superclass format the item
-		v = super.getView(position, v, parent);
-		// hide the checkbox
-		CheckBox cbx = (CheckBox) v.findViewById(R.id.check);
-		cbx.setVisibility(View.GONE);
+		// get data PV
+		IndexedProcessVar currPv = (IndexedProcessVar) getItem(position);
+
+		if (v == null)
+		{
+			v = mInflater.inflate(R.layout.obd_item, parent, false);
+		}
+		TextView tvDescr = (TextView) v.findViewById(R.id.obd_label);
+		TextView tvValue = (TextView) v.findViewById(R.id.obd_units);
+
+		tvValue.setText(String.valueOf(currPv.get(EcuCodeItem.FID_CODE)));
+		tvDescr.setText(String.valueOf(currPv.get(EcuCodeItem.FID_DESCRIPT)));
 
 		return v;
 	}
-   */
+
+	/* (non-Javadoc)
+	 * @see com.fr3ts0n.ecu.gui.androbd.ObdItemAdapter#getView(int, android.view.View, android.view.ViewGroup)
+	 */
+	@Override
+	public View getDropDownView(int position, View v, ViewGroup parent)
+	{
+		return getView(position, v, parent);
+	}
 }

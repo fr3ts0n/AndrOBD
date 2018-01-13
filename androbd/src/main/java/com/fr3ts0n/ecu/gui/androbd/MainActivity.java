@@ -16,7 +16,7 @@
  * MA 02111-1307 USA
  */
 
-package com.fr3ts0n.androbd;
+package com.fr3ts0n.ecu.gui.androbd;
 
 import android.Manifest;
 import android.app.ActionBar;
@@ -80,7 +80,7 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-import static com.fr3ts0n.androbd.SettingsActivity.ELM_TIMING_SELECT;
+import static com.fr3ts0n.ecu.gui.androbd.SettingsActivity.ELM_TIMING_SELECT;
 
 /**
  * Main Activity for AndrOBD app

@@ -17,7 +17,7 @@
  *
  */
 
-package com.fr3ts0n.androbd;
+package com.fr3ts0n.ecu.gui.androbd;
 
 import android.content.Context;
 import android.os.Bundle;
