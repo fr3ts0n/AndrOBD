@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+    defaultConfig {
+        applicationId 'com.fr3ts0n.ecu.gui.androbd'
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 20000
+        versionName 'V2.0.0'
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    applicationVariants.all { variant ->
+        variant.resValue "string", "app_version", variant.versionName
+    }
+
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    productFlavors {
+    }
+}
+
+dependencies {
+    compile project(':plugin')
+    implementation project(':library')
+    implementation files('libs/achartengine-1.2.0.jar')
+    implementation files('libs/usbSerialForAndroid.jar')
+}

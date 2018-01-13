@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/secure_connect_scan"
+        android:icon="@drawable/action_connect"
+        android:showAsAction="always"
+        android:title="@string/action_connect"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/disconnect"
+        android:icon="@drawable/action_disconnect"
+        android:showAsAction="always"
+        android:title="@string/disconnect"
+        android:visible="false"
+        />
+    <item
+        android:id="@+id/day_night_mode"
+        android:icon="@drawable/ic_daynight"
+        android:showAsAction="ifRoom"
+        android:title="@string/day_night_mode"/>
+    <item
+        android:id="@+id/save"
+        android:icon="@android:drawable/ic_menu_save"
+        android:showAsAction="ifRoom"
+        android:title="@string/save"/>
+    <item
+        android:id="@+id/load"
+        android:icon="@drawable/ic_action_load"
+        android:showAsAction="ifRoom"
+        android:title="@string/load"/>
+    <item
+        android:id="@+id/reset_preselections"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:showAsAction="ifRoom"
+        android:title="@string/reset_preselections"/>
+    <item
+        android:id="@+id/plugin_manager"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:showAsAction="ifRoom"
+        android:title="@string/plugin_manager" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:showAsAction="ifRoom"
+        android:title="@string/settings" />
+
+    <item
+        android:id="@+id/obd_services"
+        android:icon="@android:drawable/ic_menu_more"
+        android:menuCategory="container"
+        android:showAsAction="always"
+        android:title="@string/obd_services">
+        <menu>
+            <item
+                android:id="@+id/service_none"
+                android:title="@string/obd_none"
+                android:visible="false"/>
+            <item
+                android:id="@+id/service_vid_data"
+                android:title="@string/obd_veh_info"/>
+            <item
+                android:id="@+id/service_data"
+                android:title="@string/obd_data"/>
+            <item
+                android:id="@+id/service_freezeframes"
+                android:enabled="false"
+                android:title="@string/service_freezeframes"/>
+            <item
+                android:id="@+id/service_codes"
+                android:title="@string/obd_codes"/>
+            <item
+                android:id="@+id/service_pendingcodes"
+                android:title="@string/obd_pendingcodes"/>
+            <item
+                android:id="@+id/service_permacodes"
+                android:title="@string/obd_permanentcodes"/>
+            <item
+                android:id="@+id/service_clearcodes"
+                android:title="@string/obd_clearcodes"/>
+        </menu>
+    </item>
+
+</menu>

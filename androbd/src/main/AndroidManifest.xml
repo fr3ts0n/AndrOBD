@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    package="com.fr3ts0n.ecu.gui.androbd"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- start/stop bluetooth adapter -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <!-- connect/disconnect bluetooth devices -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <!-- to keep Bluetooth measurement running even when screen is inactive -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <!-- allow saving screenshots -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- allow saving screenshots -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- allow access to WIFI adapter -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:description="@string/app_description"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter"/>
+        </activity>
+        <activity
+            android:name=".UsbDeviceListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/select_device"
+            android:theme="@android:style/Theme.Holo.Dialog"
+            />
+        <activity
+            android:name=".BtDeviceListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/select_device"
+            android:theme="@android:style/Theme.Holo.Dialog"
+            />
+        <activity
+            android:name=".ChartActivity"
+            android:configChanges="touchscreen|orientation|screenSize"
+            android:label="@string/chart"
+            android:theme="@style/AppTheme.Dark"
+            />
+        <activity
+            android:name=".DashBoardActivity"
+            android:configChanges="touchscreen|orientation|screenSize"
+            android:label="@string/dashboard"
+            android:theme="@style/AppTheme.Dark"
+            />
+        <activity
+            android:name=".SettingsActivity"
+            android:configChanges="touchscreen|orientation|screenSize"
+            android:label="@string/settings"
+            android:theme="@style/AppTheme.Dark"
+            />
+    </application>
+
+</manifest>

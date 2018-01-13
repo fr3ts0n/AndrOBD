@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:icon="@android:drawable/ic_menu_manage"
+                  android:title="@string/settings">
+
+    <PreferenceScreen
+        android:icon="@android:drawable/ic_menu_manage"
+        android:summary="@string/common_settings_description"
+        android:title="@string/common_settings">
+
+        <MultiSelectListPreference
+            android:defaultValue="@array/empty"
+            android:dialogTitle="@string/use_last_settings"
+            android:entries="@array/restore_options"
+            android:entryValues="@array/restore_keys"
+            android:key="USE_LAST_SETTINGS"
+            android:summary="@string/use_last_settings_description"
+            android:title="@string/use_last_settings"
+            />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="keep_screen_on"
+            android:summary="@string/keep_screen_on_description"
+            android:title="@string/keep_screen_on"
+            />
+
+        <PreferenceCategory
+            android:title="@string/autohide_toolbar">
+
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="autohide_toolbar"
+                android:summary="@string/autohide_toolbar_description"
+                android:title="@string/autohide_toolbar"
+                />
+
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:dependency="autohide_toolbar"
+                android:key="toolbar_overlay"
+                android:summary="@string/toolbar_overlay_sum"
+                android:title="@string/toolbar_overlay"
+                />
+
+            <EditTextPreference
+                android:defaultValue="15"
+                android:dependency="autohide_toolbar"
+                android:inputType="numberDecimal"
+                android:key="autohide_delay"
+                android:summary="@string/autohide_delay_description"
+                android:title="@string/autohide_delay"
+                />
+
+        </PreferenceCategory>
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="night_mode"
+            android:summary="@string/night_mode_description"
+            android:title="@string/night_mode"
+            />
+
+        <ListPreference
+            android:defaultValue="0"
+            android:dialogTitle="@string/measure_system"
+            android:entries="@array/measure_options"
+            android:entryValues="@array/measure_option_values"
+            android:key="measure_system"
+            android:summary="@string/measure_system_description"
+            android:title="@string/measure_system"
+            />
+
+    </PreferenceScreen>
+
+
+    <PreferenceScreen
+        android:icon="@android:drawable/ic_menu_manage"
+        android:summary="@string/obd_opt_description"
+        android:title="@string/obd_options">
+
+        <PreferenceCategory
+            android:title="@string/obd_options">
+
+            <ListPreference
+                android:defaultValue="0"
+                android:dialogTitle="@string/select_medium"
+                android:entries="@array/empty"
+                android:entryValues="@array/empty"
+                android:key="comm_medium"
+                android:title="@string/select_medium"
+                />
+
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:dependency="comm_medium"
+                android:key="bt_secure_connection"
+                android:summary="@string/secure_connect_description"
+                android:title="@string/secure_connect"
+                />
+
+            <EditTextPreference
+                android:capitalize="characters"
+                android:defaultValue="192.168.0.10"
+                android:inputType="textUri"
+                android:key="device_address"
+                android:summary="@string/device_address_description"
+                android:title="@string/device_address"
+                />
+
+            <EditTextPreference
+                android:capitalize="characters"
+                android:defaultValue="35000"
+                android:inputType="number"
+                android:key="device_port"
+                android:summary="@string/device_port_description"
+                android:title="@string/device_port"
+                />
+
+
+            <ListPreference
+                android:defaultValue="0"
+                android:dialogTitle="@string/select_protocol"
+                android:entries="@array/empty"
+                android:entryValues="@array/empty"
+                android:key="protocol"
+                android:title="@string/select_protocol"
+                />
+
+            <MultiSelectListPreference
+                android:defaultValue="@array/empty"
+                android:dialogTitle="@string/items_for_display"
+                android:entries="@array/empty"
+                android:entryValues="@array/empty"
+                android:key="data_items"
+                android:summary="@string/items_for_display_descr"
+                android:title="@string/items_for_display"
+                />
+
+        </PreferenceCategory>
+
+        <PreferenceCategory
+            android:title="@string/elm_options">
+
+            <EditTextPreference
+                android:capitalize="characters"
+                android:defaultValue=""
+                android:key="elm_custom_init_cmds"
+                android:minLines="5"
+                android:summary="@string/elm_custom_init_descr"
+                android:title="@string/elm_custom_init"
+                />
+
+            <ListPreference
+                android:dialogTitle="@string/elm_adaptive_timing"
+                android:key="adaptive_timing_mode"
+                android:summary="@string/elm_adaptive_timing_descr"
+                android:title="@string/elm_adaptive_timing"
+                />
+
+            <EditTextPreference
+                android:defaultValue="12"
+                android:enabled="false"
+                android:key="elm_min_timeout"
+                android:numeric="integer"
+                android:summary="@string/elm_timeout_descr"
+                android:title="@string/min_elm_timeout"
+                />
+
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="elm_reset_on_nrc"
+                android:summary="@string/elm_reset_on_nrc_descr"
+                android:title="@string/elm_reset_on_nrc"
+                />
+
+            <EditTextPreference
+                android:capitalize="characters"
+                android:defaultValue="3"
+                android:inputType="number"
+                android:key="data_disable_max"
+                android:summary="@string/data_disable_max_description"
+                android:title="@string/data_disable_max"
+                />
+
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:icon="@android:drawable/ic_menu_save"
+        android:summary="@string/csv_export_description"
+        android:title="@string/csv_export_options"
+        >
+
+        <ListPreference
+            android:defaultValue=","
+            android:dialogTitle="@string/csv_field_delimiter"
+            android:entries="@array/csv_field_delim_options"
+            android:entryValues="@array/csv_field_delim_values"
+            android:key="csv_field_delimiter"
+            android:summary="@string/csv_field_delimiter_description"
+            android:title="@string/csv_field_delimiter"
+            />
+
+        <ListPreference
+            android:defaultValue="\n"
+            android:dialogTitle="@string/csv_rec_delimiter"
+            android:entries="@array/csv_record_delim_options"
+            android:entryValues="@array/csv_record_delim_values"
+            android:key="csv_record_delimiter"
+            android:summary="@string/csv_rec_delimiter_description"
+            android:title="@string/csv_rec_delimiter"
+            />
+
+        <CheckBoxPreference
+            android:key="csv_text_quoted"
+            android:summary="@string/csv_text_quoted_description"
+            android:title="@string/csv_text_quoted"
+            />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="send_after_export"
+            android:summary="@string/send_after_export_descr"
+            android:title="@string/send_after_export"
+            />
+
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:icon="@android:drawable/ic_menu_manage"
+        android:summary="@string/dev_opt_description"
+        android:title="@string/development_options"
+        >
+        <PreferenceCategory
+            android:title="@string/debugging"
+            >
+            <ListPreference
+                android:defaultValue="INFO"
+                android:dialogTitle="@string/logging_level"
+                android:entries="@array/logging_options"
+                android:entryValues="@array/logging_options"
+                android:key="log_master"
+                android:summary="@string/logging_level_description"
+                android:title="@string/logging_level"
+                />
+        </PreferenceCategory>
+
+        <PreferenceCategory
+            android:title="@string/extension_files">
+            <Preference
+                android:icon="@drawable/ic_action_load"
+                android:key="ext_file_conversions"
+                android:summary="@string/select_extension"
+                android:title="@string/conversions"
+                >
+                <intent
+                    android:action="android.intent.action.OPEN_DOCUMENT"
+                    android:mimeType="*/*"
+                    />
+            </Preference>
+            <Preference
+                android:icon="@drawable/ic_action_load"
+                android:key="ext_file_dataitems"
+                android:summary="@string/select_extension"
+                android:title="@string/data_items"
+                >
+                <intent
+                    android:action="android.intent.action.OPEN_DOCUMENT"
+                    android:mimeType="*/*"
+                    />
+            </Preference>
+        </PreferenceCategory>
+
+        <PreferenceCategory
+            android:title="@string/obd_options">
+
+            <MultiSelectListPreference
+                android:defaultValue="@array/empty"
+                android:dialogTitle="@string/disable_elm_cmds"
+                android:entries="@array/empty"
+                android:entryValues="@array/empty"
+                android:icon="@android:drawable/ic_dialog_alert"
+                android:key="elm_cmd_disable"
+                android:summary="@string/disable_elm_cmds_descr"
+                android:title="@string/disable_elm_cmds"
+                />
+
+        </PreferenceCategory>
+
+    </PreferenceScreen>
+
+    <PreferenceScreen
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:summary="@string/app_version"
+        android:title="@string/app_name"
+        >
+        <Preference
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:summary="@string/copyright_fr3ts0n"
+            android:title="@string/app_name"
+            >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/url_app_mainpage"/>>
+        </Preference>
+        <Preference
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:summary="@string/app_version"
+            android:title="@string/release_history"
+            >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/url_app_releases"/>>
+        </Preference>
+        <Preference
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="@string/translation_credits"
+            >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/url_app_translation"/>>
+        </Preference>
+        <PreferenceScreen
+            android:icon="@drawable/ic_scale"
+            android:title="@string/license"
+            >
+            <Preference
+                android:icon="@drawable/ic_scale"
+                android:summary="@string/app_license_sum"
+                android:title="@string/app_name">
+                <intent
+                    android:action="android.intent.action.VIEW"
+                    android:data="@string/url_app_license"/>>
+            </Preference>
+            <PreferenceCategory
+                android:icon="@drawable/ic_scale"
+                android:summary="@string/libraries_sum"
+                android:title="@string/libraries">
+                <Preference
+                    android:icon="@drawable/ic_scale"
+                    android:summary="@string/lib_usb_serial_sum"
+                    android:title="@string/lib_usb_serial">
+                    <intent
+                        android:action="android.intent.action.VIEW"
+                        android:data="https://github.com/mik3y/usb-serial-for-android"/>>
+                </Preference>
+                <Preference
+                    android:icon="@drawable/ic_scale"
+                    android:summary="@string/lib_achart_sum"
+                    android:title="@string/lib_achart">
+                    <intent
+                        android:action="android.intent.action.VIEW"
+                        android:data="http://achartengine.org"/>>
+                </Preference>
+            </PreferenceCategory>
+        </PreferenceScreen>
+        <PreferenceCategory
+            android:title="@string/donation">
+            <Preference
+                android:icon="@drawable/ic_coin"
+                android:key="paypal"
+                android:title="PayPal.me"
+                >
+                <intent
+                    android:action="android.intent.action.VIEW"
+                    android:data="https://PayPal.me/fr3ts0n"/>
+            </Preference>
+            <Preference
+                android:icon="@drawable/ic_coin"
+                android:key="bitcoin"
+                android:title="Bitcoin"
+                >
+                <intent
+                    android:action="android.intent.action.VIEW"
+                    android:data="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP"/>
+            </Preference>
+        </PreferenceCategory>
+    </PreferenceScreen>
+
+</PreferenceScreen>
