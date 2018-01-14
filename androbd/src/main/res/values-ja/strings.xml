@@ -191,4 +191,16 @@
     <string name="send_after_export_descr">正しくエクスポートした後に CSV ファイルを送信するプロンプトを表示しますか?</string>
     <string name="data_disable_max">データ項目を無効にする制限</string>
     <string name="data_disable_max_description">アイテムが無効になるまでの無効な連続データ応答の数</string>
+    <string name="plugin_manager">プラグインマネージャー</string>
+    <string name="configure">構成</string>
+
+    <string name="plugin_manager_desc">インストールされているプラグインを管理します</string>
+    <string name="toolbar_overlay">als オーバーレイを表示</string>
+    <string name="toolbar_overlay_sum">メイン画面にオーバーラップするツールバーを表示します</string>
+    <string name="license">ライセンス …</string>
+    <string name="donation">プロジェクトをサポートする …</string>
+    <string name="libraries">ライブラリー …</string>
+    <string name="libraries_sum">プロジェクトで使用されているライブラリー …</string>
+    <string name="release_history">リリース履歴 …</string>
+
     </resources>
