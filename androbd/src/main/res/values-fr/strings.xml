@@ -198,4 +198,16 @@
     <string name="data_disable_max">Désactiver la limite pour cette donnée</string>
     <string name="data_disable_max_description">Limite de réponses erronées consécutives pour une donnée avant sa désactivation</string>
     <string name="autohide_delay_description">Délai en secondes avant de masquer la barre d\'outils en cas d\'inactivité</string>
+    <string name="plugin_manager">Gestionnaire d\'extensions</string>
+    <string name="configure">Configurer</string>
+
+    <string name="plugin_manager_desc">Gérer les extensions installées</string>
+    <string name="toolbar_overlay">Afficher en superposition</string>
+    <string name="toolbar_overlay_sum">Afficher la barre de menus par dessus l’écran principal</string>
+    <string name="license">Licences…</string>
+    <string name="donation">Projets supports…</string>
+    <string name="libraries">Bibliothèques…</string>
+    <string name="libraries_sum">Bibliothèques utilisées…</string>
+    <string name="release_history">Historique des versions…</string>
+
     </resources>
