@@ -1,8 +1,8 @@
 # AndrOBD
-[![AndrOBD](androbd/src/main/res/mipmap-xxxhdpi/ic_launcher.png)](https://f-droid.org/packages/com.fr3ts0n.androbd/)
+[![AndrOBD](androbd/src/main/res/mipmap-xxxhdpi/ic_launcher.png)](https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/)
 ### Android OBD diagnostics with any ELM327 adapter
 
-[![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=AndrOBD&fdid=com.fr3ts0n.androbd)
+[![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/)
 
 ---
 # OBD connections
@@ -31,7 +31,7 @@
 + Data conversions
 
 ## Plugin extension support
-- Development: [AndrOBD-Plugin repository](../AndrOBD-Plugin))
+- Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin))
 - Avalilable Plugins:
   - MQTT publisher
 
