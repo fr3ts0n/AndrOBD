@@ -177,4 +177,11 @@
 \nнезадовільної роботи  транспортного засобу, доки 
 \nЕБУ не відкалібрується."</string>
 
+    <string name="plugin_manager">Менеджер плагінів</string>
+    <string name="configure">Налаштувати</string>
+
+    <string name="license">Ліцензування…</string>
+    <string name="libraries">Бібліотеки…</string>
+    <string name="release_history">Історія випусків…</string>
+
     </resources>
