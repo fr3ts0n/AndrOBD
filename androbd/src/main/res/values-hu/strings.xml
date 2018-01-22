@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="translation_credits">Honosítás: gidano | sympda.blog.hu</string>
     <string name="app_description">Android OBD járműdiagnosztika app ELM327 bluetooth adapterhez</string>
@@ -149,7 +149,7 @@ információt, beleértve:
     <string name="device_address_description">ELM eszköz hálózati IP címe</string>
     <string name="device_address">ELM IP címe</string>
     <string name="device_port_description">ELM eszköz hálózati IP port</string>
-    <string name="device_port">ELM IP port</string>
+    <string name="device_port">ELM IP-port</string>
     <string name="autohide_toolbar">Eszközsáv elrejtése</string>
     <string name="autohide_toolbar_description">Az eszközsáv auto. elrejtése w/o tevékenység késleltetés után</string>
     <string name="autohide_delay">Eszközsáv elrejtés késleltetése [mp]</string>
