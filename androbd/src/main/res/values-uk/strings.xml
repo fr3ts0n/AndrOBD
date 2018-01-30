@@ -184,4 +184,8 @@
     <string name="libraries">Бібліотеки…</string>
     <string name="release_history">Історія випусків…</string>
 
+    <string name="plugin_manager_desc">Керування встановленими плагінами</string>
+    <string name="toolbar_overlay">Показати, як накладання</string>
+    <string name="toolbar_overlay_sum">Показувати панель перекриття основного екрана</string>
+    <string name="libraries_sum">Бібліотеки, які використовуються в проекті…</string>
     </resources>
