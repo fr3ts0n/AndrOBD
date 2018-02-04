@@ -195,7 +195,7 @@
     <string name="configure">構成</string>
 
     <string name="plugin_manager_desc">インストールされているプラグインを管理します</string>
-    <string name="toolbar_overlay">als オーバーレイを表示</string>
+    <string name="toolbar_overlay">オーバーレイとして表示</string>
     <string name="toolbar_overlay_sum">メイン画面にオーバーラップするツールバーを表示します</string>
     <string name="license">ライセンス …</string>
     <string name="donation">プロジェクトをサポートする …</string>
