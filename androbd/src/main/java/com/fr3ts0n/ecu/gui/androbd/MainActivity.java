@@ -1937,7 +1937,7 @@ public class MainActivity extends PluginManager
 	protected void clearObdFaultCodes()
 	{
 		dlgBuilder
-			.setIcon(android.R.drawable.ic_dialog_alert)
+			.setIcon(android.R.drawable.ic_dialog_info)
 			.setTitle(R.string.obd_clearcodes)
 			.setMessage(R.string.obd_clear_info)
 			.setPositiveButton(android.R.string.yes,
