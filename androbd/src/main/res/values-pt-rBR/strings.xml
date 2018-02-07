@@ -1,2 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="translation_credits">Traduzido por carnetta</string>
+    <string name="send">Enviar</string>
+    <string name="not_connected">Você não está conectado ao dispositivo</string>
+    <string name="title_connecting">Conectando…</string>
+    <string name="title_connected_to">Conectado %s</string>
+    <string name="title_not_connected">Não Conectado</string>
+    <string name="title">título</string>
+    <string name="welcome_to">Bem vindo ao</string>
+    <string name="back_again_to_exit">Pressione voltar novamente para fechar o aplicativo</string>
+    <string name="action_connect">Conectar</string>
+    </resources>
