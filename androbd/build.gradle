@@ -37,7 +37,7 @@ android {
 }
 
 dependencies {
-    compile project(':plugin')
+    implementation project(':plugin')
     implementation project(':library')
     implementation files('libs/achartengine-1.2.0.jar')
     implementation files('libs/usbSerialForAndroid.jar')
