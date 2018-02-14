@@ -1,16 +1,16 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="send">Odeslat</string>
     <string name="not_connected">Zařízení není připojeno</string>
     <string name="title_connecting">Připojuji…</string>
     <string name="title_connected_to">Připojeno k %s</string>
     <string name="title_not_connected">Nepřipojeno</string>
-    <string name="title"/>
-    <string name="welcome_to"/>
-    <string name="logo"/>
-    <string name="back_again_to_exit"/>
+    <string name="title">Název</string>
+    <string name="welcome_to">Vítejte v</string>
+    <string name="logo">Logo</string>
+    <string name="back_again_to_exit">Stiskni zpět pro zavření aplikace</string>
     <string name="action_connect">Připojit</string>
-    <string name="obd_none"/>
-    <string name="obd_services"/>
+    <string name="obd_none">ŽÁDNÁ služba</string>
+    <string name="obd_services">OBD Služby</string>
     <string name="scanning">Vyhledávám…</string>
     <string name="select_device">Zvolte adaptér</string>
     <string name="none_paired">Žádná spárovaná zařízení</string>
@@ -44,4 +44,13 @@
     <string name="STOPPED">Zastaveno</string>
     <string name="DISCONNECTED">Odpojeno</string>
     <string name="ERROR">Chyba</string>
+    <string name="translation_credits">Přeložil fr3ts0n</string>
+    <string name="app_description">Android OBD autodiagnostika pro ELM327 Bluetooth adaptér</string>
+    <string name="obd_veh_info">OBD Info o autě</string>
+    <string name="obd_data">OBD Data</string>
+    <string name="obd_codes">OBD chybové kódy</string>
+    <string name="obd_permanentcodes">OBD chybové kódy (permanentní)</string>
+    <string name="obd_clearcodes">Vyčistit chybové kódy</string>
+    <string name="release_history">Historie verzí …</string>
+
     </resources>
