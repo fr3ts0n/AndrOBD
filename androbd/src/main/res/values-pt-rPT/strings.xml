@@ -44,7 +44,7 @@
     <string name="development_options">Opções de desenvolvimento</string>
     <string name="conversions">Conversões de Dados</string>
     <string name="app_description">Aplicação de diagnóstico de veículo OBD para Android para o adaptador de Bluetooth ELM327</string>
-    <string name="obd_codes">Código de falhas OBD</string>
+    <string name="obd_codes">Códigos de falhas OBD</string>
     <string name="demo_stopped">O modo de DEMONSTRAÇÃO parou</string>
     <string name="demo_started">Modo de DEMONSTRAÇÃO iniciado</string>
     <string name="save">Guardar cálculo</string>
@@ -102,5 +102,7 @@
     <string name="comma">VÍRGULA</string>
     <string name="semicolon">PONTO E VÍRGULA</string>
     <string name="send_after_export">Enviar depois de exportar</string>
-    <string name="send_after_export_descr"></string>
+    <string name="send_after_export_descr"/>
+    <string name="obd_permanentcodes">Códigos de falhas (permanente)</string>
+    <string name="obd_pendingcodes">Códigos de falhas (pendente)</string>
     </resources>
