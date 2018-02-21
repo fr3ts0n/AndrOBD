@@ -31,7 +31,7 @@
 + Data conversions
 
 ## Plugin extension support
-- Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin))
+- Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
 - Avalilable Plugins:
   - MQTT publisher
 
@@ -41,7 +41,7 @@
   + Data item descriptions
   + Fault code descriptions
 
-
+## Project support
 Thanks to all hard-working translators for their contributions.
 <br>You all do a incredible job!
 
@@ -50,10 +50,18 @@ Thanks to all hard-working translators for their contributions.
 You are invited to contribute a translation into your favourite language.
 <br>(Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 
+### Hall of donators
+Thank you to all AndrOBD supporters.
+It feels good to see that our work is appreciated.
+
+| Date | Supporter | Donation  |
+|------|-----------|----------:|
+| 2018/02 | John Zimmerer | $10 |
+
 <table>
   <tr>
-    <td colspan="3">Thank you for any project support:</td>
-  </tr>
+    <th colspan="3">Thank you for any project support:</td>
+  </th>
   <tr>
     <td align="center"><a href="https://www.paypal.me/fr3ts0n"><img src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif"/></a></td>
     <td>PayPal.me</td>
