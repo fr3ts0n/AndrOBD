@@ -15,4 +15,7 @@
     <string name="obd_services">Serviços OBD</string>
     <string name="obd_veh_info">OBD Informações do Veiculo</string>
     <string name="obd_data">Dados OBD</string>
+    <string name="service_freezeframes">OBD Frames congelados</string>
+    <string name="obd_codes">OBD Códigos de Falha</string>
+    <string name="obd_permanentcodes">OBD Códigos de falha (Permanente)</string>
     </resources>
