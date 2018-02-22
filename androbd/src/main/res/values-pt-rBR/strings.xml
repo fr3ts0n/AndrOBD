@@ -9,4 +9,5 @@
     <string name="welcome_to">Bem vindo ao</string>
     <string name="back_again_to_exit">Pressione voltar novamente para fechar o aplicativo</string>
     <string name="action_connect">Conectar</string>
+    <string name="app_description">Android ODB APP Diagnósticos de veículos para o adaptador ELM327 Bluetooth</string>
     </resources>
