@@ -11,4 +11,8 @@
     <string name="action_connect">Conectar</string>
     <string name="app_description">Android ODB APP Diagnósticos de veículos para o adaptador ELM327 Bluetooth</string>
     <string name="logo">Logo</string>
+    <string name="obd_none">Sem Serviço</string>
+    <string name="obd_services">Serviços OBD</string>
+    <string name="obd_veh_info">OBD Informações do Veiculo</string>
+    <string name="obd_data">Dados OBD</string>
     </resources>
