@@ -7,8 +7,8 @@ android {
         applicationId 'com.fr3ts0n.ecu.gui.androbd'
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 20000
-        versionName 'V2.0.0'
+        versionCode 20001
+        versionName 'V2.0.1'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -39,6 +39,5 @@ android {
 dependencies {
     implementation project(':plugin')
     implementation project(':library')
-    implementation files('libs/achartengine-1.2.0.jar')
-    implementation files('libs/usbSerialForAndroid.jar')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 }
