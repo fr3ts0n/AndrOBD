@@ -188,4 +188,6 @@
     <string name="toolbar_overlay">Показати, як накладання</string>
     <string name="toolbar_overlay_sum">Показувати панель перекриття основного екрана</string>
     <string name="libraries_sum">Бібліотеки, які використовуються в проекті…</string>
+    <string name="data_disable_max_description">Кількість недійсних послідовних відповідей даних перед елементом буде вимкнено</string>
+    <string name="donation">Підтримка проекту …</string>
     </resources>
