@@ -18,4 +18,51 @@
     <string name="service_freezeframes">OBD Frames congelados</string>
     <string name="obd_codes">OBD Códigos de Falha</string>
     <string name="obd_permanentcodes">OBD Códigos de falha (Permanente)</string>
+    <string name="obd_pendingcodes">Códigos de falha OBD (pendente)</string>
+    <string name="obd_clearcodes">Limpar códigos de falha</string>
+    <string name="obd_clear_info">Isto vai resetar o MIK and limpar todo diagnóstico relacionado as
+\ninformações de emissão, incluindo:
+\n- Diagnósticos de códigos de falha
+\n- Congelar quadro de dados
+\n- Dados de teste do sensor de oxigênio
+\n- Estado dos testes do sistema de monitoramento
+\n- Resultado dos testes de monitoramento de bordo
+\n- Distância percorrida enquanto MIL ativado
+\n- Número de aquecimentos desde reset dos DTCs
+\n- Distância percorrida desde reset dos DTCs
+\n- Tempo de funcionamento do motor desde reset dos DTCs
+\n- Tempo desde reset dos DTCs
+\n
+\nOutras ações de resets específicos do fabricante podem ocorrer.
+\nA perda de dados pode provocar que o veículo funcione de forma
+\nnão adequada durante um pequeno período de tempo até se 
+\nauto-recalibrar.</string>
+
+    <string name="scanning">Varredura …</string>
+    <string name="select_device">Selecione adaptador</string>
+    <string name="none_paired">Nenhum dispositivo pareado</string>
+    <string name="none_found">Nenhum dispositivo encontrado</string>
+    <string name="title_paired_devices">Dispositivos Pareados</string>
+    <string name="title_other_devices">Outros Dispositivos Disponíveis</string>
+    <string name="button_scan">Varredura por Dispositivos</string>
+
+    <string name="send_to">Enviar para</string>
+    <string name="share">compartilhar</string>
+    <string name="time">Tempo [s]</string>
+    <string name="chart">Gráfico</string>
+    <string name="demo_stopped">Modo DEMO parado</string>
+    <string name="demo_started">Modo DEMO iniciado</string>
+    <string name="snapshot">Instantâneo</string>
+    <string name="save">Salvar medição</string>
+    <string name="load">Carregar medição</string>
+    <string name="saved_data">Dados Salvos</string>
+    <string name="loaded">carregado</string>
+    <string name="saved">salvo</string>
+
+    <string name="connected_to">Conectado a</string>
+    <string name="demo">Demo…</string>
+    <string name="saving_data">Salvando dados …</string>
+    <string name="loading_data">Carregando dados …</string>
+    <string name="dashboard">Painel de controle</string>
+    <string name="graph_actions">Ações do Gráfico</string>
     </resources>
