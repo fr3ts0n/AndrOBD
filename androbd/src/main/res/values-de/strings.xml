@@ -157,7 +157,7 @@
     <string name="csv_field_delimiter">CSV Feld-Trennzeichen</string>
     <string name="csv_field_delimiter_description">Trennzeichen zwischen CSV Datenfeldern</string>
     <string name="csv_rec_delimiter">CSV Datensatz-Trennzeichen</string>
-    <string name="csv_rec_delimiter_description">Trennzeichen zwischen CSV Datenzeilen</string>
+    <string name="csv_rec_delimiter_description">Trennzeichen zwischen CSV Datensätzen</string>
     <string name="csv_text_quoted">CSV Textfelder in Anführungszeichen</string>
     <string name="csv_text_quoted_description">CSV Textfelder werden in Anführungszeichen eingebettet</string>
     <string name="semicolon">Strichpunkt</string>
