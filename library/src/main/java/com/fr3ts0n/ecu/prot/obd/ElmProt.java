@@ -784,12 +784,32 @@ public class ElmProt
 					{
 						// start of 0100 response is end of address
 						int adrEnd = bufferStr.indexOf("41");
-						if(adrEnd > 0)
+						int adrStart = bufferStr.lastIndexOf(".")+1;
+						if(adrEnd > adrStart)
 						{
-							// odd address length -> CAN address length = 3 digits + 2 digits frame type
-							if(adrEnd % 2 != 0) adrEnd = 3;
+							int adrLen = adrEnd - adrStart;
+							if((adrLen % 2) != 0)
+							{
+								/*
+								 * odd address length
+								 * -> CAN address length = 3 digits + 2 digits frame type
+								 */
+								adrLen = 3;
+							}
+							else if(adrLen == 6)
+							{
+								/*
+								 * 6 char (3 byte) prefix -> ISO9141 address <FF><RR><SS>
+								 *     FF - Frame type
+								 *     RR - receiver address
+								 *     SS - sender address
+								 */
+								adrLen = 2;
+								adrStart = adrEnd - adrLen;
+							}
 							// extract address
-							String address = bufferStr.substring(0, adrEnd);
+							String address = bufferStr.substring(adrStart, adrStart + adrLen);
+							
 							log.fine(String.format("Found ECU address: 0x%s", address));
 							// and add to list of addresses
 							ecuAddresses.add(Integer.valueOf(address, 16));
@@ -902,6 +922,8 @@ public class ElmProt
 				setStatus(STAT.ECU_DETECT);
 				handleTelegram("SEARCHING...".toCharArray());
 				handleTelegram("7EA074100000000".toCharArray());
+				handleTelegram("486B104100BF9FA8919B".toCharArray());
+				handleTelegram("...486B104100BF9FA8919B".toCharArray());
 				handleTelegram("7E8064100000000".toCharArray());
 				handleTelegram("7E9074100000000".toCharArray());
 				handleTelegram("7E9074100000000".toCharArray());
