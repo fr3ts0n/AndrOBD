@@ -34,36 +34,23 @@ public class MirrorRelativeLayout extends RelativeLayout
 	{
 		super(context);
 	}
-
+	
 	public MirrorRelativeLayout(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
 	}
-
+	
 	public MirrorRelativeLayout(Context context, AttributeSet attrs, int defStyle)
 	{
 		super(context, attrs, defStyle);
 	}
-
+	
 	@Override
 	protected void dispatchDraw(Canvas canvas)
 	{
-		canvas.save();
 		// Scale the canvas in reverse in the x-direction, pivoting on
 		// the center of the view
 		canvas.scale(-1f, 1f, getWidth() / 2f, getHeight() / 2f);
 		super.dispatchDraw(canvas);
-		canvas.restore();
-	}
-
-	@Override
-	public void draw(Canvas canvas)
-	{
-		canvas.save();
-		// Scale the canvas in reverse in the x-direction, pivoting on
-		// the center of the view
-		canvas.scale(-1f, 1f, getWidth() / 2f, getHeight() / 2f);
-		super.dispatchDraw(canvas);
-		canvas.restore();
 	}
 }
