@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">由tiny@sandsea.info翻译</string>
+<resources><string name="translation_credits">由kissstudio翻译</string>
     <string name="app_description">Android OBD，用于ELM327蓝牙适配器的车辆诊断应用</string>
     <string name="send">发送</string>
     <string name="not_connected">尚未连接到设备</string>
@@ -18,27 +18,22 @@
     <string name="service_freezeframes">OBD冻结的帧</string>
     <string name="obd_codes">OBD错误码</string>
     <string name="obd_permanentcodes">OBD错误码（永久）</string>
-    <string name="obd_pendingcodes">OBD错误码（待处理）</string>
+    <string name="obd_pendingcodes">OBD错误码（待定）</string>
     <string name="obd_clearcodes">清除错误码</string>
-    <string name="obd_clear_info">将重置故障指示灯（MIL）和清除所有排放相关的诊断数据，包括：
-\n- 诊断故障代码
-\n- 冻结的帧数据
-\n- 氧气传感器测试数据
-\n- 系统监控测试的状态数据
-\n- 板载监控测试的结果数据
-\n- 故障指示灯（MIL）处于激活状态时的旅行距离
-\n- 车身稳定控制系统（DTCs）数据清除后的旅行距离
-\n- 故障指示灯（MIL）处于激活状态时的引擎运行时间
-\n- 车身稳定控制系统（DTCs）数据清除后的时间
+    <string name="obd_clear_info">这将重置故障指示灯（MIL）和清除所有排放相关的诊断数据
+\n信息, 包括：
+\n·- 诊断故障代码
+\n·- 冻结的帧数据
+\n·- 氧气传感器测试数据
+\n·- 系统监控测试的状态数据
+\n·- 板载监控测试的结果数据
+\n·- 故障指示灯（MIL）处于激活状态时的旅行距离
+\n·- 车身稳定控制系统（DTCs）数据清除后的旅行距离
+\n·- 故障指示灯（MIL）处于激活状态时的引擎运行时间
+\n·- 车身稳定控制系统（DTCs）数据清除后的时间
 \n
 \n· 可能执行其他由制造商指定的清除/重置动作。
-\n· 在ECU重新校准自身的时间段内缺失的数据可能造成车辆短时间的运行状况不佳。
-\n
-\n
-\n
-\n
-\n
-\n
+\n· 在ECU重新校准自身的时间段内缺失的数据可能造成车辆短时间的运行状况不佳.
 \n</string>
 
     <string name="scanning">正在扫描…</string>
@@ -130,7 +125,7 @@
     <string name="elm_adaptive_timing">ELM 自适应时间</string>
     <string name="disabled">已禁用</string>
     <string name="enabled">已启用</string>
-    <string name="elm_adaptive_timing_descr">允许ELM驱动程序中的自适应计时处理</string>
+    <string name="elm_adaptive_timing_descr">允许ELM驱动程序中的自适应计时处理？</string>
     <string name="elm_reset_on_nrc">NRC重置</string>
     <string name="elm_reset_on_nrc_descr">NRC错误时重置ELM适配器？</string>
     <string name="select_ecu_addr">选择ECU地址…</string>
