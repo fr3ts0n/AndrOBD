@@ -10,7 +10,7 @@
     <string name="welcome_to">Hoşgeldiniz</string>
     <string name="logo">Logo</string>
     <string name="back_again_to_exit">Uygulamadan çıkmak için tekrar geri tuşuna basın</string>
-    <string name="action_connect">.menü...</string>
+    <string name="action_connect">Bağlan</string>
     <string name="obd_none">Servis yok</string>
     <string name="obd_services">OBD servisleri</string>
     <string name="obd_veh_info">OBD Araç Bilgisi</string>
@@ -37,7 +37,7 @@
 \n  Veri kaybı, aracın kısa bir süre için düzensiz çalışmasına neden olabilir
 \n  ECU kendini yeniden kalibre ederken zaman geçebilir."</string>
 
-    <string name="scanning">Taranıyor</string>
+    <string name="scanning">Taranıyor…</string>
     <string name="select_device">Adaptör Seç</string>
     <string name="none_paired">Cihaz Eşleşmedi</string>
     <string name="none_found">Cihaz bulunamadı</string>
@@ -58,7 +58,7 @@
     <string name="loaded">Yüklendi</string>
     <string name="saved">Kaydedildi</string>
 
-    <string name="connected_to">Bağlandı..</string>
+    <string name="connected_to">Bağlandı</string>
     <string name="demo">Demo…</string>
     <string name="saving_data">Veriler kaydediliyor …</string>
     <string name="loading_data">Veriler hazırlanıyor …</string>
