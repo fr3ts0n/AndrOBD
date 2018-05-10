@@ -156,9 +156,12 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	mnemonic (
 0x01,0x02	0xC4	1	1	5	1	0xFF	GEN_SWITCH	%.0f			status_engine_idle_request	Engine IDLE Request				
 0x01,0x02	0xC4	1	1	6	1	0xFF	GEN_SWITCH	%.0f			status_engine_stop_request	Engine STOP Request				
 0x09	0x01	0	1	0	8	0xFF	ONETOONE	%.0f			counts_vin_length	Message count VIN				
-0x09	0x02	0	17	0	136	0x00	ASCII	%s			vehicle_identification_number	Vehicle identification number				
+0x09	0x02	0	1	0	8	0xFF	ONETOONE	%.0f			vin_numitems	Number of VIN items				
+0x09	0x02	1	17	0	136	0x00	ASCII	%s			vehicle_identification_number	Vehicle identification number				
 0x09	0x03	0	1	0	8	0xFF	ONETOONE	%.0f			counts_calibration_identifier_length	Message count CAL-ID				
-0x09	0x04	0	16	0	128	0x00	ASCII	%s			calibration_identifiert	Calibration identifier				
+0x09	0x04	0	1	0	8	0xFF	ONETOONE	%.0f			calid_numitems	Number of CAL-ID items				
+0x09	0x04	1	16	0	128	0x00	ASCII	%s			calibration_identifier	Calibration identifier				
+0x09	0x04	17	16	0	128	0x00	ASCII	%s			calibration_identifier2	Calibration identifier 2				
 0x09	0x05	0	1	0	8	0xFF	ONETOONE	%.0f			counts_calibration_verification	Message count CVN				
 0x09	0x06	0	4	0	32	0xFFFFFFFF	INTEGER	0x%08x			calibration_verification	Calibration verification				
 0x09	0x07	0	1	0	8	0xFF	ONETOONE	%.0f			counts_ipt	Message count IPT				
