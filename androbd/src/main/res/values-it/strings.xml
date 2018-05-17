@@ -182,7 +182,7 @@
     <string name="send_after_export">invia dopo l\'esportazione</string>
     <string name="send_after_export_descr">Richiesta di invio file CSV dopo l\'esportazione?</string>
     <string name="plugin_manager_desc">Gestisci plugin installati</string>
-    <string name="toolbar_overlay">Mostra sovraimpressione Als</string>
+    <string name="toolbar_overlay">Mostra in sovraimpressione</string>
     <string name="toolbar_overlay_sum">Mostra la barra degli oggetti sopra lo schermo principale</string>
     <string name="license">Verifica…</string>
     <string name="donation">Supoprta il progetto…</string>
