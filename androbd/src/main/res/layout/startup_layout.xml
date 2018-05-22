@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:background="#20FFFFFF"
         android:contentDescription="@string/logo"
-        android:padding="@android:dimen/app_icon_size"
+        android:padding="@dimen/activity_horizontal_margin"
         android:src="@drawable/logo"/>
 
     <LinearLayout
