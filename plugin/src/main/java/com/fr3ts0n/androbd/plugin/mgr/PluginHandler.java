@@ -30,7 +30,7 @@ import com.fr3ts0n.androbd.plugin.R;
  * - Handle sending Intents to individual / all plugins
  */
 public class PluginHandler extends ArrayAdapter<PluginInfo>
-    implements Plugin.DataProvider
+    implements Plugin.DataProvider, Plugin.DataReceiver
 {
     static final PluginInfo myInfo = new PluginInfo( "AndrOBD",
                                                      PluginHandler.class,
@@ -41,6 +41,8 @@ public class PluginHandler extends ArrayAdapter<PluginInfo>
 
     /** layout inflater */
     transient protected LayoutInflater mInflater;
+    /** external data receiver */
+    transient Plugin.DataReceiver dataReceiver = null;
 
     /** Application preferences*/
     SharedPreferences mPrefs;
@@ -53,7 +55,8 @@ public class PluginHandler extends ArrayAdapter<PluginInfo>
         @Override
         public void onReceive(Context context, Intent intent)
         {
-            if(Plugin.IDENTIFY.equals(intent.getAction()))
+            String action = intent.getAction();
+            if(Plugin.IDENTIFY.equals(action))
             {
                 PluginInfo plugin = new PluginInfo(intent.getExtras());
                 Log.i(toString(), "Plugin identified: " + plugin.toString());
@@ -63,6 +66,20 @@ public class PluginHandler extends ArrayAdapter<PluginInfo>
                 add(plugin);
                 // set current enabled/disabled state (to stop disabled services)
                 setPluginEnabled(getPosition(plugin), plugin.enabled);
+            }
+            if(Plugin.DATALIST.equals(action))
+            {
+                Log.v(toString(), "Data list update: " + intent);
+                String dataStr = intent.getStringExtra(Plugin.EXTRA_DATA);
+                onDataListUpdate( dataStr );
+            }
+    
+            if(Plugin.DATA.equals(action))
+            {
+                Log.v(toString(), "Data update: " + intent);
+                String dataStr = intent.getStringExtra(Plugin.EXTRA_DATA);
+                String params[] = dataStr.split("=");
+                onDataUpdate( params[0], params[1] );
             }
         }
     };
@@ -93,9 +110,11 @@ public class PluginHandler extends ArrayAdapter<PluginInfo>
     public void setup()
     {
         // register this handler as a receive filter
-        IntentFilter flt = new IntentFilter(Plugin.IDENTIFY);
-        // flt.addCategory(Plugin.REQUEST);
-        flt.addCategory(Plugin.RESPONSE);
+        IntentFilter flt = new IntentFilter();
+	    flt.addCategory(Plugin.RESPONSE);
+        flt.addAction(Plugin.IDENTIFY);
+        flt.addAction(Plugin.DATALIST);
+        flt.addAction(Plugin.DATA);
         getContext().registerReceiver(receiver, flt);
 
         // trigger plugin search
@@ -305,5 +324,25 @@ public class PluginHandler extends ArrayAdapter<PluginInfo>
         }
         // clear list of plugins
         clear();
+    }
+    
+    @Override
+    public void onDataListUpdate(String csvString)
+    {
+        // forward update to registered data receiver
+        if(dataReceiver != null)
+        {
+            dataReceiver.onDataListUpdate(csvString);
+        }
+    }
+    
+    @Override
+    public void onDataUpdate(String key, String value)
+    {
+        // forward update to registered data receiver
+        if(dataReceiver != null)
+        {
+            dataReceiver.onDataUpdate(key, value);
+        }
     }
 }

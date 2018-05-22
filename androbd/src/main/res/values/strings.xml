@@ -282,6 +282,7 @@ period of time while the ECU recalibrates itself.
         Charting library for Android\n
         * Apache 2.0 license
     </string>
+    <string name="plugin_data">Plugin data</string>
     <string-array name="csv_field_delim_options" translatable="false">
         <item>@string/tab</item>
         <item>@string/comma</item>

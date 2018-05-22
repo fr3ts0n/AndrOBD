@@ -27,6 +27,15 @@ public abstract class Plugin
     /** Parameters for DATALIST / DATA (content will be csv encoded) */
     public static final String EXTRA_DATA  = "com.fr3ts0n.androbd.plugin.extra.DATA";
 
+    /** CSV fields for data list messages */
+    public enum CsvField
+    {
+        MNEMONIC,       /**< Mnemonic of data item */
+        DESCRIPTION,    /**< Description of data item */
+        VALUE,          /**< measurement value */
+        UNITS,          /**< measurement units */
+    }
+    
     /**
      * Plugin supports configuration requests
      */
@@ -129,26 +138,30 @@ public abstract class Plugin
                 handleIdentify(getApplicationContext(),intent);
             }
 
-            if (ConfigurationHandler.class.isInstance(this) && CONFIGURE.equals(action))
+            if (CONFIGURE.equals(action)
+                && ConfigurationHandler.class.isInstance(this))
             {
                 Log.d(toString(), "Configuration: " +  intent);
                 ((ConfigurationHandler)this).performConfigure( );
             }
 
-            if (ActionHandler.class.isInstance(this) && ACTION.equals(action))
+            if (ACTION.equals(action)
+                && ActionHandler.class.isInstance(this))
             {
                 Log.d(toString(), "Action: " + intent);
                 ((ActionHandler)this).performAction( );
             }
 
-            if(DataReceiver.class.isInstance(this) && DATALIST.equals(action))
+            if(DATALIST.equals(action)
+               && DataReceiver.class.isInstance(this))
             {
                 Log.v(toString(), "Data list update: " + intent);
                 String dataStr = intent.getStringExtra(EXTRA_DATA);
                 ((DataReceiver)this).onDataListUpdate( dataStr );
             }
 
-            if(DataReceiver.class.isInstance(this) &&  DATA.equals(action))
+            if(DATA.equals(action)
+               && DataReceiver.class.isInstance(this))
             {
                 Log.v(toString(), "Data update: " + intent);
                 String dataStr = intent.getStringExtra(EXTRA_DATA);
