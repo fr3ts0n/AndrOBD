@@ -12,9 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="#20FFFFFF"
         android:contentDescription="@string/logo"
-        android:src="@drawable/sunfire"
-        android:background="#20FFFFFF"/>
+        android:padding="@android:dimen/app_icon_size"
+        android:src="@drawable/logo"/>
 
     <LinearLayout
         android:orientation="vertical"
