@@ -6,45 +6,45 @@
     <string name="title_connected_to">Conectado %s</string>
     <string name="title_not_connected">Não Conectado</string>
     <string name="title">título</string>
-    <string name="welcome_to">Bem vindo ao</string>
+    <string name="welcome_to">Bem-vindo ao</string>
     <string name="back_again_to_exit">Pressione voltar novamente para fechar o aplicativo</string>
     <string name="action_connect">Conectar</string>
     <string name="app_description">Android ODB APP Diagnósticos de veículos para o adaptador ELM327 Bluetooth</string>
     <string name="logo">Logo</string>
     <string name="obd_none">Sem Serviço</string>
     <string name="obd_services">Serviços OBD</string>
-    <string name="obd_veh_info">OBD Informações do Veiculo</string>
+    <string name="obd_veh_info">OBD Informações do Veículo</string>
     <string name="obd_data">Dados OBD</string>
-    <string name="service_freezeframes">OBD Frames congelados</string>
-    <string name="obd_codes">OBD Códigos de Falha</string>
-    <string name="obd_permanentcodes">OBD Códigos de falha (Permanente)</string>
+    <string name="service_freezeframes">Congelar frames OBD</string>
+    <string name="obd_codes">Códigos de Falha OBD</string>
+    <string name="obd_permanentcodes">Códigos de Falha OBD (Permanente)</string>
     <string name="obd_pendingcodes">Códigos de falha OBD (pendente)</string>
     <string name="obd_clearcodes">Limpar códigos de falha</string>
-    <string name="obd_clear_info">Isto vai resetar o MIK and limpar todo diagnóstico relacionado as
-\ninformações de emissão, incluindo:
-\n- Diagnósticos de códigos de falha
-\n- Congelar quadro de dados
-\n- Dados de teste do sensor de oxigênio
-\n- Estado dos testes do sistema de monitoramento
-\n- Resultado dos testes de monitoramento de bordo
-\n- Distância percorrida enquanto MIL ativado
-\n- Número de aquecimentos desde reset dos DTCs
-\n- Distância percorrida desde reset dos DTCs
-\n- Tempo de funcionamento do motor desde reset dos DTCs
-\n- Tempo desde reset dos DTCs
-\n
-\nOutras ações de resets específicos do fabricante podem ocorrer.
-\nA perda de dados pode provocar que o veículo funcione de forma
+    <string name="obd_clear_info">Isto vai resetar o MIL e limpar todo diagnóstico relacionado as 
+\ninformações de emissão, incluindo: 
+\n- Diagnósticos de códigos de falha 
+\n- Congelar quadro de dados 
+\n- Dados de teste do sensor de oxigênio 
+\n- Estado dos testes do sistema de monitoramento 
+\n- Resultado dos testes de monitoramento de bordo 
+\n- Distância percorrida enquanto MIL ativado 
+\n- Número de aquecimentos desde o reset dos DTCs 
+\n- Distância percorrida desde reset dos DTCs 
+\n- Tempo de funcionamento do motor desde o reset dos DTCs 
+\n- Tempo desde o reset dos DTCs 
+\n 
+\nOutras ações de resets específicos do fabricante podem ocorrer. 
+\nA perda de dados pode provocar que o veículo funcione de forma 
 \nnão adequada durante um pequeno período de tempo até se 
 \nauto-recalibrar.</string>
 
-    <string name="scanning">Varredura …</string>
-    <string name="select_device">Selecione adaptador</string>
-    <string name="none_paired">Nenhum dispositivo pareado</string>
+    <string name="scanning">Escaneando…</string>
+    <string name="select_device">Selecione o adaptador</string>
+    <string name="none_paired">Não há dispositivos pareados</string>
     <string name="none_found">Nenhum dispositivo encontrado</string>
     <string name="title_paired_devices">Dispositivos Pareados</string>
     <string name="title_other_devices">Outros Dispositivos Disponíveis</string>
-    <string name="button_scan">Varredura por Dispositivos</string>
+    <string name="button_scan">Buscar Dispositivos</string>
 
     <string name="send_to">Enviar para</string>
     <string name="share">compartilhar</string>
@@ -65,4 +65,16 @@
     <string name="loading_data">Carregando dados …</string>
     <string name="dashboard">Painel de controle</string>
     <string name="graph_actions">Ações do Gráfico</string>
+    <string name="filter">Filtro selecionado</string>
+    <string name="unfilter">Sem filtro selecionado</string>
+
+    <string name="settings">Configurações</string>
+    <string name="common_settings">Configurações padrão</string>
+    <string name="measure_system_description">Sistema de medidas (métrico/imperial)</string>
+    <string name="measure_system">Unidades de medida</string>
+    <string name="metric">métrico</string>
+    <string name="imperial">imperial</string>
+    <string name="items_for_display">Itens de informação a mostrar</string>
+    <string name="items_for_display_descr">Selecione todos os itens de informação a serem exibidos…</string>
+    <string name="debugging">Debugging</string>
     </resources>

@@ -16,4 +16,5 @@
     <string name="obd_veh_info">Talɣut OBD n tkerrust</string>
     <string name="obd_data">Isefka OBD</string>
     <string name="service_freezeframes">OBD tilmiyin tusbiḍin</string>
+    <string name="scanning">Asnirem …</string>
     </resources>

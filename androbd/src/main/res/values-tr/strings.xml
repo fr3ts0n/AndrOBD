@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">Alpay Bilgiç tarafından Çevrildi</string>
-    <string name="app_description">"Android OBD ELM 327 Bluetooth ciazı üzerinden Araç Teşhis  uygulaması"</string>
+<resources><string name="translation_credits">Çevri:Alpay Bilgiç www.mobilexper.com</string>
+    <string name="app_description">"Android OBD ELM 327 Bluetooth cihazı üzerinden araç teşhis  uygulaması"</string>
     <string name="send">Gönder</string>
     <string name="not_connected">Cihaza Bağlanamadı</string>
     <string name="title_connecting">Bağlanıyor …</string>
@@ -53,7 +53,7 @@
     <string name="demo_started">Demo modu başladı</string>
     <string name="snapshot">Yedek-Dondur</string>
     <string name="save">Ölçümü kaydet</string>
-    <string name="load">ölçümü kullan</string>
+    <string name="load">Ölçümü kullan</string>
     <string name="saved_data">Kayıtlı Veriler</string>
     <string name="loaded">Yüklendi</string>
     <string name="saved">Kaydedildi</string>
@@ -65,8 +65,8 @@
     <string name="dashboard">Panel</string>
     <string name="graph_actions">Grafik eylemleri</string>
     <string name="hud">Hayalet Gösterge</string>
-    <string name="filter">seçimleri filtrele</string>
-    <string name="unfilter">filtreyi sıfırla</string>
+    <string name="filter">Seçimleri filtrele</string>
+    <string name="unfilter">Filtreyi sıfırla</string>
 
     <string name="settings">Ayarlar</string>
     <string name="common_settings">Ortak ayarlar</string>
@@ -104,7 +104,7 @@
     <string name="check_cust_settings">Lütfen özelleştirme ayarlarınızı kontrol edin
 \n</string>
     <string name="obd_options">OBD ayarları</string>
-    <string name="obd_opt_description">OBD Protokolü ve Arac iletişim seçenekleri</string>
+    <string name="obd_opt_description">OBD Protokolü ve Araç iletişim seçenekleri</string>
     <string name="select_protocol">Seçilen OBD protokolü</string>
 
     <string name="plugin_manager">Eklenti yöneticisi</string>
@@ -118,7 +118,7 @@
     <string name="min_elm_timeout">Asgari ELM zaman aşımı [ms]</string>
     <string name="unabletoconnect">Cihaza bağlanamıyor</string>
     <string name="connectionlost">Cihazla bağlantı koptu</string>
-    <string name="elm_timeout_descr">azami ELM bekleme zaman aşımı [ms]</string>
+    <string name="elm_timeout_descr">Azami ELM bekleme zaman aşımı [ms]</string>
     <string name="day_night_mode">Gündüz/Gece modu</string>
     <string name="night_mode_description">Arka planı koyu yap</string>
     <string name="night_mode">Gece modu</string>
@@ -127,10 +127,10 @@
     <string name="elm_adaptive_timing">ELM zamanlaması</string>
     <string name="disabled">kapalı</string>
     <string name="enabled">etkin</string>
-    <string name="elm_adaptive_timing_descr">ELM sürücüleri ELM zamalamasını yönetsin mi?</string>
+    <string name="elm_adaptive_timing_descr">ELM sürücüleri ELM zamanlamasını yönetsin mi?</string>
     <string name="elm_reset_on_nrc">NRC ile Resetle</string>
     <string name="elm_reset_on_nrc_descr">NRC hatası olursa ELM resetlensin mi?</string>
-    <string name="select_ecu_addr">Ecu adresi seç …</string>
+    <string name="select_ecu_addr">ECU adresi seç …</string>
     <string name="disconnect">Bağlantı koptu</string>
     <string name="reset_preselections">Son seçimleri sıfırla</string>
     <string name="use_last_settings_description">Açılışta son ayarları kullan (BT adresi, ECU adresi, Ekrandaki veriler.)</string>
