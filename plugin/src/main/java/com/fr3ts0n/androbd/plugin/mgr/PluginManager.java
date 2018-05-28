@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Switch;
 
-import com.fr3ts0n.androbd.plugin.Plugin;
 import com.fr3ts0n.androbd.plugin.R;
 
 /**
@@ -17,8 +16,7 @@ import com.fr3ts0n.androbd.plugin.R;
  * - Allow trigger configuration of individual plugin
  * - Allow manual triggering plugin action
  */
-public abstract class PluginManager extends ListActivity
-    implements Plugin.DataReceiver
+public class PluginManager extends ListActivity
 {
     public static PluginHandler pluginHandler = null;
 
@@ -26,11 +24,7 @@ public abstract class PluginManager extends ListActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        if(pluginHandler == null)
-        {
-            pluginHandler = new PluginHandler(this);
-        }
-        pluginHandler.dataReceiver = this;
+        if(pluginHandler == null) pluginHandler = new PluginHandler(this);
     }
 
     @Override
