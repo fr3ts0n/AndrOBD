@@ -27,27 +27,26 @@
             android:id="@+id/tvAppName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="bold"
-            android:contentDescription="@string/url_app_mainpage"
-            android:onClick="browseClickedUrl"
             android:clickable="true"
-            />
+            android:contentDescription="@string/url_app_mainpage"
+            android:gravity="center"
+            android:onClick="browseClickedUrl"
+            android:text="@string/app_name"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tvVersion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/app_version"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:enabled="true"
-            android:contentDescription="@string/url_app_releases"
-            android:onClick="browseClickedUrl"
             android:clickable="true"
-            />
+            android:contentDescription="@string/url_app_releases"
+            android:enabled="true"
+            android:gravity="center"
+            android:onClick="browseClickedUrl"
+            android:text="@string/app_version"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tvCopyright"
@@ -55,19 +54,19 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/copyright_fr3ts0n"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="@android:style/TextAppearance.Small"
             />
 
         <TextView
             android:id="@+id/tvTranslation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/translation_credits"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:contentDescription="@string/url_app_translation"
-            android:onClick="browseClickedUrl"
             android:clickable="true"
+            android:contentDescription="@string/url_app_translation"
+            android:gravity="center"
+            android:onClick="browseClickedUrl"
+            android:text="@string/translation_credits"
+            android:textAppearance="@android:style/TextAppearance.Small"
             />
     </LinearLayout>
 

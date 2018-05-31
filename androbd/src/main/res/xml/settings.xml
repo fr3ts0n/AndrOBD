@@ -297,12 +297,12 @@
         >
         <Preference
             android:icon="@android:drawable/ic_menu_info_details"
-            android:summary="@string/copyright_fr3ts0n"
             android:title="@string/app_name"
+            android:summary="@string/copyright_fr3ts0n"
             >
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="@string/url_app_mainpage"/>>
+                android:data="@string/url_app_mainpage"/>
         </Preference>
         <Preference
             android:icon="@android:drawable/ic_menu_info_details"
@@ -311,7 +311,16 @@
             >
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="@string/url_app_releases"/>>
+                android:data="@string/url_app_releases"/>
+        </Preference>
+        <Preference
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="@string/graphic_design"
+            android:summary="@string/design_credits"
+            >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/anaufalm"/>
         </Preference>
         <Preference
             android:icon="@android:drawable/ic_menu_info_details"
@@ -319,7 +328,7 @@
             >
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="@string/url_app_translation"/>>
+                android:data="@string/url_app_translation"/>
         </Preference>
         <PreferenceScreen
             android:icon="@drawable/ic_scale"
@@ -331,7 +340,7 @@
                 android:title="@string/app_name">
                 <intent
                     android:action="android.intent.action.VIEW"
-                    android:data="@string/url_app_license"/>>
+                    android:data="@string/url_app_license"/>
             </Preference>
             <PreferenceCategory
                 android:icon="@drawable/ic_scale"
@@ -343,7 +352,7 @@
                     android:title="@string/lib_usb_serial">
                     <intent
                         android:action="android.intent.action.VIEW"
-                        android:data="https://github.com/mik3y/usb-serial-for-android"/>>
+                        android:data="https://github.com/mik3y/usb-serial-for-android"/>
                 </Preference>
                 <Preference
                     android:icon="@drawable/ic_scale"

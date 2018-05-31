@@ -282,6 +282,8 @@ period of time while the ECU recalibrates itself.
         Charting library for Android\n
         * Apache 2.0 license
     </string>
+    <string name="graphic_design">Graphic design</string>
+    <string name="design_credits" translatable="false">2018 by @anaufalm</string>
     <string-array name="csv_field_delim_options" translatable="false">
         <item>@string/tab</item>
         <item>@string/comma</item>
