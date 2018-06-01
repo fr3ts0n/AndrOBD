@@ -1,8 +1,20 @@
 ![AndrOBD](fastlane/metadata/android/en-US/images/tvBanner.png)
 
 ### Android OBD diagnostics with any ELM327 adapter
-
-[![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/)
+<table>
+<tr colspan="2">
+  <td>
+    <a href="https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/">
+      <img width="96" height="96" src="fastlane/metadata/android/en-US/images/icon.png"/>
+    </a>
+  </td>
+  <td>
+    <a href="https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/">
+      <img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"/>
+    </a>
+  </td>
+</tr>
+</table>
 
 # OBD connections
 * Bluetooth
@@ -41,6 +53,7 @@
   + Fault code descriptions
 
 ## Project support
+### Translation support
 Thanks to all hard-working translators for their contributions.
 <br>You all do a incredible job!
 
@@ -48,6 +61,10 @@ Thanks to all hard-working translators for their contributions.
 
 You are invited to contribute a translation into your favourite language.
 <br>(Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
+
+### Graphic design
+Also very special Thanks to @anaufalm for the beautiful graphic design
+artwork and logos.
 
 ### Hall of donators
 Thank you to all AndrOBD supporters.
