@@ -1,10 +1,9 @@
-# AndrOBD
-[![AndrOBD](androbd/src/main/res/drawable/logo.png)](https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/)
+![AndrOBD](fastlane/metadata/android/en-US/images/tvBanner.png)
+
 ### Android OBD diagnostics with any ELM327 adapter
 
 [![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/)
 
----
 # OBD connections
 * Bluetooth
 * USB
