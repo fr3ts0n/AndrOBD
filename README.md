@@ -16,19 +16,20 @@
 </tr>
 </table>
 
-# OBD connections
+# Features
+## OBD connections
 * Bluetooth
 * USB
 * Wifi
 
-# OBD Features
+## OBD Features
 * Read fault codes
 * Clear fault codes
 * Read/record live data
 * Read freeze frame data
 * Read vehicle info data
 
-# Additional features
+## Additional features
 * Day/Night view
 * Data charts
 * Dashboard
@@ -52,8 +53,12 @@
   + Data item descriptions
   + Fault code descriptions
 
-## Project support
-### Translation support
+# Project support
+## Graphic design
+Very special Thanks to @anaufalm for the beautiful graphic design
+artwork and logos.
+
+## Translations
 Thanks to all hard-working translators for their contributions.
 <br>You all do a incredible job!
 
@@ -62,11 +67,7 @@ Thanks to all hard-working translators for their contributions.
 You are invited to contribute a translation into your favourite language.
 <br>(Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 
-### Graphic design
-Also very special Thanks to @anaufalm for the beautiful graphic design
-artwork and logos.
-
-### Hall of donators
+## Donations
 Thank you to all AndrOBD supporters.
 It feels good to see that our work is appreciated.
 
