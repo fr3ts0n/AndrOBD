@@ -144,4 +144,8 @@ periodo corto de tiempo mientras el ECU se recalibra el mismo.
     <string name="obd_error">Error de protocolo OBD</string>
     <string name="autohide_toolbar">Ocultar barra de herramientas</string>
     <string name="csv_export_options">Opciones de exportación a CSV</string>
+    <string name="obd_opt_description">Opciones para protocolo OBD / diagnóstico de abordo</string>
+    <string name="configure">Configurar</string>
+
+    <string name="day_night_mode">Modo visión diurna/nocturna</string>
     </resources>
