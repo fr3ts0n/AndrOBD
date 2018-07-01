@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="send">ناردن</string>
-    <string name="not_connected"/>
-    <string name="title">سەردێڕ</string>
+    <string name="not_connected">بە هیچ ئامێرێکەوە نەبەستراوی</string>
+    <string name="title">ناونیشان</string>
     <string name="welcome_to">بەخێربێیت بۆ</string>
     <string name="logo">لۆگۆ</string>
     <string name="back_again_to_exit">دووبارە گەڕانەوە دابگرە بۆ داخستنی ئەم نەرمەواڵەیە</string>
     <string name="action_connect"/>
-    <string name="obd_none"/>
-    <string name="obd_services"/>
-    <string name="obd_veh_info"/>
-    <string name="obd_data"/>
+    <string name="obd_none">خزمەتگوزاری نییە</string>
+    <string name="obd_services">خزمەتگوزارییەکانی OBD</string>
+    <string name="obd_veh_info">زانیاری ئۆتۆمبێل OBD</string>
+    <string name="obd_data">زانیاری OBD</string>
     <string name="service_freezeframes"/>
-    <string name="obd_codes"/>
-    <string name="obd_permanentcodes"/>
+    <string name="obd_codes">کۆدی هەڵەکانی OBD</string>
+    <string name="obd_permanentcodes">کۆدی هەڵەکانی OBD (جێگیر)</string>
     <string name="obd_pendingcodes"/>
     <string name="obd_clearcodes"/>
     <string name="obd_clear_info"/>
@@ -117,5 +117,9 @@
     <string name="autohide_toolbar">شاردنەوەی ئامرازەتوول</string>
     <string name="autohide_toolbar_description"/>
     <string name="autohide_delay"/>
-    <string name="autohide_delay_description"></string>
-</resources>
+    <string name="autohide_delay_description"/>
+<string name="translation_credits">وەرگێڕدراوە لەلایەن هەڤاڵ عبدالکریم</string>
+    <string name="title_connecting">لە پەیوەندیدایە…</string>
+    <string name="title_connected_to">پەیوەستکراو %s</string>
+    <string name="title_not_connected">پەیوەندی نەبەستراوە</string>
+    </resources>
