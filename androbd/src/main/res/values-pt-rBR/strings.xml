@@ -77,4 +77,8 @@
     <string name="items_for_display">Itens de informação a mostrar</string>
     <string name="items_for_display_descr">Selecione todos os itens de informação a serem exibidos…</string>
     <string name="debugging">Debugging</string>
+    <string name="hud">Tela de cabeça para cima</string>
+    <string name="logging_level">Nível de registro</string>
+    <string name="logging_level_description">Nível de detalhes a serem registrados no arquivo de log de depuração</string>
+    <string name="master">mestre</string>
     </resources>
