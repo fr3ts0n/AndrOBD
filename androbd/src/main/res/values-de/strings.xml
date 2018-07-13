@@ -177,4 +177,5 @@
     <string name="libraries">Bibliotheken…</string>
     <string name="libraries_sum">Im Projekt verwendete Bibliotheken …</string>
     <string name="release_history">Versionen …</string>
-</resources>
+<string name="graphic_design">Grafisches Design</string>
+    </resources>
