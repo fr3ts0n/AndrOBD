@@ -81,4 +81,17 @@
     <string name="logging_level">Nível de registro</string>
     <string name="logging_level_description">Nível de detalhes a serem registrados no arquivo de log de depuração</string>
     <string name="master">mestre</string>
+    <string name="protocol">protocolo</string>
+    <string name="process_vars">variáveis de processo</string>
+    <string name="data">dados</string>
+    <string name="last_elm">reconectar último adaptador ELM</string>
+    <string name="last_ecu">reconectar último ECU</string>
+    <string name="last_service">último serviço OBD</string>
+    <string name="last_view_mode">último modo de visualização de dados</string>
+
+    <string name="keep_screen_on">manter tela principal ligada</string>
+    <string name="development_options">Opções de desenvolvimento</string>
+    <string name="extension_files">Arquivos de customização de protocolo (csv)</string>
+    <string name="conversions">Conversões de Dados</string>
+    <string name="data_items">Itens de dados</string>
     </resources>
