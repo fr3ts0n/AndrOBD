@@ -20,38 +20,22 @@
     <string name="obd_permanentcodes">Kody błędów OBD (permanentne)</string>
     <string name="obd_pendingcodes">Kody błędów OBD (nierozstrzygnięte)</string>
     <string name="obd_clearcodes">Czyść kody błędów</string>
-    <string name="obd_clear_info">"
-Spowoduje to zresetowanie diagnostyki MIL i usunięcie wszystkich
-
- informacji diagnostycznych związanych z emisją spalin, w tym:
-
-  - diagnostyki kodów błędów
-
-  - dane zamrożonych ramek
-
-  - dane z sondy lambda
-
-  - status testów monitorowania systemu
-
-  - wyniki monitoringu urządzeń pokładowych
-
-  - dystans podróży z aktywnym MIL
-
-  - liczba ostrzeżeń od wyczyszczenia DTC
-
-  - dystans przebyty od wyczyszczenia DTC
-
-  - czas pracy silnika z aktywnym MIL
-
-  - czas od wyczyszczenia DTC
-
-
- Mogą wystąpić inne akcje specyficzne dla czyszczenia/kasowanie.
-
- Utrata danych może spowodować, że pojazd będzie miał gorsze
-
- osiągi na krótki okres, podczas kalibracji ECU.
- "</string>
+    <string name="obd_clear_info">Spowoduje to zresetowanie diagnostyki MIL i usunięcie wszystkich
+\ninformacji diagnostycznych związanych z emisją spalin, w tym:
+\n - Diagnostyki kodów błędów
+\n - Dane zamrożonych ramek
+\n - Dane z sondy lambda
+\n - Status testów monitorowania systemu
+\n - Wyniki monitoringu urządzeń pokładowych
+\n - Dystans podróży z aktywnym MIL
+\n - Liczba ostrzeżeń od wyczyszczenia DTC
+\n - Dystans przebyty od wyczyszczenia DTC
+\n - Czas pracy silnika z aktywnym MIL
+\n - Czas od skasowania kodów DTC
+\n
+\n Mogą wystąpić inne specyficzne dla producenta czynności czyszczenia/resetowania.
+\n Utrata danych może spowodować, że pojazd będzie miał gorsze
+\n osiągi na krótki okres, podczas kalibracji ECU.</string>
 
     <string name="scanning">Skanowanie…</string>
     <string name="select_device">Wybierz adapter</string>
@@ -79,7 +63,7 @@ Spowoduje to zresetowanie diagnostyki MIL i usunięcie wszystkich
     <string name="saving_data">Zapisywanie danych …</string>
     <string name="loading_data">Ładowanie danych …</string>
     <string name="dashboard">Pulpit nawigacyjny</string>
-    <string name="graph_actions">Działania graficzne</string>
+    <string name="graph_actions">Wykres akcji</string>
     <string name="hud">Wyświetlacz HUD</string>
     <string name="filter">Wybrany filtr</string>
     <string name="unfilter">Wybrany \"Un-filter\"</string>
@@ -148,8 +132,8 @@ Spowoduje to zresetowanie diagnostyki MIL i usunięcie wszystkich
     <string name="secure_connect">Bezpieczne połączenie</string>
     <string name="secure_connect_description">Użyj szyfrowanego połączenia Bluetooth</string>
     <string name="elm_options">Opcje ELM</string>
-    <string name="last_none">ŻADEN</string>
-    <string name="elm_custom_init">Niestandardowa inicjalizacji ELM</string>
+    <string name="last_none">BRAK</string>
+    <string name="elm_custom_init">Niestandardowa inicjalizacja ELM</string>
     <string name="elm_custom_init_descr">Niestandardowe polecenia inicjalizacji ELM</string>
 
     <string name="UNDEFINED">Niezdefiniowany</string>
@@ -190,4 +174,19 @@ Spowoduje to zresetowanie diagnostyki MIL i usunięcie wszystkich
     <string name="semicolon">Średnik</string>
     <string name="send_after_export">Wyślij po eksporcie</string>
     <string name="send_after_export_descr">Pytaj o wysłanie pliku CSV zaraz po wyeksportowaniu?</string>
+    <string name="plugin_manager">Menedżer wtyczek</string>
+    <string name="configure">Skonfiguruj</string>
+
+    <string name="data_disable_max">Dane pozycji wyłącz limit</string>
+    <string name="data_disable_max_description">Liczba nieprawidłowych kolejnych odpowiedzi na dane przed pozycją zostanie wyłączona</string>
+    <string name="plugin_manager_desc">Zarządzaj zainstalowanymi wtyczkami</string>
+    <string name="toolbar_overlay">Pokaż jako nakładkę</string>
+    <string name="toolbar_overlay_sum">Pasek narzędzi pokaż na głównym ekranie</string>
+    <string name="license">Licencjonowanie …</string>
+    <string name="donation">Wsparcie projektu…</string>
+    <string name="libraries">Biblioteki…</string>
+    <string name="libraries_sum">Biblioteki używane w projekcie…</string>
+    <string name="release_history">Historia wersji…</string>
+
+    <string name="graphic_design">Projekt graficzny</string>
     </resources>
