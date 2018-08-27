@@ -46,7 +46,7 @@
     <string name="button_scan">Szukanie urządzeń</string>
 
     <string name="send_to">Wyślij do</string>
-    <string name="share">podziel się</string>
+    <string name="share">udostępnij</string>
     <string name="time">Czas [s]</string>
     <string name="chart">Wykres</string>
     <string name="demo_stopped">Zatrzymano tryb DEMO</string>
@@ -167,7 +167,7 @@
     <string name="csv_field_delimiter_description">Znaki separatora między polami danych CSV</string>
     <string name="csv_rec_delimiter">Ogranicznik rekordów CSV</string>
     <string name="csv_rec_delimiter_description">Znaki separatora między rekordami danych CSV</string>
-    <string name="csv_text_quoted">Cytowany tekst CSV</string>
+    <string name="csv_text_quoted">Tekst CSV w cudzysłowie</string>
     <string name="csv_text_quoted_description">Pola tekstowe CSV są zawarte w cudzysłowach</string>
     <string name="tab">Tabulator</string>
     <string name="comma">Przecinek</string>
@@ -177,8 +177,8 @@
     <string name="plugin_manager">Menedżer wtyczek</string>
     <string name="configure">Skonfiguruj</string>
 
-    <string name="data_disable_max">Dane pozycji wyłącz limit</string>
-    <string name="data_disable_max_description">Liczba nieprawidłowych kolejnych odpowiedzi na dane przed pozycją zostanie wyłączona</string>
+    <string name="data_disable_max">Maksymalna liczba odczytów</string>
+    <string name="data_disable_max_description">Maksymalna liczba błędów danych, po której pozycja będzie wyłączana</string>
     <string name="plugin_manager_desc">Zarządzaj zainstalowanymi wtyczkami</string>
     <string name="toolbar_overlay">Pokaż jako nakładkę</string>
     <string name="toolbar_overlay_sum">Pasek narzędzi pokaż na głównym ekranie</string>
