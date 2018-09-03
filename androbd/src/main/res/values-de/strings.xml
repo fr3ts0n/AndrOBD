@@ -140,7 +140,7 @@
     <string name="elm_options">ELM Einstellungen</string>
     <string name="elm_custom_init">ELM Initialisierung</string>
     <string name="elm_custom_init_descr">eigene ELM Befehle zur Initialisierung</string>
-    <string name="translation_credits">Übersetzung von fr3ts0n</string>
+    <string name="translation_credits">Übersetzt durch ssantos</string>
     <string name="obd_error">OBD Protkollfehler</string>
     <string name="device_address">ELM IP Adresse</string>
     <string name="device_address_description">IP Adresse des ELM Adapters</string>
