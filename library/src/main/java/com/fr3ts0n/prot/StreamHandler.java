@@ -128,8 +128,15 @@ public class StreamHandler implements TelegramWriter, Runnable
 				// trigger message handling
 			case 10:
 			case 13:
-				if (messageHandler != null && !message.isEmpty())
-					messageHandler.handleTelegram(message.toCharArray());
+				try
+				{
+					if (messageHandler != null && !message.isEmpty())
+						messageHandler.handleTelegram(message.toCharArray());
+				}
+				catch (Exception ex)
+				{
+					log.log(Level.WARNING, "handleTelegram", ex);
+				}
 				message = "";
 				break;
 
