@@ -1446,22 +1446,30 @@ public class MainActivity extends PluginManager
 					switch (CommService.medium)
 					{
 						case BLUETOOTH:
-							// if pre-settings shall be used ...
-							String address = prefs.getString(PRESELECT.LAST_DEV_ADDRESS.toString(), null);
-							if(istRestoreWanted(PRESELECT.LAST_DEV_ADDRESS)
-								 && address != null)
+							if(mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled())
 							{
-								// ... connect with previously connected device
-								connectBtDevice(address, prefs.getBoolean("bt_secure_connection", false));
+								Toast.makeText(this, getString(R.string.none_found), Toast.LENGTH_SHORT).show();
+								mode = MODE.OFFLINE;
 							}
 							else
 							{
-								// ... otherwise launch the BtDeviceListActivity to see devices and do scan
-								Intent serverIntent = new Intent(this, BtDeviceListActivity.class);
-								startActivityForResult(serverIntent,
-								                       prefs.getBoolean("bt_secure_connection", false)
-								                        ? REQUEST_CONNECT_DEVICE_SECURE
-																				: REQUEST_CONNECT_DEVICE_INSECURE );
+								// if pre-settings shall be used ...
+								String address = prefs.getString(PRESELECT.LAST_DEV_ADDRESS.toString(), null);
+								if(istRestoreWanted(PRESELECT.LAST_DEV_ADDRESS)
+								   && address != null)
+								{
+									// ... connect with previously connected device
+									connectBtDevice(address, prefs.getBoolean("bt_secure_connection", false));
+								}
+								else
+								{
+									// ... otherwise launch the BtDeviceListActivity to see devices and do scan
+									Intent serverIntent = new Intent(this, BtDeviceListActivity.class);
+									startActivityForResult(serverIntent,
+										prefs.getBoolean("bt_secure_connection", false)
+										? REQUEST_CONNECT_DEVICE_SECURE
+										: REQUEST_CONNECT_DEVICE_INSECURE );
+								}
 							}
 							break;
 
@@ -1603,8 +1611,7 @@ public class MainActivity extends PluginManager
 			setStatus(getString(R.string.demo));
 			Toast.makeText(this, getString(R.string.demo_started), Toast.LENGTH_SHORT).show();
 
-			boolean allowConnect = mBluetoothAdapter != null
-															&& mBluetoothAdapter.isEnabled();
+			boolean allowConnect = mBluetoothAdapter != null && mBluetoothAdapter.isEnabled();
 			setMenuItemVisible(R.id.secure_connect_scan, allowConnect);
 			setMenuItemVisible(R.id.disconnect, !allowConnect);
 
