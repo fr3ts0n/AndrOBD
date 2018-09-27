@@ -190,4 +190,6 @@
     <string name="libraries_sum">Бібліотеки, які використовуються в проекті…</string>
     <string name="data_disable_max_description">Кількість недійсних послідовних відповідей даних перед елементом буде вимкнено</string>
     <string name="donation">Підтримка проекту …</string>
+    <string name="data_disable_max">Ліміт відключення даних</string>
+    <string name="graphic_design">Графічний дизайн</string>
     </resources>
