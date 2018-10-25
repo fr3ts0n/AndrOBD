@@ -94,4 +94,5 @@
     <string name="extension_files">Arquivos de customização de protocolo (csv)</string>
     <string name="conversions">Conversões de Dados</string>
     <string name="data_items">Itens de dados</string>
+    <string name="comm_io">comunicando...</string>
     </resources>
