@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">Traducido por RamLinux, eltiobarbas, isalgueiro</string>
+<resources><string name="translation_credits">Traducido por fr3ts0n</string>
     <string name="app_description">Aplicacion android para diagnostico de vehiculos usando el adaptador bluetooth ELM327</string>
     <string name="send">Enviar</string>
-    <string name="not_connected">No estas conectado al dispositivo</string>
+    <string name="not_connected">Usted no esta conectado al dispositivo</string>
     <string name="title_connecting">Conectando…</string>
     <string name="title_connected_to">Conectado a %s</string>
     <string name="title_not_connected">No conectado</string>
@@ -20,37 +20,23 @@
     <string name="obd_permanentcodes">Codigos de Error OBD (permanentes)</string>
     <string name="obd_pendingcodes">Codigos de Error OBD (pendientes)</string>
     <string name="obd_clearcodes">Limpiar Codigos de Error</string>
-    <string name="obd_clear_info">"
-Esto reseteara el MIL y limpiara todas las emisiones-relacionadas al diagnostico
-Informacion, incluida:
-
- - Diagnostico a codigos de problemas
-
- - Congelar todas las capas de datos
-
- - Testeo de datos al sensor de Oxigeno
-
- - Estado del sistema y test de monitoreo
-
- - Resultados de las pruebas al Monitor del la tarjeta madre
-
- - Distancias recorridas mientras el MIL estuvo activado
-
- - Numero de sobre-calentamientos desde que DTCs fue limpiado
-
- - Distancia recorroda desde que el DTCs fue limpiado
-
- - Tiempi de motor encendido mientras el MIL fue activado
-
- - Tiempo desde que el DTCs fue limpiado
-
-
-Algunos acciones de limpiar o reseteo pueden ocurrir con algunos fabricantes
-
-La perdida de datos puede causar que el vehiculo se mueva lentamente por un 
-
-periodo corto de tiempo mientras el ECU se recalibra el mismo.
- "</string>
+    <string name="obd_clear_info">"Esto reseteara el MIL y limpiara toda la informacion de emisiones relacionadas al
+\ndiagnostico, incluyendo:
+\n-Codigos de diagnostico
+\n-Datos congelados de los codigos de diagnostico
+\n-Datos de prueba al sensor de Oxigeno
+\n-Estado del sistema de monitoreo de pruebas no continuas
+\n-Resultados del monitoreo de pruebas no continuas
+\n-Distancias recorridas mientras el MIL estubo activado
+\n-Numero de calentamientos desde que los DTCs fueron borrados
+\n-Distancia recorrida desde que los DTCs fueron borrados
+\n-Tiempo que el motor estubo encendido cuando el MIL estaba activado
+\n-Tiempo transcurrido desde que los DTCs fueron borrados
+\n
+\nAlgotras acciones especificas del fabricante pueden ocurrir como borrado de recalibraciones o reinicializaciones.
+\nEl borrado de algunas recalibraciones puede causar que el rendimiendo del vehiculo sea pobre por un corto 
+\nperiodo de tiempo mientras la ECU aprende y se recalibra a si misma.
+\n "</string>
 
     <string name="scanning">Escaneando…</string>
     <string name="select_device">Selecciona el Adaptador</string>
@@ -79,7 +65,7 @@ periodo corto de tiempo mientras el ECU se recalibra el mismo.
     <string name="loading_data">Cargando datos…</string>
     <string name="dashboard">Pizarra</string>
     <string name="graph_actions">Graph acciones</string>
-    <string name="hud"/>
+    <string name="hud">Visualization Frontal</string>
     <string name="filter">Filtro Seleccionado</string>
     <string name="unfilter">Sin-filtro Seleccionado</string>
 
@@ -148,4 +134,61 @@ periodo corto de tiempo mientras el ECU se recalibra el mismo.
     <string name="configure">Configurar</string>
 
     <string name="day_night_mode">Modo visión diurna/nocturna</string>
+    <string name="plugin_manager">Administrador de complementos</string>
+    <string name="min_elm_timeout">Min. Tiempo de espera del ELM [ms]</string>
+    <string name="connectionlost">Se perdió la conexión con el dispositivo</string>
+    <string name="elm_timeout_descr">Tiempo de espera mínimo en [ms] para esperar la respuesta del ELM</string>
+    <string name="night_mode_description">Ajuste la pantalla a fondo oscuro</string>
+    <string name="disable_elm_cmds">Comandos ELM deshabilitados</string>
+    <string name="disable_elm_cmds_descr">activar / desactivar comandos ELM</string>
+    <string name="elm_adaptive_timing">Tiempo adaptativo del ELM</string>
+    <string name="elm_adaptive_timing_descr">¿Permitir el manejo de tiempo adaptativo en los controladores del ELM\?</string>
+    <string name="elm_reset_on_nrc">Restablecer el NRC</string>
+    <string name="elm_reset_on_nrc_descr">¿Restablecer el adaptador ELM cuando haya un error NRC\?</string>
+    <string name="select_ecu_addr">Seleccione la dirección de la ECU …</string>
+    <string name="reset_preselections">Restablecer las últimas preselecciones</string>
+    <string name="use_last_settings_description">Use la última configuración de inicio (dirección BT, dirección de la ECU, elementos de visualización ...)</string>
+    <string name="common_settings_description">Configuraciones comunes para el control de aplicaciones</string>
+    <string name="secure_connect_description">Usar conexión Bluetooth encriptada</string>
+    <string name="elm_options">Opciones del ELM</string>
+    <string name="last_none">NINGUNO</string>
+    <string name="elm_custom_init">Inicializacion Personalizada del ELM</string>
+    <string name="elm_custom_init_descr">Comandos de inicialización personalizados del ELM</string>
+
+    <string name="UNDEFINED">Indefinido</string>
+    <string name="ECU_DETECT">Deteccion de la ECU …</string>
+    <string name="STOPPED">Detenido</string>
+    <string name="DISCONNECTED">Desconectado</string>
+    <string name="DATAERROR">Error de datos</string>
+    <string name="device_address_description">Dirección IP de red del dispositivo ELM</string>
+    <string name="device_address">Dirección IP del ELM</string>
+    <string name="device_port_description">Puerto IP de la red del dispositivo ELM</string>
+    <string name="device_port">Puerto IP del ELM</string>
+    <string name="data_disable_max">Deshabilitación del Límite de datos del medidor</string>
+    <string name="data_disable_max_description">Número de respuestas de datos consecutivas no válidas antes de que se deshabilite el medidor</string>
+    <string name="autohide_toolbar_description">Ocultar automáticamente la barra de herramientas después de la retardo cuando no hay actividad</string>
+    <string name="autohide_delay">Retardo para ocultar la barra de herramientas [s]</string>
+    <string name="autohide_delay_description">Retraso en segundos sin actividad, antes de que la barra de herramientas se oculte</string>
+    <string name="csv_export_description">Opciones para formatear archivos de exportación CSV</string>
+    <string name="csv_field_delimiter">Delimitador de campo CSV</string>
+    <string name="csv_field_delimiter_description">Delimitador(es) de caracter(es) entre los campos CSV</string>
+    <string name="csv_rec_delimiter">Delimitador de registro CSV</string>
+    <string name="csv_rec_delimiter_description">Delimitador(es) de caracter(es) entre los registros de datos CSV</string>
+    <string name="csv_text_quoted">Texto citado CSV</string>
+    <string name="csv_text_quoted_description">Los campos de texto CSV se incluyen entre comillas</string>
+    <string name="tab">LENGÜETA</string>
+    <string name="comma">COMA</string>
+    <string name="semicolon">PUNTO Y COMA</string>
+    <string name="send_after_export">Enviar después de la exportación</string>
+    <string name="send_after_export_descr">¿Desea se pregunte cuando se envie el archivo CSV, justo después de la exportación\?</string>
+    <string name="plugin_manager_desc">Administrar complementos instalados</string>
+    <string name="toolbar_overlay">Mostrar como capa sobrepuesta</string>
+    <string name="toolbar_overlay_sum">Mostrar barra de herramientas superpuesta en la pantalla principal</string>
+    <string name="license">Licenciamiento …</string>
+    <string name="donation">Proyecto de apoyo …</string>
+    <string name="libraries">Librerias…</string>
+    <string name="libraries_sum">Librerias utilizadas en proyecto …</string>
+    <string name="release_history">Historial de publicación …</string>
+
+    <string name="graphic_design">Diseño gráfico</string>
     </resources>
