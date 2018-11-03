@@ -19,6 +19,7 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
@@ -36,18 +37,16 @@ public class AutoHider
 	extends TimerTask
 	implements OnTouchListener
 {
-	/** parent activity */
-	private Activity mActivity;
 	/** activities message handler */
-	private Handler mHandler;
+	private final Handler mHandler;
 	/** timestamp when component was hidden */
 	private long componentHideTime;
 	/** message ID to be sent for hiding component */
-	private int mMessageId;
+	private final int mMessageId;
 	/** current visibility state of component */
 	private boolean visible = true;
 	/** delay time[ms] before component gets hidden */
-	long TB_HIDE_DELAY = 15000;
+	private final long TB_HIDE_DELAY;
 
 	/**
 	 * Constructor
@@ -56,14 +55,13 @@ public class AutoHider
 	 * @param hideMessageId message ID of hide/sho message
 	 * @param hideDelayTime delay time[ms] before component gets hidden
 	 */
-	public AutoHider(Activity activity,
-	                 Handler handler,
-	                 int hideMessageId,
-	                 long hideDelayTime )
+	AutoHider(Activity activity,
+	          Handler handler,
+	          int hideMessageId,
+	          long hideDelayTime)
 	{
 		TB_HIDE_DELAY = hideDelayTime;
 		mMessageId = hideMessageId;
-		mActivity = activity;
 		mHandler  = handler;
 		activity.getWindow().getDecorView().setOnTouchListener(this);
 	}
@@ -76,6 +74,7 @@ public class AutoHider
 		return super.cancel();
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouch(View v, MotionEvent event)
 	{
@@ -121,7 +120,7 @@ public class AutoHider
 	/**
 	 * Show tool bar again
 	 */
-	public void showComponent()
+	void showComponent()
 	{
 		// set next hiding time
 		componentHideTime = System.currentTimeMillis() + TB_HIDE_DELAY;

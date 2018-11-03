@@ -43,7 +43,7 @@ public abstract class CommService
 	}
 
 	/** media type selection */
-	public static MEDIUM medium = MEDIUM.BLUETOOTH;
+	static MEDIUM medium = MEDIUM.BLUETOOTH;
 
 	/** Constants that indicate the current connection state */
 	public enum STATE
@@ -56,20 +56,20 @@ public abstract class CommService
 	}
 
 	// Debugging
-	protected static final String TAG = "CommService";
+	private static final String TAG = "CommService";
 
 	public static final Logger log = Logger.getLogger(TAG);
 
 	public static final ElmProt elm = new ElmProt();
 
-	protected Context mContext;
-	protected Handler mHandler = null;
-	protected STATE mState;
+	Context mContext;
+	private Handler mHandler = null;
+	STATE mState;
 
 	/**
 	 * Constructor. Prepares a new Communication session.
 	 */
-	public CommService()
+	CommService()
 	{
 		super();
 		// mAdapter = MainActivity.mBluetoothAdapter;
@@ -81,7 +81,7 @@ public abstract class CommService
 	 *
 	 * @param handler A Handler to send messages back to the UI Activity
 	 */
-	public CommService(Handler handler)
+	private CommService(Handler handler)
 	{
 		this();
 		mHandler = handler;
@@ -93,7 +93,7 @@ public abstract class CommService
 	 * @param context The UI Activity Context
 	 * @param handler A Handler to send messages back to the UI Activity
 	 */
-	public CommService(Context context, Handler handler)
+	CommService(Context context, Handler handler)
 	{
 		this(handler);
 		mContext = context;
@@ -104,7 +104,7 @@ public abstract class CommService
 	 *
 	 * @param state An integer defining the current connection state
 	 */
-	protected synchronized void setState(STATE state)
+	synchronized void setState(STATE state)
 	{
 		log.log(Level.FINE, "setState() " + mState + " -> " + state);
 		mState = state;
@@ -112,15 +112,7 @@ public abstract class CommService
 		// Give the new state to the Handler so the UI Activity can update
 		mHandler.obtainMessage(MainActivity.MESSAGE_STATE_CHANGE, state).sendToTarget();
 	}
-
-	/**
-	 * Return the current connection state.
-	 */
-	public synchronized STATE getState()
-	{
-		return mState;
-	}
-
+	
 	/**
 	 * Start the chat service. Specifically start AcceptThread to begin a session
 	 * in listening (server) mode. Called by the Activity onResume()
@@ -133,7 +125,7 @@ public abstract class CommService
 	public abstract void stop();
 
 	/**
-	 * Write to the output device in an unsynchronized manner
+	 * Write to the output device in an un-synchronized manner
 	 *
 	 * @param out The bytes to write
 	 */
@@ -150,7 +142,7 @@ public abstract class CommService
 	/**
 	 * Indicate that the connection attempt failed and notify the UI Activity.
 	 */
-	protected void connectionFailed()
+	void connectionFailed()
 	{
 		stop();
 		// set new state offline
@@ -166,7 +158,7 @@ public abstract class CommService
 	/**
 	 * Indicate that the connection was lost and notify the UI Activity.
 	 */
-	protected void connectionLost()
+	void connectionLost()
 	{
 		stop();
 		// set new state offline
@@ -182,7 +174,7 @@ public abstract class CommService
 	/**
 	 * Indicate that the connection was established and notify the UI Activity.
 	 */
-	protected void connectionEstablished(String deviceName)
+	void connectionEstablished(String deviceName)
 	{
 		// Send the name of the connectionEstablished device back to the UI Activity
 		Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DEVICE_NAME);

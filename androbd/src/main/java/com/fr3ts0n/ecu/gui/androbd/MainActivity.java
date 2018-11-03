@@ -19,6 +19,7 @@
 package com.fr3ts0n.ecu.gui.androbd;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -197,7 +198,7 @@ public class MainActivity extends PluginManager
 	/**
 	 * Member object for the BT comm services
 	 */
-	private static CommService mCommService = null;
+	private CommService mCommService = null;
 	/**
 	 * Local Bluetooth adapter
 	 */
@@ -220,7 +221,7 @@ public class MainActivity extends PluginManager
 	/**
 	 * Timer for display updates
 	 */
-	private static Timer updateTimer = new Timer();
+	private static final Timer updateTimer = new Timer();
 	/**
 	 * initial state of bluetooth adapter
 	 */
@@ -234,9 +235,9 @@ public class MainActivity extends PluginManager
 	 */
 	private static Toast exitToast = null;
 	/** file helper */
-	private static FileHelper fileHelper;
+	private FileHelper fileHelper;
 	/** the local list view */
-	protected View mListView;
+	private View mListView;
 	/** current data view mode */
 	private DATA_VIEW_MODE dataViewMode = DATA_VIEW_MODE.LIST;
 	/** AutoHider for the toolbar */
@@ -245,7 +246,7 @@ public class MainActivity extends PluginManager
     private FileHandler logFileHandler;
 
 	/** handler for freeze frame selection */
-	AdapterView.OnItemSelectedListener ff_selected = new AdapterView.OnItemSelectedListener()
+	private final AdapterView.OnItemSelectedListener ff_selected = new AdapterView.OnItemSelectedListener()
 	{
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
@@ -272,7 +273,7 @@ public class MainActivity extends PluginManager
 	private MODE mode = MODE.OFFLINE;
 
 	/** empty string set as default parameter*/
-	static final Set<String> emptyStringSet = new HashSet<String>();
+	private static final Set<String> emptyStringSet = new HashSet<>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -892,6 +893,7 @@ public class MainActivity extends PluginManager
 	/**
 	 * Handle message requests
 	 */
+	@SuppressLint("HandlerLeak")
 	private transient final Handler mHandler = new Handler()
 	{
 		@Override
@@ -976,9 +978,9 @@ public class MainActivity extends PluginManager
 									}
 									// set up data update timer
 									updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
-								} catch (Exception ignored)
+								} catch (Exception e)
 								{
-									log.log(Level.FINER, "Error adding PV", ignored);
+									log.log(Level.FINER, "Error adding PV", e);
 								}
 								break;
 
@@ -1070,7 +1072,7 @@ public class MainActivity extends PluginManager
 	 * @param preselect specified preselect
 	 * @return flag if preselection shall be restored
 	 */
-	boolean istRestoreWanted(PRESELECT preselect)
+	private boolean istRestoreWanted(PRESELECT preselect)
 	{
 		return prefs.getStringSet(PREF_USE_LAST, emptyStringSet).contains(preselect.toString());
 	}
@@ -1080,7 +1082,7 @@ public class MainActivity extends PluginManager
 	 *
 	 * If previously selected items shall be re-selected, then re-select them
 	 */
-	public void checkToRestoreLastDataSelection()
+	private void checkToRestoreLastDataSelection()
 	{
 		// if last data items shall be restored
 		if(istRestoreWanted(PRESELECT.LAST_ITEMS))
@@ -1108,7 +1110,7 @@ public class MainActivity extends PluginManager
 	 * If last view mode shall be restored by user settings,
 	 * then restore the last selected view mode
 	 */
-	void checkToRestoreLastViewMode()
+	private void checkToRestoreLastViewMode()
 	{
 		// if last view mode shall be restored
 		if(istRestoreWanted(PRESELECT.LAST_VIEW_MODE))
@@ -1145,7 +1147,7 @@ public class MainActivity extends PluginManager
 	 * Prompt for selection of a single ECU from list of available ECUs
 	 * @param ecuAdresses List of available ECUs
 	 */
-	protected void selectEcu(final Set<Integer> ecuAdresses)
+	private void selectEcu(final Set<Integer> ecuAdresses)
 	{
 		// if more than one ECUs available ...
 		if(ecuAdresses.size() > 1)
@@ -1155,7 +1157,7 @@ public class MainActivity extends PluginManager
 			if(istRestoreWanted(PRESELECT.LAST_ECU_ADDRESS)
 			   && ecuAdresses.contains(preferredAddress))
 			{
-				// set addrerss
+				// set address
 				CommService.elm.setEcuAddress(preferredAddress);
 			}
 			else
@@ -1204,7 +1206,7 @@ public class MainActivity extends PluginManager
 	 * OnClick handler - Unhide action bar
 	 * @param view view source of click event
 	 */
-	public void unHideActionBar(View view)
+	private void unHideActionBar(View view)
 	{
 		if(toolbarAutoHider != null)
 			toolbarAutoHider.showComponent();
@@ -1224,12 +1226,12 @@ public class MainActivity extends PluginManager
 		}
 	};
 
-	public boolean isNightMode()
+	private boolean isNightMode()
 	{
 		return nightMode;
 	}
 
-	public void setNightMode(boolean nightMode)
+	private void setNightMode(boolean nightMode)
 	{
 		this.nightMode = nightMode;
 		setTheme(nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
@@ -1300,7 +1302,7 @@ public class MainActivity extends PluginManager
 	/**
 	 * start/stop the autmatic toolbar hider
 	 */
-	void setAutoHider(boolean active)
+	private void setAutoHider(boolean active)
 	{
 		// disable existing hider
 		if(toolbarAutoHider != null)
@@ -1332,6 +1334,7 @@ public class MainActivity extends PluginManager
 	 *
 	 * @return preference int value
 	 */
+	@SuppressLint("DefaultLocale")
 	private int getPrefsInt(String key, int defaultValue)
 	{
 		int result = defaultValue;
@@ -1379,13 +1382,11 @@ public class MainActivity extends PluginManager
 		ObdProt.VidPvs.removePvChangeListener(this);
 		ObdProt.tCodes.removePvChangeListener(this);
 	}
-
-	MODE previousMode;
-
+	
 	/**
 	 * get current operating mode
 	 */
-	public MODE getMode()
+	private MODE getMode()
 	{
 		return mode;
 	}
@@ -1395,7 +1396,7 @@ public class MainActivity extends PluginManager
 	 *
 	 * @param mode new mode
 	 */
-	public void setMode(MODE mode)
+	private void setMode(MODE mode)
 	{
 		// if this is a mode change, or file reload ...
 		if (mode != this.mode || mode == MODE.FILE)
@@ -1465,7 +1466,6 @@ public class MainActivity extends PluginManager
 
 			}
 			// remember previous mode
-			previousMode = this.mode;
 			// set new mode
 			this.mode = mode;
 			setStatus(mode.toString());
@@ -1477,7 +1477,7 @@ public class MainActivity extends PluginManager
 	 *
 	 * @param cnvId ID for metric/imperial conversion
 	 */
-	void setConversionSystem(int cnvId)
+	private void setConversionSystem(int cnvId)
 	{
 		log.info("Conversion: " + getResources().getStringArray(R.array.measure_options)[cnvId]);
 		if (EcuDataItem.cnvSystem != cnvId)
@@ -1497,6 +1497,7 @@ public class MainActivity extends PluginManager
 		try
 		{
 			// ensure log directory is available
+			//noinspection ResultOfMethodCallIgnored
 			new File(logFileName).mkdirs();
 			// Create new log file handler (max. 250 MB, 5 files rotated, non appending)
 			logFileHandler = new FileHandler( logFileName.concat("/AndrOBD.log.%g.txt"),
@@ -1505,15 +1506,16 @@ public class MainActivity extends PluginManager
 				false);
 			// Set log message formatter
 			logFileHandler.setFormatter(new SimpleFormatter() {
-				String format = "%1$tF\t%1$tT.%1$tL\t%4$s\t%3$s\t%5$s%n";
+				final String format = "%1$tF\t%1$tT.%1$tL\t%4$s\t%3$s\t%5$s%n";
 				
+				@SuppressLint("DefaultLocale")
 				@Override
 				public synchronized String format(LogRecord lr) {
 					return String.format(format,
 						new Date(lr.getMillis()),
 						lr.getSourceClassName(),
 						lr.getLoggerName(),
-						lr.getLevel().getLocalizedName(),
+						lr.getLevel().getName(),
 						lr.getMessage()
 					);
 				}
@@ -1554,7 +1556,7 @@ public class MainActivity extends PluginManager
 	 * Load optional extension files which may have
 	 * been defined in preferences
 	 */
-	public void loadPreferredExtensions()
+	private void loadPreferredExtensions()
 	{
 		String errors = "";
 
@@ -1666,7 +1668,7 @@ public class MainActivity extends PluginManager
 	/**
 	 * Select file to be loaded
 	 */
-	public void selectFileToLoad()
+	private void selectFileToLoad()
 	{
 		File file = new File(FileHelper.getPath(this));
 		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -1719,7 +1721,7 @@ public class MainActivity extends PluginManager
 	 *
 	 * @param newObdService OBD service ID to be activated
 	 */
-	public void setObdService(int newObdService, CharSequence menuTitle)
+	private void setObdService(int newObdService, CharSequence menuTitle)
 	{
 		// remember this as current OBD service
 		obdService = newObdService;
@@ -1752,7 +1754,7 @@ public class MainActivity extends PluginManager
 		// set protocol service
 		CommService.elm.setService(newObdService, (getMode() != MODE.FILE));
 		// show / hide freeze frame selector */
-		Spinner ff_selector = (Spinner) findViewById(R.id.ff_selector);
+		Spinner ff_selector = findViewById(R.id.ff_selector);
 		ff_selector.setOnItemSelectedListener(ff_selected);
 		ff_selector.setAdapter(mDfcAdapter);
 		ff_selector.setVisibility(
@@ -1798,7 +1800,7 @@ public class MainActivity extends PluginManager
 			for (int pos : getSelectedPositions())
 			{
 				EcuDataPv pv = (EcuDataPv) mPidAdapter.getItem(pos);
-				selPids.add(pv.getAsInt(EcuDataPv.FID_PID));
+				selPids.add(pv != null ? pv.getAsInt(EcuDataPv.FID_PID) : 0);
 				filteredList.put(pv.toString(), pv);
 			}
 			mPidAdapter.setPvList(filteredList);
@@ -1956,7 +1958,7 @@ public class MainActivity extends PluginManager
 	 * clear OBD fault codes after a warning
 	 * confirmation dialog is shown and the operation is confirmed
 	 */
-	protected void clearObdFaultCodes()
+	private void clearObdFaultCodes()
 	{
 		dlgBuilder
 			.setIcon(android.R.drawable.ic_dialog_info)

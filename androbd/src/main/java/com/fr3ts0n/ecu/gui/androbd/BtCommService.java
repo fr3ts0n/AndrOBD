@@ -44,13 +44,11 @@ import java.util.logging.Level;
 @SuppressLint("NewApi")
 public class BtCommService extends CommService
 {
-
-	// Member fields
-	private final BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
+	
 	private BtConnectThread mBtConnectThread;
 	private BtWorkerThread mBtWorkerThread;
 	/** communication stream handler */
-	public StreamHandler ser = new StreamHandler();
+	private final StreamHandler ser = new StreamHandler();
 	
 	
 	/**
@@ -59,11 +57,13 @@ public class BtCommService extends CommService
 	 * @param context The UI Activity Context
 	 * @param handler A Handler to send messages back to the UI Activity
 	 */
-	public BtCommService(Context context, Handler handler)
+	BtCommService(Context context, Handler handler)
 	{
 		super(context, handler);
 
 		// Always cancel discovery because it will slow down a connection
+		// Member fields
+		BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
 		mAdapter.cancelDiscovery();
 		
 		// set up protocol handlers
@@ -138,8 +138,8 @@ public class BtCommService extends CommService
 	 * @param socket The BluetoothSocket on which the connection was made
 	 * @param device The BluetoothDevice that has been connected
 	 */
-	public synchronized void connected(BluetoothSocket socket, BluetoothDevice
-		device, final String socketType)
+	private synchronized void connected(BluetoothSocket socket, BluetoothDevice
+		                                                            device, final String socketType)
 	{
 		log.log(Level.FINE, "connected, Socket Type:" + socketType);
 
@@ -189,7 +189,7 @@ public class BtCommService extends CommService
 	}
 
 	/**
-	 * Write to the BtWorkerThread in an unsynchronized manner
+	 * Write to the BtWorkerThread in an un-synchronized manner
 	 *
 	 * @param out The bytes to write
 	 * @see BtWorkerThread#write(byte[])
@@ -197,7 +197,7 @@ public class BtCommService extends CommService
 	@Override
 	public synchronized void write(byte[] out)
 	{
-		// Perform the write unsynchronized
+		// Perform the write un-synchronized
 		mBtWorkerThread.write(out);
 	}
 
@@ -209,9 +209,9 @@ public class BtCommService extends CommService
 	{
 		private final BluetoothDevice mmDevice;
 		private BluetoothSocket mmSocket;
-		private String mSocketType;
+		private final String mSocketType;
 
-		public BtConnectThread(BluetoothDevice device, boolean secure)
+		BtConnectThread(BluetoothDevice device, boolean secure)
 		{
 			mmDevice = device;
 			BluetoothSocket tmp = null;
@@ -250,15 +250,15 @@ public class BtCommService extends CommService
 		{
 			if(log.isLoggable(Level.INFO))
 			{
-				String message = msg;
+				StringBuilder message = new StringBuilder(msg);
 				// dump supported UUID's
-				message += " - UUIDs:";
+				message.append(" - UUIDs:");
 				ParcelUuid uuids[] = socket.getRemoteDevice().getUuids();
 				for (ParcelUuid uuid: uuids)
 				{
-					message += uuid.getUuid().toString() + ",";
+					message.append(uuid.getUuid().toString()).append(",");
 				}
-				log.log(Level.FINE, message);
+				log.log(Level.FINE, message.toString());
 			}
 		}
 		
@@ -285,6 +285,7 @@ public class BtCommService extends CommService
 				Class<?> clazz = mmSocket.getRemoteDevice().getClass();
 				Class<?>[] paramTypes = new Class<?>[]{Integer.TYPE};
 				try {
+					//noinspection JavaReflectionMemberAccess
 					Method m = clazz.getMethod("createRfcommSocket", paramTypes);
 					Object[] params = new Object[]{1};
 					sockFallback = (BluetoothSocket) m.invoke(mmSocket.getRemoteDevice(), params);
@@ -336,7 +337,7 @@ public class BtCommService extends CommService
 		private final InputStream mmInStream;
 		private final OutputStream mmOutStream;
 
-		public BtWorkerThread(BluetoothSocket socket, String socketType)
+		BtWorkerThread(BluetoothSocket socket, String socketType)
 		{
 			log.log(Level.FINE, "create BtWorkerThread: " + socketType);
 			mmSocket = socket;
@@ -382,7 +383,7 @@ public class BtCommService extends CommService
 		 *
 		 * @param buffer The bytes to write
 		 */
-		public synchronized void write(byte[] buffer)
+		synchronized void write(byte[] buffer)
 		{
 			ser.writeTelegram(new String(buffer).toCharArray());
 		}
