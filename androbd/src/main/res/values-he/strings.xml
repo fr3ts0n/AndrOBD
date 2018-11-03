@@ -93,7 +93,7 @@
     <string name="select_fault_code">בחירת קוד תקלה…</string>
     <string name="select_medium">סוג המתאם…</string>
 
-    <string name="devices_found">%s התקני USB נמצאו</string>
+    <string name="devices_found">%d התקני USB נמצאו</string>
     <string name="min_elm_timeout">תום זמן למענה עבור ELM [מילישניות]</string>
     <string name="unabletoconnect">לא ניתן להתחבר להתקן</string>
     <string name="connectionlost">החיבור להתקן אבד</string>

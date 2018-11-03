@@ -37,7 +37,7 @@ public class NetworkCommService
 {
 	public Socket mSocket;
 	/** communication stream handler */
-	public StreamHandler ser = new StreamHandler();;
+	public StreamHandler ser = new StreamHandler();
 	public Thread serThread;
 
 	/** default constructor */

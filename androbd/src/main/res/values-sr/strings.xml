@@ -92,7 +92,7 @@
     <string name="select_fault_code">Izaberite kod greske …</string>
     <string name="select_medium">Tip adaptera …</string>
 
-    <string name="devices_found">%s USB uredjaj(a) pronadjeno</string>
+    <string name="devices_found">%d USB uredjaj(a) pronadjeno</string>
     <string name="min_elm_timeout">Min. ELM istek vremena [ms]</string>
     <string name="unabletoconnect">Nemoguce povezivanje sa uredjajem</string>
     <string name="connectionlost">Veza sa uredjajem je prekinuta</string>

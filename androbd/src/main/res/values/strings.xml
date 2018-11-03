@@ -151,7 +151,7 @@ period of time while the ECU recalibrates itself.
     <string name="select_fault_code">Select fault code …</string>
     <string name="select_medium">Adapter type …</string>
 
-    <string name="devices_found">%s USB device(s) found</string>
+    <string name="devices_found">%d USB device(s) found</string>
     <string name="min_elm_timeout">Min. ELM timeout [ms]</string>
     <string name="unabletoconnect">Unable to connect device</string>
     <string name="connectionlost">Device connection was lost</string>

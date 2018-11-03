@@ -92,7 +92,7 @@
     <string name="select_fault_code">Wybierz kod błędu…</string>
     <string name="select_medium">Typ adaptera …</string>
 
-    <string name="devices_found">%s znalezionych urządzeń USB</string>
+    <string name="devices_found">%d znalezionych urządzeń USB</string>
     <string name="min_elm_timeout">Min. limit czasu ELM [ms]</string>
     <string name="unabletoconnect">Nie można podłączyć urządzenia</string>
     <string name="connectionlost">Podłączenie urządzenia zostało utracone</string>

@@ -97,7 +97,7 @@
     <string name="select_fault_code">Seleziona codice di erroe…</string>
     <string name="select_medium">Tipo di adattatore…</string>
 
-    <string name="devices_found">"%s  Dispositvi USB rilevato"</string>
+    <string name="devices_found">%d  Dispositvi USB rilevato</string>
     <string name="min_elm_timeout">Timeout ELM min. [ms]</string>
     <string name="unabletoconnect">Impossibile collegare il dispositivo</string>
     <string name="connectionlost">Connessione con il dispositivo persa</string>

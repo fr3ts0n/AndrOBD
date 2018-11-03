@@ -208,7 +208,7 @@ public class DashBoardActivity extends Activity
 		int minHeight = height / numRows;
 
 		/* get grid object */
-		grid = (GridView) findViewById(android.R.id.list);
+		grid = findViewById(android.R.id.list);
 		grid.setNumColumns(numColumns);
 
 		// set data adapter

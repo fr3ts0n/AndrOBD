@@ -93,7 +93,7 @@
     <string name="select_fault_code">Seleccione el código de error …</string>
     <string name="select_medium">Tipo de adaptador …</string>
 
-    <string name="devices_found">%s dispositivo(s) USB encontrado(s)</string>
+    <string name="devices_found">%d dispositivo(s) USB encontrado(s)</string>
     <string name="unabletoconnect">Imposible conectar con el dispositivo</string>
     <string name="night_mode">Modo noche</string>
     <string name="disconnect">Desconectar</string>

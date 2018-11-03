@@ -109,7 +109,7 @@
     <string name="select_fault_code">Choisir un code d\'erreur…</string>
     <string name="select_medium">Type d\'adaptateur…</string>
 
-    <string name="devices_found">%s appareil(s) USB trouvé(s)</string>
+    <string name="devices_found">%d appareil(s) USB trouvé(s)</string>
     <string name="min_elm_timeout">Timeout min. pour l\'ELM (ms)</string>
     <string name="unabletoconnect">Impossible de connecter l\'appareil</string>
     <string name="connectionlost">La connexion est perdue</string>

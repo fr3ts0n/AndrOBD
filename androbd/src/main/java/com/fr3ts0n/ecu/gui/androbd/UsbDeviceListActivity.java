@@ -19,6 +19,7 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -60,6 +61,7 @@ public final class UsbDeviceListActivity extends Activity
 	private static final int MESSAGE_REFRESH = 101;
 	private static final long REFRESH_TIMEOUT_MILLIS = 5000;
 
+	@SuppressLint("HandlerLeak")
 	private final Handler mHandler = new Handler()
 	{
 		@Override
@@ -79,7 +81,7 @@ public final class UsbDeviceListActivity extends Activity
 
 	};
 
-	private List<UsbSerialPort> mEntries = new ArrayList<UsbSerialPort>();
+	private final List<UsbSerialPort> mEntries = new ArrayList<>();
 	private ArrayAdapter<UsbSerialPort> mAdapter;
 
 	@Override
@@ -89,7 +91,7 @@ public final class UsbDeviceListActivity extends Activity
 		setContentView(R.layout.usb_list);
 
 		mUsbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
-		ListView mListView = (ListView) findViewById(R.id.deviceList);
+		ListView mListView = findViewById(R.id.deviceList);
 		mAdapter = new ArrayAdapter<UsbSerialPort>(this,
 		                                           android.R.layout.simple_expandable_list_item_2,
 		                                           mEntries)
@@ -102,7 +104,8 @@ public final class UsbDeviceListActivity extends Activity
 				{
 					final LayoutInflater inflater =
 						(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-					row = (TwoLineListItem) inflater.inflate(android.R.layout.simple_list_item_2, null);
+					row = (TwoLineListItem) (inflater != null ? inflater.inflate(
+						android.R.layout.simple_list_item_2, null) : null);
 				} else
 				{
 					row = (TwoLineListItem) convertView;
@@ -163,6 +166,7 @@ public final class UsbDeviceListActivity extends Activity
 		mHandler.removeMessages(MESSAGE_REFRESH);
 	}
 
+	@SuppressLint("StaticFieldLeak")
 	private void refreshDeviceList()
 	{
 		new AsyncTask<Void, Void, List<UsbSerialPort>>()
@@ -173,7 +177,7 @@ public final class UsbDeviceListActivity extends Activity
 				Log.d(TAG, "Refreshing device list ...");
 				final List<UsbSerialDriver> drivers =
 					UsbSerialProber.getDefaultProber().findAllDrivers(mUsbManager);
-				final List<UsbSerialPort> result = new ArrayList<UsbSerialPort>();
+				final List<UsbSerialPort> result = new ArrayList<>();
 
 				for (final UsbSerialDriver driver : drivers)
 				{
@@ -187,17 +191,18 @@ public final class UsbDeviceListActivity extends Activity
 				return result;
 			}
 
+			@SuppressLint("StringFormatInvalid")
 			@Override
 			protected void onPostExecute(List<UsbSerialPort> result)
 			{
 				mEntries.clear();
 				mEntries.addAll(result);
-				TextView numFound = (TextView) findViewById(R.id.num_found);
+				TextView numFound = findViewById(R.id.num_found);
 				numFound.setText(getString(R.string.devices_found, result.size()));
 				mAdapter.notifyDataSetChanged();
 				Log.d(TAG, "Done refreshing, " + mEntries.size() + " entries found.");
 			}
 
-		}.execute((Void) null);
+		}.execute();
 	}
 }

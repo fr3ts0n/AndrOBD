@@ -68,7 +68,7 @@ public class BtDeviceListActivity extends Activity
 			new ArrayAdapter<String>(this, R.layout.device_name);
 		
 		// Find and set up the ListView for paired devices
-		ListView pairedListView = (ListView) findViewById(R.id.paired_devices);
+		ListView pairedListView = findViewById(R.id.paired_devices);
 		pairedListView.setAdapter(mPairedDevicesArrayAdapter);
 
 		if(mBtAdapter == null || !mBtAdapter.isEnabled())

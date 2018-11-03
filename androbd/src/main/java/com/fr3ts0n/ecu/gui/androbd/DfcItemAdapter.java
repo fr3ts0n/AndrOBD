@@ -60,8 +60,8 @@ public class DfcItemAdapter extends ObdItemAdapter
 		{
 			v = mInflater.inflate(R.layout.obd_item, parent, false);
 		}
-		TextView tvDescr = (TextView) v.findViewById(R.id.obd_label);
-		TextView tvValue = (TextView) v.findViewById(R.id.obd_units);
+		TextView tvDescr = v.findViewById(R.id.obd_label);
+		TextView tvValue = v.findViewById(R.id.obd_units);
 
 		tvValue.setText(String.valueOf(currPv.get(EcuCodeItem.FID_CODE)));
 		tvDescr.setText(String.valueOf(currPv.get(EcuCodeItem.FID_DESCRIPT)));

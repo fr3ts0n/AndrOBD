@@ -170,8 +170,8 @@ public class SettingsActivity
             for (ElmProt.AdaptTimingMode mode : values)
             {
                 titles[i] = mode.toString();
-                keys[i] = mode.toString();;
-                i++;
+                keys[i] = mode.toString();
+	            i++;
             }
             // set enries and keys
             pref.setEntries(titles);

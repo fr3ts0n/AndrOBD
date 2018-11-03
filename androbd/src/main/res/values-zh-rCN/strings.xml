@@ -95,7 +95,7 @@
     <string name="select_fault_code">选择故障码…</string>
     <string name="select_medium">适配器类型…</string>
 
-    <string name="devices_found">找到 %s 个USB设备</string>
+    <string name="devices_found">找到 %d 个USB设备</string>
     <string name="min_elm_timeout">最小ELM超时时间 [ms]</string>
     <string name="unabletoconnect">无法连接到设备</string>
     <string name="connectionlost">设备连接已断开</string>

@@ -97,7 +97,7 @@
     <string name="select_fault_code">Välj felkod…</string>
     <string name="select_medium">Adaptertyp…</string>
 
-    <string name="devices_found">%s USB-enheter funna</string>
+    <string name="devices_found">%d USB-enheter funna</string>
     <string name="min_elm_timeout">Min. ELM-tidsgräns [ms]</string>
     <string name="unabletoconnect">Kan inte ansluta till enhet</string>
     <string name="connectionlost">Enhetsanslutning förlorades</string>

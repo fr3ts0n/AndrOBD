@@ -97,7 +97,7 @@
     <string name="select_fault_code">Абраць код памылкі …</string>
     <string name="select_medium">Тып адаптара …</string>
 
-    <string name="devices_found">Знодзена %s USB-прылад</string>
+    <string name="devices_found">Знодзена %d USB-прылад</string>
     <string name="min_elm_timeout">Мін. абмежаванне часу ELM, мс</string>
     <string name="unabletoconnect">Немагчыма падключыць прыладу</string>
     <string name="connectionlost">Злучэнне з прыладай страчанае</string>

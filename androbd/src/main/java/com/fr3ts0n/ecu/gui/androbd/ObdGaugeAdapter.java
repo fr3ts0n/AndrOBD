@@ -127,8 +127,8 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 
 			holder = new ViewHolder();
 			// get all views into view holder
-			holder.gauge = (FrameLayout) convertView.findViewById(R.id.gauge);
-			holder.tvDescr = (TextView) convertView.findViewById(R.id.label);
+			holder.gauge = convertView.findViewById(R.id.gauge);
+			holder.tvDescr = convertView.findViewById(R.id.label);
 
 			// remember this view holder
 			convertView.setTag(holder);

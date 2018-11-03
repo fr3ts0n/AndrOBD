@@ -97,7 +97,7 @@
     <string name="select_fault_code">Hata kodunu seç …</string>
     <string name="select_medium">Adaptör tipi …</string>
 
-    <string name="devices_found">%s USB cihazı algılandı</string>
+    <string name="devices_found">%d USB cihazı algılandı</string>
     <string name="min_elm_timeout">Asgari ELM zaman aşımı [ms]</string>
     <string name="unabletoconnect">Cihaza bağlanamıyor</string>
     <string name="connectionlost">Cihazla bağlantı koptu</string>

@@ -73,7 +73,7 @@
     <string name="select_fault_code">故障コードを選択してください …</string>
     <string name="select_medium">アダプターの種類 …</string>
 
-    <string name="devices_found">%s USB デバイスが見つかりました</string>
+    <string name="devices_found">%d USB デバイスが見つかりました</string>
     <string name="min_elm_timeout">最小 ELM タイムアウト [ミリ秒]</string>
     <string name="unabletoconnect">デバイスに接続できません</string>
     <string name="connectionlost">デバイスの接続が失われました</string>

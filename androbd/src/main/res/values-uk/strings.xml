@@ -76,7 +76,7 @@
     <string name="select_fault_code">Оберіть код помилки…</string>
     <string name="select_medium">Тип адаптера…</string>
 
-    <string name="devices_found">%s USB пристрій(пристрої) знайдено</string>
+    <string name="devices_found">%d USB пристрій(пристрої) знайдено</string>
     <string name="min_elm_timeout">Мін. ELM таймаут [ms]</string>
     <string name="unabletoconnect">Неможливо з’єднатися з пристроєм</string>
     <string name="connectionlost">Зв’язок с пристроєм втрачено</string>

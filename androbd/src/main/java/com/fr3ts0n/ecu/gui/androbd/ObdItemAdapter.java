@@ -169,11 +169,11 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		// fill view fields with data
 
 		// description text
-		TextView tvDescr = (TextView) convertView.findViewById(R.id.obd_label);
+		TextView tvDescr = convertView.findViewById(R.id.obd_label);
 		tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
-		TextView tvValue = (TextView) convertView.findViewById(R.id.obd_value);
-		TextView tvUnits = (TextView) convertView.findViewById(R.id.obd_units);
-		ProgressBar pb = (ProgressBar) convertView.findViewById(R.id.bar);
+		TextView tvValue = convertView.findViewById(R.id.obd_value);
+		TextView tvUnits = convertView.findViewById(R.id.obd_units);
+		ProgressBar pb = convertView.findViewById(R.id.bar);
 
 		// format value string
 		String fmtText;
