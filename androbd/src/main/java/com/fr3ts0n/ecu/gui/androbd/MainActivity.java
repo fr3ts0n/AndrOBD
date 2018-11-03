@@ -182,9 +182,11 @@ public class MainActivity extends PluginManager
 	public static final String LOG_MASTER = "log_master";
 	public static final String KEEP_SCREEN_ON = "keep_screen_on";
 	public static final String ELM_CUSTOM_INIT_CMDS = "elm_custom_init_cmds";
-
+	
+	/** Logging */
+	private static final Logger rootLogger = Logger.getLogger("");
 	private static final Logger log = Logger.getLogger(TAG);
-
+	
 	/** dialog builder */
 	private static AlertDialog.Builder dlgBuilder;
 
@@ -322,43 +324,10 @@ public class MainActivity extends PluginManager
 		// update all settings from preferences
 		onSharedPreferenceChanged(prefs, null);
 
-		// set up logging ...
-        String logFileName = FileHelper.getPath(this).concat(File.separator).concat("log");
-        try
-		{
-            // ensure log directory is available
-            new File(logFileName).mkdirs();
-			// Create new log file handler (max. 250 MB, 5 files rotated, non appending)
-            logFileHandler = new FileHandler( logFileName.concat("/AndrOBD.log.%g.txt"),
-                                              250*1024*1024,
-                                              5,
-                                              false);
-            // Set log message formatter
-            logFileHandler.setFormatter(new SimpleFormatter() {
-                String format = "%1$tF\t%1$tT.%1$tL\t%4$s\t%3$s\t%5$s%n";
-
-                @Override
-                public synchronized String format(LogRecord lr) {
-                    return String.format(format,
-                                         new Date(lr.getMillis()),
-                                         lr.getSourceClassName(),
-                                         lr.getLoggerName(),
-                                         lr.getLevel().getLocalizedName(),
-                                         lr.getMessage()
-                    );
-                }
-            });
-            // add file logging ...
-            Logger.getLogger("").addHandler(logFileHandler);
-			// set
-            setLogLevels();
-		}
-		catch(IOException e)
-		{
-			// try to log error (at least with system logging)
-			log.log(Level.SEVERE, logFileName, e);
-		}
-        // Log program startup
+        // set up logging system
+		setupLoggers();
+  
+		// Log program startup
 		log.info(String.format("%s %s starting",
 		                       getString(R.string.app_name),
 		                       getString(R.string.app_version)));
@@ -831,7 +800,7 @@ public class MainActivity extends PluginManager
 
 		// log levels
 		if(key==null || LOG_MASTER.equals(key))
-			setLogLevels();
+			setLogLevels(rootLogger);
 
 		// update from protocol extensions
 		if(key==null || key.startsWith("ext_file-"))
@@ -1517,13 +1486,57 @@ public class MainActivity extends PluginManager
 			EcuDataItem.cnvSystem = cnvId;
 		}
 	}
+	
+	/**
+	 * Set up loggers
+	 */
+	private void setupLoggers()
+	{
+		// set file handler for log file output
+		String logFileName = FileHelper.getPath(this).concat(File.separator).concat("log");
+		try
+		{
+			// ensure log directory is available
+			new File(logFileName).mkdirs();
+			// Create new log file handler (max. 250 MB, 5 files rotated, non appending)
+			logFileHandler = new FileHandler( logFileName.concat("/AndrOBD.log.%g.txt"),
+				250*1024*1024,
+				5,
+				false);
+			// Set log message formatter
+			logFileHandler.setFormatter(new SimpleFormatter() {
+				String format = "%1$tF\t%1$tT.%1$tL\t%4$s\t%3$s\t%5$s%n";
+				
+				@Override
+				public synchronized String format(LogRecord lr) {
+					return String.format(format,
+						new Date(lr.getMillis()),
+						lr.getSourceClassName(),
+						lr.getLoggerName(),
+						lr.getLevel().getLocalizedName(),
+						lr.getMessage()
+					);
+				}
+			});
+			// add file logging ...
+			rootLogger.addHandler(logFileHandler);
+			// set
+			setLogLevels(rootLogger);
+		}
+		catch(IOException e)
+		{
+			// try to log error (at least with system logging)
+			log.log(Level.SEVERE, logFileName, e);
+		}
+	}
 
 	/**
 	 * Set logging levels from shared preferences
 	 */
-	private void setLogLevels()
+	private void setLogLevels(Logger logger)
 	{
-        Level level;
+        // get level from preferences
+		Level level;
         try
         {
             level = Level.parse(prefs.getString(LOG_MASTER, "INFO"));
@@ -1532,7 +1545,9 @@ public class MainActivity extends PluginManager
         {
             level = Level.INFO;
         }
-		Logger.getLogger("").setLevel(level);
+		
+        // set logger main level
+		logger.setLevel(level);
 	}
 
 	/**
