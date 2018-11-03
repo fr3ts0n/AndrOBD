@@ -1,23 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="send">Odeslat</string>
-    <string name="not_connected">Zařízení není připojeno</string>
+<resources>
     <string name="title_connecting">Připojuji…</string>
     <string name="title_connected_to">Připojeno k %s</string>
-    <string name="title_not_connected">Nepřipojeno</string>
-    <string name="title">Název</string>
-    <string name="welcome_to">Vítejte v</string>
     <string name="logo">Logo</string>
     <string name="back_again_to_exit">Stiskni zpět pro zavření aplikace</string>
     <string name="action_connect">Připojit</string>
     <string name="obd_none">ŽÁDNÁ služba</string>
     <string name="obd_services">OBD Služby</string>
-    <string name="scanning">Vyhledávám…</string>
     <string name="select_device">Zvolte adaptér</string>
     <string name="none_paired">Žádná spárovaná zařízení</string>
     <string name="none_found">Nebylo nalezeno žádné zařízení</string>
     <string name="title_paired_devices">Spárovaná zařízení</string>
-    <string name="title_other_devices">Další dostupná zařízení</string>
-    <string name="button_scan">Vyhledat zařízení</string>
 
     <string name="send_to">Odeslat</string>
     <string name="share">sdíled</string>
@@ -38,7 +31,6 @@
     <string name="metric">metrické</string>
     <string name="imperial">imperiální</string>
     <string name="debugging">Ladění</string>
-    <string name="refreshing">vyhledávám …</string>
     <string name="CONNECTING">Připojuji…</string>
     <string name="CONNECTED">Připojeno</string>
     <string name="STOPPED">Zastaveno</string>

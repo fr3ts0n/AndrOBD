@@ -1,13 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="translation_credits">Przetłumaczone przez LafarM</string>
     <string name="app_description">Aplikacja dla systemu Android do diagnostyki pojazdów poprzez OBD poprzez adapter bluetooth ELM327</string>
-    <string name="send">Wyślij</string>
-    <string name="not_connected">Nie jesteś połączony z urządzeniem</string>
     <string name="title_connecting">Łączenie…</string>
     <string name="title_connected_to">Połączono %s</string>
-    <string name="title_not_connected">Nie połączono</string>
-    <string name="title">tytuł</string>
-    <string name="welcome_to">Witamy w</string>
     <string name="logo">Logo</string>
     <string name="back_again_to_exit">Naciśnij cofnij ponownie, aby zamknąć tę aplikację</string>
     <string name="action_connect">Połącz</string>
@@ -37,13 +32,10 @@
 \n Utrata danych może spowodować, że pojazd będzie miał gorsze
 \n osiągi na krótki okres, podczas kalibracji ECU."</string>
 
-    <string name="scanning">Skanowanie…</string>
     <string name="select_device">Wybierz adapter</string>
     <string name="none_paired">Nie sparowano urządzeń</string>
     <string name="none_found">Nie znaleziono urządzeń</string>
     <string name="title_paired_devices">Urządzenia sparowane</string>
-    <string name="title_other_devices">Pozostałe dostępne urządzenia</string>
-    <string name="button_scan">Szukanie urządzeń</string>
 
     <string name="send_to">Wyślij do</string>
     <string name="share">udostępnij</string>
@@ -63,10 +55,8 @@
     <string name="saving_data">Zapisywanie danych …</string>
     <string name="loading_data">Ładowanie danych …</string>
     <string name="dashboard">Pulpit nawigacyjny</string>
-    <string name="graph_actions">Funkcje wykresu</string>
     <string name="hud">Wyświetlacz HUD</string>
     <string name="filter">Wybrany filtr</string>
-    <string name="unfilter">Filtracja wyłączona</string>
 
     <string name="settings">Ustawienia</string>
     <string name="common_settings">Ustawienia ogólne</string>
@@ -79,11 +69,6 @@
     <string name="debugging">Debugowanie</string>
     <string name="logging_level">Poziom logowania</string>
     <string name="logging_level_description">Poziom szczegółów do zalogowania w pliku dziennika debugowania</string>
-    <string name="master">główny</string>
-    <string name="comm_io">Komunikacja I/O</string>
-    <string name="protocol">Protokół</string>
-    <string name="process_vars">zmienne procesowe</string>
-    <string name="data">dane</string>
     <string name="last_elm">ponownie połącz ostatni adapter ELM</string>
     <string name="last_ecu">ponownie połączyć ostatni ECU</string>
     <string name="last_service">ostatnia usługa OBD</string>
@@ -98,7 +83,6 @@
     <string name="extension_files">Pliki dostosowywania protokołu (CSV)</string>
     <string name="conversions">Konwersja danych</string>
     <string name="data_items">Elementy danych</string>
-    <string name="fault_codes">Kody błędów</string>
     <string name="select_extension">Wybierz plik z rozszerzeniem .csv…</string>
     <string name="extension_loading">Ładowania personalizacji</string>
     <string name="check_cust_settings">Proszę sprawdź ustawienia personalizacji\n</string>
@@ -108,7 +92,6 @@
     <string name="select_fault_code">Wybierz kod błędu…</string>
     <string name="select_medium">Typ adaptera …</string>
 
-    <string name="refreshing">skanowanie…</string>
     <string name="devices_found">%s znalezionych urządzeń USB</string>
     <string name="min_elm_timeout">Min. limit czasu ELM [ms]</string>
     <string name="unabletoconnect">Nie można podłączyć urządzenia</string>
@@ -120,8 +103,6 @@
     <string name="disable_elm_cmds">Wyłączone komendy ELM</string>
     <string name="disable_elm_cmds_descr">włącz/wyłącz komendy ELM</string>
     <string name="elm_adaptive_timing">czas adaptacji ELM</string>
-    <string name="disabled">wyłączono</string>
-    <string name="enabled">włączono</string>
     <string name="elm_adaptive_timing_descr">Czy pozwolić na adaptacyjną obsługę taktowania sterowników ELM?</string>
     <string name="select_ecu_addr">Wskaż adres ECU …</string>
     <string name="disconnect">Rozłączyć się</string>
@@ -132,7 +113,6 @@
     <string name="secure_connect">Bezpieczne połączenie</string>
     <string name="secure_connect_description">Użyj szyfrowanego połączenia Bluetooth</string>
     <string name="elm_options">Opcje ELM</string>
-    <string name="last_none">BRAK</string>
     <string name="elm_custom_init">Niestandardowa inicjalizacja ELM</string>
     <string name="elm_custom_init_descr">Niestandardowe polecenia inicjalizacji ELM</string>
 
@@ -179,7 +159,6 @@
 
     <string name="data_disable_max">Maksymalna liczba odczytów</string>
     <string name="data_disable_max_description">Maksymalna liczba błędów danych, po której pozycja będzie wyłączana</string>
-    <string name="plugin_manager_desc">Zarządzaj zainstalowanymi dodatkami</string>
     <string name="toolbar_overlay">Pokaż na wierzchu</string>
     <string name="toolbar_overlay_sum">Pokaż pasek narzędzi na wierzchu</string>
     <string name="license">Licencjonowanie …</string>

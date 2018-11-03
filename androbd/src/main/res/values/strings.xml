@@ -5,13 +5,8 @@
     <string name="copyright_fr3ts0n" translatable="false">© 2015-2018 fr3ts0n</string>
     <string name="translation_credits">Translation by fr3ts0n</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 bluetooth adapter</string>
-    <string name="send">Send</string>
-    <string name="not_connected">You are not connected to a device</string>
     <string name="title_connecting">Connecting…</string>
     <string name="title_connected_to">Connected %s</string>
-    <string name="title_not_connected">Not Connected</string>
-    <string name="title">title</string>
-    <string name="welcome_to">Welcome to</string>
     <string name="logo">Logo</string>
     <string name="back_again_to_exit">Press back again to close this app</string>
     <!-- menu  -->
@@ -44,13 +39,10 @@ period of time while the ECU recalibrates itself.
      </string>
 
     <!--  BtDeviceListActivity -->
-    <string name="scanning">Scanning…</string>
     <string name="select_device">Select adapter</string>
     <string name="none_paired">No Devices Paired</string>
     <string name="none_found">No Devices Found</string>
     <string name="title_paired_devices">Paired Devices</string>
-    <string name="title_other_devices">Other Available Devices</string>
-    <string name="button_scan">Scan for Devices</string>
 
     <!-- ExportTask -->
     <string name="send_to">Send to</string>
@@ -71,10 +63,8 @@ period of time while the ECU recalibrates itself.
     <string name="saving_data">Saving data …</string>
     <string name="loading_data">Loading data …</string>
     <string name="dashboard">Dashboard</string>
-    <string name="graph_actions">Graph actions</string>
     <string name="hud">Head Up Display</string>
     <string name="filter">Filter selected</string>
-    <string name="unfilter">Un-filter selected</string>
 
     <!-- Settings -->
     <string name="settings">Settings</string>
@@ -98,11 +88,6 @@ period of time while the ECU recalibrates itself.
     <string name="debugging">Debugging</string>
     <string name="logging_level">Logging level</string>
     <string name="logging_level_description">Level of details to be logged into debug log file</string>
-    <string name="master">master</string>
-    <string name="comm_io">communication i/o</string>
-    <string name="protocol">protocol</string>
-    <string name="process_vars">process variables</string>
-    <string name="data">data</string>
     <string-array name="logging_options" translatable="false">
         <item>OFF</item>
         <item>SEVERE</item>
@@ -153,7 +138,6 @@ period of time while the ECU recalibrates itself.
     <string name="extension_files">Protocol customisation files (csv)</string>
     <string name="conversions">Data Conversions</string>
     <string name="data_items">Data items</string>
-    <string name="fault_codes">Fault codes</string>
     <string name="select_extension">Select .csv extension file …</string>
     <string name="extension_loading">Customisation loading</string>
     <string name="check_cust_settings">Please check your customisation settings\n</string>
@@ -167,7 +151,6 @@ period of time while the ECU recalibrates itself.
     <string name="select_fault_code">Select fault code …</string>
     <string name="select_medium">Adapter type …</string>
 
-    <string name="refreshing">scanning …</string>
     <string name="devices_found">%s USB device(s) found</string>
     <string name="min_elm_timeout">Min. ELM timeout [ms]</string>
     <string name="unabletoconnect">Unable to connect device</string>
@@ -179,8 +162,6 @@ period of time while the ECU recalibrates itself.
     <string name="disable_elm_cmds">Disabled ELM commands</string>
     <string name="disable_elm_cmds_descr">enable/disable ELM commands</string>
     <string name="elm_adaptive_timing">ELM adaptive timing</string>
-    <string name="disabled">disabled</string>
-    <string name="enabled">enabled</string>
     <string name="elm_adaptive_timing_descr">Allow adaptive timing handling in ELM drivers?</string>
     <string name="elm_reset_on_nrc">Reset on NRC</string>
     <string name="elm_reset_on_nrc_descr">Reset ELM adapter on NRC error?</string>
@@ -193,7 +174,6 @@ period of time while the ECU recalibrates itself.
     <string name="secure_connect">Secure connection</string>
     <string name="secure_connect_description">Use encrypted Bluetooth connection</string>
     <string name="elm_options">ELM options</string>
-    <string name="last_none">NONE</string>
     <string name="elm_custom_init">ELM custom init</string>
     <string name="elm_custom_init_descr">ELM custom initialisation commands</string>
 
@@ -255,7 +235,6 @@ period of time while the ECU recalibrates itself.
     <string name="semicolon">SEMICOLON</string>
     <string name="send_after_export">Send after export</string>
     <string name="send_after_export_descr">Prompt for sending CSV file right after export?</string>
-    <string name="plugin_manager_desc">Manage installed plugins</string>
     <string name="toolbar_overlay">Show as overlay</string>
     <string name="toolbar_overlay_sum">Show toolbar overlapping main screen</string>
     <string name="license">Licensing …</string>

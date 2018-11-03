@@ -2,13 +2,8 @@
 <resources>
     <string name="translation_credits">Honosítás: gidano | sympda.blog.hu</string>
     <string name="app_description">Android OBD járműdiagnosztika app ELM327 bluetooth adapterhez</string>
-    <string name="send">Küld</string>
-    <string name="not_connected">Nem csatlakozol eszközhöz</string>
     <string name="title_connecting">Csatlakozás…</string>
     <string name="title_connected_to">Csatlakozva: %s</string>
-    <string name="title_not_connected">Nincs kapcsolat</string>
-    <string name="title">cím</string>
-    <string name="welcome_to">Köszönt a</string>
     <string name="logo">Logó</string>
     <string name="back_again_to_exit">Kilépéshez nyomd ismét a Vissza gombot</string>
     <string name="action_connect">Csatlakozás</string>
@@ -37,13 +32,10 @@ információt, beleértve:
  Egyéb gyártó-specifikus törlési/visszaállítási műveletek történhetnek.
  Az adatvesztés miatt a jármű rosszul futhat rövid ideig,
  míg az ECU újrakalibrálódik."</string>
-    <string name="scanning">Vizsgálat…</string>
     <string name="select_device">Válassz ki egy eszközt</string>
     <string name="none_paired">Nincs párosított eszköz</string>
     <string name="none_found">Nem található eszköz</string>
     <string name="title_paired_devices">Párosított eszközök</string>
-    <string name="title_other_devices">Egyéb elérhető eszközök</string>
-    <string name="button_scan">Eszközök keresése</string>
     <string name="send_to">Küld …</string>
     <string name="share">Megoszt</string>
     <string name="time">Idő [mp]</string>
@@ -61,10 +53,8 @@ információt, beleértve:
     <string name="saving_data">Adat mentése …</string>
     <string name="loading_data">Adat betöltés …</string>
     <string name="dashboard">Kezelőpult</string>
-    <string name="graph_actions">Ábrázolási műveletek</string>
     <string name="hud">Kivetített Kijelző</string>
     <string name="filter">Szűrő kiválasztva</string>
-    <string name="unfilter">Nincs szűrés</string>
     <string name="settings">Beállítások</string>
     <string name="common_settings">Közös beállítások</string>
     <string name="measure_system_description">Mértékegység rendszer (metrikus / angolszász)</string>
@@ -76,11 +66,6 @@ információt, beleértve:
     <string name="debugging">Hibakeresés</string>
     <string name="logging_level">Naplózási szint</string>
     <string name="logging_level_description">A hibakeresési napló részletességi szintje</string>
-    <string name="master">mester</string>
-    <string name="comm_io">Kommunikáció i/o</string>
-    <string name="protocol">protokol</string>
-    <string name="process_vars">folyamat változók</string>
-    <string name="data">adat</string>
     <string name="last_elm">legutóbbi ELM adapter újracsatlakoztatása</string>
     <string name="last_ecu">legutóbbi ECU újracsatlakoztatása</string>
     <string name="last_service">legutóbbi OBD szolgáltatás</string>
@@ -93,7 +78,6 @@ információt, beleértve:
     <string name="extension_files">Naplófájlok testreszabása (csv)</string>
     <string name="conversions">Adat konverziók</string>
     <string name="data_items">Adat elemek</string>
-    <string name="fault_codes">Hibakódok</string>
     <string name="select_extension">Válassz .csv kiterjesztésű fájlt …</string>
     <string name="extension_loading">Testreszabások betöltése</string>
     <string name="check_cust_settings">"Jelöld ki a saját testreszabási beállításaidat"</string>
@@ -102,7 +86,6 @@ információt, beleértve:
     <string name="select_protocol">Előnyben részesített OBD protokol</string>
     <string name="select_fault_code">Hibakód kiválasztás …</string>
     <string name="select_medium">Adapter típus …</string>
-    <string name="refreshing">vizsgálat …</string>
     <string name="devices_found">%s USB eszköz található</string>
     <string name="min_elm_timeout">Min. ELM várakozás [ms]</string>
     <string name="unabletoconnect">Nem lehet csatlakozni az eszközhöz</string>
@@ -114,8 +97,6 @@ információt, beleértve:
     <string name="disable_elm_cmds">ELM parancsok kikapcsolása</string>
     <string name="disable_elm_cmds_descr">ELM parancsok be/ki kapcsolása</string>
     <string name="elm_adaptive_timing">ELM adaptív időzítés</string>
-    <string name="disabled">kikapcsolva</string>
-    <string name="enabled">engedélyezve</string>
     <string name="elm_adaptive_timing_descr">Engedélyezed, hogy az ELM illesztőprogramok kezeljék az adaptív időzítést?</string>
     <string name="elm_reset_on_nrc">Törlés NRC esetén</string>
     <string name="elm_reset_on_nrc_descr">ELM adapter alaphelyzetbe állítása NRC hiba esetén?</string>
@@ -128,7 +109,6 @@ információt, beleértve:
     <string name="secure_connect">Biztonságos kapcsolat</string>
     <string name="secure_connect_description">Titkosított Bluetooth kapcsolat használata</string>
     <string name="elm_options">ELM lehetőségek</string>
-    <string name="last_none">NINCS SEMMI</string>
     <string name="elm_custom_init">ELM egyedi inicializálás</string>
     <string name="elm_custom_init_descr">ELM egyedi inicializálási parancs</string>
     <string name="UNDEFINED">Nem definiált</string>

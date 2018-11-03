@@ -1,13 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="translation_credits">Переведено www.makedonov.ru</string>
     <string name="app_description">Android приложение для OBD диагностики с Bluetooth адаптером ELM327</string>
-    <string name="send">Отправить</string>
-    <string name="not_connected">Нет подключения к устройству</string>
     <string name="title_connecting">Соединение…</string>
     <string name="title_connected_to">Подключено к %s</string>
-    <string name="title_not_connected">Нет подключения</string>
-    <string name="title">заголовок</string>
-    <string name="welcome_to">Добро пожаловать</string>
     <string name="logo">Логотип</string>
     <string name="back_again_to_exit">Нажмите назад еще раз, чтобы закрыть приложение</string>
     <string name="action_connect">Соединение</string>
@@ -18,13 +13,10 @@
     <string name="obd_permanentcodes">Коды ошибок (сохраненные)</string>
     <string name="obd_pendingcodes">Коды ошибок (текущие)</string>
     <string name="obd_clearcodes">Сброс ошибок</string>
-    <string name="scanning">Поиск…</string>
     <string name="select_device">Выбор адаптера</string>
     <string name="none_paired">Нет сопряженных устройств</string>
     <string name="none_found">Не найдено</string>
     <string name="title_paired_devices">Сопряженные устройства</string>
-    <string name="title_other_devices">Другие доступные устройства</string>
-    <string name="button_scan">Поиск устройств</string>
 
     <string name="send_to">Отправить</string>
     <string name="share">Поделиться</string>
@@ -46,7 +38,6 @@
     <string name="load">Загрузить измерение</string>
     <string name="saved_data">Сохраненные данные</string>
     <string name="dashboard">Приборная панель</string>
-    <string name="graph_actions">Действия с графиком</string>
     <string name="hud">Главный экран</string>
     <string name="filter">Выбранный фильтр</string>
     <string name="measure_system_description">Система измерения (метрическая / имперская)</string>
@@ -58,11 +49,6 @@
     <string name="debugging">Отладка</string>
     <string name="logging_level">Уровень лога</string>
     <string name="logging_level_description">Уровень деталей лога при отладке</string>
-    <string name="master">мастер</string>
-    <string name="comm_io">связь</string>
-    <string name="protocol">протокол</string>
-    <string name="process_vars">переменные процесса</string>
-    <string name="data">данные</string>
     <string name="last_elm">переподключение к последнему ELM-адаптеру</string>
     <string name="last_ecu">переподключение к последнему ЭБУ</string>
     <string name="keep_screen_on">Оставлять экран включенным</string>
@@ -97,14 +83,12 @@
 \nдвигателя на короткий промежуток времени, до момента пока
 \nне окончится самостоятельная калибровка ЭБУ.</string>
 
-    <string name="fault_codes">Коды неисправностей</string>
     <string name="obd_options">OBD опции</string>
     <string name="obd_opt_description">Опции протокола OBD / соединения с автомобилем</string>
     <string name="select_protocol">Предпочитаемый OBD протокол</string>
     <string name="select_fault_code">Выбрать код неисправности …</string>
     <string name="select_medium">Тип адаптера …</string>
 
-    <string name="refreshing">сканирую …</string>
     <string name="devices_found">Обнаружено USB устройств: %s</string>
     <string name="min_elm_timeout">Мин. ожидание ELM [мс]</string>
     <string name="unabletoconnect">Не смог подключить устройство</string>
@@ -116,8 +100,6 @@
     <string name="disable_elm_cmds">Отключенные команды ELM</string>
     <string name="disable_elm_cmds_descr">Вкл/откл команды ELM</string>
     <string name="elm_adaptive_timing">Адаптивный тайминг ELM</string>
-    <string name="disabled">отключено</string>
-    <string name="enabled">включено</string>
     <string name="elm_adaptive_timing_descr">Разрешить управление адаптивным таймингом в драйверах ELM?</string>
     <string name="elm_reset_on_nrc">Сбросить NRC</string>
     <string name="elm_reset_on_nrc_descr">Сбросить ELM адаптер при ошибке NRC?</string>
@@ -128,7 +110,6 @@
     <string name="secure_connect">Безопасное соединение</string>
     <string name="secure_connect_description">Использовать зашифрованный Bluetooth</string>
     <string name="elm_options">Опции ELM</string>
-    <string name="last_none">-</string>
     <string name="elm_custom_init">Задать инициализацию ELM</string>
     <string name="elm_custom_init_descr">Команды инициализации ELM</string>
 
@@ -154,7 +135,6 @@
     <string name="autohide_toolbar">Спрятать инструменты</string>
     <string name="autohide_toolbar_description">Автоматически скрывать панель инструментов при бездействии</string>
     <string name="autohide_delay">Задержка скрытия панели инструментов [с]</string>
-    <string name="unfilter">Фильтр очищен</string>
 
     <string name="last_data_items">Последние выбранные данные</string>
     <string name="last_view_mode">Последний режим представления данных</string>
@@ -166,7 +146,6 @@
 
     <string name="semicolon">ТОЧКА С ЗАПЯТОЙ</string>
     <string name="send_after_export">Отправить после экспорта</string>
-    <string name="plugin_manager_desc">Управление установленными плагинами</string>
     <string name="toolbar_overlay">Показать как наложение</string>
     <string name="license">Лицензирование …</string>
     <string name="donation">Проект поддержки …</string>

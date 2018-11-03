@@ -1,13 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="translation_credits">Çevri:Alpay Bilgiç www.mobilexper.com</string>
     <string name="app_description">"Android OBD ELM 327 Bluetooth cihazı üzerinden araç teşhis  uygulaması"</string>
-    <string name="send">Gönder</string>
-    <string name="not_connected">Cihaza Bağlanamadı</string>
     <string name="title_connecting">Bağlanıyor …</string>
     <string name="title_connected_to">Bağlandı %s</string>
-    <string name="title_not_connected">Bağlı Değil</string>
-    <string name="title">Başlık</string>
-    <string name="welcome_to">Hoşgeldiniz</string>
     <string name="logo">Logo</string>
     <string name="back_again_to_exit">Uygulamadan çıkmak için tekrar geri tuşuna basın</string>
     <string name="action_connect">Bağlan</string>
@@ -37,13 +32,10 @@
 \n  Veri kaybı, aracın kısa bir süre için düzensiz çalışmasına neden olabilir
 \n  ECU kendini yeniden kalibre ederken zaman geçebilir."</string>
 
-    <string name="scanning">Taranıyor…</string>
     <string name="select_device">Adaptör Seç</string>
     <string name="none_paired">Cihaz Eşleşmedi</string>
     <string name="none_found">Cihaz bulunamadı</string>
     <string name="title_paired_devices">Eşleşen Cihazlar</string>
-    <string name="title_other_devices">Diğer Eşleştirilebilir Cihazlar</string>
-    <string name="button_scan">Cihazları Tara</string>
 
     <string name="send_to">Gönder</string>
     <string name="share">Paylaş</string>
@@ -63,10 +55,8 @@
     <string name="saving_data">Veriler kaydediliyor …</string>
     <string name="loading_data">Veriler hazırlanıyor …</string>
     <string name="dashboard">Panel</string>
-    <string name="graph_actions">Grafik eylemleri</string>
     <string name="hud">Hayalet Gösterge</string>
     <string name="filter">Seçimleri filtrele</string>
-    <string name="unfilter">Filtreyi sıfırla</string>
 
     <string name="settings">Ayarlar</string>
     <string name="common_settings">Ortak ayarlar</string>
@@ -79,11 +69,6 @@
     <string name="debugging">Hata ayıklama</string>
     <string name="logging_level">Log seviyesi</string>
     <string name="logging_level_description">Kaydedilecek log detay seviyesi</string>
-    <string name="master">Birinci</string>
-    <string name="comm_io">iletişim i/o</string>
-    <string name="protocol">Protokol</string>
-    <string name="process_vars">işlem değişkenleri</string>
-    <string name="data">veri</string>
     <string name="last_elm">Son ELM cihazına tekrar bağlan</string>
     <string name="last_ecu">Ecuya Tekrar bağlan</string>
     <string name="last_service">Son OBD servisi</string>
@@ -98,7 +83,6 @@
     <string name="extension_files">Protokol özelleştieme dosyası (csv)</string>
     <string name="conversions">Veri Dönüşümü</string>
     <string name="data_items">Veriler</string>
-    <string name="fault_codes">Hata kodları</string>
     <string name="select_extension">CVS eklenti dosyasını seçin …</string>
     <string name="extension_loading">Özelleştirme hazırlanıyor</string>
     <string name="check_cust_settings">Lütfen özelleştirme ayarlarınızı kontrol edin
@@ -113,7 +97,6 @@
     <string name="select_fault_code">Hata kodunu seç …</string>
     <string name="select_medium">Adaptör tipi …</string>
 
-    <string name="refreshing">taranıyor …</string>
     <string name="devices_found">%s USB cihazı algılandı</string>
     <string name="min_elm_timeout">Asgari ELM zaman aşımı [ms]</string>
     <string name="unabletoconnect">Cihaza bağlanamıyor</string>
@@ -125,8 +108,6 @@
     <string name="disable_elm_cmds">ELM komutlarını kapat</string>
     <string name="disable_elm_cmds_descr">"ELM komutlarını etkinleştir/kapat "</string>
     <string name="elm_adaptive_timing">ELM zamanlaması</string>
-    <string name="disabled">kapalı</string>
-    <string name="enabled">etkin</string>
     <string name="elm_adaptive_timing_descr">ELM sürücüleri ELM zamanlamasını yönetsin mi?</string>
     <string name="elm_reset_on_nrc">NRC ile Resetle</string>
     <string name="elm_reset_on_nrc_descr">NRC hatası olursa ELM resetlensin mi?</string>
@@ -139,7 +120,6 @@
     <string name="secure_connect">Güvenli bağlantı</string>
     <string name="secure_connect_description">Şifreli Bluetooth bağlantısı kullan</string>
     <string name="elm_options">ELM ayarları</string>
-    <string name="last_none">Hiçbiri</string>
     <string name="elm_custom_init">ELM özel açılış</string>
     <string name="elm_custom_init_descr">ELM özel açılış komutları</string>
 
@@ -181,7 +161,6 @@
     <string name="semicolon">noktalı virgül</string>
     <string name="send_after_export">Kayıt sonrası gönder</string>
     <string name="send_after_export_descr">Kayıt sonrası göndermek için onay beklensin mi?</string>
-    <string name="plugin_manager_desc">Yüklü eklentileri yönet</string>
     <string name="toolbar_overlay">Tam ekranda göster</string>
     <string name="toolbar_overlay_sum">Ana ekranda araç çubuğunu kapla</string>
     <string name="license">Lisans …</string>

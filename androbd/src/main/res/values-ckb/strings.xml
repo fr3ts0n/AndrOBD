@@ -1,8 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="send">ناردن</string>
-    <string name="not_connected">بە هیچ ئامێرێکەوە نەبەستراوی</string>
-    <string name="title">ناونیشان</string>
-    <string name="welcome_to">بەخێربێیت بۆ</string>
+<resources>
     <string name="logo">لۆگۆ</string>
     <string name="back_again_to_exit">دووبارە گەڕانەوە دابگرە بۆ داخستنی ئەم نەرمەواڵەیە</string>
     <string name="action_connect"/>
@@ -17,13 +14,10 @@
     <string name="obd_clearcodes"/>
     <string name="obd_clear_info"/>
 
-    <string name="scanning"/>
     <string name="select_device"/>
     <string name="none_paired"/>
     <string name="none_found">هیچ ئامێرێک نەدۆزرایەوە</string>
     <string name="title_paired_devices"/>
-    <string name="title_other_devices">ئامێرە بەردەستەکانی تر</string>
-    <string name="button_scan">گەڕان بەدوایی ئامێر</string>
 
     <string name="send_to">ناردن بۆ</string>
     <string name="share">هاوبەشکردن</string>
@@ -43,10 +37,8 @@
     <string name="saving_data"/>
     <string name="loading_data"/>
     <string name="dashboard"/>
-    <string name="graph_actions"/>
     <string name="hud"/>
     <string name="filter"/>
-    <string name="unfilter"/>
 
     <string name="settings">ڕێکخستنەکان</string>
     <string name="development_options">بژاردەکانی پەرەپێدان</string>
@@ -54,7 +46,6 @@
     <string name="extension_files"/>
     <string name="conversions"/>
     <string name="data_items"/>
-    <string name="fault_codes"/>
     <string name="select_extension"/>
     <string name="extension_loading"/>
     <string name="check_cust_settings"/>
@@ -64,7 +55,6 @@
     <string name="select_fault_code"/>
     <string name="select_medium">جۆری گونجێنەر …</string>
 
-    <string name="refreshing"/>
     <string name="devices_found"/>
     <string name="min_elm_timeout"/>
     <string name="unabletoconnect"/>
@@ -76,8 +66,6 @@
     <string name="disable_elm_cmds"/>
     <string name="disable_elm_cmds_descr"/>
     <string name="elm_adaptive_timing"/>
-    <string name="disabled"/>
-    <string name="enabled"/>
     <string name="elm_adaptive_timing_descr"/>
     <string name="elm_reset_on_nrc"/>
     <string name="elm_reset_on_nrc_descr"/>
@@ -91,7 +79,6 @@
     <string name="secure_connect_description">
 </string>
     <string name="elm_options"/>
-    <string name="last_none"/>
     <string name="elm_custom_init"/>
     <string name="elm_custom_init_descr"/>
 
@@ -121,5 +108,4 @@
 <string name="translation_credits">وەرگێڕدراوە لەلایەن هەڤاڵ عبدالکریم</string>
     <string name="title_connecting">لە پەیوەندیدایە…</string>
     <string name="title_connected_to">پەیوەستکراو %s</string>
-    <string name="title_not_connected">پەیوەندی نەبەستراوە</string>
-    </resources>
+</resources>

@@ -1,13 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="translation_credits">Tradotto da Lesto</string>
     <string name="app_description">Applicazione Android di diagnostica veicoli OBD con adattatori bluetooth ELM327</string>
-    <string name="send">Invia</string>
-    <string name="not_connected">Non sei connesso ad alcun dispositivo</string>
     <string name="title_connecting">Connessione…</string>
     <string name="title_connected_to">Connesso: %s</string>
-    <string name="title_not_connected">Non connesso</string>
-    <string name="title">titolo</string>
-    <string name="welcome_to">Benvenuto in</string>
     <string name="logo">Logo</string>
     <string name="back_again_to_exit">Premi ancora indietro per uscire</string>
     <string name="action_connect">Connesso</string>
@@ -37,13 +32,10 @@
 \nLa perdita dei dati può causare basso rendimento del veicolo 
 \nper un breve periodo ti tempo, nel quale ECU si autoricalibra.</string>
 
-    <string name="scanning">Ricerca…</string>
     <string name="select_device">Seleziona adattatore</string>
     <string name="none_paired">Nessun dispositivo connesso</string>
     <string name="none_found">Nessun dispositivo trovato</string>
     <string name="title_paired_devices">Dispositivi connessi</string>
-    <string name="title_other_devices">Altri dispositivi disponibili</string>
-    <string name="button_scan">Ricerca dispositivi</string>
 
     <string name="send_to">Invia a</string>
     <string name="share">condividi</string>
@@ -63,10 +55,8 @@
     <string name="saving_data">Salvataggio dati…</string>
     <string name="loading_data">Caricamento dati…</string>
     <string name="dashboard">Cruscotto</string>
-    <string name="graph_actions">Azioni grafico</string>
     <string name="hud">Sovraimpressione</string>
     <string name="filter">Filtro selezionato</string>
-    <string name="unfilter">De-filtro selezionato</string>
 
     <string name="settings">Opzioni</string>
     <string name="common_settings">Opzioni comuni</string>
@@ -79,11 +69,6 @@
     <string name="debugging">Debug</string>
     <string name="logging_level">Livello di log</string>
     <string name="logging_level_description">Livello di dettaglio di informazioni nel file di log</string>
-    <string name="master">controllore</string>
-    <string name="comm_io">comunicazione i/o</string>
-    <string name="protocol">protocollo</string>
-    <string name="process_vars">variabili di processo</string>
-    <string name="data">dati</string>
     <string name="last_elm">riconnetti ultimo adattatore ELM</string>
     <string name="last_ecu">riconnetti ultimo ECU</string>
     <string name="last_service">ultimo servizio OBD</string>
@@ -98,7 +83,6 @@
     <string name="extension_files">File di personalizzazione protocollo (CSV)</string>
     <string name="conversions">Conversione dati</string>
     <string name="data_items">Ogetti dati</string>
-    <string name="fault_codes">Codici di errore</string>
     <string name="select_extension">Seleziona un file con estensione .csv…</string>
     <string name="extension_loading">Caricamento personalizzazione</string>
     <string name="check_cust_settings">Per favore controlla le tue impostazioni di personalizzazione
@@ -113,7 +97,6 @@
     <string name="select_fault_code">Seleziona codice di erroe…</string>
     <string name="select_medium">Tipo di adattatore…</string>
 
-    <string name="refreshing">ricerca…</string>
     <string name="devices_found">"%s  Dispositvi USB rilevato"</string>
     <string name="min_elm_timeout">Timeout ELM min. [ms]</string>
     <string name="unabletoconnect">Impossibile collegare il dispositivo</string>
@@ -125,8 +108,6 @@
     <string name="disable_elm_cmds">Disabilita comandi ELM</string>
     <string name="disable_elm_cmds_descr">attiva/disattiva comandi ELM</string>
     <string name="elm_adaptive_timing">Tempi adattativi per ELM</string>
-    <string name="disabled">disabilitato</string>
-    <string name="enabled">abilitato</string>
     <string name="elm_adaptive_timing_descr">Permetti tempi adattativi per il driver ELM?</string>
     <string name="elm_reset_on_nrc">Riavvio via NRC</string>
     <string name="elm_reset_on_nrc_descr">Riavviare l\'adattatore ELM quando NRC è in errore?</string>
@@ -139,7 +120,6 @@
     <string name="secure_connect">Connessione sicura</string>
     <string name="secure_connect_description">Usa connessione Bluetooth criptata</string>
     <string name="elm_options">ELM opzioni</string>
-    <string name="last_none">Nessuna</string>
     <string name="elm_custom_init">ELM Inizializzazione personalizzata</string>
     <string name="elm_custom_init_descr">ELM Comandi di inizializzazione personalizzata</string>
 
@@ -181,7 +161,6 @@
     <string name="semicolon">PUNTO E VIRGOLA</string>
     <string name="send_after_export">invia dopo l\'esportazione</string>
     <string name="send_after_export_descr">Richiesta di invio file CSV dopo l\'esportazione?</string>
-    <string name="plugin_manager_desc">Gestisci plugin installati</string>
     <string name="toolbar_overlay">Mostra in sovraimpressione</string>
     <string name="toolbar_overlay_sum">Mostra la barra degli oggetti sopra lo schermo principale</string>
     <string name="license">Verifica…</string>

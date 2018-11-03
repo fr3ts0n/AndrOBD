@@ -1,12 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="translation_credits">Översättning av fr3ts0n</string>
-    <string name="send">Skicka</string>
-    <string name="not_connected">Du är inte ansluten till en enhet</string>
     <string name="title_connecting">Ansluter…</string>
     <string name="title_connected_to">Anslöt %s</string>
-    <string name="title_not_connected">Inte ansluten</string>
-    <string name="title">titel</string>
-    <string name="welcome_to">Välkommen till</string>
     <string name="logo">Logotyp</string>
     <string name="back_again_to_exit">Tryck bakåt igen för att stänga den här appen</string>
     <string name="action_connect">_meny_</string>
@@ -22,8 +17,6 @@
     <string name="none_paired">Inga parade enheter</string>
     <string name="none_found">Inga enheter hittades</string>
     <string name="title_paired_devices">Parade enheter</string>
-    <string name="title_other_devices">Andra tillgängliga enheter</string>
-    <string name="button_scan">Sök efter enheter</string>
 
     <string name="share">dela</string>
     <string name="time">Klockslag [s]</string>
@@ -50,10 +43,6 @@
     <string name="items_for_display_descr">Välj alla dataobjekt som ska visas…</string>
     <string name="debugging">Avlusar</string>
     <string name="logging_level">Loggningsnivå</string>
-    <string name="comm_io">kommunikation i/o</string>
-    <string name="protocol">protokoll</string>
-    <string name="process_vars">process-variabler</string>
-    <string name="data">data</string>
     <string name="keep_screen_on">Behåll den huvudsakliga skärmen på</string>
     <string name="app_description">Android ODB fordonsdiagnostiksapp för ELM327 bluetooth-adapter</string>
     <string name="service_freezeframes">OBD-frysta ramar</string>
@@ -74,17 +63,13 @@
 \n Förlusten av data kan få fordonet att köra dåligt under en kort period
 \n medan ECU:n återkalibrerar sig själv.</string>
 
-    <string name="scanning">Söker…</string>
     <string name="send_to">Skicka till</string>
-    <string name="graph_actions">Grafåtgärder</string>
     <string name="hud">Heads-up-display</string>
-    <string name="unfilter">Avfiltrera valda</string>
 
     <string name="measure_system_description">Mätsystemsenheter (metriska / brittiska)</string>
     <string name="measure_system">Mätsystemsenheter</string>
     <string name="items_for_display">Dataobjekt att visa</string>
     <string name="logging_level_description">Detaljnivå som ska loggas i loggfil för felsökning</string>
-    <string name="master">huvud</string>
     <string name="last_elm">återanslut senaste ELM-adapter</string>
     <string name="last_ecu">återanslut senaste ECU</string>
     <string name="last_service">senaste OBD-tjänst</string>
@@ -98,7 +83,6 @@
     <string name="extension_files">Anpassningsfiler för protokoll (csv)</string>
     <string name="conversions">Datakonverteringar</string>
     <string name="data_items">Dataobjekt</string>
-    <string name="fault_codes">Felkoder</string>
     <string name="select_extension">Välj fil med .csv-filändelse…</string>
     <string name="extension_loading">Läser in anpassning</string>
     <string name="check_cust_settings">Kontroller dina anpassade inställningar
@@ -113,7 +97,6 @@
     <string name="select_fault_code">Välj felkod…</string>
     <string name="select_medium">Adaptertyp…</string>
 
-    <string name="refreshing">söker…</string>
     <string name="devices_found">%s USB-enheter funna</string>
     <string name="min_elm_timeout">Min. ELM-tidsgräns [ms]</string>
     <string name="unabletoconnect">Kan inte ansluta till enhet</string>
@@ -125,8 +108,6 @@
     <string name="disable_elm_cmds">Inaktiverade ELM-kommandon</string>
     <string name="disable_elm_cmds_descr">aktivera/inaktivera ELM-kommandon</string>
     <string name="elm_adaptive_timing">Adaptiv ELM-tidtagning</string>
-    <string name="disabled">inaktiverad</string>
-    <string name="enabled">aktiverad</string>
     <string name="elm_adaptive_timing_descr">Tillåt adaptiv tidtagning i ELM-drivrutiner?</string>
     <string name="elm_reset_on_nrc">Återställ vid NRC</string>
     <string name="elm_reset_on_nrc_descr">Återställ ELM-adapter vid NRC-fel?</string>
@@ -139,7 +120,6 @@
     <string name="secure_connect">Säker anslutning</string>
     <string name="secure_connect_description">Använd krypterad Bluetooth-anslutning</string>
     <string name="elm_options">ELM-alternativ</string>
-    <string name="last_none">INGA</string>
     <string name="elm_custom_init">Anpassad ELM-initialisering</string>
     <string name="elm_custom_init_descr">Anpassade ELM-initialiseringskommandon</string>
 
@@ -181,7 +161,6 @@
     <string name="semicolon">SEMIKOLON</string>
     <string name="send_after_export">Skicka efter export</string>
     <string name="send_after_export_descr">Fråga om CSV-fil ska skickas direkt efter export?</string>
-    <string name="plugin_manager_desc">Hantera installerade instick</string>
     <string name="toolbar_overlay">Visa som överlagring</string>
     <string name="toolbar_overlay_sum">Visa verktygsfält ovan på huvudskärm</string>
     <string name="license">Licensiering…</string>

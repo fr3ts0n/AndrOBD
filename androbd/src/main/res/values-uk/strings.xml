@@ -1,13 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="translation_credits">Перекладено NamoAton</string>
     <string name="app_description">"Додаток Android для OBD діагностики з використанням  Bluetooth адаптера ELM327"</string>
-    <string name="send">Відіслати</string>
-    <string name="not_connected">Пристрій не підключено</string>
     <string name="title_connecting">З’єдання…</string>
     <string name="title_connected_to">З’єднано з %s</string>
-    <string name="title_not_connected">Немає з’єднання</string>
-    <string name="title">заголовок</string>
-    <string name="welcome_to">Ласкаво просимо</string>
     <string name="logo">Логотип</string>
     <string name="back_again_to_exit">Щоб закрити додаток, натисніть ще раз</string>
     <string name="action_connect">З’єднання</string>
@@ -20,13 +15,10 @@
     <string name="obd_permanentcodes">OBD коди помилок (збережені)</string>
     <string name="obd_pendingcodes">OBD коди помилок (очікуючі)</string>
     <string name="obd_clearcodes">Скинути помилки</string>
-    <string name="scanning">Сканування…</string>
     <string name="select_device">Вибір адаптера</string>
     <string name="none_paired">Немає парних пристроїв</string>
     <string name="none_found">Пристроїв не знайдено</string>
     <string name="title_paired_devices">Парні пристрої</string>
-    <string name="title_other_devices">Інші доступні пристрої</string>
-    <string name="button_scan">Пошук пристроїв</string>
 
     <string name="send_to">Надіслати до</string>
     <string name="share">Поділитися</string>
@@ -46,10 +38,8 @@
     <string name="saving_data">Збереження…</string>
     <string name="loading_data">Завантаження даних…</string>
     <string name="dashboard">Панель приладів</string>
-    <string name="graph_actions">Дії з графіком</string>
     <string name="hud">Головний дисплей</string>
     <string name="filter">Обраний фільтр</string>
-    <string name="unfilter">Відфільтровувати обране</string>
 
     <string name="settings">Налаштування</string>
     <string name="common_settings">Загальні налаштування</string>
@@ -62,11 +52,6 @@
     <string name="debugging">Налагодження</string>
     <string name="logging_level">Рівень логу</string>
     <string name="logging_level_description">Рівень деталізації при налагодженні в лог-файлі</string>
-    <string name="master">майстер</string>
-    <string name="comm_io">зв’язок (ввід/вивід)</string>
-    <string name="protocol">протокол</string>
-    <string name="process_vars">змінні процесу</string>
-    <string name="data">дані</string>
     <string name="last_elm">повторне з’єднання з останнім ELM-адаптером</string>
     <string name="last_ecu">"повторне з’єднання з останнім  ЕБУ"</string>
     <string name="last_service">остання OBD служба</string>
@@ -81,7 +66,6 @@
     <string name="extension_files">Файли пресоналізації протокола (csv)</string>
     <string name="conversions">Перетворення даних</string>
     <string name="data_items">Показники</string>
-    <string name="fault_codes">Коди помилок</string>
     <string name="select_extension">Оберіть розширення .csv файлу …</string>
     <string name="extension_loading">Завантаження персоналізації</string>
     <string name="check_cust_settings">Будь ласка перевірта налаштування персоналізації
@@ -92,7 +76,6 @@
     <string name="select_fault_code">Оберіть код помилки…</string>
     <string name="select_medium">Тип адаптера…</string>
 
-    <string name="refreshing">сканування…</string>
     <string name="devices_found">%s USB пристрій(пристрої) знайдено</string>
     <string name="min_elm_timeout">Мін. ELM таймаут [ms]</string>
     <string name="unabletoconnect">Неможливо з’єднатися з пристроєм</string>
@@ -104,8 +87,6 @@
     <string name="disable_elm_cmds">Ввимкнені ELM команди</string>
     <string name="disable_elm_cmds_descr">увімкнути/ввімкнути ELM команди</string>
     <string name="elm_adaptive_timing">ELM адаптивний час</string>
-    <string name="disabled">вимкнуто</string>
-    <string name="enabled">увімкнуто</string>
     <string name="elm_adaptive_timing_descr">"Дозволити обробку адаптивного часу в  ELM драйверах?"</string>
     <string name="elm_reset_on_nrc">Скинути на NRC</string>
     <string name="elm_reset_on_nrc_descr">Скинути ELM адаптер на NRC помилку?</string>
@@ -118,7 +99,6 @@
     <string name="secure_connect">Безпека з’єднання</string>
     <string name="secure_connect_description">"Використовувати  зашифровані Bluetooth з’єднання"</string>
     <string name="elm_options">ELM опції</string>
-    <string name="last_none">НЕМАЄ</string>
     <string name="elm_custom_init">ELM налаштована ініціалізація</string>
     <string name="elm_custom_init_descr">"ELM  вибіркові команди ініціалізації"</string>
 
@@ -184,7 +164,6 @@
     <string name="libraries">Бібліотеки…</string>
     <string name="release_history">Історія випусків…</string>
 
-    <string name="plugin_manager_desc">Керування встановленими плагінами</string>
     <string name="toolbar_overlay">Показати, як накладання</string>
     <string name="toolbar_overlay_sum">Показувати панель перекриття основного екрана</string>
     <string name="libraries_sum">Бібліотеки, які використовуються в проекті…</string>

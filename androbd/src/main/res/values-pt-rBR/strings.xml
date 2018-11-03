@@ -1,12 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="translation_credits">Traduzido por carnetta</string>
-    <string name="send">Enviar</string>
-    <string name="not_connected">Você não está conectado ao dispositivo</string>
     <string name="title_connecting">Conectando…</string>
     <string name="title_connected_to">Conectado %s</string>
-    <string name="title_not_connected">Não Conectado</string>
-    <string name="title">título</string>
-    <string name="welcome_to">Bem-vindo ao</string>
     <string name="back_again_to_exit">Pressione voltar novamente para fechar o aplicativo</string>
     <string name="action_connect">Conectar</string>
     <string name="app_description">Android ODB APP Diagnósticos de veículos para o adaptador ELM327 Bluetooth</string>
@@ -38,13 +33,10 @@
 \nnão adequada durante um pequeno período de tempo até se 
 \nauto-recalibrar.</string>
 
-    <string name="scanning">Escaneando…</string>
     <string name="select_device">Selecione o adaptador</string>
     <string name="none_paired">Não há dispositivos pareados</string>
     <string name="none_found">Nenhum dispositivo encontrado</string>
     <string name="title_paired_devices">Dispositivos Pareados</string>
-    <string name="title_other_devices">Outros Dispositivos Disponíveis</string>
-    <string name="button_scan">Buscar Dispositivos</string>
 
     <string name="send_to">Enviar para</string>
     <string name="share">compartilhar</string>
@@ -64,9 +56,7 @@
     <string name="saving_data">Salvando dados …</string>
     <string name="loading_data">Carregando dados …</string>
     <string name="dashboard">Painel de controle</string>
-    <string name="graph_actions">Ações do Gráfico</string>
     <string name="filter">Filtro selecionado</string>
-    <string name="unfilter">Sem filtro selecionado</string>
 
     <string name="settings">Configurações</string>
     <string name="common_settings">Configurações padrão</string>
@@ -80,10 +70,6 @@
     <string name="hud">Tela de cabeça para cima</string>
     <string name="logging_level">Nível de registro</string>
     <string name="logging_level_description">Nível de detalhes a serem registrados no arquivo de log de depuração</string>
-    <string name="master">mestre</string>
-    <string name="protocol">protocolo</string>
-    <string name="process_vars">variáveis de processo</string>
-    <string name="data">dados</string>
     <string name="last_elm">reconectar último adaptador ELM</string>
     <string name="last_ecu">reconectar último ECU</string>
     <string name="last_service">último serviço OBD</string>
@@ -94,5 +80,4 @@
     <string name="extension_files">Arquivos de customização de protocolo (csv)</string>
     <string name="conversions">Conversões de Dados</string>
     <string name="data_items">Itens de dados</string>
-    <string name="comm_io">comunicando...</string>
-    </resources>
+</resources>

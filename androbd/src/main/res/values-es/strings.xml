@@ -1,13 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="translation_credits">Traducido por fr3ts0n</string>
     <string name="app_description">Aplicacion android para diagnostico de vehiculos usando el adaptador bluetooth ELM327</string>
-    <string name="send">Enviar</string>
-    <string name="not_connected">Usted no esta conectado al dispositivo</string>
     <string name="title_connecting">Conectando…</string>
     <string name="title_connected_to">Conectado a %s</string>
-    <string name="title_not_connected">No conectado</string>
-    <string name="title">titulo</string>
-    <string name="welcome_to">Bienvenido a</string>
     <string name="logo">Logotipo</string>
     <string name="back_again_to_exit">Presione atras de nuevo para cerrar esta aplicacion</string>
     <string name="action_connect">Conectar</string>
@@ -38,13 +33,10 @@
 \nperiodo de tiempo mientras la ECU aprende y se recalibra a si misma.
 \n "</string>
 
-    <string name="scanning">Escaneando…</string>
     <string name="select_device">Selecciona el Adaptador</string>
     <string name="none_paired">No hay Dispositivos Apareado</string>
     <string name="none_found">No se encuentran dispositivos</string>
     <string name="title_paired_devices">Dispositivos Apareados</string>
-    <string name="title_other_devices">Otros Dispositivos Disponibles</string>
-    <string name="button_scan">Buscar Dispositivos</string>
 
     <string name="send_to">Enviar a</string>
     <string name="share">compartir</string>
@@ -64,10 +56,8 @@
     <string name="saving_data">Salvando datos …</string>
     <string name="loading_data">Cargando datos…</string>
     <string name="dashboard">Pizarra</string>
-    <string name="graph_actions">Graph acciones</string>
     <string name="hud">Visualization Frontal</string>
     <string name="filter">Filtro Seleccionado</string>
-    <string name="unfilter">Sin-filtro Seleccionado</string>
 
     <string name="settings">Configuracion</string>
     <string name="common_settings">Configuracion por defecto</string>
@@ -80,11 +70,6 @@
     <string name="debugging">Depurando</string>
     <string name="logging_level">Nivel de bitacora</string>
     <string name="logging_level_description">Nivel de detalles a ser monitoreados dentro del archivo de depuracion log</string>
-    <string name="master">maestro</string>
-    <string name="comm_io">comunicacion e/s</string>
-    <string name="protocol">protocolo</string>
-    <string name="process_vars">proceso de variables</string>
-    <string name="data">datos</string>
     <string name="last_elm">reconectar el ultimo adapatador ELM</string>
     <string name="last_ecu">reconectar el ultimo ECU</string>
     <string name="last_service">ultimo servicio OBD</string>
@@ -99,7 +84,6 @@
     <string name="extension_files">Personalizacion de los archivos (csv) del protocolo</string>
     <string name="conversions">Conversion de datos</string>
     <string name="data_items">Datos de elementos</string>
-    <string name="fault_codes">Codigos de Falla</string>
     <string name="select_extension">Selecione el archivo .csv …</string>
     <string name="extension_loading">Personalizacion de carga</string>
     <string name="obd_options">Opciones OBD</string>
@@ -109,12 +93,9 @@
     <string name="select_fault_code">Seleccione el código de error …</string>
     <string name="select_medium">Tipo de adaptador …</string>
 
-    <string name="refreshing">escaneando …</string>
     <string name="devices_found">%s dispositivo(s) USB encontrado(s)</string>
     <string name="unabletoconnect">Imposible conectar con el dispositivo</string>
     <string name="night_mode">Modo noche</string>
-    <string name="disabled">desactivado</string>
-    <string name="enabled">activado</string>
     <string name="disconnect">Desconectar</string>
     <string name="use_last_settings">Utilizar los últimos ajustes</string>
     <string name="secure_connect">Conexión segura</string>
@@ -151,7 +132,6 @@
     <string name="common_settings_description">Configuraciones comunes para el control de aplicaciones</string>
     <string name="secure_connect_description">Usar conexión Bluetooth encriptada</string>
     <string name="elm_options">Opciones del ELM</string>
-    <string name="last_none">NINGUNO</string>
     <string name="elm_custom_init">Inicializacion Personalizada del ELM</string>
     <string name="elm_custom_init_descr">Comandos de inicialización personalizados del ELM</string>
 
@@ -181,7 +161,6 @@
     <string name="semicolon">PUNTO Y COMA</string>
     <string name="send_after_export">Enviar después de la exportación</string>
     <string name="send_after_export_descr">¿Desea se pregunte cuando se envie el archivo CSV, justo después de la exportación\?</string>
-    <string name="plugin_manager_desc">Administrar complementos instalados</string>
     <string name="toolbar_overlay">Mostrar como capa sobrepuesta</string>
     <string name="toolbar_overlay_sum">Mostrar barra de herramientas superpuesta en la pantalla principal</string>
     <string name="license">Licenciamiento …</string>

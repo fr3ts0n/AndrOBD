@@ -3,13 +3,8 @@
     <!--  AndrOBD -->
     <string name="translation_credits">Traduction par (Wouazo)</string>
     <string name="app_description">Application Android de diagnostic des véhicules OBD pour adaptateurs ELM327</string>
-    <string name="send">Envoyer</string>
-    <string name="not_connected">Vous n\'êtes pas connecté à un périphérique</string>
     <string name="title_connecting">Connexion en cours…</string>
     <string name="title_connected_to">Connecté à %s</string>
-    <string name="title_not_connected">Non connecté</string>
-    <string name="title">Titre</string>
-    <string name="welcome_to">Bienvenue sur</string>
     <string name="logo">Logo</string>
     <string name="back_again_to_exit">Appuyer à nouveau sur retour pour quitter cette application</string>
     <!-- menu  -->
@@ -39,13 +34,10 @@
 \n  L\'effacement de certaines données peut détériorer le fonctionnement du véhicule le temps que l\'ECU se recalibre."</string>
 
     <!--  BtDeviceListActivity -->
-    <string name="scanning">Scan en cours…</string>
     <string name="select_device">Choisir un adaptateur</string>
     <string name="none_paired">Aucun appareil appairé</string>
     <string name="none_found">Aucun appareil trouvé</string>
     <string name="title_paired_devices">Appareils appairés</string>
-    <string name="title_other_devices">Autres appareils disponibles</string>
-    <string name="button_scan">Recherche d\'appareil</string>
 
     <!-- ExportTask -->
     <string name="send_to">Envoyer à</string>
@@ -66,10 +58,8 @@
     <string name="saving_data">Enregistrement des données…</string>
     <string name="loading_data">Chargement des données…</string>
     <string name="dashboard">Tableau de bord</string>
-    <string name="graph_actions">Actions graph</string>
     <string name="hud">Affichage tête haute</string>
     <string name="filter">Filtre choisi</string>
-    <string name="unfilter">Retirer le filtre</string>
 
     <!-- Settings -->
     <string name="settings">Paramètres</string>
@@ -85,11 +75,6 @@
     <string name="debugging">Debug</string>
     <string name="logging_level">Niveau d\'enregistrement</string>
     <string name="logging_level_description">Niveau de détail à enregistrer dans le fichier de debug</string>
-    <string name="master">principal</string>
-    <string name="comm_io">e/s de communication</string>
-    <string name="protocol">protocole</string>
-    <string name="process_vars">variables du processus</string>
-    <string name="data">données</string>
 
     <!--
     * key values for restore options
@@ -115,7 +100,6 @@
     <string name="extension_files">Fichiers de personnalisation du protocole (csv)</string>
     <string name="conversions">Conversions de données</string>
     <string name="data_items">Données</string>
-    <string name="fault_codes">Codes d\'erreurs</string>
     <string name="select_extension">Choisir un fichier .csv…</string>
     <string name="extension_loading">Chargement de la personnalisation</string>
     <string name="check_cust_settings">Vérifier vos paramètres de personnalisation</string>
@@ -125,7 +109,6 @@
     <string name="select_fault_code">Choisir un code d\'erreur…</string>
     <string name="select_medium">Type d\'adaptateur…</string>
 
-    <string name="refreshing">recherche…</string>
     <string name="devices_found">%s appareil(s) USB trouvé(s)</string>
     <string name="min_elm_timeout">Timeout min. pour l\'ELM (ms)</string>
     <string name="unabletoconnect">Impossible de connecter l\'appareil</string>
@@ -137,8 +120,6 @@
     <string name="disable_elm_cmds">Commandes ELM inactives</string>
     <string name="disable_elm_cmds_descr">commandes ELM à activer/désactiver</string>
     <string name="elm_adaptive_timing">synchro. adaptative ELM</string>
-    <string name="disabled">désactivé(e)</string>
-    <string name="enabled">activé(e)</string>
     <string name="elm_adaptive_timing_descr">Permettre la syncho. adaptative dans les pilotes ELM ?</string>
     <string name="elm_reset_on_nrc">Reinit. sur NRC</string>
     <string name="elm_reset_on_nrc_descr">Réinit. l\'ELM sur erreur NRC ?</string>
@@ -151,7 +132,6 @@
     <string name="secure_connect">Connexion sécurisée</string>
     <string name="secure_connect_description">Utiliser une connexion Bluetooth cryptée</string>
     <string name="elm_options">Options ELM</string>
-    <string name="last_none">AUCUN(E)</string>
     <string name="elm_custom_init">Init. perso. de l\'ELM</string>
     <string name="elm_custom_init_descr">Commandes perso. d\'init. de l\'ELM</string>
 
@@ -201,7 +181,6 @@
     <string name="plugin_manager">Gestionnaire d\'extensions</string>
     <string name="configure">Configurer</string>
 
-    <string name="plugin_manager_desc">Gérer les extensions installées</string>
     <string name="toolbar_overlay">Afficher en superposition</string>
     <string name="toolbar_overlay_sum">Afficher la barre de menus par dessus l’écran principal</string>
     <string name="license">Licences…</string>

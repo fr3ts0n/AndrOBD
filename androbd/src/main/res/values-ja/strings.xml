@@ -1,12 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="app_description">ELM327 Bluetooth アダプター用 Android OBD 車両診断アプリ</string>
-    <string name="send">送信</string>
-    <string name="not_connected">デバイスに接続していません</string>
     <string name="title_connecting">接続しています…</string>
     <string name="title_connected_to">接続しました %s</string>
-    <string name="title_not_connected">接続されていません</string>
-    <string name="title">タイトル</string>
-    <string name="welcome_to">ようこそ</string>
     <string name="logo">ロゴ</string>
     <string name="back_again_to_exit">戻るボタンをもう一度を押すと、このアプリを閉じます</string>
     <string name="action_connect">接続</string>
@@ -19,13 +14,10 @@
     <string name="obd_permanentcodes">OBD 故障コード (永続)</string>
     <string name="obd_pendingcodes">OBD 故障コード (保留)</string>
     <string name="obd_clearcodes">故障コードをクリア</string>
-    <string name="scanning">スキャンしています…</string>
     <string name="select_device">アダプターを選択</string>
     <string name="none_paired">デバイスがペアになっていません</string>
     <string name="none_found">デバイスが見つかりません</string>
     <string name="title_paired_devices">ペアのデバイス</string>
-    <string name="title_other_devices">その他の使用可能なデバイス</string>
-    <string name="button_scan">デバイスのスキャン</string>
 
     <string name="send_to">…送信</string>
     <string name="share">共有</string>
@@ -44,10 +36,8 @@
     <string name="saving_data">データを保存しています …</string>
     <string name="loading_data">データを読み込んでいます …</string>
     <string name="dashboard">ダッシュ ボード</string>
-    <string name="graph_actions">グラフの操作</string>
     <string name="hud">ヘッドアップディスプレイ</string>
     <string name="filter">フィルターを選択しました</string>
-    <string name="unfilter">フィルターの選択を解除しました</string>
 
     <string name="settings">設定</string>
     <string name="common_settings">共通設定</string>
@@ -60,11 +50,6 @@
     <string name="debugging">デバッグ</string>
     <string name="logging_level">ログ出力レベル</string>
     <string name="logging_level_description">デバッグ ログ ファイルに記録するレベル</string>
-    <string name="master">マスター</string>
-    <string name="comm_io">通信 I/O</string>
-    <string name="protocol">プロトコル</string>
-    <string name="process_vars">プロセス変数</string>
-    <string name="data">データ</string>
     <string name="last_elm">前回の ELM アダプターに再接続</string>
     <string name="last_ecu">前回の ECU に再接続</string>
     <string name="last_service">前回の OBD サービス</string>
@@ -79,7 +64,6 @@
     <string name="extension_files">プロトコル カスタマイズ ファイル (csv)</string>
     <string name="conversions">データ変換</string>
     <string name="data_items">データ項目</string>
-    <string name="fault_codes">故障コード</string>
     <string name="select_extension">.csv 拡張子のファイルを選択 …</string>
     <string name="extension_loading">カスタマイズを読み込んでいます</string>
     <string name="check_cust_settings">カスタマイズ設定を確かめてください\n</string>
@@ -89,7 +73,6 @@
     <string name="select_fault_code">故障コードを選択してください …</string>
     <string name="select_medium">アダプターの種類 …</string>
 
-    <string name="refreshing">スキャンしています …</string>
     <string name="devices_found">%s USB デバイスが見つかりました</string>
     <string name="min_elm_timeout">最小 ELM タイムアウト [ミリ秒]</string>
     <string name="unabletoconnect">デバイスに接続できません</string>
@@ -101,8 +84,6 @@
     <string name="disable_elm_cmds">ELM コマンドを無効にしました</string>
     <string name="disable_elm_cmds_descr">ELM コマンドを有効/無効にします</string>
     <string name="elm_adaptive_timing">ELM 適応タイミング</string>
-    <string name="disabled">無効</string>
-    <string name="enabled">有効</string>
     <string name="elm_adaptive_timing_descr">ELM ドライバーでタイミング処理を許可しますか?</string>
     <string name="select_ecu_addr">ECU アドレスを選択してください …</string>
     <string name="disconnect">切断</string>
@@ -113,7 +94,6 @@
     <string name="secure_connect">セキュリティで保護された接続</string>
     <string name="secure_connect_description">暗号化された Bluetooth 接続を使用します</string>
     <string name="elm_options">ELM オプション</string>
-    <string name="last_none">なし</string>
     <string name="elm_custom_init">ELM カスタム初期化</string>
     <string name="elm_custom_init_descr">ELM カスタム初期化コマンド</string>
 
@@ -194,7 +174,6 @@
     <string name="plugin_manager">プラグインマネージャー</string>
     <string name="configure">構成</string>
 
-    <string name="plugin_manager_desc">インストールされているプラグインを管理します</string>
     <string name="toolbar_overlay">オーバーレイとして表示</string>
     <string name="toolbar_overlay_sum">メイン画面にオーバーラップするツールバーを表示します</string>
     <string name="license">ライセンス …</string>

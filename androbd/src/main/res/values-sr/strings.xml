@@ -1,13 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="translation_credits">Prevod by Nenad163</string>
     <string name="app_description">Android aplikacija za dijagnostiku automobila putem ELM327 ODB adaptera</string>
-    <string name="send">Posalji</string>
-    <string name="not_connected">Niste povezani sa uredjajem</string>
     <string name="title_connecting">Povezivanje…</string>
     <string name="title_connected_to">Povezan %s</string>
-    <string name="title_not_connected">Nema Konekcije</string>
-    <string name="title">Naslov</string>
-    <string name="welcome_to">Dobrodosli u</string>
     <string name="logo">Logo</string>
     <string name="back_again_to_exit">Pritisnite nazad ponovo da biste izasli iz aplikacije</string>
     <string name="action_connect">Povezi se</string>
@@ -36,13 +31,10 @@
 \nGubitak podataka moze izazvati da vozilo ide usporeno na kraci
 \nvremenski period dok se ECU ne rekalibrise.</string>
 
-    <string name="scanning">Skeniranje…</string>
     <string name="select_device">Izaberite adapter</string>
     <string name="none_paired">Nema uparenih uredjaja</string>
     <string name="none_found">Nema pronadjenih uredjaja</string>
     <string name="title_paired_devices">Upareni uredjaji</string>
-    <string name="title_other_devices">Drugi dostupni uredjaji</string>
-    <string name="button_scan">Trazi uredjaje</string>
 
     <string name="send_to">Posalji dalje</string>
     <string name="share">Podeli</string>
@@ -62,10 +54,8 @@
     <string name="saving_data">Snimanje podataka …</string>
     <string name="loading_data">Ucitavanje podataka …</string>
     <string name="dashboard">Komandna tabla</string>
-    <string name="graph_actions">Akcije grafika</string>
     <string name="hud">Displej za prikaz informacija</string>
     <string name="filter">Filter izabran</string>
-    <string name="unfilter">De-filter izabran</string>
 
     <string name="settings">Podesavanja</string>
     <string name="common_settings">Zajednicka podesavanja</string>
@@ -78,11 +68,6 @@
     <string name="debugging">Debagiranje</string>
     <string name="logging_level">Nivo logovanja</string>
     <string name="logging_level_description">Nivo detalja za logovanje u debag log fajlu</string>
-    <string name="master">glavni</string>
-    <string name="comm_io">komunikacijski ulaz/izlaz</string>
-    <string name="protocol">protokol</string>
-    <string name="process_vars">promenljive procesa</string>
-    <string name="data">podaci</string>
     <string name="last_elm">povezi se ponovo na poslednji ELM-adapter</string>
     <string name="last_ecu">povezi se ponovo na poslednji ECU</string>
     <string name="last_service">poslednji OBD servis</string>
@@ -97,7 +82,6 @@
     <string name="extension_files">Fajlovi za prilagodjavanje protokola (csv)</string>
     <string name="conversions">Konverzije podataka</string>
     <string name="data_items">Stavke podataka</string>
-    <string name="fault_codes">Kodovi gresaka</string>
     <string name="select_extension">Izaberi .csv ekstenzijski fajl …</string>
     <string name="extension_loading">Ucitavanje prilagodjavanja</string>
     <string name="check_cust_settings">Molimo vas proverite svoje stavke prilagodjavanja
@@ -108,7 +92,6 @@
     <string name="select_fault_code">Izaberite kod greske …</string>
     <string name="select_medium">Tip adaptera …</string>
 
-    <string name="refreshing">skeniranje …</string>
     <string name="devices_found">%s USB uredjaj(a) pronadjeno</string>
     <string name="min_elm_timeout">Min. ELM istek vremena [ms]</string>
     <string name="unabletoconnect">Nemoguce povezivanje sa uredjajem</string>
@@ -120,8 +103,6 @@
     <string name="disable_elm_cmds">Onemogucene ELM komande</string>
     <string name="disable_elm_cmds_descr">omoguci/onemoguci ELM komande</string>
     <string name="elm_adaptive_timing">ELM adaptivni tajming</string>
-    <string name="disabled">onemoguceno</string>
-    <string name="enabled">omoguceno</string>
     <string name="elm_adaptive_timing_descr">Dozvoli adaptivno baratanje tajmingom u ELM drajverima?</string>
     <string name="elm_reset_on_nrc">Resetuj pri NRC</string>
     <string name="elm_reset_on_nrc_descr">Resetuj ELM adapter pri NRC gresci?</string>
@@ -134,7 +115,6 @@
     <string name="secure_connect">Sigurna konekcija</string>
     <string name="secure_connect_description">Koristi enkriptovanu Bluetooth konekciju</string>
     <string name="elm_options">ELM opcije</string>
-    <string name="last_none">NISTA</string>
     <string name="elm_custom_init">ELM posebna inicijalizacija</string>
     <string name="elm_custom_init_descr">Posebne komande za ELM inicijalizaciju</string>
 
