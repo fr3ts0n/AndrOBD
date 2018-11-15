@@ -18,13 +18,13 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.fr3ts0n.ecu.prot.obd.ElmProt;
@@ -37,6 +37,8 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Task to save measurements
@@ -46,11 +48,14 @@ import java.text.SimpleDateFormat;
 class FileHelper
 {
 	/** Date Formatter used to generate file name */
+	@SuppressLint("SimpleDateFormat")
 	private static final SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy.MM.dd-HH.mm.ss");
 	private static ProgressDialog progress;
 
-	private Context context;
-	private ElmProt elm;
+	static final Logger log = Logger.getLogger(FileHelper.class.getName());
+	
+	private final Context context;
+	private final ElmProt elm;
 
 	/**
 	 * Initialize static data for static calls
@@ -58,7 +63,7 @@ class FileHelper
 	 * @param context APP context
 	 * @param elm     Elm protocol data to be stored
 	 */
-	public FileHelper(Context context, ElmProt elm)
+	FileHelper(Context context, ElmProt elm)
 	{
 		this.context = context;
 		this.elm = elm;
@@ -70,7 +75,7 @@ class FileHelper
 	 *
 	 * @return default path for current app context
 	 */
-	public static String getPath(Context context)
+	static String getPath(Context context)
 	{
 		// generate file name
 		return Environment.getExternalStorageDirectory()
@@ -83,7 +88,7 @@ class FileHelper
 	 *
 	 * @return file name
 	 */
-	public static String getFileName()
+	static String getFileName()
 	{
 		return dateFmt.format(System.currentTimeMillis());
 	}
@@ -92,7 +97,7 @@ class FileHelper
 	/**
 	 * Save all data in a independent thread
 	 */
-	public void saveDataThreaded()
+	void saveDataThreaded()
 	{
 		// generate file name
 		final String mPath = getPath(context);
@@ -123,11 +128,13 @@ class FileHelper
 	/**
 	 * Save all data
 	 */
-	public synchronized void saveData(String mPath, String mFileName)
+	@SuppressWarnings("ResultOfMethodCallIgnored")
+	private synchronized void saveData(String mPath, String mFileName)
 	{
 		File outFile;
 
 		// ensure the path is created
+		//noinspection ResultOfMethodCallIgnored
 		new File(mPath).mkdirs();
 		outFile = new File(mFileName);
 
@@ -147,11 +154,12 @@ class FileHelper
 			oStr.close();
 			fStr.close();
 
+			@SuppressLint("DefaultLocale")
 			String msg = String.format("%s %d Bytes to %s",
 				context.getString(R.string.saved),
 				outFile.length(),
 				mPath);
-			Log.i(context.getString(R.string.saved), msg);
+			log.info(msg);
 			Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
 		} catch (Exception e)
 		{
@@ -167,9 +175,8 @@ class FileHelper
 	 * Load all data in a independent thread
 	 * @param uri Uri of ile to be loaded
 	 */
-	public synchronized void loadDataThreaded(final Uri uri,
-	                                          final Handler reportTo,
-																						final int reportMessage)
+	synchronized void loadDataThreaded(final Uri uri,
+	                                   final Handler reportTo)
 	{
 		// create progress dialog
 		progress = ProgressDialog.show(context,
@@ -184,7 +191,7 @@ class FileHelper
 				Looper.prepare();
 				loadData(uri);
 				progress.dismiss();
-				reportTo.sendMessage(reportTo.obtainMessage(reportMessage));
+				reportTo.sendMessage(reportTo.obtainMessage(MainActivity.MESSAGE_FILE_READ));
 				Looper.loop();
 			}
 		};
@@ -192,11 +199,13 @@ class FileHelper
 	}
 
 	/**
-	 * Load data from file into data sructures
+	 * Load data from file into data structures
 	 *
 	 * @param uri URI of file to be loaded
 	 */
-	public synchronized int loadData(final Uri uri)
+	@SuppressLint("DefaultLocale")
+	@SuppressWarnings("UnusedReturnValue")
+	private synchronized int loadData(final Uri uri)
 	{
 		int numBytesLoaded = 0;
 		String msg;
@@ -205,8 +214,8 @@ class FileHelper
 		try
 		{
 			inStr = context.getContentResolver().openInputStream(uri);
-			numBytesLoaded = inStr.available();
-			msg = String.format("%d Bytes", numBytesLoaded);
+			numBytesLoaded = inStr != null ? inStr.available() : 0;
+			msg = context.getString(R.string.loaded).concat(String.format(" %d Bytes", numBytesLoaded));
 			ObjectInputStream oIn = new ObjectInputStream(inStr);
 			/* ensure that measurement page is activated
 			   to avoid deletion of loaded data afterwards */
@@ -219,12 +228,12 @@ class FileHelper
 			ObdProt.tCodes = (PvList) oIn.readObject();
 			oIn.close();
 
-			Log.i(context.getString(R.string.load), context.getString(R.string.loaded).concat(" ").concat(msg));
-			Toast.makeText(context, context.getString(R.string.loaded).concat(" ").concat(msg), Toast.LENGTH_SHORT).show();
+			log.log(Level.INFO, msg);
+			Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
 		} catch (Exception ex)
 		{
 			Toast.makeText(context, ex.toString(), Toast.LENGTH_SHORT).show();
-			Log.e(context.getString(R.string.load), uri.toString(), ex);
+			log.log(Level.SEVERE, uri.toString(), ex);
 		}
 		return numBytesLoaded;
 	}

@@ -723,7 +723,7 @@ public class MainActivity extends PluginManager
 					Uri uri = data.getData();
 					log.info("Load content: " + uri);
 					// load data ...
-					fileHelper.loadDataThreaded(uri, mHandler, MESSAGE_FILE_READ);
+					fileHelper.loadDataThreaded(uri, mHandler);
 					// don't allow saving it again
 					setMenuItemEnable(R.id.save, false);
 					setMenuItemEnable(R.id.obd_services, true);

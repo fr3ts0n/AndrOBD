@@ -23,7 +23,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -32,6 +31,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This Activity appears as a dialog. It lists any paired devices and
@@ -42,9 +43,9 @@ import java.util.Set;
 public class BtDeviceListActivity extends Activity
 {
 	// Debugging
-	private static final String TAG = "BtDeviceListActivity";
-	private static final boolean D = true;
-
+	static final String TAG = BtDeviceListActivity.class.getSimpleName();
+	static final Logger log = Logger.getLogger(TAG);
+	
 	// Return Intent extra
 	public static String EXTRA_DEVICE_ADDRESS = "device_address";
 
@@ -65,7 +66,7 @@ public class BtDeviceListActivity extends Activity
 		mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 
 		ArrayAdapter<String> mPairedDevicesArrayAdapter =
-			new ArrayAdapter<String>(this, R.layout.device_name);
+			new ArrayAdapter<>(this, R.layout.device_name);
 		
 		// Find and set up the ListView for paired devices
 		ListView pairedListView = findViewById(R.id.paired_devices);
@@ -116,7 +117,7 @@ public class BtDeviceListActivity extends Activity
 
 			// Set result and finish this Activity
 			setResult(Activity.RESULT_OK, intent);
-			Log.d("Terminal", "Sending Result...");
+			log.log(Level.FINE, "Sending Result...");
 			finish();
 		}
 	};

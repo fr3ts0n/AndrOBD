@@ -22,7 +22,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -31,24 +30,28 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Create a screenshot and save it to sd-card
  * Created by erwin on 10.11.14.
  */
-public class Screenshot
+class Screenshot
 {
+	static final Logger log = Logger.getLogger(Screenshot.class.getSimpleName());
+	
 	/**
-	 * Take a screenhot of selected view in selected context and save on external
+	 * Take a screenshot of selected view in selected context and save on external
 	 * storage as filename <AppName>_<TimeStamp>.jpeg
 	 *
 	 * @param context context of view
 	 * @param view    view to be saved
 	 */
-	public static void takeScreenShot(Context context, View view)
+	static void takeScreenShot(Context context, View view)
 	{
 		// get Bitmap from the view
-		Bitmap bitmap = loadBitmapFromView(context, view);
+		Bitmap bitmap = loadBitmapFromView(view);
 		// generate file name
 		String mPath = Environment.getExternalStorageDirectory()
 			+ File.separator
@@ -64,27 +67,26 @@ public class Screenshot
 			bitmap.compress(Bitmap.CompressFormat.PNG, 90, fout);
 			// show notification
 			Toast.makeText(context, "Screenshot saved: " + mPath, Toast.LENGTH_SHORT).show();
-			Log.i("Screenshot saved", mPath);
+			log.info("Screenshot saved: " + mPath);
 
 			fout.flush();
 			fout.close();
 		} catch (FileNotFoundException e)
 		{
-			e.printStackTrace();
+			log.log(Level.SEVERE, "ScreenShot", e);
 		} catch (IOException e)
 		{
-			e.printStackTrace();
+			log.log(Level.SEVERE, "ScreenShot", e);
 		}
 	}
 
 	/**
 	 * get a bitmap from selected view
 	 *
-	 * @param context context of View to be taken
 	 * @param v       View to be taken
 	 * @return Bitmap of selected view
 	 */
-	public static Bitmap loadBitmapFromView(Context context, View v)
+	private static Bitmap loadBitmapFromView(View v)
 	{
 		Bitmap returnedBitmap = Bitmap.createBitmap(v.getWidth(),
 			v.getHeight(),

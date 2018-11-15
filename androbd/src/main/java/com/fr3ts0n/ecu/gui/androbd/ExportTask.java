@@ -18,13 +18,13 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.Toast;
 
 import org.achartengine.model.XYMultipleSeriesDataset;
@@ -37,6 +37,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.SortedMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Builds the CSV dump for sharing.
@@ -47,8 +49,8 @@ class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
 {
 
 	private Activity activity;
-	private static final DateFormat tagFormat  = new SimpleDateFormat("yyyyMMddkkmmss");
-    private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+	@SuppressLint("SimpleDateFormat")
+	private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
 	private static final String OPT_FIELD_DELIM		= "csv_field_delimiter";
 	private static final String OPT_RECORD_DELIM	= "csv_record_delimiter";
@@ -59,7 +61,10 @@ class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
 	private static String CSV_LINE_DELIMITER = "\n";
 	private static boolean CSV_TEXT_QUOTED = false;
 
-	SharedPreferences prefs;
+	static final String TAG = ExportTask.class.getSimpleName();
+	static final Logger log = Logger.getLogger(TAG);
+	
+	private SharedPreferences prefs;
 
 	// file name to be saved
     private String path;
@@ -103,9 +108,10 @@ class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
 				highestResChannel = i;
 			}
 		}
-
-        new File(path).mkdirs();
-		FileWriter writer = null;
+		
+		//noinspection ResultOfMethodCallIgnored
+		new File(path).mkdirs();
+		FileWriter writer;
 		try
 		{
 			writer = new FileWriter(new File(fileName));
@@ -172,7 +178,7 @@ class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
 		String msg = String.format("CSV %s to %s",
 								   activity.getString(R.string.saved),
 								   fileName);
-		Log.i(activity.getString(R.string.saved), msg);
+		log.log(Level.INFO, msg);
 		Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
 
 		// if export file should be sent immediately ...

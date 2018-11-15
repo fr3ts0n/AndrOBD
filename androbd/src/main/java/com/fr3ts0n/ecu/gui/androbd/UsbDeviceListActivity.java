@@ -29,7 +29,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +44,7 @@ import com.hoho.android.usbserial.driver.UsbSerialProber;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Shows a {@link ListView} of available USB devices.
@@ -53,9 +53,11 @@ import java.util.List;
  */
 public final class UsbDeviceListActivity extends Activity
 {
+	static final String TAG = UsbDeviceListActivity.class.getSimpleName();
+	static final Logger log = Logger.getLogger(TAG);
+	
+	/** selected USB port */
 	public static UsbSerialPort selectedPort = null;
-
-	private final String TAG = UsbDeviceListActivity.class.getSimpleName();
 
 	private UsbManager mUsbManager;
 	private static final int MESSAGE_REFRESH = 101;
@@ -111,17 +113,22 @@ public final class UsbDeviceListActivity extends Activity
 					row = (TwoLineListItem) convertView;
 				}
 
-				final UsbSerialPort port = mEntries.get(position);
-				final UsbSerialDriver driver = port.getDriver();
-				final UsbDevice device = driver.getDevice();
+				if (row != null)
+				{
+					final UsbSerialPort port = mEntries.get(position);
+					final UsbSerialDriver driver = port.getDriver();
+					final UsbDevice device = driver.getDevice();
+	
+					final String title = String.format("USB: 0x%04x/0x%04x",
+					                                   device.getVendorId(),
+					                                   device.getProductId());
+					final String subtitle = driver.getClass().getSimpleName();
 
-				final String title = String.format("USB: 0x%04x/0x%04x",
-				                                   device.getVendorId(),
-				                                   device.getProductId());
-				final String subtitle = driver.getClass().getSimpleName();
-				row.getText1().setText(title);
-				row.getText2().setText(subtitle);
-
+					row.getText1().setText(title);
+					row.getText2().setText(subtitle);
+				}
+				
+				//noinspection ConstantConditions
 				return row;
 			}
 
@@ -133,10 +140,10 @@ public final class UsbDeviceListActivity extends Activity
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 			{
-				Log.d(TAG, "Pressed item " + position);
+				log.fine("Pressed item " + position);
 				if (position >= mEntries.size())
 				{
-					Log.w(TAG, "Illegal position.");
+					log.warning("Illegal position.");
 					return;
 				}
 
@@ -146,7 +153,7 @@ public final class UsbDeviceListActivity extends Activity
 				Intent intent = new Intent();
 				// Set result and finish this Activity
 				setResult(Activity.RESULT_OK, intent);
-				Log.d("Terminal", "Sending Result...");
+				log.fine("Sending Result...");
 				finish();
 			}
 		});
@@ -174,7 +181,7 @@ public final class UsbDeviceListActivity extends Activity
 			@Override
 			protected List<UsbSerialPort> doInBackground(Void... params)
 			{
-				Log.d(TAG, "Refreshing device list ...");
+				log.fine("Refreshing device list ...");
 				final List<UsbSerialDriver> drivers =
 					UsbSerialProber.getDefaultProber().findAllDrivers(mUsbManager);
 				final List<UsbSerialPort> result = new ArrayList<>();
@@ -182,7 +189,7 @@ public final class UsbDeviceListActivity extends Activity
 				for (final UsbSerialDriver driver : drivers)
 				{
 					final List<UsbSerialPort> ports = driver.getPorts();
-					Log.d(TAG, String.format("+ %s: %s selectedPort%s",
+					log.fine(String.format("+ %s: %s selectedPort%s",
 					                         driver, ports.size(),
 					                         ports.size() == 1 ? "" : "s"));
 					result.addAll(ports);
@@ -200,7 +207,7 @@ public final class UsbDeviceListActivity extends Activity
 				TextView numFound = findViewById(R.id.num_found);
 				numFound.setText(getString(R.string.devices_found, result.size()));
 				mAdapter.notifyDataSetChanged();
-				Log.d(TAG, "Done refreshing, " + mEntries.size() + " entries found.");
+				log.fine("Done refreshing, " + mEntries.size() + " entries found.");
 			}
 
 		}.execute();

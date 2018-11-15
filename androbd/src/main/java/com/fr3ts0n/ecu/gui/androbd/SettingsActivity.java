@@ -29,7 +29,6 @@ import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.fr3ts0n.ecu.EcuDataItem;
@@ -38,10 +37,15 @@ import com.fr3ts0n.ecu.prot.obd.ObdProt;
 
 import java.util.HashSet;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SettingsActivity
 	extends Activity
 {
+	/** The logger object */
+	static final Logger log = Logger.getLogger(SettingsActivity.class.getName());
+	
 	/**
 	 * app preferences
 	 */
@@ -189,7 +193,7 @@ public class SettingsActivity
 			MultiSelectListPreference pref =
 				(MultiSelectListPreference) findPreference(ELM_CMD_DISABLE);
 			ElmProt.CMD[] values = ElmProt.CMD.values();
-			HashSet<String> selections = new HashSet<String>();
+			HashSet<String> selections = new HashSet<>();
 			CharSequence[] titles = new CharSequence[values.length];
 			CharSequence[] keys = new CharSequence[values.length];
 			int i = 0;
@@ -240,7 +244,7 @@ public class SettingsActivity
 
 			// collect data items for selection
 			items = ObdProt.dataItems.getSvcDataItems(ObdProt.OBD_SVC_DATA);
-			HashSet<String> selections = new HashSet<String>();
+			HashSet<String> selections = new HashSet<>();
 			CharSequence[] titles = new CharSequence[items.size()];
 			CharSequence[] keys = new CharSequence[items.size()];
 			// loop through data items
@@ -329,7 +333,7 @@ public class SettingsActivity
 			}
 			catch(Exception e)
 			{
-				Log.e("Settings", e.getMessage());
+				log.log(Level.SEVERE, "Settings", e);
 				Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
 			}
 			return true;
@@ -343,7 +347,7 @@ public class SettingsActivity
 		{
 			Preference pref;
 			SharedPreferences.Editor ed = prefs.edit();
-			String value = (resultCode == Activity.RESULT_OK) ? data.getData().toString() : null;
+			String value = (resultCode == Activity.RESULT_OK) ? String.valueOf(data.getData()) : null;
 			// find the right key
 			for (String key : extKeys)
 			{
@@ -379,6 +383,7 @@ public class SettingsActivity
 				updateNetworkSelections();
 
 			if(ELM_TIMING_SELECT.equals(key))
+				//noinspection ConstantConditions
 				findPreference(ELM_MIN_TIMEOUT)
 					.setEnabled(ElmProt.AdaptTimingMode.SOFTWARE.toString()
 						          .equals(((ListPreference)pref).getValue())
