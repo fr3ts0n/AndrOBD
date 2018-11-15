@@ -43,11 +43,11 @@ import java.util.logging.Logger;
 public class BtDeviceListActivity extends Activity
 {
 	// Debugging
-	static final String TAG = BtDeviceListActivity.class.getSimpleName();
-	static final Logger log = Logger.getLogger(TAG);
+	private static final String TAG = BtDeviceListActivity.class.getSimpleName();
+	private static final Logger log = Logger.getLogger(TAG);
 	
 	// Return Intent extra
-	public static String EXTRA_DEVICE_ADDRESS = "device_address";
+	public static final String EXTRA_DEVICE_ADDRESS = "device_address";
 
 	// Member fields
 	private BluetoothAdapter mBtAdapter;
@@ -100,7 +100,7 @@ public class BtDeviceListActivity extends Activity
 	}
 	
 	// The on-click listener for all devices in the ListViews
-	private OnItemClickListener mDeviceClickListener = new OnItemClickListener()
+	private final OnItemClickListener mDeviceClickListener = new OnItemClickListener()
 	{
 		public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3)
 		{

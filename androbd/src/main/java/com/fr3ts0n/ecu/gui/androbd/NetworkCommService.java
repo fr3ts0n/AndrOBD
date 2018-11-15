@@ -35,10 +35,10 @@ public class NetworkCommService
 	extends CommService
 	implements Runnable
 {
-	public Socket mSocket;
+	private Socket mSocket;
 	/** communication stream handler */
-	public StreamHandler ser = new StreamHandler();
-	public Thread serThread;
+	private final StreamHandler ser = new StreamHandler();
+	private Thread serThread;
 
 	/** default constructor */
 	public NetworkCommService()
@@ -105,13 +105,13 @@ public class NetworkCommService
 	 * Thread for connecting network device
 	 * * required to eliminate android.os.NetworkOnMainThreadException
 	 */
-	protected class ConnectThread extends Thread
+	class ConnectThread extends Thread
 	{
-		CommService svc;
-		String device;
-		int portNum = 23;
+		final CommService svc;
+		final String device;
+		int portNum;
 
-		public ConnectThread(CommService svc, String device, int portNum)
+		ConnectThread(CommService svc, String device, int portNum)
 		{
 			this.svc = svc;
 			this.device = device;

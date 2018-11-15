@@ -46,6 +46,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -53,16 +54,16 @@ import java.util.Set;
  *
  * @author erwin
  */
-public class ObdItemAdapter extends ArrayAdapter<Object>
+class ObdItemAdapter extends ArrayAdapter<Object>
 	implements PvChangeListener
 {
-	transient protected PvList pvs;
-	transient protected boolean isPidList = false;
-	transient protected LayoutInflater mInflater;
+	transient PvList pvs;
+	private transient boolean isPidList = false;
+	final transient LayoutInflater mInflater;
 	transient public static final String FID_DATA_SERIES = "SERIES";
 	/** allow data updates to be handled */
 	public static boolean allowDataUpdates = true;
-	transient SharedPreferences prefs;
+	private final transient SharedPreferences prefs;
 
 
 	public ObdItemAdapter(Context context, int resource, PvList pvs)
@@ -85,7 +86,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		this.pvs = pvs;
 		isPidList = (pvs == ObdProt.PidPvs);
 		// get set to be displayed (filtered with preferences */
-		Collection<Object> filtered = getPreferredItems(pvs, SettingsActivity.KEY_DATA_ITEMS);
+		Collection<Object> filtered = getPreferredItems(pvs);
 		// make it a sorted array
 		Object[] pidPvs = filtered.toArray();
 		Arrays.sort(pidPvs, pidSorter);
@@ -99,7 +100,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	}
 
 	@SuppressWarnings("rawtypes")
-	static Comparator pidSorter = new Comparator()
+	private static final Comparator pidSorter = new Comparator()
 	{
 		public int compare(Object lhs, Object rhs)
 		{
@@ -120,10 +121,9 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	/**
 	 * get set of data items filtered with set of preferred items to be displayed
 	 * @param pvs list of PVs to be handled
-	 * @param preferenceKey key of preference to be used as filter
 	 * @return Set of filtered data items
 	 */
-	public Collection getPreferredItems(PvList pvs, String preferenceKey)
+	Collection getPreferredItems(PvList pvs)
 	{
 		// filter PVs with preference selections
 		Set<String> pidsToShow = prefs.getStringSet( SettingsActivity.KEY_DATA_ITEMS,
@@ -137,9 +137,9 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	 * @param pidsToShow Set of keys to be used as filter
 	 * @return Set of filtered data items
 	 */
-	public Collection<Object> getMatchingItems(PvList pvs, Set<String> pidsToShow)
+	private Collection<Object> getMatchingItems(PvList pvs, Set<String> pidsToShow)
 	{
-		HashSet<Object> filtered = new HashSet<Object>();
+		HashSet<Object> filtered = new HashSet<>();
 		for(Object key : pidsToShow)
 		{
 			IndexedProcessVar pv = (IndexedProcessVar) pvs.get(key);
@@ -170,7 +170,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 
 		// description text
 		TextView tvDescr = convertView.findViewById(R.id.obd_label);
-		tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
+		tvDescr.setText(String.valueOf(Objects.requireNonNull(currPv).get(EcuDataPv.FID_DESCRIPT)));
 		TextView tvValue = convertView.findViewById(R.id.obd_value);
 		TextView tvUnits = convertView.findViewById(R.id.obd_units);
 		ProgressBar pb = convertView.findViewById(R.id.bar);
@@ -226,9 +226,9 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	/**
 	 * Add data series to all process variables
 	 */
-	protected synchronized void addAllDataSeries()
+	private synchronized void addAllDataSeries()
 	{
-		String pluginStr = "";
+		StringBuilder pluginStr = new StringBuilder();
 		for (IndexedProcessVar pv : (Iterable<IndexedProcessVar>) pvs.values())
 		{
 			XYSeries series = (XYSeries) pv.get(FID_DATA_SERIES);
@@ -239,18 +239,18 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 			}
 
 			// assemble data items for plugin notification
-			pluginStr += String.format( "%s;%s;%s;%s\n",
-				                        pv.get(EcuDataPv.FID_MNEMONIC),
-										pv.get(EcuDataPv.FID_DESCRIPT),
-										String.valueOf(pv.get(EcuDataPv.FID_VALUE)),
-				                        pv.get(EcuDataPv.FID_UNITS)
-			                          );
+			pluginStr.append(String.format("%s;%s;%s;%s\n",
+				pv.get(EcuDataPv.FID_MNEMONIC),
+				pv.get(EcuDataPv.FID_DESCRIPT),
+				String.valueOf(pv.get(EcuDataPv.FID_VALUE)),
+				pv.get(EcuDataPv.FID_UNITS)
+			));
 		}
 
 		// notify plugins
 		if(PluginManager.pluginHandler != null)
 		{
-			PluginManager.pluginHandler.sendDataList(pluginStr);
+			PluginManager.pluginHandler.sendDataList(pluginStr.toString());
 		}
 	}
 

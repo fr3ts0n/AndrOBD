@@ -33,7 +33,7 @@ import java.util.TimerTask;
 /**
  * Automatically hide components after timeout and show again on touch action
  */
-public class AutoHider
+class AutoHider
 	extends TimerTask
 	implements OnTouchListener
 {
@@ -52,16 +52,14 @@ public class AutoHider
 	 * Constructor
 	 * @param activity parent activity
 	 * @param handler activity's message handler
-	 * @param hideMessageId message ID of hide/sho message
 	 * @param hideDelayTime delay time[ms] before component gets hidden
 	 */
 	AutoHider(Activity activity,
 	          Handler handler,
-	          int hideMessageId,
 	          long hideDelayTime)
 	{
 		TB_HIDE_DELAY = hideDelayTime;
-		mMessageId = hideMessageId;
+		mMessageId = MainActivity.MESSAGE_TOOLBAR_VISIBLE;
 		mHandler  = handler;
 		activity.getWindow().getDecorView().setOnTouchListener(this);
 	}

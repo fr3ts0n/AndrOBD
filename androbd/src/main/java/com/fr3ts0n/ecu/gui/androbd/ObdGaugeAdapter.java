@@ -41,24 +41,25 @@ import org.achartengine.renderer.SimpleSeriesRenderer;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Objects;
 
 /**
  * Adapter for OBD data gauge display
  *
  * @author erwin
  */
-public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
+class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 	PvChangeListener
 {
-	transient public static final String FID_GAUGE_SERIES = "GAUGE_SERIES";
-	transient protected LayoutInflater mInflater;
+	private transient static final String FID_GAUGE_SERIES = "GAUGE_SERIES";
+	private final transient LayoutInflater mInflater;
 	private static int resourceId;
-	private transient int minWidth;
-	private transient int minHeight;
-	private DisplayMetrics mDisplayMetrics;
+	private final transient int minWidth;
+	private final transient int minHeight;
+	private final DisplayMetrics mDisplayMetrics;
 
 	/** format for numeric labels */
-	protected static final NumberFormat labelFormat = new DecimalFormat("0;-#");
+	private static final NumberFormat labelFormat = new DecimalFormat("0;-#");
 
 	static class ViewHolder
 	{
@@ -118,7 +119,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 	{
 		ViewHolder holder;
 		EcuDataPv currPv = getItem(position);
-		int pid = currPv.getAsInt(EcuDataPv.FID_PID);
+		int pid = Objects.requireNonNull(currPv).getAsInt(EcuDataPv.FID_PID);
 
 		// if no recycled convertView delivered, then create a new one
 		if (convertView == null)

@@ -58,7 +58,7 @@ public abstract class CommService
 	// Debugging
 	private static final String TAG = "CommService";
 
-	public static final Logger log = Logger.getLogger(TAG);
+	static final Logger log = Logger.getLogger(TAG);
 
 	public static final ElmProt elm = new ElmProt();
 
@@ -117,7 +117,7 @@ public abstract class CommService
 	 * Start the chat service. Specifically start AcceptThread to begin a session
 	 * in listening (server) mode. Called by the Activity onResume()
 	 */
-	public abstract void start();
+	protected abstract void start();
 
 	/**
 	 * Stop all threads

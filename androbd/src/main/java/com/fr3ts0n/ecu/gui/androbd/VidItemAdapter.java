@@ -37,7 +37,7 @@ public class VidItemAdapter extends ObdItemAdapter
 	}
 
 	@Override
-	public Collection<Object> getPreferredItems(PvList pvs, String preferenceKey)
+	public Collection<Object> getPreferredItems(PvList pvs)
 	{
 		return pvs.values();
 	}

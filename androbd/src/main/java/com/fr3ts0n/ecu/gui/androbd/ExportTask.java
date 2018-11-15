@@ -48,7 +48,7 @@ import java.util.logging.Logger;
 class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
 {
 
-	private Activity activity;
+	private final Activity activity;
 	@SuppressLint("SimpleDateFormat")
 	private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
@@ -61,14 +61,14 @@ class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
 	private static String CSV_LINE_DELIMITER = "\n";
 	private static boolean CSV_TEXT_QUOTED = false;
 
-	static final String TAG = ExportTask.class.getSimpleName();
-	static final Logger log = Logger.getLogger(TAG);
+	private static final String TAG = ExportTask.class.getSimpleName();
+	private static final Logger log = Logger.getLogger(TAG);
 	
-	private SharedPreferences prefs;
+	private final SharedPreferences prefs;
 
 	// file name to be saved
-    private String path;
-	private String fileName;
+    private final String path;
+	private final String fileName;
 
 	public ExportTask(Activity activity)
 	{

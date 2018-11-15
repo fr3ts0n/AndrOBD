@@ -33,6 +33,7 @@ import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.prot.obd.ObdProt;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -55,7 +56,7 @@ public class DashBoardActivity extends Activity
 	/**
 	 * Minimum size for gauges to be displayed
 	 */
-	public static int MIN_GAUGE_SIZE = 300; /* dp */
+	private static int MIN_GAUGE_SIZE = 300; /* dp */
 
 	/**
 	 * the wake lock to keep app communication alive
@@ -65,13 +66,13 @@ public class DashBoardActivity extends Activity
 	private transient GridView grid;
 
 	/** Map to uniquely collect PID numbers */
-	private HashSet<Integer> pidNumbers = new HashSet<Integer>();
+	private final HashSet<Integer> pidNumbers = new HashSet<>();
 
-	public static final int MESSAGE_UPDATE_VIEW = 7;
+	private static final int MESSAGE_UPDATE_VIEW = 7;
 
 	private static ListAdapter mAdapter = null;
 	/** display metrics */
-	private static DisplayMetrics metrics = new DisplayMetrics();
+	private static final DisplayMetrics metrics = new DisplayMetrics();
 
 	/** record positions to be charted */
 	private transient int[] positions;
@@ -92,7 +93,7 @@ public class DashBoardActivity extends Activity
 
 	/**
 	 * Set list adapter as data source of display
-	 * @param Adapter
+	 * @param Adapter List adapter
 	 */
 	public static void setAdapter(ListAdapter Adapter)
 	{
@@ -117,12 +118,12 @@ public class DashBoardActivity extends Activity
 		}
 	};
 
-	Timer refreshTimer = new Timer();
+	private final Timer refreshTimer = new Timer();
 
 	/**
 	 * Timer Task to cyclically update data screen
 	 */
-	private TimerTask updateTask = new TimerTask()
+	private final TimerTask updateTask = new TimerTask()
 	{
 		@Override
 		public void run()
@@ -151,7 +152,7 @@ public class DashBoardActivity extends Activity
 
 		// prevent activity from falling asleep
 		PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
-		wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+		wakeLock = Objects.requireNonNull(powerManager).newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
 			getString(R.string.app_name));
 		wakeLock.acquire();
 

@@ -28,6 +28,7 @@ import com.fr3ts0n.pvs.IndexedProcessVar;
 import com.fr3ts0n.pvs.PvList;
 
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  * Adapter to display OBD DFCs
@@ -42,7 +43,7 @@ public class DfcItemAdapter extends ObdItemAdapter
 	}
 
 	@Override
-	public Collection<Object> getPreferredItems(PvList pvs, String preferenceKey)
+	public Collection<Object> getPreferredItems(PvList pvs)
 	{
 		return pvs.values();
 	}
@@ -63,7 +64,7 @@ public class DfcItemAdapter extends ObdItemAdapter
 		TextView tvDescr = v.findViewById(R.id.obd_label);
 		TextView tvValue = v.findViewById(R.id.obd_units);
 
-		tvValue.setText(String.valueOf(currPv.get(EcuCodeItem.FID_CODE)));
+		tvValue.setText(String.valueOf(Objects.requireNonNull(currPv).get(EcuCodeItem.FID_CODE)));
 		tvDescr.setText(String.valueOf(currPv.get(EcuCodeItem.FID_DESCRIPT)));
 
 		return v;

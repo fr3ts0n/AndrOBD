@@ -30,6 +30,7 @@ import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.util.SerialInputOutputManager;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.logging.Level;
 
 /**
@@ -70,6 +71,7 @@ public class UsbCommService extends CommService
 
 						// trigger message handling for new request
 						case '>':
+							//noinspection StringConcatenationInLoop
 							message += (char) chr;
 							// trigger message handling
 						case 10:
@@ -80,6 +82,7 @@ public class UsbCommService extends CommService
 							break;
 
 						default:
+							//noinspection StringConcatenationInLoop
 							message += (char) chr;
 					}
 				}
@@ -96,7 +99,7 @@ public class UsbCommService extends CommService
 	 * Set USB serial port device
 	 * @param port serial port to be set
 	 */
-	protected void setDevice(UsbSerialPort port)
+	private void setDevice(UsbSerialPort port)
 	{
 		sPort = port;
 		mSerialIoManager = new SerialInputOutputManager(sPort, mListener);
@@ -116,7 +119,8 @@ public class UsbCommService extends CommService
 		if (sPort != null)
 		{
 			final UsbManager usbManager = (UsbManager) mContext.getSystemService(Context.USB_SERVICE);
-			UsbDeviceConnection connection = usbManager.openDevice(sPort.getDriver().getDevice());
+			UsbDeviceConnection connection = Objects.requireNonNull(usbManager)
+				                                 .openDevice(sPort.getDriver().getDevice());
 			if (connection == null)
 			{
 				connectionFailed();

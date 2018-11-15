@@ -44,12 +44,12 @@ public class SettingsActivity
 	extends Activity
 {
 	/** The logger object */
-	static final Logger log = Logger.getLogger(SettingsActivity.class.getName());
+	private static final Logger log = Logger.getLogger(SettingsActivity.class.getName());
 	
 	/**
 	 * app preferences
 	 */
-	static SharedPreferences prefs;
+	private static SharedPreferences prefs;
 	/**
 	 * preference keys for extension files
 	 */
@@ -62,7 +62,7 @@ public class SettingsActivity
 	/**
 	 * key ids for device network settings
 	 */
-	static final String[] networkKeys =
+	private static final String[] networkKeys =
 	{
 		"device_address",
 		"device_port"
@@ -70,7 +70,7 @@ public class SettingsActivity
 	/**
 	 * key ids for device network settings
 	 */
-	static final String[] bluetoothKeys =
+	private static final String[] bluetoothKeys =
 	{
 		"bt_secure_connection"
 	};
@@ -82,7 +82,7 @@ public class SettingsActivity
 	static final String ELM_MIN_TIMEOUT = "elm_min_timeout";
 	static final String ELM_CMD_DISABLE = "elm_cmd_disable";
     static final String ELM_TIMING_SELECT = "adaptive_timing_mode";
-    static final String KEY_BITCOIN = "bitcoin";
+    private static final String KEY_BITCOIN = "bitcoin";
 
 	/*
 	 * (non-Javadoc)
@@ -289,7 +289,7 @@ public class SettingsActivity
 		 * enable/disable elements for network parameters
 		 * based on selection of communication medium
 		 */
-		public void updateNetworkSelections()
+		void updateNetworkSelections()
 		{
 			boolean networkSelected =
 				String.valueOf(CommService.MEDIUM.NETWORK.ordinal())

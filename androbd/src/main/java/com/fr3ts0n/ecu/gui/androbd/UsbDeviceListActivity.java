@@ -53,8 +53,8 @@ import java.util.logging.Logger;
  */
 public final class UsbDeviceListActivity extends Activity
 {
-	static final String TAG = UsbDeviceListActivity.class.getSimpleName();
-	static final Logger log = Logger.getLogger(TAG);
+	private static final String TAG = UsbDeviceListActivity.class.getSimpleName();
+	private static final Logger log = Logger.getLogger(TAG);
 	
 	/** selected USB port */
 	public static UsbSerialPort selectedPort = null;

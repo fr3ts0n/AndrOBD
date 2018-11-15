@@ -44,19 +44,19 @@ public class CheckableRelativeLayout extends RelativeLayout implements
 	                               int defStyle)
 	{
 		super(context, attrs, defStyle);
-		initialise(attrs);
+		initialise();
 	}
 
 	public CheckableRelativeLayout(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
-		initialise(attrs);
+		initialise();
 	}
 
-	public CheckableRelativeLayout(Context context, int checkableId)
+	public CheckableRelativeLayout(Context context)
 	{
 		super(context);
-		initialise(null);
+		initialise();
 	}
 
 	/*
@@ -106,10 +106,10 @@ public class CheckableRelativeLayout extends RelativeLayout implements
 	/**
 	 * Read the custom XML attributes
 	 */
-	private void initialise(AttributeSet attrs)
+	private void initialise()
 	{
 		this.isChecked = false;
-		this.checkableViews = new ArrayList<Checkable>(5);
+		this.checkableViews = new ArrayList<>(5);
 	}
 
 	/**

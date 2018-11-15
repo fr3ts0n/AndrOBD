@@ -39,7 +39,7 @@ import java.util.logging.Logger;
  */
 class Screenshot
 {
-	static final Logger log = Logger.getLogger(Screenshot.class.getSimpleName());
+	private static final Logger log = Logger.getLogger(Screenshot.class.getSimpleName());
 	
 	/**
 	 * Take a screenshot of selected view in selected context and save on external

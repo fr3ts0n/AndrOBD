@@ -52,21 +52,20 @@ class FileHelper
 	private static final SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy.MM.dd-HH.mm.ss");
 	private static ProgressDialog progress;
 
-	static final Logger log = Logger.getLogger(FileHelper.class.getName());
+	private static final Logger log = Logger.getLogger(FileHelper.class.getName());
 	
 	private final Context context;
 	private final ElmProt elm;
 
 	/**
 	 * Initialize static data for static calls
+	 *  @param context APP context
 	 *
-	 * @param context APP context
-	 * @param elm     Elm protocol data to be stored
 	 */
-	FileHelper(Context context, ElmProt elm)
+	FileHelper(Context context)
 	{
 		this.context = context;
-		this.elm = elm;
+		this.elm = CommService.elm;
 	}
 
 	/**

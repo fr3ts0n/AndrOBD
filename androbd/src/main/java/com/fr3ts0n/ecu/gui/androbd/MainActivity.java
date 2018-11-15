@@ -71,6 +71,7 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -132,33 +133,33 @@ public class MainActivity extends PluginManager
 	 * Key names for preferences
 	 */
 	public static final String DEVICE_NAME = "device_name";
-	public static final String DEVICE_ADDRESS = "device_address";
-	public static final String DEVICE_PORT = "device_port";
+	private static final String DEVICE_ADDRESS = "device_address";
+	private static final String DEVICE_PORT = "device_port";
 	public static final String TOAST = "toast";
-	public static final String MEASURE_SYSTEM = "measure_system";
-	public static final String NIGHT_MODE = "night_mode";
-	public static final String ELM_ADAPTIVE_TIMING = ELM_TIMING_SELECT;
-	public static final String ELM_RESET_ON_NRC = "elm_reset_on_nrc";
-	public static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
+	private static final String MEASURE_SYSTEM = "measure_system";
+	private static final String NIGHT_MODE = "night_mode";
+	private static final String ELM_ADAPTIVE_TIMING = ELM_TIMING_SELECT;
+	private static final String ELM_RESET_ON_NRC = "elm_reset_on_nrc";
+	private static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
 	public static final String PREF_AUTOHIDE = "autohide_toolbar";
-	public static final String PREF_OVERLAY = "toolbar_overlay";
+	private static final String PREF_OVERLAY = "toolbar_overlay";
 	public static final String PREF_AUTOHIDE_DELAY = "autohide_delay";
-	public static final String PREF_DATA_DISABLE_MAX = "data_disable_max";
+	private static final String PREF_DATA_DISABLE_MAX = "data_disable_max";
 
 	/**
 	 * Message types sent from the BluetoothChatService Handler
 	 */
 	public static final int MESSAGE_STATE_CHANGE = 1;
 	public static final int MESSAGE_FILE_READ = 2;
-	public static final int MESSAGE_FILE_WRITTEN = 3;
+	private static final int MESSAGE_FILE_WRITTEN = 3;
 	public static final int MESSAGE_DEVICE_NAME = 4;
 	public static final int MESSAGE_TOAST = 5;
-	public static final int MESSAGE_DATA_ITEMS_CHANGED = 6;
+	private static final int MESSAGE_DATA_ITEMS_CHANGED = 6;
 	public static final int MESSAGE_UPDATE_VIEW = 7;
-	public static final int MESSAGE_OBD_STATE_CHANGED = 8;
-	public static final int MESSAGE_OBD_NUMCODES = 9;
-	public static final int MESSAGE_OBD_ECUS = 10;
-	public static final int MESSAGE_OBD_NRC = 11;
+	private static final int MESSAGE_OBD_STATE_CHANGED = 8;
+	private static final int MESSAGE_OBD_NUMCODES = 9;
+	private static final int MESSAGE_OBD_ECUS = 10;
+	private static final int MESSAGE_OBD_NRC = 11;
 	public static final int MESSAGE_TOOLBAR_VISIBLE = 12;
 	private static final String TAG = "AndrOBD";
 	/**
@@ -180,9 +181,9 @@ public class MainActivity extends PluginManager
 	 * time between display updates to represent data changes
 	 */
 	private static final int DISPLAY_UPDATE_TIME = 200;
-	public static final String LOG_MASTER = "log_master";
-	public static final String KEEP_SCREEN_ON = "keep_screen_on";
-	public static final String ELM_CUSTOM_INIT_CMDS = "elm_custom_init_cmds";
+	private static final String LOG_MASTER = "log_master";
+	private static final String KEEP_SCREEN_ON = "keep_screen_on";
+	private static final String ELM_CUSTOM_INIT_CMDS = "elm_custom_init_cmds";
 	
 	/** Logging */
 	private static final Logger rootLogger = Logger.getLogger("");
@@ -194,7 +195,7 @@ public class MainActivity extends PluginManager
 	/**
 	 * app preferences ...
 	 */
-	protected static SharedPreferences prefs;
+	static SharedPreferences prefs;
 	/**
 	 * Member object for the BT comm services
 	 */
@@ -334,7 +335,7 @@ public class MainActivity extends PluginManager
 		                       getString(R.string.app_version)));
 
 		// create file helper instance
-		fileHelper = new FileHelper(this, CommService.elm);
+		fileHelper = new FileHelper(this);
 		// set listeners for data structure changes
 		setDataListeners();
 		// automate elm status display
@@ -480,7 +481,7 @@ public class MainActivity extends PluginManager
 			{
 				if(dataViewMode != DATA_VIEW_MODE.LIST)
 				{
-					setDataViewMode(DATA_VIEW_MODE.LIST, false);
+					setDataViewMode(DATA_VIEW_MODE.LIST);
 					checkToRestoreLastDataSelection();
 				}
 				else
@@ -634,19 +635,19 @@ public class MainActivity extends PluginManager
 		switch(item.getItemId())
 		{
 			case R.id.chart_selected:
-				setDataViewMode(DATA_VIEW_MODE.CHART, false);
+				setDataViewMode(DATA_VIEW_MODE.CHART);
 				return true;
 
 			case R.id.hud_selected:
-				setDataViewMode(DATA_VIEW_MODE.HEADUP, false);
+				setDataViewMode(DATA_VIEW_MODE.HEADUP);
 				return true;
 
 			case R.id.dashboard_selected:
-				setDataViewMode(DATA_VIEW_MODE.DASHBOARD, false);
+				setDataViewMode(DATA_VIEW_MODE.DASHBOARD);
 				return true;
 
 			case R.id.filter_selected:
-				setDataViewMode(DATA_VIEW_MODE.FILTERED, false);
+				setDataViewMode(DATA_VIEW_MODE.FILTERED);
 				return true;
 		}
 		return false;
@@ -677,7 +678,7 @@ public class MainActivity extends PluginManager
 				if (resultCode == Activity.RESULT_OK)
 				{
 					// Get the device MAC address
-					String address = data.getExtras().getString(
+					String address = Objects.requireNonNull(data.getExtras()).getString(
 						BtDeviceListActivity.EXTRA_DEVICE_ADDRESS);
 					// save reported address as last setting
 					prefs.edit().putString(PRESELECT.LAST_DEV_ADDRESS.toString(), address).apply();
@@ -801,7 +802,7 @@ public class MainActivity extends PluginManager
 
 		// log levels
 		if(key==null || LOG_MASTER.equals(key))
-			setLogLevels(rootLogger);
+			setLogLevels();
 
 		// update from protocol extensions
 		if(key==null || key.startsWith("ext_file-"))
@@ -1092,7 +1093,7 @@ public class MainActivity extends PluginManager
 			// select last selected items
 			if(lastSelectedItems.length > 0)
 			{
-				if(!selectDataItems(lastSelectedItems, true))
+				if(!selectDataItems(lastSelectedItems))
 				{
 					// if items could not be applied
 					// remove invalid preselection
@@ -1118,7 +1119,7 @@ public class MainActivity extends PluginManager
 			// set last data view mode
 			DATA_VIEW_MODE lastMode =
 				DATA_VIEW_MODE.valueOf(prefs.getString(PRESELECT.LAST_VIEW_MODE.toString(),DATA_VIEW_MODE.LIST.toString()));
-			setDataViewMode(lastMode, false);
+			setDataViewMode(lastMode);
 		}
 	}
 
@@ -1204,9 +1205,8 @@ public class MainActivity extends PluginManager
 
 	/**
 	 * OnClick handler - Unhide action bar
-	 * @param view view source of click event
 	 */
-	private void unHideActionBar(View view)
+	private void unHideActionBar()
 	{
 		if(toolbarAutoHider != null)
 			toolbarAutoHider.showComponent();
@@ -1319,8 +1319,7 @@ public class MainActivity extends PluginManager
 			int timeout = getPrefsInt(MainActivity.PREF_AUTOHIDE_DELAY, 15);
 			toolbarAutoHider = new AutoHider( this,
 			                                  mHandler,
-			                                  MESSAGE_TOOLBAR_VISIBLE,
-			                                  timeout * 1000);
+				timeout * 1000);
 			// start with update resolution of 1 second
 			toolbarAutoHider.start(1000);
 		}
@@ -1523,7 +1522,7 @@ public class MainActivity extends PluginManager
 			// add file logging ...
 			rootLogger.addHandler(logFileHandler);
 			// set
-			setLogLevels(rootLogger);
+			setLogLevels();
 		}
 		catch(IOException e)
 		{
@@ -1535,7 +1534,7 @@ public class MainActivity extends PluginManager
 	/**
 	 * Set logging levels from shared preferences
 	 */
-	private void setLogLevels(Logger logger)
+	private void setLogLevels()
 	{
         // get level from preferences
 		Level level;
@@ -1549,7 +1548,7 @@ public class MainActivity extends PluginManager
         }
 		
         // set logger main level
-		logger.setLevel(level);
+		MainActivity.rootLogger.setLevel(level);
 	}
 
 	/**
@@ -1661,7 +1660,7 @@ public class MainActivity extends PluginManager
 		{
 			actionBar.setSubtitle(subTitle);
 			// show action bar to make state change visible
-			unHideActionBar(getListView());
+			unHideActionBar();
 		}
 	}
 
@@ -1796,12 +1795,12 @@ public class MainActivity extends PluginManager
 		if (filtered)
 		{
 			PvList filteredList = new PvList();
-			TreeSet<Integer> selPids = new TreeSet<Integer>();
+			TreeSet<Integer> selPids = new TreeSet<>();
 			for (int pos : getSelectedPositions())
 			{
 				EcuDataPv pv = (EcuDataPv) mPidAdapter.getItem(pos);
 				selPids.add(pv != null ? pv.getAsInt(EcuDataPv.FID_PID) : 0);
-				filteredList.put(pv.toString(), pv);
+				filteredList.put(Objects.requireNonNull(pv).toString(), pv);
 			}
 			mPidAdapter.setPvList(filteredList);
 			setFixedPids(selPids);
@@ -1849,10 +1848,9 @@ public class MainActivity extends PluginManager
 	/**
 	 * Set selection status on specified list item positions
 	 * @param positions list of positions to be set
-	 * @param selectionStatus status to be set
 	 * @return flag if selections could be applied
 	 */
-	private boolean selectDataItems(int[] positions, boolean selectionStatus)
+	private boolean selectDataItems(int[] positions)
 	{
 		int count;
 		int max;
@@ -1868,7 +1866,7 @@ public class MainActivity extends PluginManager
 			// set list items as selected
 			for(int i : positions)
 			{
-				getListView().setItemChecked(i, selectionStatus);
+				getListView().setItemChecked(i, true);
 			}
 		}
 
@@ -1984,10 +1982,10 @@ public class MainActivity extends PluginManager
 	 * Set new data view mode
 	 * @param dataViewMode new data view mode
 	 */
-	private void setDataViewMode(DATA_VIEW_MODE dataViewMode, boolean force)
+	private void setDataViewMode(DATA_VIEW_MODE dataViewMode)
 	{
 		// if this is a real change ...
-		if(force || dataViewMode != this.dataViewMode)
+		if(false || dataViewMode != this.dataViewMode)
 		{
 			log.info(String.format("Set view mode: %s -> %s", this.dataViewMode, dataViewMode));
 
