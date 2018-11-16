@@ -28,6 +28,8 @@ import com.fr3ts0n.ecu.prot.vag.Kw1281Prot;
 import com.fr3ts0n.prot.gui.KLHandlerGeneric;
 import com.fr3ts0n.pvs.PvList;
 
+import org.jfree.data.time.TimeSeries;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;

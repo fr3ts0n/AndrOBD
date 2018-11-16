@@ -24,6 +24,9 @@ import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
 import com.fr3ts0n.pvs.PvList;
 
+import org.jfree.data.time.Second;
+import org.jfree.data.time.TimeSeries;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -46,7 +49,7 @@ public class ObdDataPanel extends JPanel
 	 */
 	private static final long serialVersionUID = 4441869977997912421L;
 	// selectable PID's'
-	HashMap<Object, TimeSeries> selPids = new HashMap<Object, TimeSeries>();
+	HashMap<Object, TimeSeries> selPids = new HashMap<>();
 
 	/** Creates new form ObdGraphPanel */
 	public ObdDataPanel()
