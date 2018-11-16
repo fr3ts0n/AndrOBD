@@ -33,7 +33,7 @@ public interface Conversion extends Serializable
 	 * @param value memory value
 	 * @return physical value
 	 */
-	public Number memToPhys(long value);
+	Number memToPhys(long value);
 
 	/**
 	 * convert measurement item from storage format to physical value
@@ -41,7 +41,7 @@ public interface Conversion extends Serializable
 	 * @param value physical value
 	 * @return memory value
 	 */
-	public Number physToMem(Number value);
+	Number physToMem(Number value);
 
 	/**
 	 * convert a numerical physical value into a formatted string
@@ -50,7 +50,7 @@ public interface Conversion extends Serializable
 	 * @param format formatting pattern for text display
 	 * @return formatted String
 	 */
-	public String physToPhysFmtString(Number physVal, String format);
+	String physToPhysFmtString(Number physVal, String format);
 
 	/**
 	 * convert measurement item from storage format to physical value
@@ -59,12 +59,12 @@ public interface Conversion extends Serializable
 	 * @param numDecimals number of decimal for string formatting of numbers
 	 * @return string representation of numeric value
 	 */
-	public String memToString(Number value, int numDecimals);
+	String memToString(Number value, int numDecimals);
 
 	/**
 	 * return physical units of this conversion
 	 *
 	 * @return physical units of this conversion
 	 */
-	public String getUnits();
+	String getUnits();
 }

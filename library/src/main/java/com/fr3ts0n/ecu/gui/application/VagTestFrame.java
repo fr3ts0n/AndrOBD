@@ -28,11 +28,6 @@ import com.fr3ts0n.ecu.prot.vag.Kw1281Prot;
 import com.fr3ts0n.prot.gui.KLHandlerGeneric;
 import com.fr3ts0n.pvs.PvList;
 
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
-import org.jfree.data.time.TimeSeries;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -45,6 +40,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -70,32 +68,32 @@ public class VagTestFrame extends javax.swing.JFrame
 	 */
 
 	/** prduct name string */
-	static final String product = "JaVAG Diagnose";
+	private static final String product = "JaVAG Diagnose";
 	/** product version string */
-	static final String version = "V0.8.0";
+	private static final String version = "V0.8.0";
 	/** copyright string */
-	static final String copyright = "Copyright (C) 2009-2010 Erwin Scheuch-Heilig";
+	private static final String copyright = "Copyright (C) 2009-2010 Erwin Scheuch-Heilig";
 	/** Initialize UTF8 resource bundle */
 	static UTF8Bundle res = new UTF8Bundle(new UTF8Control());
 	/** application icon */
-	static final ImageIcon appIcon = new ImageIcon(VagTestFrame.class.getResource("/com/fr3ts0n/ecu/gui/res/JaVAG_Logo.png"));
+	private static final ImageIcon appIcon = new ImageIcon(VagTestFrame.class.getResource("/com/fr3ts0n/ecu/gui/res/JaVAG_Logo.png"));
 	/** Application Logger */
-	static final Logger log = Logger.getLogger("app");
+	private static final Logger log = Logger.getLogger("app");
 
 	/** protocol handler */
-	static Kw1281Prot prt = new Kw1281Prot();
+	private static final Kw1281Prot prt = new Kw1281Prot();
 	/** Serial communication handler */
 	// static KLHandler ser = new KLHandler();
-	static KLHandlerGeneric ser = new KLHandlerGeneric();
+	private static final KLHandlerGeneric ser = new KLHandlerGeneric();
 
 	/** is this a simulation, or the real world? */
 	static boolean isSimulation = false;
 	/** ECU addresses */
-	static EcuCodeList AddressList = new EcuCodeList("com.fr3ts0n.ecu.prot.vag.res.ecuadr", 16);
+	private static final EcuCodeList AddressList = new EcuCodeList("com.fr3ts0n.ecu.prot.vag.res.ecuadr", 16);
 	/**
 	 * Action listener to handle read/clear code actions
 	 */
-	ActionListener hdlrCodeButtons = new ActionListener()
+	private final ActionListener hdlrCodeButtons = new ActionListener()
 	{
 
 		@Override
@@ -127,7 +125,7 @@ public class VagTestFrame extends javax.swing.JFrame
 		if ("status".equals(evt.getPropertyName()))
 		{
 			log.fine("Com status:" + val.toString());
-			if (val != null) lblStatus.setText(val.toString());
+			lblStatus.setText(val.toString());
 			lblStatus.setBackground(KLHandlerGeneric.statColor[((KLHandlerGeneric.ProtStatus) val).ordinal()]);
 
 			// re-connect ECU if no shutdown service has been selected
@@ -139,7 +137,7 @@ public class VagTestFrame extends javax.swing.JFrame
 
 				// on timeout w/o shutdown try to re-connect
 				if (KLHandlerGeneric.ProtStatus.TIMEOUT.equals(val))
-					connectEcu(null);
+					connectEcu();
 			}
 		} else if ("baud".equals(evt.getPropertyName()))
 		{
@@ -160,7 +158,7 @@ public class VagTestFrame extends javax.swing.JFrame
 
 	/** Creates new form VagTestFrame */
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	public VagTestFrame()
+	private VagTestFrame()
 	{
 		// set up serial handler and protocol drivers
 		ser.setMessageHandler(prt);
@@ -226,7 +224,7 @@ public class VagTestFrame extends javax.swing.JFrame
 	 * Update ComboBox for group selection
 	 */
 	@SuppressWarnings("unchecked")
-	void updateGroupSelector()
+	private void updateGroupSelector()
 	{
 		cbFrameNum.removeAllItems();
 		cbFrameNum.addItem("All Groups");
@@ -253,40 +251,40 @@ public class VagTestFrame extends javax.swing.JFrame
 		fChoose = new javax.swing.JFileChooser();
 		panAbout = new com.fr3ts0n.ecu.gui.application.AboutPanel();
 		tabMain = new javax.swing.JTabbedPane();
-		panStart = new javax.swing.JPanel();
-		lblFooter = new javax.swing.JLabel();
-		jPanel1 = new javax.swing.JPanel();
-		lblTitle = new javax.swing.JLabel();
+		javax.swing.JPanel panStart = new javax.swing.JPanel();
+		javax.swing.JLabel lblFooter = new javax.swing.JLabel();
+		javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
+		javax.swing.JLabel lblTitle = new javax.swing.JLabel();
 		TblVehIDs = new com.fr3ts0n.pvs.gui.PvTable(Kw1281Prot.VidPvs);
-		jLabel1 = new javax.swing.JLabel();
+		javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
 		panObdDtc = new com.fr3ts0n.ecu.gui.application.ObdDtcPanel();
 		panObdData = new com.fr3ts0n.ecu.gui.application.ObdDataPanel();
-		panFooter = new javax.swing.JPanel();
+		javax.swing.JPanel panFooter = new javax.swing.JPanel();
 		lblMessage = new javax.swing.JLabel();
 		lblStatus = new javax.swing.JLabel();
 		lblBaud = new javax.swing.JLabel();
 		cbCnvSystem = new javax.swing.JComboBox();
-		panHeader = new javax.swing.JPanel();
-		tbMain = new javax.swing.JToolBar();
+		javax.swing.JPanel panHeader = new javax.swing.JPanel();
+		javax.swing.JToolBar tbMain = new javax.swing.JToolBar();
 		btnLoad = new javax.swing.JButton();
 		btnSave = new javax.swing.JButton();
-		jSeparator1 = new javax.swing.JToolBar.Separator();
+		javax.swing.JToolBar.Separator jSeparator1 = new javax.swing.JToolBar.Separator();
 		btnConnect = new javax.swing.JButton();
 		btnStop = new javax.swing.JButton();
 		btnConfig = new javax.swing.JButton();
-		jSeparator2 = new javax.swing.JToolBar.Separator();
+		javax.swing.JToolBar.Separator jSeparator2 = new javax.swing.JToolBar.Separator();
 		cbAddress = new javax.swing.JComboBox();
-		jSeparator3 = new javax.swing.JToolBar.Separator();
+		javax.swing.JToolBar.Separator jSeparator3 = new javax.swing.JToolBar.Separator();
 		cbFrameNum = new javax.swing.JComboBox();
-		mbMain = new javax.swing.JMenuBar();
-		mnuFile = new javax.swing.JMenu();
+		javax.swing.JMenuBar mbMain = new javax.swing.JMenuBar();
+		javax.swing.JMenu mnuFile = new javax.swing.JMenu();
 		miLoad = new javax.swing.JMenuItem();
 		miSave = new javax.swing.JMenuItem();
-		mnuComm = new javax.swing.JMenu();
+		javax.swing.JMenu mnuComm = new javax.swing.JMenu();
 		miCommConfigure = new javax.swing.JMenuItem();
 		miCommInit = new javax.swing.JMenuItem();
 		miCommStop = new javax.swing.JMenuItem();
-		mnuHelp = new javax.swing.JMenu();
+		javax.swing.JMenu mnuHelp = new javax.swing.JMenu();
 		miAbout = new javax.swing.JMenuItem();
 
 		FormListener formListener = new FormListener();
@@ -538,43 +536,43 @@ public class VagTestFrame extends javax.swing.JFrame
 		{
 			if (evt.getSource() == btnLoad)
 			{
-				VagTestFrame.this.miLoadActionPerformed(evt);
+				VagTestFrame.this.miLoadActionPerformed();
 			} else if (evt.getSource() == btnSave)
 			{
-				VagTestFrame.this.miSaveActionPerformed(evt);
+				VagTestFrame.this.miSaveActionPerformed();
 			} else if (evt.getSource() == btnConnect)
 			{
-				VagTestFrame.this.connectEcu(evt);
+				VagTestFrame.this.connectEcu();
 			} else if (evt.getSource() == btnStop)
 			{
-				VagTestFrame.this.miCommStopActionPerformed(evt);
+				VagTestFrame.this.miCommStopActionPerformed();
 			} else if (evt.getSource() == btnConfig)
 			{
-				VagTestFrame.this.miCommConfigureActionPerformed(evt);
+				VagTestFrame.this.miCommConfigureActionPerformed();
 			} else if (evt.getSource() == cbAddress)
 			{
-				VagTestFrame.this.cbAddressActionPerformed(evt);
+				VagTestFrame.this.cbAddressActionPerformed();
 			} else if (evt.getSource() == cbFrameNum)
 			{
-				VagTestFrame.this.cbFrameNumActionPerformed(evt);
+				VagTestFrame.this.cbFrameNumActionPerformed();
 			} else if (evt.getSource() == miLoad)
 			{
-				VagTestFrame.this.miLoadActionPerformed(evt);
+				VagTestFrame.this.miLoadActionPerformed();
 			} else if (evt.getSource() == miSave)
 			{
-				VagTestFrame.this.miSaveActionPerformed(evt);
+				VagTestFrame.this.miSaveActionPerformed();
 			} else if (evt.getSource() == miCommConfigure)
 			{
-				VagTestFrame.this.miCommConfigureActionPerformed(evt);
+				VagTestFrame.this.miCommConfigureActionPerformed();
 			} else if (evt.getSource() == miCommInit)
 			{
-				VagTestFrame.this.connectEcu(evt);
+				VagTestFrame.this.connectEcu();
 			} else if (evt.getSource() == miCommStop)
 			{
-				VagTestFrame.this.miCommStopActionPerformed(evt);
+				VagTestFrame.this.miCommStopActionPerformed();
 			} else if (evt.getSource() == miAbout)
 			{
-				VagTestFrame.this.miAboutActionPerformed(evt);
+				VagTestFrame.this.miAboutActionPerformed();
 			}
 		}
 
@@ -582,7 +580,7 @@ public class VagTestFrame extends javax.swing.JFrame
 		{
 			if (evt.getSource() == cbCnvSystem)
 			{
-				VagTestFrame.this.cbCnvSystemItemStateChanged(evt);
+				VagTestFrame.this.cbCnvSystemItemStateChanged();
 			}
 		}
 
@@ -590,23 +588,23 @@ public class VagTestFrame extends javax.swing.JFrame
 		{
 			if (evt.getSource() == tabMain)
 			{
-				VagTestFrame.this.tabMainStateChanged(evt);
+				VagTestFrame.this.tabMainStateChanged();
 			}
 		}
 	}// </editor-fold>//GEN-END:initComponents
 
-	private void miCommConfigureActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miCommConfigureActionPerformed
+	private void miCommConfigureActionPerformed()//GEN-FIRST:event_miCommConfigureActionPerformed
 	{//GEN-HEADEREND:event_miCommConfigureActionPerformed
 		ser.configure();
 	}//GEN-LAST:event_miCommConfigureActionPerformed
 
-	private void miCommStopActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miCommStopActionPerformed
+	private void miCommStopActionPerformed()//GEN-FIRST:event_miCommStopActionPerformed
 	{//GEN-HEADEREND:event_miCommStopActionPerformed
 		// switch off PID's supported'
 		prt.setService(Kw1281Prot.SVC_SHUTDOWN);
 	}//GEN-LAST:event_miCommStopActionPerformed
 
-	private void miSaveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miSaveActionPerformed
+	private void miSaveActionPerformed()//GEN-FIRST:event_miSaveActionPerformed
 	{//GEN-HEADEREND:event_miSaveActionPerformed
 		if (fChoose.showSaveDialog(this) == JFileChooser.APPROVE_OPTION)
 		{
@@ -623,7 +621,7 @@ public class VagTestFrame extends javax.swing.JFrame
 					FileOutputStream out = new FileOutputStream(file);
 					ObjectOutputStream oOut = new ObjectOutputStream(out);
         /* remember current measurement page for loading again */
-					Integer currPage = new Integer(tabMain.getSelectedIndex());
+					Integer currPage = Integer.valueOf(tabMain.getSelectedIndex());
 					oOut.writeObject(currPage);
         /* save the data */
 					oOut.writeObject(Kw1281Prot.VidPvs);
@@ -643,7 +641,7 @@ public class VagTestFrame extends javax.swing.JFrame
 	}//GEN-LAST:event_miSaveActionPerformed
 
 	@SuppressWarnings({"unchecked"})
-	private void miLoadActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miLoadActionPerformed
+	private void miLoadActionPerformed()//GEN-FIRST:event_miLoadActionPerformed
 	{//GEN-HEADEREND:event_miLoadActionPerformed
 		if (fChoose.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
 		{
@@ -681,7 +679,7 @@ public class VagTestFrame extends javax.swing.JFrame
 	/**
 	 * handle change of conversion system
 	 */
-	private void cbCnvSystemItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_cbCnvSystemItemStateChanged
+	private void cbCnvSystemItemStateChanged()//GEN-FIRST:event_cbCnvSystemItemStateChanged
 	{//GEN-HEADEREND:event_cbCnvSystemItemStateChanged
 		// set new conversion system
 		EcuDataItem.cnvSystem = cbCnvSystem.getSelectedIndex();
@@ -701,13 +699,13 @@ public class VagTestFrame extends javax.swing.JFrame
 	/**
 	 * update form/tab selection
 	 */
-	private void tabMainStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_tabMainStateChanged
+	private void tabMainStateChanged()//GEN-FIRST:event_tabMainStateChanged
 	{//GEN-HEADEREND:event_tabMainStateChanged
 		// request OBD service for selected Tab
 		requestServiceForSelectedTab();
 	}//GEN-LAST:event_tabMainStateChanged
 
-	private void cbAddressActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cbAddressActionPerformed
+	private void cbAddressActionPerformed()//GEN-FIRST:event_cbAddressActionPerformed
 	{//GEN-HEADEREND:event_cbAddressActionPerformed
 		EcuCodeItem itm = (EcuCodeItem) cbAddress.getSelectedItem();
 		int newAddress = Integer.parseInt(itm.get(EcuCodeItem.FID_CODE).toString(), 16);
@@ -717,7 +715,7 @@ public class VagTestFrame extends javax.swing.JFrame
 		}
 	}//GEN-LAST:event_cbAddressActionPerformed
 
-	private void cbFrameNumActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cbFrameNumActionPerformed
+	private void cbFrameNumActionPerformed()//GEN-FIRST:event_cbFrameNumActionPerformed
 	{//GEN-HEADEREND:event_cbFrameNumActionPerformed
 		int sel = cbFrameNum.getSelectedIndex();
 		// single selection
@@ -731,13 +729,13 @@ public class VagTestFrame extends javax.swing.JFrame
 		requestServiceForSelectedTab();
 	}//GEN-LAST:event_cbFrameNumActionPerformed
 
-	private void connectEcu(java.awt.event.ActionEvent evt)//GEN-FIRST:event_connectEcu
+	private void connectEcu()//GEN-FIRST:event_connectEcu
 	{//GEN-HEADEREND:event_connectEcu
 		Kw1281Prot.VidPvs.clear();
 		ser.start();
 	}//GEN-LAST:event_connectEcu
 
-	private void miAboutActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miAboutActionPerformed
+	private void miAboutActionPerformed()//GEN-FIRST:event_miAboutActionPerformed
 	{//GEN-HEADEREND:event_miAboutActionPerformed
 		JOptionPane.showMessageDialog(this, panAbout, "About ...", JOptionPane.PLAIN_MESSAGE);
 	}//GEN-LAST:event_miAboutActionPerformed
@@ -780,7 +778,7 @@ public class VagTestFrame extends javax.swing.JFrame
 	 *
 	 * @param newAddress new controller to be accessed
 	 */
-	void setControllerAddress(int newAddress)
+	private void setControllerAddress(int newAddress)
 	{
 		cbAddress.setSelectedItem(AddressList.get(newAddress));
 		if (newAddress != ser.getCurrAddress())
@@ -844,34 +842,19 @@ public class VagTestFrame extends javax.swing.JFrame
 	@SuppressWarnings("rawtypes")
 	private javax.swing.JComboBox cbFrameNum;
 	private javax.swing.JFileChooser fChoose;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JPanel jPanel1;
-	private javax.swing.JToolBar.Separator jSeparator1;
-	private javax.swing.JToolBar.Separator jSeparator2;
-	private javax.swing.JToolBar.Separator jSeparator3;
 	private javax.swing.JLabel lblBaud;
-	private javax.swing.JLabel lblFooter;
 	private javax.swing.JLabel lblMessage;
 	private javax.swing.JLabel lblStatus;
-	private javax.swing.JLabel lblTitle;
-	private javax.swing.JMenuBar mbMain;
 	private javax.swing.JMenuItem miAbout;
 	private javax.swing.JMenuItem miCommConfigure;
 	private javax.swing.JMenuItem miCommInit;
 	private javax.swing.JMenuItem miCommStop;
 	private javax.swing.JMenuItem miLoad;
 	private javax.swing.JMenuItem miSave;
-	private javax.swing.JMenu mnuComm;
-	private javax.swing.JMenu mnuFile;
-	private javax.swing.JMenu mnuHelp;
 	private com.fr3ts0n.ecu.gui.application.AboutPanel panAbout;
-	private javax.swing.JPanel panFooter;
-	private javax.swing.JPanel panHeader;
 	private com.fr3ts0n.ecu.gui.application.ObdDataPanel panObdData;
 	private com.fr3ts0n.ecu.gui.application.ObdDtcPanel panObdDtc;
-	private javax.swing.JPanel panStart;
 	private javax.swing.JTabbedPane tabMain;
-	private javax.swing.JToolBar tbMain;
 	// End of variables declaration//GEN-END:variables
 
 }

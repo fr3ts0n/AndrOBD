@@ -32,11 +32,11 @@ public class LinearConversion extends NumericConversion
 	 *
 	 */
 	private static final long serialVersionUID = 7409621816599441879L;
-	int factor = 1;
-	int divider = 1;
-	int offset = 0;
-	int offsetPhys = 0;
-	PvLimits limits = null;
+	private int factor = 1;
+	private int divider = 1;
+	private int offset = 0;
+	private int offsetPhys = 0;
+	private PvLimits limits = null;
 
 	/**
 	 * Creates a new instance of Conversion

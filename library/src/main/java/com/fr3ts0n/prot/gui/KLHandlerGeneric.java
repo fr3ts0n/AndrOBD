@@ -19,8 +19,6 @@
 package com.fr3ts0n.prot.gui;
 
 
-import java.util.logging.Logger;
-
 import com.fr3ts0n.prot.ProtUtils;
 import com.fr3ts0n.prot.SerialExt;
 import com.fr3ts0n.prot.TelegramWriter;
@@ -31,6 +29,7 @@ import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.util.Vector;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.Timer;
 
@@ -55,7 +54,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	}
 
 	// baud rates supported by this adapter
-	int[] baudRates =
+	private final int[] baudRates =
 		{
 			10400, 9600, 4800, 2400
 		};
@@ -72,29 +71,29 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	// last byte sent;
 	private char lastTxChar = 0;
 	/** Queue of telegrams to be sent */
-	Vector<char[]> txTelegramQueue = new Vector<char[]>();
+	private final Vector<char[]> txTelegramQueue = new Vector<char[]>();
 	/** current telegram to be sent */
-	char[] currTxTgm = {};
+	private char[] currTxTgm = {};
 	/** current position of byte to be sent from within currTxTgm */
-	int currTxCharPos = 0;
+	private int currTxCharPos = 0;
 
 	/**
 	 * Protocol timing parameters
 	 */
 	/** time of last reception */
-	long lastRxTime = 0;
+	private long lastRxTime = 0;
 	/** time [ms] to detect communication timeout */
-	static int commTimeoutTime = 2000; // [ms]
+	private static final int commTimeoutTime = 2000; // [ms]
 	/** number of bits to pause (parameter fo calculation of interByteTime) */
-	static final int numBitsPause = 0;
+	private static final int numBitsPause = 0;
 	/** time [nanoseconds] to wait for sending next byte */
-	long interByteTime = 0; // [ns]
+	private long interByteTime = 0; // [ns]
 
 	/** Timer to detect communication timeout */
-	Timer commTimer = null;
+	private Timer commTimer;
 
 	/** Handler for communication Timeout */
-	ActionListener commTimeoutHandler = new ActionListener()
+	private final ActionListener commTimeoutHandler = new ActionListener()
 	{
 		@Override
 		public void actionPerformed(ActionEvent arg0)
@@ -123,7 +122,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	 *
 	 * @param device device to connect
 	 */
-	public KLHandlerGeneric(String device)
+	private KLHandlerGeneric(String device)
 	{
 		try
 		{
@@ -141,7 +140,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	 * @return the currBaudRate
 	 */
 	// current baud rate in use
-	public int getCurrBaudRate()
+	private int getCurrBaudRate()
 	{
 		return currBaudRate;
 	}
@@ -149,7 +148,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	/**
 	 * @param currBaudRate the currBaudRate to set
 	 */
-	public void setCurrBaudRate(int currBaudRate)
+	private void setCurrBaudRate(int currBaudRate)
 	{
 		firePropertyChange(new PropertyChangeEvent(this, "baud", this.currBaudRate, currBaudRate));
 		this.currBaudRate = currBaudRate;
@@ -202,7 +201,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	 *
 	 * @param newBaudRate new baud rate to be set
 	 */
-	public void setCustomBaudRate(int newBaudRate)
+	private void setCustomBaudRate(int newBaudRate)
 	{
 		try
 		{
@@ -231,7 +230,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	 *
 	 * @param bitValue
 	 */
-	void sendBit5Baud(boolean bitValue)
+	private void sendBit5Baud(boolean bitValue)
 		throws IOException
 	{
 		// set line status
@@ -255,7 +254,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	 *
 	 * @param address CU to be addressed
 	 */
-	void sendByte5Baud(int address)
+	private void sendByte5Baud(int address)
 		throws IOException
 	{
 		long start = System.currentTimeMillis();
@@ -283,7 +282,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	 * @param address ECU to be addressed
 	 * @return initialization status (0=OK, -1=Error)
 	 */
-	int send5Baud(int address)
+	private void send5Baud(int address)
 		throws IOException
 	{
 		int result = 0;
@@ -292,7 +291,6 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 		sendByte5Baud(address);
 		message = "";
 		// return status
-		return (result);
 	}
 
 	/**
@@ -301,7 +299,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	 * @param txByte     byte to be sent
 	 * @param rememberTx remember last TX character
 	 */
-	public void writeChar(char txByte, boolean rememberTx)
+	private void writeChar(char txByte, boolean rememberTx)
 	{
 		try
 		{
@@ -325,7 +323,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	 *
 	 * @param lastByte last received byte
 	 */
-	public void confirmByte(char lastByte)
+	private void confirmByte(char lastByte)
 	{
 		// change to complement status ...
 		pktStat = PacketStatus.COMPLEMENT;
@@ -335,7 +333,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	/**
 	 * Handler for receiving chars from serial port
 	 */
-	public class RxThread extends Thread
+	class RxThread extends Thread
 	{
 		@Override
 		public void run()
@@ -473,9 +471,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 			log.warning("Reader Tread finished");
 		}
 	}
-
-	;
-
+	
 	/**
 	 * write a telegram to serial port
 	 * implementation of SerialHandler
@@ -527,7 +523,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	 *
 	 * @return error status of dequeue and send operation
 	 */
-	int sendNextByte()
+	private void sendNextByte()
 	{
 		int result = 0;
 		// wait for slow ECUs
@@ -560,7 +556,6 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 				setProtStat(ProtStatus.RECEIVING);
 			}
 		}
-		return result;
 	}
 
 	/**
@@ -569,7 +564,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	 * @param buffer telegram to be sent
 	 * @return error status of enqueue
 	 */
-	int enqueueTelegram(char[] buffer)
+	private int enqueueTelegram(char[] buffer)
 	{
 		int result = 0;
 
@@ -593,7 +588,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	 *
 	 * @return ACK telegram with current block counter
 	 */
-	char[] getAckTelegram()
+	private char[] getAckTelegram()
 	{
 		return new char[]
 			{
@@ -606,9 +601,9 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	 *
 	 * @return error code of dequeue operation
 	 */
-	int dequeueTelegram()
+	private int dequeueTelegram()
 	{
-		int result = -1;
+		int result;
 		// is there any telegram in the queue?
 		if (txTelegramQueue.size() > 0)
 		{
@@ -639,7 +634,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 	 * @param address ECU to be addressed
 	 * @return baud rate of successful connection, or 0 if no connection could be established
 	 */
-	public synchronized int init5Baud(int address)
+	private synchronized void init5Baud(int address)
 	{
 		int result = 0;
 
@@ -695,7 +690,6 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 
 		// remember current baud rate
 		setCurrBaudRate(result);
-		return (result);
 	}
 
 	/**
@@ -729,7 +723,7 @@ public class KLHandlerGeneric extends SerialHandlerGeneric
 			try
 			{
 				Thread.sleep(1000);
-			} catch (Exception e)
+			} catch (Exception ignored)
 			{
 			}
 		}

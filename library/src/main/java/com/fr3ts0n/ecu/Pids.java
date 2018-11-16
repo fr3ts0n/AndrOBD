@@ -26,11 +26,11 @@ import java.util.Comparator;
  *
  * @author erwin
  */
-public class Pids
+class Pids
 {
 
 	// maximum values / bitmasks per affected byte
-	public static final long[] valueMask =
+	private static final long[] valueMask =
 		{
 			0x00,
 			0xFF,
@@ -40,7 +40,7 @@ public class Pids
 		};
 
 	/* PID definitions */
-	public static final Pid[] PIDs =
+	private static final Pid[] PIDs =
 		{
 			//       pid,ofs,len, formula                         digits  label
 			new Pid(0x01, 0, 1, Conversions.CNV_ID_ONETOONE, 0, "Number of Fault Codes"), // fuel_system1_status_formula // fuel_system2_status_formula
@@ -125,7 +125,7 @@ public class Pids
 	 * Comparator object to compare Pid objects
 	 */
 	@SuppressWarnings("rawtypes")
-	static Comparator pidComparator = new Comparator()
+	private static final Comparator pidComparator = new Comparator()
 	{
 
 		public int compare(Object o1, Object o2)
@@ -153,7 +153,7 @@ public class Pids
 	 * @return PID-Object or NULL if no object available for specified PID
 	 */
 	@SuppressWarnings("unchecked")
-	public static Pid getPid(int pidNum)
+	private static Pid getPid(int pidNum)
 	{
 		// default result = NOT FOUND
 		Pid currPid = null;

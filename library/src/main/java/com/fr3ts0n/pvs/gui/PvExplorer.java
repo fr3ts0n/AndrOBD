@@ -43,13 +43,13 @@ public class PvExplorer extends JSplitPane implements TreeSelectionListener
 	/** root process variable for tree and initial table display */
 	ProcessVar pvRoot;
 	/** PV tree display */
-	JTree pvTree;
+	private final JTree pvTree;
 	/** PV table display */
-	PvTable pvTable;
+	private final PvTable pvTable;
 	/** PV List as container for single process variables to be displayed in table */
-	PvList tblList = new PvList();
+	private final PvList tblList = new PvList();
 	/** PV transfer handler to handle data transfers within explorer */
-	PvTransferHandler xferHdlr = new PvTransferHandler();
+	private final PvTransferHandler xferHdlr = new PvTransferHandler();
 
 	public PvExplorer(ProcessVar pv)
 	{
@@ -99,7 +99,7 @@ public class PvExplorer extends JSplitPane implements TreeSelectionListener
 	/**
 	 * Listener for mouse events on table side
 	 */
-	MouseListener tblMouseLstnr = new MouseListener()
+	private final MouseListener tblMouseLstnr = new MouseListener()
 	{
 		@Override
 		public void mouseClicked(MouseEvent e)
@@ -107,11 +107,11 @@ public class PvExplorer extends JSplitPane implements TreeSelectionListener
 			if (e.getClickCount() > 1)
 			{
 				// find the process var to selected row ...
-				ProcessVar pv = (ProcessVar) pvTable.getPvModel().getElementAt(pvTable.getSelectedRow());
+				ProcessVar pv = pvTable.getPvModel().getElementAt(pvTable.getSelectedRow());
 				// and show a detail panel about it ...
 				if (pv != null)
 				{
-					PvDetailPanel panDetail = new PvDetailPanel((ProcessVar) pv, true);
+					PvDetailPanel panDetail = new PvDetailPanel(pv, true);
 					ScrollPane panScr = new ScrollPane();
 					panScr.setPreferredSize(new Dimension(640, 480));
 					panScr.add(panDetail);

@@ -70,7 +70,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	// set of all conversions
 	public static EcuConversions cnv;
 	// the data logger
-	static Logger log = Logger.getLogger("data.items");
+	private static final Logger log = Logger.getLogger("data.items");
 
 	/**
 	 * Create data items from default CSV pidResource files

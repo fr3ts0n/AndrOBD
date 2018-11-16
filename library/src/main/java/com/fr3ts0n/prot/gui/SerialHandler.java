@@ -18,9 +18,6 @@
 
 package com.fr3ts0n.prot.gui;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import com.fr3ts0n.prot.SerialExt;
 import com.fr3ts0n.prot.TelegramListener;
 import com.fr3ts0n.prot.TelegramWriter;
@@ -34,6 +31,8 @@ import java.io.RandomAccessFile;
 import java.lang.reflect.Field;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author erwin
@@ -44,16 +43,16 @@ public class SerialHandler extends Thread
 	/** the serial device */
 	String deviceName = "/dev/ttyS0";
 	/** current protocol status */
-	ProtStatus protStat = ProtStatus.UNKNOWN;
+	private ProtStatus protStat = ProtStatus.UNKNOWN;
 	/** file descriptor of serial device */
-	long serialDeviceDescriptor = -1;
+	private long serialDeviceDescriptor = -1;
 	// the logger object
 	static Logger log = Logger.getLogger("com.fr3ts0n.prot.ser");
 
 	/**
 	 * Status of protocol handler - to determine if we currently send / receive
 	 */
-	public static enum ProtStatus
+	public enum ProtStatus
 	{
 		UNKNOWN,
 		SETUP,
@@ -126,7 +125,7 @@ public class SerialHandler extends Thread
 	/**
 	 * @param protStat the protStat to set
 	 */
-	public void setProtStat(ProtStatus protStat)
+	void setProtStat(ProtStatus protStat)
 	{
 		firePropertyChange(new PropertyChangeEvent(this,
 			"status",
@@ -148,7 +147,7 @@ public class SerialHandler extends Thread
 	/**
 	 * close current connections
 	 */
-	public void close()
+	void close()
 	{
 		try
 		{
@@ -197,11 +196,11 @@ public class SerialHandler extends Thread
 	 *
 	 * @return numeric system file descriptor/handle
 	 */
-	public long getSystemFD()
+	private long getSystemFD()
 	{
 		long result = -1;
 		Field dscrField;
-		FileDescriptor dscr = null;
+		FileDescriptor dscr;
 		try
 		{
 			// get java file descriptor
@@ -364,7 +363,7 @@ public class SerialHandler extends Thread
 	 *
 	 * @param event The event to be fired
 	 */
-	protected void firePropertyChange(PropertyChangeEvent event)
+	void firePropertyChange(PropertyChangeEvent event)
 	{
 
 		if (listenerList == null) return;

@@ -42,7 +42,7 @@ public class EcuCodeItem extends IndexedProcessVar
     "STATUS",
   };
 
-  public EcuCodeItem()
+  EcuCodeItem()
   {
   }
 
@@ -78,16 +78,16 @@ public class EcuCodeItem extends IndexedProcessVar
   @Override
   public String toString()
   {
-    String result = "";
+    StringBuilder result = new StringBuilder();
     for(int i=0; i<FIELDS.length; i++)
     {
       Object val = get(i);
       if(val != null)
       {
-        result += String.valueOf(val)+" ";
+        result.append(String.valueOf(val)).append(" ");
       }
     }
-    return result;
+    return result.toString();
   }
 
   /**

@@ -53,9 +53,9 @@ public class VagConversion extends NumericConversion
 	public static final int CNV_ID_TBL = 0;
 
 
-	int cnvId = 10;
-	double factor = 1.0;
-	double offset = 0.0;
+	private int cnvId = 10;
+	private double factor = 1.0;
+	private double offset = 0.0;
 	/** table values as they come from the meta package */
 	/** Value 2 for calcualtion as it comes from meta package */
 	private char metaNw = 0;
@@ -98,7 +98,7 @@ public class VagConversion extends NumericConversion
 	 * @param nw value 2 for calcualtion
 	 * @return result of calculation
 	 */
-	double tableValue(int mw, int nw)
+	private double tableValue(int mw, int nw)
 	{
 		// mask value to 1 byte
 		int internalVal = mw & 0xFF;
@@ -121,7 +121,7 @@ public class VagConversion extends NumericConversion
 	 * @param nw value 2 for calcualtion
 	 * @return result of calculation
 	 */
-	double formula10Value(int mw, int nw)
+	private double formula10Value(int mw, int nw)
 	{
 		return ((mw + offset) * nw * factor);
 	}
@@ -134,7 +134,7 @@ public class VagConversion extends NumericConversion
 	 * @param nw value 2 for calcualtion
 	 * @return result of calculation
 	 */
-	double formula11Value(int mw, int nw)
+	private double formula11Value(int mw, int nw)
 	{
 		return ((Double.parseDouble(String.format("%d.%d", mw, nw)) + offset) * factor);
 	}
@@ -147,7 +147,7 @@ public class VagConversion extends NumericConversion
 	 * @param nw value 2 for calcualtion
 	 * @return result of calculation
 	 */
-	double formula12Value(int mw, int nw)
+	private double formula12Value(int mw, int nw)
 	{
 		return ((Double.parseDouble(String.format("%d.%d", nw, mw)) + offset) * factor);
 	}
@@ -160,7 +160,7 @@ public class VagConversion extends NumericConversion
 	 * @param nw value 2 for calcualtion
 	 * @return result of calculation
 	 */
-	double formula13Value(int mw, int nw)
+	private double formula13Value(int mw, int nw)
 	{
 		return ((nw * 255 + mw + offset) * factor);
 	}
@@ -173,7 +173,7 @@ public class VagConversion extends NumericConversion
 	 * @param nw value 2 for calcualtion
 	 * @return result of calculation
 	 */
-	double formula14Value(int mw, int nw)
+	private double formula14Value(int mw, int nw)
 	{
 		return ((mw + offset) / nw * factor);
 	}
@@ -186,7 +186,7 @@ public class VagConversion extends NumericConversion
 	 * @param nw value 2 for calcualtion
 	 * @return result of calculation
 	 */
-	double formula15Value(int mw, int nw)
+	private double formula15Value(int mw, int nw)
 	{
 		return (mw * factor + nw * offset);
 	}
@@ -196,10 +196,9 @@ public class VagConversion extends NumericConversion
 	 * <pre>(MW+Offset)*Faktor</pre>
 	 *
 	 * @param mw value 1 for calculation
-	 * @param nw value 2 for calcualtion
 	 * @return result of calculation
 	 */
-	double formula16Value(int mw, int nw)
+	private double formula16Value(int mw)
 	{
 		return ((mw + offset) * factor);
 	}
@@ -212,7 +211,7 @@ public class VagConversion extends NumericConversion
 	 * @param nw value 2 for calcualtion
 	 * @return result of calculation
 	 */
-	double formula17Value(int mw, int nw)
+	private double formula17Value(int mw, int nw)
 	{
 		return (1 + (mw + offset) * nw * factor);
 	}
@@ -225,7 +224,7 @@ public class VagConversion extends NumericConversion
 	 * @param nw value 2 for calcualtion
 	 * @return result of calculation
 	 */
-	double formula18Value(int mw, int nw)
+	private double formula18Value(int mw, int nw)
 	{
 		return (mw * nw * factor + offset);
 	}
@@ -266,7 +265,7 @@ public class VagConversion extends NumericConversion
 				result = formula15Value(mw, nw);
 				break;
 			case 16:
-				result = formula16Value(mw, nw);
+				result = formula16Value(mw);
 				break;
 			case 17:
 				result = formula17Value(mw, nw);
@@ -297,7 +296,7 @@ public class VagConversion extends NumericConversion
 	@Override
 	public String physToPhysFmtString(Number physValue, String format)
 	{
-		String result = null;
+		String result;
 		switch (cnvId)
 		{
 			case 20: // * 20 :     Bitdarstellung

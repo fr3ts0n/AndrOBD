@@ -44,25 +44,25 @@ public class ProcessVar
 	 */
 	private static final long serialVersionUID = 7072161686290674442L;
 	/** name of key attribute */
-	Object KeyAttribute = null;
+	private Object KeyAttribute = null;
 	/** default key attribute name */
 	static final String DEF_KEYNAME = "key";
 	/** time of last change * */
-	public long lastChange = 0;
+	private long lastChange = 0;
 	/** type of last change * */
-	public int lastChangeType = PvChangeEvent.PV_ADDED;
+	private int lastChangeType = PvChangeEvent.PV_ADDED;
 	/** default change action */
-	protected int defaultAction = PvChangeEvent.PV_NOACTION;
+	int defaultAction = PvChangeEvent.PV_NOACTION;
 	/** flag if to allow ChangeEvents to be fired */
-	protected boolean allowEvents = false;
+	boolean allowEvents = false;
 	/** list of process var change listeners */
 	private transient Map<PvChangeListener, Integer> PvChangeListeners =
 		Collections.synchronizedMap(new HashMap<PvChangeListener, Integer>());
 	/** Map of attribute changes */
-	private Map<Object, PvChangeEvent> changes =
+	private final Map<Object, PvChangeEvent> changes =
 		Collections.synchronizedMap(new HashMap<Object, PvChangeEvent>());
 	/** The logger object */
-	public static Logger log = Logger.getLogger(ProcessVar.class.getPackage().getName());
+	public static final Logger log = Logger.getLogger(ProcessVar.class.getPackage().getName());
 
 	public ProcessVar()
 	{
@@ -121,7 +121,7 @@ public class ProcessVar
 	 * @param map    data map to put into ProcessVar
 	 * @param action Action code to be used for notifications
 	 */
-	public synchronized void putAll(Map map, int action)
+	private synchronized void putAll(Map map, int action)
 	{
 		putAll(map, action, true);
 	}
@@ -170,14 +170,14 @@ public class ProcessVar
 	@SuppressWarnings("unchecked")
 	public synchronized Object put(Object key, Object value, int action)
 	{
-		Object oldvalue = null;
+		Object oldvalue;
 
 		// if new value is a child process variable, try to re-use previous one ...
 		if (value instanceof ProcessVar)
 		{
 			// get previous PV
 			oldvalue = get(key);
-			if (oldvalue != null && oldvalue instanceof ProcessVar)
+			if (oldvalue instanceof ProcessVar)
 			{
 				// PV is existing
 				((HashMap) oldvalue).putAll((Map) value);
@@ -213,7 +213,7 @@ public class ProcessVar
 			} else
 			{
 				// Attribute MANUAL_MOD confirmed -> PV_CONFIRMED
-				PvChangeEvent lstChange = (PvChangeEvent) changes.get(key);
+				PvChangeEvent lstChange = changes.get(key);
 				if (lstChange != null && (lstChange.getType() & PvChangeEvent.PV_MANUAL_MOD) != 0)
 				{
 					action |= PvChangeEvent.PV_CONFIRMED;
@@ -264,7 +264,7 @@ public class ProcessVar
 	 * @param key key of attribute
 	 * @return value of attribute
 	 */
-	public synchronized int getAsInt(Object key)
+	synchronized int getAsInt(Object key)
 	{
 		int result = 0;
 		Object val = get(key);
@@ -288,9 +288,9 @@ public class ProcessVar
 	 * @param key   key of attribute
 	 * @param value value of attribute
 	 */
-	public synchronized void putAsInt(Object key, int value)
+	synchronized void putAsInt(Object key, int value)
 	{
-		put(key, new Integer(value));
+		put(key, Integer.valueOf(value));
 	}
 
 	/**
@@ -311,7 +311,7 @@ public class ProcessVar
 		}
 
 		// if old object was a process variable, we need to remove change listener
-		if (result != null && result instanceof ProcessVar)
+		if (result instanceof ProcessVar)
 		{
 			((ProcessVar) result).removePvChangeListener(this);
 		}
@@ -386,7 +386,7 @@ public class ProcessVar
 	public synchronized void addPvChangeListener(PvChangeListener l, int eventMask)
 	{
 		ensurePvChangeListeners();
-		PvChangeListeners.put(l, new Integer(eventMask));
+		PvChangeListeners.put(l, Integer.valueOf(eventMask));
 		allowEvents = true;
 		log.finer("+PvListener:" + toString() + "->" + String.valueOf(l));
 	}

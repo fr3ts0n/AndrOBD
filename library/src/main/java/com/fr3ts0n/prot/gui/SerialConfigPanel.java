@@ -18,28 +18,24 @@
 
 package com.fr3ts0n.prot.gui;
 
-import org.apache.log4j.Logger;
-
 import java.awt.event.ItemEvent;
 import java.util.Enumeration;
-
-import gnu.io.CommPortIdentifier;
-import gnu.io.SerialPort;
 
 /**
  * Configuration GUI-Panel for RXTX Serial port object
  *
  * @author erwin
  */
+@SuppressWarnings("unchecked")
 public class SerialConfigPanel
 	extends javax.swing.JPanel
 {
 
 	private static final long serialVersionUID = -8518189691304679418L;
 	/** allow direct port changes from dialog changes? */
-	public static boolean doPortUpdates = true;
+	private static final boolean doPortUpdates = true;
 	/** ist the dialog initialized? */
-	boolean initialized = false;
+	private boolean initialized = false;
 
 	/** Creates new form SerialConfigPanel */
 	public SerialConfigPanel()
@@ -59,7 +55,7 @@ public class SerialConfigPanel
 	/**
 	 * initialize list of available port names for combo box
 	 */
-	public void initPortNames()
+	private void initPortNames()
 	{
 		initialized = false;
 		cbPort.addItem("");
@@ -80,7 +76,7 @@ public class SerialConfigPanel
 	/**
 	 * Initialize all port parameters PORT -&gt; DIALOG
 	 */
-	public void initPortParameters(SerialPort port)
+	private void initPortParameters(SerialPort port)
 	{
 		initialized = false;
 		if (port != null)
@@ -106,7 +102,7 @@ public class SerialConfigPanel
 	/**
 	 * Initialize all port parameters DIALOG -&gt; PORT
 	 */
-	public void updatePortParameters(SerialPort port)
+	private void updatePortParameters(SerialPort port)
 	{
 		if (initialized && port != null)
 		{
@@ -138,23 +134,23 @@ public class SerialConfigPanel
 	private void initComponents()
 	{
 		java.awt.GridBagConstraints gridBagConstraints;
-
-		panData = new javax.swing.JPanel();
-		lblPort = new javax.swing.JLabel();
+		
+		javax.swing.JPanel panData = new javax.swing.JPanel();
+		javax.swing.JLabel lblPort = new javax.swing.JLabel();
 		cbPort = new javax.swing.JComboBox();
-		lblBaudrate = new javax.swing.JLabel();
+		javax.swing.JLabel lblBaudrate = new javax.swing.JLabel();
 		cbBaudrate = new javax.swing.JComboBox();
-		lblDataBits = new javax.swing.JLabel();
+		javax.swing.JLabel lblDataBits = new javax.swing.JLabel();
 		cbDataBits = new javax.swing.JComboBox();
-		lblStopBits = new javax.swing.JLabel();
+		javax.swing.JLabel lblStopBits = new javax.swing.JLabel();
 		cbStopBits = new javax.swing.JComboBox();
-		lblParity = new javax.swing.JLabel();
+		javax.swing.JLabel lblParity = new javax.swing.JLabel();
 		cbParity = new javax.swing.JComboBox();
-		lblHsRx = new javax.swing.JLabel();
-		lblHsTx = new javax.swing.JLabel();
+		javax.swing.JLabel lblHsRx = new javax.swing.JLabel();
+		javax.swing.JLabel lblHsTx = new javax.swing.JLabel();
 		cbProtocolRx = new javax.swing.JComboBox();
 		cbProtocolTx = new javax.swing.JComboBox();
-		jPanel1 = new javax.swing.JPanel();
+		javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
 		btnDSR = new javax.swing.JToggleButton();
 		btnCTS = new javax.swing.JToggleButton();
 		btnCD = new javax.swing.JToggleButton();
@@ -426,15 +422,6 @@ public class SerialConfigPanel
 	private javax.swing.JComboBox cbProtocolRx;
 	private javax.swing.JComboBox cbProtocolTx;
 	private javax.swing.JComboBox cbStopBits;
-	private javax.swing.JPanel jPanel1;
-	private javax.swing.JLabel lblBaudrate;
-	private javax.swing.JLabel lblDataBits;
-	private javax.swing.JLabel lblHsRx;
-	private javax.swing.JLabel lblHsTx;
-	private javax.swing.JLabel lblParity;
-	private javax.swing.JLabel lblPort;
-	private javax.swing.JLabel lblStopBits;
-	private javax.swing.JPanel panData;
 	// End of variables declaration//GEN-END:variables
 	/**
 	 * Holds value of property port.
@@ -456,7 +443,7 @@ public class SerialConfigPanel
 	 *
 	 * @param port New value of port.
 	 */
-	public void setPort(SerialPort port)
+	private void setPort(SerialPort port)
 	{
 		if (this.port != null)
 		{

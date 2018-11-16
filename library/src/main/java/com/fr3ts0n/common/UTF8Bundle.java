@@ -17,7 +17,7 @@ public class UTF8Bundle
         ctrl = control;
     }
 
-    public static final ResourceBundle getBundle(String bundleName)
+    public static ResourceBundle getBundle(String bundleName)
     {
         if (ctrl != null)
         {

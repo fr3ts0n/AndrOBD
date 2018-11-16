@@ -56,11 +56,11 @@ public class ElmProt
 	/**
 	 * CAN protocol handler
 	 */
-	public static CanProtFord canProt = new CanProtFord();
+	public static final CanProtFord canProt = new CanProtFord();
 	/**
 	 * Adaptive timing handler
 	 */
-	public AdaptiveTiming mAdaptiveTiming = new AdaptiveTiming();
+	public final AdaptiveTiming mAdaptiveTiming = new AdaptiveTiming();
 	
 	/**
 	 * number of bytes expected from opponent
@@ -79,7 +79,7 @@ public class ElmProt
 	/**
 	 * list of identified ECU addresses
 	 */
-	private TreeSet<Integer> ecuAddresses = new TreeSet<Integer>();
+	private final TreeSet<Integer> ecuAddresses = new TreeSet<Integer>();
 	/**
 	 * selected ECU address
 	 */
@@ -87,7 +87,7 @@ public class ElmProt
 	/**
 	 * custom ELM initialisation commands
 	 */
-	Vector<String> customInitCommands = new Vector<String>();
+	private final Vector<String> customInitCommands = new Vector<String>();
 	
 	/**
 	 * ELM protocol ID's
@@ -107,7 +107,7 @@ public class ElmProt
 		ELM_PROT_J1939_29_S("SAE J1939 CAN (29 bit ID, 250* kbaud)"),
 		ELM_PROT_USER1_CAN_11_S("User1 CAN (11* bit ID, 125* kbaud)"),
 		ELM_PROT_USER2_CAN_11_S("User2 CAN (11* bit ID, 50* kbaud)");
-		private String description;
+		private final String description;
 		
 		PROT(String _description)
 		{
@@ -147,7 +147,7 @@ public class ElmProt
 		RXERROR("<"),
 		QMARK("?"),
 		UNKNOWN("");
-		private String response;
+		private final String response;
 		
 		RSP_ID(String response)
 		{
@@ -180,7 +180,7 @@ public class ElmProt
 		DATAERROR("DATA error"),
 		RXERROR("RX error"),
 		ERROR("Error");
-		private String elmState;
+		private final String elmState;
 		
 		STAT(String state)
 		{
@@ -219,13 +219,13 @@ public class ElmProt
 		SETCANRXFLT("CRA", 3, true), ///< set CAN RX filter
 		CLRCANRXFLT("CRA", 0, true); ///< clear CAN RX filter
 		
-		protected static final String CMD_HEADER = "AT";
-		private String command;
-		protected int paramDigits;
-		private boolean disablingAllowed;
+		static final String CMD_HEADER = "AT";
+		private final String command;
+		final int paramDigits;
+		private final boolean disablingAllowed;
 		private boolean enabled = true;
 		
-		CMD(String cmd, int numDigitsParameter, boolean allowAdaption)
+		CMD(String cmd, int numDigitsParameter, @SuppressWarnings("SameParameterValue") boolean allowAdaption)
 		{
 			command = cmd;
 			paramDigits = numDigitsParameter;
@@ -243,7 +243,7 @@ public class ElmProt
 			return enabled;
 		}
 		
-		public void setEnabled(boolean enabled)
+		void setEnabled(boolean enabled)
 		{
 			if (disablingAllowed)
 			{
@@ -296,15 +296,15 @@ public class ElmProt
 		/**
 		 * minimum ELM timeout
 		 */
-		protected int ELM_TIMEOUT_MIN = 12;
+		int ELM_TIMEOUT_MIN = 12;
 		/**
 		 * minimum ELM timeout (learned from vehicle)
 		 */
-		protected int ELM_TIMEOUT_LRN_LOW = 12;
+		int ELM_TIMEOUT_LRN_LOW = 12;
 		/**
 		 * ELM message timeout: defaults to approx 200 [ms]
 		 */
-		protected int elmMsgTimeout = ELM_TIMEOUT_MAX;
+		int elmMsgTimeout = ELM_TIMEOUT_MAX;
 		
 		/**
 		 * adaptive timing handling enabled?
@@ -352,7 +352,7 @@ public class ElmProt
 		/**
 		 * Initialize timing hadler
 		 */
-		public void initialize()
+		void initialize()
 		{
 			if (mode == AdaptTimingMode.SOFTWARE)
 			{
@@ -374,7 +374,7 @@ public class ElmProt
 		 *
 		 * @param increaseTimeout increase/decrease timeout
 		 */
-		public void adapt(boolean increaseTimeout)
+		void adapt(boolean increaseTimeout)
 		{
 			if (mode != AdaptTimingMode.SOFTWARE) { return; }
 			if (increaseTimeout)
@@ -496,7 +496,7 @@ public class ElmProt
 	 * @param param parameter for ELM command (0 if not required)
 	 * @return command char sequence or NULL if command disabled/invalid
 	 */
-	public String createCommand(CMD cmdID, int param)
+	private String createCommand(CMD cmdID, int param)
 	{
 		String cmd = null;
 		if (cmdID.isEnabled())
@@ -532,7 +532,7 @@ public class ElmProt
 	 * @param cmdID ID of ELM command
 	 * @param param parameter for ELM command (0 if not required)
 	 */
-	public void pushCommand(CMD cmdID, int param)
+	private void pushCommand(CMD cmdID, int param)
 	{
 		String cmd = createCommand(cmdID, param);
 		if (cmd != null) { cmdQueue.add(cmd); }
@@ -551,7 +551,7 @@ public class ElmProt
 	 *
 	 * @param response clear text response from ELM adapter
 	 */
-	static RSP_ID getResponseId(String response)
+	private static RSP_ID getResponseId(String response)
 	{
 		RSP_ID result = RSP_ID.UNKNOWN;
 		for (RSP_ID id : RSP_ID.values())
@@ -1206,7 +1206,7 @@ public class ElmProt
 	 *
 	 * @param status New value of property status.
 	 */
-	public void setStatus(STAT status)
+	private void setStatus(STAT status)
 	{
 		STAT oldStatus = this.status;
 		this.status = status;

@@ -32,5 +32,5 @@ public interface TelegramListener extends EventListener
 	 * @param buffer - telegram buffer
 	 * @return number of listeners notified
 	 */
-	public int handleTelegram(char[] buffer);
+	int handleTelegram(char[] buffer);
 }

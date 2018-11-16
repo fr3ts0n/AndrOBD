@@ -36,30 +36,30 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 	private static final long serialVersionUID = 273813879102783740L;
 
 	/** conversion type IDs from CSV file */
-	public static final String CNV_TYPE_LINEAR      = "LINEAR";
-	public static final String CNV_TYPE_HASH        = "HASH";
-	public static final String CNV_TYPE_BITMAP      = "BITMAP";
-	public static final String CNV_TYPE_CODELIST    = "CODELIST";
-	public static final String CNV_TYPE_PCODELIST   = "PCODELIST";
-	public static final String CNV_TYPE_VAG         = "VAG";
-	public static final String CNV_TYPE_INT         = "INTEGER";
-	public static final String CNV_TYPE_ASCII       = "ASCII";
+	private static final String CNV_TYPE_LINEAR      = "LINEAR";
+	private static final String CNV_TYPE_HASH        = "HASH";
+	private static final String CNV_TYPE_BITMAP      = "BITMAP";
+	private static final String CNV_TYPE_CODELIST    = "CODELIST";
+	private static final String CNV_TYPE_PCODELIST   = "PCODELIST";
+	private static final String CNV_TYPE_VAG         = "VAG";
+	private static final String CNV_TYPE_INT         = "INTEGER";
+	private static final String CNV_TYPE_ASCII       = "ASCII";
 
 	/** CSV field positions */
-	static final int FLD_NAME = 0;
-	static final int FLD_TYPE = 1;
-	static final int FLD_VARIANT = 2;
-	static final int FLD_SYSTEM = 3;
-	static final int FLD_FACTOR = 4;
-	static final int FLD_DIVIDER = 5;
-	static final int FLD_OFFSET = 6;
-	static final int FLD_PHOFFSET = 7;
-	static final int FLD_UNITS = 8;
+	private static final int FLD_NAME = 0;
+	private static final int FLD_TYPE = 1;
+	private static final int FLD_VARIANT = 2;
+	private static final int FLD_SYSTEM = 3;
+	private static final int FLD_FACTOR = 4;
+	private static final int FLD_DIVIDER = 5;
+	private static final int FLD_OFFSET = 6;
+	private static final int FLD_PHOFFSET = 7;
+	private static final int FLD_UNITS = 8;
 	static final int FLD_DESCRIPTION = 9;
-	static final int FLD_PARAMETERS = 10;
+	private static final int FLD_PARAMETERS = 10;
 
 	// the data logger
-	static Logger log = Logger.getLogger("data.cnv");
+	private static final Logger log = Logger.getLogger("data.cnv");
 
 	/** DEFAULT type conversion */
 	public static final NumericConversion dfltCnv = new IntConversion();

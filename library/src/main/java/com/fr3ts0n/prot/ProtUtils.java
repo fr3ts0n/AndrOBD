@@ -26,8 +26,8 @@ package com.fr3ts0n.prot;
 public class ProtUtils
 {
 
-	static String hexFmt;
-	static String asciiFmt;
+	private static String hexFmt;
+	private static String asciiFmt;
 
 	/**
 	 * return HEX:ASCII dump of buffer

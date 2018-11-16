@@ -31,7 +31,7 @@ public class CanProtFord extends CanProt
 	/**
 	 * List of message dependent telegram parameters in order of appearance
 	 */
-	static final int MSG_PARAMETERS[][] =
+	private static final int[][] MSG_PARAMETERS =
 	/*  START,  LEN,   PARAM-TYPE   CONVERSION                       , DEC, MSG_ID    // REMARKS                   */
     /* ----------------------------------------------------------------------------------------------------------- */
 		{
@@ -55,7 +55,7 @@ public class CanProtFord extends CanProt
 	/**
 	 * list of message parameter descriptions
 	 */
-	static final String[] MSG_DESCRIPTORS =
+	private static final String[] MSG_DESCRIPTORS =
 		{
 			"Engine RPM",
 			"Engine regulator",

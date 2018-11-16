@@ -18,14 +18,14 @@
 
 package com.fr3ts0n.pvs.gui;
 
-import java.util.Arrays;
-
-import javax.swing.table.AbstractTableModel;
-
 import com.fr3ts0n.pvs.IndexedProcessVar;
 import com.fr3ts0n.pvs.ProcessVar;
 import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
+
+import java.util.Arrays;
+
+import javax.swing.table.AbstractTableModel;
 
 /**
  * Data Model to represent a ProcessVar within a Table object
@@ -43,7 +43,7 @@ public class PvTableModel extends AbstractTableModel
 	protected ProcessVar pv;
 	protected IndexedProcessVar currRow;
 	protected Object[] keys;
-	protected String[] colHeaders = {};
+	private String[] colHeaders = {};
 
 	/** Creates a new instance of PvTableModel */
 	public PvTableModel()
@@ -65,7 +65,7 @@ public class PvTableModel extends AbstractTableModel
 	 *
 	 * @param pv Process variable
 	 */
-	protected void updateKeys(ProcessVar pv)
+	private void updateKeys(ProcessVar pv)
 	{
 		keys = pv.keySet().toArray();
 		Arrays.sort(keys);
@@ -97,8 +97,7 @@ public class PvTableModel extends AbstractTableModel
 	 */
 	public int getRowCount()
 	{
-		int result = keys != null ? keys.length : 0;
-		return (result);
+		return (keys != null ? keys.length : 0);
 	}
 
 	/**

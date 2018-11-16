@@ -42,7 +42,7 @@ public class PvChangeEvent extends EventObject
 	public static final int PV_ERROR = 0x40; 									/**< process var has an error */
 	public static final int PV_ELIMINATED = 0x80; 						/**< process var got eliminated */
 	public static final int PV_CHILDCHANGE = 0x8000000; 			/**< child process var change */
-	public static final int PV_ALLACTIONS = ~PV_CHILDCHANGE;	/**< mask for all actions */
+	private static final int PV_ALLACTIONS = ~PV_CHILDCHANGE;	/**< mask for all actions */
 	public static final int PV_ALLEVENTS = 0xFFFFFFFF; 				/**< mask for all change types */
 	private int type = PV_MODIFIED;
 	private Object key = ProcessVar.DEF_KEYNAME;
@@ -67,12 +67,12 @@ public class PvChangeEvent extends EventObject
 		return (type & PV_CHILDCHANGE) != 0;
 	}
 
-	public void setType(int newType)
+	private void setType(int newType)
 	{
 		type = newType;
 	}
 
-	public void setKey(Object newKey)
+	private void setKey(Object newKey)
 	{
 		key = newKey;
 	}
@@ -82,7 +82,7 @@ public class PvChangeEvent extends EventObject
 		return (key);
 	}
 
-	public void setValue(Object newValue)
+	private void setValue(Object newValue)
 	{
 		value = newValue;
 	}

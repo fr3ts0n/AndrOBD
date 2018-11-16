@@ -37,16 +37,16 @@ public class FtpLoader extends URLConnection
 	implements Runnable
 {
 	/** reader object to read from stream */
-	BufferedReader rdr = null;
+	private BufferedReader rdr = null;
 
 	/** List of telegram listeners */
 	@SuppressWarnings("rawtypes")
-	protected Vector TelegramListeners = new Vector();
+	private final Vector TelegramListeners = new Vector();
 
 	/**
 	 * class constructor
 	 */
-	public FtpLoader(String newUrl)
+	private FtpLoader(String newUrl)
 		throws MalformedURLException
 	{
 		super(new URL(newUrl));
@@ -56,7 +56,6 @@ public class FtpLoader extends URLConnection
 	 * connect to URL and start threaded loading
 	 */
 	public void connect()
-		throws IOException
 	{
 		new Thread(this).start();
 	}
@@ -66,7 +65,7 @@ public class FtpLoader extends URLConnection
 	 */
 	public void run()
 	{
-		String currLine = null;
+		String currLine;
 		try
 		{
 			rdr = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -114,7 +113,7 @@ public class FtpLoader extends URLConnection
 	 * @param buffer - telegram buffer
 	 */
 	@SuppressWarnings("rawtypes")
-	protected void notifyTelegram(char[] buffer)
+	private void notifyTelegram(char[] buffer)
 	{
 		Iterator it = TelegramListeners.iterator();
 		Object currListener;
@@ -122,8 +121,7 @@ public class FtpLoader extends URLConnection
 		while (it.hasNext())
 		{
 			currListener = it.next();
-			if (currListener != null
-				&& currListener instanceof TelegramListener)
+			if (currListener instanceof TelegramListener)
 			{
 				((TelegramListener) currListener).handleTelegram(buffer);
 			}

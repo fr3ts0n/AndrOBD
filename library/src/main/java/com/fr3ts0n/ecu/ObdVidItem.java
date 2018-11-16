@@ -39,7 +39,7 @@ public class ObdVidItem
 	/**
 	 * description of all relevant fields for VID item
 	 */
-	static final String[] fields =
+	private static final String[] fields =
 		{
 			"Description",
 			"Value"
@@ -54,7 +54,7 @@ public class ObdVidItem
 	/**
 	 * Descriptions of mode 9 PIDs
 	 */
-	private static String descriptions[] =
+	private static final String[] descriptions =
 		{
 	/* PID 0 */ "Supported PIDs",
     /* PID 1 */ "VIN Count",

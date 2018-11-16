@@ -49,18 +49,18 @@ public class EcuDataItem
 	public int pid;             ///< pid
 	public int ofs;             ///< Offset within message
 	public Conversion[] cnv;    ///< type of conversion
-	int bytes;                  ///< number of data bytes expected from vehicle
-	int bitOffset = 0;          ///< bit offset within extracted long
-	int numBits = 32;           ///< number of relevant bits within extracted long
-	long bitMask = 0xFFFFFFFF;  ///< mask for relevant bits within extracted long
-	String fmt;                 ///< Format for text output
+	private int bytes;                  ///< number of data bytes expected from vehicle
+	private int bitOffset = 0;          ///< bit offset within extracted long
+	private int numBits = 32;           ///< number of relevant bits within extracted long
+	private long bitMask = 0xFFFFFFFF;  ///< mask for relevant bits within extracted long
+	private String fmt;                 ///< Format for text output
 	public String label;        ///< text label
-	public String mnemonic;     ///< unique textual mnemonic
+	private String mnemonic;     ///< unique textual mnemonic
 	public EcuDataPv pv;        ///< the process variable for displaying
-	int currErrorCount = 0;     ///< current number of consecutive conversion errors
+	private int currErrorCount = 0;     ///< current number of consecutive conversion errors
 
 	// Logger object
-	public static final Logger log = Logger.getLogger("data.ecu");
+	private static final Logger log = Logger.getLogger("data.ecu");
 
 	public static int[] byteValues =
 	{
@@ -153,7 +153,7 @@ public class EcuDataItem
 	 * @param buffer communication buffer content
 	 * @return physical value
 	 */
-	Object physFromBuffer(char[] buffer)
+	private Object physFromBuffer(char[] buffer)
 	{
 		Object result;
 		try

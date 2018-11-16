@@ -36,6 +36,7 @@ public class TelegramSender
 	 */
 
 	@SuppressWarnings("rawtypes")
+	private final
 	Vector telegramWriters = new Vector();
 
 	/**
@@ -67,7 +68,7 @@ public class TelegramSender
 	 * @param buffer - telegram buffer
 	 */
 	@SuppressWarnings("rawtypes")
-	public void sendTelegram(char[] buffer, int type, Object id)
+	private void sendTelegram(char[] buffer, int type, Object id)
 	{
 		Iterator it = telegramWriters.iterator();
 		Object currWriter;
@@ -77,8 +78,7 @@ public class TelegramSender
 		while (it.hasNext())
 		{
 			currWriter = it.next();
-			if (currWriter != null
-				&& currWriter instanceof TelegramWriter)
+			if (currWriter instanceof TelegramWriter)
 			{
 				((TelegramWriter) currWriter).writeTelegram(buffer, type, id);
 			}

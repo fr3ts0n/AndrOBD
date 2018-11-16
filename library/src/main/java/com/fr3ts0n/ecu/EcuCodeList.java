@@ -35,13 +35,13 @@ public class EcuCodeList
 	implements Conversion
 {
 	private static final long serialVersionUID = 219865459629423028L;
-	protected transient ResourceBundle codes;
-	protected transient int radix = 10;
+	private final transient ResourceBundle codes;
+	private transient int radix = 10;
 
 	/**
 	 * construct a new code list
 	 */
-	public EcuCodeList()
+	EcuCodeList()
 	{
 		this("com.fr3ts0n.ecu.prot.obd.res.codes");
 	}
@@ -68,7 +68,7 @@ public class EcuCodeList
 		radix = idRadix;
 	}
 
-	protected String getCode(Number value)
+	String getCode(Number value)
 	{
 		return(Long.toString(value.longValue(),radix));
 	}

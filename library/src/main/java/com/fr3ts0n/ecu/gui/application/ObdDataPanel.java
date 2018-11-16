@@ -24,9 +24,6 @@ import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
 import com.fr3ts0n.pvs.PvList;
 
-import org.jfree.data.time.Second;
-import org.jfree.data.time.TimeSeries;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -84,17 +81,18 @@ public class ObdDataPanel extends JPanel
 	private void initComponents()
 	{
 		java.awt.GridBagConstraints gridBagConstraints;
-
-		jSplitPane1 = new javax.swing.JSplitPane();
-		panGraph = new javax.swing.JPanel();
+		
+		javax.swing.JSplitPane jSplitPane1 = new javax.swing.JSplitPane();
+		JPanel panGraph = new JPanel();
 		plotter = new com.fr3ts0n.ecu.gui.application.ObdDataPlotter();
-		jPanel1 = new javax.swing.JPanel();
-		jPanel2 = new javax.swing.JPanel();
+		JPanel jPanel1 = new JPanel();
+		JPanel jPanel2 = new JPanel();
 		slGraphTime = new javax.swing.JSlider();
 		lblHistTime = new javax.swing.JLabel();
-		btnClearHist = new javax.swing.JButton();
-		panTable = new javax.swing.JPanel();
-		jScrollPane1 = new javax.swing.JScrollPane();
+		// Variables declaration - do not modify//GEN-BEGIN:variables
+		javax.swing.JButton btnClearHist = new javax.swing.JButton();
+		JPanel panTable = new JPanel();
+		javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
 		tblPids = new com.fr3ts0n.pvs.gui.PvTable();
 
 		setFont(new java.awt.Font("Dialog", 0, 10));
@@ -132,7 +130,7 @@ public class ObdDataPanel extends JPanel
 		{
 			public void stateChanged(javax.swing.event.ChangeEvent evt)
 			{
-				slGraphTimeStateChanged(evt);
+				slGraphTimeStateChanged();
 			}
 		});
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -159,7 +157,7 @@ public class ObdDataPanel extends JPanel
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
 			{
-				btnClearHistActionPerformed(evt);
+				btnClearHistActionPerformed();
 			}
 		});
 		jPanel1.add(btnClearHist, java.awt.BorderLayout.EAST);
@@ -185,7 +183,7 @@ public class ObdDataPanel extends JPanel
 		add(jSplitPane1, java.awt.BorderLayout.CENTER);
 	}// </editor-fold>//GEN-END:initComponents
 
-	private void btnClearHistActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnClearHistActionPerformed
+	private void btnClearHistActionPerformed()//GEN-FIRST:event_btnClearHistActionPerformed
 	{//GEN-HEADEREND:event_btnClearHistActionPerformed
 		TimeSeries ts;
 		Iterator<TimeSeries> it = selPids.values().iterator();
@@ -196,7 +194,7 @@ public class ObdDataPanel extends JPanel
 		}
 	}//GEN-LAST:event_btnClearHistActionPerformed
 
-	private void slGraphTimeStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_slGraphTimeStateChanged
+	private void slGraphTimeStateChanged()//GEN-FIRST:event_slGraphTimeStateChanged
 	{//GEN-HEADEREND:event_slGraphTimeStateChanged
 		TimeSeries ts;
 		lblHistTime.setText(String.valueOf(slGraphTime.getValue()) + " min");
@@ -214,21 +212,13 @@ public class ObdDataPanel extends JPanel
 	/**
 	 * get readable unique String from PV
 	 */
-	Object getPvId(ProcessVar pv)
+	private Object getPvId(ProcessVar pv)
 	{
 		return (pv.getKeyValue());
 	}
-
-
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton btnClearHist;
-	private javax.swing.JPanel jPanel1;
-	private javax.swing.JPanel jPanel2;
-	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JSplitPane jSplitPane1;
+	
+	
 	private javax.swing.JLabel lblHistTime;
-	private javax.swing.JPanel panGraph;
-	private javax.swing.JPanel panTable;
 	private com.fr3ts0n.ecu.gui.application.ObdDataPlotter plotter;
 	private javax.swing.JSlider slGraphTime;
 	private com.fr3ts0n.pvs.gui.PvTable tblPids;
@@ -259,7 +249,7 @@ public class ObdDataPanel extends JPanel
 	{
 		TimeSeries ts;
 		// if there is an o previous instance registered, unregister ...
-		if (this.pidPvs instanceof PvList)
+		if (this.pidPvs != null)
 			this.pidPvs.removePvChangeListener(this);
 		this.pidPvs = pidPvs;
 		tblPids.setProcessVar(pidPvs);
@@ -384,7 +374,7 @@ public class ObdDataPanel extends JPanel
 	 */
 	public void updateAllTableRows(int columnId)
 	{
-		((ObdItemTableModel) tblPids.getPvModel()).updateAllRows(columnId);
+		((ObdItemTableModel) tblPids.getPvModel()).updateAllRows();
 	}
 
 	/**

@@ -30,7 +30,7 @@ import java.util.logging.Logger;
 public class SerialExt
 {
 
-	static Logger log = Logger.getLogger("com.fr3ts0n.prot.ext");
+	private static final Logger log = Logger.getLogger("com.fr3ts0n.prot.ext");
 
 
 	/**
@@ -154,7 +154,7 @@ public class SerialExt
 	 * @return error status of selectedPort/line setting (0=SUCCESS)
 	 * @throws IOException
 	 */
-	public static int setBreak(int newStatus)
+	public static void setBreak(int newStatus)
 		throws IOException
 	{
 		log.fine(String.format("BREAK %s", newStatus != 0 ? "ON" : "OFF"));
@@ -163,7 +163,6 @@ public class SerialExt
 		{
 			throw new IOException("setBreak");
 		}
-		return result;
 	}
 
 	/**
@@ -173,7 +172,7 @@ public class SerialExt
 	 * @return error status of selectedPort/line setting (0=SUCCESS)
 	 * @throws IOException
 	 */
-	public static int setCustomBaudrate(int baudrate)
+	public static void setCustomBaudrate(int baudrate)
 		throws IOException
 	{
 		log.fine(String.format("Setting custom baudrate %d", baudrate));
@@ -182,7 +181,6 @@ public class SerialExt
 		{
 			throw new IOException("setCustomBaudrate");
 		}
-		return result;
 	}
 
 	/**
@@ -211,7 +209,7 @@ public class SerialExt
 	public static int receiveChar()
 		throws IOException
 	{
-		log.finer(String.format("waiting for RX char"));
+		log.finer("waiting for RX char");
 		int result = receiveChar(serialPortDescriptor);
 		if (result < 0)
 		{

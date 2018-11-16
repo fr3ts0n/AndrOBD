@@ -47,11 +47,11 @@ public class ObdDtcPanel extends JPanel
 	/** serial version UID  * */
 	private static final long serialVersionUID = -1285434908785275242L;
 	/** icons */
-	public ImageIcon icoMilOff = new javax.swing.ImageIcon(getClass().getResource("/com/fr3ts0n/ecu/gui/res/mil_off.png"));
-	public ImageIcon icoMilOn = new javax.swing.ImageIcon(getClass().getResource("/com/fr3ts0n/ecu/gui/res/mil_on.png"));
+	private final ImageIcon icoMilOff = new javax.swing.ImageIcon(getClass().getResource("/com/fr3ts0n/ecu/gui/res/mil_off.png"));
+	private final ImageIcon icoMilOn = new javax.swing.ImageIcon(getClass().getResource("/com/fr3ts0n/ecu/gui/res/mil_on.png"));
 
 	/** milStatus */
-	boolean milStatus = false;
+	private boolean milStatus = false;
 
 	/** Creates new form ObdDfcPanel */
 	public ObdDtcPanel()
@@ -86,19 +86,19 @@ public class ObdDtcPanel extends JPanel
 	private void initComponents()
 	{
 		java.awt.GridBagConstraints gridBagConstraints;
-
-		panHeader = new javax.swing.JPanel();
+		
+		JPanel panHeader = new JPanel();
 		lblCodeType = new javax.swing.JLabel();
 		lblMil = new javax.swing.JLabel();
 		lblMil1 = new javax.swing.JLabel();
 		lblNumCodes = new javax.swing.JLabel();
-		panFooter = new javax.swing.JPanel();
+		JPanel panFooter = new JPanel();
 		btnReadCodes = new javax.swing.JButton();
 		btnReadPending = new javax.swing.JButton();
 		btnReadPermanent = new javax.swing.JButton();
 		btnClearCodes = new javax.swing.JButton();
-		panCenter = new javax.swing.JPanel();
-		jScrollPane1 = new javax.swing.JScrollPane();
+		JPanel panCenter = new JPanel();
+		javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
 		tblFCodes = new com.fr3ts0n.pvs.gui.PvTable();
 		panStatus = new com.fr3ts0n.ecu.gui.application.VagCodeStatPanel();
 
@@ -139,7 +139,7 @@ public class ObdDtcPanel extends JPanel
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
 			{
-				btnReadCodesActionPerformed(evt);
+				btnReadCodesActionPerformed();
 			}
 		});
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -156,7 +156,7 @@ public class ObdDtcPanel extends JPanel
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
 			{
-				btnReadPendingActionPerformed(evt);
+				btnReadPendingActionPerformed();
 			}
 		});
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -173,7 +173,7 @@ public class ObdDtcPanel extends JPanel
 		{
 			public void actionPerformed(java.awt.event.ActionEvent evt)
 			{
-				btnReadPermanentActionPerformed(evt);
+				btnReadPermanentActionPerformed();
 			}
 		});
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -212,7 +212,7 @@ public class ObdDtcPanel extends JPanel
 		add(panCenter, java.awt.BorderLayout.CENTER);
 	}// </editor-fold>//GEN-END:initComponents
 
-	private void btnReadPendingActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnReadPendingActionPerformed
+	private void btnReadPendingActionPerformed()//GEN-FIRST:event_btnReadPendingActionPerformed
 	{//GEN-HEADEREND:event_btnReadPendingActionPerformed
 		lblCodeType.setText("Pending trouble codes");
 	}//GEN-LAST:event_btnReadPendingActionPerformed
@@ -241,30 +241,26 @@ public class ObdDtcPanel extends JPanel
 			evt.setSource(null);
 	}//GEN-LAST:event_btnClearCodesActionPerformed
 
-	private void btnReadCodesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnReadCodesActionPerformed
+	private void btnReadCodesActionPerformed()//GEN-FIRST:event_btnReadCodesActionPerformed
 	{//GEN-HEADEREND:event_btnReadCodesActionPerformed
 		lblCodeType.setText("Stored trouble codes");
 	}//GEN-LAST:event_btnReadCodesActionPerformed
 
-	private void btnReadPermanentActionPerformed(java.awt.event.ActionEvent evt)
+	private void btnReadPermanentActionPerformed()
 	{//GEN-FIRST:event_btnReadPermanentActionPerformed
 		lblCodeType.setText("Permanent trouble codes");
 	}//GEN-LAST:event_btnReadPermanentActionPerformed
 
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
-	protected javax.swing.JButton btnClearCodes;
-	protected javax.swing.JButton btnReadCodes;
-	protected javax.swing.JButton btnReadPending;
-	protected javax.swing.JButton btnReadPermanent;
-	private javax.swing.JScrollPane jScrollPane1;
+	private javax.swing.JButton btnClearCodes;
+	private javax.swing.JButton btnReadCodes;
+	javax.swing.JButton btnReadPending;
+	javax.swing.JButton btnReadPermanent;
 	private javax.swing.JLabel lblCodeType;
 	private javax.swing.JLabel lblMil;
 	private javax.swing.JLabel lblMil1;
 	private javax.swing.JLabel lblNumCodes;
-	private javax.swing.JPanel panCenter;
-	private javax.swing.JPanel panFooter;
-	private javax.swing.JPanel panHeader;
 	private com.fr3ts0n.ecu.gui.application.VagCodeStatPanel panStatus;
 	private com.fr3ts0n.pvs.gui.PvTable tblFCodes;
 	// End of variables declaration//GEN-END:variables
@@ -274,7 +270,7 @@ public class ObdDtcPanel extends JPanel
 		return (milStatus);
 	}
 
-	public void setMilStatus(boolean newStatus)
+	private void setMilStatus(boolean newStatus)
 	{
 		milStatus = newStatus;
 		// set the MIL-status display
@@ -340,7 +336,7 @@ public class ObdDtcPanel extends JPanel
 	 *
 	 * @param numCodes New value of property numCodes.
 	 */
-	public void setNumCodes(int numCodes)
+	private void setNumCodes(int numCodes)
 	{
 		this.numCodes = numCodes & 0x7F;
 		setMilStatus((numCodes & 0x80) != 0);

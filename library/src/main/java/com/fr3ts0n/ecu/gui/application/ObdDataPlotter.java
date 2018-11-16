@@ -18,22 +18,6 @@
 
 package com.fr3ts0n.ecu.gui.application;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.AxisLocation;
-import org.jfree.chart.axis.DateAxis;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.labels.StandardXYToolTipGenerator;
-import org.jfree.chart.labels.XYToolTipGenerator;
-import org.jfree.chart.plot.DefaultDrawingSupplier;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.data.time.TimeSeries;
-import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.data.xy.XYDataset;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -50,19 +34,19 @@ public class ObdDataPlotter extends JPanel
 {
 	private static final long serialVersionUID = 9085602185360330792L;
 	/* Font for all legent items */
-	static final Font legendFont = new Font("Dialog", 0, 7);
+	private static final Font legendFont = new Font("Dialog", 0, 7);
 	/** generator for all tool tips */
-	static final XYToolTipGenerator toolTipGen =
+	private static final XYToolTipGenerator toolTipGen =
 		StandardXYToolTipGenerator.getTimeSeriesInstance();
 
 	/** switch to use range series per series */
-	public static boolean oneRangePerSeries = true;
+	private static final boolean oneRangePerSeries = true;
 
 
-	protected int raIndex = 0;
-	TimeSeriesCollection dataset = new TimeSeriesCollection();
+	private int raIndex = 0;
+	final TimeSeriesCollection dataset = new TimeSeriesCollection();
 
-	JFreeChart chart;
+	private JFreeChart chart;
 
 	/**
 	 * create the graphing panel

@@ -1,16 +1,16 @@
 package com.fr3ts0n.pvs.gui;
 
-import java.awt.datatransfer.DataFlavor;
-
 import com.fr3ts0n.pvs.ProcessVar;
 
-public class PvDataFlavor extends DataFlavor
+import java.awt.datatransfer.DataFlavor;
+
+class PvDataFlavor extends DataFlavor
 {
-	static final String PV_MIME_TYPE = "application/processvar";
+	private static final String PV_MIME_TYPE = "application/processvar";
 
 	public PvDataFlavor()
 	{
-		this(ProcessVar.class, PV_MIME_TYPE);
+		this();
 	}
 
 	public PvDataFlavor(String arg0) throws ClassNotFoundException
@@ -18,7 +18,7 @@ public class PvDataFlavor extends DataFlavor
 		super(arg0);
 	}
 
-	public PvDataFlavor(Class<?> representationClass, String humanPresentableName)
+	private PvDataFlavor()
 	{
 		super(ProcessVar.class, PV_MIME_TYPE);
 	}

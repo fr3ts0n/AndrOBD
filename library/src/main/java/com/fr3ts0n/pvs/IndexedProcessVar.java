@@ -35,7 +35,7 @@ public abstract class IndexedProcessVar extends ProcessVar
 	/** return all available field names */
 	public abstract String[] getFields();
 
-	public IndexedProcessVar()
+	protected IndexedProcessVar()
 	{
 		String flds[] = getFields();
 		for (int i = 0; i < flds.length; i++)
@@ -51,9 +51,9 @@ public abstract class IndexedProcessVar extends ProcessVar
 	}
 
 	/** indexed put for specified field id */
-	public Object put(int fieldID, Object newValue)
+	public void put(int fieldID, Object newValue)
 	{
-		return (put(getFields()[fieldID], newValue));
+		put(getFields()[fieldID], newValue);
 	}
 
 	/**

@@ -37,7 +37,7 @@ public class DbProcessVar extends IndexedProcessVar
 	 */
 	private static final long serialVersionUID = 1080116313924821619L;
 	@SuppressWarnings({"rawtypes", "unchecked"})
-	private static Vector<String> fields = new Vector();
+	private static final Vector<String> fields = new Vector();
 	/**
 	 * Holds value of property dbConnection.
 	 */
@@ -48,7 +48,7 @@ public class DbProcessVar extends IndexedProcessVar
 	private String tableName;
 
 	/** Creates a new instance of DbProcessVar */
-	public DbProcessVar()
+	private DbProcessVar()
 	{
 	}
 
@@ -89,7 +89,7 @@ public class DbProcessVar extends IndexedProcessVar
 	 *
 	 * @param dbConnection New value of property dbConnection.
 	 */
-	public void setDbConnection(Connection dbConnection)
+	private void setDbConnection(Connection dbConnection)
 	{
 
 		this.dbConnection = dbConnection;
@@ -110,7 +110,7 @@ public class DbProcessVar extends IndexedProcessVar
 	 *
 	 * @param tableName New value of property tableName.
 	 */
-	public void setTableName(String tableName)
+	private void setTableName(String tableName)
 	{
 
 		this.tableName = tableName;
@@ -118,8 +118,7 @@ public class DbProcessVar extends IndexedProcessVar
 
 	protected String getSelectSQL()
 	{
-		String result = "SELECT * from " + tableName;
-		return (result);
+		return ("SELECT * from " + tableName);
 	}
 
 	protected ResultSet getResultSet(String sqlQuery)

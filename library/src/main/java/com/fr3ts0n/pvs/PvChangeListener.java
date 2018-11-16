@@ -31,6 +31,6 @@ public interface PvChangeListener extends EventListener
 	/**
 	 * handler for process variable changes
 	 */
-	public void pvChanged(PvChangeEvent event);
+	void pvChanged(PvChangeEvent event);
 
 }

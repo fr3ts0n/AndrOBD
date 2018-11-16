@@ -43,15 +43,15 @@ public abstract class ProtoHeader
 	protected static Logger log = Logger.getLogger("com.fr3ts0n.prot");
 	/** List of telegram listeners */
 	@SuppressWarnings("rawtypes")
-	protected Vector TelegramListeners = new Vector();
+	private final Vector TelegramListeners = new Vector();
 	/** object to be used for parsing and formatting timestamps */
-	protected static SimpleDateFormat TimeStampFormat =
+	private static final SimpleDateFormat TimeStampFormat =
 		new SimpleDateFormat("yyyyMMddHHmmssSS");
 	/** object to be used for parsing and formatting datestamps */
-	protected static SimpleDateFormat DateStampFormat =
+	private static final SimpleDateFormat DateStampFormat =
 		new SimpleDateFormat("yyyyMMdd");
 	/** object to be used for parsing and formatting decimal numbers */
-	protected static DecimalFormat decimalFormat =
+	private static final DecimalFormat decimalFormat =
 		new DecimalFormat("0000000000");
 	/** empty buffer definition for further usage * */
 	protected static final char emptyBuffer[] = {};
@@ -62,45 +62,45 @@ public abstract class ProtoHeader
 	/** alphanumeric parameter (String) */
 	public static final int PT_ALPHA = 0;
 	/** numeric integer parameter */
-	public static final int PT_NUMERIC = 1;
+	protected static final int PT_NUMERIC = 1;
 	/** numeric float parameter */
-	public static final int PT_FLOAT = 2;
+	private static final int PT_FLOAT = 2;
 	/** TimeStamp parameter */
-	public static final int PT_TIMESTAMP = 3;
+	private static final int PT_TIMESTAMP = 3;
 	/** DateStamp parameter */
-	public static final int PT_DATESTAMP = 4;
+	private static final int PT_DATESTAMP = 4;
 	/** Integer parameter */
-	public static final int PT_INTEGER = 5;
+	private static final int PT_INTEGER = 5;
 	/** BCD parameter */
-	public static final int PT_BCD = 6;
+	private static final int PT_BCD = 6;
 	/** HEX parameter */
 	public static final int PT_HEX = 7;
 	/** HEX parameter signed 8 Bit */
-	public static final int PT_HEX_S8 = 8;
+	private static final int PT_HEX_S8 = 8;
 	/** HEX parameter signed 16 Bit */
-	public static final int PT_HEX_S16 = 9;
+	protected static final int PT_HEX_S16 = 9;
 	/** String Value within hex parameter (HEXDUMP) */
-	public static final int PT_HEX_ALPHA = 10;
+	private static final int PT_HEX_ALPHA = 10;
 	/**
 	 * Indices of Parameter definitions (int[index])
 	 */
 	/** start position within telegram (staring with 1) */
-	static final int ID_START = 0;
+	private static final int ID_START = 0;
 	/** length of parameter within telegram (staring with 1) */
-	static final int ID_LEN = 1;
+	private static final int ID_LEN = 1;
 	/** type of parameter see type PT_xxxx */
-	static final int ID_TYPE = 2;
+	private static final int ID_TYPE = 2;
 	/** string padding character */
 	protected static char paddingChr = ' ';
 	/** check if telegram listeners have to be notified on empty payload */
-	protected boolean isNotificationOnEmptyPayloadAllowed = false;
+	private final boolean isNotificationOnEmptyPayloadAllowed = false;
 
 	/**
 	 * list of parameters for specific protocol
 	 *
 	 * @return complete set of protocol parameters
 	 */
-	public abstract int[][] getTelegramParams();
+	protected abstract int[][] getTelegramParams();
 
 	/**
 	 * list of parameter descriptions for specific protocol
@@ -112,10 +112,9 @@ public abstract class ProtoHeader
 	/**
 	 * return message footer for protocol payload
 	 *
-	 * @param buffer buffer of payload data
 	 * @return buffer of message footer
 	 */
-	public abstract char[] getFooter(char[] buffer);
+	protected abstract char[] getFooter();
 
 	/**
 	 * create a new telegram header for selected payload data buffer
@@ -150,9 +149,9 @@ public abstract class ProtoHeader
 	 *
 	 * @return length of message footer
 	 */
-	public int getFooterLength()
+	protected int getFooterLength()
 	{
-		return (getFooter(emptyBuffer).length);
+		return (getFooter().length);
 	}
 
 	/**
@@ -180,7 +179,7 @@ public abstract class ProtoHeader
 	 *
 	 * @return length of message header
 	 */
-	public static int getBufferLength(int[][] fieldMap)
+	private static int getBufferLength(int[][] fieldMap)
 	{
 		int len = 0;
 
@@ -197,7 +196,7 @@ public abstract class ProtoHeader
 	 *
 	 * @return length of message header
 	 */
-	public int getHeaderLength()
+	protected int getHeaderLength()
 	{
 		return (getBufferLength(getTelegramParams()));
 	}
@@ -210,12 +209,11 @@ public abstract class ProtoHeader
 	 * @param buffer telegram buffer to be read
 	 * @return parameter value as String
 	 */
-	public static String getParamString(int start, int len, char[] buffer)
+	private static String getParamString(int start, int len, char[] buffer)
 	{
-		String result = new String(buffer,
+		return (new String(buffer,
 			start,
-			len);
-		return (result);
+			len));
 	}
 
 	/**
@@ -226,7 +224,7 @@ public abstract class ProtoHeader
 	 * @param buffer   telegram buffer to be read
 	 * @return parameter value as String
 	 */
-	public static String getParamString(int id, int[][] fieldMap, char[] buffer)
+	private static String getParamString(int id, int[][] fieldMap, char[] buffer)
 	{
 		int currParam[] = fieldMap[id];
 		return (getParamString(currParam[ID_START],
@@ -278,7 +276,7 @@ public abstract class ProtoHeader
 	 * @param buffer   telegram buffer to be read
 	 * @return parameter value as Object
 	 */
-	public static Integer getParamInt(int id, int[][] fieldMap, char[] buffer)
+	private static Integer getParamInt(int id, int[][] fieldMap, char[] buffer)
 	{
 		int currParam[] = fieldMap[id];
 		return (getParamInt(currParam[ID_START], currParam[ID_LEN], buffer));
@@ -292,7 +290,7 @@ public abstract class ProtoHeader
 	 * @param buffer telegram buffer to be read
 	 * @return parameter value as Object
 	 */
-	public Integer getParamInt(int id, char[] buffer)
+	protected Integer getParamInt(int id, char[] buffer)
 	{
 		return (getParamInt(id, getTelegramParams(), buffer));
 	}
@@ -306,7 +304,7 @@ public abstract class ProtoHeader
 	 * @param buffer telegram buffer to be read
 	 * @return parameter value as Object
 	 */
-	public static Integer getParamBCD(int start, int len, char[] buffer)
+	private static Integer getParamBCD(int start, int len, char[] buffer)
 	{
 		int ofs;
 		int value = 0;
@@ -330,7 +328,7 @@ public abstract class ProtoHeader
 	 * @param fieldMap map of field parameters
 	 * @return parameter value as Object
 	 */
-	public static Integer getParamBCD(int id, int[][] fieldMap, char[] buffer)
+	private static Integer getParamBCD(int id, int[][] fieldMap, char[] buffer)
 	{
 		int currParam[] = fieldMap[id];
 		return (getParamBCD(currParam[ID_START], currParam[ID_LEN], buffer));
@@ -357,7 +355,7 @@ public abstract class ProtoHeader
 	 * @param buffer telegram buffer to be read
 	 * @return parameter value as Object
 	 */
-	public static String getParamHexAlpha(int start, int len, char[] buffer)
+	private static String getParamHexAlpha(int start, int len, char[] buffer)
 	{
 		int ofs;
 		String msgStr = new String(buffer);
@@ -380,7 +378,7 @@ public abstract class ProtoHeader
 	 * @param buffer   message buffer
 	 * @return parameter value as Object
 	 */
-	public static String getParamHexAlpha(int id, int[][] fieldMap, char[] buffer)
+	private static String getParamHexAlpha(int id, int[][] fieldMap, char[] buffer)
 	{
 		int currParam[] = fieldMap[id];
 		return (getParamHexAlpha(currParam[ID_START], currParam[ID_LEN], buffer));
@@ -408,7 +406,7 @@ public abstract class ProtoHeader
 	 * @param buffer   message buffer
 	 * @return parameter value as Object
 	 */
-	public static Object getParamValue(int id, int[][] fieldMap, char[] buffer)
+	protected static Object getParamValue(int id, int[][] fieldMap, char[] buffer)
 	{
 		Object result = null;
 		int currParam[] = fieldMap[id];
@@ -420,7 +418,7 @@ public abstract class ProtoHeader
 				result = getParamString(id, fieldMap, buffer);
 				if (result == null)
 				{
-					result = new String();
+					result = "";
 				}
 				break;
 
@@ -491,7 +489,7 @@ public abstract class ProtoHeader
 	 *
 	 * @return parameter value as Object
 	 */
-	public Object getParamValue(int id, char[] buffer)
+	protected Object getParamValue(int id, char[] buffer)
 	{
 		return (getParamValue(id, getTelegramParams(), buffer));
 	}
@@ -504,7 +502,7 @@ public abstract class ProtoHeader
 	 * @return Class type of message parameter
 	 */
 	@SuppressWarnings("rawtypes")
-	public Class getParamType(int id, int[][] fieldMap)
+	private Class getParamType(int id, int[][] fieldMap)
 	{
 		Class result = null;
 		int currParam[] = fieldMap[id];
@@ -566,7 +564,8 @@ public abstract class ProtoHeader
 	 * @param value    = String value of new parameter
 	 * @return curent telegram buffer
 	 */
-	public static char[] setParamString(int id, int[][] fieldMap, char[] buffer, int start, String value)
+	private static char[] setParamString(int id, int[][] fieldMap, char[] buffer, int start,
+	                                     String value)
 	{
 		// find out desired parameter
 		int currParam[] = fieldMap[id];
@@ -579,15 +578,15 @@ public abstract class ProtoHeader
 			if (cnt < start)
 			// ... pad parameter with leading spaces
 			{
-				buffer[currParam[ID_START] + cnt] = (char) paddingChr;
+				buffer[currParam[ID_START] + cnt] = paddingChr;
 			} else if (cnt - start < valueChars.length)
 			// ... set parameter char
 			{
-				buffer[currParam[ID_START] + cnt] = (char) valueChars[cnt - start];
+				buffer[currParam[ID_START] + cnt] = valueChars[cnt - start];
 			} else
 			// ... set terinating 0's
 			{
-				buffer[currParam[ID_START] + cnt] = (char) paddingChr;
+				buffer[currParam[ID_START] + cnt] = paddingChr;
 			}
 		}
 
@@ -604,7 +603,7 @@ public abstract class ProtoHeader
 	 * @param value  = String value of new parameter
 	 * @return curent telegram buffer
 	 */
-	public char[] setParamString(int id, char[] buffer, int start, String value)
+	private char[] setParamString(int id, char[] buffer, int start, String value)
 	{
 		return (setParamString(id, getTelegramParams(), buffer, start, value));
 	}
@@ -632,17 +631,18 @@ public abstract class ProtoHeader
 	 * @param value    = String value of new parameter
 	 * @return curent telegram buffer
 	 */
-	public static char[] setParamHexAlpha(int id, int[][] fieldMap, char[] buffer, int start, String value)
+	private static char[] setParamHexAlpha(int id, int[][] fieldMap, char[] buffer, int start,
+	                                       String value)
 	{
-		String hexStr = "";
+		StringBuilder hexStr = new StringBuilder();
 		char valChars[] = value.toCharArray();
 		// create hex format of string
 		for (int i = 0; i < value.length(); i++)
 		{
-			hexStr += String.format("%02X", valChars[i]);
+			hexStr.append(String.format("%02X", valChars[i]));
 		}
 		// .. and set it as parameter
-		return (setParamString(id, fieldMap, buffer, start, hexStr));
+		return (setParamString(id, fieldMap, buffer, start, hexStr.toString()));
 	}
 
 	/**
@@ -654,7 +654,7 @@ public abstract class ProtoHeader
 	 * @param value    = String value of new parameter
 	 * @return curent telegram buffer
 	 */
-	public static char[] setParamBCD(int id, int[][] fieldMap, char[] buffer, int value)
+	private static char[] setParamBCD(int id, int[][] fieldMap, char[] buffer, int value)
 	{
 		int currParam[] = fieldMap[id];
 		int ofs;
@@ -692,7 +692,7 @@ public abstract class ProtoHeader
 	 * @param value    = value of new parameter
 	 * @return curent telegram buffer
 	 */
-	public static char[] setParamInt(int id, int[][] fieldMap, char[] buffer, int value)
+	private static char[] setParamInt(int id, int[][] fieldMap, char[] buffer, int value)
 	{
 		int currParam[] = fieldMap[id];
 		int ofs;
@@ -714,9 +714,9 @@ public abstract class ProtoHeader
 	 * @param value  = value of new parameter
 	 * @return curent telegram buffer
 	 */
-	public char[] setParamInt(int id, char[] buffer, int value)
+	protected void setParamInt(int id, char[] buffer, int value)
 	{
-		return (setParamInt(id, getTelegramParams(), buffer, value));
+		setParamInt(id, getTelegramParams(), buffer, value);
 	}
 
 	/**
@@ -801,7 +801,7 @@ public abstract class ProtoHeader
 	 * @param buffer = current telegram buffer
 	 * @return true if telegram is OK, otherwise false
 	 */
-	public boolean checkTelegram(char[] buffer)
+	protected boolean checkTelegram(char[] buffer)
 	{
 		return (buffer.length >= (getHeaderLength() + getFooterLength()));
 	}
@@ -812,7 +812,7 @@ public abstract class ProtoHeader
 	 * @param buffer = current telegram buffer
 	 * @return buffer of payload data
 	 */
-	public char[] getPayLoad(char[] buffer)
+	protected char[] getPayLoad(char[] buffer)
 	{
 		String result = "";
 		if (checkTelegram(buffer))
@@ -867,7 +867,7 @@ public abstract class ProtoHeader
 	 *
 	 * @param buffer = current telegram buffer
 	 */
-	public void dumpParameters(char[] buffer)
+	private void dumpParameters(char[] buffer)
 	{
 		if (checkTelegram(buffer))
 		{
@@ -924,12 +924,12 @@ public abstract class ProtoHeader
 	 *
 	 * @return buffer of empty telegram header
 	 */
-	public static char[] createEmptyBuffer(int[][] fieldMap, char fillChar)
+	protected static char[] createEmptyBuffer(int[][] fieldMap, char fillChar)
 	{
 		// create buffer
 		char buffer[] = new char[getBufferLength(fieldMap)];
 		// fill buffer with blanks
-		java.util.Arrays.fill(buffer, (char) fillChar);
+		java.util.Arrays.fill(buffer, fillChar);
 		// and return it
 		return (buffer);
 	}
@@ -951,9 +951,9 @@ public abstract class ProtoHeader
 	 * @param payLoad user data buffer to be packed into protocol telegram
 	 * @return buffer of packet telegram
 	 */
-	public char[] createTelegram(char[] payLoad)
+	private char[] createTelegram(char[] payLoad)
 	{
-		String tgmStr = new String(getNewHeader(payLoad)) + new String(payLoad) + new String(getFooter(payLoad));
+		String tgmStr = new String(getNewHeader(payLoad)) + new String(payLoad) + new String(getFooter());
 
 		return (tgmStr.toCharArray());
 	}
@@ -964,11 +964,11 @@ public abstract class ProtoHeader
 	 * @param payLoad user data buffer to be packed into protocol telegram
 	 * @return buffer of packet telegram
 	 */
-	public char[] createTelegram(char[] payLoad, int type, Object id)
+	protected char[] createTelegram(char[] payLoad, int type, Object id)
 	{
-		char[] result = {};
+		char[] result;
 
-		String tgmStr = new String(getNewHeader(payLoad, type, id)) + new String(payLoad) + new String(getFooter(payLoad));
+		String tgmStr = new String(getNewHeader(payLoad, type, id)) + new String(payLoad) + new String(getFooter());
 		result = tgmStr.toCharArray();
 
 		return result;
@@ -1006,7 +1006,7 @@ public abstract class ProtoHeader
 	 * @param buffer - telegram buffer
 	 */
 	@SuppressWarnings("rawtypes")
-	protected void notifyTelegram(char[] buffer)
+	private void notifyTelegram(char[] buffer)
 	{
 		// if there is anything to be notified about
 		if (buffer.length > 0 || isNotificationOnEmptyPayloadAllowed)
@@ -1018,7 +1018,7 @@ public abstract class ProtoHeader
 			while (it.hasNext())
 			{
 				currListener = it.next();
-				if (currListener != null && currListener instanceof TelegramListener)
+				if (currListener instanceof TelegramListener)
 				{
 					// ... and tell them about it
 					((TelegramListener) currListener).handleTelegram(buffer);
@@ -1034,7 +1034,7 @@ public abstract class ProtoHeader
 	 * @param hexString hexadecomal string as responded by ELM adapter
 	 * @return byte array representing the content of hex string
 	 */
-	public static char[] hexToBytes(String hexString)
+	protected static char[] hexToBytes(String hexString)
 	{
 		char[] result = new char[hexString.length() / 2];
 		for (int i = 0; i < hexString.length(); i += 2)

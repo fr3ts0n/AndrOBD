@@ -37,25 +37,25 @@ import java.util.logging.Level;
 public abstract class CanProt extends ProtoHeader
 {
 
-	public static final int ID_CAN_SVC = 0;
+	private static final int ID_CAN_SVC = 0;
 	/**
 	 * additional field indices (extending message parameters)
 	 * to table below
 	 */
-	public static final int FLD_ID_CONV = 3;
-	public static final int FLD_ID_DECIMALS = 4;
-	public static final int FLD_ID_CANID = 5;
+	private static final int FLD_ID_CONV = 3;
+	private static final int FLD_ID_DECIMALS = 4;
+	private static final int FLD_ID_CANID = 5;
 
 	/**
 	 * List of telegram parameters in order of appearance
 	 */
-	static final int CAN_PARAMETERS[][] =
+	private static final int[][] CAN_PARAMETERS =
 	/*  START,  LEN,     PARAM-TYPE     // REMARKS */
     /* ------------------------------------------- */
 		{{0, 2, PT_HEX},     // ID_CAN_SVC
 		};
 
-	static final String[] CAN_DESCRIPTORS =
+	private static final String[] CAN_DESCRIPTORS =
 		{
 			"CAN Service",
 		};
@@ -64,10 +64,10 @@ public abstract class CanProt extends ProtoHeader
 	public PvList CanPvs = new PvList();
 
 	/** internal Map for CAN messages to parameters */
-	HashMap<Integer, Vector<Integer>> canMsgMap = new HashMap<Integer, Vector<Integer>>();
+	private final HashMap<Integer, Vector<Integer>> canMsgMap = new HashMap<Integer, Vector<Integer>>();
 
 	/** Creates a new instance of CanProt */
-	public CanProt()
+	CanProt()
 	{
 		for (int i = 0; i < getMsgParameters().length; i++)
 		{
@@ -99,9 +99,8 @@ public abstract class CanProt extends ProtoHeader
 	/**
 	 * prepare process variables for each PID
 	 *
-	 * @param checkIfSupported if true, only supported PIDs will be processed
 	 */
-	public void preparePidPvs(boolean checkIfSupported)
+	public void preparePidPvs()
 	{
 		for (int i = 0; i < getMsgParameters().length; i++)
 		{
@@ -122,19 +121,19 @@ public abstract class CanProt extends ProtoHeader
 	 * <pre>START,  LEN,   TYPE,   CONVERSION_ID,                   , ID          // REMARKS </pre>
 	 * <pre>---------------------------------------------------------------------------------</pre>
 	 */
-	public abstract int[][] getMsgParameters();
+	protected abstract int[][] getMsgParameters();
 
 	/**
 	 * get list of message parameter descriptions
 	 *
 	 * @return list of messag parameter descriptors
 	 */
-	public abstract String[] getMsgDescriptors();
+	protected abstract String[] getMsgDescriptors();
 
 	/**
 	 * get physical parameter value from message buffer
 	 */
-	float getMsgValue(int ID, char[] buffer)
+	private float getMsgValue(int ID, char[] buffer)
 	{
 		int memVal = ((Integer) getParamValue(ID, getMsgParameters(), buffer)).intValue();
 		return (Conversions.memToPhys(memVal, getMsgParameters()[ID][FLD_ID_CONV]));
@@ -155,10 +154,9 @@ public abstract class CanProt extends ProtoHeader
 	/**
 	 * return message footer for protocol payload
 	 *
-	 * @param buffer buffer of payload data
 	 * @return buffer of message footer
 	 */
-	public char[] getFooter(char[] buffer)
+	public char[] getFooter()
 	{
 		return (emptyBuffer);
 	}
@@ -222,7 +220,7 @@ public abstract class CanProt extends ProtoHeader
 					if (pv != null)
 					{
 						// now store all changes to PV
-						pv.put(EcuDataPv.FIELDS[EcuDataPv.FID_VALUE], new Float(value));
+						pv.put(EcuDataPv.FIELDS[EcuDataPv.FID_VALUE], Float.valueOf(value));
 					}
 				}
 				retValue = params.size();

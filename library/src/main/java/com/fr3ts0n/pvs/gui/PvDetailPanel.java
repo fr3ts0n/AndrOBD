@@ -27,16 +27,20 @@ import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.Customizer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-import javax.swing.text.*;
+import javax.swing.text.JTextComponent;
 
 /**
  * panel class to display / edit a parocess variable and all it's attributes
@@ -51,13 +55,13 @@ public class PvDetailPanel extends JPanel
 	 */
 	private static final long serialVersionUID = 740664204205911504L;
 	// field background colors
-	static Color unchangedColor = Color.white;
-	static Color changedColor = Color.lightGray;
-	static Color labelColor = Color.lightGray;
-	static LineBorder lineBorder = new LineBorder(Color.BLACK);
-	HashMap<Object, JComponent> fields = new HashMap<Object, JComponent>();
-	ProcessVar dataSource = null;
-	boolean editable = false;
+	private static final Color unchangedColor = Color.white;
+	private static final Color changedColor = Color.lightGray;
+	private static final Color labelColor = Color.lightGray;
+	private static final LineBorder lineBorder = new LineBorder(Color.BLACK);
+	private final HashMap<Object, JComponent> fields = new HashMap<Object, JComponent>();
+	private ProcessVar dataSource = null;
+	private boolean editable = false;
 
 	public PvDetailPanel()
 	{
@@ -91,7 +95,7 @@ public class PvDetailPanel extends JPanel
 	 * this creates all corresponding data fields
 	 */
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	public void setProcessVar(ProcessVar data)
+	private void setProcessVar(ProcessVar data)
 	{
 		if (dataSource == null || !dataSource.equals(data))
 		{
@@ -109,10 +113,10 @@ public class PvDetailPanel extends JPanel
 			// if data source is anything real ...
 			if (data != null)
 			{
-				Object currKey = null;
-				Object currVal = null;
-				JLabel hdrCmp = null;
-				JComponent dataCmp = null;
+				Object currKey;
+				Object currVal;
+				JLabel hdrCmp;
+				JComponent dataCmp;
 
 				GridBagConstraints attr = new GridBagConstraints();
 
@@ -190,7 +194,7 @@ public class PvDetailPanel extends JPanel
 	}
 
 	/** set this editor panel to be non-/editable */
-	public void setEditable(boolean newEditable)
+	private void setEditable(boolean newEditable)
 	{
 		editable = newEditable;
 	}
@@ -228,7 +232,7 @@ public class PvDetailPanel extends JPanel
 		// only update panel if it is displayable
 		if (isDisplayable())
 		{
-			Component edit = (Component) fields.get(event.getKey());
+			Component edit = fields.get(event.getKey());
 			Object value = event.getValue();
 			// if we have found the corresponding editor field ...
 			if (edit != null)

@@ -44,11 +44,11 @@ public class PvXMLWriter
 	implements PvChangeListener
 {
 
-	Result xFormResult;
-	SAXTransformerFactory factory;
-	TransformerHandler handler;
-	Transformer serializer;
-	boolean documentStarted = false;
+	private Result xFormResult;
+	private SAXTransformerFactory factory;
+	private TransformerHandler handler;
+	private Transformer serializer;
+	private boolean documentStarted = false;
 	/** XML Tag-Names */
 	public static final String TAG_PVLIST = "PV-LIST";
 	public static final String TAG_PROCESSVAR = "PV";
@@ -61,7 +61,7 @@ public class PvXMLWriter
 	/**
 	 * Creates a new instance of PvXMLWriter
 	 */
-	public PvXMLWriter()
+	private PvXMLWriter()
 	{
 		try
 		{
@@ -89,7 +89,7 @@ public class PvXMLWriter
 	/**
 	 * set a stream writer for the handler
 	 */
-	public void setOutputStream(OutputStream oStream)
+	private void setOutputStream(OutputStream oStream)
 	{
 		try
 		{
@@ -104,7 +104,7 @@ public class PvXMLWriter
 	/**
 	 * initialize document writing
 	 */
-	public void startDocument()
+	private void startDocument()
 	{
 		AttributesImpl attrs = new AttributesImpl();
 		try
@@ -121,7 +121,7 @@ public class PvXMLWriter
 	/**
 	 * finalize Document writing
 	 */
-	public void endDocument()
+	private void endDocument()
 	{
 		try
 		{
@@ -143,7 +143,7 @@ public class PvXMLWriter
 	 *                       and finalized after writing this PV
 	 */
 	@SuppressWarnings("rawtypes")
-	public void writePv(ProcessVar pv, int recursiveDepth, boolean completeDoc)
+	private void writePv(ProcessVar pv, int recursiveDepth, boolean completeDoc)
 	{
 		Object currKey;
 		Object currVal;
@@ -222,7 +222,7 @@ public class PvXMLWriter
 	 *
 	 * @param pv processVar to write
 	 */
-	public void writePv(ProcessVar pv)
+	private void writePv(ProcessVar pv)
 	{
 		writePv(pv, 100, false);
 	}

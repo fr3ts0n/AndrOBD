@@ -27,14 +27,14 @@ import javax.swing.filechooser.FileFilter;
  *
  * @author erwin
  */
-public class ObdFileFilter extends FileFilter
+class ObdFileFilter extends FileFilter
 {
 
-	static final String[] FLT_EXTENSIONS =
+	private static final String[] FLT_EXTENSIONS =
 		{
 			"obd",
 		};
-	static final String FLT_DESCRIPTION = "OBD Files";
+	private static final String FLT_DESCRIPTION = "OBD Files";
 
 	/** Creates a new instance of ObdFileFilter */
 	public ObdFileFilter()
@@ -49,7 +49,7 @@ public class ObdFileFilter extends FileFilter
 	 * @see #getExtension
 	 * @see FileFilter#accept
 	 */
-	public String getExtension(File f)
+	private String getExtension(File f)
 	{
 		if (f != null)
 		{

@@ -38,7 +38,7 @@ public class PvTableCellRenderer extends JLabel
 	 *
 	 */
 	private static final long serialVersionUID = -7686049090382566048L;
-	static final EmptyBorder brdr = new EmptyBorder(0, 5, 0, 5);
+	private static final EmptyBorder brdr = new EmptyBorder(0, 5, 0, 5);
 
 	/** Creates a new instance of PvTableCellRenderer */
 	public PvTableCellRenderer()

@@ -27,18 +27,18 @@ public class PvLimits
 {
 	/** result codes */
 	/** value is within specified range */
-	public static final byte RC_WITHIN_RANGE = 0x00;
+	private static final byte RC_WITHIN_RANGE = 0x00;
 	/** value is above specified range */
-	public static final byte RC_ABOVE_RANGE = 0x01;
+	private static final byte RC_ABOVE_RANGE = 0x01;
 	/** value is below specified range */
-	public static final byte RC_BELOW_RANGE = 0x02;
+	private static final byte RC_BELOW_RANGE = 0x02;
 
 	/** minimum limit for range check */
 	@SuppressWarnings("rawtypes")
-	protected Comparable minValue;
+	private Comparable minValue;
 	/** maximum limit for range check */
 	@SuppressWarnings("rawtypes")
-	protected Comparable maxValue;
+	private Comparable maxValue;
 
 	/**
 	 * Creates a new instance of PvLimits
@@ -118,8 +118,8 @@ public class PvLimits
 	 * @see PvLimits#RC_ABOVE_RANGE
 	 * @see PvLimits#RC_BELOW_RANGE
 	 */
-	public static byte checkRange(Object value, Comparable<Object> minLimit,
-	                              Comparable<Object> maxLimit)
+	private static byte checkRange(Object value, Comparable<Object> minLimit,
+	                               Comparable<Object> maxLimit)
 	{
 		byte retVal = RC_WITHIN_RANGE;
 		// check Range Minimum

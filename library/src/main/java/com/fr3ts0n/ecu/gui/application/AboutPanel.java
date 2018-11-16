@@ -47,7 +47,8 @@ public class AboutPanel extends javax.swing.JPanel
 	{
 
 		lblImage = new javax.swing.JLabel();
-		jPanel1 = new javax.swing.JPanel();
+		// Variables declaration - do not modify//GEN-BEGIN:variables
+		javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
 		lblName = new javax.swing.JLabel();
 		lblVersion = new javax.swing.JLabel();
 		lblCopyright = new javax.swing.JLabel();
@@ -111,9 +112,7 @@ public class AboutPanel extends javax.swing.JPanel
 	{
 		lblCopyright.setText(cRightString);
 	}
-
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JPanel jPanel1;
+	
 	private javax.swing.JLabel lblCopyright;
 	private javax.swing.JLabel lblImage;
 	private javax.swing.JLabel lblName;

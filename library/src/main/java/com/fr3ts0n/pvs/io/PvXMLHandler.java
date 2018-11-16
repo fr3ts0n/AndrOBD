@@ -24,7 +24,6 @@ import com.fr3ts0n.pvs.PvChangeListener;
 import com.fr3ts0n.pvs.PvList;
 
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.FileInputStream;
@@ -49,7 +48,7 @@ public class PvXMLHandler
 {
 
 	/** List of XML-Tags handled by this Handler */
-	static final String[] XML_TAGS =
+	private static final String[] XML_TAGS =
 		{
 			PvXMLWriter.TAG_PVLIST,
 			PvXMLWriter.TAG_PROCESSVAR,
@@ -59,11 +58,11 @@ public class PvXMLHandler
 	/** ID of TAG for PV-List */
 	static final int TAG_ID_PVLIST = 0;
 	/** ID for Tag Processvar */
-	static final int TAG_ID_PROCESSVAR = 1;
+	private static final int TAG_ID_PROCESSVAR = 1;
 	/** ID for tag Attribute */
-	static final int TAG_ID_PVATTRIBUTE = 2;
+	private static final int TAG_ID_PVATTRIBUTE = 2;
 	/** Stack of recursive process variables */
-	Stack<Object[]> pvStack = new Stack<Object[]>();
+	private final Stack<Object[]> pvStack = new Stack<Object[]>();
 	/** The root Process variable to be parsed on */
 	private com.fr3ts0n.pvs.PvList rootPv = new PvList();
 	/** currently parsed process variable */
@@ -73,17 +72,16 @@ public class PvXMLHandler
 	/** currently parsed value for attribute */
 	private Object currValue;
 	/** list of process var change listeners */
-	private HashMap<PvChangeListener, Integer> PvChangeListeners = new HashMap<PvChangeListener, Integer>();
+	private final HashMap<PvChangeListener, Integer> PvChangeListeners = new HashMap<PvChangeListener, Integer>();
 	/** the logger object */
-	static Logger log = Logger.getLogger(PvXMLHandler.class.getPackage().getName());
+	private static final Logger log = Logger.getLogger(PvXMLHandler.class.getPackage().getName());
 
 	/**
 	 * Creates a new instance of PvXMLContentHandler
 	 *
 	 * @throws org.xml.sax.SAXException Exception thrown at Instantiation of SAX-parser
 	 */
-	public PvXMLHandler()
-		throws SAXException
+	private PvXMLHandler()
 	{
 		rootPv.setKeyValue("root");
 	}
@@ -93,8 +91,7 @@ public class PvXMLHandler
 	 *
 	 * @throws org.xml.sax.SAXException Exception thrown at Instantiation of SAX-parser
 	 */
-	public PvXMLHandler(PvList rootPv)
-		throws SAXException
+	private PvXMLHandler(PvList rootPv)
 	{
 		setRootPv(rootPv);
 	}
@@ -105,7 +102,7 @@ public class PvXMLHandler
 	 * @param tagName Name of XML-Tag
 	 * @return numeric ID for XML-Tag or -1 if nott found
 	 */
-	public int getTagID(String tagName)
+	private int getTagID(String tagName)
 	{
 		int result = -1;
 		for (int i = 0; i < XML_TAGS.length; i++)
@@ -153,7 +150,7 @@ public class PvXMLHandler
 			StringBuffer sb = new StringBuffer("StartElement:" + qName + ":");
 			for (int i = 0; i < atts.getLength(); i++)
 			{
-				sb.append(atts.getQName(i) + "=" + atts.getValue(i) + ",");
+				sb.append(atts.getQName(i)).append("=").append(atts.getValue(i)).append(",");
 			}
 			log.fine(sb.toString());
 		}
@@ -202,9 +199,9 @@ public class PvXMLHandler
 				// If we have PV's on stack, the new PV is a recursive attribute
 				if (!pvStack.empty())
 				{
-					Object[] stackElems = (Object[]) pvStack.pop();
+					Object[] stackElems = pvStack.pop();
 					currPv = (ProcessVar) stackElems[0];
-					currAttrib = (String) stackElems[1];
+					currAttrib = stackElems[1];
 				} else
 				{
 					log.severe("NO more PV's on Stack");
@@ -250,10 +247,10 @@ public class PvXMLHandler
 	 * @param l         Listener to be added
 	 * @param eventMask events (Bitmask) which this listener wants to listen on
 	 */
-	public synchronized void addPvChangeListener(PvChangeListener l, int eventMask)
+	private synchronized void addPvChangeListener(PvChangeListener l, int eventMask)
 	{
 		Object oldListener = PvChangeListeners.get(l);
-		PvChangeListeners.put(l, new Integer(eventMask));
+		PvChangeListeners.put(l, Integer.valueOf(eventMask));
 
 		if (oldListener == null)
 		{
@@ -277,7 +274,7 @@ public class PvXMLHandler
 	 * @param e Event for Process variable change
 	 */
 	@SuppressWarnings("rawtypes")
-	protected void firePvChanged(PvChangeEvent e)
+	private void firePvChanged(PvChangeEvent e)
 	{
 		log.fine("PvChange:" + e.toString());
 
@@ -310,7 +307,7 @@ public class PvXMLHandler
 		return rootPv;
 	}
 
-	public void setRootPv(PvList mainPV)
+	private void setRootPv(PvList mainPV)
 	{
 		this.rootPv = mainPV;
 		this.currPv = mainPV;

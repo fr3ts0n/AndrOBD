@@ -59,31 +59,31 @@ public class Kw1281Prot extends ProtoHeader
 {
 	// command for clearing fault codes
 
-	static final char CMD_CLEAR_DFCs = 0x05;
+	private static final char CMD_CLEAR_DFCs = 0x05;
 	// command for END communication
-	static final char CMD_END_COMM = 0x06;
+	private static final char CMD_END_COMM = 0x06;
 	// command for reading fault codes
-	static final char CMD_READ_DFCs = 0x07;
+	private static final char CMD_READ_DFCs = 0x07;
 	// command for reading single data
 	static final char CMD_READ_SINGLE = 0x08;
 	// Acknowledge command
-	static final char CMD_ACK = 0x09;
+	private static final char CMD_ACK = 0x09;
 	// ID for responded NO DATA available
-	static final char ID_NODATA = 0x0A;
+	private static final char ID_NODATA = 0x0A;
 	// command for group reading of data items
-	static final char CMD_GROUP_READ = 0x29;
+	private static final char CMD_GROUP_READ = 0x29;
 	// ID for responded ASCII data
-	static final char ID_ASCII_DATA = 0xF6;
+	private static final char ID_ASCII_DATA = 0xF6;
 	// ID for responded ASCII data
-	static final char ID_DFC_DATA = 0xFC;
+	private static final char ID_DFC_DATA = 0xFC;
 	// ID for responded GROUP READING data
-	static final char ID_GRPREAD_DATA = 0xE7;
+	private static final char ID_GRPREAD_DATA = 0xE7;
 	// ID for responded header for GROUP READING DATA
-	static final char ID_GRPINFO_HEAD = 0x02;
+	private static final char ID_GRPINFO_HEAD = 0x02;
 	// ID for responded GROUP READING DATA
-	static final char ID_GRPINFO_DATA = 0xF4;
+	private static final char ID_GRPINFO_DATA = 0xF4;
 	// block end marker
-	static final char BLOCK_END = 0x03;
+	private static final char BLOCK_END = 0x03;
 
 	/** service ID for idle opeation */
 	public static final int SVC_NONE = 0;
@@ -105,24 +105,24 @@ public class Kw1281Prot extends ProtoHeader
 	/** Number of codes set */
 	private int numCodes = 0;
 	// static telegram footer definition
-	static final char[] tgmFooter =
+	private static final char[] tgmFooter =
 		{
 			BLOCK_END
 		};
 	// static telegram empty payload
-	static final char[] tgmEmpty =
+	private static final char[] tgmEmpty =
 		{
 		};
 	// Telegram field id's
-	static final int FLD_ID_LEN = 0;
-	static final int FLD_ID_BLKCNT = 1;
-	static final int FLD_ID_CMD = 2;
+	private static final int FLD_ID_LEN = 0;
+	private static final int FLD_ID_BLKCNT = 1;
+	private static final int FLD_ID_CMD = 2;
 	// number of data items in BLKREAD data block
-	static final int BLK_NUM_ITEMS = 4;
+	private static final int BLK_NUM_ITEMS = 4;
 	/**
 	 * List of telegram parameters in order of appearance
 	 */
-	static final int TGM_PARAMETERS[][] =
+	private static final int[][] TGM_PARAMETERS =
   /*  START,  LEN,     PARAM-TYPE     // REMARKS */
   /* ------------------------------------------- */
 		{
@@ -141,14 +141,14 @@ public class Kw1281Prot extends ProtoHeader
 	/**
 	 * Descriptors of telegram parameters
 	 */
-	static final String FLD_DESCRIPTORS[] =
+	private static final String[] FLD_DESCRIPTORS =
 		{
 			"Length  ",
 			"BlockCnt",
 			"Command ",
 		};
 	// data items to be used for data display
-	EcuDataItems itms = new EcuDataItems( "prot/vag/res/vag_pids.csv",
+	private final EcuDataItems itms = new EcuDataItems( "prot/vag/res/vag_pids.csv",
 			                              "prot/vag/res/vag_conversions.csv",
                                           "com.fr3ts0n.ecu.prot.vag.res.messages");
 	/** List of ECU data items */
@@ -158,9 +158,9 @@ public class Kw1281Prot extends ProtoHeader
 	/** current fault codes */
 	public static PvList tCodes = new PvList();
 	/** list of known fault codes */
-	public static EcuCodeList knownCodes = new EcuCodeList("com.fr3ts0n.ecu.prot.vag.res.codes");
+	private static final EcuCodeList knownCodes = new EcuCodeList("com.fr3ts0n.ecu.prot.vag.res.codes");
 	/** running telegram block counter */
-	char blockCounter = 0;
+	private char blockCounter = 0;
 	/** current data group which was requested */
 	private char currDataGroup = 0;
 	/** selected data group to be requested next time */
@@ -168,11 +168,11 @@ public class Kw1281Prot extends ProtoHeader
 	/** Vector of all Items within current group data frame */
 	private Vector<EcuDataItem> currGrpItems;
 	/** Map of all known Group data items */
-	public HashMap<Integer, Vector<EcuDataItem>> knownGrpItems =
+	public final HashMap<Integer, Vector<EcuDataItem>> knownGrpItems =
 		new HashMap<Integer, Vector<EcuDataItem>>();
 
 	/** name of last preset saved/loaded */
-	protected String lastPresetName = null;
+	private String lastPresetName = null;
 
 	/**
 	 * Default constructor
@@ -212,7 +212,7 @@ public class Kw1281Prot extends ProtoHeader
 	/**
 	 * load preset data
 	 */
-	protected void loadPreset()
+	private void loadPreset()
 	{
 		Thread loadThd = new Thread()
 		{
@@ -288,7 +288,7 @@ public class Kw1281Prot extends ProtoHeader
 	/**
 	 * save current preset data
 	 */
-	protected void savePreset()
+	private void savePreset()
 	{
 		Thread saveThd = new Thread()
 		{
@@ -363,7 +363,7 @@ public class Kw1281Prot extends ProtoHeader
 	   * @see com.fr3ts0n.prot.ProtoHeader#getFooter(char[])
 	   */
 	@Override
-	public char[] getFooter(char[] buffer)
+	public char[] getFooter()
 	{
 		return tgmFooter;
 	}
@@ -429,7 +429,7 @@ public class Kw1281Prot extends ProtoHeader
 	 *
 	 * @return next supported data group
 	 */
-	char getNextDataGroup()
+	private char getNextDataGroup()
 	{
 		char grp = getCurrDataGroup();
 		// search next item only makes sense if there is at least one more ...
@@ -450,7 +450,7 @@ public class Kw1281Prot extends ProtoHeader
 	 * @param groupNum data group to be read
 	 * @return result of writeTelegram @see writeTelegram
 	 */
-	int requestGroupData(char groupNum)
+	private void requestGroupData(char groupNum)
 	{
 		setCurrDataGroup(groupNum);
 		// set list of group data items
@@ -459,7 +459,7 @@ public class Kw1281Prot extends ProtoHeader
 			{
 				groupNum
 			};
-		return (writeTelegram(payLoad, CMD_GROUP_READ, null));
+		writeTelegram(payLoad, CMD_GROUP_READ, null);
 	}
 
 	/**
@@ -467,9 +467,9 @@ public class Kw1281Prot extends ProtoHeader
 	 *
 	 * @return result of writeTelegram @see writeTelegram
 	 */
-	int requestDFCs()
+	private void requestDFCs()
 	{
-		return (writeTelegram(tgmEmpty, CMD_READ_DFCs, null));
+		writeTelegram(tgmEmpty, CMD_READ_DFCs, null);
 	}
 
 	/**
@@ -477,9 +477,9 @@ public class Kw1281Prot extends ProtoHeader
 	 *
 	 * @return result of writeTelegram @see writeTelegram
 	 */
-	int requestClearDFCs()
+	private void requestClearDFCs()
 	{
-		return (writeTelegram(tgmEmpty, CMD_CLEAR_DFCs, null));
+		writeTelegram(tgmEmpty, CMD_CLEAR_DFCs, null);
 	}
 
 	/**
@@ -487,9 +487,9 @@ public class Kw1281Prot extends ProtoHeader
 	 *
 	 * @return result of writeTelegram @see writeTelegram
 	 */
-	int requestACK()
+	private void requestACK()
 	{
-		return (writeTelegram(tgmEmpty, CMD_ACK, null));
+		writeTelegram(tgmEmpty, CMD_ACK, null);
 	}
 
 	/**
@@ -497,9 +497,9 @@ public class Kw1281Prot extends ProtoHeader
 	 *
 	 * @return result of writeTelegram @see writeTelegram
 	 */
-	int requestEndComm()
+	private void requestEndComm()
 	{
-		return (writeTelegram(tgmEmpty, CMD_END_COMM, null));
+		writeTelegram(tgmEmpty, CMD_END_COMM, null);
 	}
 
 	/**
@@ -553,7 +553,7 @@ public class Kw1281Prot extends ProtoHeader
 	 *
 	 * @param numCodes New value of property numCodes.
 	 */
-	public void setNumCodes(int numCodes)
+	private void setNumCodes(int numCodes)
 	{
 		firePropertyChange(new PropertyChangeEvent(this, "numCodes", this.numCodes, numCodes));
 		this.numCodes = numCodes;
@@ -562,7 +562,7 @@ public class Kw1281Prot extends ProtoHeader
 	/**
 	 * @return the selectedDataGroup
 	 */
-	public /** selected data group to be requested next time */
+	private /** selected data group to be requested next time */
 	char getSelectedDataGroup()
 	{
 		return selectedDataGroup;
@@ -579,7 +579,7 @@ public class Kw1281Prot extends ProtoHeader
 	/**
 	 * @return the currDataGroup
 	 */
-	public /** current data group which was requested */
+	private /** current data group which was requested */
 	char getCurrDataGroup()
 	{
 		return currDataGroup;
@@ -588,7 +588,7 @@ public class Kw1281Prot extends ProtoHeader
 	/**
 	 * Show all known group items
 	 */
-	void showAllGroupItems()
+	private void showAllGroupItems()
 	{
 		Iterator<Integer> itKeys = knownGrpItems.keySet().iterator();
 		while (itKeys.hasNext())
@@ -603,7 +603,7 @@ public class Kw1281Prot extends ProtoHeader
 	 *
 	 * @param groupNum
 	 */
-	void showGroupItems(int groupNum)
+	private void showGroupItems(int groupNum)
 	{
 		// get items of goup
 		Vector<EcuDataItem> grpItms = knownGrpItems.get(groupNum);
@@ -919,7 +919,7 @@ public class Kw1281Prot extends ProtoHeader
 	 * This may be started to use the program in demonstration mode w/o any
 	 * adaptor/vehicle connected
 	 */
-	public Thread simulation = new Thread()
+	public final Thread simulation = new Thread()
 	{
 		@Override
 		@SuppressWarnings("fallthrough")

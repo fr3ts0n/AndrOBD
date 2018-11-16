@@ -18,9 +18,9 @@
 
 package com.fr3ts0n.pvs.gui;
 
-import javax.swing.JTable;
-
 import com.fr3ts0n.pvs.ProcessVar;
+
+import javax.swing.JTable;
 
 /**
  * Table GUI object for process variables
@@ -34,9 +34,9 @@ public class PvTable extends JTable
 	 *
 	 */
 	private static final long serialVersionUID = 6339359674123198139L;
-	ProcessVar pv;
+	private ProcessVar pv;
 	private PvTableModel pvModel = new PvTableModel();
-	PvTableCellRenderer renderer = new PvTableCellRenderer();
+	private final PvTableCellRenderer renderer = new PvTableCellRenderer();
 
 	/** Creates a new instance of PvTable */
 	public PvTable()

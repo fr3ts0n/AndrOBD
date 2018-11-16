@@ -18,6 +18,8 @@
 
 package com.fr3ts0n.pvs.gui;
 
+import com.fr3ts0n.pvs.ProcessVar;
+
 import java.beans.BeanDescriptor;
 import java.beans.BeanInfo;
 import java.beans.EventSetDescriptor;
@@ -27,23 +29,20 @@ import java.beans.MethodDescriptor;
 import java.beans.PropertyDescriptor;
 import java.beans.SimpleBeanInfo;
 
-import com.fr3ts0n.pvs.ProcessVar;
-
 /**
  * @author esh
  */
-public class ProcessVarBeanInfo extends SimpleBeanInfo
+class ProcessVarBeanInfo extends SimpleBeanInfo
 {
 
 	// Bean descriptor//GEN-FIRST:BeanDescriptor
 	/*lazy BeanDescriptor*/
 	private static BeanDescriptor getBdescriptor()
 	{
-		BeanDescriptor beanDescriptor = new BeanDescriptor(ProcessVar.class, PvDetailPanel.class);//GEN-HEADEREND:BeanDescriptor
-
+		
 		// Here you can add code for customizing the BeanDescriptor.
 
-		return beanDescriptor;
+		return new BeanDescriptor(ProcessVar.class, PvDetailPanel.class);
 	}//GEN-LAST:BeanDescriptor
 
 	// Property identifiers//GEN-FIRST:Properties
@@ -65,7 +64,7 @@ public class ProcessVarBeanInfo extends SimpleBeanInfo
 			properties[PROPERTY_keyValue] = new PropertyDescriptor("keyValue", ProcessVar.class, "getKeyValue", "setKeyValue");
 			properties[PROPERTY_valueMap] = new PropertyDescriptor("valueMap", ProcessVar.class, "getValueMap", "setValueMap");
 			properties[PROPERTY_valueMap].setPropertyEditorClass(PvDetailPanel.class);
-		} catch (IntrospectionException e)
+		} catch (IntrospectionException ignored)
 		{
 		}//GEN-HEADEREND:Properties
 
@@ -86,7 +85,7 @@ public class ProcessVarBeanInfo extends SimpleBeanInfo
 		try
 		{
 			eventSets[EVENT_pvChangeListener] = new EventSetDescriptor(com.fr3ts0n.pvs.ProcessVar.class, "pvChangeListener", com.fr3ts0n.pvs.PvChangeListener.class, new String[]{"pvChanged"}, "addPvChangeListener", "removePvChangeListener");
-		} catch (IntrospectionException e)
+		} catch (IntrospectionException ignored)
 		{
 		}//GEN-HEADEREND:Events
 
@@ -122,41 +121,50 @@ public class ProcessVarBeanInfo extends SimpleBeanInfo
 
 		try
 		{
-			methods[METHOD_addPvChangeListener0] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("addPvChangeListener", new Class[]{com.fr3ts0n.pvs.PvChangeListener.class, Integer.TYPE}));
+			methods[METHOD_addPvChangeListener0] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("addPvChangeListener",
+				com.fr3ts0n.pvs.PvChangeListener.class, Integer.TYPE));
 			methods[METHOD_addPvChangeListener0].setDisplayName("");
-			methods[METHOD_clear1] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("clear", new Class[]{}));
+			methods[METHOD_clear1] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("clear"));
 			methods[METHOD_clear1].setDisplayName("");
-			methods[METHOD_clone2] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("clone", new Class[]{}));
+			methods[METHOD_clone2] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("clone"));
 			methods[METHOD_clone2].setDisplayName("");
-			methods[METHOD_containsKey3] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("containsKey", new Class[]{java.lang.Object.class}));
+			methods[METHOD_containsKey3] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("containsKey",
+				Object.class));
 			methods[METHOD_containsKey3].setDisplayName("");
-			methods[METHOD_containsValue4] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("containsValue", new Class[]{java.lang.Object.class}));
+			methods[METHOD_containsValue4] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("containsValue",
+				Object.class));
 			methods[METHOD_containsValue4].setDisplayName("");
-			methods[METHOD_entrySet5] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("entrySet", new Class[]{}));
+			methods[METHOD_entrySet5] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("entrySet"));
 			methods[METHOD_entrySet5].setDisplayName("");
-			methods[METHOD_equals6] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("equals", new Class[]{java.lang.Object.class}));
+			methods[METHOD_equals6] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("equals",
+				Object.class));
 			methods[METHOD_equals6].setDisplayName("");
-			methods[METHOD_get7] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("get", new Class[]{java.lang.Object.class}));
+			methods[METHOD_get7] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("get",
+				Object.class));
 			methods[METHOD_get7].setDisplayName("");
-			methods[METHOD_hashCode8] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("hashCode", new Class[]{}));
+			methods[METHOD_hashCode8] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("hashCode"));
 			methods[METHOD_hashCode8].setDisplayName("");
-			methods[METHOD_keySet9] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("keySet", new Class[]{}));
+			methods[METHOD_keySet9] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("keySet"));
 			methods[METHOD_keySet9].setDisplayName("");
-			methods[METHOD_put10] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("put", new Class[]{java.lang.Object.class, java.lang.Object.class, Integer.TYPE}));
+			methods[METHOD_put10] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("put",
+				Object.class, Object.class, Integer.TYPE));
 			methods[METHOD_put10].setDisplayName("");
-			methods[METHOD_putAll11] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("putAll", new Class[]{java.util.Map.class, Integer.TYPE, Boolean.TYPE}));
+			methods[METHOD_putAll11] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("putAll",
+				java.util.Map.class, Integer.TYPE, Boolean.TYPE));
 			methods[METHOD_putAll11].setDisplayName("");
-			methods[METHOD_pvChanged12] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("pvChanged", new Class[]{com.fr3ts0n.pvs.PvChangeEvent.class}));
+			methods[METHOD_pvChanged12] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("pvChanged",
+				com.fr3ts0n.pvs.PvChangeEvent.class));
 			methods[METHOD_pvChanged12].setDisplayName("");
-			methods[METHOD_remove13] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("remove", new Class[]{java.lang.Object.class}));
+			methods[METHOD_remove13] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("remove",
+				Object.class));
 			methods[METHOD_remove13].setDisplayName("");
-			methods[METHOD_size14] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("size", new Class[]{}));
+			methods[METHOD_size14] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("size"));
 			methods[METHOD_size14].setDisplayName("");
-			methods[METHOD_toString15] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("toString", new Class[]{}));
+			methods[METHOD_toString15] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("toString"));
 			methods[METHOD_toString15].setDisplayName("");
-			methods[METHOD_values16] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("values", new Class[]{}));
+			methods[METHOD_values16] = new MethodDescriptor(com.fr3ts0n.pvs.ProcessVar.class.getMethod("values"));
 			methods[METHOD_values16].setDisplayName("");
-		} catch (Exception e)
+		} catch (Exception ignored)
 		{
 		}//GEN-HEADEREND:Methods
 
@@ -179,7 +187,7 @@ public class ProcessVarBeanInfo extends SimpleBeanInfo
 
 			// Here you can add code for customizing the Superclass BeanInfo.
 
-		} catch (IntrospectionException ex)
+		} catch (IntrospectionException ignored)
 		{
 		}
 		return new BeanInfo[]{sbi};

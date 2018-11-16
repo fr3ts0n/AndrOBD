@@ -32,12 +32,12 @@ import java.text.DecimalFormat;
 public class Conversions
 {
 
-	public static final int SYSTEM_METRIC = 0;
+	private static final int SYSTEM_METRIC = 0;
 	public static final int SYSTEM_IMPERIAL = 1;
 	public static final int SYSTEM_TYPES = 2;
 
 	// current conversion system
-	public static int cnvSystem = SYSTEM_METRIC;
+	private static final int cnvSystem = SYSTEM_METRIC;
 	/**
 	 * ID's of Conversions
 	 * These ID's are used as index into table below
@@ -72,9 +72,9 @@ public class Conversions
 	public static final int CNV_ID_OBD_CODELIST = 26;
 	public static final int CNV_ID_MAX = 27;// This needs to be last entry
 
-	public static final ObdCodeList obdCodeList = new ObdCodeList();
+	private static final ObdCodeList obdCodeList = new ObdCodeList();
 
-	static final HashConversion cnvObdType = new HashConversion(new String[]{
+	private static final HashConversion cnvObdType = new HashConversion(new String[]{
 		"1=OBD II",
 		"2=OBD Federal EPA",
 		"3=OBD and OBD II",
@@ -91,9 +91,9 @@ public class Conversions
 	});
 
 	/** limits for RPM display */
-	public static PvLimits rpmLimits = new PvLimits(0.0f, 6000.0f);
+	private static final PvLimits rpmLimits = new PvLimits(0.0f, 6000.0f);
 
-	static final Conversion[][] cnvFactors =
+	private static final Conversion[][] cnvFactors =
 		{
 			//                     METRIC                            ,                      IMPERIAL
 			//                     FACT,  DIV, OFFS, PhOf,  UNIT     ,                      FACT,  DIV, OFFS, PhOf,  UNIT
@@ -160,14 +160,14 @@ public class Conversions
 	/**
 	 * convert measurement item from storage format to physical value
 	 */
-	public static String memToString(long value, int cnvID, int decimals)
+	private static String memToString(long value, int cnvID, int decimals)
 	{
 		return (cnvFactors[cnvID][cnvSystem].memToString(value, decimals));
 	}
 
 	/** object to be used for parsing and formatting decimal numbers */
-	protected static DecimalFormat decimalFormat;
-	public static final DecimalFormat formats[] =
+	private static DecimalFormat decimalFormat;
+	private static final DecimalFormat[] formats =
 		{
 			new DecimalFormat("0;-#"),
 			new DecimalFormat("0.0;-#"),
@@ -186,7 +186,7 @@ public class Conversions
 	 */
 	public static String physToPhysFmtString(Float physVal, int cnvId, int decimals)
 	{
-		String result = "";
+		String result;
 		if (decimals >= 0)
 		{
 			decimalFormat = formats[decimals];

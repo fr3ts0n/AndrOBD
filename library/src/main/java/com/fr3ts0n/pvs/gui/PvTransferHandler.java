@@ -79,7 +79,7 @@ public class PvTransferHandler extends TransferHandler
 		} else if (c instanceof PvTable)
 		{
 			PvTable tab = (PvTable) c;
-			ProcessVar pv = (ProcessVar) tab.getPvModel().getElementAt(tab.getSelectedRow());
+			ProcessVar pv = tab.getPvModel().getElementAt(tab.getSelectedRow());
 			return (Transferable) pv;
 		}
 		// anything else is handled by superclass

@@ -33,15 +33,15 @@ public class ObdCodeItem extends EcuCodeItem
 	private static final long serialVersionUID = -3976920283943009811L;
 
 	/** code types */
-	public static final String codeTypes = "PCBU";
+	private static final String codeTypes = "PCBU";
 
-	public static final int ID_CODE_TYPE = 0;
-	public static final int ID_CODE_VALUE = 1;
+	private static final int ID_CODE_TYPE = 0;
+	private static final int ID_CODE_VALUE = 1;
 
 	/**
 	 * List of telegram parameters in order of appearance
 	 */
-	static final int TC_PARAMETERS[][] =
+	private static final int[][] TC_PARAMETERS =
 	/*  START,  LEN,     PARAM-TYPE     // REMARKS */
     /* ------------------------------------------- */
 		{{0, 1, ProtoHeader.PT_ALPHA},   // ID_CODE_TYPE
@@ -102,13 +102,13 @@ public class ObdCodeItem extends EcuCodeItem
 	 * @param numericCode numeric code value for corresponding code
 	 * @return P/C/B/U-Code String
 	 */
-	protected static String getPCode(int numericCode)
+	static String getPCode(int numericCode)
 	{
 		char[] buffer = new char[5];
 		int codeType = numericCode >> 14;
 		int codeVal = numericCode & 0x3FFF;
 		ProtoHeader.setParamValue(ID_CODE_TYPE, TC_PARAMETERS, buffer, codeTypes.substring(codeType, codeType + 1));
-		ProtoHeader.setParamValue(ID_CODE_VALUE, TC_PARAMETERS, buffer, new Integer(codeVal));
+		ProtoHeader.setParamValue(ID_CODE_VALUE, TC_PARAMETERS, buffer, Integer.valueOf(codeVal));
 		return (new String(buffer));
 	}
 }

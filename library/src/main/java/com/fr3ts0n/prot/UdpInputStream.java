@@ -30,28 +30,28 @@ import java.util.logging.Logger;
  *
  * @author $Author: erwin $
  */
-public class UdpInputStream extends PipedInputStream
+class UdpInputStream extends PipedInputStream
 {
 
 	/** receive buffer */
-	protected char[] buffer = new char[16384];
+	private final char[] buffer = new char[16384];
 	/** receiving datagram packet */
-	protected DatagramPacket packet;
+	private DatagramPacket packet;
 	/** Datagram socket object to be listened to */
-	protected DatagramSocket socket = null;
+	private DatagramSocket socket = null;
 	/** the pipe which connects socket output to buffer input */
-	protected PipedOutputStream out = null;
+	private PipedOutputStream out = null;
 	/** the worker thread to read the socket */
-	protected Thread readerThread = null;
+	private Thread readerThread = null;
 	/** Logging Object */
-	protected static final Logger log = Logger.getLogger("STREAM");
-	protected long charsReceived = 0;
-	protected long startTime = 0;
+	private static final Logger log = Logger.getLogger("STREAM");
+	private long charsReceived = 0;
+	private long startTime = 0;
 
 	/**
 	 * default constructor
 	 */
-	public UdpInputStream()
+	private UdpInputStream()
 	{
 		super();
 	}
@@ -73,7 +73,7 @@ public class UdpInputStream extends PipedInputStream
 		return (socket);
 	}
 
-	protected void closeItAll()
+	private void closeItAll()
 		throws IOException
 	{
 		// terminate and destroy current reader thread (if available)
@@ -115,7 +115,7 @@ public class UdpInputStream extends PipedInputStream
 	/**
 	 * set datagram socket for data reading
 	 */
-	public void setSocket(DatagramSocket newSocket)
+	private void setSocket(DatagramSocket newSocket)
 	{
 		// only do something if the socket really changes
 		if (newSocket != socket)

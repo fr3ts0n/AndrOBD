@@ -18,6 +18,10 @@
 
 package com.fr3ts0n.ecu.gui.application;
 
+import com.fr3ts0n.ecu.Conversion;
+import com.fr3ts0n.ecu.EcuDataItem;
+import com.fr3ts0n.ecu.EcuDataPv;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -26,10 +30,6 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.TableCellRenderer;
-
-import com.fr3ts0n.ecu.Conversion;
-import com.fr3ts0n.ecu.EcuDataItem;
-import com.fr3ts0n.ecu.EcuDataPv;
 
 /**
  * Renderer for EcuDataPv Elements
@@ -42,11 +42,11 @@ public class ObdItemTableRenderer
 {
 
 	private static final long serialVersionUID = -1067775643797324582L;
-	static EmptyBorder brdr = new EmptyBorder(0, 5, 0, 5);
-	Font parentFont = null;
-	Color bgColor = null;
-	Color selColor = null;
-	JTable parentTable = null;
+	private static final EmptyBorder brdr = new EmptyBorder(0, 5, 0, 5);
+	private Font parentFont = null;
+	private Color bgColor = null;
+	private Color selColor = null;
+	private JTable parentTable = null;
 
 	/** Creates a new instance of ObdItemTableRenderer */
 	public ObdItemTableRenderer()
@@ -116,9 +116,8 @@ public class ObdItemTableRenderer
 						case EcuDataPv.FID_UNITS:
 							EcuDataPv currPv = (EcuDataPv) value;
 							Object cnvObj = currPv.get(EcuDataPv.FID_CNVID);
-							if (cnvObj != null
-									&& cnvObj instanceof Conversion[]
-									&& ((Conversion[]) cnvObj)[EcuDataItem.cnvSystem] != null)
+							if (cnvObj instanceof Conversion[]
+							    && ((Conversion[]) cnvObj)[EcuDataItem.cnvSystem] != null)
 							{
 								Conversion cnv;
 								cnv = ((Conversion[]) cnvObj)[EcuDataItem.cnvSystem];

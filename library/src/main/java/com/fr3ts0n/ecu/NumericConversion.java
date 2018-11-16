@@ -30,7 +30,7 @@ public abstract class NumericConversion implements Conversion
 	/** fixed serial version id  */
 	private static final long serialVersionUID = 5506104864792893549L;
 	/** Logger object */
-	public static final Logger log = Logger.getLogger("data.ecu");
+	static final Logger log = Logger.getLogger("data.ecu");
 
 	/** physical units of data item */
 	String units = "";
@@ -41,7 +41,7 @@ public abstract class NumericConversion implements Conversion
 		return String.format(format, physVal);
 	}
 
-	public NumericConversion()
+	NumericConversion()
 	{
 	}
 

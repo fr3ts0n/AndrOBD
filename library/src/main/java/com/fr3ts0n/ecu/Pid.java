@@ -27,10 +27,10 @@ public class Pid
 {
 	public int pid;        // PID
 	public int bytes;        // number of data bytes expected from vehicle
-	public int ofs;        // Offset within message
+	private int ofs;        // Offset within message
 	public int cnv;        // type of conversion
-	public int decimals;    // number of decimal digits
-	public String label;        // text label
+	private int decimals;    // number of decimal digits
+	private String label;        // text label
 
 	/**
 	 * Creates a new instance of Pid

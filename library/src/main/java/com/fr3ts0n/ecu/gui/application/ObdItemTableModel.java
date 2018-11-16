@@ -31,7 +31,7 @@ public class ObdItemTableModel
 {
 
 	/** used for caching current row */
-	int currRowIndex = -1;
+	private int currRowIndex = -1;
 	/**
 	 *
 	 */
@@ -71,9 +71,8 @@ public class ObdItemTableModel
 	/**
 	 * fire update events for specified column on all rows
 	 *
-	 * @param columnId colum to update
 	 */
-	public synchronized void updateAllRows(int columnId)
+	public synchronized void updateAllRows()
 	{
 		fireTableRowsUpdated(0, getRowCount());
 	}

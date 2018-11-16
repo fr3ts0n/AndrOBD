@@ -53,7 +53,7 @@ public class PvList extends ProcessVar
 	 * @return previous value of corresponding data item
 	 */
 	@SuppressWarnings("rawtypes")
-	public synchronized Object handleData(Map data, int action, boolean allowChildEvents)
+	private synchronized Object handleData(Map data, int action, boolean allowChildEvents)
 	{
 		Object result = null;
 
@@ -86,7 +86,7 @@ public class PvList extends ProcessVar
 	 * @return previous value of corresponding data item
 	 */
 	@SuppressWarnings("rawtypes")
-	public synchronized Object handleData(Map data, int action)
+	private synchronized Object handleData(Map data, int action)
 	{
 		return (handleData(data, action, false));
 	}

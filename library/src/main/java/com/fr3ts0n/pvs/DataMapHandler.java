@@ -25,7 +25,7 @@ import java.util.Map;
  *
  * @author $Author: erwin $
  */
-public interface DataMapHandler
+interface DataMapHandler
 {
 	/**
 	 * handle a set/map of data attributes
@@ -34,5 +34,5 @@ public interface DataMapHandler
 	 * @return previous value of corresponding data item
 	 */
 	@SuppressWarnings("rawtypes")
-	public Object handleData(Map data);
+	Object handleData(Map data);
 }

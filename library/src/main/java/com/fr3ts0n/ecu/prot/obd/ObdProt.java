@@ -54,18 +54,18 @@ public class ObdProt extends ProtoHeader
     public static final int OBD_SVC_FREEZEFRAME = 0x02;
     public static final int OBD_SVC_READ_CODES = 0x03;
     public static final int OBD_SVC_CLEAR_CODES = 0x04;
-    public static final int OBD_SVC_O2_RESULT = 0x05;
-    public static final int OBD_SVC_MON_RESULT = 0x06;
+    private static final int OBD_SVC_O2_RESULT = 0x05;
+    private static final int OBD_SVC_MON_RESULT = 0x06;
     public static final int OBD_SVC_PENDINGCODES = 0x07;
-    public static final int OBD_SVC_CTRL_MODE = 0x08;
+    private static final int OBD_SVC_CTRL_MODE = 0x08;
     public static final int OBD_SVC_VEH_INFO = 0x09;
     public static final int OBD_SVC_PERMACODES = 0x0A;
 
     /** negative response ID */
-    public static final int OBD_ID_NRC = 0x7F;
+    private static final int OBD_ID_NRC = 0x7F;
 
     /** perform immediate reset on NRC reception? */
-    public boolean isResetOnNrc()
+    private boolean isResetOnNrc()
     {
         return resetOnNrc;
     }
@@ -105,8 +105,8 @@ public class ObdProt extends ProtoHeader
         SFNSIAS(0x7E, "Sub-Function not supported in active session (SVC:0x%02X)"),
         SNSIAS(0x7F, "Service 0x%02X not supported in active session");
 
-        public int code;
-        public String description;
+        final int code;
+        final String description;
 
         NRC(int _code, String _description)
         {
@@ -119,7 +119,7 @@ public class ObdProt extends ProtoHeader
          * @param id ID (NRC-code) to search
          * @return specified NRC, or null if not found
          */
-        public static NRC get(int id)
+        static NRC get(int id)
         {
             NRC result = null;
             for (NRC nrc : values())
@@ -134,7 +134,7 @@ public class ObdProt extends ProtoHeader
         }
 
         /** return String representative */
-        public String toString(int service)
+        String toString(int service)
         {
             return String.format("(NRC:0x%02X) %s", code, String.format(description, service));
         }
@@ -145,36 +145,36 @@ public class ObdProt extends ProtoHeader
     public static final String PROP_NRC = "NRC";
 
     // current supported PID
-    static int currSupportedPid = 0;
+    private static int currSupportedPid = 0;
     static boolean pidsWrapped = false;
 
     /** content of last sent message */
-    protected static String lastTxMsg = "";
+    static String lastTxMsg = "";
     /** content of last received message */
-    protected static String lastRxMsg = "";
+    static String lastRxMsg = "";
     /** Holds value of property service. */
-    protected int service = OBD_SVC_NONE;
+    int service = OBD_SVC_NONE;
     /** service of last incoming message */
-    protected int msgService = OBD_SVC_NONE;
+    private int msgService = OBD_SVC_NONE;
 
     /** List of PIDs supported by the vehicle */
-    static Vector<Integer> pidSupported = new Vector<Integer>();
+    private static final Vector<Integer> pidSupported = new Vector<Integer>();
 
     /** positive response fields */
-    public static final int ID_OBD_SVC = 0;
-    public static final int ID_OBD_PID = 1;
-    public static final int ID_OBD_FRAMEID = 2;
+    private static final int ID_OBD_SVC = 0;
+    private static final int ID_OBD_PID = 1;
+    private static final int ID_OBD_FRAMEID = 2;
 
     /** negative response fields */
     public static final int ID_NR_ID = 0;
-    public static final int ID_NR_SVC = 1;
-    public static final int ID_NR_CODE = 2;
+    private static final int ID_NR_SVC = 1;
+    private static final int ID_NR_CODE = 2;
 
     /**
      * Negative response parameters
      * List of telegram parameters in order of appearance
      */
-    static final int NR_PARAMETERS[][] =
+    private static final int[][] NR_PARAMETERS =
     /*  START,  LEN,     PARAM-TYPE     // REMARKS */
     /* ------------------------------------------- */
             {{0, 2, PT_HEX},     // ID_NR_ID
@@ -185,7 +185,7 @@ public class ObdProt extends ProtoHeader
     /**
      * List of telegram parameters in order of appearance
      */
-    static final int SVC_PARAMETERS[][] =
+    private static final int[][] SVC_PARAMETERS =
     /*  START,  LEN,     PARAM-TYPE     // REMARKS */
     /* ------------------------------------------- */
             {{0, 2, PT_HEX},     // ID_OBD_SVC
@@ -194,7 +194,7 @@ public class ObdProt extends ProtoHeader
     /**
      * List of telegram parameters in order of appearance
      */
-    static final int OBD_PARAMETERS[][] =
+    private static final int[][] OBD_PARAMETERS =
     /*  START,  LEN,     PARAM-TYPE     // REMARKS */
     /* ------------------------------------------- */
             {{0, 2, PT_HEX},     // ID_OBD_SVC
@@ -204,7 +204,7 @@ public class ObdProt extends ProtoHeader
     /**
      * List of telegram parameters in order of appearance
      */
-    static final int FRZFRM_PARAMETERS[][] =
+    private static final int[][] FRZFRM_PARAMETERS =
     /*  START,  LEN,     PARAM-TYPE     // REMARKS */
     /* ------------------------------------------- */
             {{0, 2, PT_HEX},     // ID_OBD_SVC
@@ -212,19 +212,19 @@ public class ObdProt extends ProtoHeader
                     {2, 2, PT_HEX},     // ID_OBD_FRAMEID
             };
 
-    public static final int ID_NUM_CODES = 0;
+    private static final int ID_NUM_CODES = 0;
     public static final int ID_MSK_CODES = 1;
     /**
      * List of telegram parameters in order of appearance
      */
-    static final int NUMCODE_PARAMETERS[][] =
+    private static final int[][] NUMCODE_PARAMETERS =
     /*  START,  LEN,     PARAM-TYPE     // REMARKS */
     /* ------------------------------------------- */
             {{4, 2, PT_HEX},     // ID_NUM_CODES
                     {6, 6, PT_HEX},     // ID_MSK_CODES
             };
 
-    static final String[] OBD_DESCRIPTORS =
+    private static final String[] OBD_DESCRIPTORS =
             {
                     "OBD Service",
                     "OBD PID",
@@ -240,16 +240,16 @@ public class ObdProt extends ProtoHeader
     /** current fault codes */
     public static PvList tCodes = new PvList();
     /** list of known fault codes */
-    public static EcuCodeList knownCodes = EcuConversions.codeList;
+    private static final EcuCodeList knownCodes = EcuConversions.codeList;
     /** queue of ELM commands to be sent */
-    static Vector<String> cmdQueue = new Vector<String>();
+    static final Vector<String> cmdQueue = new Vector<String>();
     /** freeze frame ID to request */
     private int freezeFrame_Id = 0;
     /** perform reset on NRC reception */
     private boolean resetOnNrc = false;
 
     /** Creates a new instance of ObdProt */
-    public ObdProt()
+    ObdProt()
     {
         paddingChr = '0';
         // prepare PID PV list
@@ -283,7 +283,7 @@ public class ObdProt extends ProtoHeader
      * @param service Service which this header is requested for
      * @return complete set of protocol parameters
      */
-    public int[][] getTelegramParams(int service)
+    private int[][] getTelegramParams(int service)
     {
         int fldMap[][];
         switch (service)
@@ -313,10 +313,9 @@ public class ObdProt extends ProtoHeader
 
     /**
      * return message footer for protocol payload
-     * @param buffer buffer of payload data
      * @return buffer of message footer
      */
-    public char[] getFooter(char[] buffer)
+    public char[] getFooter()
     {
         return (emptyBuffer);
     }
@@ -380,7 +379,7 @@ public class ObdProt extends ProtoHeader
      * prepare process variables for each PID
      * @param pvList list of process vars
      */
-    public void preparePidPvs(int obdService, PvList pvList)
+    private void preparePidPvs(int obdService, PvList pvList)
     {
         // reset fixed PIDs
         resetFixedPid();
@@ -423,8 +422,8 @@ public class ObdProt extends ProtoHeader
      * @param start Start PID (multiple of 0x20) to process bitmask for
      * @param bitmask 32-Bit bitmask which indicates support for the next 32 PIDs
      */
-    synchronized protected void markSupportedPids(int obdService, int start, long bitmask,
-                                                  PvList pvList)
+    private synchronized void markSupportedPids(int obdService, int start, long bitmask,
+                                                PvList pvList)
     {
         currSupportedPid = 0;
 
@@ -451,7 +450,7 @@ public class ObdProt extends ProtoHeader
     private int numCodes;
 
     /** fixed PIDs to limit PID loop to single access */
-    private static Vector<Integer> fixedPids = new Vector<Integer>();
+    private static final Vector<Integer> fixedPids = new Vector<Integer>();
 
     /**
      * Set fixed PID for faster data update
@@ -480,7 +479,7 @@ public class ObdProt extends ProtoHeader
      * get the next available supported PID
      * @return next available supported PID
      */
-    protected synchronized Integer getNextSupportedPid()
+    synchronized Integer getNextSupportedPid()
     {
         Vector<Integer> pidsToCheck = (fixedPids.size() > 0) ? fixedPids : pidSupported;
         Integer result = 0;
@@ -522,7 +521,7 @@ public class ObdProt extends ProtoHeader
                     // get NRC object
                     NRC nrc = NRC.get(nrcCode);
                     // create NRC error message
-                    String error = String.format(nrc.toString(svc));
+                    String error = nrc.toString(svc);
                     // log error
                     log.severe(error);
                     if (isResetOnNrc())
@@ -633,7 +632,7 @@ public class ObdProt extends ProtoHeader
                             currCode = key.intValue();
                             if (currCode != 0)
                             {
-                                if ((code = (EcuCodeItem) knownCodes.get(key)) == null)
+                                if ((code = knownCodes.get(key)) == null)
                                 {
                                     code = new ObdCodeItem(key.intValue(),
                                                            Messages.getString(
@@ -661,7 +660,7 @@ public class ObdProt extends ProtoHeader
                 }
             } catch (Exception e)
             {
-                log.warning("'" + buffer.toString() + "':" + e.getMessage());
+                log.warning("'" + Arrays.toString(buffer) + "':" + e.getMessage());
             }
         }
         return (result);
@@ -692,7 +691,7 @@ public class ObdProt extends ProtoHeader
      * Setter for property numCodes.
      * @param numCodes New value of property numCodes.
      */
-    protected void setNumCodes(int numCodes)
+    private void setNumCodes(int numCodes)
     {
         int old = this.numCodes;
         this.numCodes = numCodes;
@@ -734,7 +733,7 @@ public class ObdProt extends ProtoHeader
      * clear data lists for selected service
      * @param obdService OBD service to clear lists for
      */
-    protected void clearDataLists(int obdService)
+    private void clearDataLists(int obdService)
     {
         // clean up data lists
         switch (obdService)

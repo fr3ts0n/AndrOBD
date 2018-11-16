@@ -18,6 +18,17 @@
 
 package com.fr3ts0n.ecu.gui.application;
 
+import com.fr3ts0n.common.UTF8Bundle;
+import com.fr3ts0n.common.UTF8Control;
+import com.fr3ts0n.ecu.EcuDataItem;
+import com.fr3ts0n.ecu.EcuDataPv;
+import com.fr3ts0n.ecu.prot.obd.ElmProt;
+import com.fr3ts0n.ecu.prot.obd.ObdProt;
+import com.fr3ts0n.prot.gui.SerialHandler;
+import com.fr3ts0n.pvs.PvChangeEvent;
+import com.fr3ts0n.pvs.PvChangeListener;
+import com.fr3ts0n.pvs.PvList;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -34,17 +45,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-import com.fr3ts0n.common.UTF8Control;
-import com.fr3ts0n.common.UTF8Bundle;
-import com.fr3ts0n.ecu.EcuDataItem;
-import com.fr3ts0n.ecu.EcuDataPv;
-import com.fr3ts0n.ecu.prot.obd.ElmProt;
-import com.fr3ts0n.ecu.prot.obd.ObdProt;
-import com.fr3ts0n.prot.gui.SerialHandler;
-import com.fr3ts0n.pvs.PvChangeEvent;
-import com.fr3ts0n.pvs.PvChangeListener;
-import com.fr3ts0n.pvs.PvList;
-
 
 /**
  * Main application frame for OBD com.fr3ts0n.test application
@@ -59,8 +59,8 @@ public class ObdTestFrame extends javax.swing.JFrame
 	 */
 	private static final long serialVersionUID = 3393967156524083209L;
 	/** Program version string */
-	static final String version = "Version 0.9.7";
-	static final String copyright = "Copyright (C) 2007-2009 Erwin Scheuch-Heilig";
+	private static final String version = "Version 0.9.7";
+	private static final String copyright = "Copyright (C) 2007-2009 Erwin Scheuch-Heilig";
 
     /** Initialize UTF8 resource bundle */
     static UTF8Bundle res = new UTF8Bundle(new UTF8Control());
@@ -69,9 +69,9 @@ public class ObdTestFrame extends javax.swing.JFrame
 	public ImageIcon icoCar = new javax.swing.ImageIcon(getClass().getResource("/com/fr3ts0n/ecu/gui/res/SUNFIRE.png"));
 
 	/** protocol handler */
-	static ElmProt prt = new ElmProt();
+	private static final ElmProt prt = new ElmProt();
 	/** Serial communication handler */
-	static SerialHandler ser = new SerialHandler();
+	private static final SerialHandler ser = new SerialHandler();
 
 	/** is this a simulation, or the real world? */
 	static boolean isSimulation = false;
@@ -79,7 +79,7 @@ public class ObdTestFrame extends javax.swing.JFrame
 	/**
 	 * Action listener to handle read/clear code actions
 	 */
-	ActionListener hdlrCodeButtons = new ActionListener()
+	private final ActionListener hdlrCodeButtons = new ActionListener()
 	{
 
 		public void actionPerformed(ActionEvent e)
@@ -104,7 +104,7 @@ public class ObdTestFrame extends javax.swing.JFrame
 	};
 
 	/** Creates new form ObdTestFrame */
-	public ObdTestFrame()
+	private ObdTestFrame()
 	{
 		ObdProt.VidPvs.addPvChangeListener(this);
 		// set up serial handler and protocol drivers
@@ -138,26 +138,26 @@ public class ObdTestFrame extends javax.swing.JFrame
 
 		fChoose = new javax.swing.JFileChooser();
 		tabMain = new javax.swing.JTabbedPane();
-		panStart = new javax.swing.JPanel();
-		lblTitle = new javax.swing.JLabel();
-		lblFooter = new javax.swing.JLabel();
-		jPanel1 = new javax.swing.JPanel();
+		javax.swing.JPanel panStart = new javax.swing.JPanel();
+		javax.swing.JLabel lblTitle = new javax.swing.JLabel();
+		javax.swing.JLabel lblFooter = new javax.swing.JLabel();
+		javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
 		TblVehIDs = new com.fr3ts0n.pvs.gui.PvTable(ObdProt.VidPvs);
-		jLabel1 = new javax.swing.JLabel();
+		javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
 		panObdDtc = new com.fr3ts0n.ecu.gui.application.ObdDtcPanel();
 		panObdFreezeFrame = new com.fr3ts0n.ecu.gui.application.ObdDataPanel();
 		panObdData = new com.fr3ts0n.ecu.gui.application.ObdDataPanel();
 		panCanData = new com.fr3ts0n.ecu.gui.application.ObdDataPanel();
-		panFooter = new javax.swing.JPanel();
+		javax.swing.JPanel panFooter = new javax.swing.JPanel();
 		lblStatus = new javax.swing.JLabel();
 		cbCnvSystem = new javax.swing.JComboBox();
 		cbProtocol = new javax.swing.JComboBox();
-		panHeader = new javax.swing.JPanel();
-		mbMain = new javax.swing.JMenuBar();
-		mnuFile = new javax.swing.JMenu();
+		javax.swing.JPanel panHeader = new javax.swing.JPanel();
+		javax.swing.JMenuBar mbMain = new javax.swing.JMenuBar();
+		javax.swing.JMenu mnuFile = new javax.swing.JMenu();
 		miLoad = new javax.swing.JMenuItem();
 		miSave = new javax.swing.JMenuItem();
-		mnuComm = new javax.swing.JMenu();
+		javax.swing.JMenu mnuComm = new javax.swing.JMenu();
 		miCommConfigure = new javax.swing.JMenuItem();
 		miCommInit = new javax.swing.JMenuItem();
 		miCommStart = new javax.swing.JMenuItem();
@@ -319,25 +319,25 @@ public class ObdTestFrame extends javax.swing.JFrame
 		{
 			if (evt.getSource() == cbProtocol)
 			{
-				ObdTestFrame.this.cbProtocolActionPerformed(evt);
+				ObdTestFrame.this.cbProtocolActionPerformed();
 			} else if (evt.getSource() == miLoad)
 			{
-				ObdTestFrame.this.miLoadActionPerformed(evt);
+				ObdTestFrame.this.miLoadActionPerformed();
 			} else if (evt.getSource() == miSave)
 			{
-				ObdTestFrame.this.miSaveActionPerformed(evt);
+				ObdTestFrame.this.miSaveActionPerformed();
 			} else if (evt.getSource() == miCommConfigure)
 			{
-				ObdTestFrame.this.miCommConfigureActionPerformed(evt);
+				ObdTestFrame.this.miCommConfigureActionPerformed();
 			} else if (evt.getSource() == miCommInit)
 			{
-				ObdTestFrame.this.miCommInitActionPerformed(evt);
+				ObdTestFrame.this.miCommInitActionPerformed();
 			} else if (evt.getSource() == miCommStart)
 			{
-				ObdTestFrame.this.miCommStartActionPerformed(evt);
+				ObdTestFrame.this.miCommStartActionPerformed();
 			} else if (evt.getSource() == miCommStop)
 			{
-				ObdTestFrame.this.miCommStopActionPerformed(evt);
+				ObdTestFrame.this.miCommStopActionPerformed();
 			}
 		}
 
@@ -345,7 +345,7 @@ public class ObdTestFrame extends javax.swing.JFrame
 		{
 			if (evt.getSource() == cbCnvSystem)
 			{
-				ObdTestFrame.this.cbCnvSystemItemStateChanged(evt);
+				ObdTestFrame.this.cbCnvSystemItemStateChanged();
 			}
 		}
 
@@ -353,34 +353,34 @@ public class ObdTestFrame extends javax.swing.JFrame
 		{
 			if (evt.getSource() == tabMain)
 			{
-				ObdTestFrame.this.tabMainStateChanged(evt);
+				ObdTestFrame.this.tabMainStateChanged();
 			}
 		}
 	}// </editor-fold>//GEN-END:initComponents
 
-	private void miCommConfigureActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miCommConfigureActionPerformed
+	private void miCommConfigureActionPerformed()//GEN-FIRST:event_miCommConfigureActionPerformed
 	{//GEN-HEADEREND:event_miCommConfigureActionPerformed
 		ser.configure();
 	}//GEN-LAST:event_miCommConfigureActionPerformed
 
-	private void miCommStopActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miCommStopActionPerformed
+	private void miCommStopActionPerformed()//GEN-FIRST:event_miCommStopActionPerformed
 	{//GEN-HEADEREND:event_miCommStopActionPerformed
 		// switch off PID's supported'
 		prt.setService(ElmProt.OBD_SVC_NONE);
 	}//GEN-LAST:event_miCommStopActionPerformed
 
-	private void miCommStartActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miCommStartActionPerformed
+	private void miCommStartActionPerformed()//GEN-FIRST:event_miCommStartActionPerformed
 	{//GEN-HEADEREND:event_miCommStartActionPerformed
 		// request OBD service for selected Tab
 		requestServiceForSelectedTab();
 	}//GEN-LAST:event_miCommStartActionPerformed
 
-	private void miCommInitActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miCommInitActionPerformed
+	private void miCommInitActionPerformed()//GEN-FIRST:event_miCommInitActionPerformed
 	{//GEN-HEADEREND:event_miCommInitActionPerformed
 		prt.sendCommand(ElmProt.CMD.RESET, 0);
 	}//GEN-LAST:event_miCommInitActionPerformed
 
-	private void miSaveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miSaveActionPerformed
+	private void miSaveActionPerformed()//GEN-FIRST:event_miSaveActionPerformed
 	{//GEN-HEADEREND:event_miSaveActionPerformed
 		if (fChoose.showSaveDialog(this) == JFileChooser.APPROVE_OPTION)
 		{
@@ -397,7 +397,7 @@ public class ObdTestFrame extends javax.swing.JFrame
 					FileOutputStream out = new FileOutputStream(file);
 					ObjectOutputStream oOut = new ObjectOutputStream(out);
         /* remember current measurement page for loading again */
-					Integer currPage = new Integer(tabMain.getSelectedIndex());
+					Integer currPage = Integer.valueOf(tabMain.getSelectedIndex());
 					oOut.writeObject(currPage);
         /* save the data */
 					oOut.writeObject(ObdProt.PidPvs);
@@ -417,7 +417,7 @@ public class ObdTestFrame extends javax.swing.JFrame
 	}//GEN-LAST:event_miSaveActionPerformed
 
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	private void miLoadActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_miLoadActionPerformed
+	private void miLoadActionPerformed()//GEN-FIRST:event_miLoadActionPerformed
 	{//GEN-HEADEREND:event_miLoadActionPerformed
 		if (fChoose.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
 		{
@@ -451,7 +451,7 @@ public class ObdTestFrame extends javax.swing.JFrame
 		}
 	}//GEN-LAST:event_miLoadActionPerformed
 
-	private void cbProtocolActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cbProtocolActionPerformed
+	private void cbProtocolActionPerformed()//GEN-FIRST:event_cbProtocolActionPerformed
 	{//GEN-HEADEREND:event_cbProtocolActionPerformed
 		prt.sendCommand(ElmProt.CMD.SETPROTAUTO, cbProtocol.getSelectedIndex());
 	}//GEN-LAST:event_cbProtocolActionPerformed
@@ -459,7 +459,7 @@ public class ObdTestFrame extends javax.swing.JFrame
 	/**
 	 * handle change of conversion system
 	 */
-	private void cbCnvSystemItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_cbCnvSystemItemStateChanged
+	private void cbCnvSystemItemStateChanged()//GEN-FIRST:event_cbCnvSystemItemStateChanged
 	{//GEN-HEADEREND:event_cbCnvSystemItemStateChanged
 		// set new conversion system
 		EcuDataItem.cnvSystem = cbCnvSystem.getSelectedIndex();
@@ -487,7 +487,7 @@ public class ObdTestFrame extends javax.swing.JFrame
 	/**
 	 * update form/tab selection
 	 */
-	private void tabMainStateChanged(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_tabMainStateChanged
+	private void tabMainStateChanged()//GEN-FIRST:event_tabMainStateChanged
 	{//GEN-HEADEREND:event_tabMainStateChanged
 		// request OBD service for selected Tab
 		requestServiceForSelectedTab();
@@ -613,27 +613,17 @@ public class ObdTestFrame extends javax.swing.JFrame
 	@SuppressWarnings("rawtypes")
 	private javax.swing.JComboBox cbProtocol;
 	private javax.swing.JFileChooser fChoose;
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JPanel jPanel1;
-	private javax.swing.JLabel lblFooter;
 	private javax.swing.JLabel lblStatus;
-	private javax.swing.JLabel lblTitle;
-	private javax.swing.JMenuBar mbMain;
 	private javax.swing.JMenuItem miCommConfigure;
 	private javax.swing.JMenuItem miCommInit;
 	private javax.swing.JMenuItem miCommStart;
 	private javax.swing.JMenuItem miCommStop;
 	private javax.swing.JMenuItem miLoad;
 	private javax.swing.JMenuItem miSave;
-	private javax.swing.JMenu mnuComm;
-	private javax.swing.JMenu mnuFile;
 	private com.fr3ts0n.ecu.gui.application.ObdDataPanel panCanData;
-	private javax.swing.JPanel panFooter;
-	private javax.swing.JPanel panHeader;
 	private com.fr3ts0n.ecu.gui.application.ObdDataPanel panObdData;
 	private com.fr3ts0n.ecu.gui.application.ObdDtcPanel panObdDtc;
 	private com.fr3ts0n.ecu.gui.application.ObdDataPanel panObdFreezeFrame;
-	private javax.swing.JPanel panStart;
 	private javax.swing.JTabbedPane tabMain;
 	// End of variables declaration//GEN-END:variables
 

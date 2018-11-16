@@ -28,7 +28,7 @@ public class VagCodeStatPanel extends javax.swing.JPanel
 	public static final long serialVersionUID = 1L;
 
 	/** DFC symptoms to display */
-	static final String[] Symptoms =
+	private static final String[] Symptoms =
 		{
 			"No display",
 			"Value above MAX",
@@ -65,18 +65,18 @@ public class VagCodeStatPanel extends javax.swing.JPanel
 	private void initComponents()
 	{
 		java.awt.GridBagConstraints gridBagConstraints;
-
-		jPanel1 = new javax.swing.JPanel();
-		panStatus = new javax.swing.JPanel();
-		panMilStatus = new javax.swing.JPanel();
+		
+		javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
+		javax.swing.JPanel panStatus = new javax.swing.JPanel();
+		javax.swing.JPanel panMilStatus = new javax.swing.JPanel();
 		cbMilStatus = new javax.swing.JCheckBox();
-		panTestStatus = new javax.swing.JPanel();
+		javax.swing.JPanel panTestStatus = new javax.swing.JPanel();
 		cbTestComplete = new javax.swing.JCheckBox();
-		panFaultStatus = new javax.swing.JPanel();
+		javax.swing.JPanel panFaultStatus = new javax.swing.JPanel();
 		cbSporadic = new javax.swing.JCheckBox();
 		cbShortTerm = new javax.swing.JCheckBox();
 		cbStatic = new javax.swing.JCheckBox();
-		panSymptom = new javax.swing.JPanel();
+		javax.swing.JPanel panSymptom = new javax.swing.JPanel();
 		lblSymptom = new javax.swing.JLabel();
 
 		setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
@@ -87,7 +87,8 @@ public class VagCodeStatPanel extends javax.swing.JPanel
 		panStatus.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10))); // NOI18N
 		panStatus.setLayout(new java.awt.GridBagLayout());
 
-		panMilStatus.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "MIL status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10))); // NOI18N
+		panMilStatus
+			.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "MIL status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10))); // NOI18N
 		panMilStatus.setEnabled(false);
 		panMilStatus.setLayout(new java.awt.BorderLayout());
 
@@ -117,7 +118,8 @@ public class VagCodeStatPanel extends javax.swing.JPanel
 		gridBagConstraints.weightx = 1.0;
 		panStatus.add(panTestStatus, gridBagConstraints);
 
-		panFaultStatus.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fault status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10))); // NOI18N
+		panFaultStatus
+			.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fault status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 10))); // NOI18N
 		panFaultStatus.setEnabled(false);
 		panFaultStatus.setLayout(new java.awt.GridLayout(0, 3));
 
@@ -195,13 +197,7 @@ public class VagCodeStatPanel extends javax.swing.JPanel
 	private javax.swing.JCheckBox cbSporadic;
 	private javax.swing.JCheckBox cbStatic;
 	private javax.swing.JCheckBox cbTestComplete;
-	private javax.swing.JPanel jPanel1;
 	private javax.swing.JLabel lblSymptom;
-	private javax.swing.JPanel panFaultStatus;
-	private javax.swing.JPanel panMilStatus;
-	private javax.swing.JPanel panStatus;
-	private javax.swing.JPanel panSymptom;
-	private javax.swing.JPanel panTestStatus;
 	// End of variables declaration//GEN-END:variables
 
 }

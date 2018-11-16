@@ -18,14 +18,14 @@
 
 package com.fr3ts0n.pvs.gui;
 
+import com.fr3ts0n.pvs.ProcessVar;
+import com.fr3ts0n.pvs.PvChangeEvent;
+import com.fr3ts0n.pvs.PvChangeListener;
+
 import java.util.Iterator;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
-
-import com.fr3ts0n.pvs.ProcessVar;
-import com.fr3ts0n.pvs.PvChangeEvent;
-import com.fr3ts0n.pvs.PvChangeListener;
 
 /**
  * @author se82wi
@@ -94,7 +94,7 @@ public class PvTreeNode extends DefaultMutableTreeNode
 			return null;
 
 		Object pvObj = selNode.getUserObject();
-		if (pvObj == null || !(pvObj instanceof ProcessVar))
+		if (!(pvObj instanceof ProcessVar))
 			return null;
 
 		return (ProcessVar) pvObj;
@@ -107,7 +107,7 @@ public class PvTreeNode extends DefaultMutableTreeNode
 	 * @return matching child node, or
 	 * <pre>null</pre> if nothing has been found
 	 */
-	PvTreeNode findChild(Object userObject)
+	private PvTreeNode findChild(Object userObject)
 	{
 		PvTreeNode currNode;
 		// search through children for matching user object

@@ -33,7 +33,7 @@ public class BitmapConversion extends NumericConversion
 	/** SerialVersion UID */
 	private static final long serialVersionUID = -8498739122873083420L;
 	/* the HashMap Data */
-	private TreeMap<Long,String> hashData = new TreeMap<Long,String>();
+	private final TreeMap<Long,String> hashData = new TreeMap<Long,String>();
 
 	/**
 	 * create a new hash converter which is initialized with values from map data
@@ -63,7 +63,7 @@ public class BitmapConversion extends NumericConversion
 	 *
 	 * @param initData initializer strings for conversions in the format "BitPos=value[;BitPos=value[...]]"
 	 */
-	public void initFromStrings(String[] initData)
+	private void initFromStrings(String[] initData)
 	{
 		Long key;
 		String value;
@@ -108,23 +108,23 @@ public class BitmapConversion extends NumericConversion
 	@Override
 	public String physToPhysFmtString(Number physVal, String format)
 	{
-		String result = null;
+		StringBuilder result = null;
 		long val = physVal.longValue();
 
 		for(Map.Entry<Long,String> item : hashData.entrySet())
 		{
 			// if this is NOT the first entry, then add a new line
 			if (result == null)
-				result = "";
+				result = new StringBuilder();
 			else
-				result += System.lineSeparator();
+				result.append(System.lineSeparator());
 			// now add the result
-			result += String.format("%s  %s",
-									((val & item.getKey()) != 0) ? "(*)" : "(  )",
-									item.getValue() );
+			result.append(String.format("%s  %s",
+				((val & item.getKey()) != 0) ? "(*)" : "(  )",
+				item.getValue()));
 		}
 		// if we haven't found a string representation, return numeric value
-		if (result == null) result = super.physToPhysFmtString(physVal,format);
-		return (result);
+		if (result == null) result = new StringBuilder(super.physToPhysFmtString(physVal, format));
+		return (result.toString());
 	}
 }
