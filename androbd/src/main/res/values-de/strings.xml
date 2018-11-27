@@ -47,7 +47,7 @@
 	<string name="saved">gespeichert</string>
 	<string name="connected_to">Verbunden mit</string>
 	<string name="demo">Demo…</string>
-	<string name="saving_data">Speichere Daten...</string>
+	<string name="saving_data">Speichere Daten…</string>
 	<string name="dashboard">Dashboard</string>
     <string name="hud">Head Up Display</string>
 	<string name="metric">metrisch</string>
@@ -72,7 +72,7 @@
     <string name="check_cust_settings">Bitte Einstellungen für Anpassungen prüfen\n</string>
     <string name="items_for_display">Daten zur Anzeige</string>
     <string name="items_for_display_descr">Datenpunkte zur Anzeige auswählen …</string>
-    <string name="loading_data">Lade Daten...</string>
+    <string name="loading_data">Lade Daten…</string>
     <string name="obd_opt_description">Einstellungen für OBD Protokoll / Fahrzeugkommunikation</string>
     <string name="obd_options">OBD Einstellungen </string>
     <string name="select_protocol">Bevorzugtes OBD Protokoll </string>
