@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="translation_credits">Honosítás: gidano | sympda.blog.hu</string>
     <string name="app_description">Android OBD járműdiagnosztika app ELM327 bluetooth adapterhez</string>
@@ -36,7 +36,7 @@ információt, beleértve:
     <string name="none_paired">Nincs párosított eszköz</string>
     <string name="none_found">Nem található eszköz</string>
     <string name="title_paired_devices">Párosított eszközök</string>
-    <string name="send_to">Küld …</string>
+    <string name="send_to">Küldés</string>
     <string name="share">Megoszt</string>
     <string name="time">Idő [mp]</string>
     <string name="chart">Grafikon</string>
@@ -147,4 +147,16 @@ információt, beleértve:
     <string name="semicolon">PONTOSVESSZŐ</string>
     <string name="send_after_export">Küld, miután exportál</string>
     <string name="send_after_export_descr">Kérdezzen rá a CSV fájl elküldésére közvetlenül az exportálás után?</string>
+    <string name="plugin_manager">Bővítménykezelő</string>
+    <string name="configure">Konfiguráció</string>
+    <string name="data_disable_max">Adattiltási limit</string>
+    <string name="data_disable_max_description">Érvénytelen egymás utáni adatok száma tiltás előtt</string>
+    <string name="toolbar_overlay">Megjelenítés legfelelül</string>
+    <string name="toolbar_overlay_sum">Eszköztár megjelenítése a főképernyő felett</string>
+    <string name="license">Licenszelés …</string>
+    <string name="donation">Projekt támogatása …</string>
+    <string name="libraries">Könyvtárak …</string>
+    <string name="libraries_sum">A projektben alkalmazott könyvtárak …</string>
+    <string name="release_history">Kiadási történet …</string>
+    <string name="graphic_design">Grafikus terv</string>
 </resources>
