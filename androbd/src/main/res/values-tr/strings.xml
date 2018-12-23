@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="translation_credits">Çevri:Alpay Bilgiç www.mobilexper.com</string>
     <string name="app_description">"Android OBD ELM 327 Bluetooth cihazı üzerinden araç teşhis  uygulaması"</string>
-    <string name="title_connecting">Bağlanıyor …</string>
-    <string name="title_connected_to">Bağlandı %s</string>
+    <string name="title_connecting">Bağlanıyor…</string>
+    <string name="title_connected_to">"%s ye bağlandı "</string>
     <string name="logo">Logo</string>
     <string name="back_again_to_exit">Uygulamadan çıkmak için tekrar geri tuşuna basın</string>
     <string name="action_connect">Bağlan</string>
