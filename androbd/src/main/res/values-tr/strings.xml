@@ -168,5 +168,5 @@
     <string name="libraries">Eklentiler …</string>
     <string name="libraries_sum">Projede kullanılan eklentiler …</string>
     <string name="release_history">Versiyon geçmişi …</string>
-
-    </resources>
+    <string name="graphic_design">Grafik tasarım</string>
+</resources>
