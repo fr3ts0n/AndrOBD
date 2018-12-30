@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="translation_credits">Переведено www.makedonov.ru</string>
     <string name="app_description">Android приложение для OBD диагностики с Bluetooth адаптером ELM327</string>
     <string name="title_connecting">Соединение…</string>
@@ -48,7 +48,7 @@
     <string name="items_for_display_descr">Выберите данные для отображения…</string>
     <string name="debugging">Отладка</string>
     <string name="logging_level">Уровень лога</string>
-    <string name="logging_level_description">Уровень деталей лога при отладке</string>
+    <string name="logging_level_description">Уровень детализации лога при отладке</string>
     <string name="last_elm">переподключение к последнему ELM-адаптеру</string>
     <string name="last_ecu">переподключение к последнему ЭБУ</string>
     <string name="keep_screen_on">Оставлять экран включенным</string>
@@ -137,7 +137,7 @@
     <string name="autohide_delay">Задержка скрытия панели инструментов [с]</string>
 
     <string name="last_data_items">Последние выбранные данные</string>
-    <string name="last_view_mode">Последний режим представления данных</string>
+    <string name="last_view_mode">последний режим представления данных</string>
 
     <string name="select_extension">Выберите файл ... с расширением .csv</string>
     <string name="check_cust_settings">Пожалуйста проверьте персональные настройки</string>
@@ -152,5 +152,9 @@
     <string name="libraries">Библиотеки …</string>
     <string name="libraries_sum">Библиотеки, используемые в проекте …</string>
     <string name="release_history">История выпуска …</string>
-
-    </resources>
+    <string name="data_items">Показатели</string>
+    <string name="extension_loading">Загрузка персонализации</string>
+    <string name="reset_preselections">Сбросить выбор</string>
+    <string name="data_disable_max">Лимит отключения данных</string>
+    <string name="csv_export_options">Опции экспорта в CSV</string>
+</resources>
