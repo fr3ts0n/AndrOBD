@@ -157,4 +157,7 @@
     <string name="reset_preselections">Сбросить выбор</string>
     <string name="data_disable_max">Лимит отключения данных</string>
     <string name="csv_export_options">Опции экспорта в CSV</string>
+    <string name="use_last_settings_description">Использовать последние настройки запуска (такие как: BT адрес, ECU адрес, элементы дисплея)</string>
+    <string name="data_disable_max_description">Количество недействительных последовательных ответов данных перед пунктом будет отключено</string>
+    <string name="csv_export_description">Опции форматирования CSV файлов для экспорта</string>
 </resources>
