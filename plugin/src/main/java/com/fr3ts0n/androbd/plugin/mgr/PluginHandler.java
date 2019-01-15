@@ -126,25 +126,25 @@ public class PluginHandler extends ArrayAdapter<PluginInfo>
             infoView = mInflater.inflate(R.layout.plugininfo, parent, false);
 
         TextView tv;
-        tv = (TextView)infoView.findViewById(R.id.edName);
+        tv = infoView.findViewById(R.id.edName);
         tv.setEnabled(info.enabled);
         tv.setText(info.name);
 
-        tv = (TextView)infoView.findViewById(R.id.edClass);
+        tv = infoView.findViewById(R.id.edClass);
         tv.setEnabled(info.enabled);
         tv.setText(info.className);
 
-        tv = (TextView)infoView.findViewById(R.id.edDescription);
+        tv = infoView.findViewById(R.id.edDescription);
         tv.setEnabled(info.enabled);
         tv.setText(info.description);
 
         // get feature checkboxes
         CheckBox[] cb =
         {
-            (CheckBox)infoView.findViewById(R.id.cbConfig),
-            (CheckBox)infoView.findViewById(R.id.cbAction),
-            (CheckBox)infoView.findViewById(R.id.cbDataList),
-            (CheckBox)infoView.findViewById(R.id.cbData),
+	        infoView.findViewById(R.id.cbConfig),
+            infoView.findViewById(R.id.cbAction),
+            infoView.findViewById(R.id.cbDataList),
+            infoView.findViewById(R.id.cbData),
         };
 
         // set checkbox checked state based on supported features
@@ -155,15 +155,15 @@ public class PluginHandler extends ArrayAdapter<PluginInfo>
 
         // enable / disable buttons based on supported features
         Button btn;
-        btn = (Button)infoView.findViewById(R.id.btnConfigure);
+        btn = infoView.findViewById(R.id.btnConfigure);
         btn.setEnabled(info.enabled && (info.features & PluginInfo.FEATURE_CONFIGURE) != 0);
 
-        btn = (Button)infoView.findViewById(R.id.btnAction);
+        btn = infoView.findViewById(R.id.btnAction);
         btn.setEnabled(info.enabled && (info.features & PluginInfo.FEATURE_ACTION) != 0);
 
         infoView.setActivated(info.enabled);
 
-        Switch swEnable = (Switch)infoView.findViewById(R.id.swEnable);
+        Switch swEnable = infoView.findViewById(R.id.swEnable);
         swEnable.setChecked(info.enabled);
 
         return infoView;

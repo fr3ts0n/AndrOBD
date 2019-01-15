@@ -156,12 +156,12 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 				String label = Messages.getString(params[FLD.MNEMONIC.ordinal()],
 				                                  params[FLD.LABEL.ordinal()]);
 				// create linear conversion
-				newItm = new EcuDataItem(Integer.decode(params[FLD.PID.ordinal()]).intValue(),
+				newItm = new EcuDataItem(Integer.decode(params[FLD.PID.ordinal()]),
 										 Integer.parseInt(params[FLD.OFS.ordinal()]),
 										 Integer.parseInt(params[FLD.LEN.ordinal()]),
 									     Integer.parseInt(params[FLD.BIT_OFS.ordinal()]),
 									     Integer.parseInt(params[FLD.BIT_LEN.ordinal()]),
-									     Long.decode(params[FLD.BIT_MASK.ordinal()]).longValue(),
+										 Long.decode(params[FLD.BIT_MASK.ordinal()]),
 									     currCnvSet,
 										 params[FLD.FORMAT.ordinal()],
 										 minVal,
@@ -210,7 +210,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	 */
 	public Vector<EcuDataItem> getSvcDataItems(int service)
 	{
-		Vector<EcuDataItem> result = new Vector<EcuDataItem>();
+		Vector<EcuDataItem> result = new Vector<>();
 		HashMap<Integer, Vector<EcuDataItem>> currSvc = get(service);
 		if (currSvc != null)
 		{
@@ -234,7 +234,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		// if not - create it
 		if (currSvc == null)
 		{
-			currSvc = new HashMap<Integer, Vector<EcuDataItem>>();
+			currSvc = new HashMap<>();
 			log.finer("+SVC: " + service + " - " + currSvc); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
@@ -243,7 +243,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		// if not -- create it
 		if (currVec == null)
 		{
-			currVec = new Vector<EcuDataItem>();
+			currVec = new Vector<>();
 			log.finer("+PID: " + newItem.pid + " - " + currVec); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		// enter data item into list of items / PID
