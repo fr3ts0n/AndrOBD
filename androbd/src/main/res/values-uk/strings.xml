@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="translation_credits">Перекладено NamoAton</string>
     <string name="app_description">"Додаток Android для OBD діагностики з використанням  Bluetooth адаптера ELM327"</string>
     <string name="title_connecting">З’єдання…</string>
@@ -124,7 +124,7 @@
     <string name="autohide_toolbar">Сховати панель інструментів</string>
     <string name="autohide_toolbar_description">"Автоматично ховати панель інструментів після  затримки, якщо немає активності"</string>
     <string name="autohide_delay">Затримка прибирання панелі інструментів [s]</string>
-    <string name="autohide_delay_description">"Затримка в секундаж без активності, перед тим як панель інструментів  буде прибрана"</string>
+    <string name="autohide_delay_description">"Затримка в секундах без активності, перед тим як панель інструментів  буде прибрана"</string>
     <string name="csv_export_options">Опці експорту CSV</string>
     <string name="csv_export_description">Опції форматування CSV файлів для експорту</string>
     <string name="csv_field_delimiter">Поле розділювача CSV</string>
