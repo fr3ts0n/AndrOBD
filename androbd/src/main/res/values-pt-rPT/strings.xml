@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="translation_credits">Tradução por Manuela Silva</string>
     <string name="title_connecting">A ligar…</string>
     <string name="title_connected_to">Ligado %s</string>
@@ -119,7 +119,7 @@
     <string name="last_view_mode">último modo de exibição de dados</string>
 
     <string name="keep_screen_on">Manter o ecrã principal ligado</string>
-    <string name="keep_screen_on_description">Não DESLIGAR se a tela principal/tela de dados estiver em exibição</string>
+    <string name="keep_screen_on_description">Não DESLIGAR se no ecrã principal/ecrã de dados estiver em exibição</string>
 
     <string name="dev_opt_description">Opções de depuração e de personalização</string>
     <string name="select_extension">Selecione ficheiro de extensão .csv …</string>
@@ -166,7 +166,7 @@
     <string name="csv_text_quoted_description">Campos de texto CSV são incluídos entre aspas</string>
     <string name="plugin_manager_desc">Gerenciar plugins instalados</string>
     <string name="toolbar_overlay">Mostrar como sobreposição</string>
-    <string name="toolbar_overlay_sum">Mostrar barra de ferramentas de sobreposição à tela principal</string>
+    <string name="toolbar_overlay_sum">Mostrar barra de ferramentas de sobreposição ào ecrã principal</string>
     <string name="license">Licenciamento …</string>
     <string name="donation">Apoiar o projeto …</string>
     <string name="libraries">Bibliotecas …</string>
