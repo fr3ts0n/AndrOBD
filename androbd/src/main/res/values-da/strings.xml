@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources><string name="app_description">Android OBD køretøj diagenostiserings app for ELM327 bluetooth adapter</string>
+    <string name="title_connecting">Forbinder…</string>
+    <string name="title_connected_to">Forbundet %s</string>
+    <string name="logo">Logo</string>
+    <string name="back_again_to_exit">Tryk tilbage igen for at lukke appen</string>
+    <string name="action_connect">Forbind</string>
+    <string name="obd_none">Ingen service</string>
+    <string name="obd_services">OBD servicer</string>
+    <string name="obd_veh_info">OBD køretøjs info</string>
+    <string name="obd_data">OBD Data</string>
+</resources>
