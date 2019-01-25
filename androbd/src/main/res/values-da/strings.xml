@@ -9,4 +9,5 @@
     <string name="obd_services">OBD servicer</string>
     <string name="obd_veh_info">OBD køretøjs info</string>
     <string name="obd_data">OBD Data</string>
+    <string name="service_freezeframes">ODB Freeze Frames</string>
 </resources>
