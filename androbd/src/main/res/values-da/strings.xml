@@ -91,4 +91,53 @@
     <string name="libraries_sum">Biblioteker brugt i projektet …</string>
     <string name="release_history">Udgivelses historik …</string>
     <string name="graphic_design">Grafisk design</string>
+    <string name="obd_clear_info">Dette vil nulstille MIL\'en og alle udlednings relateret diagnostik
+\n information, samt:
+\n - Diagnostik fejlkoder
+\n - Freeze frame data
+\n - Oxygen sensor test data
+\n - Statussen på system overvågnings testene 
+\n - On-board moniterings testresultater
+\n - Distance kørt med MIL aktiveret
+\n - Antallet af opstart siden DTC\'en var nulstillet
+\n - Distance kørt siden DTC\'en var nulstillet
+\n - Motorens kørselstid siden MIL\'en blev aktiveret
+\n - Tid siden DTC\'er var nulstillet
+\n
+\nAndre producent specifikke nulstillings handler kan forekomme.
+\nPå grund af nulstilling af data kan køretøjet køre ringe i enkort periode indtil ECU\'en har kalibreret sig selv.</string>
+    <string name="chart">Graf</string>
+    <string name="demo_stopped">DEMO tilstand stoppet</string>
+    <string name="demo_started">DEMO tilstand startet</string>
+    <string name="snapshot">øjebliksbillede</string>
+    <string name="filter">Filtrerer valgte</string>
+    <string name="items_for_display">Data punkter der skal vises</string>
+    <string name="items_for_display_descr">Vælg alle data punkter der skal vises …</string>
+    <string name="last_elm">genforbind til den sidste ELM-adapter</string>
+    <string name="last_ecu">genforbind til den sidste ECU</string>
+    <string name="last_data_items">sidste valgte data punkter</string>
+    <string name="last_view_mode">sidste data visningstilstand</string>
+    <string name="conversions">Data konverteringer</string>
+    <string name="data_items">Data punkter</string>
+    <string name="extension_loading">Brugertilpasset indlæsning</string>
+    <string name="check_cust_settings">Kontrollerer dine tilpasningsindstillinger
+\n</string>
+    <string name="plugin_manager">Plugin manager</string>
+    <string name="min_elm_timeout">Min. ELM timeout [ms]</string>
+    <string name="elm_timeout_descr">Minimum timeout i [ms] for svar fra ELM</string>
+    <string name="elm_adaptive_timing">ELM adaptiv timing</string>
+    <string name="elm_adaptive_timing_descr">Tillad adaptiv timing håndtering i ELM driverne\?</string>
+    <string name="select_ecu_addr">Vælge ECU adresse …</string>
+    <string name="use_last_settings_description">Brug sidste anvendte indstillinger ved opstart (BT adresse, ECU adresse, Data punkter ...)</string>
+    <string name="use_last_settings">Brug sidste anvendte indstillinger</string>
+    <string name="secure_connect">Sikker forbindelse</string>
+    <string name="secure_connect_description">Brug krypteret Bluetooth forbindelse</string>
+    <string name="elm_custom_init">ELM brugerdefineret opstart</string>
+    <string name="elm_custom_init_descr">ELM brugerdefineret opstarts kommandoer</string>
+    <string name="csv_export_options">CSV eksport indstillinger</string>
+    <string name="tab">TAB</string>
+    <string name="comma">KOMMA</string>
+    <string name="semicolon">SEMIKOLON</string>
+    <string name="send_after_export">Send efter eksport</string>
+    <string name="donation">Støtteprojekt …</string>
 </resources>
