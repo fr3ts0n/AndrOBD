@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><string name="app_description">Android OBD køretøj diagenostiserings app for ELM327 bluetooth adapter</string>
+    <string name="title_connecting">Forbinder…</string>
+    <string name="title_connected_to">Forbundet %s</string>
+    <string name="logo">Logo</string>
+    <string name="back_again_to_exit">Tryk tilbage igen for at lukke appen</string>
+    <string name="action_connect">Forbind</string>
+    <string name="obd_none">Ingen service</string>
+    <string name="obd_services">OBD servicer</string>
+    <string name="obd_veh_info">OBD køretøjs info</string>
+    <string name="obd_data">OBD Data</string>
+    <string name="service_freezeframes">ODB Freeze Frames</string>
+    <string name="obd_codes">OBD fejlkoder</string>
+    <string name="obd_permanentcodes">OBD fejlkoder (permanente)</string>
+    <string name="obd_pendingcodes">OBD fejlkoder (igangværende)</string>
+    <string name="obd_clearcodes">Ryd fejlkoder</string>
+    <string name="select_device">Vælg adapter</string>
+    <string name="none_paired">Ingen enheder parret</string>
+    <string name="none_found">Ingen enheder fundet</string>
+    <string name="title_paired_devices">Parret enheder</string>
+    <string name="send_to">Send til</string>
+    <string name="share">del</string>
+    <string name="time">Tid [s]</string>
+    <string name="save">Gem måling</string>
+    <string name="load">Indlæs måling</string>
+    <string name="saved_data">Gemt data</string>
+    <string name="loaded">indlæst</string>
+    <string name="saved">gemt</string>
+    <string name="connected_to">"Forbundet til "</string>
+    <string name="demo">Demo…</string>
+    <string name="saving_data">Gemmer data …</string>
+    <string name="loading_data">Indlæser data …</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="hud">Head Up Display</string>
+    <string name="settings">Indstillinger</string>
+    <string name="common_settings">Generelle indstillinger</string>
+    <string name="measure_system_description">"Enhedssystem (metriske / Imperial) "</string>
+    <string name="measure_system">Måleenheder</string>
+    <string name="metric">Metrisk</string>
+    <string name="imperial">imperial</string>
+    <string name="debugging">Fejlsøgning</string>
+    <string name="logging_level">Logning niveau</string>
+    <string name="logging_level_description">Niveauet af detaljer der skal logges til debug log filen</string>
+    <string name="last_service">sidste OBD service</string>
+    <string name="keep_screen_on">Hold hovedskærmen tændt</string>
+    <string name="keep_screen_on_description">Sluk IKKE for skærmen hvis hoved/data er vist på skærmen</string>
+    <string name="development_options">Udvikler indstillinger</string>
+    <string name="dev_opt_description">Indstillinger for fejlsøgning og tilpasning</string>
+    <string name="obd_options">OBD indstillinger</string>
+    <string name="obd_opt_description">Indstillinger for OBD protokol / køretøjs kommunikation</string>
+    <string name="select_protocol">Ønsket OBD protokol</string>
+    <string name="configure">Konfigurerer</string>
+    <string name="select_fault_code">Vælg fejlkode …</string>
+    <string name="select_medium">Adapter type …</string>
+    <string name="devices_found">%d USB enhed(er) fundet</string>
+    <string name="unabletoconnect">Kunne ikke forbinde til enheden</string>
+    <string name="connectionlost">Mistede forbindelsen til enheden</string>
+    <string name="day_night_mode">Dag/nat visningstilstand</string>
+    <string name="night_mode_description">Gør skærmens baggrunden mørk</string>
+    <string name="night_mode">Nat tilstand</string>
+    <string name="disable_elm_cmds">Deaktiveret ELM kommandoer</string>
+    <string name="disable_elm_cmds_descr">Aktiverer/deaktiverer ELM kommandoer</string>
+    <string name="elm_reset_on_nrc">Nulstil ved NRC</string>
+    <string name="elm_reset_on_nrc_descr">Nulstil ELM adapter ved NRC fejl\?</string>
+    <string name="disconnect">Afbryd</string>
+    <string name="elm_options">ELM indstillinger</string>
+    <string name="UNDEFINED">Ikke angivet</string>
+    <string name="INITIALIZING">Initialiserer…</string>
+    <string name="INITIALIZED">Initialiseret</string>
+    <string name="ECU_DETECT">ECU søger…</string>
+    <string name="ECU_DETECTED">ECU fundet</string>
+    <string name="CONNECTING">Forbinder…</string>
+    <string name="CONNECTED">Forbundet</string>
+    <string name="NODATA">Ingen data</string>
+    <string name="STOPPED">Stoppet</string>
+    <string name="DISCONNECTED">Afbrudt</string>
+    <string name="BUSERROR">BUS fejl</string>
+    <string name="DATAERROR">DATA fejl</string>
+    <string name="RXERROR">RX fejl</string>
+    <string name="ERROR">Fejl</string>
+    <string name="obd_error">OBD protokolfejl</string>
+    <string name="device_address_description">ELM enhedens netværks IP adresse</string>
+    <string name="device_address">ELM IP adresse</string>
+    <string name="device_port_description">ELM enhedens netværks IP port</string>
+    <string name="device_port">ELM IP port</string>
+    <string name="autohide_toolbar">Skjul værktøjslinjen</string>
+    <string name="toolbar_overlay">Vis som overlap</string>
+    <string name="toolbar_overlay_sum">Vis værktøjslinjen over hovedskærmen</string>
+    <string name="license">Licenser …</string>
+    <string name="libraries">Biblioteker …</string>
+    <string name="libraries_sum">Biblioteker brugt i projektet …</string>
+    <string name="release_history">Udgivelses historik …</string>
+    <string name="graphic_design">Grafisk design</string>
+    <string name="obd_clear_info">Dette vil nulstille MIL\'en og alle udlednings relateret diagnostik
+\n information, samt:
+\n - Diagnostik fejlkoder
+\n - Freeze frame data
+\n - Oxygen sensor test data
+\n - Statussen på system overvågnings testene 
+\n - On-board moniterings testresultater
+\n - Distance kørt med MIL aktiveret
+\n - Antallet af opstart siden DTC\'en var nulstillet
+\n - Distance kørt siden DTC\'en var nulstillet
+\n - Motorens kørselstid siden MIL\'en blev aktiveret
+\n - Tid siden DTC\'er var nulstillet
+\n
+\nAndre producent specifikke nulstillings handler kan forekomme.
+\nPå grund af nulstilling af data kan køretøjet køre ringe i enkort periode indtil ECU\'en har kalibreret sig selv.</string>
+    <string name="chart">Graf</string>
+    <string name="demo_stopped">DEMO tilstand stoppet</string>
+    <string name="demo_started">DEMO tilstand startet</string>
+    <string name="snapshot">øjebliksbillede</string>
+    <string name="filter">Filtrerer valgte</string>
+    <string name="items_for_display">Data punkter der skal vises</string>
+    <string name="items_for_display_descr">Vælg alle data punkter der skal vises …</string>
+    <string name="last_elm">genforbind til den sidste ELM-adapter</string>
+    <string name="last_ecu">genforbind til den sidste ECU</string>
+    <string name="last_data_items">sidste valgte data punkter</string>
+    <string name="last_view_mode">sidste data visningstilstand</string>
+    <string name="conversions">Data konverteringer</string>
+    <string name="data_items">Data punkter</string>
+    <string name="extension_loading">Brugertilpasset indlæsning</string>
+    <string name="check_cust_settings">Kontrollerer dine tilpasningsindstillinger
+\n</string>
+    <string name="plugin_manager">Plugin manager</string>
+    <string name="min_elm_timeout">Min. ELM timeout [ms]</string>
+    <string name="elm_timeout_descr">Minimum timeout i [ms] for svar fra ELM</string>
+    <string name="elm_adaptive_timing">ELM adaptiv timing</string>
+    <string name="elm_adaptive_timing_descr">Tillad adaptiv timing håndtering i ELM driverne\?</string>
+    <string name="select_ecu_addr">Vælge ECU adresse …</string>
+    <string name="use_last_settings_description">Brug sidste anvendte indstillinger ved opstart (BT adresse, ECU adresse, Data punkter ...)</string>
+    <string name="use_last_settings">Brug sidste anvendte indstillinger</string>
+    <string name="secure_connect">Sikker forbindelse</string>
+    <string name="secure_connect_description">Brug krypteret Bluetooth forbindelse</string>
+    <string name="elm_custom_init">ELM brugerdefineret opstart</string>
+    <string name="elm_custom_init_descr">ELM brugerdefineret opstarts kommandoer</string>
+    <string name="csv_export_options">CSV eksport indstillinger</string>
+    <string name="tab">TAB</string>
+    <string name="comma">KOMMA</string>
+    <string name="semicolon">SEMIKOLON</string>
+    <string name="send_after_export">Send efter eksport</string>
+    <string name="donation">Støtteprojekt …</string>
+</resources>

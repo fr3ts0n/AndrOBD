@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="translation_credits">Tradotto da Lesto</string>
     <string name="app_description">Applicazione Android di diagnostica veicoli OBD con adattatori bluetooth ELM327</string>
     <string name="title_connecting">Connessione…</string>
@@ -33,9 +33,9 @@
 \nper un breve periodo ti tempo, nel quale ECU si autoricalibra.</string>
 
     <string name="select_device">Seleziona adattatore</string>
-    <string name="none_paired">Nessun dispositivo connesso</string>
+    <string name="none_paired">Nessun dispositivo associato</string>
     <string name="none_found">Nessun dispositivo trovato</string>
-    <string name="title_paired_devices">Dispositivi connessi</string>
+    <string name="title_paired_devices">Dispositivi associati</string>
 
     <string name="send_to">Invia a</string>
     <string name="share">condividi</string>
