@@ -74,6 +74,8 @@ It feels good to see that our work is appreciated.
 | Date | Supporter | Donation  |
 |------|-----------|----------:|
 | 2018/02 | John Zimmerer | $10 |
+| 2018/12 | Martin Bourdoiseau | €20 |
+
 
 <table>
   <tr>
