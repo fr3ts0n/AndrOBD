@@ -38,17 +38,17 @@ import java.util.logging.Logger;
 public class StreamHandler implements TelegramWriter, Runnable
 {
 	private static final Logger log = Logger.getLogger("stream");
-	private InputStream    in;
+	private InputStream in;
 	private BufferedWriter out;
-
+	
 	private TelegramListener messageHandler;
 	// current receive message
 	private String message = "";
-
+	
 	public StreamHandler()
 	{
 	}
-
+	
 	/**
 	 * Construct new StreamHandler using specified input and output stream
 	 *
@@ -59,7 +59,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 	{
 		setStreams(inStream, outStream);
 	}
-
+	
 	/**
 	 * Set the input and output stream
 	 *
@@ -73,7 +73,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 		   flushing on every outgoing byte [$Fix #AndrOBD-27] */
 		out = new BufferedWriter(new OutputStreamWriter(outStream), 1);
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see com.fr3ts0n.prot.TelegramWriter#writeTelegram(char[])
 	 */
@@ -82,46 +82,61 @@ public class StreamHandler implements TelegramWriter, Runnable
 	{
 		return (writeTelegram(buffer, 0, null));
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see com.fr3ts0n.prot.TelegramWriter#writeTelegram(char[], int, java.lang.Object)
 	 */
 	@Override
 	public int writeTelegram(char[] buffer, int type, Object id)
 	{
-		int result = 0;
-		try
+		int result = buffer.length;
+		
+		// Send data threaded to de-couple from main thread
+		new Thread(new Runnable()
 		{
-			String msg = new String(buffer);
-			msg += "\r";
-			log.finer(this.toString() + " TX:" + ProtUtils.hexDumpBuffer(msg.toCharArray()));
-			out.write(msg.toCharArray());
-			out.flush();
-			result = buffer.length;
-		} catch (Exception ex)
-		{
-			log.warning("TX error:'" + ProtUtils.hexDumpBuffer(buffer) + "':" + ex);
-		}
+			@Override
+			public void run()
+			{
+				try
+				{
+					String msg = new String(buffer);
+					msg += "\r";
+					
+					log.finer(this.toString() + " TX:"
+					          + ProtUtils.hexDumpBuffer(msg.toCharArray()));
+					
+					out.write(msg.toCharArray());
+					out.flush();
+				}
+				catch (Exception ex)
+				{
+					log.severe("TX error:'"
+					           + ProtUtils.hexDumpBuffer(buffer) + "':"
+					           + ex.getStackTrace());
+				}
+			}
+		}).start();
 		return (result);
 	}
-
+	
 	/**
 	 * process incoming character
+	 *
 	 * @param chr the received char
 	 */
 	private void processRxChar(int chr)
 	{
 		// process incoming data
 		log.finer(this.toString() + " RX: '"
-			          + String.format("%02X : %1c", (byte) chr, chr < 32 ? '.' : chr)
-			          + "'");
-
+		          + String.format("%02X : %1c", (byte) chr, chr < 32 ? '.' : chr)
+		          + "'");
+		
 		switch (chr)
 		{
 			// ignore special characters
 			case 32:
 				break;
-
+			
 			// trigger message handling for new request
 			case '>':
 				message += (char) chr;
@@ -131,7 +146,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 				try
 				{
 					if (messageHandler != null && !message.isEmpty())
-						messageHandler.handleTelegram(message.toCharArray());
+					{ messageHandler.handleTelegram(message.toCharArray()); }
 				}
 				catch (Exception ex)
 				{
@@ -139,12 +154,12 @@ public class StreamHandler implements TelegramWriter, Runnable
 				}
 				message = "";
 				break;
-
+			
 			default:
 				message += (char) chr;
 		}
 	}
-
+	
 	/**
 	 * start the thread
 	 */
@@ -163,7 +178,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 				if (in.available() > 0)
 				{
 					// otherwise read- and process ...
-
+					
 					// Is end of stream reached?
 					if ((chr = in.read()) > 0)
 					{
@@ -182,17 +197,17 @@ public class StreamHandler implements TelegramWriter, Runnable
 					// wait 1 ms for incoming data
 					Thread.sleep(1);
 				}
-
+				
 			}
 		}
-		catch (	Exception ex )
+		catch (Exception ex)
 		{
 			log.log(Level.WARNING, "RX error", ex);
 		}
-
+		
 		log.info("RX Thread stopped");
 	}
-
+	
 	/**
 	 * Getter for property messageHandler.
 	 *
@@ -202,7 +217,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 	{
 		return messageHandler;
 	}
-
+	
 	/**
 	 * Setter for property messageHandler.
 	 *
@@ -212,10 +227,12 @@ public class StreamHandler implements TelegramWriter, Runnable
 	{
 		this.messageHandler = messageHandler;
 	}
-
-	/** Utility field used by event firing mechanism. */
+	
+	/**
+	 * Utility field used by event firing mechanism.
+	 */
 	private Vector<PropertyChangeListener> listenerList = null;
-
+	
 	/**
 	 * Registers PropertyChangeListener to receive events.
 	 *
@@ -229,7 +246,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 		}
 		listenerList.add(listener);
 	}
-
+	
 	/**
 	 * Removes PropertyChangeListener from the list of listeners.
 	 *
@@ -239,7 +256,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 	{
 		listenerList.remove(listener);
 	}
-
+	
 	/**
 	 * Notifies all registered listeners about the event.
 	 *
@@ -247,8 +264,8 @@ public class StreamHandler implements TelegramWriter, Runnable
 	 */
 	protected void firePropertyChange(PropertyChangeEvent event)
 	{
-
-		if (listenerList == null) return;
+		
+		if (listenerList == null) { return; }
 		PropertyChangeListener listener;
 		for (PropertyChangeListener aListenerList : listenerList)
 		{
@@ -256,5 +273,5 @@ public class StreamHandler implements TelegramWriter, Runnable
 			listener.propertyChange(event);
 		}
 	}
-
+	
 }
