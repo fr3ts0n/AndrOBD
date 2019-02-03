@@ -67,6 +67,18 @@ Thanks to all hard-working translators for their contributions.
 You are invited to contribute a translation into your favourite language.
 <br>(Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 
+## Development support
+
+### AndrOBD channel (Telegram)
+Alpha and beta test releases
+
+[AndrOBD_DEV](https://t.me/AndrOBD_dev)
+
+### AndrOBD chat (Telegram)
+Discussions and chats
+
+[AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
+
 ## Donations
 Thank you to all AndrOBD supporters.
 It feels good to see that our work is appreciated.
