@@ -1,0 +1,27 @@
+// Use IntelliSense to learn about possible attributes.
+// Hover to view descriptions of existing attributes.
+// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // configuration type, request  and name. "launch" is used to deploy the app to your device and start a debugging session
+            "type": "android",
+            "request": "launch",
+            "name": "Launch App",
+
+            // Location of the App source files. This value must point to the root of your App source tree (containing AndroidManifest.xml)
+            "appSrcRoot": "${workspaceRoot}/androbd/src/main",
+
+            // Fully qualified path to the built APK (Android Application Package)
+            "apkFile": "${workspaceRoot}/androbd/build/outputs/apk/debug/androbd-debug.apk",
+
+            // Port number to connect to the local ADB (Android Debug Bridge) instance. Default: 5037
+            "adbPort": 5037,
+
+            // Launch behaviour if source files have been saved after the APK was built. One of: [ ignore warn stop ]. Default: warn
+            "staleBuild": "warn",
+        }
+    ]
+}
+    
