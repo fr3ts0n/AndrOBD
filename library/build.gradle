@@ -1,6 +1,10 @@
 apply plugin: 'java'
 
-jar { }
+compileJava {
+    sourceCompatibility '1.7'
+    targetCompatibility '1.7'
+    options.incremental = true
+}
 
 sourceSets {
     main {
@@ -20,3 +24,6 @@ sourceSets {
     }
 }
 
+jar { 
+    version = '1.0.1' 
+}
