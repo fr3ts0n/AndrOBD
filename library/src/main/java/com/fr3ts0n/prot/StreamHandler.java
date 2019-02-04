@@ -87,7 +87,7 @@ public class StreamHandler implements TelegramWriter, Runnable
 	 * @see com.fr3ts0n.prot.TelegramWriter#writeTelegram(char[], int, java.lang.Object)
 	 */
 	@Override
-	public int writeTelegram(char[] buffer, int type, Object id)
+	public int writeTelegram(final char[] buffer, int type, Object id)
 	{
 		int result = buffer.length;
 		
