@@ -1,10 +1,11 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">Traducido por fr3ts0n</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="translation_credits">Traducido por fr3ts0n</string>
     <string name="app_description">Aplicacion android para diagnostico de vehiculos usando el adaptador bluetooth ELM327</string>
     <string name="title_connecting">Conectando…</string>
     <string name="title_connected_to">Conectado a %s</string>
     <string name="logo">Logotipo</string>
-    <string name="back_again_to_exit">Presione atras de nuevo para cerrar esta aplicacion</string>
+    <string name="back_again_to_exit">Presiona de nuevo para cerrar esta aplicación</string>
     <string name="action_connect">Conectar</string>
     <string name="obd_none">Sin Servicio</string>
     <string name="obd_services">Servicios OBD</string>
@@ -32,12 +33,10 @@
 \nEl borrado de algunas recalibraciones puede causar que el rendimiendo del vehiculo sea pobre por un corto 
 \nperiodo de tiempo mientras la ECU aprende y se recalibra a si misma.
 \n "</string>
-
     <string name="select_device">Selecciona el Adaptador</string>
     <string name="none_paired">No hay Dispositivos Apareado</string>
     <string name="none_found">No se encuentran dispositivos</string>
     <string name="title_paired_devices">Dispositivos Apareados</string>
-
     <string name="send_to">Enviar a</string>
     <string name="share">compartir</string>
     <string name="time">Tiempo [s]</string>
@@ -50,7 +49,6 @@
     <string name="saved_data">Salvar Datos</string>
     <string name="loaded">cargado</string>
     <string name="saved">salvado</string>
-
     <string name="connected_to">"Conectado a "</string>
     <string name="demo">Demo…</string>
     <string name="saving_data">Salvando datos …</string>
@@ -58,7 +56,6 @@
     <string name="dashboard">Pizarra</string>
     <string name="hud">Visualization Frontal</string>
     <string name="filter">Filtro Seleccionado</string>
-
     <string name="settings">Configuracion</string>
     <string name="common_settings">Configuracion por defecto</string>
     <string name="measure_system_description">Unidades de medida (metrico / britanico)</string>
@@ -75,10 +72,8 @@
     <string name="last_service">ultimo servicio OBD</string>
     <string name="last_data_items">ultimo elemento de datos seleccionado</string>
     <string name="last_view_mode">ultimos datos vistos</string>
-
     <string name="keep_screen_on">mantener la pantalla principal habilitada</string>
     <string name="keep_screen_on_description">No apague la pantalla si la pantalla principal esta desplegada</string>
-
     <string name="development_options">Opciones de Desarrollo</string>
     <string name="dev_opt_description">Opciones de depuracion y personalizacion</string>
     <string name="extension_files">Personalizacion de los archivos (csv) del protocolo</string>
@@ -92,7 +87,6 @@
     <string name="select_protocol">Protocolo OBD preferido</string>
     <string name="select_fault_code">Seleccione el código de error …</string>
     <string name="select_medium">Tipo de adaptador …</string>
-
     <string name="devices_found">%d dispositivo(s) USB encontrado(s)</string>
     <string name="unabletoconnect">Imposible conectar con el dispositivo</string>
     <string name="night_mode">Modo noche</string>
@@ -113,7 +107,6 @@
     <string name="csv_export_options">Opciones de exportación a CSV</string>
     <string name="obd_opt_description">Opciones para protocolo OBD / diagnóstico de abordo</string>
     <string name="configure">Configurar</string>
-
     <string name="day_night_mode">Modo visión diurna/nocturna</string>
     <string name="plugin_manager">Administrador de complementos</string>
     <string name="min_elm_timeout">Min. Tiempo de espera del ELM [ms]</string>
@@ -134,7 +127,6 @@
     <string name="elm_options">Opciones del ELM</string>
     <string name="elm_custom_init">Inicializacion Personalizada del ELM</string>
     <string name="elm_custom_init_descr">Comandos de inicialización personalizados del ELM</string>
-
     <string name="UNDEFINED">Indefinido</string>
     <string name="ECU_DETECT">Deteccion de la ECU …</string>
     <string name="STOPPED">Detenido</string>
@@ -168,6 +160,5 @@
     <string name="libraries">Librerias…</string>
     <string name="libraries_sum">Librerias utilizadas en proyecto …</string>
     <string name="release_history">Historial de publicación …</string>
-
     <string name="graphic_design">Diseño gráfico</string>
-    </resources>
+</resources>
