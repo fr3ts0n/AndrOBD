@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="translation_credits">Tradotto da Lesto</string>
+<resources>
+    <string name="translation_credits">Tradotto da Lesto</string>
     <string name="app_description">Applicazione Android di diagnostica veicoli OBD con adattatori bluetooth ELM327</string>
     <string name="title_connecting">Connessione…</string>
     <string name="title_connected_to">Connesso: %s</string>
@@ -31,12 +32,10 @@
 \nPotrebbero avvenire altre azioni di azzeramento/reset specifici del costruttore.
 \nLa perdita dei dati può causare basso rendimento del veicolo 
 \nper un breve periodo ti tempo, nel quale ECU si autoricalibra.</string>
-
     <string name="select_device">Seleziona adattatore</string>
     <string name="none_paired">Nessun dispositivo associato</string>
     <string name="none_found">Nessun dispositivo trovato</string>
     <string name="title_paired_devices">Dispositivi associati</string>
-
     <string name="send_to">Invia a</string>
     <string name="share">condividi</string>
     <string name="time">Tempo [s]</string>
@@ -49,7 +48,6 @@
     <string name="saved_data">Dati salvati</string>
     <string name="loaded">caricato</string>
     <string name="saved">salvato</string>
-
     <string name="connected_to">"Connesso a "</string>
     <string name="demo">Demo…</string>
     <string name="saving_data">Salvataggio dati…</string>
@@ -57,50 +55,44 @@
     <string name="dashboard">Cruscotto</string>
     <string name="hud">Sovraimpressione</string>
     <string name="filter">Filtro selezionato</string>
-
     <string name="settings">Opzioni</string>
     <string name="common_settings">Opzioni comuni</string>
     <string name="measure_system_description">Sistema di misurazione (metrico/imperiale)</string>
     <string name="measure_system">Unità di misurazione</string>
     <string name="metric">metrico</string>
     <string name="imperial">imperiale</string>
-    <string name="items_for_display">Oggetti dati da visualizzare</string>
-    <string name="items_for_display_descr">Visualizza tutti gli oggetti dati…</string>
-    <string name="debugging">Debug</string>
+    <string name="items_for_display">Dati da visualizzare</string>
+    <string name="items_for_display_descr">Visualizza tutti i dati da visualizzare…</string>
+    <string name="debugging">eseguo il debug</string>
     <string name="logging_level">Livello di log</string>
     <string name="logging_level_description">Livello di dettaglio di informazioni nel file di log</string>
-    <string name="last_elm">riconnetti ultimo adattatore ELM</string>
-    <string name="last_ecu">riconnetti ultimo ECU</string>
+    <string name="last_elm">riconnetti l\'ultimo adattatore ELM</string>
+    <string name="last_ecu">riconnetti l\'ultimo ECU</string>
     <string name="last_service">ultimo servizio OBD</string>
     <string name="last_data_items">ultima modalità selezione dati</string>
     <string name="last_view_mode">ultima modalità visualizzazione dati</string>
-
     <string name="keep_screen_on">Mantieni lo schermo acceso</string>
-    <string name="keep_screen_on_description">Non spegere lo schermo se visualitta il menu principale o dati</string>
-
+    <string name="keep_screen_on_description">Non spegere lo schermo se visualizza il menu principale/dati</string>
     <string name="development_options">Opzioni sviluppatore</string>
     <string name="dev_opt_description">Opzioni per debug e personalizzazione</string>
     <string name="extension_files">File di personalizzazione protocollo (CSV)</string>
     <string name="conversions">Conversione dati</string>
-    <string name="data_items">Ogetti dati</string>
+    <string name="data_items">Oggetti dati</string>
     <string name="select_extension">Seleziona un file con estensione .csv…</string>
     <string name="extension_loading">Caricamento personalizzazione</string>
     <string name="check_cust_settings">Per favore controlla le tue impostazioni di personalizzazione
 \n</string>
-    <string name="obd_options">OBD opzioni</string>
+    <string name="obd_options">opzioni OBD</string>
     <string name="obd_opt_description">Opzioni per protocollo OBD / comunicazione con il veicolo</string>
     <string name="select_protocol">Protocollo OBD preferito</string>
-
     <string name="plugin_manager">Gestore plugin</string>
     <string name="configure">Configura</string>
-
-    <string name="select_fault_code">Seleziona codice di erroe…</string>
+    <string name="select_fault_code">Seleziona codice di errore…</string>
     <string name="select_medium">Tipo di adattatore…</string>
-
-    <string name="devices_found">%d  Dispositvi USB rilevato</string>
+    <string name="devices_found">%d Dispositivo/i USB rilevato/i</string>
     <string name="min_elm_timeout">Timeout ELM min. [ms]</string>
     <string name="unabletoconnect">Impossibile collegare il dispositivo</string>
-    <string name="connectionlost">Connessione con il dispositivo persa</string>
+    <string name="connectionlost">Persa connessione con il dispositivo</string>
     <string name="elm_timeout_descr">Timeout minimo in [ms] per attenedere una risposta dall\'ELM</string>
     <string name="day_night_mode">Modalità giorno/notte</string>
     <string name="night_mode_description">Imposta uno sfondo scuro</string>
@@ -119,14 +111,13 @@
     <string name="common_settings_description">Impostazioni comuni per controllo dell\'applicazione</string>
     <string name="secure_connect">Connessione sicura</string>
     <string name="secure_connect_description">Usa connessione Bluetooth criptata</string>
-    <string name="elm_options">ELM opzioni</string>
+    <string name="elm_options">Opzioni ELM</string>
     <string name="elm_custom_init">ELM Inizializzazione personalizzata</string>
     <string name="elm_custom_init_descr">ELM Comandi di inizializzazione personalizzata</string>
-
     <string name="UNDEFINED">Indefinito</string>
     <string name="INITIALIZING">Inizializzazione.…</string>
     <string name="INITIALIZED">Inizializzato</string>
-    <string name="ECU_DETECT">ECU ricerca…</string>
+    <string name="ECU_DETECT">Ricerca ECU…</string>
     <string name="ECU_DETECTED">ECU rilevato</string>
     <string name="CONNECTING">Connessione…</string>
     <string name="CONNECTED">Connesso</string>
@@ -141,13 +132,13 @@
     <string name="device_address_description">Indirizzo IP dispositivo ELM</string>
     <string name="device_address">Indirizzo IP ELM</string>
     <string name="device_port_description">Porta di rete del dispositivo ELM</string>
-    <string name="device_port">ELM porta IP</string>
+    <string name="device_port">Porta IP ELM</string>
     <string name="data_disable_max">Disabilita limite oggetti dati</string>
-    <string name="data_disable_max_description">Numero di risposte invalide consetutive prima che l\'oggetto sia diabilitato</string>
+    <string name="data_disable_max_description">Numero di risposte invalide consetutive prima che l\'oggetto sia disabilitato</string>
     <string name="autohide_toolbar">Nascondi barra degli oggetti</string>
-    <string name="autohide_toolbar_description">Nascondi barra degli oggetti dopo in caso di inattività</string>
-    <string name="autohide_delay">Tempo inattività per nascondere la barra oggeti [s]</string>
-    <string name="autohide_delay_description">Attesa in secondi con attività, prima che la barra oggetti sia nascosta</string>
+    <string name="autohide_toolbar_description">Nascondi barra degli oggetti in caso di inattività o dopo un dato periodo di tempo</string>
+    <string name="autohide_delay">Tempo di inattività per nascondere la barra oggetti [s]</string>
+    <string name="autohide_delay_description">Attesa di inattività in secondi, prima che la barra oggetti sia nascosta</string>
     <string name="csv_export_options">Opzioni di esportazione CSV</string>
     <string name="csv_export_description">Opzioni per formattare il file CSV</string>
     <string name="csv_field_delimiter">Delimitatore campi CSV</string>
@@ -167,6 +158,6 @@
     <string name="donation">Supporta il progetto…</string>
     <string name="libraries">Librerie…</string>
     <string name="libraries_sum">Librerie usate nel progetto…</string>
-    <string name="release_history">Storico rilasci…</string>
-
-    </resources>
+    <string name="release_history">Storico versioni…</string>
+    <string name="graphic_design">design grafico</string>
+</resources>
