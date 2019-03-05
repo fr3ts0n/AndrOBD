@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">Traduzido por carnetta</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="translation_credits">Traduzido por carnetta</string>
     <string name="title_connecting">Conectando…</string>
     <string name="title_connected_to">Conectado %s</string>
     <string name="back_again_to_exit">Pressione voltar novamente para fechar o aplicativo</string>
@@ -32,12 +33,10 @@
 \nA perda de dados pode provocar que o veículo funcione de forma 
 \nnão adequada durante um pequeno período de tempo até se 
 \nauto-recalibrar.</string>
-
     <string name="select_device">Selecione o adaptador</string>
     <string name="none_paired">Não há dispositivos pareados</string>
     <string name="none_found">Nenhum dispositivo encontrado</string>
     <string name="title_paired_devices">Dispositivos Pareados</string>
-
     <string name="send_to">Enviar para</string>
     <string name="share">compartilhar</string>
     <string name="time">Tempo [s]</string>
@@ -50,14 +49,12 @@
     <string name="saved_data">Dados Salvos</string>
     <string name="loaded">carregado</string>
     <string name="saved">salvo</string>
-
     <string name="connected_to">Conectado a</string>
     <string name="demo">Demo…</string>
     <string name="saving_data">Salvando dados …</string>
     <string name="loading_data">Carregando dados …</string>
     <string name="dashboard">Painel de controle</string>
     <string name="filter">Filtro selecionado</string>
-
     <string name="settings">Configurações</string>
     <string name="common_settings">Configurações padrão</string>
     <string name="measure_system_description">Sistema de medidas (métrico/imperial)</string>
@@ -74,10 +71,11 @@
     <string name="last_ecu">reconectar último ECU</string>
     <string name="last_service">último serviço OBD</string>
     <string name="last_view_mode">último modo de visualização de dados</string>
-
     <string name="keep_screen_on">manter tela principal ligada</string>
     <string name="development_options">Opções de desenvolvimento</string>
     <string name="extension_files">Arquivos de customização de protocolo (csv)</string>
     <string name="conversions">Conversões de Dados</string>
     <string name="data_items">Itens de dados</string>
+    <string name="last_data_items">últimos itens de dados selecionados</string>
+    <string name="keep_screen_on_description">NÃO desligue a tela se a tela principal/de dados está ativa</string>
 </resources>
