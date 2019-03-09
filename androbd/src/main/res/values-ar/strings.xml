@@ -1,2 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="translation_credits">تمت الترجمه للغة العربيه من قبل محمود المومني</string>
+    <string name="app_description">"تطبيق لفحص السيارات بإستخدام ELM327 "</string>
+    <string name="title_connecting">جار الإتصال …</string>
+    <string name="title_connected_to">تم الإتصال %s</string>
+    <string name="logo">الشعار</string>
+    <string name="back_again_to_exit">إضغط رجوع مرة أخرى لإغلاق التطبيق</string>
+    <string name="action_connect">إتصال</string>
+    <string name="obd_none">لا يوجد خدمه</string>
+    <string name="obd_services">خدمات OBD</string>
+    <string name="obd_veh_info">"معلومات السياره "</string>
+    <string name="obd_data">بيانات OBD</string>
+    <string name="service_freezeframes">OBD Freeze Frames</string>
+    <string name="obd_codes">رموز الخطأ OBD</string>
+    <string name="obd_permanentcodes">رموز الخطأ OBD (الدائم)</string>
+    <string name="obd_pendingcodes">رموز الخطأ OBD (معلقة)</string>
+    <string name="obd_clearcodes">حذف الأعطال</string>
+    <string name="obd_clear_info">وهذا إعادة تعيين ميل ومسح جميع المعلومات التشخيصية المتعلقة بالانبعاثات، بما في ذلك:-
+\nتشخيص المشاكل والمدونات
+\n-تجميد الإطار البيانات
+\n-مجس الأوكسجين اختبار البيانات
+\n-وضع نظام مراقبة الاختبارات
+\n-الرصد على متن اختبارات النتائج
+\n-المسافة حين مل المنشط
+\n-مسح عدد وارموبس منذ DTCs
+\n-سافر مسافة منذ مسح DTCs
+\n-مشغل وقت التشغيل أثناء تنشيط شركة مالونغوشي
+\n-قد تحدث مرة منذ مسح DTCs الأخرى المصنعة للمقاصة/إعادة تعيين إجراءات محددة.
+\n قد يتسبب في فقدان البيانات المركبة لتشغيل سيئة لفترة قصيرة من الزمن أثناء معايرة ECU حد ذاته.</string>
+    <string name="select_device">"إختار وصلة الفحص "</string>
+    <string name="none_paired">"لا يوجد أجهزة مقترنه "</string>
+    <string name="none_found">لا يوجد أجهزه متاحه</string>
+    <string name="title_paired_devices">الأجهزه المقترنه</string>
+    <string name="send_to">"إرسال إلى "</string>
+    <string name="share">مشاركه</string>
+    <string name="time">الوقت [s]</string>
+    <string name="chart">الرسم البياني</string>
+    <string name="snapshot">لقطة شاشه</string>
+    <string name="save">حفظ القرائات</string>
+    <string name="load">اضافة قياس</string>
+    <string name="saved_data">حفظ البيانات</string>
+    <string name="loaded">تم التحميل</string>
+    <string name="saved">تم الحفظ بنجاح</string>
+    <string name="connected_to">"متصل إلى "</string>
+    <string name="demo">تجريبي…</string>
+    <string name="saving_data">جار الحفظ …</string>
+    <string name="loading_data">تحميل البيانات…</string>
+    <string name="dashboard">لوحة العدادات</string>
+    <string name="filter">عامل التصفية المحدد</string>
+    <string name="settings">الإعدادات</string>
+    <string name="common_settings">إعدادات عامة</string>
+    <string name="measure_system_description">"نظام قياس الوحدات "</string>
+    <string name="measure_system">وحدات القياس</string>
+    <string name="metric">كيلو متر</string>
+    <string name="imperial">ميل</string>
+    <string name="items_for_display">عناصر البيانات المراد عرضها</string>
+    <string name="items_for_display_descr">حدد كافة عناصر البيانات ليتم عرضها…</string>
+    <string name="debugging">تصحيح الأخطاء</string>
+    <string name="logging_level">مستوى تسجيل الدخول</string>
+    <string name="logging_level_description">مستوى التفاصيل تسجيل الدخول إلى ملف سجل التصحيح</string>
+    <string name="last_elm">إعادة الاتصال الجهاز الأخير</string>
+    <string name="last_ecu">إعادة الاتصال ECU الأخير</string>
+    <string name="last_service">اخر خدمة OBD</string>
+    <string name="last_data_items">آخر عناصر البيانات المحددة</string>
+    <string name="last_view_mode">آخر طريقة عرض البيانات</string>
+    <string name="keep_screen_on">ابقاء الشاشة تعمل</string>
+    <string name="keep_screen_on_description">عدم إيقاف تشغيل الشاشة إذا كانت الشاشة الرئيسية والبيانات في العرض</string>
+    <string name="development_options">"إعدادات المطورين "</string>
+    <string name="dev_opt_description">خيارات للتخصيص وتصحيح الأخطاء</string>
+    <string name="conversions">تحويل البيانات</string>
+    <string name="data_items">عناصر البيانات</string>
+    <string name="obd_options">اعدادات OBD</string>
+    <string name="obd_opt_description">خيارات لبروتوكول OBD/قطع الاتصال</string>
+    <string name="select_protocol">بروتوكول OBD المفضل</string>
+    <string name="plugin_manager">مدير الإضافات</string>
+    <string name="configure">تهيئه</string>
+    <string name="select_fault_code">حدد رمز الخطأ…</string>
+    <string name="select_medium">نوع الوصله …</string>
+    <string name="devices_found">%d USB الجهاز (الأجهزة) العثور على</string>
+    <string name="unabletoconnect">غير قادر على توصيل الجهاز</string>
+    <string name="connectionlost">انقطع اتصال الجهاز</string>
+    <string name="day_night_mode">وضع الشاشه ليلي \\ نهاري</string>
+    <string name="night_mode_description">تعيين إلى خلفية داكنة</string>
+    <string name="night_mode">الوضع اليلي</string>
+    <string name="disconnect">قطع الإتصال</string>
+    <string name="use_last_settings">استخدام الإعدادات الأخيرة</string>
+    <string name="common_settings_description">إعدادات عامة لمراقبة التطبيق</string>
+    <string name="secure_connect">اتصال أمن</string>
+    <string name="elm_options">اعدادات ELM</string>
+    <string name="UNDEFINED">غير موجود
+\n</string>
+    <string name="INITIALIZING">تهيئة…</string>
+    <string name="INITIALIZED">تهيئة</string>
+    <string name="ECU_DETECT">تم التعرف على ECU…</string>
+    <string name="ECU_DETECTED">… تم تحديد ال ECU</string>
+    <string name="CONNECTING">جار الإتصال …</string>
+    <string name="CONNECTED">متصل</string>
+    <string name="NODATA">لا توجد بيانات</string>
+    <string name="STOPPED">توقفت</string>
+    <string name="DISCONNECTED">غير متصل</string>
+    <string name="DATAERROR">خطأ في البيانات</string>
+    <string name="RXERROR">خطأ RX</string>
+    <string name="ERROR">خطأ</string>
+    <string name="obd_error">خطأ بروتوكول OBD</string>
+    <string name="data_disable_max_description">عدد الاستجابات بيانات متتالية غير صالحة قبل أن يتم تعطيل العنصر</string>
+    <string name="autohide_toolbar">إخفاء شريط الأدوات</string>
+    <string name="autohide_toolbar_description">إخفاء شريط الأدوات تلقائياً بعد تأخير ث/س النشاط</string>
+    <string name="autohide_delay">إخفاء شريط أدوات تأخير [s]</string>
+    <string name="csv_export_options">خيارات تصدير CSV</string>
+    <string name="license">الترخيص…</string>
+    <string name="donation">دعم المشروع…</string>
+    <string name="libraries">المكتبات…</string>
+    <string name="libraries_sum">المكتبات المستخدمة في المشروع…</string>
+    <string name="release_history">تاريخ الإصدار …</string>
+    <string name="graphic_design">تصميم الرسوم البيانية</string>
+</resources>
