@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_connect">Verbinden</string>
     <string name="app_description">Android App für die OBD Fahrzeugdiagnose mit ELM327 Bluetooth Adapter</string>
@@ -10,7 +10,7 @@
     <string name="obd_clearcodes">Fehlercodes löschen</string>
     <string name="obd_codes">OBD Fehlercodes</string>
     <string name="obd_data">OBD Daten</string>
-    <string name="obd_none">KEIN Dienst</string>
+    <string name="obd_none">Kein Dienst</string>
     <string name="obd_pendingcodes">OBD Fehlercodes (drohend)</string>
     <string name="obd_permanentcodes">OBD Fehlercodes (permanent)</string>
     <string name="obd_services">OBD Dienste</string>
@@ -43,16 +43,16 @@
     <string name="save">Messung speichern</string>
     <string name="saved_data">Gespeicherte Daten</string>
     <string name="snapshot">Schnappschuss</string>
-	<string name="loaded">geladen</string>
-	<string name="saved">gespeichert</string>
-	<string name="connected_to">Verbunden mit</string>
-	<string name="demo">Demo…</string>
-	<string name="saving_data">Speichere Daten…</string>
-	<string name="dashboard">Dashboard</string>
+    <string name="loaded">geladen</string>
+    <string name="saved">gespeichert</string>
+    <string name="connected_to">Verbunden mit</string>
+    <string name="demo">Demo…</string>
+    <string name="saving_data">Speichere Daten…</string>
+    <string name="dashboard">Dashboard</string>
     <string name="hud">Head Up Display</string>
-	<string name="metric">metrisch</string>
-	<string name="measure_system">Masseinheiten</string>
-	<string name="imperial">imperial</string>
+    <string name="metric">metrisch</string>
+    <string name="measure_system">Masseinheiten</string>
+    <string name="imperial">imperial</string>
     <string name="settings">Einstellungen</string>
     <string name="measure_system_description">Masseinheiten (metrisch/imperial)</string>
     <string name="logging_level_description">Details die zur Fehlerfindung gespeichert werden</string>
@@ -130,7 +130,7 @@
     <string name="elm_reset_on_nrc_descr">ELM Reset bei NRC-Fehler?</string>
     <string name="autohide_toolbar">Toolbar ausblenden</string>
     <string name="autohide_toolbar_description">Toolbar automatisch nach Inaktivität verstecken</string>
-<string name="autohide_delay_description">Sekunden ohne Aktivität, bevor Toolbar versteckt wird</string>
+    <string name="autohide_delay_description">Sekunden ohne Aktivität, bevor Toolbar versteckt wird</string>
     <string name="autohide_delay">Toolbar nach [s] Sekunden ausblenden</string>
     <string name="csv_export_description">Optionen zur Formatierung von CSV Export-Dateien</string>
     <string name="csv_export_options">CSV Export Optionen</string>
@@ -156,5 +156,5 @@
     <string name="libraries">Bibliotheken…</string>
     <string name="libraries_sum">Im Projekt verwendete Bibliotheken …</string>
     <string name="release_history">Versionen …</string>
-<string name="graphic_design">Grafisches Design</string>
-    </resources>
+    <string name="graphic_design">Grafisches Design</string>
+</resources>
