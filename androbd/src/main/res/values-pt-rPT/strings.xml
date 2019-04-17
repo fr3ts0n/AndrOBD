@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="translation_credits">Tradução por Manuela Silva</string>
+<resources>
+    <string name="translation_credits">Tradução por Manuela Silva</string>
     <string name="title_connecting">A ligar…</string>
     <string name="title_connected_to">Ligado %s</string>
     <string name="logo">Logótipo</string>
@@ -14,7 +15,6 @@
     <string name="none_paired">Sem Dispositivos Emparelhados</string>
     <string name="none_found">Nenhuns Dispositivos Encontrados</string>
     <string name="title_paired_devices">Dispositivos Emparelhados</string>
-
     <string name="send_to">Enviar para</string>
     <string name="share">partilhar</string>
     <string name="chart">Gráfico</string>
@@ -40,7 +40,6 @@
     <string name="load">Carregar cálculo</string>
     <string name="loaded">carregado</string>
     <string name="saved">guardado</string>
-
     <string name="connected_to">"Ligado a "</string>
     <string name="filter">Filtro selecionado</string>
     <string name="measure_system">Unidades métricas</string>
@@ -57,7 +56,6 @@
     <string name="select_protocol">"Protocolo OBD preferido "</string>
     <string name="select_fault_code">Selecionar código de falhas…</string>
     <string name="select_medium">Tipo de adaptador…</string>
-
     <string name="devices_found">%d dispositivo(s) USB encontrado(s)</string>
     <string name="day_night_mode">Modo de visualização Dia/Noite</string>
     <string name="night_mode_description">Definir ecrã para fundo escuro</string>
@@ -107,20 +105,16 @@
 \n Podem ocorrer outras ações de compensação/redefinição específicas do fabricante.
 \n A perda de dados pode fazer com que o veículo funcione mal por um curto
 \n período de tempo, enquanto o ECU se recalibra.</string>
-
     <string name="time">Tempo [s]</string>
     <string name="graph_actions">Ações de gráfico</string>
     <string name="hud">O head-up display</string>
-    <string name="unfilter">Des-filtrar os seleccionados</string>
-
+    <string name="unfilter">Limpar filtro de selecção</string>
     <string name="logging_level_description">Nível de detalhes a serem registrados no arquivo de log de depuração</string>
     <string name="master">mestre</string>
     <string name="process_vars">variáveis de processo</string>
     <string name="last_view_mode">último modo de exibição de dados</string>
-
     <string name="keep_screen_on">Manter o ecrã principal ligado</string>
     <string name="keep_screen_on_description">Não DESLIGAR se no ecrã principal/ecrã de dados estiver em exibição</string>
-
     <string name="dev_opt_description">Opções de depuração e de personalização</string>
     <string name="select_extension">Selecione ficheiro de extensão .csv …</string>
     <string name="extension_loading">Carregando personalização</string>
@@ -128,7 +122,6 @@
     <string name="obd_opt_description">Opções para o protocolo OBD / comunicação do veículo</string>
     <string name="plugin_manager">Gerenciador de plugins</string>
     <string name="configure">Configurar</string>
-
     <string name="min_elm_timeout">Min. tempo limite de ELM [ms]</string>
     <string name="unabletoconnect">Não é possível ligar o dispositivo</string>
     <string name="connectionlost">A conexão do dispositivo foi perdida</string>
@@ -145,7 +138,6 @@
     <string name="last_none">NENHUM</string>
     <string name="elm_custom_init">Inicialisação personalizada do ELM</string>
     <string name="elm_custom_init_descr">Comandos de inicialização personalizados ELM</string>
-
     <string name="UNDEFINED">Indefinido</string>
     <string name="INITIALIZED">Inicializado</string>
     <string name="device_address_description">Endereço de rede IP do dispositivo ELM</string>
@@ -172,6 +164,5 @@
     <string name="libraries">Bibliotecas …</string>
     <string name="libraries_sum">Bibliotecas utilizadas no projeto …</string>
     <string name="release_history">Histórico de lançamento …</string>
-
     <string name="graphic_design">Design gráfico</string>
-    </resources>
+</resources>
