@@ -89,21 +89,21 @@
     <string name="obd_permanentcodes">Códigos de falhas (permanente)</string>
     <string name="obd_pendingcodes">Códigos de falhas (pendente)</string>
     <string name="service_freezeframes">OBD Freeze Frames</string>
-    <string name="obd_clear_info">Isso irá redefinir o MIL e limpar todas as emissões relacionadas com o diagnóstico
-\n informações incluem:
-\n - Códigos de diagnóstico de problemas
-\n - Congelar dados frame
-\n - Dados de teste do sensor de oxigênio
-\n - Estado dos testes de monitorização do sistema
-\n - Resultados de testes de monitorização a bordo
-\n - Distância percorrida enquanto MIL ativado
-\n - Número de warm-ups desde DTCs apuradas
-\n - Distância percorrida desde DTCs desmarcada
-\n - Tempo de funcionamento do motor com MIL ativado
-\n - T mpo desde limpar DTCs
-\n
-\n Podem ocorrer outras ações de compensação/redefinição específicas do fabricante.
-\n A perda de dados pode fazer com que o veículo funcione mal por um curto
+    <string name="obd_clear_info">Isso irá redefinir o MIL e limpar todas as emissões relacionadas às informações
+\n diagnósticas, incluindo: 
+\n - Códigos de diagnóstico de problemas 
+\n - Dados de freeze frame 
+\n - Dados de teste do sensor de oxigênio 
+\n - Estado dos testes de monitorização do sistema 
+\n - Resultados de testes de monitorização a bordo 
+\n - Distância percorrida com MIL ativado
+\n - Quantidade de warm-ups desde limpar os DTCs
+\n - Distância percorrida desde limpar os DTCs 
+\n - Tempo de funcionamento do motor com MIL ativado 
+\n - Tempo desde limpar DTCs 
+\n 
+\n Podem ocorrer outras ações de compensação/redefinição específicas do fabricante. 
+\n A perda de dados pode fazer com que o veículo funcione mal por um curto 
 \n período de tempo, enquanto o ECU se recalibra.</string>
     <string name="time">Tempo [s]</string>
     <string name="graph_actions">Ações de gráfico</string>
