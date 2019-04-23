@@ -86,7 +86,7 @@
 \n</string>
     <string name="select_protocol">Protocolo OBD preferido</string>
     <string name="select_fault_code">Seleccione el código de error …</string>
-    <string name="select_medium">Tipo de adaptador …</string>
+    <string name="select_medium">Tipo de adaptador…</string>
     <string name="devices_found">%d dispositivo(s) USB encontrado(s)</string>
     <string name="unabletoconnect">Imposible conectar con el dispositivo</string>
     <string name="night_mode">Modo noche</string>
@@ -155,10 +155,10 @@
     <string name="send_after_export_descr">¿Desea se pregunte cuando se envie el archivo CSV, justo después de la exportación\?</string>
     <string name="toolbar_overlay">Mostrar como capa sobrepuesta</string>
     <string name="toolbar_overlay_sum">Mostrar barra de herramientas superpuesta en la pantalla principal</string>
-    <string name="license">Licenciamiento …</string>
-    <string name="donation">Proyecto de apoyo …</string>
+    <string name="license">Licenciamiento…</string>
+    <string name="donation">Proyecto de apoyo…</string>
     <string name="libraries">Librerias…</string>
-    <string name="libraries_sum">Librerias utilizadas en proyecto …</string>
-    <string name="release_history">Historial de publicación …</string>
+    <string name="libraries_sum">Librerias utilizadas en proyecto…</string>
+    <string name="release_history">Historial de publicación…</string>
     <string name="graphic_design">Diseño gráfico</string>
 </resources>
