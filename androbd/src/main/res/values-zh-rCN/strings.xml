@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">由kissstudio翻译</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="translation_credits">由kissstudio翻译</string>
     <string name="app_description">Android OBD，用于ELM327蓝牙适配器的车辆诊断应用</string>
     <string name="title_connecting">正在连接…</string>
     <string name="title_connected_to">已连接 %s</string>
@@ -30,12 +31,10 @@
 \n· 可能执行其他由制造商指定的清除/重置动作。
 \n· 在ECU重新校准自身的时间段内缺失的数据可能造成车辆短时间的运行状况不佳.
 \n</string>
-
     <string name="select_device">选择适配器类型</string>
     <string name="none_paired">没有配对设备</string>
     <string name="none_found">未发现设备</string>
     <string name="title_paired_devices">已配对的设备</string>
-
     <string name="send_to">发送到</string>
     <string name="share">分享</string>
     <string name="time">时间 [s]</string>
@@ -48,7 +47,6 @@
     <string name="saved_data">已保存的数据</string>
     <string name="loaded">已加载</string>
     <string name="saved">已保存</string>
-
     <string name="connected_to">"连接到 "</string>
     <string name="demo">演示…</string>
     <string name="saving_data">正在保存数据…</string>
@@ -56,7 +54,6 @@
     <string name="dashboard">仪表盘</string>
     <string name="hud">平视显示</string>
     <string name="filter">筛选条件</string>
-
     <string name="settings">设置</string>
     <string name="common_settings">通用设置</string>
     <string name="measure_system_description">度量单位（米制/英制）</string>
@@ -73,10 +70,8 @@
     <string name="last_service">上次的OBD服务</string>
     <string name="last_data_items">上次选择的数据项</string>
     <string name="last_view_mode">上次的数据查看模式</string>
-
     <string name="keep_screen_on">保持主屏幕开启</string>
     <string name="keep_screen_on_description">当主屏幕/数据屏幕显示时不要关闭屏幕</string>
-
     <string name="development_options">开发选项</string>
     <string name="dev_opt_description">用于调试和自定义的选项</string>
     <string name="extension_files">协议定制文件（CSV）</string>
@@ -88,13 +83,10 @@
     <string name="obd_options">OBD选项</string>
     <string name="obd_opt_description">OBD协议/车辆通信选项</string>
     <string name="select_protocol">优先的OBD协议</string>
-
     <string name="plugin_manager">插件管理器</string>
     <string name="configure">配置</string>
-
     <string name="select_fault_code">选择故障码…</string>
     <string name="select_medium">适配器类型…</string>
-
     <string name="devices_found">找到 %d 个USB设备</string>
     <string name="min_elm_timeout">最小ELM超时时间 [ms]</string>
     <string name="unabletoconnect">无法连接到设备</string>
@@ -120,7 +112,6 @@
     <string name="elm_options">EML选项</string>
     <string name="elm_custom_init">EML自定义初始化</string>
     <string name="elm_custom_init_descr">ELM自定义初始化指令</string>
-
     <string name="UNDEFINED">未定义</string>
     <string name="INITIALIZING">正在初始化…</string>
     <string name="INITIALIZED">初始化完成</string>
@@ -166,5 +157,5 @@
     <string name="libraries">三方库…</string>
     <string name="libraries_sum">项目中使用的三方库…</string>
     <string name="release_history">发布历史…</string>
-
-    </resources>
+    <string name="graphic_design">平面设计</string>
+</resources>
