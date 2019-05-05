@@ -90,4 +90,22 @@
     <string name="libraries_sum">Bibliotek brukt i prosjektet…</string>
     <string name="release_history">Utgivelseshistorikk…</string>
     <string name="graphic_design">Grafisk design</string>
+    <string name="none_paired">Ingen parrede enheter</string>
+    <string name="title_paired_devices">Parrede enheter</string>
+    <string name="time">Tid [s]</string>
+    <string name="filter">Valgt filter</string>
+    <string name="last_elm">koble til forrige ELM-adapter igjen</string>
+    <string name="last_ecu">koble til forrige ECU igjen</string>
+    <string name="dev_opt_description">Valg for feilretting og tilpasning</string>
+    <string name="extension_files">Protokolltilpasningsfiler (CSV)</string>
+    <string name="elm_reset_on_nrc">Tilbakestill ved NRC</string>
+    <string name="elm_reset_on_nrc_descr">Tilbakestill ELM-adapter ved NRC-feil\?</string>
+    <string name="reset_preselections">Tilbakestill siste forhåndsforvalg</string>
+    <string name="common_settings_description">Grunnleggende innstillinger for program-styring</string>
+    <string name="secure_connect_description">Bruk kryptert Blåtannstilkobling</string>
+    <string name="device_address">ELM-IP-adresse</string>
+    <string name="device_port">ELM-IP-port</string>
+    <string name="csv_export_options">CSV-eksporteringsvalg</string>
+    <string name="csv_export_description">Valg for formatering av CSV-eksportfiler</string>
+    <string name="toolbar_overlay">Vis som overlag</string>
 </resources>
