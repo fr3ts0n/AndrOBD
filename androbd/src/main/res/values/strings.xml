@@ -1,10 +1,10 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
     <string name="copyright_fr3ts0n" translatable="false">© 2015-2018 fr3ts0n</string>
     <string name="translation_credits">Translation by fr3ts0n</string>
-    <string name="app_description">Android OBD vehicle diagnostics app for ELM327 bluetooth adapter</string>
+    <string name="app_description">Android OBD vehicle diagnostics app for ELM327 Bluetooth adapter</string>
     <string name="title_connecting">Connecting…</string>
     <string name="title_connected_to">Connected %s</string>
     <string name="logo">Logo</string>
@@ -37,13 +37,11 @@ Other manufacturer specific clearing/resetting actions may occur.\n
 The loss of data may cause the vehicle to run poorly for a short \n
 period of time while the ECU recalibrates itself.
      </string>
-
     <!--  BtDeviceListActivity -->
     <string name="select_device">Select adapter</string>
     <string name="none_paired">No Devices Paired</string>
     <string name="none_found">No Devices Found</string>
     <string name="title_paired_devices">Paired Devices</string>
-
     <!-- ExportTask -->
     <string name="send_to">Send to</string>
     <string name="share">share</string>
@@ -57,7 +55,6 @@ period of time while the ECU recalibrates itself.
     <string name="saved_data">Saved Data</string>
     <string name="loaded">loaded</string>
     <string name="saved">saved</string>
-
     <string name="connected_to">"Connected to "</string>
     <string name="demo">Demo…</string>
     <string name="saving_data">Saving data …</string>
@@ -65,7 +62,6 @@ period of time while the ECU recalibrates itself.
     <string name="dashboard">Dashboard</string>
     <string name="hud">Head Up Display</string>
     <string name="filter">Filter selected</string>
-
     <!-- Settings -->
     <string name="settings">Settings</string>
     <string name="common_settings">Common settings</string>
@@ -84,7 +80,6 @@ period of time while the ECU recalibrates itself.
     <string name="items_for_display">Data items to display</string>
     <string name="items_for_display_descr">Select all data items to be displayed …</string>
     <string-array name="empty" translatable="false"/>
-
     <string name="debugging">Debugging</string>
     <string name="logging_level">Logging level</string>
     <string name="logging_level_description">Level of details to be logged into debug log file</string>
@@ -99,7 +94,6 @@ period of time while the ECU recalibrates itself.
         <item>FINEST</item>
         <item>ALL</item>
     </string-array>
-
     <!--
     * key values for restore options
     * - must align with enum MainActivity.PRESELECT
@@ -111,7 +105,6 @@ period of time while the ECU recalibrates itself.
         <item>LAST_ITEMS</item>
         <item>LAST_VIEW_MODE</item>
     </string-array>
-
     <!--
     * display values for restore options
     * - must align with enum MainActivity.PRESELECT
@@ -123,19 +116,16 @@ period of time while the ECU recalibrates itself.
         <item>@string/last_data_items</item>
         <item>@string/last_view_mode</item>
     </string-array>
-
     <string name="last_elm">re-connect last ELM-adapter</string>
     <string name="last_ecu">re-connect last ECU</string>
     <string name="last_service">last OBD service</string>
     <string name="last_data_items">last selected data items</string>
     <string name="last_view_mode">last data view mode</string>
-
     <string name="keep_screen_on">Keep main screen on</string>
     <string name="keep_screen_on_description">Do not turn OFF screen if main/data screen is on display</string>
-
     <string name="development_options">Development options</string>
     <string name="dev_opt_description">Options for debugging and customisation</string>
-    <string name="extension_files">Protocol customisation files (csv)</string>
+    <string name="extension_files">Protocol customisation files (CSV)</string>
     <string name="conversions">Data Conversions</string>
     <string name="data_items">Data items</string>
     <string name="select_extension">Select .csv extension file …</string>
@@ -144,13 +134,10 @@ period of time while the ECU recalibrates itself.
     <string name="obd_options">OBD options </string>
     <string name="obd_opt_description">Options for OBD protocol / vehicle communication </string>
     <string name="select_protocol">Preferred OBD protocol </string>
-
     <string name="plugin_manager">Plugin manager</string>
     <string name="configure">Configure</string>
-
     <string name="select_fault_code">Select fault code …</string>
     <string name="select_medium">Adapter type …</string>
-
     <string name="devices_found">%d USB device(s) found</string>
     <string name="min_elm_timeout">Min. ELM timeout [ms]</string>
     <string name="unabletoconnect">Unable to connect device</string>
@@ -176,7 +163,6 @@ period of time while the ECU recalibrates itself.
     <string name="elm_options">ELM options</string>
     <string name="elm_custom_init">ELM custom init</string>
     <string name="elm_custom_init_descr">ELM custom initialisation commands</string>
-
     <!-- ELM communication states -->
     <string name="UNDEFINED">Undefined</string>
     <string name="INITIALIZING">Initializing…</string>
@@ -220,7 +206,6 @@ period of time while the ECU recalibrates itself.
         <item>@string/RXERROR</item>
         <item>@string/ERROR</item>
     </string-array>
-
     <!-- CSV export options -->
     <string name="csv_export_options">CSV export options</string>
     <string name="csv_export_description">Options for formatting CSV export files</string>
@@ -242,7 +227,6 @@ period of time while the ECU recalibrates itself.
     <string name="libraries">Libraries …</string>
     <string name="libraries_sum">Libraries used in project …</string>
     <string name="release_history">Release history …</string>
-
     <string name="app_license_sum" translatable="false">
         Connect to your car\'s OBD system\n
         * GNU General Public License v3.0
@@ -283,5 +267,4 @@ period of time while the ECU recalibrates itself.
         <item>\n</item>
         <item>\r\n</item>
     </string-array>
-
 </resources>
