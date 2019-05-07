@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">Översättning av fr3ts0n</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="translation_credits">Översättning av fr3ts0n</string>
     <string name="title_connecting">Ansluter…</string>
     <string name="title_connected_to">Anslöt %s</string>
     <string name="logo">Logotyp</string>
@@ -17,7 +18,6 @@
     <string name="none_paired">Inga parade enheter</string>
     <string name="none_found">Inga enheter hittades</string>
     <string name="title_paired_devices">Parade enheter</string>
-
     <string name="share">dela</string>
     <string name="time">Klockslag [s]</string>
     <string name="chart">Kartlägg</string>
@@ -29,7 +29,6 @@
     <string name="saved_data">Sparade data</string>
     <string name="loaded">laddad</string>
     <string name="saved">sparat</string>
-
     <string name="connected_to">"Ansluten till "</string>
     <string name="demo">Demo…</string>
     <string name="saving_data">Sparar data …</string>
@@ -44,7 +43,7 @@
     <string name="debugging">Avlusar</string>
     <string name="logging_level">Loggningsnivå</string>
     <string name="keep_screen_on">Behåll den huvudsakliga skärmen på</string>
-    <string name="app_description">Android ODB fordonsdiagnostiksapp för ELM327 bluetooth-adapter</string>
+    <string name="app_description">Android ODB fordonsdiagnostiksapp för blåtandsadaptern ELM327</string>
     <string name="service_freezeframes">OBD-frysta ramar</string>
     <string name="obd_clear_info">Detta kommer att åẗerställa MIL och rensa all utsläppsrelaterad
 \n diagnostikinformation, inklusive
@@ -62,25 +61,21 @@
 \n Andra tillverkarspecificka rensnings-/återställningsåtgärder kan inträffa.
 \n Förlusten av data kan få fordonet att köra dåligt under en kort period
 \n medan ECU:n återkalibrerar sig själv.</string>
-
     <string name="send_to">Skicka till</string>
     <string name="hud">Heads-up-display</string>
-
     <string name="measure_system_description">Mätsystemsenheter (metriska / brittiska)</string>
     <string name="measure_system">Mätsystemsenheter</string>
     <string name="items_for_display">Dataobjekt att visa</string>
     <string name="logging_level_description">Detaljnivå som ska loggas i loggfil för felsökning</string>
-    <string name="last_elm">återanslut senaste ELM-adapter</string>
+    <string name="last_elm">anslut senaste ELM-adaptern igen</string>
     <string name="last_ecu">återanslut senaste ECU</string>
     <string name="last_service">senaste OBD-tjänst</string>
     <string name="last_data_items">senast valda dataobjekt</string>
     <string name="last_view_mode">senaste läge för datavy</string>
-
     <string name="keep_screen_on_description">Stäng inte AV skärmen om huvud-/dataskärm visas</string>
-
     <string name="development_options">Utvecklingsalternativ</string>
     <string name="dev_opt_description">Alternativ för felsökning och anpassning</string>
-    <string name="extension_files">Anpassningsfiler för protokoll (csv)</string>
+    <string name="extension_files">Protokollets anpassningsfiler (CSV)</string>
     <string name="conversions">Datakonverteringar</string>
     <string name="data_items">Dataobjekt</string>
     <string name="select_extension">Välj fil med .csv-filändelse…</string>
@@ -90,13 +85,10 @@
     <string name="obd_options">OBD-alternativ</string>
     <string name="obd_opt_description">Alternativ för OBD-protokoll/fordonskommunikation</string>
     <string name="select_protocol">Önskat OBD-protokoll</string>
-
     <string name="plugin_manager">Instickshanterare</string>
     <string name="configure">Konfigurera</string>
-
     <string name="select_fault_code">Välj felkod…</string>
     <string name="select_medium">Adaptertyp…</string>
-
     <string name="devices_found">%d USB-enheter funna</string>
     <string name="min_elm_timeout">Min. ELM-tidsgräns [ms]</string>
     <string name="unabletoconnect">Kan inte ansluta till enhet</string>
@@ -122,7 +114,6 @@
     <string name="elm_options">ELM-alternativ</string>
     <string name="elm_custom_init">Anpassad ELM-initialisering</string>
     <string name="elm_custom_init_descr">Anpassade ELM-initialiseringskommandon</string>
-
     <string name="UNDEFINED">Odefinierad</string>
     <string name="INITIALIZING">Initialiserar…</string>
     <string name="INITIALIZED">Intialiserad</string>
@@ -168,6 +159,5 @@
     <string name="libraries">Bibliotek…</string>
     <string name="libraries_sum">Bibliotek som använts i projektet…</string>
     <string name="release_history">Versionshistorik…</string>
-
     <string name="graphic_design">Grafisk design</string>
-    </resources>
+</resources>
