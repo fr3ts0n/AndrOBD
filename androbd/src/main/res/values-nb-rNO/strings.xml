@@ -108,4 +108,5 @@
     <string name="csv_export_options">CSV-eksporteringsvalg</string>
     <string name="csv_export_description">Valg for formatering av CSV-eksportfiler</string>
     <string name="toolbar_overlay">Vis som overlag</string>
+    <string name="toolbar_overlay_sum">Vis verktøyslinje over hovedskjermen</string>
 </resources>
