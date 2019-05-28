@@ -109,4 +109,55 @@
     <string name="csv_export_description">Valg for formatering av CSV-eksportfiler</string>
     <string name="toolbar_overlay">Vis som overlag</string>
     <string name="toolbar_overlay_sum">Vis verktøyslinje over hovedskjermen</string>
+    <string name="app_description">Android OBD-kjøretøydiagnostikkprogram for ELM327-Blåtannsadapter</string>
+    <string name="service_freezeframes">Fryste OBD-rammer</string>
+    <string name="obd_clear_info">Dette vil tilbakestille MIL og tømme all utslippsrelatert diagnostikk
+\n informasjon, inkludert:
+\n - Diagnostikkfeilkoder
+\n - Data fra fryste rammer
+\n - Oksygenføler-testdata
+\n - Status for systemovervåkningstester
+\n - Innebygde overvåknings-testresultater
+\n - Kjøredistanse med MIL påslått
+\n - Antall oppvarminger siden DTC-er ble tømt
+\n - Kjøredistanse siden DTC-er ble tømt
+\n - Motorkjøretid med MIL påslått
+\n - Tid siden DTC-er ble tømt
+\n
+\n Andre fabrikantspesifikke tømmings/tilbakestillings-handlinger kan opptre.
+\n Datatap kan forårsake at kjøretøyet fungerer dårlig en kort 
+\n periode mens ECU-en rekalibrerer seg selv.</string>
+    <string name="dashboard">Instrumentpanel</string>
+    <string name="hud">Frontrutevisualiseringspanel</string>
+    <string name="measure_system_description">Målingenhetssystem (metrisk / imperialt)</string>
+    <string name="last_service">siste OBD-service</string>
+    <string name="keep_screen_on">Behold hovedskjerm påslått</string>
+    <string name="keep_screen_on_description">Ikke skru AV skjermen hvis hoved-dataskjerm vises</string>
+    <string name="conversions">Datakonverteringer</string>
+    <string name="extension_loading">Tilpasning lastes inn</string>
+    <string name="check_cust_settings">Sjekk dine tilpasningsinnstillinger
+\n</string>
+    <string name="obd_opt_description">Valg for OBD-protokoll / kjøretøykommunikasjon</string>
+    <string name="min_elm_timeout">Min. ELM-tidsavbrudd [ms]</string>
+    <string name="elm_timeout_descr">Minste tidsavbrudd i [ms] å vente på ELM-svar</string>
+    <string name="elm_adaptive_timing">Adaptiv ELM-tidtakning</string>
+    <string name="elm_adaptive_timing_descr">Tillat adaptiv tidtakning i ELM-driverrutiner\?</string>
+    <string name="use_last_settings_description">Bruk siste innstillinger ved oppstart (BT-adresse, ECU-adresse, visningselementer …)</string>
+    <string name="elm_custom_init">Tilpasset ELM-igangsetting</string>
+    <string name="elm_custom_init_descr">Egendefinerte ELM-igangsettingskommandoer</string>
+    <string name="device_address_description">Nettverks-IP-adresse for ELM-enhet</string>
+    <string name="device_port_description">Nettverks-IP-port for ELM-enhet</string>
+    <string name="data_disable_max">Tidsgrense for avstengning av dataelement</string>
+    <string name="data_disable_max_description">Antall ugyldige datasvar i rekkefølge før elementet skrus av</string>
+    <string name="autohide_toolbar_description">Automatisk skjuling av verktøylinje etter forsinkelse uten aktivitet</string>
+    <string name="autohide_delay">Forsinkelse, skjuling av verktøylinje [s]</string>
+    <string name="autohide_delay_description">Forsinkelse i sekunder uten aktivitet, før verktøyslinjen skjules</string>
+    <string name="csv_field_delimiter">Skilletegn for CSV-felt</string>
+    <string name="csv_field_delimiter_description">Skilletegn mellom CSV-datafelter</string>
+    <string name="csv_rec_delimiter">Skilletegn for CSV-oppføringer</string>
+    <string name="csv_rec_delimiter_description">Skilletegn mellom CSV-dataoppføringer</string>
+    <string name="csv_text_quoted">CSV-tekst sitert</string>
+    <string name="csv_text_quoted_description">CSV-tekstfelter er inkludert innenfor sitattegn</string>
+    <string name="send_after_export">Send etter eksportering</string>
+    <string name="send_after_export_descr">Spør om forsendelse av CSV-fil rett etter eksportering\?</string>
 </resources>
