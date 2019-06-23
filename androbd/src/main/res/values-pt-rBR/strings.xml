@@ -5,7 +5,7 @@
     <string name="title_connected_to">Conectado %s</string>
     <string name="back_again_to_exit">Pressione voltar novamente para fechar o aplicativo</string>
     <string name="action_connect">Conectar</string>
-    <string name="app_description">Android ODB APP Diagnósticos de veículos para o adaptador ELM327 Bluetooth</string>
+    <string name="app_description">Aplicativo para Android de Diagnósticos veicular ODB para o adaptador ELM327 Bluetooth</string>
     <string name="logo">Logo</string>
     <string name="obd_none">Sem Serviço</string>
     <string name="obd_services">Serviços OBD</string>
@@ -73,7 +73,7 @@
     <string name="last_view_mode">último modo de visualização de dados</string>
     <string name="keep_screen_on">manter tela principal ligada</string>
     <string name="development_options">Opções de desenvolvimento</string>
-    <string name="extension_files">Arquivos de customização de protocolo (csv)</string>
+    <string name="extension_files">Arquivos de personalização de protocolo (csv)</string>
     <string name="conversions">Conversões de Dados</string>
     <string name="data_items">Itens de dados</string>
     <string name="last_data_items">últimos itens de dados selecionados</string>

@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="app_description">ELM327 Bluetooth アダプター用 Android OBD 車両診断アプリ</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_description">ELM327 Bluetooth アダプター用 Android OBD 車両診断アプリ</string>
     <string name="title_connecting">接続しています…</string>
     <string name="title_connected_to">接続しました %s</string>
     <string name="logo">ロゴ</string>
@@ -18,7 +19,6 @@
     <string name="none_paired">デバイスがペアになっていません</string>
     <string name="none_found">デバイスが見つかりません</string>
     <string name="title_paired_devices">ペアのデバイス</string>
-
     <string name="send_to">…送信</string>
     <string name="share">共有</string>
     <string name="time">時間 [秒]</string>
@@ -38,7 +38,6 @@
     <string name="dashboard">ダッシュ ボード</string>
     <string name="hud">ヘッドアップディスプレイ</string>
     <string name="filter">フィルターを選択しました</string>
-
     <string name="settings">設定</string>
     <string name="common_settings">共通設定</string>
     <string name="measure_system_description">測定単位系 (メートル / ヤードポンド)</string>
@@ -55,13 +54,11 @@
     <string name="last_service">前回の OBD サービス</string>
     <string name="last_data_items">前回選択したデータ項目</string>
     <string name="last_view_mode">前回のデータ表示モード</string>
-
     <string name="keep_screen_on">メイン画面をオンのままにする</string>
     <string name="keep_screen_on_description">メイン/データ画面が表示されている場合、画面をオフにしません</string>
-
     <string name="development_options">開発オプション</string>
     <string name="dev_opt_description">デバッグとカスタマイズのオプション</string>
-    <string name="extension_files">プロトコル カスタマイズ ファイル (csv)</string>
+    <string name="extension_files">プロトコル カスタマイズ ファイル (CSV)</string>
     <string name="conversions">データ変換</string>
     <string name="data_items">データ項目</string>
     <string name="select_extension">.csv 拡張子のファイルを選択 …</string>
@@ -72,7 +69,6 @@
     <string name="select_protocol">お好みの OBD プロトコル</string>
     <string name="select_fault_code">故障コードを選択してください …</string>
     <string name="select_medium">アダプターの種類 …</string>
-
     <string name="devices_found">%d USB デバイスが見つかりました</string>
     <string name="min_elm_timeout">最小 ELM タイムアウト [ミリ秒]</string>
     <string name="unabletoconnect">デバイスに接続できません</string>
@@ -96,7 +92,6 @@
     <string name="elm_options">ELM オプション</string>
     <string name="elm_custom_init">ELM カスタム初期化</string>
     <string name="elm_custom_init_descr">ELM カスタム初期化コマンド</string>
-
     <string name="UNDEFINED">未定義</string>
     <string name="INITIALIZING">初期化しています…</string>
     <string name="INITIALIZED">初期化しました</string>
@@ -111,39 +106,22 @@
     <string name="DATAERROR">データ エラー</string>
     <string name="RXERROR">RX エラー</string>
     <string name="ERROR">エラー</string>
-    <string name="obd_clear_info">"
-これは MIL をリセットし、次の排出に関する診断情報を
-
-すべてクリアします:
-
- - 診断トラブル コード
-
- - フリーズ フレーム データ
-
- - 酸素センサーのテスト データ
-
- - システム監視テストの状態
-
- - オンボード監視テスト結果
-
- - MIL 有効時の走行距離
-
- - DTC クリア以降のウォーム アップ数
-
- - DTC クリア以降の走行距離
-
- - MIL 有効時のエンジンランタイム
-
- - DTC クリア以降の時間
-
-
-他のメーカー固有のクリア/リセット動作が発生することがあります。
-
-データの損失は、ECU 自体が再校正するまでの短い時間、
-
-車両の走行性能の劣化を引き起こす可能性があります。
- "</string>
-
+    <string name="obd_clear_info">これは MIL をリセットし、次の排出に関する診断情報を
+\nすべてクリアします:
+\n - 診断トラブル コード
+\n - フリーズ フレーム データ
+\n - 酸素センサーのテスト データ
+\n - システム監視テストの状態
+\n - オンボード監視テスト結果
+\n - MIL 有効時の走行距離
+\n - DTC クリア以降のウォーム アップ数
+\n - DTC クリア以降の走行距離
+\n - MIL 有効時のエンジンランタイム
+\n - DTC クリア以降の時間
+\n
+\n他のメーカー固有のクリア/リセット動作が発生することがあります。
+\nデータの損失は、ECU 自体が再校正するまでの短い時間、
+\n車両の走行性能の劣化を引き起こす可能性があります。</string>
     <string name="translation_credits">翻訳 naofum</string>
     <string name="obd_error">OBD プロトコル エラー</string>
     <string name="elm_reset_on_nrc">NRC のリセット</string>
@@ -173,7 +151,6 @@
     <string name="data_disable_max_description">アイテムが無効になるまでの無効な連続データ応答の数</string>
     <string name="plugin_manager">プラグインマネージャー</string>
     <string name="configure">構成</string>
-
     <string name="toolbar_overlay">オーバーレイとして表示</string>
     <string name="toolbar_overlay_sum">メイン画面にオーバーラップするツールバーを表示します</string>
     <string name="license">ライセンス …</string>
@@ -181,6 +158,5 @@
     <string name="libraries">ライブラリー …</string>
     <string name="libraries_sum">プロジェクトで使用されているライブラリー …</string>
     <string name="release_history">リリース履歴 …</string>
-
     <string name="graphic_design">グラフィックデザイン</string>
-    </resources>
+</resources>

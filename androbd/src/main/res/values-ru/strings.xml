@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="translation_credits">Переведено www.makedonov.ru</string>
-    <string name="app_description">Android приложение для OBD диагностики с Bluetooth адаптером ELM327</string>
+<resources>
+    <string name="translation_credits">Переведено www.makedonov.ru</string>
+    <string name="app_description">Android приложение OBD диагностики для Bluetooth адаптера ELM327</string>
     <string name="title_connecting">Соединение…</string>
     <string name="title_connected_to">Подключено к %s</string>
     <string name="logo">Логотип</string>
@@ -17,7 +18,6 @@
     <string name="none_paired">Нет сопряженных устройств</string>
     <string name="none_found">Не найдено</string>
     <string name="title_paired_devices">Сопряженные устройства</string>
-
     <string name="send_to">Отправить</string>
     <string name="share">Поделиться</string>
     <string name="time">Время [s]</string>
@@ -27,7 +27,6 @@
     <string name="snapshot">снимок</string>
     <string name="loaded">загружено</string>
     <string name="saved">сохранено</string>
-
     <string name="connected_to">"Подключено к "</string>
     <string name="demo">ДЕМО…</string>
     <string name="saving_data">Сохранение…</string>
@@ -53,10 +52,9 @@
     <string name="last_ecu">переподключение к последнему ЭБУ</string>
     <string name="keep_screen_on">Оставлять экран включенным</string>
     <string name="keep_screen_on_description">Не выключать экран, если отображаются данные</string>
-
     <string name="development_options">Опции разработчика</string>
     <string name="dev_opt_description">Опции для отладки и персонализации</string>
-    <string name="extension_files">Файлы персонализации протокола (csv)</string>
+    <string name="extension_files">Файлы персонализации протокола (CSV)</string>
     <string name="conversions">Преобразование данных</string>
     <string name="obd_services">Сервисы OBD</string>
     <string name="last_service">Последний сервис</string>
@@ -82,13 +80,11 @@
 \nПотеря данной информации может вызвать плохую работу
 \nдвигателя на короткий промежуток времени, до момента пока
 \nне окончится самостоятельная калибровка ЭБУ.</string>
-
     <string name="obd_options">OBD опции</string>
     <string name="obd_opt_description">Опции протокола OBD / соединения с автомобилем</string>
     <string name="select_protocol">Предпочитаемый OBD протокол</string>
     <string name="select_fault_code">Выбрать код неисправности …</string>
     <string name="select_medium">Тип адаптера …</string>
-
     <string name="devices_found">Обнаружено USB устройств: %d</string>
     <string name="min_elm_timeout">Мин. ожидание ELM [мс]</string>
     <string name="unabletoconnect">Не смог подключить устройство</string>
@@ -112,7 +108,6 @@
     <string name="elm_options">Опции ELM</string>
     <string name="elm_custom_init">Задать инициализацию ELM</string>
     <string name="elm_custom_init_descr">Команды инициализации ELM</string>
-
     <string name="UNDEFINED">Неопределено</string>
     <string name="INITIALIZING">Инициализация…</string>
     <string name="INITIALIZED">Инициализировано</string>
@@ -135,15 +130,12 @@
     <string name="autohide_toolbar">Спрятать инструменты</string>
     <string name="autohide_toolbar_description">Автоматически скрывать панель инструментов при бездействии</string>
     <string name="autohide_delay">Задержка скрытия панели инструментов [с]</string>
-
     <string name="last_data_items">Последние выбранные данные</string>
     <string name="last_view_mode">последний режим представления данных</string>
-
     <string name="select_extension">Выберите файл ... с расширением .csv</string>
     <string name="check_cust_settings">Пожалуйста проверьте персональные настройки</string>
     <string name="plugin_manager">Менеджер плагинов</string>
     <string name="configure">Настроить</string>
-
     <string name="semicolon">ТОЧКА С ЗАПЯТОЙ</string>
     <string name="send_after_export">Отправить после экспорта</string>
     <string name="toolbar_overlay">Показать как наложение</string>
@@ -158,6 +150,9 @@
     <string name="data_disable_max">Лимит отключения данных</string>
     <string name="csv_export_options">Опции экспорта в CSV</string>
     <string name="use_last_settings_description">Использовать последние настройки запуска (такие как: BT адрес, ECU адрес, элементы дисплея)</string>
-    <string name="data_disable_max_description">Количество недействительных последовательных ответов данных перед пунктом будет отключено</string>
+    <string name="data_disable_max_description">Количество ошибок подряд перед отключением</string>
     <string name="csv_export_description">Опции форматирования CSV файлов для экспорта</string>
+    <string name="autohide_delay_description">Скрывать панель инструментов через</string>
+    <string name="csv_field_delimiter">разделитель полей CSV</string>
+    <string name="comma">ЗАПЯТАЯ</string>
 </resources>

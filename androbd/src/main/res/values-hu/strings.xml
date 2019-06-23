@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="translation_credits">Honosítás: gidano | sympda.blog.hu</string>
-    <string name="app_description">Android OBD járműdiagnosztika app ELM327 bluetooth adapterhez</string>
+    <string name="app_description">Android OBD járműdiagnosztika app ELM327 Bluetooth adapterhez</string>
     <string name="title_connecting">Csatlakozás…</string>
     <string name="title_connected_to">Csatlakozva: %s</string>
     <string name="logo">Logó</string>

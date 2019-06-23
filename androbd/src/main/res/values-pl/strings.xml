@@ -1,6 +1,7 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">Przetłumaczone przez LafarM</string>
-    <string name="app_description">Aplikacja dla systemu Android do diagnostyki pojazdów poprzez OBD poprzez adapter bluetooth ELM327</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="translation_credits">Przetłumaczone przez LafarM</string>
+    <string name="app_description">Aplikacja dla systemu Android do diagnostyki pokładowej OBD poprzez adapter bluetooth ELM327</string>
     <string name="title_connecting">Łączenie…</string>
     <string name="title_connected_to">Połączono %s</string>
     <string name="logo">Logo</string>
@@ -31,12 +32,10 @@
 \n Mogą wystąpić inne akcje specyficzne dla czyszczenia/kasowanie.
 \n Utrata danych może spowodować, że pojazd będzie miał gorsze
 \n osiągi na krótki okres, podczas kalibracji ECU."</string>
-
     <string name="select_device">Wybierz adapter</string>
     <string name="none_paired">Nie sparowano urządzeń</string>
     <string name="none_found">Nie znaleziono urządzeń</string>
     <string name="title_paired_devices">Urządzenia sparowane</string>
-
     <string name="send_to">Wyślij do</string>
     <string name="share">udostępnij</string>
     <string name="time">Czas [s]</string>
@@ -49,7 +48,6 @@
     <string name="saved_data">Dane zapisane</string>
     <string name="loaded">załadowano</string>
     <string name="saved">zapisano</string>
-
     <string name="connected_to">"Połączony z "</string>
     <string name="demo">Demo…</string>
     <string name="saving_data">Zapisywanie danych …</string>
@@ -57,7 +55,6 @@
     <string name="dashboard">Pulpit nawigacyjny</string>
     <string name="hud">Wyświetlacz HUD</string>
     <string name="filter">Wybrany filtr</string>
-
     <string name="settings">Ustawienia</string>
     <string name="common_settings">Ustawienia ogólne</string>
     <string name="measure_system_description">System miar (metryczny / imperialny)</string>
@@ -74,13 +71,11 @@
     <string name="last_service">ostatnia usługa OBD</string>
     <string name="last_data_items">ostatnio wybrane elementy danych</string>
     <string name="last_view_mode">ostatnie dane trybu podglądu</string>
-
     <string name="keep_screen_on">Utrzymuj włączony ekran główny</string>
     <string name="keep_screen_on_description">Nie wyłączaj ekranu podczas wyświetlania ekranu głównego/danych</string>
-
     <string name="development_options">Opcje rozwoju</string>
     <string name="dev_opt_description">Opcje debugowania i dostosowywania</string>
-    <string name="extension_files">Pliki dostosowywania protokołu (CSV)</string>
+    <string name="extension_files">Pliki konfiguracyjne protokołu (CSV)</string>
     <string name="conversions">Konwersja danych</string>
     <string name="data_items">Elementy danych</string>
     <string name="select_extension">Wybierz plik z rozszerzeniem .csv…</string>
@@ -91,7 +86,6 @@
     <string name="select_protocol">Preferowany protokół OBD</string>
     <string name="select_fault_code">Wybierz kod błędu…</string>
     <string name="select_medium">Typ adaptera …</string>
-
     <string name="devices_found">%d znalezionych urządzeń USB</string>
     <string name="min_elm_timeout">Min. limit czasu ELM [ms]</string>
     <string name="unabletoconnect">Nie można podłączyć urządzenia</string>
@@ -115,7 +109,6 @@
     <string name="elm_options">Opcje ELM</string>
     <string name="elm_custom_init">Niestandardowa inicjalizacja ELM</string>
     <string name="elm_custom_init_descr">Niestandardowe polecenia inicjalizacji ELM</string>
-
     <string name="UNDEFINED">Niezdefiniowany</string>
     <string name="INITIALIZING">Inicjowanie …</string>
     <string name="INITIALIZED">Zainicjowany</string>
@@ -156,7 +149,6 @@
     <string name="send_after_export_descr">Pytasz o wysłanie pliku CSV zaraz po wyeksportowaniu?</string>
     <string name="plugin_manager">zarządzanie wtyczkami</string>
     <string name="configure">Konfiguruj</string>
-
     <string name="data_disable_max">Maksymalna liczba odczytów</string>
     <string name="data_disable_max_description">Maksymalna liczba błędów danych, po której pozycja będzie wyłączana</string>
     <string name="toolbar_overlay">Pokaż na wierzchu</string>
@@ -166,6 +158,5 @@
     <string name="libraries">Biblioteki …</string>
     <string name="libraries_sum">Biblioteki użyte w projekcie …</string>
     <string name="release_history">Historia wersji …</string>
-
     <string name="graphic_design">Projekt graficzny</string>
-    </resources>
+</resources>

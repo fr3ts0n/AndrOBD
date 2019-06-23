@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="translation_credits">번역 김명준</string>
+    <string name="app_description">ELEM327 블루투스 아답터용 안드로이드 OBD 자량 진단 앱</string>
+    <string name="title_connecting">연결중…</string>
+    <string name="title_connected_to">연결됨</string>
+    <string name="logo">로고</string>
+    <string name="back_again_to_exit">한번 더 뒤로가기 버튼을 누르시면 이 앱이 종료됩니다.</string>
+    <string name="action_connect">연결</string>
+    <string name="obd_none">서비스 안됨</string>
+    <string name="obd_services">OBD 서비스</string>
+    <string name="obd_veh_info">OBD 차량정보</string>
+    <string name="obd_data">OBD 데이터</string>
+    <string name="obd_codes">OBD 고장코드</string>
+    <string name="obd_permanentcodes">OBD 고장코드(확정됨)</string>
+    <string name="obd_pendingcodes">OBD 고장코드(진단중)</string>
+    <string name="obd_clearcodes">고장코드 지우기</string>
+    <string name="obd_clear_info">이것은 MIL을 재설정하고 모든 배출 관련 진단을 지 웁니다.
+\n  정보 포함 :
+\n  - 진단 문제 코드
+\n  - 프레임 데이터 고정
+\n  - 산소 센서 테스트 데이터
+\n  - 시스템 모니터링 테스트 현황
+\n  - 온보드 모니터링 테스트 결과
+\n  - MIL이 작동하는 동안 주행 거리
+\n  - DTC가 해제 된 이후의 예열 횟수
+\n  - DTC가 개설 된 후 여행 한 거리
+\n  - MIL이 활성화 된 동안 엔진 실행 시간
+\n  - DTCs가 삭제 된 이후의 시간
+\n
+\n  다른 제조업체의 특정 삭제 / 재설정 작업이 발생할 수 있습니다.
+\n  데이터 손실로 인해 차량이 짧게 작동 할 수 있습니다.
+\n  ECU가 스스로를 재 보정하는 동안.</string>
+    <string name="select_device">아답터 선택</string>
+    <string name="none_paired">디바이스와 연결안됨</string>
+    <string name="none_found">디바이스를 찾을수 없습니다.</string>
+    <string name="title_paired_devices">디바이스 연결됨</string>
+    <string name="send_to">보낸사람</string>
+    <string name="share">공유하기</string>
+    <string name="time">시간[초]</string>
+    <string name="chart">챠트</string>
+    <string name="demo_stopped">데모 모드 중지</string>
+    <string name="demo_started">데모 모드 시작</string>
+    <string name="snapshot">스크린샷</string>
+    <string name="save">측정저장</string>
+    <string name="load">저장된 측정값 불러오기</string>
+    <string name="saved_data">데이터 저장하기</string>
+    <string name="loaded">불러오기</string>
+    <string name="saved">저장</string>
+    <string name="connected_to">"연결하기 "</string>
+    <string name="demo">데모…</string>
+    <string name="saving_data">데이터 저장중…</string>
+    <string name="loading_data">데이터 불러오는 중…</string>
+    <string name="dashboard">대쉬보드</string>
+    <string name="hud">헤드업디스플레이</string>
+    <string name="filter">선택한 필터</string>
+    <string name="settings">설정</string>
+    <string name="common_settings">공통설정</string>
+    <string name="measure_system_description">시스템측정단위(미터법/영국식)</string>
+    <string name="measure_system">측정단위</string>
+    <string name="metric">미터법</string>
+    <string name="imperial">영국미터법</string>
+    <string name="items_for_display">표시할 데이터 항목</string>
+    <string name="items_for_display_descr">표시 할 모든 데이터 항목을 선택하십시요…</string>
+    <string name="debugging">디버깅</string>
+    <string name="logging_level">로그인 레벨</string>
+    <string name="logging_level_description">디버그 로그 파일에 기록 할 세부 정보 수준</string>
+    <string name="last_elm">마지막 ELM-adapter 다시 연결</string>
+    <string name="last_ecu">마지막 ECU 다시 연결</string>
+    <string name="last_service">마지막 OBD tjq</string>
+    <string name="last_data_items">마지막으로 선택한 데이터 항목</string>
+    <string name="last_view_mode">마지막 데이터 보기 모드</string>
+    <string name="keep_screen_on">기본 화면 유지</string>
+    <string name="keep_screen_on_description">메인 화면 / 데이터 화면이 켜지면 화면을 끄지 마십시오</string>
+    <string name="development_options">개발자 옵션</string>
+    <string name="dev_opt_description">디버깅 및 사용자 정의 옵션</string>
+    <string name="extension_files">프로토콜 사용자 파일( CSV)</string>
+    <string name="conversions">데이터 변환</string>
+    <string name="data_items">데이터 항목</string>
+    <string name="select_extension">csv 확장 파일 선택 …</string>
+    <string name="extension_loading">사용자 정의 로드중</string>
+    <string name="check_cust_settings">사용자 정의 설정을 확인하십시요
+\n</string>
+    <string name="obd_options">OBD 옵션들</string>
+    <string name="obd_opt_description">OBD 프로토콜 / 차량 통신 옵션</string>
+    <string name="select_protocol">선호하는 OBD 프로토콜</string>
+    <string name="plugin_manager">플러그인 관리자</string>
+    <string name="configure">환결설정</string>
+    <string name="select_fault_code">오류 코드 선택 …</string>
+    <string name="select_medium">어댑터 종류 …</string>
+    <string name="devices_found">%d USB 디바이스 찾지못함</string>
+    <string name="min_elm_timeout">Min. ELM 시간종료 [ms]</string>
+    <string name="unabletoconnect">기기를 연결할 수 없습니다</string>
+    <string name="connectionlost">기기 연결이 끊어졌습니다</string>
+    <string name="elm_timeout_descr">ELM 응답을 기다리는 최소 시간 제한 [ms]</string>
+    <string name="day_night_mode">주/야간 모드</string>
+    <string name="night_mode_description">디스플레이를 어두운 배경으로 설정</string>
+    <string name="night_mode">야간모드</string>
+    <string name="disable_elm_cmds">사용하지 않는 ELM 명령</string>
+    <string name="disable_elm_cmds_descr">ELM 명령을 활성화 / 비활성화합니다</string>
+    <string name="elm_adaptive_timing">ELM 적응 타이밍</string>
+    <string name="elm_adaptive_timing_descr">ELM 드라이버에서 적응 시간을 허용 하시겠습니까\?</string>
+    <string name="elm_reset_on_nrc">NRC에서 재설정</string>
+    <string name="elm_reset_on_nrc_descr">NRC 오류시 ELM 어댑터를 재설정 하시겠습니까\?</string>
+    <string name="select_ecu_addr">ECU 주소 선택 …</string>
+    <string name="disconnect">연결끊기</string>
+    <string name="reset_preselections">마지막 사전 선택 재설정</string>
+    <string name="use_last_settings_description">시작시 마지막 설정 사용 (BT 주소, ECU 주소, 항목 표시 ...)</string>
+    <string name="use_last_settings">마지막 설정 사용</string>
+    <string name="common_settings_description">앱 제어에 대한 일반적인 설정</string>
+    <string name="secure_connect">보안 연결</string>
+    <string name="secure_connect_description">암호화 된 블루투스 연결 사용</string>
+    <string name="elm_options">ELM옵션</string>
+    <string name="elm_custom_init">ELM 사용자 정의 초기화</string>
+    <string name="elm_custom_init_descr">ELM 사용자 정의 초기화 명령</string>
+    <string name="UNDEFINED">ELM 통신 상태</string>
+    <string name="INITIALIZING">초기화…</string>
+    <string name="INITIALIZED">초기화 됨</string>
+    <string name="ECU_DETECT">ECU 감지 …</string>
+    <string name="ECU_DETECTED">ECU가 감지 됨</string>
+    <string name="CONNECTING">연결 중 …</string>
+    <string name="CONNECTED">연결됨</string>
+    <string name="NODATA">데이터 없음</string>
+    <string name="STOPPED">정지됨</string>
+    <string name="DISCONNECTED">연결이 끊어짐</string>
+    <string name="BUSERROR">버스 오류</string>
+    <string name="DATAERROR">데이터 오류</string>
+    <string name="RXERROR">RX 오류</string>
+    <string name="ERROR">에러</string>
+    <string name="obd_error">OBD 프로토콜 오류</string>
+    <string name="device_address_description">ELM 장치 네트워크 IP 주소</string>
+    <string name="device_address">ELM IP 주소</string>
+    <string name="device_port_description">ELM 장치 네트워크 IP 포트</string>
+    <string name="device_port">ELM IP 포트</string>
+    <string name="data_disable_max">데이터 항목 사용 중지 한도</string>
+    <string name="data_disable_max_description">"항목이 비활성화되기 전에  잘못된 데이터 응답 수"</string>
+    <string name="autohide_toolbar">툴바 숨기기</string>
+    <string name="autohide_toolbar_description">지연없는 활동 후 도구 모음 자동 숨기기</string>
+    <string name="autohide_delay">툴바 지연 숨기기 [s]</string>
+    <string name="autohide_delay_description">몇 초동안 활동이 없을때 툴바를 숨길지여부</string>
+    <string name="csv_export_options">CSV 내보내기 옵션</string>
+    <string name="csv_export_description">CSV 내보내기 파일 형식 지정 옵션</string>
+    <string name="csv_field_delimiter">CSV 필드 구분 기호</string>
+    <string name="csv_field_delimiter_description">CSV 데이터 필드 사이의 구분 문자</string>
+    <string name="csv_rec_delimiter">CSV 레코드 구분 기호</string>
+    <string name="csv_rec_delimiter_description">CSV 데이터 레코드 사이의 구분 문자</string>
+    <string name="csv_text_quoted">CSV 텍스트 따옴표</string>
+    <string name="csv_text_quoted_description">CSV 텍스트 필드는 따옴표 안에 포함됩니다</string>
+    <string name="tab">탭</string>
+    <string name="comma">콤마</string>
+    <string name="semicolon">세미콜론</string>
+    <string name="send_after_export">내보내기 후에 전송</string>
+    <string name="send_after_export_descr">내보내기 직후에 CSV 파일을 전송하라는 메시지가 나타 납니까\?</string>
+    <string name="toolbar_overlay">오버레이로 표시</string>
+    <string name="toolbar_overlay_sum">기본 화면을 겹쳐서 표시하는 툴바</string>
+    <string name="license">라이센스 …</string>
+    <string name="donation">지원 프로젝트 …</string>
+    <string name="libraries">라이브러리…</string>
+    <string name="libraries_sum">프로젝트에 사용 된 라이브러리 …</string>
+    <string name="release_history">출시 내역 …</string>
+    <string name="graphic_design">그래픽 디자인</string>
+</resources>
