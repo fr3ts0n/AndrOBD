@@ -935,10 +935,17 @@ public class ElmProt
 					responsePending = false;
 				}
 				
+
 				// if we haven't received complete result yet, then wait for the rest
 				if (lastRxMsg.length() < charsExpected)
 				{
 					return (result);
+				}
+				
+				// Trim a multiline response to expected length (cut off padding)
+				if((charsExpected > 0) && (lastRxMsg.length() > charsExpected))
+				{
+					lastRxMsg = lastRxMsg.substring(0, charsExpected);
 				}
 				
 				// if response is finished, handle it
@@ -1043,12 +1050,11 @@ public class ElmProt
 						case OBD_SVC_PERMACODES:
 							// simulate 12 TCs set as multy line response
 							// send codes as multy line response
-							handleTelegram("014".toCharArray());
-							handleTelegram("0:4A8920B920BD".toCharArray());
-							handleTelegram("1:C002242A246E02".toCharArray());
-							handleTelegram("2:36010101162453".toCharArray());
-							// number of codes = 12 + MIL ON
-							handleTelegram("41018C000000".toCharArray());
+							handleTelegram("00A".toCharArray());
+							handleTelegram("0:4A0401180122".toCharArray());
+							handleTelegram("1:02232610000000".toCharArray());
+							// number of codes = 4 + MIL OFF
+							handleTelegram("410104000000".toCharArray());
 							Thread.sleep(500);
 							break;
 						

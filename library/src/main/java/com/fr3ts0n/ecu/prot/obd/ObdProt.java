@@ -659,9 +659,10 @@ public class ObdProt extends ProtoHeader
                         int nCodes = 0;
                         // default DTC data to start at offset 2 (Byte 1)
                         int DTCOffs = 2;
-
+                        
                         // If message contains optional number of codes (1 Byte) then set it ...
-                        if ((buffer.length % 4) == 0)
+                        boolean hasNumCodes = ((buffer.length % 4) == 0);
+                        if (hasNumCodes)
                         {
                             nCodes = Integer.valueOf(new String(buffer, 2, 2), 16);
                             setNumCodes(nCodes);
@@ -684,8 +685,12 @@ public class ObdProt extends ProtoHeader
                                 }
                                 log.fine(String.format("+DFC: %04x: %s", key, code.toString()));
                                 tCodes.put(key, code);
-                                // increment number of codes
-                                nCodes++;
+                                // if number of codes hasn't been delivered yet ...
+                                if(!hasNumCodes)
+                                {
+                                    // increment number of detected codes
+                                    nCodes++;
+                                }
                             }
                         }
                         if (nCodes == 0)
