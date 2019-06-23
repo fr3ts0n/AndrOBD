@@ -82,38 +82,61 @@ public class ObdProt extends ProtoHeader
     /** negative response codes */
     public enum NRC
     {
-        GR(0x10, "General reject"),
-        SNS(0x11, "Service 0x%02X not supported"),
-        SFNS(0x12, "Sub-Function not supported (SVC:0x%02X)"),
-        IMLOIF(0x13, "Incorrect message length or invalid format"),
-        RTL(0x14, "Response too long"),
-        BRR(0x21, "Busy repeat request"),
-        CNC(0x22, "Conditions not correct"),
-        RSE(0x24, "Request sequence error"),
-        NRFSC(0x25, "No response from sub-net component"),
-        FPEORA(0x26, "Failure prevents execution of requested action"),
-        ROOR(0x31, "Request out of range (SVC:0x%02X)"),
-        SAD(0x33, "Security access denied"),
-        IK(0x35, "Invalid key"),
-        ENOA(0x36, "Exceeded number of attempts"),
-        RTDNE(0x37, "Required time delay not expired"),
-        UDNA(0x70, "Upload/Download not accepted"),
-        TDS(0x71, "Transfer data suspended"),
-        GPF(0x72, "General programming failure"),
-        WBSC(0x73, "Wrong Block Sequence Counter"),
-        RCRRP(0x78, "Request correctly received  but response is pending"),
-        SFNSIAS(0x7E, "Sub-Function not supported in active session (SVC:0x%02X)"),
-        SNSIAS(0x7F, "Service 0x%02X not supported in active session");
+	    GR(0x10, "General reject",DISP.ERROR, REACT.RESET),
+        SNS(0x11, "Service 0x%02X not supported", DISP.ERROR, REACT.CANCEL),
+        SFNS(0x12, "Sub-Function not supported (SVC:0x%02X)", DISP.NOTIFY, REACT.SKIP),
+        IMLOIF(0x13, "Incorrect message length or invalid format", DISP.NOTIFY, REACT.SKIP),
+        RTL(0x14, "Response too long", DISP.NOTIFY, REACT.SKIP),
+        BRR(0x21, "Busy repeat request", DISP.NOTIFY, REACT.REPEAT),
+        CNC(0x22, "Conditions not correct", DISP.ERROR, REACT.SKIP),
+        RSE(0x24, "Request sequence error", DISP.ERROR, REACT.CANCEL),
+        NRFSC(0x25, "No response from sub-net component", DISP.ERROR, REACT.RESET),
+        FPEORA(0x26, "Failure prevents execution of requested action", DISP.ERROR, REACT.CANCEL),
+        ROOR(0x31, "Request out of range (SVC:0x%02X)", DISP.NOTIFY, REACT.SKIP),
+        SAD(0x33, "Security access denied", DISP.ERROR, REACT.CANCEL),
+        IK(0x35, "Invalid key", DISP.ERROR, REACT.RESET),
+        ENOA(0x36, "Exceeded number of attempts", DISP.ERROR, REACT.RESET),
+        RTDNE(0x37, "Required time delay not expired", DISP.NOTIFY, REACT.REPEAT),
+        UDNA(0x70, "Upload/Download not accepted", DISP.ERROR, REACT.CANCEL),
+        TDS(0x71, "Transfer data suspended", DISP.NOTIFY, REACT.REPEAT),
+        GPF(0x72, "General programming failure", DISP.ERROR, REACT.CANCEL),
+        WBSC(0x73, "Wrong Block Sequence Counter", DISP.ERROR, REACT.CANCEL),
+        RCRRP(0x78, "Request correctly received  but response is pending", DISP.NOTIFY, REACT.IGNORE),
+        SFNSIAS(0x7E, "Sub-Function not supported in active session (SVC:0x%02X)", DISP.NOTIFY, REACT.SKIP),
+        SNSIAS(0x7F, "Service 0x%02X not supported in active session", DISP.ERROR, REACT.CANCEL);
+    
+        /** NRC display classifiers */
+        public enum DISP
+        {
+            HIDE,
+            NOTIFY,
+            WARN,
+            ERROR
+        }
+    
+        /** NRC reaction classifiers */
+        public enum REACT
+        {
+            IGNORE,
+            SKIP,
+            REPEAT,
+            CANCEL,
+            RESET
+        }
+    
+        public final int code;
+        public final String description;
+        public final DISP disp;
+        public final REACT react;
 
-        final int code;
-        final String description;
-
-        NRC(int _code, String _description)
+        NRC(int _code, String _description, DISP _DISPClass, REACT _REACTClass)
         {
             code = _code;
             description = _description;
+            disp = _DISPClass;
+            react = _REACTClass;
         }
-
+    
         /**
          * Get NRC with specified ID (NRC-code)
          * @param id ID (NRC-code) to search
@@ -134,7 +157,7 @@ public class ObdProt extends ProtoHeader
         }
 
         /** return String representative */
-        String toString(int service)
+        public String toString(int service)
         {
             return String.format("(NRC:0x%02X) %s", code, String.format(description, service));
         }
@@ -524,17 +547,38 @@ public class ObdProt extends ProtoHeader
                     String error = nrc.toString(svc);
                     // log error
                     log.severe(error);
-                    if (isResetOnNrc())
-                    {
-                        // perform immediate reset because NRC reception
-                        reset();
-                    } else
-                    {
-                        // otherwise just switch off any active service
-                        setService(OBD_SVC_NONE, true);
-                    }
                     // notify change listeners
-                    firePropertyChange(new PropertyChangeEvent(this, PROP_NRC, null, error));
+                    firePropertyChange(new PropertyChangeEvent(this, PROP_NRC, nrc, error));
+                    // handle NRC reaction
+                    switch(nrc.react)
+                    {
+                        case RESET:
+                            if (isResetOnNrc())
+                            {
+                                // perform immediate reset because NRC reception
+                                reset();
+                            } else
+                            {
+                                // otherwise just switch off any active service
+                                setService(OBD_SVC_NONE, true);
+                            }
+                            break;
+    
+                        case CANCEL:
+                            // switch off any active service
+                            setService(OBD_SVC_NONE, true);
+                            break;
+    
+                        case REPEAT:
+                            // Repeat last TX message
+                            sendTelegram(lastTxMsg.toCharArray());
+                            break;
+                            
+                        case SKIP:
+                        case IGNORE:
+                        default:
+                            // Intentionally do noting
+                    }
                     // handling finished
                     return result;
                 }

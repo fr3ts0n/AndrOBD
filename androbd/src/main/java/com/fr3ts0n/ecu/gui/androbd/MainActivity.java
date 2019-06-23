@@ -1028,17 +1028,40 @@ public class MainActivity extends PluginManager
 
 					// handle negative result code from OBD protocol
 					case MESSAGE_OBD_NRC:
-						// reset OBD mode to prevent infinite error loop
-						setObdService(ObdProt.OBD_SVC_NONE, getText(R.string.obd_error));
 						// show error dialog ...
 						evt = (PropertyChangeEvent) msg.obj;
-						String nrcMessage = (String)evt.getNewValue();
-						dlgBuilder
-							.setIcon(android.R.drawable.ic_dialog_alert)
-							.setTitle(R.string.obd_error)
-							.setMessage(nrcMessage)
-							.setPositiveButton(null,null)
-							.show();
+						ObdProt.NRC nrc = (ObdProt.NRC)evt.getOldValue();
+						String nrcMsg = (String)evt.getNewValue();
+						switch(nrc.disp)
+						{
+							case ERROR:
+								dlgBuilder
+									.setIcon(android.R.drawable.ic_dialog_alert)
+									.setTitle(R.string.obd_error)
+									.setMessage(nrcMsg)
+									.setPositiveButton(null,null)
+									.show();
+								break;
+							// Display warning (with confirmation)
+							case WARN:
+								dlgBuilder
+									.setIcon(android.R.drawable.ic_dialog_info)
+									.setTitle(R.string.obd_error)
+									.setMessage(nrcMsg)
+									.setPositiveButton(null,null)
+									.show();
+								break;
+							// Display notification (no confirmation)
+							case NOTIFY:
+								Toast.makeText( getApplicationContext(),
+									            nrcMsg,
+									            Toast.LENGTH_SHORT).show();
+								break;
+							
+							case HIDE:
+							default:
+								// intentionally ignore
+						}
 						break;
 
 					// set toolbar visibility
