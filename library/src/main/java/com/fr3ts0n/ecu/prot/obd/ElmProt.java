@@ -1048,8 +1048,8 @@ public class ElmProt
 							break;
 						
 						case OBD_SVC_PERMACODES:
-							// simulate 12 TCs set as multy line response
-							// send codes as multy line response
+							// test pattern from AndrOBD/#78
+							// 4 DFCs, 10 byte multiline response , padded
 							handleTelegram("00A".toCharArray());
 							handleTelegram("0:4A0401180122".toCharArray());
 							handleTelegram("1:02232610000000".toCharArray());
