@@ -1,6 +1,7 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">תורגם ע״י ירון</string>
-    <string name="app_description">יישומון אנדרואיד לפענוח OBD לרכב עבור מתאם בלוטות׳ ELM327</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="translation_credits">תורגם ע״י ירון</string>
+    <string name="app_description">יישומון Android לפענוח OBD לרכב עבור מתאם בלוטות׳ ELM327</string>
     <string name="title_connecting">מתבצעת התחברות…</string>
     <string name="title_connected_to">יש חיבור אל %s</string>
     <string name="logo">לוגו</string>
@@ -31,12 +32,10 @@
 \n יתכן שתתבצענה פעולות ניקוי/איפוס אחרות ייחודיות ליצרן.
 \n אובדן הנתונים עשוי לגרום למכונית לביצועים ירודים לפרק זמן
 \n קצר בזמן הכיול מחדש של יחידת הבקרה האלקטרונית.</string>
-
     <string name="select_device">נא לבחור במתאם</string>
     <string name="none_paired">לא צומדו התקנים</string>
     <string name="none_found">לא נמצאו התקנים</string>
     <string name="title_paired_devices">התקנים שצומדו</string>
-
     <string name="send_to">שליחה אל</string>
     <string name="share">שיתוף</string>
     <string name="time">זמן [שנ׳]</string>
@@ -49,7 +48,6 @@
     <string name="saved_data">נתונים שנשמרו</string>
     <string name="loaded">נטען</string>
     <string name="saved">נשמר</string>
-
     <string name="connected_to">"יש חיבור אל "</string>
     <string name="demo">הדגמה…</string>
     <string name="saving_data">נתונים נשמרים…</string>
@@ -57,7 +55,6 @@
     <string name="dashboard">לוח בקרה</string>
     <string name="hud">תצוגה הפוכה</string>
     <string name="filter">סינון הנבחרים</string>
-
     <string name="settings">הגדרות</string>
     <string name="common_settings">הגדרות נפוצות</string>
     <string name="measure_system_description">מערכת יחידות מידה (מטרית / אימפריאלית)</string>
@@ -74,13 +71,11 @@
     <string name="last_service">שירות ה־OBD האחרון</string>
     <string name="last_data_items">פריטי הנתונים האחרונים שנבחרו</string>
     <string name="last_view_mode">מצב תצוגת הנתונים האחרון</string>
-
     <string name="keep_screen_on">השארת המסך הראשי פעיל</string>
     <string name="keep_screen_on_description">לא לכבות את המסך אם מופיעים המסכים הראשי/נתונים</string>
-
     <string name="development_options">אפשרויות פיתוח</string>
     <string name="dev_opt_description">אפשרויות לניפוי שגיאות והתאמה אישית</string>
-    <string name="extension_files">קובצי התאמת פרוטוקול (csv)</string>
+    <string name="extension_files">קובצי התאמת פרוטוקול (CSV)</string>
     <string name="conversions">המרות נתונים</string>
     <string name="data_items">פריטי נתונים</string>
     <string name="select_extension">בחירת קובץ הרחבה ‎.csv…</string>
@@ -92,7 +87,6 @@
     <string name="select_protocol">פרוטוקול ה־OBD המועדף</string>
     <string name="select_fault_code">בחירת קוד תקלה…</string>
     <string name="select_medium">סוג המתאם…</string>
-
     <string name="devices_found">%d התקני USB נמצאו</string>
     <string name="min_elm_timeout">תום זמן למענה עבור ELM [מילישניות]</string>
     <string name="unabletoconnect">לא ניתן להתחבר להתקן</string>
@@ -118,7 +112,6 @@
     <string name="elm_options">אפשרויות ELM</string>
     <string name="elm_custom_init">הפעלה מותאמת אישית של ELM</string>
     <string name="elm_custom_init_descr">פקודת הפעלה בהתאמה אישית של ELM</string>
-
     <string name="UNDEFINED">אין הגדרה</string>
     <string name="INITIALIZING">מתבצע אתחול…</string>
     <string name="INITIALIZED">מאותחל</string>
@@ -159,14 +152,12 @@
     <string name="data_disable_max_description">מספר תגובות נתונים שגויות ברצף בטרם השבתת פריט</string>
     <string name="plugin_manager">מנהל תוספות</string>
     <string name="configure">הגדרה</string>
-
     <string name="toolbar_overlay_sum">הצגת סרגל כלים כשכבה על המסך הראשי</string>
     <string name="license">רישוי…</string>
     <string name="donation">תמיכה במיזם…</string>
     <string name="libraries">ספריות…</string>
     <string name="libraries_sum">ספריות בהן נעשה שימוש במיזם…</string>
     <string name="release_history">היסטוריית מהדורות…</string>
-
     <string name="toolbar_overlay">הצגה כשכבת על</string>
     <string name="graphic_design">עיצוב גרפי</string>
-    </resources>
+</resources>
