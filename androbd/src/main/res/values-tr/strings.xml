@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="translation_credits">Çevri:Alpay Bilgiç www.mobilexper.com</string>
+<resources>
+    <string name="translation_credits">Çevri:Alpay Bilgiç www.mobilexper.com</string>
     <string name="app_description">"Android OBD ELM 327 Bluetooth cihazı üzerinden araç teşhis  uygulaması"</string>
     <string name="title_connecting">Bağlanıyor…</string>
     <string name="title_connected_to">"%s ye bağlandı "</string>
@@ -31,12 +32,10 @@
 \n  Üreticiye özel  veriler silinebilir.
 \n  Veri kaybı, aracın kısa bir süre için düzensiz çalışmasına neden olabilir
 \n  ECU kendini yeniden kalibre ederken zaman geçebilir."</string>
-
     <string name="select_device">Adaptör Seç</string>
     <string name="none_paired">Cihaz Eşleşmedi</string>
     <string name="none_found">Cihaz bulunamadı</string>
     <string name="title_paired_devices">Eşleşen Cihazlar</string>
-
     <string name="send_to">Gönder</string>
     <string name="share">Paylaş</string>
     <string name="time">Zaman[s]</string>
@@ -49,7 +48,6 @@
     <string name="saved_data">Kayıtlı Veriler</string>
     <string name="loaded">Yüklendi</string>
     <string name="saved">Kaydedildi</string>
-
     <string name="connected_to">Bağlandı</string>
     <string name="demo">Demo…</string>
     <string name="saving_data">Veriler kaydediliyor …</string>
@@ -57,7 +55,6 @@
     <string name="dashboard">Panel</string>
     <string name="hud">Hayalet Gösterge</string>
     <string name="filter">Seçimleri filtrele</string>
-
     <string name="settings">Ayarlar</string>
     <string name="common_settings">Ortak ayarlar</string>
     <string name="measure_system_description">Ölçü Birimi (Metrik / ingiliz)</string>
@@ -74,10 +71,8 @@
     <string name="last_service">Son OBD servisi</string>
     <string name="last_data_items">Son seçilen veriler</string>
     <string name="last_view_mode">Gösterim modundaki son veriler</string>
-
     <string name="keep_screen_on">Ana ekranda tut</string>
     <string name="keep_screen_on_description">Ana ekranda veya veri ekranında iken ekranı açık tut. (Pil Tüketebilir)</string>
-
     <string name="development_options">Geliştirme seçenekleri</string>
     <string name="dev_opt_description">Hata ayıklama ve özelleştirme ayarları</string>
     <string name="extension_files">Protokol özelleştieme dosyası (csv)</string>
@@ -90,14 +85,11 @@
     <string name="obd_options">OBD ayarları</string>
     <string name="obd_opt_description">OBD Protokolü ve Araç iletişim seçenekleri</string>
     <string name="select_protocol">Seçilen OBD protokolü</string>
-
     <string name="plugin_manager">Eklenti yöneticisi</string>
     <string name="configure">Ayarla</string>
-
     <string name="select_fault_code">Hata kodunu seç …</string>
     <string name="select_medium">Adaptör tipi …</string>
-
-    <string name="devices_found">%d USB cihazı algılandı</string>
+    <string name="devices_found">%d USB aygıt bulundu</string>
     <string name="min_elm_timeout">Asgari ELM zaman aşımı [ms]</string>
     <string name="unabletoconnect">Cihaza bağlanamıyor</string>
     <string name="connectionlost">Cihazla bağlantı koptu</string>
@@ -122,7 +114,6 @@
     <string name="elm_options">ELM ayarları</string>
     <string name="elm_custom_init">ELM özel açılış</string>
     <string name="elm_custom_init_descr">ELM özel açılış komutları</string>
-
     <string name="UNDEFINED">Tanımsız</string>
     <string name="INITIALIZING">Yükleniyor …</string>
     <string name="INITIALIZED">Yüklendi</string>
