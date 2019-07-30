@@ -47,7 +47,7 @@
     <string name="items_for_display_descr">Выберите данные для отображения…</string>
     <string name="debugging">Отладка</string>
     <string name="logging_level">Уровень лога</string>
-    <string name="logging_level_description">Уровень детализации лога при отладке</string>
+    <string name="logging_level_description">Level of details to be logged into debug log file</string>
     <string name="last_elm">переподключение к последнему ELM-адаптеру</string>
     <string name="last_ecu">переподключение к последнему ЭБУ</string>
     <string name="keep_screen_on">Оставлять экран включенным</string>
