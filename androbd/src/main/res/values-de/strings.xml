@@ -47,7 +47,7 @@
     <string name="saved">gespeichert</string>
     <string name="connected_to">Verbunden mit</string>
     <string name="demo">Demo…</string>
-    <string name="saving_data">Speichere Daten…</string>
+    <string name="saving_data">Daten werden gespeichert …</string>
     <string name="dashboard">Dashboard</string>
     <string name="hud">Head Up Display</string>
     <string name="metric">metrisch</string>
