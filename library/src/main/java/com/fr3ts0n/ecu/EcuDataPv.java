@@ -78,10 +78,23 @@ public class EcuDataPv extends IndexedProcessVar
 	public String getUnits()
 	{
 		String result = "";
-		Conversion[] cnv = (Conversion[]) get(FID_CNVID);
-		if(cnv != null && cnv[EcuDataItem.cnvSystem] != null)
+		try
 		{
-			result = cnv[EcuDataItem.cnvSystem].getUnits();
+			// Attempt to get units from field
+			result = get(FID_UNITS).toString();
+		}
+		catch(Exception ex)
+		{
+            // if not available, try to get from assigned conversion
+			Conversion[] cnv = (Conversion[]) get(FID_CNVID);
+            if(cnv != null && cnv[EcuDataItem.cnvSystem] != null)
+            {
+                result = cnv[EcuDataItem.cnvSystem].getUnits();
+            }
+			else
+			{
+				result="";
+			}
 		}
 		return result;
 	}
