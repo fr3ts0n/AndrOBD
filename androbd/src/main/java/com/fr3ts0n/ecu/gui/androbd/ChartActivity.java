@@ -386,7 +386,7 @@ public class ChartActivity extends Activity
 			// add initial measurement to series data to ensure
 			// at least one measurement is available
 			if (currSeries.getItemCount() < 1)
-				currSeries.add(startTime, (Float) currPv.get(EcuDataPv.FID_VALUE));
+				currSeries.add(startTime, Float.parseFloat(currPv.get(EcuDataPv.FID_VALUE).toString()));
 
 			// set scale to display series
 			currSeries.setScaleNumber(i);

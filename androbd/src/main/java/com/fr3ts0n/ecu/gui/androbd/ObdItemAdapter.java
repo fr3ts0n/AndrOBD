@@ -33,8 +33,6 @@ import com.fr3ts0n.androbd.plugin.mgr.PluginManager;
 import com.fr3ts0n.ecu.Conversion;
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataPv;
-import com.fr3ts0n.ecu.NumericConversion;
-import com.fr3ts0n.ecu.prot.obd.ObdProt;
 import com.fr3ts0n.pvs.IndexedProcessVar;
 import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
@@ -55,229 +53,264 @@ import java.util.Set;
  * @author erwin
  */
 class ObdItemAdapter extends ArrayAdapter<Object>
-	implements PvChangeListener
+        implements PvChangeListener
 {
-	transient PvList pvs;
-	private transient boolean isPidList = false;
-	final transient LayoutInflater mInflater;
-	transient public static final String FID_DATA_SERIES = "SERIES";
-	/** allow data updates to be handled */
-	public static boolean allowDataUpdates = true;
-	private final transient SharedPreferences prefs;
+    transient PvList pvs;
+    final transient LayoutInflater mInflater;
+    transient static final String FID_DATA_SERIES = "SERIES";
+    /**
+     * allow data updates to be handled
+     */
+    static boolean allowDataUpdates = true;
+    private final transient SharedPreferences prefs;
 
 
-	public ObdItemAdapter(Context context, int resource, PvList pvs)
-	{
-		super(context, resource);
-		prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		mInflater = (LayoutInflater) context
-			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		setPvList(pvs);
-	}
+    public ObdItemAdapter(Context context, int resource, PvList pvs)
+    {
+        super(context, resource);
+        prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        mInflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        setPvList(pvs);
+    }
 
-	/**
-	 * set / update PV list
-	 *
-	 * @param pvs process variable list
-	 */
-	@SuppressWarnings("unchecked")
-	public synchronized void setPvList(PvList pvs)
-	{
-		this.pvs = pvs;
-		isPidList = (pvs == ObdProt.PidPvs);
-		// get set to be displayed (filtered with preferences */
-		Collection<Object> filtered = getPreferredItems(pvs);
-		// make it a sorted array
-		Object[] pidPvs = filtered.toArray();
-		Arrays.sort(pidPvs, pidSorter);
+    /**
+     * set / update PV list
+     *
+     * @param pvs process variable list
+     */
+    @SuppressWarnings("unchecked")
+    public synchronized void setPvList(PvList pvs)
+    {
+        this.pvs = pvs;
+        // get set to be displayed (filtered with preferences */
+        Collection<Object> filtered = getPreferredItems(pvs);
+        // make it a sorted array
+        Object[] pidPvs = filtered.toArray();
+        Arrays.sort(pidPvs, pidSorter);
 
-		clear();
-		// add all elements
-		addAll(pidPvs);
+        clear();
+        // add all elements
+        addAll(pidPvs);
 
-		if (this.getClass() == ObdItemAdapter.class)
-			addAllDataSeries();
-	}
+        if (this.getClass() == ObdItemAdapter.class)
+            addAllDataSeries();
+    }
 
-	@SuppressWarnings("rawtypes")
-	private static final Comparator pidSorter = new Comparator()
-	{
-		public int compare(Object lhs, Object rhs)
-		{
-			// criteria 1: ID string
-			int result =  lhs.toString().compareTo(rhs.toString());
+    @SuppressWarnings("rawtypes")
+    private static final Comparator pidSorter = new Comparator()
+    {
+        public int compare(Object lhs, Object rhs)
+        {
+            // criteria 1: ID string
+            int result = lhs.toString().compareTo(rhs.toString());
 
-			// criteria 2: description
-			if(result == 0)
-			{
-				result = String.valueOf(((IndexedProcessVar)lhs).get(EcuDataPv.FID_DESCRIPT))
-             .compareTo(String.valueOf(((IndexedProcessVar) rhs).get(EcuDataPv.FID_DESCRIPT)));
-			}
-			// return compare result
-			return result;
-		}
-	};
+            // criteria 2: description
+            if (result == 0)
+            {
+                result = String.valueOf(((IndexedProcessVar) lhs).get(EcuDataPv.FID_DESCRIPT))
+                        .compareTo(String.valueOf(((IndexedProcessVar) rhs).get(EcuDataPv.FID_DESCRIPT)));
+            }
+            // return compare result
+            return result;
+        }
+    };
 
-	/**
-	 * get set of data items filtered with set of preferred items to be displayed
-	 * @param pvs list of PVs to be handled
-	 * @return Set of filtered data items
-	 */
-	Collection getPreferredItems(PvList pvs)
-	{
-		// filter PVs with preference selections
-		Set<String> pidsToShow = prefs.getStringSet( SettingsActivity.KEY_DATA_ITEMS,
-		                                             (Set<String>)pvs.keySet());
-		return getMatchingItems(pvs, pidsToShow);
-	}
+    /**
+     * get set of data items filtered with set of preferred items to be displayed
+     *
+     * @param pvs list of PVs to be handled
+     * @return Set of filtered data items
+     */
+    Collection getPreferredItems(PvList pvs)
+    {
+        // filter PVs with preference selections
+        Set<String> pidsToShow = prefs.getStringSet(SettingsActivity.KEY_DATA_ITEMS,
+                                                    (Set<String>) pvs.keySet());
+        return getMatchingItems(pvs, pidsToShow);
+    }
 
-	/**
-	 * get set of data items filtered with set of preferred items to be displayed
-	 * @param pvs list of PVs to be handled
-	 * @param pidsToShow Set of keys to be used as filter
-	 * @return Set of filtered data items
-	 */
-	private Collection<Object> getMatchingItems(PvList pvs, Set<String> pidsToShow)
-	{
-		HashSet<Object> filtered = new HashSet<>();
-		for(Object key : pidsToShow)
-		{
-			IndexedProcessVar pv = (IndexedProcessVar) pvs.get(key);
-			if(pv != null)
-				filtered.add(pv);
-		}
-		return(filtered);
-	}
+    /**
+     * get set of data items filtered with set of preferred items to be displayed
+     *
+     * @param pvs        list of PVs to be handled
+     * @param pidsToShow Set of keys to be used as filter
+     * @return Set of filtered data items
+     */
+    private Collection<Object> getMatchingItems(PvList pvs, Set<String> pidsToShow)
+    {
+        HashSet<Object> filtered = new HashSet<>();
+        for (Object key : pidsToShow)
+        {
+            IndexedProcessVar pv = (IndexedProcessVar) pvs.get(key);
+            if (pv != null)
+                filtered.add(pv);
+        }
+        return (filtered);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.widget.ArrayAdapter#getView(int, android.view.View,
-	 * android.view.ViewGroup)
-	 */
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent)
-	{
-		// get data PV
-		EcuDataPv currPv = (EcuDataPv) getItem(position);
+    /*
+     * (non-Javadoc)
+     *
+     * @see android.widget.ArrayAdapter#getView(int, android.view.View,
+     * android.view.ViewGroup)
+     */
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
+        // get data PV
+        EcuDataPv currPv = (EcuDataPv) getItem(position);
 
-		if (convertView == null)
-		{
-			convertView = mInflater.inflate(R.layout.obd_item, parent, false);
-		}
+        if (convertView == null)
+        {
+            convertView = mInflater.inflate(R.layout.obd_item, parent, false);
+        }
 
-		// fill view fields with data
+        // fill view fields with data
 
-		// description text
-		TextView tvDescr = convertView.findViewById(R.id.obd_label);
-		tvDescr.setText(String.valueOf(Objects.requireNonNull(currPv).get(EcuDataPv.FID_DESCRIPT)));
-		TextView tvValue = convertView.findViewById(R.id.obd_value);
-		TextView tvUnits = convertView.findViewById(R.id.obd_units);
-		ProgressBar pb = convertView.findViewById(R.id.bar);
+        // description text
+        TextView tvDescr = convertView.findViewById(R.id.obd_label);
+        tvDescr.setText(String.valueOf(Objects.requireNonNull(currPv).get(EcuDataPv.FID_DESCRIPT)));
+        TextView tvValue = convertView.findViewById(R.id.obd_value);
+        TextView tvUnits = convertView.findViewById(R.id.obd_units);
+        ProgressBar pb = convertView.findViewById(R.id.bar);
 
-		// format value string
-		String fmtText;
-		Object colVal = currPv.get(EcuDataPv.FID_VALUE);
-		Object cnvObj = currPv.get(EcuDataPv.FID_CNVID);
-		Number min = (Number) currPv.get(EcuDataPv.FID_MIN);
-		Number max = (Number) currPv.get(EcuDataPv.FID_MAX);
-		int pid = currPv.getAsInt(EcuDataPv.FID_PID);
+        // format value string
+        String fmtText;
+        Object colVal = currPv.get(EcuDataPv.FID_VALUE);
+        Object cnvObj = currPv.get(EcuDataPv.FID_CNVID);
+        Number min = (Number) currPv.get(EcuDataPv.FID_MIN);
+        Number max = (Number) currPv.get(EcuDataPv.FID_MAX);
+        int pid = currPv.getAsInt(EcuDataPv.FID_PID);
 
-		try
-		{
-			if ( cnvObj != null
-				   && cnvObj instanceof Conversion[]
-					 && ((Conversion[])cnvObj)[EcuDataItem.cnvSystem] != null
-				 )
-			{
-				Conversion cnv;
-				cnv = ((Conversion[])cnvObj)[EcuDataItem.cnvSystem];
-				// set formatted text
-				fmtText = cnv.physToPhysFmtString((Number)colVal,
-						(String)currPv.get(EcuDataPv.FID_FORMAT));
-				// set progress bar only on LinearConversion
-				if(    min != null
-					  && max != null
-					  && cnv instanceof NumericConversion)
-				{
-					pb.setVisibility(ProgressBar.VISIBLE);
-					pb.getProgressDrawable().setColorFilter(ChartActivity.getItemColor(pid), PorterDuff.Mode.SRC_IN);
-					pb.setProgress((int)(100 * ((((Number)colVal).doubleValue() - min.doubleValue()) / (max.doubleValue() - min.doubleValue()))));
-				}
-				else
-				{
-					pb.setVisibility(ProgressBar.GONE);
-				}
-			} else
-			{
-				fmtText = String.valueOf(colVal);
-			}
-		} catch (Exception ex)
-		{
-			fmtText = String.valueOf(colVal);
-		}
-		// set value
-		tvValue.setText(fmtText);
-		tvUnits.setText(currPv.getUnits());
+        try
+        {
+            // format text output
+            if (cnvObj instanceof Conversion[]
+                && ((Conversion[]) cnvObj)[EcuDataItem.cnvSystem] != null
+            )
+            {
+                // format throuch assigned conversion
+                Conversion cnv;
+                cnv = ((Conversion[]) cnvObj)[EcuDataItem.cnvSystem];
+                // set formatted text
+                fmtText = cnv.physToPhysFmtString((Number) colVal,
+                                                  (String) currPv.get(EcuDataPv.FID_FORMAT));
+            } else
+            {
+                // plain format
+                fmtText = String.valueOf(colVal);
+            }
 
-		return convertView;
-	}
+            // set progress bar only on numeric values with min/max limits
+            if (min != null
+                    && max != null
+                    && colVal instanceof Number)
+            {
+                pb.setVisibility(ProgressBar.VISIBLE);
+                pb.getProgressDrawable().setColorFilter(ChartActivity.getItemColor(pid), PorterDuff.Mode.SRC_IN);
+                pb.setProgress((int) (100 * ((((Number) colVal).doubleValue() - min.doubleValue()) / (max.doubleValue() - min.doubleValue()))));
+            } else
+            {
+                pb.setVisibility(ProgressBar.GONE);
+            }
 
-	/**
-	 * Add data series to all process variables
-	 */
-	private synchronized void addAllDataSeries()
-	{
-		StringBuilder pluginStr = new StringBuilder();
-		for (IndexedProcessVar pv : (Iterable<IndexedProcessVar>) pvs.values())
-		{
-			XYSeries series = (XYSeries) pv.get(FID_DATA_SERIES);
-			if (series == null) {
-				series = new XYSeries(String.valueOf(pv.get(EcuDataPv.FID_DESCRIPT)));
-				pv.put(FID_DATA_SERIES, series);
-				pv.addPvChangeListener(this, PvChangeEvent.PV_MODIFIED);
-			}
+        } catch (Exception ex)
+        {
+            fmtText = String.valueOf(colVal);
+        }
+        // set value
+        tvValue.setText(fmtText);
+        tvUnits.setText(currPv.getUnits());
 
-			// assemble data items for plugin notification
-			pluginStr.append(String.format("%s;%s;%s;%s\n",
-				pv.get(EcuDataPv.FID_MNEMONIC),
-				pv.get(EcuDataPv.FID_DESCRIPT),
-				String.valueOf(pv.get(EcuDataPv.FID_VALUE)),
-				pv.get(EcuDataPv.FID_UNITS)
-			));
-		}
+        return convertView;
+    }
 
-		// notify plugins
-		if(PluginManager.pluginHandler != null)
-		{
-			PluginManager.pluginHandler.sendDataList(pluginStr.toString());
-		}
-	}
+    /**
+     * Handler for data item changes
+     */
+    PvChangeListener dataChangeHandler = new PvChangeListener()
+    {
+        @Override
+        public void pvChanged(PvChangeEvent event)
+        {
+            // handle data item updates
+            if (allowDataUpdates)
+            {
+                IndexedProcessVar pv = (IndexedProcessVar) event.getSource();
+                XYSeries series = (XYSeries) pv.get(FID_DATA_SERIES);
+                if (series != null)
+                {
+                    if (event.getValue() instanceof Number)
+                    {
+                        series.add(event.getTime(),
+                                   ((Number) event.getValue()).doubleValue());
 
-	@Override
-	public void pvChanged(PvChangeEvent event)
-	{
-		if (allowDataUpdates)
-		{
-			IndexedProcessVar pv = (IndexedProcessVar) event.getSource();
-			XYSeries series = (XYSeries) pv.get(FID_DATA_SERIES);
-			if (series != null)
-			{
-				if(event.getValue() instanceof Number)
-				{
-					series.add(event.getTime(),
-						((Number)event.getValue()).doubleValue());
+                    }
+                }
 
-				}
-			}
+                // send update to plugin handler
+                if (PluginManager.pluginHandler != null)
+                {
+                    PluginManager.pluginHandler.sendDataUpdate(
+                            pv.get(EcuDataPv.FID_MNEMONIC).toString(),
+                            event.getValue().toString());
+                }
+            }
+        }
+    };
 
-			// send update to plugin handler
-			if(PluginManager.pluginHandler != null)
-			{
-				PluginManager.pluginHandler.sendDataUpdate(
-					pv.get(EcuDataPv.FID_MNEMONIC).toString(),
-					event.getValue().toString());
-			}
-		}
-	}
+    /**
+     * Add data series to all process variables
+     */
+    protected synchronized void addAllDataSeries()
+    {
+        StringBuilder pluginStr = new StringBuilder();
+        for (IndexedProcessVar pv : (Iterable<IndexedProcessVar>) pvs.values())
+        {
+            XYSeries series = (XYSeries) pv.get(FID_DATA_SERIES);
+            if (series == null)
+            {
+                series = new XYSeries(String.valueOf(pv.get(EcuDataPv.FID_DESCRIPT)));
+                pv.put(FID_DATA_SERIES, series);
+                pv.addPvChangeListener(dataChangeHandler, PvChangeEvent.PV_MODIFIED);
+            }
+
+            // assemble data items for plugin notification
+            pluginStr.append(String.format("%s;%s;%s;%s\n",
+                                           pv.get(EcuDataPv.FID_MNEMONIC),
+                                           pv.get(EcuDataPv.FID_DESCRIPT),
+                                           String.valueOf(pv.get(EcuDataPv.FID_VALUE)),
+                                           pv.get(EcuDataPv.FID_UNITS)
+            ));
+        }
+
+        // notify plugins
+        if (PluginManager.pluginHandler != null)
+        {
+            PluginManager.pluginHandler.sendDataList(pluginStr.toString());
+        }
+    }
+
+    @Override
+    public void pvChanged(PvChangeEvent event)
+    {
+        // handle data list updates
+        switch (event.getType())
+        {
+            case PvChangeEvent.PV_ADDED:
+                PvList pvList = (PvList)event.getSource();
+                clear();
+                addAll(pvList.values());
+                break;
+
+            case PvChangeEvent.PV_DELETED:
+                remove(event.getValue());
+                break;
+
+            case PvChangeEvent.PV_CLEARED:
+                clear();
+                break;
+        }
+    }
 }

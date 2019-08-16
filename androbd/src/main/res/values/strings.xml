@@ -247,6 +247,7 @@ period of time while the ECU recalibrates itself.
     </string>
     <string name="graphic_design">Graphic design</string>
     <string name="design_credits" translatable="false">2018 by @anaufalm</string>
+    <string name="plugin_data">Plugin data</string>
     <string-array name="csv_field_delim_options" translatable="false">
         <item>@string/tab</item>
         <item>@string/comma</item>
