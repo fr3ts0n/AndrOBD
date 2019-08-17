@@ -175,7 +175,7 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			renderer.setChartTitleTextSize(mDisplayMetrics.densityDpi/10);
 
 			SimpleSeriesRenderer r = new SimpleSeriesRenderer();
-			r.setColor(ChartActivity.getItemColor(pid));
+			r.setColor(ChartActivity.getItemColor(pid!=0?pid:position));
 			try
 			{
 				r.setChartValuesFormat(labelFormat);
@@ -191,10 +191,10 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			chartView = new DialChart(category, renderer);
 			currPv.setRenderingComponent(chartView);
 		}
-		convertView.setBackgroundColor(ChartActivity.getItemColor(pid) & 0x08FFFFFF);
+		convertView.setBackgroundColor(ChartActivity.getItemColor(pid!=0?pid:position) & 0x08FFFFFF);
 
 		// set new values for display
-		holder.tvDescr.setTextColor(ChartActivity.getItemColor(pid));
+		holder.tvDescr.setTextColor(ChartActivity.getItemColor(pid!=0?pid:position));
 		holder.tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
 		// replace DialChart if needed
 		holder.gauge.removeViewAt(0);

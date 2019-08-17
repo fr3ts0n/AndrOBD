@@ -208,7 +208,7 @@ class ObdItemAdapter extends ArrayAdapter<Object>
                     && colVal instanceof Number)
             {
                 pb.setVisibility(ProgressBar.VISIBLE);
-                pb.getProgressDrawable().setColorFilter(ChartActivity.getItemColor(pid), PorterDuff.Mode.SRC_IN);
+                pb.getProgressDrawable().setColorFilter(ChartActivity.getItemColor(pid!=0?pid:position), PorterDuff.Mode.SRC_IN);
                 pb.setProgress((int) (100 * ((((Number) colVal).doubleValue() - min.doubleValue()) / (max.doubleValue() - min.doubleValue()))));
             } else
             {

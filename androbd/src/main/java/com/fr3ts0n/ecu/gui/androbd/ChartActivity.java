@@ -396,11 +396,11 @@ public class ChartActivity extends Activity
 			renderer.setYTitle(String.valueOf(currPv.get(EcuDataPv.FID_UNITS)), i);
 			renderer.setYAxisAlign(((i % 2) == 0) ? Align.LEFT : Align.RIGHT, i);
 			renderer.setYLabelsAlign(((i % 2) == 0) ? Align.LEFT : Align.RIGHT, i);
-			renderer.setYLabelsColor(i, getItemColor(pid));
+			renderer.setYLabelsColor(i, getItemColor(pid!=0?pid:position));
 			/* set up new line renderer */
 			XYSeriesRenderer r = new XYSeriesRenderer();
-			r.setColor(getItemColor(pid));
-			r.setStroke(getStroke(pid));
+			r.setColor(getItemColor(pid!=0?pid:position));
+			r.setStroke(getStroke(pid!=0?pid:position));
 			// register line renderer
 			renderer.addSeriesRenderer(i, r);
 			i++;

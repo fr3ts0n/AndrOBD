@@ -638,6 +638,7 @@ public class MainActivity extends PluginManager
 			case R.id.plugin_data:
 				currDataAdapter = mPluginDataAdapter;
 				setListAdapter(currDataAdapter);
+				setDataViewMode(DATA_VIEW_MODE.LIST);
 				setContentView(mListView);
 				return true;
 		}
