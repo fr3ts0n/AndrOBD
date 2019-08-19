@@ -206,10 +206,14 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 	@Override
 	public void pvChanged(PvChangeEvent event)
 	{
-		ProcessVar currPv = (ProcessVar) event.getSource();
-		CategorySeries series = (CategorySeries) currPv.get(FID_GAUGE_SERIES);
-		series.set(0,
-			String.valueOf(currPv.get(EcuDataPv.FID_UNITS)),
-				((Number)event.getValue()).doubleValue());
+		if(event.getKey().equals(EcuDataPv.FID_VALUE)
+				&& event.getValue() instanceof Number)
+		{
+			ProcessVar currPv = (ProcessVar) event.getSource();
+			CategorySeries series = (CategorySeries) currPv.get(FID_GAUGE_SERIES);
+			series.set(0,
+					   String.valueOf(currPv.get(EcuDataPv.FID_UNITS)),
+					   ((Number)event.getValue()).doubleValue());
+		}
 	}
 }

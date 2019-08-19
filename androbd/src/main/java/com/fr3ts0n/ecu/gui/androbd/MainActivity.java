@@ -640,6 +640,7 @@ public class MainActivity extends PluginManager
 				setListAdapter(currDataAdapter);
 				setDataViewMode(DATA_VIEW_MODE.LIST);
 				setContentView(mListView);
+				setStatus(R.string.plugin_data);
 				return true;
 		}
 
@@ -2106,7 +2107,7 @@ public class MainActivity extends PluginManager
 	private void setDataViewMode(DATA_VIEW_MODE dataViewMode)
 	{
 		// if this is a real change ...
-		if (false || dataViewMode != this.dataViewMode)
+		if (dataViewMode != this.dataViewMode)
 		{
 			log.info(String.format("Set view mode: %s -> %s", this.dataViewMode, dataViewMode));
 
@@ -2201,11 +2202,11 @@ public class MainActivity extends PluginManager
 				if (fields.length >= Plugin.CsvField.values().length)
 				{
 					// check if PV already is known ...
-					EcuDataPv pv = (EcuDataPv) mPluginPvs.get(fields[Plugin.CsvField.MNEMONIC.ordinal()]);
+					PluginDataPv pv = (PluginDataPv) mPluginPvs.get(fields[Plugin.CsvField.MNEMONIC.ordinal()]);
 					// if not, create a new one
 					if(pv == null)
 					{
-						pv = new EcuDataPv();
+						pv = new PluginDataPv();
 					}
 					// fill field content
 					for (Plugin.CsvField fld : Plugin.CsvField.values())
@@ -2221,8 +2222,6 @@ public class MainActivity extends PluginManager
 							pv.put(csvFidMap[fld.ordinal()], fields[fld.ordinal()]);
 						}
 					}
-					// key attribute for PV is the Plugin's mnemonic
-					pv.setKeyAttribute(csvFidMap[Plugin.CsvField.MNEMONIC.ordinal()]);
 					// add/update into pv list
 					mPluginPvs.put(pv.getKeyValue(), pv);
 				}
