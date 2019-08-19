@@ -636,11 +636,12 @@ public class MainActivity extends PluginManager
 				return true;
 
 			case R.id.plugin_data:
+				ActionBar ab = getActionBar();
+				if (ab != null) ab.setTitle(R.string.plugin_data);
 				currDataAdapter = mPluginDataAdapter;
 				setListAdapter(currDataAdapter);
 				setDataViewMode(DATA_VIEW_MODE.LIST);
 				setContentView(mListView);
-				setStatus(R.string.plugin_data);
 				return true;
 		}
 
@@ -1020,6 +1021,8 @@ public class MainActivity extends PluginManager
 								{
 									if (event.getSource() == ObdProt.PidPvs)
 									{
+										// append plugin measurements to data list
+										currDataAdapter.addAll(mPluginPvs.values());
 										// Check if last data selection shall be restored
 										checkToRestoreLastDataSelection();
 										checkToRestoreLastViewMode();
@@ -1907,7 +1910,11 @@ public class MainActivity extends PluginManager
 
 			/* Return to original PV list */
 			if(currDataAdapter == mPidAdapter)
+			{
 				currDataAdapter.setPvList(ObdProt.PidPvs);
+				// append plugin measurements to data list
+				currDataAdapter.addAll(mPluginPvs.values());
+			}
 			else if(currDataAdapter == mVidAdapter)
 				currDataAdapter.setPvList(ObdProt.VidPvs);
 			else if(currDataAdapter == mDfcAdapter)

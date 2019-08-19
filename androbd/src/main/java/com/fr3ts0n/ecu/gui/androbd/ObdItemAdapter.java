@@ -98,7 +98,7 @@ class ObdItemAdapter extends ArrayAdapter<Object>
     }
 
     @SuppressWarnings("rawtypes")
-    private static final Comparator pidSorter = new Comparator()
+    static final Comparator pidSorter = new Comparator()
     {
         public int compare(Object lhs, Object rhs)
         {
@@ -290,6 +290,14 @@ class ObdItemAdapter extends ArrayAdapter<Object>
         {
             PluginManager.pluginHandler.sendDataList(pluginStr.toString());
         }
+    }
+
+    @Override
+    public void addAll(Collection<?> collection)
+    {
+        super.addAll(collection);
+        // get array sorted
+        sort(pidSorter);
     }
 
     @Override
