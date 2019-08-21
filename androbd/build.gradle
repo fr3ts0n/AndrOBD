@@ -5,7 +5,7 @@ android {
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId 'com.fr3ts0n.ecu.gui.androbd'
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 20008
         versionName 'V2.0.8'
