@@ -149,6 +149,7 @@ class FileHelper
 			oStr.writeObject(ObdProt.PidPvs);
 			oStr.writeObject(ObdProt.VidPvs);
 			oStr.writeObject(ObdProt.tCodes);
+			oStr.writeObject(MainActivity.mPluginPvs);
 
 			oStr.close();
 			fStr.close();
@@ -225,6 +226,8 @@ class FileHelper
 			ObdProt.PidPvs = (PvList) oIn.readObject();
 			ObdProt.VidPvs = (PvList) oIn.readObject();
 			ObdProt.tCodes = (PvList) oIn.readObject();
+			MainActivity.mPluginPvs = (PvList) oIn.readObject();
+
 			oIn.close();
 
 			log.log(Level.INFO, msg);

@@ -218,7 +218,7 @@ public class MainActivity extends PluginManager
 	/**
 	 * Container for Plugin-provided data
 	 */
-	private static final PvList mPluginPvs = new PvList();
+	public static PvList mPluginPvs = new PvList();
 
 	/**
 	 * Data list adapters
@@ -1494,6 +1494,9 @@ public class MainActivity extends PluginManager
 		if (mode != this.mode || mode == MODE.FILE)
 		{
 			if (mode != MODE.DEMO) { stopDemoService(); }
+
+			// Disable data updates in FILE mode
+			ObdItemAdapter.allowDataUpdates = (mode != MODE.FILE);
 
 			switch (mode)
 			{
