@@ -634,15 +634,6 @@ public class MainActivity extends PluginManager
 				clearObdFaultCodes();
 				setObdService(ObdProt.OBD_SVC_READ_CODES, item.getTitle());
 				return true;
-
-			case R.id.plugin_data:
-				ActionBar ab = getActionBar();
-				if (ab != null) ab.setTitle(R.string.plugin_data);
-				currDataAdapter = mPluginDataAdapter;
-				setListAdapter(currDataAdapter);
-				setDataViewMode(DATA_VIEW_MODE.LIST);
-				setContentView(mListView);
-				return true;
 		}
 
 		return super.onOptionsItemSelected(item);
