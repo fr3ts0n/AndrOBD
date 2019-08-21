@@ -40,11 +40,11 @@ import com.fr3ts0n.pvs.PvList;
 
 import org.achartengine.model.XYSeries;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -92,9 +92,6 @@ class ObdItemAdapter extends ArrayAdapter<Object>
         clear();
         // add all elements
         addAll(pidPvs);
-
-        if (this.getClass() == ObdItemAdapter.class)
-            addAllDataSeries();
     }
 
     @SuppressWarnings("rawtypes")
@@ -149,6 +146,17 @@ class ObdItemAdapter extends ArrayAdapter<Object>
         return (filtered);
     }
 
+    void filterPositions(int[] positions)
+    {
+        ArrayList<EcuDataPv> filtered = new ArrayList<>();
+        for(int pos : positions)
+        {
+            filtered.add((EcuDataPv)getItem(pos));
+        }
+        clear();
+        addAll(filtered);
+    }
+
     /*
      * (non-Javadoc)
      *
@@ -170,7 +178,7 @@ class ObdItemAdapter extends ArrayAdapter<Object>
 
         // description text
         TextView tvDescr = convertView.findViewById(R.id.obd_label);
-        tvDescr.setText(String.valueOf(Objects.requireNonNull(currPv).get(EcuDataPv.FID_DESCRIPT)));
+        tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
         TextView tvValue = convertView.findViewById(R.id.obd_value);
         TextView tvUnits = convertView.findViewById(R.id.obd_units);
         ProgressBar pb = convertView.findViewById(R.id.bar);
@@ -266,8 +274,9 @@ class ObdItemAdapter extends ArrayAdapter<Object>
     protected synchronized void addAllDataSeries()
     {
         StringBuilder pluginStr = new StringBuilder();
-        for (IndexedProcessVar pv : (Iterable<IndexedProcessVar>) pvs.values())
+        for (int pos = 0; pos < getCount(); pos++)
         {
+            IndexedProcessVar pv = (IndexedProcessVar)getItem(pos);
             XYSeries series = (XYSeries) pv.get(FID_DATA_SERIES);
             if (series == null)
             {
@@ -298,6 +307,10 @@ class ObdItemAdapter extends ArrayAdapter<Object>
         super.addAll(collection);
         // get array sorted
         sort(pidSorter);
+
+        if (this.getClass() == ObdItemAdapter.class)
+            addAllDataSeries();
+
     }
 
     @Override

@@ -1291,9 +1291,7 @@ public class MainActivity extends PluginManager
 	}
 
 	/**
-	 * OnClick handler - Unhide action bar
-	 *
-	 * @param view view source of click event
+	 * Unhide action bar
 	 */
 	private void unHideActionBar()
 	{
@@ -1893,15 +1891,14 @@ public class MainActivity extends PluginManager
 	{
 		if (filtered)
 		{
-			PvList filteredList = new PvList();
 			TreeSet<Integer> selPids = new TreeSet<>();
-			for (int pos : getSelectedPositions())
+			int[] selectedPositions = getSelectedPositions();
+			for (int pos : selectedPositions)
 			{
-				EcuDataPv pv = (EcuDataPv) currDataAdapter.getItem(pos);
+				EcuDataPv pv = (EcuDataPv)currDataAdapter.getItem(pos);
 				selPids.add(pv != null ? pv.getAsInt(EcuDataPv.FID_PID) : 0);
-				filteredList.put(Objects.requireNonNull(pv).toString(), pv);
 			}
-			currDataAdapter.setPvList(filteredList);
+			currDataAdapter.filterPositions(selectedPositions);
 
 			if(currDataAdapter == mPidAdapter)
 				setFixedPids(selPids);
@@ -2011,6 +2008,7 @@ public class MainActivity extends PluginManager
 	/**
 	 * Handle bluetooth connection established ...
 	 */
+	@SuppressLint("StringFormatInvalid")
 	private void onConnect()
 	{
 		stopDemoService();

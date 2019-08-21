@@ -96,17 +96,23 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 	@Override
 	public void add(EcuDataPv currPv)
 	{
-		CategorySeries category = (CategorySeries) currPv.get(FID_GAUGE_SERIES);
-		if (category == null)
+		try
 		{
-			category = new CategorySeries(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
-			category.add(String.valueOf(currPv.get(EcuDataPv.FID_UNITS)),
-					((Number)currPv.get(EcuDataPv.FID_VALUE)).doubleValue());
-			currPv.put(FID_GAUGE_SERIES, category);
-			currPv.setRenderingComponent(null);
+			CategorySeries category = (CategorySeries) currPv.get(FID_GAUGE_SERIES);
+			if (category == null)
+			{
+				category = new CategorySeries(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
+				category.add(String.valueOf(currPv.get(EcuDataPv.FID_UNITS)),
+						((Number)currPv.get(EcuDataPv.FID_VALUE)).doubleValue());
+				currPv.put(FID_GAUGE_SERIES, category);
+				currPv.setRenderingComponent(null);
+			}
 		}
-		// make this adapter to listen for PV data updates
-		currPv.addPvChangeListener(this, PvChangeEvent.PV_MODIFIED);
+		finally
+		{
+			// make this adapter to listen for PV data updates
+			currPv.addPvChangeListener(this, PvChangeEvent.PV_MODIFIED);
+		}
 
 		super.add(currPv);
 	}
@@ -206,7 +212,7 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 	@Override
 	public void pvChanged(PvChangeEvent event)
 	{
-		if(event.getKey().equals(EcuDataPv.FID_VALUE)
+		if(event.getKey().equals(EcuDataPv.FIELDS[EcuDataPv.FID_VALUE])
 				&& event.getValue() instanceof Number)
 		{
 			ProcessVar currPv = (ProcessVar) event.getSource();
