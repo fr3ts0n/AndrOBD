@@ -248,6 +248,7 @@ period of time while the ECU recalibrates itself.
     <string name="graphic_design">Graphic design</string>
     <string name="design_credits" translatable="false">2018 by @anaufalm</string>
     <string name="plugin_data">Plugin data</string>
+    <string name="long_press_dfc_hint">Long press DFC for online search …</string>
     <string-array name="csv_field_delim_options" translatable="false">
         <item>@string/tab</item>
         <item>@string/comma</item>
@@ -268,4 +269,9 @@ period of time while the ECU recalibrates itself.
         <item>\n</item>
         <item>\r\n</item>
     </string-array>
+    <string name="process_vars">Process variables</string>
+    <string name="unfilter">Remove filter</string>
+    <string name="plugin_manager_desc">Manager for detected plugins</string>
+    <string name="graph_actions">Graph actions</string>
+    <string name="master">master</string>
 </resources>

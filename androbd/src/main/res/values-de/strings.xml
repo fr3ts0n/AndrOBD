@@ -157,4 +157,10 @@
     <string name="libraries_sum">Im Projekt verwendete Bibliotheken …</string>
     <string name="release_history">Versionen …</string>
     <string name="graphic_design">Grafisches Design</string>
+    <string name="long_press_dfc_hint">DFC lang klicken für Online-Suche ...</string>
+    <string name="plugin_data">Plugin Daten</string>
+    <string name="process_vars">Prozessvariablen</string>
+    <string name="unfilter">Filter entfernen</string>
+    <string name="plugin_manager_desc">Verwaltung von erkannten Plugin-Erweiterungen</string>
+    <string name="graph_actions">Graphik-Aktionen</string>
 </resources>

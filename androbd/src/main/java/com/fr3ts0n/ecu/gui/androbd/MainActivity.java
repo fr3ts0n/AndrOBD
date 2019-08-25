@@ -1859,6 +1859,7 @@ public class MainActivity extends PluginManager
 			case ObdProt.OBD_SVC_PERMACODES:
 			case ObdProt.OBD_SVC_READ_CODES:
 				currDataAdapter = mDfcAdapter;
+				Toast.makeText(this, getString(R.string.long_press_dfc_hint), Toast.LENGTH_LONG).show();
 				break;
 
 			case ObdProt.OBD_SVC_NONE:
