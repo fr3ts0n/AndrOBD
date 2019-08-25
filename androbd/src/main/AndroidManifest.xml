@@ -75,10 +75,6 @@
             android:label="@string/settings"
             android:theme="@style/AppTheme.Dark"
             />
-        <service
-            android:name="com.fr3ts0n.androbd.plugin.mgr.PluginDataService"
-            android:exported="true">
-        </service>
     </application>
 
 </manifest>
