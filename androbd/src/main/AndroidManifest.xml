@@ -17,7 +17,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
-
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
@@ -76,6 +75,10 @@
             android:label="@string/settings"
             android:theme="@style/AppTheme.Dark"
             />
+        <service
+            android:name="com.fr3ts0n.androbd.plugin.mgr.PluginDataService"
+            android:exported="true">
+        </service>
     </application>
 
 </manifest>
