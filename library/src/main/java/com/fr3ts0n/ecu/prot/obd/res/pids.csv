@@ -99,7 +99,19 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	mnemonic (
 0x01,0x02	0x3D	0	2	0	16	0xFFFF	TEMP_WIDERANGE	%.0f	-40	950	cat_temperature_b2s1	CAT Temperature B2S1	B2S1			
 0x01,0x02	0x3E	0	2	0	16	0xFFFF	TEMP_WIDERANGE	%.0f	-40	950	cat_temperature_b1s2	CAT Temperature B1S2	B1S2			
 0x01,0x02	0x3F	0	2	0	16	0xFFFF	TEMP_WIDERANGE	%.0f	-40	950	cat_temperature_b2s2	CAT Temperature B2S2	B2S2			
-0x01,0x02	0x42	0	2	0	16	0xFFFF	VOLTAGE	%.3f			ecu_voltage	ECU voltage				
+0x01,0x02	0x41	1	1	0	5	0x11	TEST_STATUS_4	%.0f			status_misfires	Misfire status	fuel_system1_status_formula -fuel_system2_status_formula
+0x01,0x02	0x41	1	1	1	5	0x11	TEST_STATUS_4	%.0f			status_fuel_system	Fuel system test status	fuel_system1_status_formula -fuel_system2_status_formula
+0x01,0x02	0x41	1	1	2	5	0x11	TEST_STATUS_4	%.0f			status_component_test	Component test status	fuel_system1_status_formula -fuel_system2_status_formula
+0x01,0x02	0x41	1	1	3	5	0x11	IGN_MON_STATUS	%.0f			status_ignition_monitoring	Ignition monitoring status	fuel_system1_status_formula -fuel_system2_status_formula
+0x01,0x02	0x41	2	2	0	9	0x101	TEST_STATUS_8	%.0f			status_catalyst_test	Catalyst test status
+0x01,0x02	0x41	2	2	1	9	0x101	TEST_STATUS_8	%.0f			status_catalyst_test_nox_monitor	Heated Cat / Nox Monitor test status
+0x01,0x02	0x41	2	2	2	9	0x101	TEST_STATUS_8	%.0f			status_evaporative_system_test	Evaporative system test status
+0x01,0x02	0x41	2	2	3	9	0x101	TEST_STATUS_8	%.0f			status_secondary_air_system_test	Secondary air sys test status
+0x01,0x02	0x41	2	2	4	9	0x101	TEST_STATUS_8	%.0f			status_ac_refrigerant_test	A/C refrigerant test status
+0x01,0x02	0x41	2	2	5	9	0x101	TEST_STATUS_8	%.0f			status_oxygen_sensor_test	Oxygen Sensor test status
+0x01,0x02	0x41	2	2	6	9	0x101	TEST_STATUS_8	%.0f			status_oxygen_sensor_heater_test	Oxygen Sensor Heater test status
+0x01,0x02	0x41	2	2	7	9	0x101	TEST_STATUS_8	%.0f			status_egr_system_test	EGR System test status
+0x01,0x02	0x42	0	2	0	16	0xFFFF	VOLTAGE	%.3f			ecu_voltage	ECU voltage
 0x01,0x02	0x43	0	2	0	16	0xFFFF	PERCENT	%.1f			engine_load	Absolute Engine Load				
 0x01,0x02	0x44	0	2	0	16	0xFFFF	RATIO	%.3f			equiv_ratio_commanded	Commanded Equivalence Ratio				
 0x01,0x02	0x45	0	1	0	8	0xFF	PERCENT	%.1f			throttle_position_rel	Relative Throttle Position				
