@@ -1924,7 +1924,7 @@ public class MainActivity extends PluginManager
 	 */
 	private int[] getSelectedPositions()
 	{
-		int selectedPositions[];
+		int[] selectedPositions;
 		// SparseBoolArray - what a garbage data type to return ...
 		final SparseBooleanArray checkedItems = getListView().getCheckedItemPositions();
 		// get number of items
@@ -2175,7 +2175,7 @@ public class MainActivity extends PluginManager
 		}
 	}
 
-	/**
+	/*
 	 * Implementations of PluginManager data interface callbacks
 	 */
 
