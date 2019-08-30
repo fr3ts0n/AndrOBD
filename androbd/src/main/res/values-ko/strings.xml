@@ -5,7 +5,7 @@
     <string name="title_connecting">연결중…</string>
     <string name="title_connected_to">연결됨</string>
     <string name="logo">로고</string>
-    <string name="back_again_to_exit">한번 더 뒤로가기 버튼을 누르시면 이 앱이 종료됩니다.</string>
+    <string name="back_again_to_exit">앱을 종료하려면 한 번 더 뒤로가기를 누르세요</string>
     <string name="action_connect">연결</string>
     <string name="obd_none">서비스 안됨</string>
     <string name="obd_services">OBD 서비스</string>
@@ -33,7 +33,7 @@
 \n  ECU가 스스로를 재 보정하는 동안.</string>
     <string name="select_device">아답터 선택</string>
     <string name="none_paired">디바이스와 연결안됨</string>
-    <string name="none_found">디바이스를 찾을수 없습니다.</string>
+    <string name="none_found">디바이스를 찾을수 없습니다</string>
     <string name="title_paired_devices">디바이스 연결됨</string>
     <string name="send_to">보낸사람</string>
     <string name="share">공유하기</string>
@@ -159,4 +159,11 @@
     <string name="libraries_sum">프로젝트에 사용 된 라이브러리 …</string>
     <string name="release_history">출시 내역 …</string>
     <string name="graphic_design">그래픽 디자인</string>
+    <string name="plugin_data">플러그인 데이터</string>
+    <string name="long_press_dfc_hint">온라인 검색을 하려면 DFC를 길게 누르세요…</string>
+    <string name="process_vars">변수 처리</string>
+    <string name="unfilter">필터 제거</string>
+    <string name="plugin_manager_desc">감지된 플러그인들에 대한 관리자</string>
+    <string name="graph_actions">활동 그래프 그리기</string>
+    <string name="master">마스터</string>
 </resources>
