@@ -67,7 +67,7 @@
     <string name="logging_level_description">디버그 로그 파일에 기록 할 세부 정보 수준</string>
     <string name="last_elm">마지막 ELM-adapter 다시 연결</string>
     <string name="last_ecu">마지막 ECU 다시 연결</string>
-    <string name="last_service">마지막 OBD tjq</string>
+    <string name="last_service">마지막 OBD 서비스</string>
     <string name="last_data_items">마지막으로 선택한 데이터 항목</string>
     <string name="last_view_mode">마지막 데이터 보기 모드</string>
     <string name="keep_screen_on">기본 화면 유지</string>
@@ -166,4 +166,5 @@
     <string name="plugin_manager_desc">감지된 플러그인들에 대한 관리자</string>
     <string name="graph_actions">활동 그래프 그리기</string>
     <string name="master">마스터</string>
+    <string name="service_freezeframes">OBD 프레임 멈춤</string>
 </resources>
