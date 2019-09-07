@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Traducido por fr3ts0n</string>
-    <string name="app_description">Aplicacion android para diagnostico de vehiculos usando el adaptador bluetooth ELM327</string>
+    <string name="translation_credits">Traducido por RamLinux, eltiobarbas, isalgueiro y Adolfo</string>
+    <string name="app_description">Aplicación de Android de diagnósticos vehiculares para el adaptador Bluetooth ELM327</string>
     <string name="title_connecting">Conectando…</string>
     <string name="title_connected_to">Conectado a %s</string>
     <string name="logo">Logotipo</string>
-    <string name="back_again_to_exit">Presiona de nuevo para cerrar esta aplicación</string>
+    <string name="back_again_to_exit">Pulse Atrás de nuevo para cerrar la aplicación</string>
     <string name="action_connect">Conectar</string>
-    <string name="obd_none">Sin Servicio</string>
-    <string name="obd_services">Servicios OBD</string>
-    <string name="obd_veh_info">Informacion del Vehiculo</string>
+    <string name="obd_none">Sin servicio</string>
+    <string name="obd_services">Servicios de OBD</string>
+    <string name="obd_veh_info">Información OBD del vehículo</string>
     <string name="obd_data">Datos OBD</string>
     <string name="service_freezeframes">Congelar cuadros OBD</string>
     <string name="obd_codes">Codigos de error OBD</string>
