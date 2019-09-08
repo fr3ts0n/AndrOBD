@@ -159,4 +159,5 @@ információt, beleértve:
     <string name="libraries_sum">A projektben alkalmazott könyvtárak …</string>
     <string name="release_history">Kiadási történet …</string>
     <string name="graphic_design">Grafikus terv</string>
+    <string name="unfilter">Szűrő eltávolítása</string>
 </resources>
