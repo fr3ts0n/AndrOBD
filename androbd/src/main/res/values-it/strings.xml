@@ -160,4 +160,5 @@
     <string name="libraries_sum">Librerie usate nel progetto…</string>
     <string name="release_history">Storico versioni…</string>
     <string name="graphic_design">design grafico</string>
+    <string name="plugin_data">Data plugin</string>
 </resources>
