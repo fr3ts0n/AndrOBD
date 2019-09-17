@@ -122,7 +122,7 @@
 \n他のメーカー固有のクリア/リセット動作が発生することがあります。
 \nデータの損失は、ECU 自体が再校正するまでの短い時間、
 \n車両の走行性能の劣化を引き起こす可能性があります。</string>
-    <string name="translation_credits">翻訳 naofum</string>
+    <string name="translation_credits">"翻訳 naofum "</string>
     <string name="obd_error">OBD プロトコル エラー</string>
     <string name="elm_reset_on_nrc">NRC のリセット</string>
     <string name="elm_reset_on_nrc_descr">NRC エラーの ELM アダプターをリセットしますか?</string>
