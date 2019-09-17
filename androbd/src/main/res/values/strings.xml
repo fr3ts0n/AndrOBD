@@ -3,7 +3,7 @@
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
     <string name="copyright_fr3ts0n" translatable="false">© 2015-2018 fr3ts0n</string>
-    <string name="translation_credits">Translation by fr3ts0n</string>
+    <string name="translation_credits">"منصةشليلة ar "</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 Bluetooth adapter</string>
     <string name="title_connecting">Connecting…</string>
     <string name="title_connected_to">Connected %s</string>
