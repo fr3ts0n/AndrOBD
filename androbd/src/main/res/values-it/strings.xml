@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Tradotto da Lesto</string>
+    <string name="translation_credits">"Tradotto da Lesto "</string>
     <string name="app_description">Applicazione Android di diagnostica veicoli OBD con adattatori Bluetooth ELM327</string>
     <string name="title_connecting">Connessione…</string>
     <string name="title_connected_to">Connesso: %s</string>
@@ -161,4 +161,5 @@
     <string name="release_history">Storico versioni…</string>
     <string name="graphic_design">design grafico</string>
     <string name="plugin_data">Data plugin</string>
+    <string name="long_press_dfc_hint">Premi a lungo DFC per cercare online</string>
 </resources>
