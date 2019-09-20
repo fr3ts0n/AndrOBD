@@ -56,7 +56,7 @@
     <string name="select_protocol">Protocolo OBD preferido</string>
     <string name="select_fault_code">Selecionar código de falhas…</string>
     <string name="select_medium">Tipo de adaptador…</string>
-    <string name="devices_found">%d dispositivo(s) USB encontrado(s)</string>
+    <string name="devices_found">%d aparelhos(s) USB encontrado(s)</string>
     <string name="day_night_mode">Modo de visualização dia/noite</string>
     <string name="night_mode_description">Definir ecrã para fundo escuro</string>
     <string name="night_mode">Modo noturno</string>
@@ -166,4 +166,6 @@
     <string name="libraries_sum">Bibliotecas utilizadas no projeto…</string>
     <string name="release_history">Histórico de lançamentos…</string>
     <string name="graphic_design">Design gráfico</string>
+    <string name="plugin_data">Dados do plugin</string>
+    <string name="long_press_dfc_hint">Pressione e segure DFC para pesquisa on-line …</string>
 </resources>
