@@ -1,6 +1,7 @@
 ![AndrOBD](fastlane/metadata/android/en-US/images/tvBanner.png)
 
 ### Android OBD diagnostics with any ELM327 adapter
+
 <table>
 <tr colspan="2">
   <td>
@@ -17,12 +18,15 @@
 </table>
 
 # Features
+
 ## OBD connections
+
 * Bluetooth
 * USB
 * Wifi
 
 ## OBD Features
+
 * Read fault codes
 * Clear fault codes
 * Read/record live data
@@ -30,6 +34,7 @@
 * Read vehicle info data
 
 ## Additional features
+
 * Day/Night view
 * Data charts
 * Dashboard
@@ -39,28 +44,34 @@
 * CSV export
 
 ## Customisation of PID data
+
 + PID data items
 + Data conversions
 
 ## Plugin extension support
+
 - Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
 - Avalilable Plugins:
   - MQTT publisher - Publish OBD data to MQTT broker
   - GpsProvider - Provide GPS data to AndrOBD
   - SensorProvider - Provide Accelerometer data to AndrOBD
 
-## Native language support 
+## Native language support
+ 
 + translatable via [weblate.org](https://hosted.weblate.org/projects/androbd/strings/)
   + Program dialogs
   + Data item descriptions
   + Fault code descriptions
 
 # Project support
+
 ## Graphic design
+
 Very special Thanks to @anaufalm for the beautiful graphic design
 artwork and logos.
 
 ## Translations
+
 Thanks to all hard-working translators for their contributions.
 <br>You all do a incredible job!
 
@@ -72,16 +83,19 @@ You are invited to contribute a translation into your favourite language.
 ## Development support
 
 ### AndrOBD channel (Telegram)
+
 Alpha and beta test releases
 
 [AndrOBD_DEV](https://t.me/AndrOBD_dev)
 
 ### AndrOBD chat (Telegram)
+
 Discussions and chats
 
 [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
 
 ## Donations
+
 Thank you to all AndrOBD supporters.
 It feels good to see that our work is appreciated.
 
@@ -89,6 +103,8 @@ It feels good to see that our work is appreciated.
 |------|-----------|----------:|
 | 2018/02 | John Zimmerer | $10 |
 | 2018/12 | Martin Bourdoiseau | €20 |
+| 2019/06 | Jeffrey O'Connell | $10 |
+| 2019/08 | Christoph Schmid | €10 |
 
 
 <table>
