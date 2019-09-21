@@ -253,12 +253,19 @@ public class BtCommService extends CommService
 				StringBuilder message = new StringBuilder(msg);
 				// dump supported UUID's
 				message.append(" - UUIDs:");
-				ParcelUuid uuids[] = socket.getRemoteDevice().getUuids();
-				for (ParcelUuid uuid: uuids)
+				ParcelUuid[] uuids = socket.getRemoteDevice().getUuids();
+				if(uuids != null)
 				{
-					message.append(uuid.getUuid().toString()).append(",");
+					for (ParcelUuid uuid: uuids)
+					{
+						message.append(uuid.getUuid().toString()).append(",");
+					}
 				}
-				log.log(Level.FINE, message.toString());
+				else
+				{
+					message.append("NONE (Invalid BT implementation)");
+				}
+				log.log(Level.INFO, message.toString());
 			}
 		}
 		
