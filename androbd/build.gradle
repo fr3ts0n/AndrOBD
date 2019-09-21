@@ -7,8 +7,8 @@ android {
         applicationId 'com.fr3ts0n.ecu.gui.androbd'
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 20100
-        versionName 'V2.1.0'
+        versionCode 20101
+        versionName 'V2.1.1'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
