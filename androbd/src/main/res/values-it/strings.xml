@@ -162,4 +162,5 @@
     <string name="graphic_design">design grafico</string>
     <string name="plugin_data">Data plugin</string>
     <string name="long_press_dfc_hint">Premi a lungo DFC per cercare online</string>
+    <string name="unfilter">Rimuovi filtro</string>
 </resources>
