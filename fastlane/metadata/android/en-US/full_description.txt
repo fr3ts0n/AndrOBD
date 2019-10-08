@@ -2,11 +2,13 @@ Use your phone/tablet to connect to your car's on-board diagnostics system via
 any ELM327 bluetooth adapter.
 
 OBD connections
+---------------
 * Bluetooth
 * USB
 * Wifi
 
 OBD Features
+------------
 * Read fault codes
 * Clear fault codes
 * Read/record live data
@@ -14,6 +16,7 @@ OBD Features
 * Read vehicle info data
 
 Additional features
+-------------------
 * Day/Night view
 * Data charts
 * Dashboard
@@ -23,15 +26,19 @@ Additional features
 * CSV export
 
 Customisation of PID data
+-------------------------
 * PID data items
 * Data conversions
 
 Plugin extension support
+------------------------
 * Avalilable Plugins:
-  * MQTT publisher
-  * ...
+  * MqttPublisher - Publish OBD readings to MQTT broker for home automation
+  * GpsProvider - Provide GPS data to AndrOBD
+  * SensorProvider - Provide Accelerometer sensor data to AndrOBD
 
 Native language support
+-----------------------
 * translatable via weblate.org
   * Program dialogs
   * Data item descriptions
