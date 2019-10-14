@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--  AndrOBD -->
-    <string name="translation_credits">Traduction par (Wouazo)</string>
+    <string name="translation_credits">Traduction par fr3ts0n</string>
     <string name="app_description">Application Android de diagnostic des véhicules OBD pour adaptateurs ELM327</string>
     <string name="title_connecting">Connexion en cours…</string>
     <string name="title_connected_to">Connecté à %s</string>
@@ -32,13 +32,11 @@
 \n  
 \n  D\'autres remises à zéro ou suppression peuvent se produire selon les véhicules.
 \n  L\'effacement de certaines données peut détériorer le fonctionnement du véhicule le temps que l\'ECU se recalibre."</string>
-
     <!--  BtDeviceListActivity -->
     <string name="select_device">Choisir un adaptateur</string>
     <string name="none_paired">Aucun appareil appairé</string>
     <string name="none_found">Aucun appareil trouvé</string>
     <string name="title_paired_devices">Appareils appairés</string>
-
     <!-- ExportTask -->
     <string name="send_to">Envoyer à</string>
     <string name="share">partager</string>
@@ -52,7 +50,6 @@
     <string name="saved_data">Données enregistrées</string>
     <string name="loaded">chargé</string>
     <string name="saved">sauvegardé</string>
-
     <string name="connected_to">Connecté à</string>
     <string name="demo">Démo…</string>
     <string name="saving_data">Enregistrement des données…</string>
@@ -60,7 +57,6 @@
     <string name="dashboard">Tableau de bord</string>
     <string name="hud">Affichage tête haute</string>
     <string name="filter">Filtre choisi</string>
-
     <!-- Settings -->
     <string name="settings">Paramètres</string>
     <string name="common_settings">Paramètres communs</string>
@@ -71,30 +67,24 @@
     <string name="items_for_display">Données à afficher</string>
     <string name="items_for_display_descr">Choisir toutes les informations à afficher…</string>
     <string-array name="empty" translatable="false"/>
-
     <string name="debugging">Debug</string>
     <string name="logging_level">Niveau d\'enregistrement</string>
     <string name="logging_level_description">Niveau de détail à enregistrer dans le fichier de debug</string>
-
     <!--
     * key values for restore options
     * - must align with enum MainActivity.PRESELECT
     -->
-
     <!--
     * display values for restore options
     * - must align with enum MainActivity.PRESELECT
     -->
-
     <string name="last_elm">reconnecter le dernier ELM</string>
     <string name="last_ecu">reconnecter le dernier ECU</string>
     <string name="last_service">dernier service OBD</string>
     <string name="last_data_items">dernières données choisies</string>
     <string name="last_view_mode">dernier affichage des données</string>
-
     <string name="keep_screen_on">Garder l\'écran allumé</string>
     <string name="keep_screen_on_description">NE PAS éteindre l\'écran si l\'écran principal est affiché</string>
-
     <string name="development_options">Option de développement</string>
     <string name="dev_opt_description">Options pour le debug et la personnalisation</string>
     <string name="extension_files">Fichiers de personnalisation du protocole (csv)</string>
@@ -108,7 +98,6 @@
     <string name="select_protocol">Protocole OBD préféré</string>
     <string name="select_fault_code">Choisir un code d\'erreur…</string>
     <string name="select_medium">Type d\'adaptateur…</string>
-
     <string name="devices_found">%d appareil(s) USB trouvé(s)</string>
     <string name="min_elm_timeout">Timeout min. pour l\'ELM (ms)</string>
     <string name="unabletoconnect">Impossible de connecter l\'appareil</string>
@@ -134,7 +123,6 @@
     <string name="elm_options">Options ELM</string>
     <string name="elm_custom_init">Init. perso. de l\'ELM</string>
     <string name="elm_custom_init_descr">Commandes perso. d\'init. de l\'ELM</string>
-
     <!-- ELM communication states -->
     <string name="UNDEFINED">Non défini(e)</string>
     <string name="INITIALIZING">Initialisation…</string>
@@ -157,7 +145,6 @@
     <string name="autohide_toolbar">Masquer la barre d\'outils</string>
     <string name="autohide_delay">Délai pour masquer la barre d\'outils [s]</string>
     <!-- the string array corresponding to state enum -->
-
     <!-- CSV export options -->
     <string name="csv_export_options">Options d\'export CSV</string>
     <string name="csv_export_description">Options du format d\'export des fichiers CSV</string>
@@ -168,8 +155,7 @@
     <string name="semicolon">POINT-VIRGULE</string>
     <string name="send_after_export">Envoyer après l\'export</string>
     <string name="send_after_export_descr">Proposer l\'envoi du fichier CSV juste après l\'export ?</string>
-
-<string name="device_port_description">Adresse IP de l\'adaptateur ELM</string>
+    <string name="device_port_description">Adresse IP de l\'adaptateur ELM</string>
     <string name="autohide_toolbar_description">Masquer automatiquement la barre d\'outil après un certain délai</string>
     <string name="csv_text_quoted">Délimiteur de texte CSV</string>
     <string name="csv_field_delimiter">Séparateur de champs CSV</string>
@@ -180,7 +166,6 @@
     <string name="autohide_delay_description">Délai en secondes avant de masquer la barre d\'outils en cas d\'inactivité</string>
     <string name="plugin_manager">Gestionnaire d\'extensions</string>
     <string name="configure">Configurer</string>
-
     <string name="toolbar_overlay">Afficher en superposition</string>
     <string name="toolbar_overlay_sum">Afficher la barre de menus par dessus l’écran principal</string>
     <string name="license">Licences…</string>
@@ -188,6 +173,12 @@
     <string name="libraries">Bibliothèques…</string>
     <string name="libraries_sum">Bibliothèques utilisées…</string>
     <string name="release_history">Historique des versions…</string>
-
     <string name="graphic_design">Design graphique</string>
-    </resources>
+    <string name="plugin_data">Données du greffon</string>
+    <string name="long_press_dfc_hint">Pressez longuement DFC pour la recherche en ligne…</string>
+    <string name="process_vars">Traîter les variables</string>
+    <string name="unfilter">Supprimer le filtre</string>
+    <string name="plugin_manager_desc">Gestionnaire pour les greffons détectés</string>
+    <string name="graph_actions">Actions du graphique</string>
+    <string name="master">maître</string>
+</resources>
