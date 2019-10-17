@@ -165,4 +165,6 @@
     <string name="process_vars">Bearbeta variabler</string>
     <string name="unfilter">Ta bort filter</string>
     <string name="plugin_manager_desc">Hantering av detekterade insticksprogram</string>
+    <string name="graph_actions">Grafhandlingar</string>
+    <string name="master">bemästra</string>
 </resources>
