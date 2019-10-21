@@ -97,7 +97,7 @@
     <string name="use_last_settings_description">Letzte Einstellungen bei Start verwenden (BT Adresse, ECU Adresse, Anzeige …)</string>
     <string name="last_data_items">Letzte Datenauswahl</string>
     <string name="last_ecu">Mit letzter ECU verbinden</string>
-    <string name="last_elm">Mit letztem ELM-Adapter verbindem</string>
+    <string name="last_elm">Mit letztem ELM-Adapter verbinden</string>
     <string name="last_service">Letzter OBD service</string>
     <string name="last_view_mode">Letzter Datenanzeige-Modus</string>
     <string name="common_settings_description">Allgemeine Programmeinstellungen</string>
@@ -157,7 +157,7 @@
     <string name="libraries_sum">Im Projekt verwendete Bibliotheken …</string>
     <string name="release_history">Versionen …</string>
     <string name="graphic_design">Grafisches Design</string>
-    <string name="long_press_dfc_hint">DFC lang klicken für Online-Suche ...</string>
+    <string name="long_press_dfc_hint">Fehlercode lange drücken für Online-Suche</string>
     <string name="plugin_data">Plugin Daten</string>
     <string name="process_vars">Prozessvariablen</string>
     <string name="unfilter">Filter entfernen</string>
