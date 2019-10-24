@@ -158,4 +158,5 @@
     <string name="libraries_sum">项目中使用的三方库…</string>
     <string name="release_history">发布历史…</string>
     <string name="graphic_design">平面设计</string>
+    <string name="plugin_data">插件数据</string>
 </resources>
