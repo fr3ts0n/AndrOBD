@@ -165,4 +165,6 @@
     <string name="plugin_manager_desc">Algılanan eklentileri yönet</string>
     <string name="graph_actions">Graph eylemleri</string>
     <string name="master">master</string>
+    <string name="long_press_dfc_hint">Çevrimiçi arama için DFC tuşuna uzun basın …</string>
+    <string name="process_vars">Process değişkenleri</string>
 </resources>
