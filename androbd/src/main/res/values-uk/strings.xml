@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="translation_credits">Перекладено NamoAton</string>
-    <string name="app_description">"Додаток Android для OBD діагностики з використанням  Bluetooth адаптера ELM327"</string>
+<resources>
+    <string name="translation_credits">Перекладено NamoAton</string>
+    <string name="app_description">Додаток Android для OBD діагностики з використанням Bluetooth адаптера ELM327</string>
     <string name="title_connecting">З’єдання…</string>
     <string name="title_connected_to">З’єднано з %s</string>
     <string name="logo">Логотип</string>
     <string name="back_again_to_exit">Щоб закрити додаток, натисніть ще раз</string>
     <string name="action_connect">З’єднання</string>
-    <string name="obd_none">Ні підтримується</string>
+    <string name="obd_none">НЕ підтримується</string>
     <string name="obd_services">OBD служби</string>
     <string name="obd_veh_info">OBD дані про автівку</string>
     <string name="obd_data">OBD дані</string>
@@ -19,7 +20,6 @@
     <string name="none_paired">Немає парних пристроїв</string>
     <string name="none_found">Пристроїв не знайдено</string>
     <string name="title_paired_devices">Парні пристрої</string>
-
     <string name="send_to">Надіслати до</string>
     <string name="share">Поділитися</string>
     <string name="time">Час [s]</string>
@@ -32,7 +32,6 @@
     <string name="saved_data">Збережені дані</string>
     <string name="loaded">завантажено</string>
     <string name="saved">збережено</string>
-
     <string name="connected_to">"Під’єдано до "</string>
     <string name="demo">Демо…</string>
     <string name="saving_data">Збереження…</string>
@@ -40,7 +39,6 @@
     <string name="dashboard">Панель приладів</string>
     <string name="hud">Головний дисплей</string>
     <string name="filter">Обраний фільтр</string>
-
     <string name="settings">Налаштування</string>
     <string name="common_settings">Загальні налаштування</string>
     <string name="measure_system_description">Система вимірювальних одиниць (метрична/імперська)</string>
@@ -57,10 +55,8 @@
     <string name="last_service">остання OBD служба</string>
     <string name="last_data_items">останні обрані показники</string>
     <string name="last_view_mode">останній режим відображення даних</string>
-
     <string name="keep_screen_on">Залишати екран увімкненним</string>
     <string name="keep_screen_on_description">Не вимикати екран, ящо дані відображаються</string>
-
     <string name="development_options">Опції розробника</string>
     <string name="dev_opt_description">Опції розробки та персоналізації</string>
     <string name="extension_files">Файли пресоналізації протокола (csv)</string>
@@ -75,7 +71,6 @@
     <string name="select_protocol">Бажаний OBD протокол</string>
     <string name="select_fault_code">Оберіть код помилки…</string>
     <string name="select_medium">Тип адаптера…</string>
-
     <string name="devices_found">%d USB пристрій(пристрої) знайдено</string>
     <string name="min_elm_timeout">Мін. ELM таймаут [ms]</string>
     <string name="unabletoconnect">Неможливо з’єднатися з пристроєм</string>
@@ -101,7 +96,6 @@
     <string name="elm_options">ELM опції</string>
     <string name="elm_custom_init">ELM налаштована ініціалізація</string>
     <string name="elm_custom_init_descr">"ELM  вибіркові команди ініціалізації"</string>
-
     <string name="UNDEFINED">Невизначено</string>
     <string name="INITIALIZING">Ініціалізація…</string>
     <string name="INITIALIZED">Ініціалізовано</string>
@@ -156,14 +150,11 @@
 \nВтрата даних може може призвести до тимчасової
 \nнезадовільної роботи  транспортного засобу, доки 
 \nЕБУ не відкалібрується."</string>
-
     <string name="plugin_manager">Менеджер плагінів</string>
     <string name="configure">Налаштувати</string>
-
     <string name="license">Ліцензування…</string>
     <string name="libraries">Бібліотеки…</string>
     <string name="release_history">Історія випусків…</string>
-
     <string name="toolbar_overlay">Показати, як накладання</string>
     <string name="toolbar_overlay_sum">Показувати панель перекриття основного екрана</string>
     <string name="libraries_sum">Бібліотеки, які використовуються в проекті…</string>
@@ -171,4 +162,4 @@
     <string name="donation">Підтримка проекту …</string>
     <string name="data_disable_max">Ліміт відключення даних</string>
     <string name="graphic_design">Графічний дизайн</string>
-    </resources>
+</resources>
