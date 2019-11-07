@@ -159,4 +159,5 @@
     <string name="libraries_sum">Biblioteki użyte w projekcie …</string>
     <string name="release_history">Historia wersji …</string>
     <string name="graphic_design">Projekt graficzny</string>
+    <string name="unfilter">Usuń filtr</string>
 </resources>
