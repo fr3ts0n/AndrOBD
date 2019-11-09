@@ -20,6 +20,7 @@ package com.fr3ts0n.ecu.gui.androbd;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -134,6 +135,63 @@ public class DashBoardActivity extends Activity
 		}
 	};
 
+	/**
+	 * Update scaling of dashboard items
+	 *
+	 * Used for:
+	 * - start/resume activity
+	 * - screen size / orientation change
+	 */
+	void updateDashboardScaling()
+	{
+		// calculate minimum gauge size (1.6 inch) based on screen density
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		MIN_GAUGE_SIZE = Math.min( metrics.densityDpi * 16 / 10,
+								   Math.min(metrics.widthPixels, metrics.heightPixels));
+
+		int height = metrics.heightPixels;
+		int width = metrics.widthPixels;
+		int numColumns = Math.max(1, Math.min(positions.length, width / MIN_GAUGE_SIZE));
+		int numRows = Math.max(1, Math.min(positions.length, height / MIN_GAUGE_SIZE));
+
+		// distribute gauges on screen
+		if(positions.length < numColumns*numRows)
+		{
+			// read for corresponding number of gauges & orientation
+			numColumns = rowCols[positions.length][(width>height)?0:1];
+			numRows    = rowCols[positions.length][(width>height)?1:0];
+		}
+		// calc max gauge size
+		int minWidth = width / numColumns;
+		int minHeight = height / numRows;
+
+		/* get grid object */
+		grid = findViewById(android.R.id.list);
+		grid.setNumColumns(numColumns);
+
+		// set data adapter
+		adapter = new ObdGaugeAdapter( this,
+									   R.layout.obd_gauge,
+									   minWidth,
+									   minHeight,
+									   metrics);
+
+		EcuDataPv currPv;
+		pidNumbers.clear();
+		for (int position : positions)
+		{
+			// get corresponding Process variable
+			currPv = (EcuDataPv) mAdapter.getItem(position);
+			if (currPv != null)
+			{
+				currPv.setRenderingComponent(null);
+				pidNumbers.add(currPv.getAsInt(EcuDataPv.FID_PID));
+				adapter.add(currPv);
+			}
+		}
+		grid.setAdapter(adapter);
+	}
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -180,58 +238,12 @@ public class DashBoardActivity extends Activity
 	@Override
 	protected void onResume()
 	{
-		EcuDataPv currPv;
-
 		super.onResume();
 		// set the desired content screen
 		int resId = getIntent().getIntExtra(RES_ID, R.layout.dashboard);
 		setContentView(resId);
-
-		// calculate minimum gauge size (1.6 inch) based on screen density
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		MIN_GAUGE_SIZE = Math.min( metrics.densityDpi * 16 / 10,
-		                           Math.min(metrics.widthPixels, metrics.heightPixels));
-
-		int height = metrics.heightPixels;
-		int width = metrics.widthPixels;
-		int numColumns = Math.max(1, Math.min(positions.length, width / MIN_GAUGE_SIZE));
-		int numRows = Math.max(1, Math.min(positions.length, height / MIN_GAUGE_SIZE));
-
-		// distribute gauges on screen
-		if(positions.length < numColumns*numRows)
-		{
-			// read for corresponding number of gauges & orientation
-			numColumns = rowCols[positions.length][(width>height)?0:1];
-			numRows    = rowCols[positions.length][(width>height)?1:0];
-		}
-		// calc max gauge size
-		int minWidth = width / numColumns;
-		int minHeight = height / numRows;
-
-		/* get grid object */
-		grid = findViewById(android.R.id.list);
-		grid.setNumColumns(numColumns);
-
-		// set data adapter
-		adapter = new ObdGaugeAdapter( this,
-		                               R.layout.obd_gauge,
-		                               minWidth,
-		                               minHeight,
-		                               metrics);
-
-		pidNumbers.clear();
-		for (int position : positions)
-		{
-			// get corresponding Process variable
-			currPv = (EcuDataPv) mAdapter.getItem(position);
-			if (currPv != null)
-			{
-				currPv.setRenderingComponent(null);
-				pidNumbers.add(currPv.getAsInt(EcuDataPv.FID_PID));
-				adapter.add(currPv);
-			}
-		}
-		grid.setAdapter(adapter);
+		// set scaling of dashboard items
+		updateDashboardScaling();
 		// limit selected PIDs to selection
 		MainActivity.setFixedPids(pidNumbers);
 
@@ -243,6 +255,13 @@ public class DashBoardActivity extends Activity
 		{
 			// exception ignored here ...
 		}
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig)
+	{
+		super.onConfigurationChanged(newConfig);
+		updateDashboardScaling();
 	}
 
 	/* (non-Javadoc)
