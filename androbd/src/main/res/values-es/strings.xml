@@ -16,23 +16,23 @@
     <string name="obd_permanentcodes">Codigos de Error OBD (permanentes)</string>
     <string name="obd_pendingcodes">Codigos de Error OBD (pendientes)</string>
     <string name="obd_clearcodes">Limpiar Codigos de Error</string>
-    <string name="obd_clear_info">"Esto reseteara el MIL y limpiara toda la informacion de emisiones relacionadas al
-\ndiagnostico, incluyendo:
-\n-Codigos de diagnostico
-\n-Datos congelados de los codigos de diagnostico
-\n-Datos de prueba al sensor de Oxigeno
-\n-Estado del sistema de monitoreo de pruebas no continuas
-\n-Resultados del monitoreo de pruebas no continuas
-\n-Distancias recorridas mientras el MIL estubo activado
-\n-Numero de calentamientos desde que los DTCs fueron borrados
-\n-Distancia recorrida desde que los DTCs fueron borrados
-\n-Tiempo que el motor estubo encendido cuando el MIL estaba activado
-\n-Tiempo transcurrido desde que los DTCs fueron borrados
+    <string name="obd_clear_info">Esto reseteara el MIL y limpiara toda la información de emisiones relacionadas al 
+\ndiagnostico, incluyendo: 
+\n-Códigos de diagnostico 
+\n-Datos congelados de los códigos de diagnostico 
+\n-Datos de prueba al sensor de Oxigeno 
+\n-Estado del sistema de seguimiento de pruebas no continuas 
+\n-Resultados del seguimiento de pruebas no continuas 
+\n-Distancias recorridas mientras el MIL estuvo activado 
+\n-Numero de calentamientos desde que los DTCs fueron borrados 
+\n-Distancia recorrida desde que los DTCs fueron borrados 
+\n-Tiempo que el motor estuvo encendido cuando el MIL estaba activado 
+\n-Tiempo transcurrido desde que los DTCs fueron borrados 
+\n 
+\nOtras acciones especificas del fabricante pueden ocurrir como borrado de re-calibraciones o reinicios. 
+\nEl borrado de algunas re-calibraciones puede causar que el rendimiento del vehículo sea pobre por un corto 
 \n
-\nAlgotras acciones especificas del fabricante pueden ocurrir como borrado de recalibraciones o reinicializaciones.
-\nEl borrado de algunas recalibraciones puede causar que el rendimiendo del vehiculo sea pobre por un corto 
-\nperiodo de tiempo mientras la ECU aprende y se recalibra a si misma.
-\n "</string>
+\nperiodo de tiempo mientras la ECU aprende y se re-calibra a si misma.</string>
     <string name="select_device">Selecciona el Adaptador</string>
     <string name="none_paired">No hay Dispositivos Apareado</string>
     <string name="none_found">No se encuentran dispositivos</string>
@@ -76,7 +76,7 @@
     <string name="keep_screen_on_description">No apague la pantalla si la pantalla principal esta desplegada</string>
     <string name="development_options">Opciones de Desarrollo</string>
     <string name="dev_opt_description">Opciones de depuracion y personalizacion</string>
-    <string name="extension_files">Personalizacion de los archivos (csv) del protocolo</string>
+    <string name="extension_files">Personalización de los archivos (CSV) del protocolo</string>
     <string name="conversions">Conversion de datos</string>
     <string name="data_items">Datos de elementos</string>
     <string name="select_extension">Selecione el archivo .csv …</string>
@@ -161,4 +161,5 @@
     <string name="libraries_sum">Librerias utilizadas en proyecto…</string>
     <string name="release_history">Historial de publicación…</string>
     <string name="graphic_design">Diseño gráfico</string>
+    <string name="unfilter">Remueve el filtro.</string>
 </resources>
