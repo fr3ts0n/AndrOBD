@@ -161,7 +161,7 @@
     <string name="send_after_export">Send etter eksportering</string>
     <string name="send_after_export_descr">Spør om forsendelse av CSV-fil rett etter eksportering\?</string>
     <string name="plugin_data">Programtilleggsdata</string>
-    <string name="long_press_dfc_hint">Trykk lenge på DFC for nettbasert søk</string>
+    <string name="long_press_dfc_hint">Trykk lenge på DFC for nettbasert søk…</string>
     <string name="process_vars">Prosessvariabler</string>
     <string name="unfilter">Fjern filter</string>
     <string name="plugin_manager_desc">Behandler for oppdagede programtillegg</string>
