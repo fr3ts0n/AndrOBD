@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Traduzido por carnetta</string>
+    <string name="translation_credits">Traduzido por fr3ts0n</string>
     <string name="title_connecting">Conectando…</string>
     <string name="title_connected_to">Conectado %s</string>
     <string name="back_again_to_exit">Pressione voltar novamente para fechar o aplicativo</string>
@@ -161,4 +161,11 @@
     <string name="libraries_sum">Bibliotecas utilizadas no projeto…</string>
     <string name="release_history">Histórico de lançamentos…</string>
     <string name="graphic_design">Design gráfico</string>
+    <string name="plugin_data">dados do Plugin</string>
+    <string name="long_press_dfc_hint">Segure DFC para pesquisa online…</string>
+    <string name="process_vars">variáveis de processo</string>
+    <string name="unfilter">Remover filtro</string>
+    <string name="plugin_manager_desc">Gerenciador de plugins</string>
+    <string name="graph_actions">Gráfico de ações</string>
+    <string name="master">principal</string>
 </resources>
