@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">Пераклад victorenator</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="translation_credits">Пераклад victorenator</string>
     <string name="app_description">Андроід-праграма для OBD-дыагностыкі для Bluetooth-адаптара ELM327</string>
     <string name="title_connecting">Злучэнне…</string>
     <string name="title_connected_to">Злучана з %s</string>
@@ -31,12 +32,10 @@
 \nМогуць адбыцца іншыя дзеянні па ачысцы ў залежнасці ад вытворца.
 \nСтрата гэтых даных можа прывесці да кароткачасовай
 \nнездавальняючай працы рухавіка, пакуль ECU не адкалібруецца.</string>
-
     <string name="select_device">Выбар адаптара</string>
     <string name="none_paired">Няма спалучаных прылад</string>
     <string name="none_found">Не знойдзена</string>
     <string name="title_paired_devices">Спалучаныя прылады</string>
-
     <string name="send_to">Адправіць да</string>
     <string name="share">Падзяліцца</string>
     <string name="time">Час, сек</string>
@@ -49,7 +48,6 @@
     <string name="saved_data">Захованыя даныя</string>
     <string name="loaded">загружана</string>
     <string name="saved">захована</string>
-
     <string name="connected_to">"Злучана з "</string>
     <string name="demo">Дэма…</string>
     <string name="saving_data">Захоўванне даных…</string>
@@ -57,7 +55,6 @@
     <string name="dashboard">Шчыток</string>
     <string name="hud">Галаўны дысплей</string>
     <string name="filter">Абраны фільтр</string>
-
     <string name="settings">Налады</string>
     <string name="common_settings">Агульныя налады</string>
     <string name="measure_system_description">Сістэма адзінак вымярэння (метрычная, імперская)</string>
@@ -74,10 +71,8 @@
     <string name="last_service">апошняя OBD-служба</string>
     <string name="last_data_items">апошнія абраныя элементы даных</string>
     <string name="last_view_mode">апошні рэжым паказу даных</string>
-
     <string name="keep_screen_on">Пакідаць галоўны экран уключаным</string>
     <string name="keep_screen_on_description">Не адключаць экран, калі адлюстроўваюцца данныя</string>
-
     <string name="development_options">Налады распрацоўкі</string>
     <string name="dev_opt_description">Параметры адладкі і персаналізацыі</string>
     <string name="extension_files">Файлы персаналізацыі пратакола (CSV)</string>
@@ -90,13 +85,10 @@
     <string name="obd_options">OBD-налады</string>
     <string name="obd_opt_description">Параметры пратакола OBD / абмена з аўтамабілем</string>
     <string name="select_protocol">Пераважны OBD-пратакол</string>
-
     <string name="plugin_manager">Менеджар плагінаў</string>
     <string name="configure">Наладзіць</string>
-
     <string name="select_fault_code">Абраць код памылкі …</string>
     <string name="select_medium">Тып адаптара …</string>
-
     <string name="devices_found">Знодзена %d USB-прылад</string>
     <string name="min_elm_timeout">Мін. абмежаванне часу ELM, мс</string>
     <string name="unabletoconnect">Немагчыма падключыць прыладу</string>
@@ -122,7 +114,6 @@
     <string name="elm_options">Параметры ELM</string>
     <string name="elm_custom_init">Дадатковая інцыялізацыя ELM</string>
     <string name="elm_custom_init_descr">Каманды дадатковай ініцыялізацыі ELM</string>
-
     <string name="UNDEFINED">Нявызначаны</string>
     <string name="INITIALIZING">Ініцыялізацыя…</string>
     <string name="INITIALIZED">Ініцыялізаваная</string>
@@ -168,6 +159,12 @@
     <string name="libraries">Бібліятэкі …</string>
     <string name="libraries_sum">Выкарыстаныя ў праекце бібліятэкі …</string>
     <string name="release_history">Гісторыя выпускаў …</string>
-
     <string name="graphic_design">Графічны дэзайн</string>
-    </resources>
+    <string name="plugin_data">Даныя дадаткаў</string>
+    <string name="long_press_dfc_hint">Зацісніце DFC для анлайн-пошуку…</string>
+    <string name="process_vars">Зменныя працэсу</string>
+    <string name="unfilter">Зняць фільтр</string>
+    <string name="plugin_manager_desc">Кіраўнік выяўленых дадаткаў</string>
+    <string name="graph_actions">Рысаваць дзеянні</string>
+    <string name="master">вядучы</string>
+</resources>
