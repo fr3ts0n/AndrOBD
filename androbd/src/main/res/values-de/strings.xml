@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_connect">Verbinden</string>
-    <string name="app_description">Android App für die OBD Fahrzeugdiagnose mit ELM327 Bluetooth Adapter</string>
+    <string name="app_description">Android App für die OBD-Fahrzeugdiagnose mit ELM327-Bluetooth-Adapter</string>
     <string name="back_again_to_exit">Nochmal zurück um zu beenden</string>
     <string name="chart">Diagramm</string>
     <string name="logo">Logo</string>
@@ -11,11 +11,11 @@
     <string name="obd_codes">OBD Fehlercodes</string>
     <string name="obd_data">OBD Daten</string>
     <string name="obd_none">Kein Dienst</string>
-    <string name="obd_pendingcodes">OBD Fehlercodes (drohend)</string>
+    <string name="obd_pendingcodes">OBD Fehlercodes (bevorstehend)</string>
     <string name="obd_permanentcodes">OBD Fehlercodes (permanent)</string>
     <string name="obd_services">OBD Dienste</string>
     <string name="obd_veh_info">OBD Fahrzeug Info</string>
-    <string name="select_device">Wähle Adapter</string>
+    <string name="select_device">Adapter wählen</string>
     <string name="send_to">Senden an</string>
     <string name="service_freezeframes">OBD Freeze Frames</string>
     <string name="share">teilen</string>
@@ -25,10 +25,10 @@
     <string name="title_paired_devices">Gepaarte Geräte</string>
     <string name="obd_clear_info">Dies wird die Motorkontrollleuchte (MIL) zurücksetzen und alle abgasrelevanten Diagnoseinformationen löschen, inklusive: 
 \n - Diagnose-Fehlercodes 
-\n - Freeze Frame Daten 
-\n - Lambdasonden Testdaten 
+\n - Freeze-Frame-Daten 
+\n - Lambdasonden-Testdaten 
 \n - Status der System-Tests 
-\n - Status der On-board Tests 
+\n - Status der On-board-Tests 
 \n - Fahrstrecke seit MIL aktiv 
 \n - Warmläufe seit MIL aktiv 
 \n - Motorlaufzeit seit MIL aktiv 
@@ -36,9 +36,9 @@
 \n - Fahrstrecke seit Löschung 
 \n 
 \n Andere, herstellerspezifische Einstellungen können dadurch verloren gehen. 
-\n Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichmässig läuft.</string>
-    <string name="demo_started">DEMO Modus gestartet</string>
-    <string name="demo_stopped">DEMO Modus beendet</string>
+\n Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichmäßig läuft.</string>
+    <string name="demo_started">DEMO-Modus gestartet</string>
+    <string name="demo_stopped">DEMO-Modus beendet</string>
     <string name="load">Messung laden</string>
     <string name="save">Messung speichern</string>
     <string name="saved_data">Gespeicherte Daten</string>
@@ -77,7 +77,7 @@
     <string name="obd_options">OBD Einstellungen </string>
     <string name="select_protocol">Bevorzugtes OBD Protokoll </string>
     <string name="select_fault_code">Wähle Fehlercode …</string>
-    <string name="devices_found">%d USB Gerät(e) gefunden</string>
+    <string name="devices_found">%d USB-Gerät(e) gefunden</string>
     <string name="select_medium">Adapter-Typ …</string>
     <string name="connectionlost">Verbindung beendet</string>
     <string name="min_elm_timeout">Min. ELM Timeout [ms]</string>
@@ -135,14 +135,14 @@
     <string name="csv_export_description">Optionen zur Formatierung von CSV Export-Dateien</string>
     <string name="csv_export_options">CSV Export Optionen</string>
     <string name="csv_field_delimiter">CSV Feld-Trennzeichen</string>
-    <string name="csv_field_delimiter_description">Trennzeichen zwischen CSV Datenfeldern</string>
+    <string name="csv_field_delimiter_description">Trennzeichen zwischen CSV-Datenfeldern</string>
     <string name="csv_rec_delimiter">CSV Datensatz-Trennzeichen</string>
-    <string name="csv_rec_delimiter_description">Trennzeichen zwischen CSV Datensätzen</string>
-    <string name="csv_text_quoted">CSV Textfelder in Anführungszeichen</string>
-    <string name="csv_text_quoted_description">CSV Textfelder werden in Anführungszeichen eingebettet</string>
+    <string name="csv_rec_delimiter_description">Trennzeichen zwischen CSV-Datensätzen</string>
+    <string name="csv_text_quoted">CSV-Textfelder in Anführungszeichen</string>
+    <string name="csv_text_quoted_description">CSV-Textfelder werden in Anführungszeichen gesetzt</string>
     <string name="semicolon">Semikolon</string>
     <string name="send_after_export">Nach Export Senden</string>
-    <string name="send_after_export_descr">Direkt nach CSV Export Datei versenden?</string>
+    <string name="send_after_export_descr">Direkt nach dem Export nach Senden der CSV-Datei fragen\?</string>
     <string name="tab">Tab</string>
     <string name="comma">Komma</string>
     <string name="configure">Konfigurieren</string>
@@ -158,9 +158,10 @@
     <string name="release_history">Versionen …</string>
     <string name="graphic_design">Grafisches Design</string>
     <string name="long_press_dfc_hint">Fehlercode lange drücken für Online-Suche</string>
-    <string name="plugin_data">Plugin Daten</string>
+    <string name="plugin_data">Plugin-Daten</string>
     <string name="process_vars">Prozessvariablen</string>
     <string name="unfilter">Filter entfernen</string>
     <string name="plugin_manager_desc">Verwaltung von erkannten Plugin-Erweiterungen</string>
-    <string name="graph_actions">Graphik-Aktionen</string>
+    <string name="graph_actions">Grafik-Aktionen</string>
+    <string name="master">Hauptrechner</string>
 </resources>
