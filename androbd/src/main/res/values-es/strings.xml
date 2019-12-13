@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Traducido por RamLinux, eltiobarbas, isalgueiro y Adolfo</string>
+    <string name="translation_credits">Traducido por RamLinux, eltiobarbas, isalgueiro y Adolfo, cinnamon17</string>
     <string name="app_description">Aplicación de Android de diagnósticos vehiculares para el adaptador Bluetooth ELM327</string>
     <string name="title_connecting">Conectando…</string>
     <string name="title_connected_to">Conectado a %s</string>
@@ -43,10 +43,10 @@
     <string name="chart">Grafica</string>
     <string name="demo_stopped">Modo DEMO detenido</string>
     <string name="demo_started">modo DEMO iniciado</string>
-    <string name="snapshot">instantanea</string>
-    <string name="save">Salvar lectura</string>
-    <string name="load">cargar lecturas</string>
-    <string name="saved_data">Salvar Datos</string>
+    <string name="snapshot">Captura</string>
+    <string name="save">Guardar medición</string>
+    <string name="load">cargar medidas</string>
+    <string name="saved_data">Guardar Datos</string>
     <string name="loaded">cargado</string>
     <string name="saved">salvado</string>
     <string name="connected_to">"Conectado a "</string>
@@ -161,5 +161,11 @@
     <string name="libraries_sum">Librerias utilizadas en proyecto…</string>
     <string name="release_history">Historial de publicación…</string>
     <string name="graphic_design">Diseño gráfico</string>
-    <string name="unfilter">Remueve el filtro.</string>
+    <string name="unfilter">Remueve filtro</string>
+    <string name="plugin_data">Datos de Plugin</string>
+    <string name="long_press_dfc_hint">Pulsación larga DFC para búsqueda online…</string>
+    <string name="process_vars">Variables de Proceso</string>
+    <string name="plugin_manager_desc">Administrador para plugins detectados</string>
+    <string name="graph_actions">Acciones Graficas</string>
+    <string name="master">master</string>
 </resources>
