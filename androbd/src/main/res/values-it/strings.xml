@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">"Tradotto da Lesto "</string>
+    <string name="translation_credits">Tradotto da fr3ts0n</string>
     <string name="app_description">Applicazione Android di diagnostica veicoli OBD con adattatori Bluetooth ELM327</string>
     <string name="title_connecting">Connessione…</string>
     <string name="title_connected_to">Connesso: %s</string>
@@ -89,7 +89,7 @@
     <string name="configure">Configura</string>
     <string name="select_fault_code">Seleziona codice di errore…</string>
     <string name="select_medium">Tipo di adattatore…</string>
-    <string name="devices_found">%d Dispositivo/i USB rilevato/i</string>
+    <string name="devices_found">Rilevato/i %d dispositivi USB</string>
     <string name="min_elm_timeout">Timeout ELM min. [ms]</string>
     <string name="unabletoconnect">Impossibile collegare il dispositivo</string>
     <string name="connectionlost">Persa connessione con il dispositivo</string>
@@ -161,6 +161,10 @@
     <string name="release_history">Storico versioni…</string>
     <string name="graphic_design">design grafico</string>
     <string name="plugin_data">Data plugin</string>
-    <string name="long_press_dfc_hint">Premi a lungo DFC per cercare online</string>
+    <string name="long_press_dfc_hint">Premi a lungo DFC per cercare online…</string>
     <string name="unfilter">Rimuovi filtro</string>
+    <string name="process_vars">Variabili processo</string>
+    <string name="plugin_manager_desc">Manager per i plugin rilevati</string>
+    <string name="graph_actions">Azioni grafiche</string>
+    <string name="master">principale</string>
 </resources>
