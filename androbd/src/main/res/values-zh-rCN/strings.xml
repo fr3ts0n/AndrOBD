@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">由kissstudio翻译</string>
+    <string name="translation_credits">由 fr3ts0n 翻译</string>
     <string name="app_description">Android OBD，用于ELM327蓝牙适配器的车辆诊断应用</string>
     <string name="title_connecting">正在连接…</string>
     <string name="title_connected_to">已连接 %s</string>
