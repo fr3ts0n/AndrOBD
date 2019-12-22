@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="app_description">Android OBD køretøj diagenostiserings app for ELM327 bluetooth adapter</string>
+<resources>
+    <string name="app_description">Android OBD-diagnostisk app af køretøjer til ELM327 Bluetooth-adapter</string>
     <string name="title_connecting">Forbinder…</string>
     <string name="title_connected_to">Forbundet %s</string>
     <string name="logo">Logo</string>
@@ -51,7 +52,7 @@
     <string name="select_protocol">Ønsket OBD protokol</string>
     <string name="configure">Konfigurerer</string>
     <string name="select_fault_code">Vælg fejlkode …</string>
-    <string name="select_medium">Adapter type …</string>
+    <string name="select_medium">Adaptor type …</string>
     <string name="devices_found">%d USB enhed(er) fundet</string>
     <string name="unabletoconnect">Kunne ikke forbinde til enheden</string>
     <string name="connectionlost">Mistede forbindelsen til enheden</string>
@@ -123,7 +124,7 @@
     <string name="check_cust_settings">Kontrollerer dine tilpasningsindstillinger
 \n</string>
     <string name="plugin_manager">Plugin manager</string>
-    <string name="min_elm_timeout">Min. ELM timeout [ms]</string>
+    <string name="min_elm_timeout">Min. ELM-timeout [ms]</string>
     <string name="elm_timeout_descr">Minimum timeout i [ms] for svar fra ELM</string>
     <string name="elm_adaptive_timing">ELM adaptiv timing</string>
     <string name="elm_adaptive_timing_descr">Tillad adaptiv timing håndtering i ELM driverne\?</string>
@@ -140,4 +141,30 @@
     <string name="semicolon">SEMIKOLON</string>
     <string name="send_after_export">Send efter eksport</string>
     <string name="donation">Støtteprojekt …</string>
+    <string name="translation_credits">Oversættelse via fr3ts0n</string>
+    <string name="extension_files">Protokoltilpasningsfiler (CSV)</string>
+    <string name="select_extension">Vælg filtypenavn .csv …</string>
+    <string name="reset_preselections">Nulstil de sidste forvalg</string>
+    <string name="common_settings_description">Almindelige indstillinger for app-kontrol</string>
+    <string name="data_disable_max">Dataelement deaktiverings gr&amp;aelig;nse</string>
+    <string name="data_disable_max_description">Antal ugyldige fortl&amp;oslash;bende datasvar f&amp;oslash;r element deaktiveres</string>
+    <string name="autohide_toolbar_description">Skjul automatisk værktøjslinjen efter forsinkelse uden aktivitet</string>
+    <string name="autohide_delay">Skjul forsinkelse af værktøjslinjen [s]</string>
+    <string name="autohide_delay_description">Forsinkelse i sekunder uden aktivitet, f&amp;oslas;;r v&amp;aelig;rkt&amp;oslash;jslinjen er skjult</string>
+    <string name="csv_export_description">Indstillinger til formatering af CSV-eksportfiler</string>
+    <string name="csv_field_delimiter">CSV-felt afgr&amp;aelig;nser</string>
+    <string name="csv_field_delimiter_description">Afgrænse tegn mellem CSV-datafelter</string>
+    <string name="csv_rec_delimiter">CSV-postafgrænser</string>
+    <string name="csv_rec_delimiter_description">Afgrænsnings karakter (er) mellem CSV-dataposter</string>
+    <string name="csv_text_quoted">CSV-tekst´citeret</string>
+    <string name="csv_text_quoted_description">CSV-tekstfelter er inkluderet inde i Citater</string>
+    <string name="send_after_export_descr">Prompt for at sende CSV fil umiddelbart efter export\?</string>
+    <string name="plugin_data">Plugin-data</string>
+    <string name="long_press_dfc_hint">Long press DFC for online søgning …</string>
+    <string name="process_vars">Proces variabler</string>
+    <string name="unfilter">fjern filter</string>
+    <string name="plugin_manager_desc">Manager for detekterede plugins</string>
+    <string name="graph_actions">Graf handlinger</string>
+    <string name="master">master
+\n(mester)</string>
 </resources>
