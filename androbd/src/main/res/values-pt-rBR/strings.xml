@@ -11,7 +11,7 @@
     <string name="obd_services">Serviços OBD</string>
     <string name="obd_veh_info">OBD Informações do Veículo</string>
     <string name="obd_data">Dados OBD</string>
-    <string name="service_freezeframes">Congelar frames OBD</string>
+    <string name="service_freezeframes">Congelar Quadros OBD</string>
     <string name="obd_codes">Códigos de Falha OBD</string>
     <string name="obd_permanentcodes">Códigos de Falha OBD (Permanente)</string>
     <string name="obd_pendingcodes">Códigos de falha OBD (pendente)</string>
@@ -49,7 +49,7 @@
     <string name="saved_data">Dados Salvos</string>
     <string name="loaded">carregado</string>
     <string name="saved">salvo</string>
-    <string name="connected_to">Conectado a</string>
+    <string name="connected_to">"Conectado a "</string>
     <string name="demo">Demo…</string>
     <string name="saving_data">Salvando dados …</string>
     <string name="loading_data">Carregando dados …</string>
@@ -63,7 +63,7 @@
     <string name="imperial">imperial</string>
     <string name="items_for_display">Itens de informação a mostrar</string>
     <string name="items_for_display_descr">Selecione todos os itens de informação a serem exibidos…</string>
-    <string name="debugging">Debugando</string>
+    <string name="debugging">Depurando</string>
     <string name="hud">Tela de cabeça para cima</string>
     <string name="logging_level">Nível de registro</string>
     <string name="logging_level_description">Nível de detalhes a serem registrados no arquivo de log de depuração</string>
@@ -76,7 +76,7 @@
     <string name="extension_files">Arquivos de personalização de protocolo (csv)</string>
     <string name="conversions">Conversões de Dados</string>
     <string name="data_items">Itens de dados</string>
-    <string name="last_data_items">últimos itens de dados selecionados</string>
+    <string name="last_data_items">últimos dados selecionados</string>
     <string name="keep_screen_on_description">NÃO desligue a tela se a tela principal/de dados está ativa</string>
     <string name="dev_opt_description">Opções de depuração e de personalização</string>
     <string name="select_extension">Selecione arquivo de extensão .csv…</string>
