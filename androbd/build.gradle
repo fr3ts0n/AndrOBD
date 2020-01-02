@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -6,7 +8,7 @@ android {
     defaultConfig {
         applicationId 'com.fr3ts0n.ecu.gui.androbd'
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 20102
         versionName 'V2.1.2'
 
@@ -35,7 +37,11 @@ android {
 }
 
 dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation project(':plugin')
     implementation project(':library')
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+}
+repositories {
+    mavenCentral()
 }
