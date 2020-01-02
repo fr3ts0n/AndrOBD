@@ -82,7 +82,7 @@ public class ObdProt extends ProtoHeader
     /** negative response codes */
     public enum NRC
     {
-	    GR(0x10, "General reject",DISP.ERROR, REACT.RESET),
+        GR(0x10, "General reject",DISP.ERROR, REACT.RESET),
         SNS(0x11, "Service 0x%02X not supported", DISP.ERROR, REACT.CANCEL),
         SFNS(0x12, "Sub-Function not supported (SVC:0x%02X)", DISP.NOTIFY, REACT.SKIP),
         IMLOIF(0x13, "Incorrect message length or invalid format", DISP.NOTIFY, REACT.SKIP),
@@ -104,7 +104,7 @@ public class ObdProt extends ProtoHeader
         RCRRP(0x78, "Request correctly received  but response is pending", DISP.NOTIFY, REACT.IGNORE),
         SFNSIAS(0x7E, "Sub-Function not supported in active session (SVC:0x%02X)", DISP.NOTIFY, REACT.SKIP),
         SNSIAS(0x7F, "Service 0x%02X not supported in active session", DISP.ERROR, REACT.CANCEL);
-    
+
         /** NRC display classifiers */
         public enum DISP
         {
@@ -113,7 +113,7 @@ public class ObdProt extends ProtoHeader
             WARN,
             ERROR
         }
-    
+
         /** NRC reaction classifiers */
         public enum REACT
         {
@@ -123,7 +123,7 @@ public class ObdProt extends ProtoHeader
             CANCEL,
             RESET
         }
-    
+
         public final int code;
         public final String description;
         public final DISP disp;
@@ -136,7 +136,7 @@ public class ObdProt extends ProtoHeader
             disp = _DISPClass;
             react = _REACTClass;
         }
-    
+
         /**
          * Get NRC with specified ID (NRC-code)
          * @param id ID (NRC-code) to search
@@ -198,8 +198,8 @@ public class ObdProt extends ProtoHeader
      * List of telegram parameters in order of appearance
      */
     private static final int[][] NR_PARAMETERS =
-    /*  START,  LEN,     PARAM-TYPE     // REMARKS */
-    /* ------------------------------------------- */
+            /*  START,  LEN,     PARAM-TYPE     // REMARKS */
+            /* ------------------------------------------- */
             {{0, 2, PT_HEX},     // ID_NR_ID
                     {2, 2, PT_HEX},     // ID_NR_SVC
                     {4, 2, PT_HEX},     // ID_NR_CODE
@@ -209,8 +209,8 @@ public class ObdProt extends ProtoHeader
      * List of telegram parameters in order of appearance
      */
     private static final int[][] SVC_PARAMETERS =
-    /*  START,  LEN,     PARAM-TYPE     // REMARKS */
-    /* ------------------------------------------- */
+            /*  START,  LEN,     PARAM-TYPE     // REMARKS */
+            /* ------------------------------------------- */
             {{0, 2, PT_HEX},     // ID_OBD_SVC
             };
 
@@ -218,8 +218,8 @@ public class ObdProt extends ProtoHeader
      * List of telegram parameters in order of appearance
      */
     private static final int[][] OBD_PARAMETERS =
-    /*  START,  LEN,     PARAM-TYPE     // REMARKS */
-    /* ------------------------------------------- */
+            /*  START,  LEN,     PARAM-TYPE     // REMARKS */
+            /* ------------------------------------------- */
             {{0, 2, PT_HEX},     // ID_OBD_SVC
                     {2, 2, PT_HEX},     // ID_OBD_PID
             };
@@ -228,8 +228,8 @@ public class ObdProt extends ProtoHeader
      * List of telegram parameters in order of appearance
      */
     private static final int[][] FRZFRM_PARAMETERS =
-    /*  START,  LEN,     PARAM-TYPE     // REMARKS */
-    /* ------------------------------------------- */
+            /*  START,  LEN,     PARAM-TYPE     // REMARKS */
+            /* ------------------------------------------- */
             {{0, 2, PT_HEX},     // ID_OBD_SVC
                     {2, 2, PT_HEX},     // ID_OBD_PID
                     {2, 2, PT_HEX},     // ID_OBD_FRAMEID
@@ -241,8 +241,8 @@ public class ObdProt extends ProtoHeader
      * List of telegram parameters in order of appearance
      */
     private static final int[][] NUMCODE_PARAMETERS =
-    /*  START,  LEN,     PARAM-TYPE     // REMARKS */
-    /* ------------------------------------------- */
+            /*  START,  LEN,     PARAM-TYPE     // REMARKS */
+            /* ------------------------------------------- */
             {{4, 2, PT_HEX},     // ID_NUM_CODES
                     {6, 6, PT_HEX},     // ID_MSK_CODES
             };
@@ -419,10 +419,10 @@ public class ObdProt extends ProtoHeader
                 // create new dummy item / OneToOne conversion
                 Conversion[] dummyCnvs = {EcuConversions.dfltCnv, EcuConversions.dfltCnv};
                 EcuDataItem newItem = new EcuDataItem(currPid, 0, 0, 0, 32, 0xFFFFFFFF, dummyCnvs,
-                                                      "%#08x", null, null,
-                                                      String.format("PID %02X", currPid),
-                                                      String.format("PID_%02X", currPid)
-                                                     );
+                        "%#08x", null, null,
+                        String.format("PID %02X", currPid),
+                        String.format("PID_%02X", currPid)
+                );
                 dataItems.appendItemToService(obdService, newItem);
 
                 // re-load data items for this PID
@@ -563,17 +563,17 @@ public class ObdProt extends ProtoHeader
                                 setService(OBD_SVC_NONE, true);
                             }
                             break;
-    
+
                         case CANCEL:
                             // switch off any active service
                             setService(OBD_SVC_NONE, true);
                             break;
-    
+
                         case REPEAT:
                             // Repeat last TX message
                             sendTelegram(lastTxMsg.toCharArray());
                             break;
-                            
+
                         case SKIP:
                         case IGNORE:
                         default:
@@ -602,22 +602,22 @@ public class ObdProt extends ProtoHeader
                             case 0xA0:
                             case 0xC0:
                             case 0xE0:
-                                long msgPayload = Long.valueOf(new String(getPayLoad(buffer)), 16);
+                                long msgPayload = Long.valueOf(getPayLoadString(buffer), 16);
                                 markSupportedPids(msgService, msgPid, msgPayload, PidPvs);
                                 break;
 
                             // OBD number of fault codes
                             case 1:
                                 msgPayload = ((Integer) getParamValue(ID_NUM_CODES,
-                                                                      NUMCODE_PARAMETERS,
-                                                                      buffer)).longValue();
+                                        NUMCODE_PARAMETERS,
+                                        buffer)).longValue();
                                 setNumCodes(Long.valueOf(msgPayload).intValue());
                                 // no break here ...
                             default:
                                 dataItems.updateDataItems(msgService,
-                                                          msgPid,
-                                                          hexToBytes(String.valueOf(
-                                                                  getPayLoad(buffer))));
+                                        msgPid,
+                                        hexToBytes(String.valueOf(
+                                                getPayLoad(buffer))));
                                 break;
                         }
                         break;
@@ -635,15 +635,15 @@ public class ObdProt extends ProtoHeader
                             case 0xA0:
                             case 0xC0:
                             case 0xE0:
-                                long msgPayload = Long.valueOf(new String(getPayLoad(buffer)), 16);
+                                long msgPayload = Long.valueOf(getPayLoadString(buffer), 16);
                                 markSupportedPids(msgService, msgPid, msgPayload, VidPvs);
                                 break;
 
                             default:
                                 dataItems.updateDataItems(msgService,
-                                                          msgPid,
-                                                          hexToBytes(String.valueOf(
-                                                                  getPayLoad(buffer))));
+                                        msgPid,
+                                        hexToBytes(String.valueOf(
+                                                getPayLoad(buffer))));
                                 break;
                         }
                         break;
@@ -659,7 +659,7 @@ public class ObdProt extends ProtoHeader
                         int nCodes = 0;
                         // default DTC data to start at offset 2 (Byte 1)
                         int DTCOffs = 2;
-                        
+
                         // If message contains optional number of codes (1 Byte) then set it ...
                         boolean hasNumCodes = ((buffer.length % 4) == 0);
                         if (hasNumCodes)
@@ -680,8 +680,8 @@ public class ObdProt extends ProtoHeader
                                 if ((code = knownCodes.get(key)) == null)
                                 {
                                     code = new ObdCodeItem(key.intValue(),
-                                                           Messages.getString(
-                                                           "customer.specific.trouble.code.see.manual"));
+                                            Messages.getString(
+                                                    "customer.specific.trouble.code.see.manual"));
                                 }
                                 log.fine(String.format("+DFC: %04x: %s", key, code.toString()));
                                 tCodes.put(key, code);
@@ -715,6 +715,17 @@ public class ObdProt extends ProtoHeader
         return (result);
     }
 
+    private String getPayLoadString(char[] buffer) {
+        // Getting only first 8 chars because some OBD simulators sends
+        // very long string such "BE1B30130088180010BC48" which can not be
+        // converted to Long, somehow this way fixes it, related issue:
+        // https://github.com/fr3ts0n/AndrOBD/issues/90
+        String payLoadString = new String(getPayLoad(buffer));
+        payLoadString = payLoadString.length() > 8 ?
+                payLoadString.substring(0, 8) : payLoadString;
+        return payLoadString;
+    }
+
     /**
      * Notify all telegram Writers about new telegram
      * @param buffer - telegram buffer
@@ -745,9 +756,9 @@ public class ObdProt extends ProtoHeader
         int old = this.numCodes;
         this.numCodes = numCodes;
         firePropertyChange(new PropertyChangeEvent(this,
-                                                   PROP_NUM_CODES,
-                                                   Integer.valueOf(old),
-                                                   Integer.valueOf(numCodes)));
+                PROP_NUM_CODES,
+                Integer.valueOf(old),
+                Integer.valueOf(numCodes)));
     }
 
     /**
