@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">由 fr3ts0n 翻译</string>
+    <string name="translation_credits">由 fr3ts0n，infinitysky 翻译</string>
     <string name="app_description">Android OBD，用于ELM327蓝牙适配器的车辆诊断应用</string>
     <string name="title_connecting">正在连接…</string>
     <string name="title_connected_to">已连接 %s</string>
@@ -87,10 +87,10 @@
     <string name="configure">配置</string>
     <string name="select_fault_code">选择故障码…</string>
     <string name="select_medium">适配器类型…</string>
-    <string name="devices_found">找到 %d 个USB设备</string>
+    <string name="devices_found">已找到 %d 个USB设备</string>
     <string name="min_elm_timeout">最小ELM超时时间 [ms]</string>
     <string name="unabletoconnect">无法连接到设备</string>
-    <string name="connectionlost">设备连接已断开</string>
+    <string name="connectionlost">与设备连接已断开</string>
     <string name="elm_timeout_descr">等待ELM响应的最小超时时间 [ms]</string>
     <string name="day_night_mode">白天/夜间 视图模式</string>
     <string name="night_mode_description">设置背景为黑色</string>
@@ -159,4 +159,10 @@
     <string name="release_history">发布历史…</string>
     <string name="graphic_design">平面设计</string>
     <string name="plugin_data">插件数据</string>
+    <string name="long_press_dfc_hint">长按DFC进行在线搜索…</string>
+    <string name="process_vars">进程变量</string>
+    <string name="unfilter">移除过滤器</string>
+    <string name="plugin_manager_desc">已检测到的插件管理器</string>
+    <string name="graph_actions">图形动作</string>
+    <string name="master">master</string>
 </resources>
