@@ -119,4 +119,14 @@
     <string name="INITIALIZED">已初始化</string>
     <string name="ECU_DETECT">ECU 檢測…</string>
     <string name="ECU_DETECTED">檢測到 ECU</string>
+    <string name="CONNECTED">已連接</string>
+    <string name="NODATA">沒有數據</string>
+    <string name="STOPPED">已停止</string>
+    <string name="DISCONNECTED">已斷開連接</string>
+    <string name="BUSERROR">匯流排錯誤</string>
+    <string name="obd_error">OBD協定錯誤</string>
+    <string name="device_address_description">ELM設備網絡IP位址</string>
+    <string name="device_address">ELM IP 位址</string>
+    <string name="device_port_description">ELM 設備網絡IP通訊埠</string>
+    <string name="device_port">ELM IP 通訊埠</string>
 </resources>
