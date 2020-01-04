@@ -162,4 +162,10 @@
     <string name="donation">Підтримка проекту …</string>
     <string name="data_disable_max">Ліміт відключення даних</string>
     <string name="graphic_design">Графічний дизайн</string>
+    <string name="plugin_data">Дані плагіна</string>
+    <string name="long_press_dfc_hint">Зажміть DFC для пошуку в інтернеті…</string>
+    <string name="unfilter">Зняти фільтр</string>
+    <string name="plugin_manager_desc">Менеджер знайдених плагінів</string>
+    <string name="graph_actions">Дії з графіком</string>
+    <string name="master">головний</string>
 </resources>
