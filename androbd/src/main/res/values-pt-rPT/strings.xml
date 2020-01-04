@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Tradução por Manuela Silva</string>
+    <string name="translation_credits">Tradução por Manuela Silva e Silvério Santos</string>
     <string name="title_connecting">A conectar…</string>
     <string name="title_connected_to">Conectado a %s</string>
     <string name="logo">Logótipo</string>
