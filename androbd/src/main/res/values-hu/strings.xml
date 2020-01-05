@@ -160,4 +160,5 @@ információt, beleértve:
     <string name="release_history">Kiadási történet …</string>
     <string name="graphic_design">Grafikus terv</string>
     <string name="unfilter">Szűrő eltávolítása</string>
+    <string name="plugin_data">Plugin adatok</string>
 </resources>
