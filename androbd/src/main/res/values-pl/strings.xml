@@ -160,4 +160,7 @@
     <string name="release_history">Historia wersji …</string>
     <string name="graphic_design">Projekt graficzny</string>
     <string name="unfilter">Usuń filtr</string>
+    <string name="plugin_data">Informacje wtyczek</string>
+    <string name="long_press_dfc_hint">Naciśnij i przytrzymaj DFC, aby wyszukać w sieci …</string>
+    <string name="plugin_manager_desc">Menadżer wykrytych wtyczek</string>
 </resources>
