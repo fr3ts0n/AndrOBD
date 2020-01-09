@@ -792,7 +792,7 @@ public class MainActivity extends PluginManager
 
 		// night mode
 		if (key == null || NIGHT_MODE.equals(key))
-		{ setNightMode(prefs.getBoolean(NIGHT_MODE, false)); }
+		{ this.nightMode = prefs.getBoolean(NIGHT_MODE, false); }
 
 		// set default comm medium
 		if (key == null || SettingsActivity.KEY_COMM_MEDIUM.equals(key))
