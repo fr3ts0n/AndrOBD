@@ -23,6 +23,8 @@
         android:layout_gravity="center_horizontal"
         android:choiceMode="multipleChoice"
         android:dividerHeight="2dp"
-        android:fastScrollEnabled="true" />
+        android:scrollbars="vertical"
+        android:fastScrollEnabled="true"
+        />
 
 </LinearLayout>
