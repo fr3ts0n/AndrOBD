@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: com.fr3ts0n.ecu.gui.application.ObdTestFrame
-
