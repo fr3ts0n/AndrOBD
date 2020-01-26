@@ -59,7 +59,7 @@
     <string name="keep_screen_on_description">Не вимикати екран, ящо дані відображаються</string>
     <string name="development_options">Опції розробника</string>
     <string name="dev_opt_description">Опції розробки та персоналізації</string>
-    <string name="extension_files">Файли пресоналізації протокола (csv)</string>
+    <string name="extension_files">Файли персоналізації протоколу (CSV)</string>
     <string name="conversions">Перетворення даних</string>
     <string name="data_items">Показники</string>
     <string name="select_extension">Оберіть розширення .csv файлу …</string>
@@ -71,7 +71,7 @@
     <string name="select_protocol">Бажаний OBD протокол</string>
     <string name="select_fault_code">Оберіть код помилки…</string>
     <string name="select_medium">Тип адаптера…</string>
-    <string name="devices_found">%d USB пристрій(пристрої) знайдено</string>
+    <string name="devices_found">Знайдено %d USB-пристрій(пристрої)</string>
     <string name="min_elm_timeout">Мін. ELM таймаут [ms]</string>
     <string name="unabletoconnect">Неможливо з’єднатися з пристроєм</string>
     <string name="connectionlost">Зв’язок с пристроєм втрачено</string>
@@ -168,4 +168,5 @@
     <string name="plugin_manager_desc">Менеджер знайдених плагінів</string>
     <string name="graph_actions">Дії з графіком</string>
     <string name="master">головний</string>
+    <string name="process_vars">Змінні процесу</string>
 </resources>
