@@ -200,10 +200,10 @@ public class ObdProt extends ProtoHeader
     private static final int[][] NR_PARAMETERS =
     /*  START,  LEN,     PARAM-TYPE     // REMARKS */
     /* ------------------------------------------- */
-            {{0, 2, PT_HEX},     // ID_NR_ID
-                    {2, 2, PT_HEX},     // ID_NR_SVC
-                    {4, 2, PT_HEX},     // ID_NR_CODE
-            };
+	{{0, 2, PT_HEX},     // ID_NR_ID
+	 {2, 2, PT_HEX},     // ID_NR_SVC
+	 {4, 2, PT_HEX},     // ID_NR_CODE
+	};
 
     /**
      * List of telegram parameters in order of appearance
@@ -211,8 +211,8 @@ public class ObdProt extends ProtoHeader
     private static final int[][] SVC_PARAMETERS =
     /*  START,  LEN,     PARAM-TYPE     // REMARKS */
     /* ------------------------------------------- */
-            {{0, 2, PT_HEX},     // ID_OBD_SVC
-            };
+	{{0, 2, PT_HEX},     // ID_OBD_SVC
+	};
 
     /**
      * List of telegram parameters in order of appearance
@@ -220,9 +220,9 @@ public class ObdProt extends ProtoHeader
     private static final int[][] OBD_PARAMETERS =
     /*  START,  LEN,     PARAM-TYPE     // REMARKS */
     /* ------------------------------------------- */
-            {{0, 2, PT_HEX},     // ID_OBD_SVC
-                    {2, 2, PT_HEX},     // ID_OBD_PID
-            };
+	{{0, 2, PT_HEX},     // ID_OBD_SVC
+	 {2, 2, PT_HEX},     // ID_OBD_PID
+	};
 
     /**
      * List of telegram parameters in order of appearance
@@ -230,10 +230,10 @@ public class ObdProt extends ProtoHeader
     private static final int[][] FRZFRM_PARAMETERS =
     /*  START,  LEN,     PARAM-TYPE     // REMARKS */
     /* ------------------------------------------- */
-            {{0, 2, PT_HEX},     // ID_OBD_SVC
-                    {2, 2, PT_HEX},     // ID_OBD_PID
-                    {2, 2, PT_HEX},     // ID_OBD_FRAMEID
-            };
+	{{0, 2, PT_HEX},     // ID_OBD_SVC
+	 {2, 2, PT_HEX},     // ID_OBD_PID
+	 {2, 2, PT_HEX},     // ID_OBD_FRAMEID
+	};
 
     private static final int ID_NUM_CODES = 0;
     public static final int ID_MSK_CODES = 1;
@@ -243,15 +243,15 @@ public class ObdProt extends ProtoHeader
     private static final int[][] NUMCODE_PARAMETERS =
     /*  START,  LEN,     PARAM-TYPE     // REMARKS */
     /* ------------------------------------------- */
-            {{4, 2, PT_HEX},     // ID_NUM_CODES
-                    {6, 6, PT_HEX},     // ID_MSK_CODES
-            };
+	{{4, 2, PT_HEX},     // ID_NUM_CODES
+	 {6, 6, PT_HEX},     // ID_MSK_CODES
+	};
 
     private static final String[] OBD_DESCRIPTORS =
-            {
-                    "OBD Service",
-                    "OBD PID",
-            };
+	{
+		"OBD Service",
+		"OBD PID",
+	};
 
     /** new style data items */
     public static final EcuDataItems dataItems = new EcuDataItems();
@@ -602,7 +602,7 @@ public class ObdProt extends ProtoHeader
                             case 0xA0:
                             case 0xC0:
                             case 0xE0:
-                                long msgPayload = Long.valueOf(new String(getPayLoad(buffer)), 16);
+                                long msgPayload = Long.valueOf(new String(getPayLoad(buffer,8)), 16);
                                 markSupportedPids(msgService, msgPid, msgPayload, PidPvs);
                                 break;
 
@@ -635,7 +635,7 @@ public class ObdProt extends ProtoHeader
                             case 0xA0:
                             case 0xC0:
                             case 0xE0:
-                                long msgPayload = Long.valueOf(new String(getPayLoad(buffer)), 16);
+                                long msgPayload = Long.valueOf(new String(getPayLoad(buffer,8)), 16);
                                 markSupportedPids(msgService, msgPid, msgPayload, VidPvs);
                                 break;
 

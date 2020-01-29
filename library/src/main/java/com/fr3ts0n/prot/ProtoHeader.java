@@ -808,20 +808,34 @@ public abstract class ProtoHeader
 
 	/**
 	 * return the payload (user data) of telegram
+	 *   limited to specified maximum length
+	 *
+	 * @param buffer = current telegram buffer
+	 * @param maxLength maximum length of payload
+	 * @return buffer of payload data
+	 */
+	protected char[] getPayLoad(char[] buffer, int maxLength)
+	{
+		String result = "";
+		if (checkTelegram(buffer))
+		{
+			result = new String(buffer,
+								getHeaderLength(),
+								Math.min(maxLength,
+										 buffer.length - getHeaderLength() - getFooterLength()));
+		}
+		return (result.toCharArray());
+	}
+
+	/**
+	 * return the payload (user data) of telegram
 	 *
 	 * @param buffer = current telegram buffer
 	 * @return buffer of payload data
 	 */
 	protected char[] getPayLoad(char[] buffer)
 	{
-		String result = "";
-		if (checkTelegram(buffer))
-		{
-			result = new String(buffer,
-				getHeaderLength(),
-				buffer.length - getHeaderLength() - getFooterLength());
-		}
-		return (result.toCharArray());
+		return (getPayLoad(buffer, 0xFFFFFFFF));
 	}
 
 	/**
