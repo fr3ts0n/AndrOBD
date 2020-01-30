@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="translation_credits">Μετάφραση από τον fr3ts0n</string>
-    <string name="title_connecting">Σύνδεση…</string>
-    <string name="title_connected_to">Συνδεδεμένο %s</string>
-    <string name="logo">Λογότυπο</string>
-    <string name="back_again_to_exit">Πατήστε πάλι πίσω για να κλείσετε αυτήν την εφαρμογή</string>
-    <string name="action_connect">Σύνδεση</string>
-</resources>

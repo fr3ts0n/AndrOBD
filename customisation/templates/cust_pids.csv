@@ -1,4 +1,0 @@
-svc	pid	ofs	len	bit_ofs	bit_len	bit_mask	formula	format	min	max	mnemonic	label	Remarks
-0x01,0x02	0x5F	0	1	0	8	0xFF	CUST_STATE	%.0f			cust_pid59	Customized PID59	uses custom hash conversion
-0x01,0x02	0x61	0	1	0	8	0xFF	CUST_BITMAP	%.0f			cust_pid61	Customized PID61	uses custom bitmap conversion
-0x01,0x02	0x62	0	1	0	8	0xFF	CUST_AIRFLOW	%.2f			cust_pid62	Customized PID62	uses custom linear conversion
