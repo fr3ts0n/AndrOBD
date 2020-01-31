@@ -82,6 +82,12 @@ You are invited to contribute a translation into your favourite language.
 
 ## Development support
 
+### AndrOBD project wiki
+
+Documentation, tech Infos, Q&A ...
+
+[AndrOBD Wiki](https://github.com/fr3ts0n/AndrOBD/wiki)
+
 ### AndrOBD channel (Telegram)
 
 Alpha and beta test releases
@@ -105,7 +111,7 @@ It feels good to see that our work is appreciated.
 | 2018/12 | Martin Bourdoiseau | €20 |
 | 2019/06 | Jeffrey O'Connell | $10 |
 | 2019/08 | Christoph Schmid | €10 |
-
+| 2020/01 | Glenn Fowler | $5 |
 
 <table>
   <tr>
