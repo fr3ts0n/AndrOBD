@@ -16,6 +16,7 @@
   </td>
 </tr>
 </table>
+![Android CI](https://github.com/fr3ts0n/AndrOBD/workflows/Android%20CI/badge.svg)
 
 # Features
 
