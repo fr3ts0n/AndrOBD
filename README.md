@@ -2,6 +2,8 @@
 
 ### Android OBD diagnostics with any ELM327 adapter
 
+![Android CI](https://github.com/fr3ts0n/AndrOBD/workflows/Android%20CI/badge.svg)
+
 <table>
 <tr colspan="2">
   <td>
@@ -16,7 +18,6 @@
   </td>
 </tr>
 </table>
-![Android CI](https://github.com/fr3ts0n/AndrOBD/workflows/Android%20CI/badge.svg)
 
 # Features
 
