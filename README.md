@@ -72,6 +72,14 @@
 Very special Thanks to @anaufalm for the beautiful graphic design
 artwork and logos.
 
+## Start page
+
+Thank you very much @sampoder for your beautiful [AndrOBD start page](https://fr3ts0n.github.io/AndrOBD/)
+
+## Internet promotion
+
+Big hands to @aha999 for promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
+
 ## Translations
 
 Thanks to all hard-working translators for their contributions.
