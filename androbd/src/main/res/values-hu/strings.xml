@@ -75,7 +75,7 @@ információt, beleértve:
     <string name="keep_screen_on_description">NE kapcsolja ki a képernyőt, ha a fő, ill. adat képernyőn tartózkodik</string>
     <string name="development_options">Fejlesztői lehetőségek</string>
     <string name="dev_opt_description">Hibakeresési és testreszabási lehetőségek</string>
-    <string name="extension_files">Naplófájlok testreszabása (csv)</string>
+    <string name="extension_files">Protokoll testreszabási fájlok (CSV)</string>
     <string name="conversions">Adat konverziók</string>
     <string name="data_items">Adat elemek</string>
     <string name="select_extension">Válassz .csv kiterjesztésű fájlt …</string>
@@ -161,4 +161,9 @@ információt, beleértve:
     <string name="graphic_design">Grafikus terv</string>
     <string name="unfilter">Szűrő eltávolítása</string>
     <string name="plugin_data">Plugin adatok</string>
+    <string name="long_press_dfc_hint">DFC hosszú érintése online kereséshez…</string>
+    <string name="process_vars">Folyamatváltozók</string>
+    <string name="plugin_manager_desc">Észlelt bővítmények kezelése</string>
+    <string name="graph_actions">Grafikon műveletek</string>
+    <string name="master">mester</string>
 </resources>
