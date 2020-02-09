@@ -16,21 +16,20 @@
     <string name="obd_permanentcodes">OBD错误码（永久）</string>
     <string name="obd_pendingcodes">OBD错误码（待定）</string>
     <string name="obd_clearcodes">清除错误码</string>
-    <string name="obd_clear_info">这将重置故障指示灯（MIL）和清除所有排放相关的诊断数据
-\n信息, 包括：
-\n·- 诊断故障代码
-\n·- 冻结的帧数据
-\n·- 氧气传感器测试数据
-\n·- 系统监控测试的状态数据
-\n·- 板载监控测试的结果数据
-\n·- 故障指示灯（MIL）处于激活状态时的旅行距离
-\n·- 车身稳定控制系统（DTCs）数据清除后的旅行距离
-\n·- 故障指示灯（MIL）处于激活状态时的引擎运行时间
-\n·- 车身稳定控制系统（DTCs）数据清除后的时间
-\n
-\n· 可能执行其他由制造商指定的清除/重置动作。
-\n· 在ECU重新校准自身的时间段内缺失的数据可能造成车辆短时间的运行状况不佳.
-\n</string>
+    <string name="obd_clear_info">这将重置故障指示灯（MIL）和清除所有排放相关的诊断数据 
+\n信息, 包括： 
+\n·- 诊断故障代码 
+\n·- 冻结的帧数据 
+\n·- 氧气传感器测试数据 
+\n·- 系统监控测试的状态数据 
+\n·- 板载监控测试的结果数据 
+\n·- 故障指示灯（MIL）处于激活状态时的旅行距离 
+\n·- 车身稳定控制系统（DTCs）数据清除后的旅行距离 
+\n·- 故障指示灯（MIL）处于激活状态时的引擎运行时间 
+\n·- 车身稳定控制系统（DTCs）数据清除后的时间 
+\n 
+\n· 可能执行其他由制造商指定的清除/重置动作。 
+\n· 在ECU重新校准自身的时间段内缺失的数据可能造成车辆短时间的运行状况不佳。</string>
     <string name="select_device">选择适配器类型</string>
     <string name="none_paired">没有配对设备</string>
     <string name="none_found">未发现设备</string>
@@ -122,7 +121,7 @@
     <string name="NODATA">没有数据</string>
     <string name="STOPPED">已停止</string>
     <string name="DISCONNECTED">已断开</string>
-    <string name="BUSERROR">BUS错误</string>
+    <string name="BUSERROR">总线错误</string>
     <string name="DATAERROR">数据错误</string>
     <string name="RXERROR">RX错误</string>
     <string name="ERROR">错误</string>
@@ -164,5 +163,5 @@
     <string name="unfilter">移除过滤器</string>
     <string name="plugin_manager_desc">已检测到的插件管理器</string>
     <string name="graph_actions">图形动作</string>
-    <string name="master">master</string>
+    <string name="master">主体</string>
 </resources>
