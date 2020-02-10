@@ -86,7 +86,7 @@ információt, beleértve:
     <string name="select_protocol">Előnyben részesített OBD protokol</string>
     <string name="select_fault_code">Hibakód kiválasztás …</string>
     <string name="select_medium">Adapter típus …</string>
-    <string name="devices_found">%d USB eszköz található</string>
+    <string name="devices_found">%d USB-eszköz találhatók</string>
     <string name="min_elm_timeout">Min. ELM várakozás [ms]</string>
     <string name="unabletoconnect">Nem lehet csatlakozni az eszközhöz</string>
     <string name="connectionlost">A készülék kapcsolata megszakadt</string>
