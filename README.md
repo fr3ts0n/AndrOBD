@@ -69,8 +69,8 @@
 
 ## Graphic design
 
-Very special Thanks to @anaufalm for the beautiful graphic design
-artwork and logos.
+Very special Thanks to @anaufalm for the 
+[beautiful graphic design artwork and logos](https://steemit.com/utopian-io/@naufal/my-design-logo-for-androbd-valid-commit-and-added-to-v2-0-3).
 
 ## Start page
 
