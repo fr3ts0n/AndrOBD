@@ -45,7 +45,7 @@
     <string name="development_options">Razvojne možnosti</string>
     <string name="conversions">Pretvorbe podatkov</string>
     <string name="data_items">Podatkovni predmeti</string>
-    <string name="extension_loading"></string>
+    <string name="extension_loading"/>
     <string name="obd_options">OBD možnosti</string>
     <string name="obd_opt_description">Možnosti OBD protokola / komunikacije z vozilom</string>
     <string name="select_protocol">Prednostni OBD protokol</string>
@@ -94,4 +94,15 @@
     <string name="unfilter">Odstrani filter</string>
     <string name="plugin_manager_desc">Upravljalec zaznanih vtičnikov</string>
     <string name="graph_actions">Dejanja grafa</string>
+    <string name="back_again_to_exit">Znova pritisni gumb Nazaj, da zapreš aplikacijo</string>
+    <string name="filter">Filter izbran</string>
+    <string name="unabletoconnect">Povezava z napravo je neuspešna</string>
+    <string name="connectionlost">Povezava z napravo je bila izgubljena</string>
+    <string name="night_mode_description">Nastavi zaslon na temno ozadje</string>
+    <string name="INITIALIZING">Inicializacija…</string>
+    <string name="INITIALIZED">Inicializirano</string>
+    <string name="device_port">ELM IP vhod</string>
+    <string name="autohide_delay">Skrij zakasnitev opravilne vrstice [s]</string>
+    <string name="autohide_delay_description">Zakasnitev v sekundah (brez dejavnosti), preden se opravilna vrstica skrije</string>
+    <string name="toolbar_overlay">Prikaži kot prekrivanje</string>
 </resources>
