@@ -163,4 +163,5 @@
     <string name="plugin_data">Informacje wtyczek</string>
     <string name="long_press_dfc_hint">Naciśnij i przytrzymaj DFC, aby wyszukać w sieci …</string>
     <string name="plugin_manager_desc">Menadżer wykrytych wtyczek</string>
+    <string name="graph_actions">Działania na wykresach</string>
 </resources>
