@@ -835,7 +835,7 @@ public abstract class ProtoHeader
 	 */
 	protected char[] getPayLoad(char[] buffer)
 	{
-		return (getPayLoad(buffer, 0xFFFFFFFF));
+		return (getPayLoad(buffer, Integer.MAX_VALUE));
 	}
 
 	/**
