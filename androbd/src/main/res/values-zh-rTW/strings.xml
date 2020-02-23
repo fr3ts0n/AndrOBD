@@ -129,4 +129,6 @@
     <string name="device_address">ELM IP 位址</string>
     <string name="device_port_description">ELM 設備網絡IP通訊埠</string>
     <string name="device_port">ELM IP 通訊埠</string>
+    <string name="CONNECTING">正在連接…</string>
+    <string name="ERROR">錯誤</string>
 </resources>
