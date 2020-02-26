@@ -45,7 +45,7 @@
     <string name="development_options">Razvojne možnosti</string>
     <string name="conversions">Pretvorbe podatkov</string>
     <string name="data_items">Podatkovni predmeti</string>
-    <string name="extension_loading"/>
+    <string name="extension_loading">Nalaganje prilagodljivosti</string>
     <string name="obd_options">OBD možnosti</string>
     <string name="obd_opt_description">Možnosti OBD protokola / komunikacije z vozilom</string>
     <string name="select_protocol">Prednostni OBD protokol</string>
@@ -105,4 +105,29 @@
     <string name="autohide_delay">Skrij zakasnitev opravilne vrstice [s]</string>
     <string name="autohide_delay_description">Zakasnitev v sekundah (brez dejavnosti), preden se opravilna vrstica skrije</string>
     <string name="toolbar_overlay">Prikaži kot prekrivanje</string>
+    <string name="obd_codes">OBD kode napak</string>
+    <string name="obd_permanentcodes">OBD kode napak (trajne)</string>
+    <string name="obd_pendingcodes">OBD kode napak (v teku)</string>
+    <string name="dashboard">Armaturna plošča</string>
+    <string name="hud">Naglavni vizir (HUD)</string>
+    <string name="items_for_display">Podatkovni predmeti za prikaz</string>
+    <string name="items_for_display_descr">Izberi vse podatkovne predmete, ki bodo prikazani…</string>
+    <string name="logging_level">Stopnja beleženja dnevnika</string>
+    <string name="logging_level_description">Količina podrobnosti, ki bo beležena v dnevnik za odpravljanje napak</string>
+    <string name="last_data_items">Uporabi zadnje izbrane podatkovne predmete</string>
+    <string name="last_view_mode">zadnji način prikaza podatkov</string>
+    <string name="keep_screen_on_description">Ne izključi zaslona, če je na njem prikaz glavnih podatkov</string>
+    <string name="dev_opt_description">Možnosti za odpravljanje napak in prilagodljivost</string>
+    <string name="extension_files">Datoteke za prilagodljivost protokola (CSV)</string>
+    <string name="select_extension">Izberi datoteko .csv …</string>
+    <string name="check_cust_settings">Prosimo preverite nastavitve prilagodljivosti
+\n</string>
+    <string name="csv_export_description">Možnosti oblikovanja izvoženega poročila CSV</string>
+    <string name="tab">TABULATOR</string>
+    <string name="comma">VEJICA</string>
+    <string name="semicolon">PODPIČJE</string>
+    <string name="send_after_export">Pošlji po izvozu</string>
+    <string name="send_after_export_descr">Vprašaj za pošiljanje CSV datoteke takoj po izvozu\?</string>
+    <string name="toolbar_overlay_sum">Prikaži orodno vrstico nad glavnim zaslonom</string>
+    <string name="process_vars">Spremenljivke procesa</string>
 </resources>
