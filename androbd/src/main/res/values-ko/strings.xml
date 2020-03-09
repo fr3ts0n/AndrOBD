@@ -88,7 +88,7 @@
     <string name="configure">환결설정</string>
     <string name="select_fault_code">오류 코드 선택 …</string>
     <string name="select_medium">어댑터 종류 …</string>
-    <string name="devices_found">%d USB 디바이스 찾지못함</string>
+    <string name="devices_found">%d USB 디바이스를 찾음</string>
     <string name="min_elm_timeout">Min. ELM 시간종료 [ms]</string>
     <string name="unabletoconnect">기기를 연결할 수 없습니다</string>
     <string name="connectionlost">기기 연결이 끊어졌습니다</string>
