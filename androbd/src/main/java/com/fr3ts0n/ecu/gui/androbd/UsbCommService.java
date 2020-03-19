@@ -19,7 +19,10 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
 import android.os.Handler;
@@ -41,6 +44,7 @@ public class UsbCommService extends CommService
 {
 	private static UsbSerialPort sPort = null;
 	private SerialInputOutputManager mSerialIoManager;
+	public static final String INTENT_ACTION_GRANT_USB = BuildConfig.APPLICATION_ID + ".GRANT_USB";
 
 	private final SerialInputOutputManager.Listener mListener =
 		new SerialInputOutputManager.Listener()
@@ -119,8 +123,22 @@ public class UsbCommService extends CommService
 		if (sPort != null)
 		{
 			final UsbManager usbManager = (UsbManager) mContext.getSystemService(Context.USB_SERVICE);
-			UsbDeviceConnection connection = Objects.requireNonNull(usbManager)
-				                                 .openDevice(sPort.getDriver().getDevice());
+			if (usbManager == null)
+			{
+                connectionFailed();
+                return;
+            }
+			
+			UsbDevice device = sPort.getDriver().getDevice();
+			if (!usbManager.hasPermission(device))
+			{
+				PendingIntent usbPermissionIntent = PendingIntent.getBroadcast(mContext, 0, new Intent(INTENT_ACTION_GRANT_USB), 0);
+				usbManager.requestPermission(device, usbPermissionIntent);
+				connectionFailed();
+				return;
+			}
+
+            UsbDeviceConnection connection = usbManager.openDevice(sPort.getDriver().getDevice());
 			if (connection == null)
 			{
 				connectionFailed();
