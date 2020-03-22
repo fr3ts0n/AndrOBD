@@ -7,6 +7,8 @@ android {
         applicationId 'com.fr3ts0n.ecu.gui.androbd'
         minSdkVersion 15
         targetSdkVersion 25
+        versionCode 20104
+        versionName 'V2.1.4'
         versionCode 20103
         versionName 'V2.1.3'
 
