@@ -89,7 +89,7 @@
     <string name="obd_permanentcodes">Códigos de falhas OBD (permanente)</string>
     <string name="obd_pendingcodes">Códigos de falhas OBD (pendente)</string>
     <string name="service_freezeframes">Suspender Fotogramas OBD</string>
-    <string name="obd_clear_info">"Isto irá redefinir o MIL e limpar todas as emissões relacionadas 
+    <string name="obd_clear_info">Isto irá redefinir o MIL e limpar todas as emissões relacionadas 
 \n a informação de diagnóstico, incluindo: 
 \n - Códigos de diagnóstico de problemas 
 \n - Dados de suspender fotogramas 
@@ -100,11 +100,11 @@
 \n - Quantidade de \"warm-ups\" desde limpar os DTCs 
 \n - Distância percorrida desde que DTC foi limpo
 \n - Tempo de funcionamento do motor com MIL ativado 
-\n - Tempo desde que  DTC foi limpo
-\n 
+\n - Tempo desde que DTC foi limpo
+\n
 \n Podem ocorrer outras ações de limpeza/redefinição específicas do fabricante. 
 \n A perda de dados pode fazer com que o veículo funcione mal durante um 
-\n curto período de tempo enquanto a ECU se recalibra."</string>
+\n curto período de tempo enquanto a ECU se recalibra.</string>
     <string name="time">Tempo [s]</string>
     <string name="graph_actions">Ações de gráfico</string>
     <string name="hud">Ecrã de Alertas</string>
