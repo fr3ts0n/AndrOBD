@@ -43,7 +43,7 @@
     <string name="chart">Gráfico</string>
     <string name="demo_stopped">Modo DEMO parado</string>
     <string name="demo_started">Modo DEMO iniciado</string>
-    <string name="snapshot">Instantâneo</string>
+    <string name="snapshot">Foto Instantânea</string>
     <string name="save">Salvar medição</string>
     <string name="load">Carregar medição</string>
     <string name="saved_data">Dados Salvos</string>
