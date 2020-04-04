@@ -6,37 +6,37 @@
     <string name="back_again_to_exit">Pressione voltar novamente para fechar o aplicativo</string>
     <string name="action_connect">Conectar</string>
     <string name="app_description">Aplicativo para Android de Diagnósticos veicular ODB para o adaptador ELM327 Bluetooth</string>
-    <string name="logo">Logo</string>
+    <string name="logo">Logotipo</string>
     <string name="obd_none">Sem Serviço</string>
     <string name="obd_services">Serviços OBD</string>
     <string name="obd_veh_info">OBD Informações do Veículo</string>
     <string name="obd_data">Dados OBD</string>
     <string name="service_freezeframes">Congelar Quadros OBD</string>
-    <string name="obd_codes">Códigos de Falha OBD</string>
-    <string name="obd_permanentcodes">Códigos de Falha OBD (Permanente)</string>
-    <string name="obd_pendingcodes">Códigos de falha OBD (pendente)</string>
-    <string name="obd_clearcodes">Limpar códigos de falha</string>
-    <string name="obd_clear_info">Isto vai resetar o MIL e limpar todo diagnóstico relacionado as 
+    <string name="obd_codes">Código de Falhas OBD</string>
+    <string name="obd_permanentcodes">Código de Falhas OBD (Permanente)</string>
+    <string name="obd_pendingcodes">Código de falhas OBD (pendente)</string>
+    <string name="obd_clearcodes">Limpar código de falhas</string>
+    <string name="obd_clear_info">Isto vai redefinir o MIL e limpar todo diagnóstico relacionado as 
 \ninformações de emissão, incluindo: 
-\n- Diagnósticos de códigos de falha 
+\n- Diagnósticos de código de falhas 
 \n- Congelar quadro de dados 
 \n- Dados de teste do sensor de oxigênio 
 \n- Estado dos testes do sistema de monitoramento 
 \n- Resultado dos testes de monitoramento de bordo 
-\n- Distância percorrida enquanto MIL ativado 
-\n- Número de aquecimentos desde o reset dos DTCs 
-\n- Distância percorrida desde reset dos DTCs 
-\n- Tempo de funcionamento do motor desde o reset dos DTCs 
-\n- Tempo desde o reset dos DTCs 
+\n- Distância percorrida enquanto MIL está ativado 
+\n- Número de aquecimentos desde a limpeza dos DTCs 
+\n- Distância percorrida desde a limpeza dos DTCs 
+\n- Tempo de funcionamento do motor enquanto o MIL está ativado 
+\n- Tempo desde a limpeza dos DTCs 
 \n 
-\nOutras ações de resets específicos do fabricante podem ocorrer. 
+\nOutras ações de limpeza/redefinição específicos do fabricante podem ocorrer. 
 \nA perda de dados pode provocar que o veículo funcione de forma 
-\nnão adequada durante um pequeno período de tempo até se 
-\nauto-recalibrar.</string>
+\nnão adequada durante um pequeno período de tempo enquanto a ECU
+\nrecalibra-se.</string>
     <string name="select_device">Selecione o adaptador</string>
-    <string name="none_paired">Não há dispositivos pareados</string>
+    <string name="none_paired">Nenhum dispositivo emparelhado</string>
     <string name="none_found">Nenhum dispositivo encontrado</string>
-    <string name="title_paired_devices">Dispositivos Pareados</string>
+    <string name="title_paired_devices">Dispositivos emparelhados</string>
     <string name="send_to">Enviar para</string>
     <string name="share">compartilhar</string>
     <string name="time">Tempo [s]</string>
@@ -57,18 +57,18 @@
     <string name="filter">Filtro selecionado</string>
     <string name="settings">Configurações</string>
     <string name="common_settings">Configurações padrão</string>
-    <string name="measure_system_description">Sistema de medidas (métrico/imperial)</string>
+    <string name="measure_system_description">Sistema de medição (métrico/imperial)</string>
     <string name="measure_system">Unidades de medida</string>
     <string name="metric">métrico</string>
     <string name="imperial">imperial</string>
-    <string name="items_for_display">Itens de informação a mostrar</string>
-    <string name="items_for_display_descr">Selecione todos os itens de informação a serem exibidos…</string>
+    <string name="items_for_display">Itens de informação a serem exibidos</string>
+    <string name="items_for_display_descr">Selecione todos os dados a serem exibidos…</string>
     <string name="debugging">Depurando</string>
-    <string name="hud">Tela de cabeça para cima</string>
+    <string name="hud">Monitor de Alerta</string>
     <string name="logging_level">Nível de registro</string>
     <string name="logging_level_description">Nível de detalhes a serem registrados no arquivo de log de depuração</string>
-    <string name="last_elm">reconectar último adaptador ELM</string>
-    <string name="last_ecu">reconectar último ECU</string>
+    <string name="last_elm">Reconectar Adaptador ELM</string>
+    <string name="last_ecu">reconectar ECU</string>
     <string name="last_service">último serviço OBD</string>
     <string name="last_view_mode">último modo de visualização de dados</string>
     <string name="keep_screen_on">manter tela principal ligada</string>
