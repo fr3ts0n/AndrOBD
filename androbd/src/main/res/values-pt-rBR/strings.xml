@@ -79,7 +79,7 @@
     <string name="last_data_items">últimos dados selecionados</string>
     <string name="keep_screen_on_description">NÃO desligue a tela se a tela principal/de dados está ativa</string>
     <string name="dev_opt_description">Opções para depuração e customização</string>
-    <string name="select_extension">Selecione arquivo de extensão .csv…</string>
+    <string name="select_extension">Selecione um arquivo de extensão .csv …</string>
     <string name="extension_loading">Carregando personalização</string>
     <string name="check_cust_settings">Por favor, verifique as configurações de personalização
 \n</string>
