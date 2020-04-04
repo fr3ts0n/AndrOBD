@@ -31,8 +31,7 @@
 \n 
 \nOutras ações de limpeza/redefinição específicos do fabricante podem ocorrer. 
 \nA perda de dados pode provocar que o veículo funcione de forma 
-\nnão adequada durante um pequeno período de tempo enquanto a ECU
-\nrecalibra-se.</string>
+\nnão adequada durante um pequeno período de tempo enquanto a ECU recalibra-se.</string>
     <string name="select_device">Selecione o adaptador</string>
     <string name="none_paired">Nenhum dispositivo emparelhado</string>
     <string name="none_found">Nenhum dispositivo encontrado</string>
