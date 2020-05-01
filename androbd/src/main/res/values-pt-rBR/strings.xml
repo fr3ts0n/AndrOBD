@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Traduzido por fr3ts0n</string>
+    <string name="translation_credits">Translation by Brazilian Portuguese Team</string>
     <string name="title_connecting">Conectando…</string>
     <string name="title_connected_to">Conectado %s</string>
     <string name="back_again_to_exit">Pressione voltar novamente para fechar o aplicativo</string>
