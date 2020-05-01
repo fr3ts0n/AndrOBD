@@ -1,2 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="graph_actions">Gráfico de accións</string>
+    <string name="plugin_manager_desc">Xestor de complementos detectados</string>
+    <string name="unfilter">Eliminar o filtro</string>
+    <string name="process_vars">Procesar variables</string>
+    <string name="long_press_dfc_hint">Prema longo DFC para a busca en liña …</string>
+    <string name="plugin_data">Datos do complemento</string>
+    <string name="graphic_design">Deseño gráfico</string>
+    <string name="release_history">Historial de versións…</string>
+    <string name="libraries_sum">Bibliotecas utilizadas no proxecto …</string>
+    <string name="libraries">Bibliotecas …</string>
+    <string name="donation">Apoiar ao proxecto…</string>
+    <string name="license">Licenzas …</string>
+    <string name="toolbar_overlay_sum">Amosa a barra de ferramentas solapando a pantalla principal</string>
+    <string name="toolbar_overlay">Amosa como superposición</string>
+    <string name="send_after_export_descr">Preguntar se enviar o ficheiro CSV xusto despois da exportación\?</string>
+    <string name="send_after_export">Enviar despois da exportación</string>
+    <string name="semicolon">PUNTO E COMA</string>
+    <string name="comma">COMA</string>
+    <string name="tab">TAB</string>
+    <string name="csv_text_quoted_description">Os campos de texto CSV inclúense entre comiñas</string>
+    <string name="csv_text_quoted">Texto CSV entre comiñas</string>
+    <string name="csv_rec_delimiter_description">Carácter delimitador entre campos de datos CSV</string>
+    <string name="csv_rec_delimiter">Delimitador de rexistros CSV</string>
+    <string name="csv_field_delimiter_description">Carácter delimitador entre campos de datos CSV</string>
+    <string name="csv_field_delimiter">Delimitador de campo CSV</string>
+    <string name="csv_export_description">Opcións para formatar ficheiros de exportación CSV</string>
+    <string name="csv_export_options">Opcións de exportación de CSV</string>
+    <string name="autohide_delay_description">Atraso en segundos sen actividade antes de que a barra de ferramentas sexa ocultada</string>
+    <string name="autohide_delay">Demora para agochar a barra de ferramentas [s]</string>
+    <string name="autohide_toolbar_description">Ocultar automaticamente a barra de ferramentas despois de inactividade</string>
+    <string name="autohide_toolbar">Agochar a barra de ferramentas</string>
+    <string name="data_disable_max_description">Número de respostas consecutivas non válidas de datos antes de que o elemento sexa desactivado</string>
+    <string name="device_port">Porto IP ELM</string>
+    <string name="device_port_description">Porto da IP do dispositivo ELM</string>
+    <string name="device_address">Enderezo IP do ELM</string>
+    <string name="device_address_description">Enderezo de rede IP do dispositivo ELM</string>
+    <string name="obd_error">Erro de protocolo OBD</string>
+    <string name="ERROR">Erro</string>
+    <string name="RXERROR">Erro RX (recepción)</string>
+    <string name="DATAERROR">Erro de DATOS</string>
+    <string name="BUSERROR">Erro de BUS</string>
+    <string name="DISCONNECTED">Desconectado</string>
+    <string name="STOPPED">Parado</string>
+    <string name="NODATA">Sen datos</string>
+    <string name="CONNECTED">Conectado</string>
+    <string name="CONNECTING">Conectando …</string>
+    <string name="ECU_DETECTED">ECU detectada</string>
+    <string name="ECU_DETECT">Detectando ECU…</string>
+    <string name="INITIALIZED">Inicializado</string>
+    <string name="INITIALIZING">Inicializando …</string>
+    <string name="UNDEFINED">Indefinido</string>
+    <string name="elm_custom_init_descr">Comandos de inicialización personalizados ELM</string>
+    <string name="elm_custom_init">Iniciación personalizada ELM</string>
+    <string name="elm_options">Opcións ELM</string>
+    <string name="secure_connect_description">Use conexión Bluetooth cifrada</string>
+    <string name="secure_connect">Conexión segura</string>
+    <string name="common_settings_description">Configuración común para o control de aplicacións</string>
+    <string name="use_last_settings">Use a última configuración</string>
+    <string name="reset_preselections">Restablecer as últimas preseleccións</string>
+    <string name="disconnect">Desconectar</string>
+    <string name="select_ecu_addr">Seleccione o enderezo da ECU…</string>
+    <string name="elm_reset_on_nrc_descr">Restaurar o adaptador ELM nun erro NRC\?</string>
+    <string name="elm_reset_on_nrc">Restablecer en NRC</string>
+    <string name="disable_elm_cmds_descr">habilitar / desactivar os comandos ELM</string>
+    <string name="disable_elm_cmds">Comandos ELM desactivados</string>
+    <string name="night_mode">Modo nocturno</string>
+    <string name="night_mode_description">Establecer a pantalla a fondo escuro</string>
+    <string name="day_night_mode">Modo de visualización de día / noite</string>
+    <string name="elm_timeout_descr">Tempo mínimo de espera en [ms] para agardar as respostas de ELM</string>
+    <string name="connectionlost">Perdeuse a conexión do dispositivo</string>
+    <string name="unabletoconnect">Non se puido conectar o dispositivo</string>
+    <string name="min_elm_timeout">Mín. Tempo de espera ELM [ms]</string>
+    <string name="devices_found">%d dispositivo(s) USB atopado(s)</string>
+    <string name="select_medium">Tipo de adaptador …</string>
+    <string name="select_fault_code">Seleccione o código de erro …</string>
+    <string name="configure">Configurar</string>
+    <string name="plugin_manager">Xestor de complementos</string>
+    <string name="select_protocol">Protocolo OBD preferido</string>
+    <string name="obd_opt_description">Opcións para o protocolo OBD / comunicación do vehículo</string>
+    <string name="obd_options">Opcións OBD</string>
+    <string name="check_cust_settings">Verifique a súa configuración de personalización
+\n</string>
+    <string name="extension_loading">Cargando personalización</string>
+    <string name="select_extension">Selecciona ficheiro de extensión .csv …</string>
+    <string name="data_items">Elementos de datos</string>
+    <string name="conversions">Conversión de datos</string>
+    <string name="extension_files">Ficheiros de personalización de protocolos (CSV)</string>
+    <string name="dev_opt_description">Opcións de depuración e personalización</string>
+    <string name="development_options">Opcións de desenvolvemento</string>
+    <string name="keep_screen_on_description">Non desactive a pantalla se a pantalla principal / de datos estase a amosar</string>
+    <string name="keep_screen_on">Mantén a pantalla principal acendida</string>
+    <string name="last_view_mode">último modo de visualización de datos</string>
+    <string name="last_data_items">últimos elementos de datos seleccionados</string>
+    <string name="last_service">último servizo OBD</string>
+    <string name="last_elm">volva a conectar o último adaptador ELM</string>
+    <string name="last_ecu">volve a conectar o último ECU</string>
+    <string name="logging_level_description">Nivel de detalle do ficheiro de rexistro de depuración</string>
+    <string name="logging_level">Nivel de rexistro (log)</string>
+    <string name="debugging">Depurando</string>
+    <string name="items_for_display_descr">Seleccionar todos os elementos de datos que se van amosar …</string>
+    <string name="items_for_display">Elementos de datos para amosar</string>
+    <string name="imperial">imperial</string>
+    <string name="metric">métrico</string>
+    <string name="measure_system">Unidades de medida</string>
+    <string name="measure_system_description">Sistema de unidades de medida (métrico / imperial)</string>
+    <string name="common_settings">Configuración común</string>
+    <string name="settings">Configuración</string>
+    <string name="use_last_settings_description">Use a última configuración no inicio (enderezo BT, enderezo ECU, elementos de visualización...)</string>
+    <string name="master">master</string>
+    <string name="filter">Filtro seleccionado</string>
+    <string name="dashboard">Panel de control</string>
+    <string name="loading_data">Cargando datos…</string>
+    <string name="saving_data">Gardando datos …</string>
+    <string name="demo">Demostración…</string>
+    <string name="connected_to">"Conectado a "</string>
+    <string name="saved">gardado</string>
+    <string name="loaded">cargado</string>
+    <string name="saved_data">Datos Gardados</string>
+    <string name="load">Cargar de medición</string>
+    <string name="save">Gardar medición</string>
+    <string name="snapshot">instantánea</string>
+    <string name="demo_started">Comezou o modo DEMO</string>
+    <string name="demo_stopped">O modo DEMO foi detido</string>
+    <string name="chart">Gráfica</string>
+    <string name="time">Tempo [s]</string>
+    <string name="share">compartir</string>
+    <string name="send_to">Enviar a</string>
+    <string name="title_paired_devices">Dispositivos vinculados</string>
+    <string name="none_found">Non se atoparon dispositivos</string>
+    <string name="none_paired">Non hai ningún dispositivo emparellado</string>
+    <string name="select_device">Seleccione adaptador</string>
+    <string name="obd_clear_info">Isto restablecerá a MIL e borrará toda a información relacionada
+\ncos diagnósticos de emisións, incluíndo:
+\n - Códigos de problemas de diagnóstico
+\n - Instantáneas de datos conxeladas
+\n - Datos da proba do sensor de osíxeno
+\n - Estado das probas de seguimento do sistema
+\n - Resultados das probas de seguimento a bordo
+\n - Distancia percorrida mentres MIL está activado
+\n - Número de quentamentos desde que se despexaron as DTC
+\n - Distancia percorrida desde que limparon os DTC
+\n - Tempo de funcionamento do motor mentres MIL está activado
+\n - Tempo dende que se despexaron as DTC
+\n
+\nDTC: Códigos de Diagnóstico de Fallo
+\nMIL: Lámpada de Indicación de Fallo
+\n Poden ocorrer outras accións de limpeza / restablecemento específicas do fabricante.
+\n A perda de datos pode provocar que o vehículo funcione mal por un curto
+\n período de tempo mentres a ECU se recalibra de novo.</string>
+    <string name="obd_clearcodes">Limpar os códigos de fallo</string>
+    <string name="obd_pendingcodes">Códigos de fallo OBD (pendentes)</string>
+    <string name="obd_permanentcodes">Códigos de fallo OBD (permanentes)</string>
+    <string name="obd_codes">Códigos de fallo OBD</string>
+    <string name="service_freezeframes">Conxela datos OBD</string>
+    <string name="obd_data">Datos OBD</string>
+    <string name="obd_veh_info">Información do vehículo OBD</string>
+    <string name="obd_services">Servizos OBD</string>
+    <string name="obd_none">NON hai servizo</string>
+    <string name="action_connect">Conectar</string>
+    <string name="back_again_to_exit">Prema de novo para pechar esta aplicación</string>
+    <string name="logo">Logotipo</string>
+    <string name="title_connected_to">Conectado a %s</string>
+    <string name="title_connecting">Conectando …</string>
+    <string name="app_description">Aplicación de diagnóstico de vehículos Android OBD para adaptador Bluetooth ELM327</string>
+    <string name="translation_credits">Tradución por aluaces</string>
+</resources>
