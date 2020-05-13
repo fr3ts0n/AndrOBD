@@ -110,7 +110,7 @@
     <string name="hud">Ecrã de Alertas</string>
     <string name="unfilter">Limpar filtro de selecção</string>
     <string name="logging_level_description">Nível de detalhes a serem registados no ficheiro de registos de depuração</string>
-    <string name="master">Mestre</string>
+    <string name="master">principal</string>
     <string name="process_vars">Variáveis de processo</string>
     <string name="last_view_mode">último modo de visualização de dados</string>
     <string name="keep_screen_on">Manter o ecrã principal ligado</string>
