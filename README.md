@@ -94,9 +94,11 @@ You are invited to contribute a translation into your favourite language.
 
 ### AndrOBD project wiki
 
-Documentation, tech Infos, Q&A ...
+AndrOBD Documentation, tech Infos, Q&A ...
 
-[AndrOBD Wiki](https://github.com/fr3ts0n/AndrOBD/wiki)
+[FAQs](https://github.com/fr3ts0n/AndrOBD/wiki/Frequently-asked-questions)
+
+[Wiki](https://github.com/fr3ts0n/AndrOBD/wiki)
 
 ### AndrOBD channel (Telegram)
 
@@ -122,6 +124,7 @@ It feels good to see that our work is appreciated.
 | 2019/06 | Jeffrey O'Connell | $10 |
 | 2019/08 | Christoph Schmid | €10 |
 | 2020/01 | Glenn Fowler | $5 |
+| 2020/02 | Klemen Skerbiš | €5 |
 
 <table>
   <tr>
