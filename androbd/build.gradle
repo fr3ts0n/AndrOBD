@@ -5,11 +5,17 @@ android {
     defaultConfig {
         applicationId 'com.fr3ts0n.ecu.gui.androbd'
         minSdkVersion 17
+        // SDK 25 to allow background service mechanism for plugins
         targetSdkVersion 25
         versionCode 20104
         versionName 'V2.1.4'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        lintOptions {
+            // Override lint error on targetSdkVersion
+            abortOnError false
+        }
     }
 
     applicationVariants.all { variant ->
