@@ -89,19 +89,6 @@ Discussions and chats
 
 [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
 
-## Graphic design
-
-Very special Thanks to @anaufalm for the 
-[beautiful graphic design artwork and logos](https://steemit.com/utopian-io/@naufal/my-design-logo-for-androbd-valid-commit-and-added-to-v2-0-3).
-
-## Start page
-
-Thank you very much @sampoder for your beautiful [AndrOBD start page](https://fr3ts0n.github.io/AndrOBD/)
-
-## Internet promotion
-
-Big hands to @aha999 for promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
-
 ## Translations
 
 Thanks to all hard-working translators for their contributions.
@@ -111,6 +98,21 @@ Thanks to all hard-working translators for their contributions.
 
 You are invited to contribute a translation into your favourite language.
 <br>(Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
+
+# Hall of fame
+
+## Graphic design
+
+Very special Thanks to @anaufalm for the
+[beautiful graphic design artwork and logos](https://steemit.com/utopian-io/@naufal/my-design-logo-for-androbd-valid-commit-and-added-to-v2-0-3).
+
+## Start page
+
+Thank you very much @sampoder for your beautiful [AndrOBD start page](https://fr3ts0n.github.io/AndrOBD/)
+
+## Internet promotion
+
+Big hands to @aha999 for promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
 
 ## Donations
 
