@@ -44,4 +44,24 @@
     <string name="title_connecting">Verbinding maken…</string>
     <string name="app_description">Android voertuig OBD-diagnostische app voor ELM327 Bluetooth-adapter</string>
     <string name="translation_credits">Translation by MornixRS</string>
+    <string name="debugging">Debuggen</string>
+    <string name="items_for_display_descr">Selecteer alle weer te geven data-items …</string>
+    <string name="items_for_display">Weer te geven gegevens</string>
+    <string name="imperial">imperial</string>
+    <string name="metric">metrisch</string>
+    <string name="measure_system">Meeteenheden</string>
+    <string name="measure_system_description">Meeteenheden systeem (metrisch / imperiaal)</string>
+    <string name="common_settings">Algemene instellingen</string>
+    <string name="settings">Instellingen</string>
+    <string name="filter">Geselecteerde filter</string>
+    <string name="hud">Head-Up Display</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="loading_data">Bezig met laden van gegevens …</string>
+    <string name="saving_data">Gegevens opslaan …</string>
+    <string name="demo">Demo…</string>
+    <string name="connected_to">"Verbonden met "</string>
+    <string name="saved">Opgeslagen</string>
+    <string name="loaded">Geladen</string>
+    <string name="saved_data">Opgeslagen gegevens</string>
+    <string name="load">Belastingsmeting</string>
 </resources>
