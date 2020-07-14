@@ -64,4 +64,13 @@
     <string name="loaded">Geladen</string>
     <string name="saved_data">Opgeslagen gegevens</string>
     <string name="load">Belastingsmeting</string>
+    <string name="keep_screen_on_description">Schakel het scherm niet uit als het hoofd-/gegevensscherm wordt weergegeven</string>
+    <string name="keep_screen_on">Houd het hoofdscherm aan</string>
+    <string name="last_view_mode">laatste gegevensweergavemodus</string>
+    <string name="last_data_items">laatst geselecteerde gegevensitems</string>
+    <string name="last_service">laatste OBD-service</string>
+    <string name="last_ecu">sluit de laatste ECU opnieuw aan</string>
+    <string name="last_elm">laatste ELM-adapter opnieuw aansluiten</string>
+    <string name="logging_level_description">Mate waarin details worden gelogd in het debug logbestand</string>
+    <string name="logging_level">Logboekniveau</string>
 </resources>
