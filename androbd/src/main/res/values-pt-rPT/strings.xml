@@ -56,7 +56,7 @@
     <string name="select_protocol">Protocolo OBD preferido</string>
     <string name="select_fault_code">Selecionar código de falhas…</string>
     <string name="select_medium">Tipo de adaptador…</string>
-    <string name="devices_found">%d dispositivo(s) USB encontrado(s)</string>
+    <string name="devices_found">%d aparelho(s) USB encontrado(s)</string>
     <string name="day_night_mode">Modo de visualização dia/noite</string>
     <string name="night_mode_description">Definir ecrã para fundo escuro</string>
     <string name="night_mode">Modo noturno</string>
@@ -124,8 +124,8 @@
     <string name="plugin_manager">Gestor de Plug-ins</string>
     <string name="configure">Configurar</string>
     <string name="min_elm_timeout">Tempo limite mín. de ELM [ms]</string>
-    <string name="unabletoconnect">Não é possível ligar o dispositivo</string>
-    <string name="connectionlost">A ligação do dispositivo foi perdida</string>
+    <string name="unabletoconnect">Não é possível ligar o aparelho</string>
+    <string name="connectionlost">A ligação do aparelho foi perdida</string>
     <string name="elm_timeout_descr">Tempo de limite mínimo em [ms] para aguardar por respostas de ELM</string>
     <string name="elm_adaptive_timing">Tempo adaptativo ELM</string>
     <string name="elm_adaptive_timing_descr">Permitir controlo de cronometragem adaptável nos controladores ELM\?</string>
@@ -141,9 +141,9 @@
     <string name="elm_custom_init_descr">Comandos de inicialização personalizados ELM</string>
     <string name="UNDEFINED">Indefinido</string>
     <string name="INITIALIZED">Inicializado</string>
-    <string name="device_address_description">Endereço de IP da rede do dispositivo ELM</string>
+    <string name="device_address_description">Endereço de IP da rede do aparelho ELM</string>
     <string name="device_address">Endereço IP ELM</string>
-    <string name="device_port_description">Porta de rede IP do dispositivo ELM</string>
+    <string name="device_port_description">Porta de rede IP do aparelho ELM</string>
     <string name="device_port">Porta IP ELM</string>
     <string name="data_disable_max">Limite de desativação de item de dados</string>
     <string name="data_disable_max_description">Número de respostas de dados consecutivas inválidas antes do item ser desativado</string>
