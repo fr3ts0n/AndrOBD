@@ -16,22 +16,22 @@
     <string name="obd_permanentcodes">OBD Codici di errore (permanenti)</string>
     <string name="obd_pendingcodes">OBD Codici di errore (in attesa)</string>
     <string name="obd_clearcodes">Cancella codici di errore</string>
-    <string name="obd_clear_info">Questo resettarà il MIL e cacellerà tuttti i dati relativi alla 
-\ndiagnostica delle emissioni, compresi:
-\n- Errori
-\n- Misurazioni congelate
-\n- Data di test dei sensori di ossigeno
-\n- Stato dei test dei sistemi diagnostici
-\n- Stato dei test dei sistemi diagnostici di bordo
-\n- Distanza percorsa con MIL attivato
-\n- Numero di riscaldamenti dall\'ultimo DTCs
-\n- Distanza percorsa dall\'ultimo DTCs
-\n- Tempo di accensione del motore dall\'ultimo DTCs
-\n- Tempo dall\'ultimo DTCs
-\n
-\nPotrebbero avvenire altre azioni di azzeramento/reset specifici del costruttore.
+    <string name="obd_clear_info">Questo resettarà il MIL e cancellerà tutti i dati relativi alla 
+\ndiagnostica delle emissioni, compresi: 
+\n- Errori diagnostici
+\n- Misurazioni congelate 
+\n- Dati di test dei sensori di ossigeno 
+\n- Stato dei test dei sistemi diagnostici 
+\n- Stato dei test dei sistemi diagnostici di bordo 
+\n- Distanza percorsa con MIL attivato 
+\n- Numero di riscaldamenti dall\'ultima cancellazione
+\n- Distanza percorsa dall\'ultima cancellazione
+\n- Tempo di accensione del motore con MIL attivato
+\n- Tempo dall\'ultima cancellazione
+\n 
+\nPotrebbero avvenire altre azioni di azzeramento/reset specifici del costruttore. 
 \nLa perdita dei dati può causare basso rendimento del veicolo 
-\nper un breve periodo ti tempo, nel quale ECU si autoricalibra.</string>
+\nper un breve periodo ti tempo, nel quale l\'ECU si autoricalibra.</string>
     <string name="select_device">Seleziona adattatore</string>
     <string name="none_paired">Nessun dispositivo associato</string>
     <string name="none_found">Nessun dispositivo trovato</string>
