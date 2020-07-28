@@ -127,6 +127,8 @@ It feels good to see that our work is appreciated.
 | 2019/08 | Christoph Schmid | €10 |
 | 2020/01 | Glenn Fowler | $5 |
 | 2020/02 | Klemen Skerbiš | €5 |
+| 2020/06 | Jairus Martin | $10 |
+| 2020/06 | rusefi llc | €25 |
 
 <table>
   <tr>
