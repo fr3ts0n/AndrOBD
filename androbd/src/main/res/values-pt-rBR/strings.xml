@@ -167,4 +167,6 @@
     <string name="plugin_manager_desc">Gerenciador de plugins</string>
     <string name="graph_actions">Gráfico de ações</string>
     <string name="master">principal</string>
+    <string name="comm_baudrate_description">Velocidade da comunicação serial USB</string>
+    <string name="comm_baudrate">Taxa de transmissão do ELM</string>
 </resources>
