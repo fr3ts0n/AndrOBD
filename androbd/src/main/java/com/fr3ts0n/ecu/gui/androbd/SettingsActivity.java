@@ -74,6 +74,13 @@ public class SettingsActivity
 	{
 		"bt_secure_connection"
 	};
+	/**
+	 * key ids for device network settings
+	 */
+	private static final String[] usbKeys =
+	{
+			"comm_baudrate"
+	};
 
 	// Preference key for data items
 	static final String KEY_DATA_ITEMS = "data_items";
@@ -297,6 +304,9 @@ public class SettingsActivity
 			boolean bluetoothSelected =
 				String.valueOf(CommService.MEDIUM.BLUETOOTH.ordinal())
 					.equals(prefs.getString(KEY_COMM_MEDIUM,""));
+			boolean usbSelected =
+					String.valueOf(CommService.MEDIUM.USB.ordinal())
+							.equals(prefs.getString(KEY_COMM_MEDIUM,""));
 
 			// enable/disable network specific entries
 			for(String key : networkKeys)
@@ -310,6 +320,13 @@ public class SettingsActivity
 			{
 				Preference pref = findPreference(key);
 				pref.setEnabled(bluetoothSelected);
+			}
+
+			// enable/disable usb specific entries
+			for(String key : usbKeys)
+			{
+				Preference pref = findPreference(key);
+				pref.setEnabled(usbSelected);
 			}
 		}
 

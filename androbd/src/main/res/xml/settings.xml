@@ -117,6 +117,15 @@
                 android:title="@string/device_port"
                 />
 
+            <ListPreference
+                android:defaultValue="38400"
+                android:dialogTitle="@string/comm_baudrate"
+                android:entries="@array/baud_rates"
+                android:entryValues="@array/baud_rates"
+                android:key="comm_baudrate"
+                android:title="@string/comm_baudrate"
+                android:summary="@string/comm_baudrate_description"
+                />
 
             <ListPreference
                 android:defaultValue="0"

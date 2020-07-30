@@ -164,4 +164,6 @@
     <string name="plugin_manager_desc">Verwaltung von erkannten Plugin-Erweiterungen</string>
     <string name="graph_actions">Grafik-Aktionen</string>
     <string name="master">Hauptrechner</string>
+    <string name="comm_baudrate">ELM Baudrate</string>
+    <string name="comm_baudrate_description">USB serielle Übertragungsgeschwindigkeit</string>
 </resources>

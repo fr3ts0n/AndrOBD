@@ -22,10 +22,12 @@ package com.fr3ts0n.ecu.gui.androbd;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 
 import com.fr3ts0n.prot.ProtUtils;
 import com.fr3ts0n.prot.TelegramWriter;
@@ -33,7 +35,6 @@ import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.util.SerialInputOutputManager;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.logging.Level;
 
 /**
@@ -45,6 +46,9 @@ public class UsbCommService extends CommService
 	private static UsbSerialPort sPort = null;
 	private SerialInputOutputManager mSerialIoManager;
 	public static final String INTENT_ACTION_GRANT_USB = BuildConfig.APPLICATION_ID + ".GRANT_USB";
+
+	public static final String PREF_KEY_BAUDRATE = "comm_baudrate";
+	public static final int DEFAULT_BAUDRATE = 38400;
 
 	private final SerialInputOutputManager.Listener mListener =
 		new SerialInputOutputManager.Listener()
@@ -117,6 +121,15 @@ public class UsbCommService extends CommService
 		start();
 	}
 
+	private int getBaudRate()
+	{
+		int result;
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+		result = prefs.getInt(PREF_KEY_BAUDRATE, DEFAULT_BAUDRATE);
+
+		return result;
+	}
+
 	@Override
 	public void start()
 	{
@@ -149,7 +162,7 @@ public class UsbCommService extends CommService
 			{
 				sPort.open(connection);
 				sPort.setDTR(true);
-				sPort.setParameters(38400, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
+				sPort.setParameters(getBaudRate(), 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
 
 				log.info("Starting io manager ..");
 				Thread runner = new Thread(mSerialIoManager);

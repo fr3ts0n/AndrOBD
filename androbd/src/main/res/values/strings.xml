@@ -274,4 +274,14 @@ period of time while the ECU recalibrates itself.
     <string name="plugin_manager_desc">Manager for detected plugins</string>
     <string name="graph_actions">Graph actions</string>
     <string name="master">master</string>
+    <string name="comm_baudrate">ELM baud rate</string>
+    <string name="comm_baudrate_description">USB serial communication speed</string>
+    <string-array name="baud_rates" translatable="false">
+        <item>2400</item>
+        <item>9600</item>
+        <item>19200</item>
+        <item>38400</item>
+        <item>57600</item>
+        <item>115200</item>
+    </string-array>
 </resources>
