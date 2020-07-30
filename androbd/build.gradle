@@ -43,5 +43,5 @@ dependencies {
     implementation project(':plugin')
     implementation project(':library')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.github.mik3y:usb-serial-for-android:2.2.2'
+    implementation 'com.github.mik3y:usb-serial-for-android:2.3.0'
 }
