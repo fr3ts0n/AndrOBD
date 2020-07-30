@@ -836,6 +836,11 @@ public class ElmProt
 					{
 						// start of 0100 response is end of address
 						int adrEnd = bufferStr.indexOf("41");
+						// if not a service response, check for possible NRC
+						if(adrEnd < 0)
+						{
+							adrEnd = bufferStr.indexOf("7F01");
+						}
 						int adrStart = bufferStr.lastIndexOf(".") + 1;
 						if (adrEnd > adrStart)
 						{
@@ -1013,9 +1018,11 @@ public class ElmProt
 				handleTelegram("...486B104100BF9FA8919B".toCharArray());
 				handleTelegram("7E8064100000000".toCharArray());
 				handleTelegram("7E9074100000000".toCharArray());
-				handleTelegram("7E9074100000000".toCharArray());
+				handleTelegram("7EA074100000000".toCharArray());
 				// test case for issue AndrOBD/#60
 				handleTelegram("18DAF110064100BE3EB811".toCharArray());
+				// test case for issue AndrOBD-Plugin/#10 (NRC22 on detect)
+				handleTelegram("7E8037F0122".toCharArray());
 				setStatus(STAT.ECU_DETECTED);
 				
 				while (runDemo)

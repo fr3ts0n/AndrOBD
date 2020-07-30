@@ -88,7 +88,7 @@ public class ObdProt extends ProtoHeader
         IMLOIF(0x13, "Incorrect message length or invalid format", DISP.NOTIFY, REACT.SKIP),
         RTL(0x14, "Response too long", DISP.NOTIFY, REACT.SKIP),
         BRR(0x21, "Busy repeat request", DISP.NOTIFY, REACT.REPEAT),
-        CNC(0x22, "Conditions not correct", DISP.ERROR, REACT.SKIP),
+        CNC(0x22, "Conditions not correct (SVC:0x%02X)", DISP.ERROR, REACT.CANCEL),
         RSE(0x24, "Request sequence error", DISP.ERROR, REACT.CANCEL),
         NRFSC(0x25, "No response from sub-net component", DISP.ERROR, REACT.RESET),
         FPEORA(0x26, "Failure prevents execution of requested action", DISP.ERROR, REACT.CANCEL),
@@ -108,20 +108,20 @@ public class ObdProt extends ProtoHeader
         /** NRC display classifiers */
         public enum DISP
         {
-            HIDE,
-            NOTIFY,
-            WARN,
-            ERROR
+            HIDE,       /**< Do NOT display error */
+            NOTIFY,     /**< Display notification (w/o confirmation) */
+            WARN,       /**< Display warning (w/ confirmation) */
+            ERROR       /**< Display error (w/ confirmation) */
         }
     
-        /** NRC reaction classifiers */
+        /** NRC immediate protocol reaction classifiers */
         public enum REACT
         {
-            IGNORE,
-            SKIP,
-            REPEAT,
-            CANCEL,
-            RESET
+            IGNORE,     /**< Ignore NRC */
+            SKIP,       /**< Skip last command */
+            REPEAT,     /**< Repeat last command */
+            CANCEL,     /**< Cancel command sequence / loop */
+            RESET       /**< Reset adapter */
         }
     
         public final int code;
