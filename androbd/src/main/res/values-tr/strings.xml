@@ -16,22 +16,22 @@
     <string name="obd_permanentcodes">Kalıcı OBD Hata kodları</string>
     <string name="obd_pendingcodes">Geçici OBD hata kodu</string>
     <string name="obd_clearcodes">Arıza Kodlarını Temizle</string>
-    <string name="obd_clear_info">"Bu işlem aşağıdaki verileri,arızaları ve emisyonla ilgili tüm teşhisleri temizler:
+    <string name="obd_clear_info">Bu arıza lambasını sıfırlar ve aşağıdakiler de dahil olmak üzere
+\n emisyonla ilgili tüm teşhis bilgilerini temizler:
+\n - Arıza teşhis kodları
+\n - Dondurulmuş veri çerçeveleri
+\n - Oksijen sensörü test verileri
+\n - Sistem izleme testlerinin durumu
+\n - Yerleşik izleme testleri sonuçları
+\n - Arıza lambası etkinken gidilen mesafe
+\n - Arıza kodları temizlendiğinden bu yana çalışma sayısı
+\n - Arıza kodları temizlendiğinden bu yana gidilen mesafe
+\n - Arıza lambası etkinken motor çalışma süresi
+\n - Arıza kodları temizlendiğinden bu yana geçen süre
 \n
-\n  - Arıza teşhis kodları
-\n  - Tutulan Verileri
-\n  - Oksijen sensörü test verileri
-\n  - Sistem izleme testlerinin durumu
-\n  - Gemide izleme testleri sonuçları
-\n  - Arıza lambası aktifken gidilen mesafe
-\n  - Arıza kodları temizlendiğinden beri çalışma sayısı
-\n  - Arıza kodları temizlendiğinden beri kat edilen mesafe
-\n  - Arıza kodları etkinken motor çalışma süresi
-\n  - Arıza kodları temizlendiğinden beri geçen süre
-\n
-\n  Üreticiye özel  veriler silinebilir.
-\n  Veri kaybı, aracın kısa bir süre için düzensiz çalışmasına neden olabilir
-\n  ECU kendini yeniden kalibre ederken zaman geçebilir."</string>
+\n Üreticiye özgü diğer temizleme/sıfırlama işlemleri oluşabilir.
+\n ECU kendini yeniden kalibre ederken bazı verilerin kaybolması
+\n aracın kısa bir süre için düzensiz çalışmasına neden olabilir.</string>
     <string name="select_device">Adaptör Seç</string>
     <string name="none_paired">Cihaz Eşleşmedi</string>
     <string name="none_found">Cihaz bulunamadı</string>
@@ -83,7 +83,7 @@
     <string name="check_cust_settings">Lütfen özelleştirme ayarlarınızı kontrol edin
 \n</string>
     <string name="obd_options">OBD ayarları</string>
-    <string name="obd_opt_description">OBD Protokolü ve Araç iletişim seçenekleri</string>
+    <string name="obd_opt_description">OBD protokolü / araç haberleşmesi için seçenekler</string>
     <string name="select_protocol">Seçilen OBD protokolü</string>
     <string name="plugin_manager">Eklenti yöneticisi</string>
     <string name="configure">Ayarla</string>
@@ -167,4 +167,6 @@
     <string name="master">master</string>
     <string name="long_press_dfc_hint">Çevrimiçi arama için DFC tuşuna uzun basın …</string>
     <string name="process_vars">Process değişkenleri</string>
+    <string name="comm_baudrate_description">USB seri haberleşme hızı</string>
+    <string name="comm_baudrate">ELM baud oranı</string>
 </resources>
