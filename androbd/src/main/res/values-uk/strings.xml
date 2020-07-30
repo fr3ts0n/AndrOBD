@@ -169,4 +169,6 @@
     <string name="graph_actions">Дії з графіком</string>
     <string name="master">головний</string>
     <string name="process_vars">Змінні процесу</string>
+    <string name="comm_baudrate_description">Швидкість послідовного зв\'язку через USB</string>
+    <string name="comm_baudrate">Швидкiсть передачі даних ELM</string>
 </resources>
