@@ -141,7 +141,10 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			holder = (ViewHolder)convertView.getTag();
 		}
 
-		convertView.setBackgroundColor(ChartActivity.getItemColor(pid!=0?pid:position) & 0x10FFFFFF);
+		int pidColor = ChartActivity.getItemColor(pid!=0?pid:position);
+
+		// Taint background with PID color
+		convertView.setBackgroundColor(pidColor & 0x10FFFFFF);
 		// set new values for display
 		holder.tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
 
@@ -151,6 +154,9 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 
 		if (minValue == null) minValue = 0f;
 		if (maxValue == null) maxValue = 255f;
+
+		// Tick triangles show in PID color
+		holder.gauge.setTrianglesColor(pidColor);
 
 		holder.gauge.setUnit(currPv.getUnits());
 

@@ -15,8 +15,9 @@
         android:layout_gravity="center_horizontal"
         app:sv_backgroundCircleColor="#A0000000"
         app:sv_speedTextPosition="BOTTOM_CENTER"
+        app:sv_speedometerColor="#20FFFFFF"
         app:sv_speedometerMode="TOP"
-        app:sv_trianglesColor="#ffffc260" />
+        app:sv_indicatorColor="#ffffffff" />
 
     <TextView
         android:id="@+id/label"
