@@ -2,7 +2,7 @@
 <resources>
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
-    <string name="copyright_fr3ts0n" translatable="false">© 2015-2018 fr3ts0n</string>
+    <string name="copyright_fr3ts0n" translatable="false">© 2015-2020 fr3ts0n</string>
     <string name="translation_credits">Translation by fr3ts0n</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 Bluetooth adapter</string>
     <string name="title_connecting">Connecting…</string>
@@ -243,6 +243,11 @@ period of time while the ECU recalibrates itself.
     <string name="lib_achart" translatable="false">AChartEngine</string>
     <string name="lib_achart_sum" translatable="false">
         Charting library for Android\n
+        * Apache 2.0 license
+    </string>
+    <string name="lib_speedview" translatable="false">SpeedView</string>
+    <string name="lib_speedview_sum" translatable="false">
+        Beautiful gauges for Android\n
         * Apache 2.0 license
     </string>
     <string name="graphic_design">Graphic design</string>
