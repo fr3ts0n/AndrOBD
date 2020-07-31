@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/gauge"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="top" >
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:orientation="vertical"
+    android:padding="10dp">
 
-    <TextView
+    <com.github.anastr.speedviewlib.AwesomeSpeedometer
         android:id="@+id/chart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top"
-        />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:sv_backgroundCircleColor="#A0000000"
+        app:sv_speedTextPosition="BOTTOM_CENTER"
+        app:sv_speedometerMode="TOP"
+        app:sv_trianglesColor="#ffffc260" />
 
     <TextView
         android:id="@+id/label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="TextView"
         android:layout_gravity="bottom"
-        />
+        android:gravity="center_horizontal"
+        android:text="TextView" />
 
-</FrameLayout>
+</LinearLayout>
