@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_gravity="top"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:paddingVertical="2dp"
+    android:paddingHorizontal="10dp">
 
     <com.github.anastr.speedviewlib.AwesomeSpeedometer
         android:id="@+id/chart"
@@ -17,7 +18,8 @@
         app:sv_speedTextPosition="BOTTOM_CENTER"
         app:sv_speedometerColor="#20FFFFFF"
         app:sv_speedometerMode="TOP"
-        app:sv_indicatorColor="#ffffffff" />
+        app:sv_indicatorColor="#ffffffff"
+        app:sv_cutPadding="15dp" />
 
     <TextView
         android:id="@+id/label"
