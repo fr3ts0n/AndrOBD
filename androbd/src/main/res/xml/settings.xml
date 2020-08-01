@@ -371,6 +371,14 @@
                         android:action="android.intent.action.VIEW"
                         android:data="http://achartengine.org"/>>
                 </Preference>
+                <Preference
+                    android:icon="@drawable/ic_scale"
+                    android:summary="@string/lib_speedview_sum"
+                    android:title="@string/lib_speedview">
+                    <intent
+                        android:action="android.intent.action.VIEW"
+                        android:data="https://github.com/anastr/SpeedView"/>>
+                </Preference>
             </PreferenceCategory>
         </PreferenceScreen>
         <PreferenceCategory

@@ -19,25 +19,20 @@
 package com.fr3ts0n.ecu.gui.androbd;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.pvs.ProcessVar;
 import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
+import com.github.anastr.speedviewlib.AwesomeSpeedometer;
 
-import org.achartengine.GraphicalView;
-import org.achartengine.chart.DialChart;
 import org.achartengine.model.CategorySeries;
-import org.achartengine.renderer.DialRenderer;
-import org.achartengine.renderer.SimpleSeriesRenderer;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -63,7 +58,7 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 
 	static class ViewHolder
 	{
-		FrameLayout gauge;
+		AwesomeSpeedometer gauge;
 		TextView tvDescr;
 	}
 
@@ -134,7 +129,7 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 
 			holder = new ViewHolder();
 			// get all views into view holder
-			holder.gauge = convertView.findViewById(R.id.gauge);
+			holder.gauge = convertView.findViewById(R.id.chart);
 			holder.tvDescr = convertView.findViewById(R.id.label);
 
 			// remember this view holder
@@ -146,65 +141,28 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 			holder = (ViewHolder)convertView.getTag();
 		}
 
-		convertView.getLayoutParams().width = minWidth;
-		convertView.getLayoutParams().height = minHeight;
+		int pidColor = ChartActivity.getItemColor(pid!=0?pid:position);
 
-		// if no rendering component is registered with PV, then create and register new one
-		DialChart chartView = (DialChart)currPv.getRenderingComponent();
-		if(chartView == null)
-		{
-			CategorySeries category = (CategorySeries) currPv.get(FID_GAUGE_SERIES);
-
-			Number minValue = (Number) currPv.get(EcuDataPv.FID_MIN);
-			Number maxValue = (Number) currPv.get(EcuDataPv.FID_MAX);
-			if (minValue == null) minValue = 0f;
-			if (maxValue == null) maxValue = 255f;
-
-			DialRenderer renderer = new DialRenderer();
-			renderer.setScale(1.25f);
-
-			// dial background
-			renderer.setPanEnabled(false);
-			renderer.setShowLegend(false);
-			renderer.setShowLabels(true);
-
-			renderer.setLabelsTextSize(mDisplayMetrics.densityDpi / 10);
-			renderer.setLabelsColor(Color.WHITE);
-			renderer.setShowLabels(true);
-
-			renderer.setVisualTypes(new DialRenderer.Type[]{DialRenderer.Type.NEEDLE});
-
-			renderer.setMinValue(minValue.doubleValue());
-			renderer.setMaxValue(maxValue.doubleValue());
-
-			renderer.setChartTitle(currPv.getUnits());
-			renderer.setChartTitleTextSize(mDisplayMetrics.densityDpi/10);
-
-			SimpleSeriesRenderer r = new SimpleSeriesRenderer();
-			r.setColor(ChartActivity.getItemColor(pid!=0?pid:position));
-			try
-			{
-				r.setChartValuesFormat(labelFormat);
-			}
-			catch (Exception e)
-			{
-				// ignore
-			}
-			renderer.addSeriesRenderer(0, r);
-
-
-			// create chart view and register with PV
-			chartView = new DialChart(category, renderer);
-			currPv.setRenderingComponent(chartView);
-		}
-		convertView.setBackgroundColor(ChartActivity.getItemColor(pid!=0?pid:position) & 0x08FFFFFF);
-
+		// Taint background with PID color
+		convertView.setBackgroundColor(pidColor & 0x10FFFFFF);
 		// set new values for display
-		holder.tvDescr.setTextColor(ChartActivity.getItemColor(pid!=0?pid:position));
 		holder.tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
-		// replace DialChart if needed
-		holder.gauge.removeViewAt(0);
-		holder.gauge.addView(new GraphicalView(getContext(), chartView), 0);
+
+		Number minValue = (Number) currPv.get(EcuDataPv.FID_MIN);
+		Number maxValue = (Number) currPv.get(EcuDataPv.FID_MAX);
+		Number value =    (Number) currPv.get(EcuDataPv.FID_VALUE);
+
+		if (minValue == null) minValue = 0f;
+		if (maxValue == null) maxValue = 255f;
+
+		// Tick triangles show in PID color
+		holder.gauge.setTrianglesColor(pidColor);
+
+		holder.gauge.setUnit(currPv.getUnits());
+
+		holder.gauge.setMinSpeed(minValue.floatValue());
+		holder.gauge.setMaxSpeed(maxValue.floatValue());
+		holder.gauge.speedTo(value.floatValue());
 
 		return convertView;
 	}
