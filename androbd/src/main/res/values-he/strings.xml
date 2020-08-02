@@ -167,4 +167,6 @@
     <string name="plugin_manager_desc">מנהל לתוספים שהתגלו</string>
     <string name="graph_actions">פעולות תרשים</string>
     <string name="master">ראשי</string>
+    <string name="comm_baudrate_description">מהירות תקשורת טורית ב־USB</string>
+    <string name="comm_baudrate">קצב העברה של ELM</string>
 </resources>
