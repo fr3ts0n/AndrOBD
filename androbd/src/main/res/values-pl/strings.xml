@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Przetłumaczone przez LafarM</string>
+    <string name="translation_credits">Translation by fr3ts0n</string>
     <string name="app_description">Aplikacja dla systemu Android do diagnostyki pokładowej OBD poprzez adapter bluetooth ELM327</string>
     <string name="title_connecting">Łączenie…</string>
     <string name="title_connected_to">Połączono %s</string>
