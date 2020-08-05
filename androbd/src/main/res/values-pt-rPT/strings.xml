@@ -168,4 +168,6 @@
     <string name="graphic_design">Design gráfico</string>
     <string name="plugin_data">Dados do plugin</string>
     <string name="long_press_dfc_hint">Pressione e segure DFC para pesquisa on-line …</string>
+    <string name="comm_baudrate_description">Velocidade da comunicação serial por USB</string>
+    <string name="comm_baudrate">Taxa de transmissão do ELM</string>
 </resources>
