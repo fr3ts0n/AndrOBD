@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="translation_credits">Prevedel fr3ts0n</string>
-    <string name="app_description">Android aplikacija za OBD diagnostiko z ELM327 adapterji</string>
+    <string name="app_description">Android aplikacija za OBD diagnostiko z adapterji ELM327</string>
     <string name="title_connecting">Povezovanje…</string>
     <string name="title_connected_to">Povezano %s</string>
     <string name="logo">Logotip</string>
@@ -130,4 +130,43 @@
     <string name="send_after_export_descr">Vprašaj za pošiljanje CSV datoteke takoj po izvozu\?</string>
     <string name="toolbar_overlay_sum">Prikaži orodno vrstico nad glavnim zaslonom</string>
     <string name="process_vars">Spremenljivke procesa</string>
+    <string name="obd_clear_info">To bo ponastavilo MIL lučko motorja in počistilo vso diagnostiko, 
+\npovezano z emisijskimi podatki, vključujoč:
+\n- Diagnostične kode napak
+\n- Freeze frame podatki
+\n- Testni podatki senzorja kisika
+\n- Status spremljanja sistemskih testov
+\n- Rezultati spremljanja podatkov na krovu (on-board)
+\n- Prepotovana razdalja od vključitve MIL (lučke za motor)
+\n- Število zagonov motorja od zadnjega brisanja DTC kod napak
+\n- Prepotovana razdalja od zadnjega brisanja DTC kod napak
+\n- Čas delovanja motorja od aktivacije MIL lučke za motor
+\n- Čas od zadnjega brisanja DTC kod napak
+\n
+\nLahko se izvede še drugo specifično čiščenje/ponastavljanje glede na proizvajalca.
+\nIzguba podatkov lahko povzroči slabo delovanje vozila za kratek čas, 
+\ndokler se ECU računalnik ne re-kalibrira.</string>
+    <string name="comm_baudrate_description">Hitrost serijske komunikacije USB</string>
+    <string name="comm_baudrate">ELM hitrost prenosa</string>
+    <string name="master">glavno</string>
+    <string name="csv_text_quoted_description">CSV podatkovna polja so vključena v narekovajih</string>
+    <string name="csv_text_quoted">CSV besedilo v narekovajih</string>
+    <string name="csv_rec_delimiter_description">Ločilni znak(i) med CSV podatkovnimi zapisi</string>
+    <string name="csv_rec_delimiter">CSV ločilo zapisa</string>
+    <string name="csv_field_delimiter_description">Ločilni znak(i) med CSV podatkovnimi polji</string>
+    <string name="csv_field_delimiter">ločilo CSV polj</string>
+    <string name="data_disable_max_description">Število zaporednih neveljavnih podatkovnih odzivov, preden bo predmet onemogočen</string>
+    <string name="data_disable_max">Omenogoči limit podatkovnih predmetov</string>
+    <string name="device_port_description">IP vhod omrežja ELM naprave</string>
+    <string name="elm_custom_init_descr">ELM zagonski ukazi po meri</string>
+    <string name="use_last_settings_description">Uporabi zadnje nastavitve ob zagonu (BT naslov, ECU naslov, Prikazni predmeti...)</string>
+    <string name="elm_custom_init">ELM zagon po meri</string>
+    <string name="reset_preselections">Ponastavi zadnje pred-izbire</string>
+    <string name="elm_reset_on_nrc_descr">Ponastavi ELM adapter na napaki NRC\?</string>
+    <string name="elm_reset_on_nrc">Ponastavi na NRC</string>
+    <string name="elm_adaptive_timing_descr">Dovoli prilagodljivo upravljanje časovnika v ELM gonilnikih\?</string>
+    <string name="elm_adaptive_timing">ELM prilagodljiv časovnik</string>
+    <string name="elm_timeout_descr">Minimalni iztek v [ms] čakanja na odziv ELM</string>
+    <string name="min_elm_timeout">Min. ELM iztek [ms]</string>
+    <string name="service_freezeframes">OBD Freeze Frames</string>
 </resources>
