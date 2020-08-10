@@ -171,4 +171,6 @@
     <string name="graph_actions">Действия с графиком</string>
     <string name="master">основной</string>
     <string name="send_after_export_descr">Запрос на отправку CSV-файла сразу после экспорта\?</string>
+    <string name="comm_baudrate_description">Скорость последовательного порта USB</string>
+    <string name="comm_baudrate">Скорость передачи ELM в бодах</string>
 </resources>
