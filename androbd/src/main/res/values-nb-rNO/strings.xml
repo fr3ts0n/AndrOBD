@@ -167,4 +167,6 @@
     <string name="plugin_manager_desc">Behandler for oppdagede programtillegg</string>
     <string name="graph_actions">Grafvalg</string>
     <string name="master">master</string>
+    <string name="comm_baudrate_description">USB-seriellkommunikasjonshastighet</string>
+    <string name="comm_baudrate">ELM-baudrate</string>
 </resources>
