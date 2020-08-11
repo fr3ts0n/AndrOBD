@@ -168,4 +168,6 @@
     <string name="plugin_manager_desc">Administrador para plugins detectados</string>
     <string name="graph_actions">Acciones Graficas</string>
     <string name="master">master</string>
+    <string name="comm_baudrate_description">Velocidad de comunicación en serie del USB</string>
+    <string name="comm_baudrate">Tasa de baudios ELM</string>
 </resources>
