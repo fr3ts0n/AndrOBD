@@ -166,4 +166,6 @@
     <string name="plugin_manager_desc">検出されたプラグインのマネージャー</string>
     <string name="graph_actions">グラフ操作</string>
     <string name="master">マスター</string>
+    <string name="comm_baudrate_description">USB シリアル通信速度</string>
+    <string name="comm_baudrate">ELM ボーレート</string>
 </resources>
