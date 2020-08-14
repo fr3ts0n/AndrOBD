@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Traducido por RamLinux, eltiobarbas, isalgueiro y Adolfo, cinnamon17</string>
+    <string name="translation_credits">" Traducido por RamLinux, eltiobarbas, isalgueiro y Adolfo, cinnamon17"</string>
     <string name="app_description">Aplicación de Android de diagnósticos vehiculares para el adaptador Bluetooth ELM327</string>
     <string name="title_connecting">Conectando…</string>
     <string name="title_connected_to">Conectado a %s</string>
@@ -108,7 +108,7 @@
     <string name="obd_opt_description">Opciones para protocolo OBD / diagnóstico de abordo</string>
     <string name="configure">Configurar</string>
     <string name="day_night_mode">Modo visión diurna/nocturna</string>
-    <string name="plugin_manager">Administrador de complementos</string>
+    <string name="plugin_manager">Gestor de complementos</string>
     <string name="min_elm_timeout">Min. Tiempo de espera del ELM [ms]</string>
     <string name="connectionlost">Se perdió la conexión con el dispositivo</string>
     <string name="elm_timeout_descr">Tiempo de espera mínimo en [ms] para las respuestas ELM</string>
