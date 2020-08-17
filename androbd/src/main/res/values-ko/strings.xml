@@ -167,4 +167,6 @@
     <string name="graph_actions">활동 그래프 그리기</string>
     <string name="master">마스터</string>
     <string name="service_freezeframes">OBD 프레임 멈춤</string>
+    <string name="comm_baudrate_description">USB 직렬 통신 속도</string>
+    <string name="comm_baudrate">ELM 보오 레이트</string>
 </resources>
