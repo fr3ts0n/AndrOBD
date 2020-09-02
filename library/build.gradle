@@ -27,7 +27,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 buildscript {
-    ext.kotlin_version = '1.4.0-rc'
+    ext.kotlin_version = '1.4.0'
     repositories {
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
         mavenCentral()
