@@ -1,8 +1,10 @@
 pluginManagement {
     repositories {
-        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
-        mavenCentral()
-        maven { url 'https://plugins.gradle.org/m2/' }
+        jcenter()
+        maven {
+            url 'https://maven.google.com'
+        }
+        maven { url 'https://jitpack.io' }
     }
 }
 include ':androbd', ':library', ':plugin'
