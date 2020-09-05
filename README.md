@@ -53,7 +53,7 @@
 ## Plugin extension support
 
 - Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
-- Avalilable Plugins:
+- Available Plugins:
   - MQTT publisher - Publish OBD data to MQTT broker
   - GpsProvider - Provide GPS data to AndrOBD
   - SensorProvider - Provide Accelerometer data to AndrOBD
