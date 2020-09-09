@@ -18,8 +18,9 @@
     <string name="obd_permanentcodes">Codes d\'erreur OBD (permanents)</string>
     <string name="obd_pendingcodes">Codes d\'erreur OBD (actuels)</string>
     <string name="obd_clearcodes">Effacer les codes d\'erreur</string>
-    <string name="obd_clear_info">"Cela va remettre à zéro le voyant moteur et effacer toutes les infos de diagnostic dont :
-\n  - Les codes Erreurs
+    <string name="obd_clear_info">"Cela va remettre à zéro le voyant moteur et effacer toutes les informations
+\nde diagnostic dont :
+\n - Les codes Erreurs
 \n  - Les trames de données figées
 \n  - Les données du test du capteur O2
 \n  - L\'état du test du système de surveillance
@@ -30,8 +31,10 @@
 \n  - La durée de fonctionnement moteur depuis la dernière révision
 \n  - Le temps écoulé depuis la dernière RàZ des codes défauts standards (DTC)
 \n  
+\n
 \n  D\'autres remises à zéro ou suppression peuvent se produire selon les véhicules.
-\n  L\'effacement de certaines données peut détériorer le fonctionnement du véhicule le temps que l\'ECU se recalibre."</string>
+\n  L\'effacement de certaines données peut détériorer le fonctionnement du véhicule
+\n  le temps que l\'ECU se recalibre."</string>
     <!--  BtDeviceListActivity -->
     <string name="select_device">Choisir un adaptateur</string>
     <string name="none_paired">Aucun appareil appairé</string>
@@ -181,5 +184,6 @@
     <string name="plugin_manager_desc">Gestionnaire pour les greffons détectés</string>
     <string name="graph_actions">Actions du graphique</string>
     <string name="master">maître</string>
-    <string name="comm_baudrate">Taux de baud de l\'ELM</string>
+    <string name="comm_baudrate">Taux de baud ELM</string>
+    <string name="comm_baudrate_description">Vitesse de communication en série USB</string>
 </resources>
