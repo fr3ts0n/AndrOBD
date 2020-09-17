@@ -5,7 +5,7 @@
 ![Android CI](https://github.com/fr3ts0n/AndrOBD/workflows/Android%20CI/badge.svg)
 
 <table>
-<tr colspan="2">
+<tr>
   <td>
     <a href="https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/">
       <img width="96" height="96" src="fastlane/metadata/android/en-US/images/icon.png"/>
@@ -91,13 +91,7 @@ Discussions and chats
 
 ## Translations
 
-Thanks to all hard-working translators for their contributions.
-<br>You all do a incredible job!
-
-[![Translation status](https://hosted.weblate.org/widgets/androbd/-/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/?utm_source=widget)
-
-You are invited to contribute a translation into your favourite language.
-<br>(Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
+You are invited to contribute a [translation into your favourite language](https://hosted.weblate.org/engage/androbd/).
 
 # Hall of fame
 
@@ -113,6 +107,15 @@ Thank you very much @sampoder for your beautiful [AndrOBD start page](https://fr
 ## Internet promotion
 
 Big hands to @aha999 for promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
+
+## Translations
+
+Thanks to all hard-working translators for their [contributions](https://hosted.weblate.org/engage/androbd/).
+<br>You all do a incredible job!
+
+[![Translation status](https://hosted.weblate.org/widgets/androbd/-/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/?utm_source=widget)
+
+(Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 
 ## Donations
 
@@ -132,8 +135,8 @@ It feels good to see that our work is appreciated.
 
 <table>
   <tr>
-    <th colspan="3">Thank you for any project support:</td>
-  </th>
+    <th colspan="3">Thank you for any project support:</th>
+  </tr>
   <tr>
     <td align="center"><a href="https://www.paypal.me/fr3ts0n"><img src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif"/></a></td>
     <td>PayPal.me</td>
