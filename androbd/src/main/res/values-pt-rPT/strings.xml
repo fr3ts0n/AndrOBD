@@ -12,9 +12,9 @@
     <string name="obd_data">Dados OBD</string>
     <string name="obd_clearcodes">Limpar códigos de falhas</string>
     <string name="select_device">Selecionar adaptador</string>
-    <string name="none_paired">Sem dispositivos emparelhados</string>
-    <string name="none_found">Nenhuns dispositivos encontrados</string>
-    <string name="title_paired_devices">Dispositivos Emparelhados</string>
+    <string name="none_paired">Sem aparelhos emparelhados</string>
+    <string name="none_found">Nenhuns aparelhos encontrados</string>
+    <string name="title_paired_devices">Aparelhos Emparelhados</string>
     <string name="send_to">Enviar para</string>
     <string name="share">partilhar</string>
     <string name="chart">Gráfico</string>
@@ -146,7 +146,7 @@
     <string name="device_port_description">Porta de rede IP do aparelho ELM</string>
     <string name="device_port">Porta IP ELM</string>
     <string name="data_disable_max">Limite de desativação de item de dados</string>
-    <string name="data_disable_max_description">Número de respostas de dados consecutivas inválidas antes do item ser desativado</string>
+    <string name="data_disable_max_description">Quantidade de respostas de dados consecutivas inválidas antes do item ser desativado</string>
     <string name="autohide_toolbar_description">Ocultar automaticamente a barra de ferramentas depois de um tempo sem atividade</string>
     <string name="autohide_delay">Tempo até ocultar a barra de ferramentas [s]</string>
     <string name="autohide_delay_description">Tempo em segundos sem atividade antes da barra de ferramentas ser ocultada</string>
