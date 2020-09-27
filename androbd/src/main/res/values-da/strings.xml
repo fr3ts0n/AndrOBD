@@ -167,4 +167,6 @@
     <string name="graph_actions">Graf handlinger</string>
     <string name="master">master
 \n(mester)</string>
+    <string name="comm_baudrate_description">USB Datahastighed</string>
+    <string name="comm_baudrate">ELM Datahastighed</string>
 </resources>
