@@ -64,7 +64,7 @@
     <string name="elm_options">Opções de ELM</string>
     <string name="secure_connect_description">Usar a ligação Bluetooth encriptada</string>
     <string name="secure_connect">Ligação segura</string>
-    <string name="common_settings_description">Definições comuns para o controlo da aplicação</string>
+    <string name="common_settings_description">Definições comuns para o controlo da app</string>
     <string name="use_last_settings">Usar últimas definições</string>
     <string name="use_last_settings_description">Usar as últimas definições na inicialização (endereço BT, endereço da ECU, itens a Exibir...)</string>
     <string name="reset_preselections">Redefinir as últimas pré-seleções</string>
@@ -167,6 +167,6 @@
     <string name="logo">Logótipo</string>
     <string name="title_connected_to">Ligado a %s</string>
     <string name="title_connecting">A ligar…</string>
-    <string name="app_description">Aplicação de diagnóstico de veículo OBD para Android para o adaptador Bluetooth ELM327</string>
+    <string name="app_description">App de diagnóstico de veículo OBD para Android para o adaptador Bluetooth ELM327</string>
     <string name="translation_credits">Tradução por Manuela Silva e Silvério Santos</string>
 </resources>
