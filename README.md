@@ -132,6 +132,7 @@ It feels good to see that our work is appreciated.
 | 2020/02 | Klemen Skerbiš | €5 |
 | 2020/06 | Jairus Martin | $10 |
 | 2020/06 | rusefi llc | €25 |
+| 2020/07 | Klemen Skerbiš | €5 |
 
 <table>
   <tr>
