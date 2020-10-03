@@ -144,6 +144,15 @@ It feels good to see that our work is appreciated.
     <td><a href="https://www.paypal.me/fr3ts0n">https://www.paypal.me/fr3ts0n</a></td>
   </tr>
   <tr>
+    <td align="center">
+      <a href="https://liberapay.com/fr3ts0n/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+    </td>
+    <td>Liberapay.com</td>
+    <td>
+      <a href="https://liberapay.com/fr3ts0n/donate">https://liberapay.com/fr3ts0n/donate</a>
+    </td>
+  </tr>
+  <tr>
     <td align="center"><a href="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP"><img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin"/></a></td>
     <td align="center"><a href="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP"><img src="manual/bitcoin_qr_code.png" alt="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP" width="128px" height="128px"></a></td>
     <td><a href="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP">19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP</a></td>
