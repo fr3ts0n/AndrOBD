@@ -167,4 +167,6 @@
     <string name="plugin_manager_desc">Manager per i plugin rilevati</string>
     <string name="graph_actions">Azioni grafiche</string>
     <string name="master">principale</string>
+    <string name="comm_baudrate_description">Velocità di comunicazione seriale USB</string>
+    <string name="comm_baudrate">Tasso di baud ELM</string>
 </resources>
