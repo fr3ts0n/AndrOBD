@@ -18,7 +18,7 @@
     <string name="obd_permanentcodes">Codes d\'erreur OBD (permanents)</string>
     <string name="obd_pendingcodes">Codes d\'erreur OBD (actuels)</string>
     <string name="obd_clearcodes">Effacer les codes d\'erreur</string>
-    <string name="obd_clear_info">"Cela va remettre à zéro le voyant moteur et effacer toutes les informations
+    <string name="obd_clear_info">"Ceci va remettre à zéro le voyant moteur et effacer toutes les informations
 \nde diagnostic dont :
 \n - Les codes Erreurs
 \n  - Les trames de données figées
@@ -30,7 +30,7 @@
 \n  - La distance parcourue depuis la dernière RàZ
 \n  - La durée de fonctionnement moteur depuis la dernière révision
 \n  - Le temps écoulé depuis la dernière RàZ des codes défauts standards (DTC)
-\n  
+\n
 \n
 \n  D\'autres remises à zéro ou suppression peuvent se produire selon les véhicules.
 \n  L\'effacement de certaines données peut détériorer le fonctionnement du véhicule
