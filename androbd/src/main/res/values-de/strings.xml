@@ -97,7 +97,7 @@
     <string name="use_last_settings_description">Letzte Einstellungen bei Start verwenden (BT Adresse, ECU Adresse, Anzeige …)</string>
     <string name="last_data_items">Letzte Datenauswahl</string>
     <string name="last_ecu">Mit letzter ECU verbinden</string>
-    <string name="last_elm">Mit letztem ELM-Adapter verbinden</string>
+    <string name="last_elm">Zum letzten ELM-Adapter verbinden</string>
     <string name="last_service">Letzter OBD service</string>
     <string name="last_view_mode">Letzter Datenanzeige-Modus</string>
     <string name="common_settings_description">Allgemeine Programmeinstellungen</string>
