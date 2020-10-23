@@ -89,7 +89,7 @@
     <string name="configure">Configura</string>
     <string name="select_fault_code">Seleziona codice di errore…</string>
     <string name="select_medium">Tipo di adattatore…</string>
-    <string name="devices_found">%d Dispositivo/i USB rilevato/i</string>
+    <string name="devices_found">%d dispositivo/i USB rilevato/i</string>
     <string name="min_elm_timeout">Timeout ELM min. [ms]</string>
     <string name="unabletoconnect">Impossibile collegare il dispositivo</string>
     <string name="connectionlost">Persa connessione con il dispositivo</string>
