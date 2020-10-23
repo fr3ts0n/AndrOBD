@@ -20,7 +20,7 @@
     <string name="service_freezeframes">OBD Freeze Frames</string>
     <string name="share">teilen</string>
     <string name="time">Zeit [s]</string>
-    <string name="title_connected_to">Verbunden %s</string>
+    <string name="title_connected_to">Verbunden mit %s</string>
     <string name="title_connecting">Verbinde…</string>
     <string name="title_paired_devices">Gepaarte Geräte</string>
     <string name="obd_clear_info">Dies wird die Motorkontrollleuchte (MIL) zurücksetzen und alle abgasrelevanten Diagnoseinformationen löschen, inklusive: 
