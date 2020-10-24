@@ -111,7 +111,7 @@
     <string name="min_elm_timeout">Min. Tiempo de espera del ELM [ms]</string>
     <string name="connectionlost">Se perdió la conexión con el dispositivo</string>
     <string name="elm_timeout_descr">Tiempo de espera mínimo en [ms] para las respuestas ELM</string>
-    <string name="night_mode_description">Ajuste la pantalla a fondo oscuro</string>
+    <string name="night_mode_description">Establecer fondo de pantalla oscuro</string>
     <string name="disable_elm_cmds">Órdenes ELM desactivadas</string>
     <string name="disable_elm_cmds_descr">activar/desactivar órdenes ELM</string>
     <string name="elm_adaptive_timing">Tiempo adaptativo del ELM</string>
@@ -124,7 +124,7 @@
     <string name="common_settings_description">Configuraciones comunes para el control de aplicaciones</string>
     <string name="secure_connect_description">Utilizar conexión Bluetooth cifrada</string>
     <string name="elm_options">Opciones del ELM</string>
-    <string name="elm_custom_init">Inicializacion Personalizada del ELM</string>
+    <string name="elm_custom_init">Inicio personalizado ELM</string>
     <string name="elm_custom_init_descr">Órdenes de inicialización personalizadas de ELM</string>
     <string name="UNDEFINED">Indefinido</string>
     <string name="ECU_DETECT">Detección de ECU…</string>
