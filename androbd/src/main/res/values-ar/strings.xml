@@ -163,4 +163,6 @@
     <string name="plugin_manager_desc">مدير للبرامج المساعدة المكتشفة</string>
     <string name="graph_actions">إجراءات الرسم البياني</string>
     <string name="master">الرئيسي</string>
+    <string name="comm_baudrate_description">سرعة الاتصال التسلسلي USB</string>
+    <string name="comm_baudrate">معدل الباود ELM</string>
 </resources>
