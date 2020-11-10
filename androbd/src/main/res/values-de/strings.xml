@@ -148,7 +148,7 @@
     <string name="configure">Konfigurieren</string>
     <string name="data_disable_max">Daten Deaktivierungs-Limit</string>
     <string name="data_disable_max_description">Anzahl fehlerhaft erhalterer Daten bevor Datenpunkt deaktiviert wird</string>
-    <string name="plugin_manager">Plugin Verwaltung</string>
+    <string name="plugin_manager">Pluginverwaltung</string>
     <string name="toolbar_overlay">Überlagernd einblenden</string>
     <string name="toolbar_overlay_sum">Einblendung der Toolbar überlagert Datenanzeige</string>
     <string name="donation">Projekt unterstützen …</string>
