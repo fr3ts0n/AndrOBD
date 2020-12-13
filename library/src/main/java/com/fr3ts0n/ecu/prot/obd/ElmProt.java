@@ -692,12 +692,18 @@ public class ElmProt
 			case DATAERROR:
 			case BUFFERFULL:
 			case RXERROR:
-			case STOPPED:
 				// remember this as last received message
 				// do NOT respond immediately
 				lastRxMsg = bufferStr;
 				break;
-			
+
+			case STOPPED:
+				// remember this as last received message
+				lastRxMsg = bufferStr;
+				// re-queue last command
+				cmdQueue.add(String.valueOf(lastCommand));
+				break;
+
 			case MODEL:
 				initialize();
 				break;
@@ -742,7 +748,7 @@ public class ElmProt
 						setStatus(STAT.ERROR);
 						sendCommand(CMD.WARMSTART, 0);
 						break;
-					
+
 					case NODATA:
 						setStatus(STAT.NODATA);
 						// re-queue next data item
