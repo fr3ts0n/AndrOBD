@@ -23,7 +23,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:description="@string/app_description"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.Dark">
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -49,31 +49,26 @@
             android:name=".UsbDeviceListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/select_device"
-            android:theme="@android:style/Theme.Holo.Dialog"
             />
         <activity
             android:name=".BtDeviceListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/select_device"
-            android:theme="@android:style/Theme.Holo.Dialog"
             />
         <activity
             android:name=".ChartActivity"
             android:configChanges="touchscreen|orientation|screenSize"
             android:label="@string/chart"
-            android:theme="@style/AppTheme.Dark"
             />
         <activity
             android:name=".DashBoardActivity"
             android:configChanges="touchscreen|orientation|screenSize"
             android:label="@string/dashboard"
-            android:theme="@style/AppTheme.Dark"
             />
         <activity
             android:name=".SettingsActivity"
             android:configChanges="touchscreen|orientation|screenSize"
             android:label="@string/settings"
-            android:theme="@style/AppTheme.Dark"
             />
     </application>
 
