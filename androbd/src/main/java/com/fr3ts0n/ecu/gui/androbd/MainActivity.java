@@ -475,8 +475,8 @@ public class MainActivity extends PluginManager
 			getString(R.string.app_name),
 			getString(R.string.app_version)));
 
-		/* remove log file handler */
-		logFileHandler.close();
+		/* remove log file handler, if available (file access was granted) */
+		if(logFileHandler != null) logFileHandler.close();
 		Logger.getLogger("").removeHandler(logFileHandler);
 
 		super.onDestroy();
