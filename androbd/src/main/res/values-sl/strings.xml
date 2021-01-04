@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Prevedel fr3ts0n</string>
+    <string name="translation_credits">Prevedel K. Skerbiš-Aha999</string>
     <string name="app_description">Android aplikacija za OBD diagnostiko z adapterji ELM327</string>
     <string name="title_connecting">Povezovanje…</string>
     <string name="title_connected_to">Povezano %s</string>
@@ -83,7 +83,7 @@
     <string name="autohide_toolbar">Skrij orodno vrstico</string>
     <string name="autohide_toolbar_description">Samodejno skrij orodno vrstico v času brez dejavnosti</string>
     <string name="csv_export_options">Možnosti izvoza CSV</string>
-    <string name="license">Licenciranje …</string>
+    <string name="license">Licence …</string>
     <string name="donation">Podpri projekt …</string>
     <string name="libraries">Knjižnice …</string>
     <string name="libraries_sum">Knjižnice uporabljene v projektu …</string>
