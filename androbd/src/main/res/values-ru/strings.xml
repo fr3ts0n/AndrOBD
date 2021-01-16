@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Переведено www.makedonov.ru</string>
+    <string name="translation_credits"></string>
     <string name="app_description">Android приложение OBD диагностики для Bluetooth адаптера ELM327</string>
     <string name="title_connecting">Соединение…</string>
     <string name="title_connected_to">Подключено к %s</string>
