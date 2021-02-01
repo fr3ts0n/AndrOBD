@@ -11,7 +11,7 @@
     <string name="action_connect">Se connecter</string>
     <string name="obd_none">Pas de service</string>
     <string name="obd_services">Services OBD</string>
-    <string name="obd_veh_info">Infos OBD du Véhicule</string>
+    <string name="obd_veh_info">Infos OBD du véhicule</string>
     <string name="obd_data">Données OBD</string>
     <string name="service_freezeframes">Trames OBD figées</string>
     <string name="obd_codes">Codes d\'erreurs OBD</string>
