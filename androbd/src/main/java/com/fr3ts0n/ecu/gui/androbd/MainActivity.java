@@ -548,6 +548,7 @@ public class MainActivity extends PluginManager
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.obd_services, menu.findItem(R.id.obd_services).getSubMenu());
 		MainActivity.menu = menu;
 		// update menu item status for current conversion
 		setConversionSystem(EcuDataItem.cnvSystem);
