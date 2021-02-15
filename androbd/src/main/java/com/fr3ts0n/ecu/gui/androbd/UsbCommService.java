@@ -19,6 +19,7 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -35,6 +36,7 @@ import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.util.SerialInputOutputManager;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.logging.Level;
 
 /**
@@ -84,8 +86,15 @@ public class UsbCommService extends CommService
 							// trigger message handling
 						case 10:
 						case 13:
-							if(message.length() > 0)
-								elm.handleTelegram(message.toCharArray());
+							try
+							{
+								if(!message.isEmpty())
+								{ elm.handleTelegram(message.toCharArray()); }
+							}
+							catch (Exception ex)
+							{
+								log.log(Level.WARNING, "handleTelegram", ex);
+							}
 							message = "";
 							break;
 
@@ -121,13 +130,35 @@ public class UsbCommService extends CommService
 		start();
 	}
 
-	private int getBaudRate()
+	/**
+	 * Get preference int value
+	 *
+	 * @param key          preference key name
+	 * @param defaultValue numeric default value
+	 * @return preference int value
+	 */
+	@SuppressLint("DefaultLocale")
+	private int getPrefsInt(String key, int defaultValue)
 	{
-		int result;
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-		result = prefs.getInt(PREF_KEY_BAUDRATE, DEFAULT_BAUDRATE);
+		int result = defaultValue;
+
+		try
+		{
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+			result = Integer.parseInt(Objects.requireNonNull(prefs.getString(key, String.valueOf(defaultValue))));
+		}
+		catch (Exception ex)
+		{
+			// log error message
+			log.severe(String.format("Preference '%s'(%d): %s", key, result, ex.toString()));
+		}
 
 		return result;
+	}
+
+	private int getBaudRate()
+	{
+		return getPrefsInt(PREF_KEY_BAUDRATE, DEFAULT_BAUDRATE);
 	}
 
 	@Override
