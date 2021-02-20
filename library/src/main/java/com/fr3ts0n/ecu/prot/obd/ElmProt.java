@@ -1208,7 +1208,7 @@ public class ElmProt
 	/**
 	 * Holds value of property status.
 	 */
-	private STAT status;
+	private STAT status = STAT.UNDEFINED;
 	
 	/**
 	 * Getter for property status.
