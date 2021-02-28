@@ -146,7 +146,8 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	mnemonic (
 0x01,0x02	0x5B	0	1	0	8	0xFF	PERCENT	%.1f			time_remaining_life_battery_pack	Hybrid battery pack remaining life				
 0x01,0x02	0x5C	0	1	0	8	0xFF	TEMPERATURE	%.0f			engine_oil_temperature	Engine oil temperature				
 0x01,0x02	0x5D	0	2	0	16	0xFFFF	ANGLE_WIDERANGE	%.2f			fuel_injection_timing	Fuel injection timing				
-0x01,0x02	0x5E	0	2	0	16	0xFFFF	CONSUMPTION	%.2f			engine_fuel_rate	Engine fuel rate				
+0x01,0x02	0x5E	0	2	0	16	0xFFFF	FCONS	%.2f			engine_fuel_rate	Engine fuel rate				
+0x01,0x02	0x5F	0	1	0	8	0xFF	OBD_REQUIREMENTS	%.0f			obd_requirements	OBD requirements				
 0x01,0x02	0x61	0	1	0	8	0xFF	PERCENT7_REL	%.1f			engine_torque_demand	Torque Driver demand				
 0x01,0x02	0x62	0	1	0	8	0xFF	PERCENT7_REL	%.1f			engine_torque	Torque Engine				
 0x01,0x02	0x63	0	2	0	16	0xFFFF	TORQUE	%.0f			engine_torque_reference	Torque Engine reference				
@@ -155,6 +156,83 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	mnemonic (
 0x01,0x02	0x64	2	1	0	8	0xFF	PERCENT7_REL	%.1f			engine_torque_point_2	Torque Engine Point 2				
 0x01,0x02	0x64	3	1	0	8	0xFF	PERCENT7_REL	%.1f			engine_torque_point_3	Torque Engine Point 3				
 0x01,0x02	0x64	4	1	0	8	0xFF	PERCENT7_REL	%.1f			engine_torque_point_4	Torque Engine Point 4				
+0x01,0x02	0x64	5	1	0	8	0xFF	PERCENT7_REL	%.1f			engine_torque_point_4	Torque Engine Point 4				
+0x01,0x02	0x65	0	2	0	9	0x101	SWITCH_STATUS_8	%.0f			status_pto	Power take off (PTO) status				
+0x01,0x02	0x65	0	2	1	9	0x101	SWITCH_STATUS_8	%.0f			status_at_gear	AT Drive Status				
+0x01,0x02	0x65	0	2	2	9	0x101	SWITCH_STATUS_8	%.0f			status_mt_gear	MT Drive status				
+0x01,0x02	0x65	0	2	3	9	0x101	SWITCH_STATUS_8	%.0f			status_glowplug_lamp	Glowplug lamp status				
+0x01,0x02	0x66	1	2	0	16	0xFFFF	AIRFLOW_WIDE	%.2f			airmass_maf_a	Air mass (MAF A)				
+0x01,0x02	0x66	3	2	0	16	0xFFFF	AIRFLOW_WIDE	%.2f			airmass_maf_b	Air mass (MAF B)				
+0x01,0x02	0x67	1	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	engine_coolant_temp_1	Coolant Temperature 1				
+0x01,0x02	0x67	2	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	engine_coolant_temp_2	Coolant Temperature 2				
+0x01,0x02	0x68	1	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	intake_air_temp_b1s1	Intake Air Temperature (Bank 1, Sensor 1)				
+0x01,0x02	0x68	2	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	intake_air_temp_b1s2	Intake Air Temperature (Bank 1, Sensor 2)				
+0x01,0x02	0x68	3	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	intake_air_temp_b1s3	Intake Air Temperature (Bank 1, Sensor 3)				
+0x01,0x02	0x68	4	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	intake_air_temp_b2s1	Intake Air Temperature (Bank 2, Sensor 1)				
+0x01,0x02	0x68	5	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	intake_air_temp_b2s2	Intake Air Temperature (Bank 2, Sensor 2)				
+0x01,0x02	0x68	6	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	intake_air_temp_b2s3	Intake Air Temperature (Bank 2, Sensor 3)				
+0x01,0x02	0x69	1	1	0	8	0xFF	PERCENT	%.1f			egr_a_dutycycle	Commanded EGR A duty cycle				
+0x01,0x02	0x69	2	1	0	8	0xFF	PERCENT	%.1f			egr_a_position	Commanded EGR A position				
+0x01,0x02	0x69	3	1	0	8	0xFF	PERCENT7_REL	%.1f			egr_a_error	Commanded EGR A error				
+0x01,0x02	0x69	4	1	0	8	0xFF	PERCENT	%.1f			egr_b_dutycycle	Commanded EGR B duty cycle				
+0x01,0x02	0x69	5	1	0	8	0xFF	PERCENT	%.1f			egr_b_position	Commanded EGR B position				
+0x01,0x02	0x69	6	1	0	8	0xFF	PERCENT7_REL	%.1f			egr_b_error	Commanded EGR B error				
+0x01,0x02	0x6A	1	1	0	8	0xFF	PERCENT	%.1f			intake_air_control_a	Intake Air Flow Control A				
+0x01,0x02	0x6A	2	1	0	8	0xFF	PERCENT	%.1f			intake_air_position_a	Intake Air Flow Position A				
+0x01,0x02	0x6A	3	1	0	8	0xFF	PERCENT	%.1f			intake_air_control_b	Intake Air Flow Control B				
+0x01,0x02	0x6A	4	1	0	8	0xFF	PERCENT	%.1f			intake_air_position_b	Intake Air Flow Position B				
+0x01,0x02	0x6B	1	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	egr_temp_a	EGR temperature (Sensor A)				
+0x01,0x02	0x6B	2	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	egr_temp_c	EGR temperature (Sensor C)				
+0x01,0x02	0x6B	3	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	egr_temp_b	EGR temperature (Sensor B)				
+0x01,0x02	0x6B	4	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	egr_temp_d	EGR temperature (Sensor D)				
+0x01,0x02	0x6C	1	1	0	8	0xFF	PERCENT	%.1f			throttle_control_a	Throttle Control A				
+0x01,0x02	0x6C	2	1	0	8	0xFF	PERCENT	%.1f			throttle_position_a	Throttle Position A				
+0x01,0x02	0x6C	3	1	0	8	0xFF	PERCENT	%.1f			throttle_control_b	Throttle Control B				
+0x01,0x02	0x6C	4	1	0	8	0xFF	PERCENT	%.1f			throttle_position_b	Throttle Position B				
+0x01,0x02	0x6D	1	2	0	16	0xFFFF	PRESS_WIDERANGE	%.0f			rail_pressure_cmd_a	Commanded Fuel Rail pressure A				
+0x01,0x02	0x6D	3	2	0	16	0xFFFF	PRESS_WIDERANGE	%.0f			rail_pressure_a	Fuel Rail pressure A				
+0x01,0x02	0x6D	5	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	rail_temp_a	Fuel Rail temperature A				
+0x01,0x02	0x6D	6	2	0	16	0xFFFF	PRESS_WIDERANGE	%.0f			rail_pressure_cmd_b	Commanded Fuel Rail pressure B				
+0x01,0x02	0x6D	8	2	0	16	0xFFFF	PRESS_WIDERANGE	%.0f			rail_pressure_b	Fuel Rail pressure B				
+0x01,0x02	0x6D	10	1	0	8	0xFF	TEMPERATURE	%.2f	-40	120	rail_temp_b	Fuel Rail temperature B				
+0x01,0x02	0x6E	1	2	0	16	0xFFFF	PRESS_WIDERANGE	%.0f			inject_pressure_cmd_a	Commanded Injection Control pressure A				
+0x01,0x02	0x6E	3	2	0	16	0xFFFF	PRESS_WIDERANGE	%.0f			inject_pressure_a	Injection Control pressure A				
+0x01,0x02	0x6E	5	2	0	16	0xFFFF	PRESS_WIDERANGE	%.0f			inject_pressure_cmd_a	Commanded Injection Control pressure A				
+0x01,0x02	0x6E	7	2	0	16	0xFFFF	PRESS_WIDERANGE	%.0f			inject_pressure_a	Injection Control pressure A				
+0x01,0x02	0x6F	1	1	0	8	0xFF	PRESS_AIR	%.0f			charger_pressure_inlet_a	Turbocharger Compressor Inlet Pressure A				
+0x01,0x02	0x6F	2	1	0	8	0xFF	PRESS_AIR	%.0f			charger_pressure_inlet_b	Turbocharger Compressor Inlet Pressure B				
+0x01,0x02	0x70	1	2	0	16	0xFFFF	PRESS_BOOST	%.2f			boost_pressure_cmd_a	Commanded Boost pressure A				
+0x01,0x02	0x70	3	2	0	16	0xFFFF	PRESS_BOOST	%.2f			boost_pressure_a	Boost pressure A				
+0x01,0x02	0x70	5	2	0	16	0xFFFF	PRESS_BOOST	%.2f			boost_pressure_cmd_b	Commanded Boost pressure B				
+0x01,0x02	0x70	7	2	0	16	0xFFFF	PRESS_BOOST	%.2f			boost_pressure_b	Boost pressure B				
+0x01,0x02	0x70	8	1	0	2	0x3	STATE_LOOP	%.0f			boost_status_a	Boost Control status A				
+0x01,0x02	0x70	8	1	2	2	0x3	STATE_LOOP	%.0f			boost_status_b	Boost Control status B				
+0x01,0x02	0x71	1	1	0	8	0xFF	PERCENT	%.1f			vtg_position_cmd_a	Variable Geometry Turbo Commanded Position A				
+0x01,0x02	0x71	2	1	0	8	0xFF	PERCENT	%.1f			vtg_position_a	Variable Geometry Turbo Position A				
+0x01,0x02	0x71	3	1	0	8	0xFF	PERCENT	%.1f			vtg_position_cmd_b	Variable Geometry Turbo Commanded Position B				
+0x01,0x02	0x71	4	1	0	8	0xFF	PERCENT	%.1f			vtg_position_b	Variable Geometry Turbo Position B				
+0x01,0x02	0x71	5	1	0	2	0x3	STATE_LOOP	%.0f			vtg_status_a	Boost Control status A				
+0x01,0x02	0x71	5	1	2	2	0x3	STATE_LOOP	%.0f			vtg_status_b	Boost Control status B				
+0x01,0x02	0x72	1	1	0	8	0xFF	PERCENT	%.1f			wastegate_position_cmd_a	Wastegate Commanded Position A				
+0x01,0x02	0x72	2	1	0	8	0xFF	PERCENT	%.1f			wastegate_position_a	Wastegate Position A				
+0x01,0x02	0x72	3	1	0	8	0xFF	PERCENT	%.1f			wastegate_position_cmd_b	Wastegate Commanded Position B				
+0x01,0x02	0x72	4	1	0	8	0xFF	PERCENT	%.1f			wastegate_position_b	Wastegate Position B				
+0x01,0x02	0x73	1	2	0	16	0xFFFF	PRESS_EXHAUST	%.1f			exhaust_pressure_b1	Exhaust pressure B1				
+0x01,0x02	0x73	3	2	0	16	0xFFFF	PRESS_EXHAUST	%.1f			exhaust_pressure_b2	Exhaust pressure B2				
+0x01,0x02	0x74	1	2	0	16	0xFFFF	RPM_CHARGER	%.1f			rpm_charger_a	RPM Turbo Charger A				
+0x01,0x02	0x74	3	2	0	16	0xFFFF	RPM_CHARGER	%.1f			rpm_charger_b	RPM Turbo Charger B				
+0x01,0x02	0x75	1	1	0	8	0xFF	TEMPERATURE	%.1f			temp_charger_a_compressor_in	Turbocharger A Compressor Inlet Temperature				
+0x01,0x02	0x75	2	1	0	8	0xFF	TEMPERATURE	%.1f			temp_charger_a_compressor_out	Turbocharger A Compressor Outlet Temperature				
+0x01,0x02	0x75	3	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			temp_charger_a_turbine_in	Turbocharger A Turbine Inlet Temperature				
+0x01,0x02	0x75	5	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			temp_charger_a_turbine_out	Turbocharger A Turbine Outlet Temperature				
+0x01,0x02	0x76	1	1	0	8	0xFF	TEMPERATURE	%.1f			temp_charger_b_compressor_in	Turbocharger B Compressor Inlet Temperature				
+0x01,0x02	0x76	2	1	0	8	0xFF	TEMPERATURE	%.1f			temp_charger_b_compressor_out	Turbocharger B Compressor Outlet Temperature				
+0x01,0x02	0x76	3	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			temp_charger_b_turbine_in	Turbocharger B Turbine Inlet Temperature				
+0x01,0x02	0x76	5	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			temp_charger_b_turbine_out	Turbocharger B Turbine Outlet Temperature				
+0x01,0x02	0x77	1	1	0	8	0xFF	TEMPERATURE	%.1f			charge_air_temp_b1s1	Charge Air Cooler Temperature B1S1				
+0x01,0x02	0x77	2	1	0	8	0xFF	TEMPERATURE	%.1f			charge_air_temp_b1s2	Charge Air Cooler Temperature B1S2				
+0x01,0x02	0x77	3	1	0	8	0xFF	TEMPERATURE	%.1f			charge_air_temp_b2s1	Charge Air Cooler Temperature B2S1				
+0x01,0x02	0x77	4	1	0	8	0xFF	TEMPERATURE	%.1f			charge_air_temp_b2s2	Charge Air Cooler Temperature B2S2				
 0x01,0x02	0x78	0	1	0	8	0xFF	EGT_SENSORS	%.0f			map_exhaust_temperature_sensors_b1	Exhaust Temperature Sensors B1				
 0x01,0x02	0x78	1	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			exhaust_temperature_b1s1	Exhaust Temperature B1S1				
 0x01,0x02	0x78	3	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			exhaust_temperature_b1s2	Exhaust Temperature B1S2				
@@ -165,6 +243,139 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	mnemonic (
 0x01,0x02	0x79	3	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			exhaust_temperature_b2s2	Exhaust Temperature B2S2				
 0x01,0x02	0x79	5	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			exhaust_temperature_b2s3	Exhaust Temperature B2S3				
 0x01,0x02	0x79	7	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			exhaust_temperature_b2s4	Exhaust Temperature B2S4				
+0x01,0x02	0x7A	1	2	0	16	0xFFFF	PRESS_EXHAUST	%.1f			dpf_b1_pressure_delta	DPF Delta Pressure B1				
+0x01,0x02	0x7A	3	2	0	16	0xFFFF	PRESS_EXHAUST	%.1f			dpf_b1_pressure_in	DPF Inlet Pressure B1				
+0x01,0x02	0x7A	5	2	0	16	0xFFFF	PRESS_EXHAUST	%.1f			dpf_b1_pressure_out	DPF Outlet Pressure B1				
+0x01,0x02	0x7B	1	2	0	16	0xFFFF	PRESS_EXHAUST	%.1f			dpf_b2_pressure_delta	DPF Delta Pressure B2				
+0x01,0x02	0x7B	3	2	0	16	0xFFFF	PRESS_EXHAUST	%.1f			dpf_b2_pressure_in	DPF Inlet Pressure B2				
+0x01,0x02	0x7B	5	2	0	16	0xFFFF	PRESS_EXHAUST	%.1f			dpf_b2_pressure_out	DPF Outlet Pressure B2				
+0x01,0x02	0x7C	1	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			dpf_b1_temperature_in	DPF Inlet temperature B1				
+0x01,0x02	0x7C	3	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			dpf_b1_temperature_out	DPF Outlet temperature B1				
+0x01,0x02	0x7C	5	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			dpf_b2_temperature_in	DPF Inlet temperature B2				
+0x01,0x02	0x7C	7	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			dpf_b2_temperature_out	DPF Outlet temperature B2				
+0x01,0x02	0x81	1	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_1t1	Runtime EI-AECD #1 Timer 1				
+0x01,0x02	0x81	5	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_1t2	Runtime EI-AECD #1 Timer 2				
+0x01,0x02	0x81	9	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_2t1	Runtime EI-AECD #2 Timer 1				
+0x01,0x02	0x81	13	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_2t2	Runtime EI-AECD #2 Timer 2				
+0x01,0x02	0x81	17	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_3t1	Runtime EI-AECD #3 Timer 1				
+0x01,0x02	0x81	21	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_3t2	Runtime EI-AECD #3 Timer 2				
+0x01,0x02	0x81	25	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_4t1	Runtime EI-AECD #4 Timer 1				
+0x01,0x02	0x81	29	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_4t2	Runtime EI-AECD #4 Timer 2				
+0x01,0x02	0x81	33	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_5t1	Runtime EI-AECD #5 Timer 1				
+0x01,0x02	0x81	37	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_5t2	Runtime EI-AECD #5 Timer 2				
+0x01,0x02	0x82	1	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_6t1	Runtime EI-AECD #6 Timer 1				
+0x01,0x02	0x82	5	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_6t2	Runtime EI-AECD #6 Timer 2				
+0x01,0x02	0x82	9	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_7t1	Runtime EI-AECD #7 Timer 1				
+0x01,0x02	0x82	13	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_7t2	Runtime EI-AECD #7 Timer 2				
+0x01,0x02	0x82	17	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_8t1	Runtime EI-AECD #8 Timer 1				
+0x01,0x02	0x82	21	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_8t2	Runtime EI-AECD #8 Timer 2				
+0x01,0x02	0x82	25	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_9t1	Runtime EI-AECD #9 Timer 1				
+0x01,0x02	0x82	29	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_9t2	Runtime EI-AECD #9 Timer 2				
+0x01,0x02	0x82	33	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_10t1	Runtime EI-AECD #10 Timer 1				
+0x01,0x02	0x82	37	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_10t2	Runtime EI-AECD #10 Timer 2				
+0x01,0x02	0x83	1	2	0	16	0xFFFF	PPM	%.0f			ppm_nox_b1s1	NOx Concentration B1S1				
+0x01,0x02	0x83	3	2	0	16	0xFFFF	PPM	%.0f			ppm_nox_b1s2	NOx Concentration B1S2				
+0x01,0x02	0x83	5	2	0	16	0xFFFF	PPM	%.0f			ppm_nox_b2s1	NOx Concentration B2S1				
+0x01,0x02	0x83	7	2	0	16	0xFFFF	PPM	%.0f			ppm_nox_b2s2	NOx Concentration B2S2				
+0x01,0x02	0x84	0	1	0	8	0xFF	TEMPERATURE	%.0f			temp_manifold_surface	Intake Manifold Surface Temperature				
+0x01,0x02	0x85	1	2	0	16	0xFFFF	FCONS_FINE	%.2f			avg_reagent_consumption	Average Reagent consumption				
+0x01,0x02	0x85	3	2	0	16	0xFFFF	FCONS_FINE	%.2f			avg_demad_reagent_consumption	Average Reagent consumption demand				
+0x01,0x02	0x85	5	1	0	8	0xFF	PERCENT	%.1f			level_reagent_tank	Reagent Tank level				
+0x01,0x02	0x85	6	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_nox_warning	Runtime w/ active NOx warning				
+0x01,0x02	0x86	1	2	0	16	0xFFFF	PARTICLE_MASS	%.2f			particle_mass_b1	Particulate Mass concentration B1				
+0x01,0x02	0x86	3	2	0	16	0xFFFF	PARTICLE_MASS	%.2f			particle_mass_b2	Particulate Mass concentration B2				
+0x01,0x02	0x87	1	2	0	16	0xFFFF	PRESS_BOOST	%.2f			press_manifold_abs_a	Intake Manifold Absolute Pressure A				
+0x01,0x02	0x87	3	2	0	16	0xFFFF	PRESS_BOOST	%.2f			press_manifold_abs_b	Intake Manifold Absolute Pressure B				
+0x01,0x02	0x88	0	1	0	8	0xFF	STATE_SCR	%.0f			state_scr_act	SCR system state actual				
+0x01,0x02	0x88	1	1	0	4	0xF	STATE_SCR	%.0f			state_scr_10k	SCR system state 00-10k km				
+0x01,0x02	0x88	1	1	4	4	0xF	STATE_SCR	%.0f			state_scr_20k	SCR system state 10-20k km				
+0x01,0x02	0x88	2	1	0	4	0xF	STATE_SCR	%.0f			state_scr_30k	SCR system state 20-30k km				
+0x01,0x02	0x88	2	1	4	4	0xF	STATE_SCR	%.0f			state_scr_40k	SCR system state 30-40k km				
+0x01,0x02	0x88	3	2	0	16	0xFFFF	DISTANCE	%.0f			dist_scr_induce_act	SCR Distance w/ inducement active (current 10k)				
+0x01,0x02	0x88	5	2	0	16	0xFFFF	DISTANCE	%.0f			dist_scr_act	SCR Distance (current 10k)				
+0x01,0x02	0x88	7	2	0	16	0xFFFF	DISTANCE	%.0f			dist_induce_20k	SCR Distance w/ inducement active (10-20k km)				
+0x01,0x02	0x88	9	2	0	16	0xFFFF	DISTANCE	%.0f			dist_induce_30k	SCR Distance w/ inducement active (20-30k km)				
+0x01,0x02	0x88	11	2	0	16	0xFFFF	DISTANCE	%.0f			dist_induce_40k	SCR Distance w/ inducement active (30-40k km)				
+0x01,0x02	0x89	1	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_11t1	Runtime EI-AECD #11 Timer 1				
+0x01,0x02	0x89	5	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_11t2	Runtime EI-AECD #11 Timer 2				
+0x01,0x02	0x89	9	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_12t1	Runtime EI-AECD #12 Timer 1				
+0x01,0x02	0x89	13	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_12t2	Runtime EI-AECD #12 Timer 2				
+0x01,0x02	0x89	17	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_13t1	Runtime EI-AECD #13 Timer 1				
+0x01,0x02	0x89	21	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_13t2	Runtime EI-AECD #13 Timer 2				
+0x01,0x02	0x89	25	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_14t1	Runtime EI-AECD #14 Timer 1				
+0x01,0x02	0x89	29	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_14t2	Runtime EI-AECD #14 Timer 2				
+0x01,0x02	0x89	33	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_15t1	Runtime EI-AECD #15 Timer 1				
+0x01,0x02	0x89	37	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_15t2	Runtime EI-AECD #15 Timer 2				
+0x01,0x02	0x8A	1	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_16t1	Runtime EI-AECD #16 Timer 1				
+0x01,0x02	0x8A	5	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_16t2	Runtime EI-AECD #16 Timer 2				
+0x01,0x02	0x8A	9	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_17t1	Runtime EI-AECD #17 Timer 1				
+0x01,0x02	0x8A	13	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_17t2	Runtime EI-AECD #17 Timer 2				
+0x01,0x02	0x8A	17	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_18t1	Runtime EI-AECD #18 Timer 1				
+0x01,0x02	0x8A	21	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_18t2	Runtime EI-AECD #18 Timer 2				
+0x01,0x02	0x8A	25	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_19t1	Runtime EI-AECD #19 Timer 1				
+0x01,0x02	0x8A	29	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_19t2	Runtime EI-AECD #19 Timer 2				
+0x01,0x02	0x8A	33	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_20t1	Runtime EI-AECD #20 Timer 1				
+0x01,0x02	0x8A	37	4	0	32	0xFFFFFFFF	HOURS	%.2f			rt_eiaecd_20t2	Runtime EI-AECD #20 Timer 2				
+0x01,0x02	0x8B	1	1	0	8	0xFF	STATE_DPF	%.0f			state_dpf	DPF Reneneration Status				
+0x01,0x02	0x8B	2	1	0	8	0xFF	PERCENT	%.1f			load_dpf	Normalized Trigger for DPF Regeneration				
+0x01,0x02	0x8B	3	2	0	16	0xFFFF	HOURS	%.2f			time_dpf_regen	Avg. Time between DPF Regenerations				
+0x01,0x02	0x8B	5	2	0	16	0xFFFF	DISTANCE	%.2f			dist_dpf_regen	Avg. Distance between DPF Regenerations				
+0x01,0x02	0x8C	1	2	0	16	0xFFFF	PERCENT_O2	%.2f			o2_percent_b1s1	O2 Sensor Concentration B1S1				
+0x01,0x02	0x8C	3	2	0	16	0xFFFF	PERCENT_O2	%.2f			o2_percent_b1s2	O2 Sensor Concentration B1S2				
+0x01,0x02	0x8C	5	2	0	16	0xFFFF	PERCENT_O2	%.2f			o2_percent_b2s1	O2 Sensor Concentration B2S1				
+0x01,0x02	0x8C	7	2	0	16	0xFFFF	PERCENT_O2	%.2f			o2_percent_b2s2	O2 Sensor Concentration B2S2				
+0x01,0x02	0x8C	9	2	0	16	0xFFFF	LAMBDA_O2	%.2f			o2_lambda_b1s1	O2 Sensor Lambda B1S1				
+0x01,0x02	0x8C	11	2	0	16	0xFFFF	LAMBDA_O2	%.2f			o2_lambda_b1s2	O2 Sensor Lambda B1S2				
+0x01,0x02	0x8C	13	2	0	16	0xFFFF	LAMBDA_O2	%.2f			o2_lambda_b2s1	O2 Sensor Lambda B2S1				
+0x01,0x02	0x8C	15	2	0	16	0xFFFF	LAMBDA_O2	%.2f			o2_lambda_b2s2	O2 Sensor Lambda B2S2				
+0x01,0x02	0x8D	0	1	0	8	0xFF	PERCENT	%.1f			throttle_position	Throttle position				
+0x01,0x02	0x8E	0	1	0	8	0xFF	PERCENT_FRIC	%.1f			percent_friction	Engine Torque Friction				
+0x01,0x02	0x8F	1	1	0	8	0xFF	STATE_PM	%.0f			state_pm_b1	PM Sensor status B1				
+0x01,0x02	0x8F	2	2	0	16	0xFFFF	PERCENT_DPF	%.2f			percent_dpf_b1	PM Sensor DPF load B1				
+0x01,0x02	0x8F	4	1	0	8	0xFF	STATE_PM	%.0f			state_pm_b2	PM Sensor status B2				
+0x01,0x02	0x8F	5	2	0	16	0xFFFF	PERCENT_DPF	%.2f			percent_dpf_b2	PM Sensor DPF load B2				
+0x01,0x02	0x90	0	1	0	2	0x3	STRATEGY_MIL	%.0f			strategy_mil	MIL display strategy				
+0x01,0x02	0x90	0	1	2	4	0xF	STATE_MIL	%.0f			state_mil	MIL display state				
+0x01,0x02	0x90	0	1	6	1	0x1	STATE_MONITOR	%.0f			state_monitor	Emission system readyness				
+0x01,0x02	0x90	1	2	0	16	0xFFFF	HOURS_FULL	%.0f			hours_mil_on	Operating Hours w/ MIL active				
+0x01,0x02	0x91	0	1	0	4	0xF	STATE_MIL	%.0f			ecu_state_mil	ECU MIL display state				
+0x01,0x02	0x91	1	2	0	16	0xFFFF	HOURS_FULL	%.0f			ecu_hours_mil_on	ECU Operating Hours w/ MIL active				
+0x01,0x02	0x91	3	2	0	16	0xFFFF	HOURS_FULL	%.0f			ecu_hours_max_mil_on	ECU Max. Operating Hours w/ MIL active				
+0x01,0x02	0x92	1	2	0	16	0x101	STATE_LOOP8	%.0f			state_fuel_press_ctrl	Status Fuel pressure control				
+0x01,0x02	0x92	1	2	1	16	0x101	STATE_LOOP8	%.0f			state_inject_quantity_ctrl	Status Fuel Injection quantity control				
+0x01,0x02	0x92	1	2	2	16	0x101	STATE_LOOP8	%.0f			state_inject_timing_ctrl	Status Fuel Injection timing control				
+0x01,0x02	0x92	1	2	3	16	0x101	STATE_LOOP8	%.0f			state_fuel_balance_ctrl	Status Fuel Balance/Contribution control				
+0x01,0x02	0x92	1	2	4	16	0x101	STATE_LOOP8	%.0f			state_fuel_press_ctrl_2	Status Fuel pressure control 2				
+0x01,0x02	0x92	1	2	5	16	0x101	STATE_LOOP8	%.0f			state_inject_quantity_ctrl_2	Status Fuel Injection quantity control 2				
+0x01,0x02	0x92	1	2	6	16	0x101	STATE_LOOP8	%.0f			state_inject_timing_ctrl_2	Status Fuel Injection timing control 2				
+0x01,0x02	0x92	1	2	7	16	0x101	STATE_LOOP8	%.0f			state_fuel_balance_ctrl_2	Status Fuel Balance/Contribution control 2				
+0x01,0x02	0x93	1	2	0	16	0xFFFF	HOURS_FULL	%.0f			hours_mil_on_cont	Continuous Operating Hours w/ MIL active				
+0x01,0x02	0x94	1	1	0	1	0x1	STATE_BIT	%.0f			state_nox_warn_sys	NOx warning system state				
+0x01,0x02	0x94	1	1	1	2	0x3	STATE_INDUC	%.0f			state_lvl1_induce	Level 1 Inducement status				
+0x01,0x02	0x94	1	1	3	2	0x3	STATE_INDUC	%.0f			state_lvl2_induce	Level 2 Inducement status				
+0x01,0x02	0x94	1	1	5	2	0x3	STATE_INDUC	%.0f			state_lvl3_induce	Level 3 Inducement status				
+0x01,0x02	0x94	2	2	0	16	0xFFFF	HOURS_FULL	%.0f			hours_reagent_quality	Reagent Quality counter				
+0x01,0x02	0x94	4	2	0	16	0xFFFF	HOURS_FULL	%.0f			hours_reagent_consum	Reagent Consumption counter				
+0x01,0x02	0x94	6	2	0	16	0xFFFF	HOURS_FULL	%.0f			hours_dosing_activity	Dosing Activity counter				
+0x01,0x02	0x94	8	2	0	16	0xFFFF	HOURS_FULL	%.0f			hours_egr_valve	EGR Valve counter				
+0x01,0x02	0x94	10	2	0	16	0xFFFF	HOURS_FULL	%.0f			hours_monitor_sys	Monitoring System counter				
+0x01,0x02	0x98	1	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			exhaust_temperature_b1s5	Exhaust Temperature B1S5				
+0x01,0x02	0x98	3	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			exhaust_temperature_b1s6	Exhaust Temperature B1S6				
+0x01,0x02	0x98	5	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			exhaust_temperature_b1s7	Exhaust Temperature B1S7				
+0x01,0x02	0x98	7	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			exhaust_temperature_b1s8	Exhaust Temperature B1S8				
+0x01,0x02	0x99	1	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			exhaust_temperature_b2s5	Exhaust Temperature B2S5				
+0x01,0x02	0x99	3	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			exhaust_temperature_b2s6	Exhaust Temperature B2S6				
+0x01,0x02	0x99	5	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			exhaust_temperature_b2s7	Exhaust Temperature B2S7				
+0x01,0x02	0x99	7	2	0	16	0xFFFF	TEMP_WIDERANGE	%.1f			exhaust_temperature_b2s8	Exhaust Temperature B2S8				
+0x01,0x02	0x9C	1	2	0	16	0xFFFF	PERCENT_O2	%.2f			o2_percent_b1s3	O2 Sensor Concentration B1S3				
+0x01,0x02	0x9C	3	2	0	16	0xFFFF	PERCENT_O2	%.2f			o2_percent_b1s4	O2 Sensor Concentration B1S4				
+0x01,0x02	0x9C	5	2	0	16	0xFFFF	PERCENT_O2	%.2f			o2_percent_b2s3	O2 Sensor Concentration B2S3				
+0x01,0x02	0x9C	7	2	0	16	0xFFFF	PERCENT_O2	%.2f			o2_percent_b2s4	O2 Sensor Concentration B2S4				
+0x01,0x02	0x9C	9	2	0	16	0xFFFF	LAMBDA_O2	%.2f			o2_lambda_b1s3	O2 Sensor Lambda B1S3				
+0x01,0x02	0x9C	11	2	0	16	0xFFFF	LAMBDA_O2	%.2f			o2_lambda_b1s4	O2 Sensor Lambda B1S4				
+0x01,0x02	0x9C	13	2	0	16	0xFFFF	LAMBDA_O2	%.2f			o2_lambda_b2s3	O2 Sensor Lambda B2S3				
+0x01,0x02	0x9C	15	2	0	16	0xFFFF	LAMBDA_O2	%.2f			o2_lambda_b2s4	O2 Sensor Lambda B2S4				
+0x01,0x02	0xA6	0	4	0	32	0xFFFFFFFF	ODO_DISTANCE	%.1f			odometer_reading	Odometer				
 0x01,0x02	0xC4	1	1	5	1	0xFF	GEN_SWITCH	%.0f			status_engine_idle_request	Engine IDLE Request				
 0x01,0x02	0xC4	1	1	6	1	0xFF	GEN_SWITCH	%.0f			status_engine_stop_request	Engine STOP Request				
 0x09	0x01	0	1	0	8	0xFF	ONETOONE	%.0f			counts_vin_length	Message count VIN				
