@@ -112,8 +112,11 @@ Big hands to @aha999 for promoting [AndrOBD on Reddit](https://www.reddit.com/r/
 
 Thanks to all hard-working translators for their [contributions](https://hosted.weblate.org/engage/androbd/).
 <br>You all do a incredible job!
-
+<details>
+  <summary>Translation status</summary>
+  
 [![Translation status](https://hosted.weblate.org/widgets/androbd/-/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/?utm_source=widget)
+</details>
 
 (Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 
