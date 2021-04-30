@@ -117,7 +117,7 @@ Thanks to all hard-working translators for their [contributions](https://hosted.
 
 (Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 
-## Donations
+## Support this project
 
 Thank you to all AndrOBD supporters.
 It feels good to see that our work is appreciated.
