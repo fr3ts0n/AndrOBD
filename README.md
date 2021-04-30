@@ -142,16 +142,16 @@ It feels good to see that our work is appreciated.
   </tr>
   <tr>
     <td align="center"><a href="https://www.paypal.me/fr3ts0n"><img src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif"/></a></td>
-    <td>PayPal.me</td>
+    <td>PayPal</td>
     <td><a href="https://www.paypal.me/fr3ts0n">https://www.paypal.me/fr3ts0n</a></td>
   </tr>
   <tr>
     <td align="center">
       <a href="https://liberapay.com/fr3ts0n/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
     </td>
-    <td>Liberapay.com</td>
+    <td>Liberapay</td>
     <td>
-      <a href="https://liberapay.com/fr3ts0n/donate">https://liberapay.com/fr3ts0n/donate</a>
+      <a href="https://liberapay.com/AndrOBD/">https://liberapay.com/AndrOBD/</a>
     </td>
   </tr>
   <tr>
