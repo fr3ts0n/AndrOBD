@@ -121,7 +121,9 @@ Thanks to all hard-working translators for their [contributions](https://hosted.
 
 Thank you to all AndrOBD supporters.
 It feels good to see that our work is appreciated.
-
+<details>
+  <summary>Donators list</summary>
+  
 | Date | Supporter | Donation  |
 |------|-----------|----------:|
 | 2018/02 | John Zimmerer | $10 |
@@ -133,7 +135,7 @@ It feels good to see that our work is appreciated.
 | 2020/06 | Jairus Martin | $10 |
 | 2020/06 | rusefi llc | €25 |
 | 2020/07 | Klemen Skerbiš | €5 |
-
+</details>
 <table>
   <tr>
     <th colspan="3">Thank you for any project support:</th>
