@@ -104,8 +104,10 @@ Thanks to all hard-working translators for their contributions.
 
 (Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 
-# Hall of fame
-
+## Hall of fame
+<details>
+  <summary>Big thanks to</summary>
+  
 ## Graphic design
 
 Very special Thanks to @anaufalm for the
@@ -118,6 +120,7 @@ Thank you very much @sampoder for your beautiful [AndrOBD start page](https://fr
 ## Internet promotion
 
 Big hands to @aha999 for promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
+</details>
 
 ## Support this project
 
