@@ -1,6 +1,6 @@
 ![AndrOBD](fastlane/metadata/android/en-US/images/tvBanner.png)
 
-### Android OBD diagnostics with any ELM327 adapter
+#### Android OBD diagnostics with any ELM327 adapter
 
 ![Android CI](https://github.com/fr3ts0n/AndrOBD/workflows/Android%20CI/badge.svg)
 
@@ -19,15 +19,15 @@
 </tr>
 </table>
 
-# Features
+## Features
 
-## OBD connections
+### OBD connections
 
 * Bluetooth
 * USB
 * Wifi
 
-## OBD Features
+### OBD Features
 
 * Read fault codes
 * Clear fault codes
@@ -35,7 +35,7 @@
 * Read freeze frame data
 * Read vehicle info data
 
-## Additional features
+### Additional features
 
 * Day/Night view
 * Data charts
@@ -45,12 +45,12 @@
 * Load recorded data (for analysis)
 * CSV export
 
-## Customisation of PID data
+### Customisation of PID data
 
 + PID data items
 + Data conversions
 
-## Plugin extension support
+### Plugin extension support
 
 - Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
 - Available Plugins:
@@ -58,7 +58,7 @@
   - GpsProvider - Provide GPS data to AndrOBD
   - SensorProvider - Provide Accelerometer data to AndrOBD
 
-## Native language support
+### Native language support
  
 + translatable via [weblate.org](https://hosted.weblate.org/projects/androbd/strings/)
   + Program dialogs
@@ -67,7 +67,7 @@
 
 # Project support
 
-## Development support
+### Development support
 
 ### AndrOBD project wiki
 
