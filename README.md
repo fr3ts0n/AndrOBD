@@ -91,7 +91,18 @@ Discussions and chats
 
 ## Translations
 
-You are invited to contribute a [translation into your favourite language](https://hosted.weblate.org/engage/androbd/).
+You are invited to contribute my [translating into your favourite language](https://hosted.weblate.org/engage/androbd/).
+
+<details>
+  <summary>Translation status</summary>
+  
+[![Translation status](https://hosted.weblate.org/widgets/androbd/-/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/?utm_source=widget)
+</details>
+
+Thanks to all hard-working translators for their contributions.
+<br>You all do an incredible job!
+
+(Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 
 # Hall of fame
 
@@ -107,18 +118,6 @@ Thank you very much @sampoder for your beautiful [AndrOBD start page](https://fr
 ## Internet promotion
 
 Big hands to @aha999 for promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
-
-## Translations
-
-Thanks to all hard-working translators for their [contributions](https://hosted.weblate.org/engage/androbd/).
-<br>You all do a incredible job!
-<details>
-  <summary>Translation status</summary>
-  
-[![Translation status](https://hosted.weblate.org/widgets/androbd/-/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/?utm_source=widget)
-</details>
-
-(Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 
 ## Support this project
 
