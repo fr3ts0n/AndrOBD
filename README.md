@@ -59,7 +59,6 @@ It is open source, as well as being completely free.
   - MQTT publisher - Publish OBD data to MQTT broker
   - GpsProvider - Provide GPS data to AndrOBD
   - SensorProvider - Provide Accelerometer data to AndrOBD
-</details>
 
 #### Native language support
  
@@ -67,6 +66,8 @@ It is open source, as well as being completely free.
   + Program dialogs
   + Data item descriptions
   + Fault code descriptions
+
+</details>
 
 ## :eyes: Screenshots
 
