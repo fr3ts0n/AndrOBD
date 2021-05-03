@@ -102,24 +102,26 @@ You are invited to contribute my [translating into your favourite language](http
 Thanks to all hard-working translators for their contributions.
 <br>You all do an incredible job!
 
-(Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
-
 ## Hall of fame
 <details>
   <summary>Big thanks to</summary>
   
-## Graphic design
+### Graphic design
 
 Very special Thanks to @anaufalm for the
 [beautiful graphic design artwork and logos](https://steemit.com/utopian-io/@naufal/my-design-logo-for-androbd-valid-commit-and-added-to-v2-0-3).
 
-## Start page
+### Start page
 
 Thank you very much @sampoder for your beautiful [AndrOBD start page](https://fr3ts0n.github.io/AndrOBD/)
 
-## Internet promotion
+### Internet promotion
 
 Big hands to @aha999 for promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
+
+### Hosting translations
+
+Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 </details>
 
 ## Support this project
