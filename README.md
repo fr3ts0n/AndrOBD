@@ -111,6 +111,8 @@ It is open source and completely free.
 
 ## :battery: Support by donating
 
+Treat us with any amount of coffee, as it enables us to put more free time into the active development.
+
 <table>
   <tr>
     <th colspan="3">Thank you for any donation</th>
