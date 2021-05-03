@@ -93,6 +93,8 @@ Help translate this app into more languages on [Weblate](https://hosted.weblate.
   <summary>Translation status</summary>
   
 [![Translation status](https://hosted.weblate.org/widgets/androbd/-/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/?utm_source=widget)
+
+*some percentage indicators may include more components, if translators started translating them, therefore having lower values.*
 </details>
 
 ## :books: Documentation
