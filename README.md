@@ -64,6 +64,12 @@
   + Data item descriptions
   + Fault code descriptions
 
+## :eyes: Screenshots
+
+| Functions | OBD data | Dashboard |
+| :--: | :--: | :--: |
+| ![Screenshot of functions](https://raw.githubusercontent.com/fr3ts0n/AndrOBD/master/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_02.png) | ![Screenshot of OBD data](https://raw.githubusercontent.com/fr3ts0n/AndrOBD/master/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_06.png) | ![Screenshot of Dashboard](https://raw.githubusercontent.com/fr3ts0n/AndrOBD/master/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_09.png) |
+
 ## Development support & chat
 
 ### AndrOBD channel (Telegram)
