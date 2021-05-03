@@ -135,21 +135,7 @@ Special thanks to [Michal Čihař](https://github.com/nijel) for hosting transla
 
 Thank you to all AndrOBD supporters.
 It feels good to see that our work is appreciated.
-<details>
-  <summary>Donators list</summary>
-  
-| Date | Supporter | Donation  |
-|------|-----------|----------:|
-| 2018/02 | John Zimmerer | $10 |
-| 2018/12 | Martin Bourdoiseau | €20 |
-| 2019/06 | Jeffrey O'Connell | $10 |
-| 2019/08 | Christoph Schmid | €10 |
-| 2020/01 | Glenn Fowler | $5 |
-| 2020/02 | Klemen Skerbiš | €5 |
-| 2020/06 | Jairus Martin | $10 |
-| 2020/06 | rusefi llc | €25 |
-| 2020/07 | Klemen Skerbiš | €5 |
-</details>
+
 <table>
   <tr>
     <th colspan="3">Thank you for any donation :hearts:</th>
@@ -174,3 +160,19 @@ It feels good to see that our work is appreciated.
     <td><a href="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP">19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP</a></td>
   </tr>
 </table>
+
+<details>
+  <summary>Donators list</summary>
+  
+| Date | Supporter | Donation  |
+|------|-----------|----------:|
+| 2018/02 | John Zimmerer | $10 |
+| 2018/12 | Martin Bourdoiseau | €20 |
+| 2019/06 | Jeffrey O'Connell | $10 |
+| 2019/08 | Christoph Schmid | €10 |
+| 2020/01 | Glenn Fowler | $5 |
+| 2020/02 | Klemen Skerbiš | €5 |
+| 2020/06 | Jairus Martin | $10 |
+| 2020/06 | rusefi llc | €25 |
+| 2020/07 | Klemen Skerbiš | €5 |
+</details>
