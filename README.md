@@ -108,11 +108,11 @@ It is open source and completely free.
 
 * [Wiki](https://github.com/fr3ts0n/AndrOBD/wiki) - AndrOBD database
 
-## Support by donating
+## :purple_heart: Support by donating
 
 <table>
   <tr>
-    <th colspan="3">Thank you for any donation :hearts:</th>
+    <th colspan="3">Thank you for any donation</th>
   </tr>
   <tr>
     <td align="center"><a href="https://www.paypal.me/fr3ts0n"><img src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif"/></a></td>
