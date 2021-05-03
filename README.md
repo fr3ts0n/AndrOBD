@@ -1,13 +1,13 @@
 ![AndrOBD](fastlane/metadata/android/en-US/images/tvBanner.png)
 
-AndrOBD allows you to use your Android device to connect to your car's on-board diagnostics system via any ELM327 OBD adapter.
-It is open source and completely free.
-
 ![Android CI](https://github.com/fr3ts0n/AndrOBD/workflows/Android%20CI/badge.svg)
 [![GitHub issues](https://img.shields.io/github/issues/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/issues)
 [![Liberapay receiving](https://img.shields.io/liberapay/receives/AndrOBD?label=Liberapay)](https://liberapay.com/AndrOBD/donate/)
 [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/AndrOBD)](https://www.reddit.com/r/AndrOBD/)
 [![GitHub license](https://img.shields.io/github/license/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/blob/master/LICENSE)
+
+AndrOBD allows you to use your Android device to connect to your car's on-board diagnostics system via any ELM327 OBD adapter.
+It is open source and completely free.
 
 ### :arrow_forward: Install
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/fr3ts0n/AndrOBD?label=latest%20version&sort=semver)](https://github.com/fr3ts0n/AndrOBD/releases)
