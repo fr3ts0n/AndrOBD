@@ -121,7 +121,7 @@ Help translate this app into more languages on [Weblate](https://hosted.weblate.
 
 #### Supporters
 <details>
-  <summary>Donators list</summary>
+  <summary>Donators</summary>
   
 | Date | Supporter | Donation  |
 |------|-----------|----------:|
@@ -137,7 +137,7 @@ Help translate this app into more languages on [Weblate](https://hosted.weblate.
 </details>
 
 <details>
-  <summary>Big thanks to</summary>
+  <summary>Contributors</summary>
   
 #### Graphic design
 
