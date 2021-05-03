@@ -67,31 +67,16 @@ It is open source, as well as being completely free.
 | :--: | :--: | :--: |
 | ![Screenshot of functions](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_02.png) | ![Screenshot of OBD data](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_06.png) | ![Screenshot of Dashboard](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_09.png) |
 
-## :family_man_woman_boy:  Development support & chat
+## :family: Join the team
+  * Test the app with different devices, test alpha & beta releases in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
+  * Report issues in the [issue tracker](https://github.com/fr3ts0n/AndrOBD/issues)
+  * Create a [Pull Request](https://opensource.guide/how-to-contribute/#opening-a-pull-request)
+  * Discuss the project in the Telegram [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
+  * Tell your friends about open source diagnostic software
 
-### AndrOBD channel (Telegram)
+### 🌎 Translation
 
-Alpha and beta test releases
-
-[AndrOBD_DEV](https://t.me/AndrOBD_dev)
-
-#### AndrOBD chat (Telegram)
-
-Discussions and chat
-
-[AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
-
-#### AndrOBD project wiki
-
-AndrOBD Documentation, tech Infos, Q&A ...
-
-[FAQs](https://github.com/fr3ts0n/AndrOBD/wiki/Frequently-asked-questions)
-
-[Wiki](https://github.com/fr3ts0n/AndrOBD/wiki)
-
-### Translation
-
-You are invited to contribute by [translating into your favourite language](https://hosted.weblate.org/engage/androbd/).
+Help translate this app on [Weblate](https://hosted.weblate.org/engage/androbd/) into more languages 
 
 <details>
   <summary>Translation status</summary>
@@ -99,8 +84,13 @@ You are invited to contribute by [translating into your favourite language](http
 [![Translation status](https://hosted.weblate.org/widgets/androbd/-/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/?utm_source=widget)
 </details>
 
-Thanks to all hard-working translators for their contributions.
-<br>You all do an incredible job!
+#### AndrOBD project wiki
+
+AndrOBD Documentation, tech Infos, Q&A ...
+
+* [FAQs](https://github.com/fr3ts0n/AndrOBD/wiki/Frequently-asked-questions)
+
+* [Wiki](https://github.com/fr3ts0n/AndrOBD/wiki)
 
 ### Support this project
 
