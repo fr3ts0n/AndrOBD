@@ -135,7 +135,7 @@ AndrOBD Documentation, tech Infos, Q&A ...
 | 2020/07 | Klemen Skerbiš | €5 |
 </details>
 
-### Hall of fame
+#### Supporters
 <details>
   <summary>Big thanks to</summary>
   
@@ -157,4 +157,4 @@ Big hands to @aha999 for promoting [AndrOBD on Reddit](https://www.reddit.com/r/
 Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 </details>
 
-We thank you, all AndrOBD supporters. It is great to see this project growing.
+*Thanks to the open source community, supporters and donators who pick this project up, AndrOBD will be able to get more development and new features, and hopefully even more than that.*
