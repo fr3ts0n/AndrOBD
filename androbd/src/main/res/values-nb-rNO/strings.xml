@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Oversettelse ved fr3ts0n</string>
+    <string name="translation_credits">Oversettelse av fr3ts0n</string>
     <string name="title_connecting">Kobler til…</string>
     <string name="title_connected_to">Tilkoblet %s</string>
     <string name="logo">Logo</string>
@@ -110,7 +110,7 @@
     <string name="toolbar_overlay">Vis som overlag</string>
     <string name="toolbar_overlay_sum">Vis verktøyslinje over hovedskjermen</string>
     <string name="app_description">Android OBD-kjøretøydiagnostikkprogram for ELM327-Blåtannsadapter</string>
-    <string name="service_freezeframes">Fryste OBD-rammer</string>
+    <string name="service_freezeframes">OBD Freeze Frames</string>
     <string name="obd_clear_info">Dette vil tilbakestille MIL og tømme all utslippsrelatert diagnostikk
 \n informasjon, inkludert:
 \n - Diagnostikkfeilkoder
