@@ -8,20 +8,9 @@ It is open source, as well as being completely free.
 ![Liberapay receiving](https://img.shields.io/liberapay/receives/andrOBD)
 [![GitHub license](https://img.shields.io/github/license/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/blob/master/LICENSE)
 
-<table>
-<tr>
-  <td>
-    <a href="https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/">
-      <img width="96" height="96" src="fastlane/metadata/android/en-US/images/icon.png"/>
-    </a>
-  </td>
-  <td>
-    <a href="https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/">
-      <img src="https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png"/>
-    </a>
-  </td>
-</tr>
-</table>
+[<img src="https://f-droid.org/badge/get-it-on.png"
+  alt="Get it on F-Droid"
+  height="80">](https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/)
 
 ##  :oncoming_automobile: Features
 <details>
