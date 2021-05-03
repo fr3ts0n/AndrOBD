@@ -20,6 +20,8 @@
 </table>
 
 ##  :red_car: Features
+<details>
+  <summary>Expand for features list</summary>
 
 #### OBD connections
 * Bluetooth
@@ -46,8 +48,8 @@
 
 #### Customisation of PID data
 
-+ PID data items
-+ Data conversions
+* PID data items
+* Data conversions
 
 #### Plugin extension support
 
@@ -56,7 +58,7 @@
   - MQTT publisher - Publish OBD data to MQTT broker
   - GpsProvider - Provide GPS data to AndrOBD
   - SensorProvider - Provide Accelerometer data to AndrOBD
-
+</details>
 #### Native language support
  
 + translatable via [weblate.org](https://hosted.weblate.org/projects/androbd/strings/)
