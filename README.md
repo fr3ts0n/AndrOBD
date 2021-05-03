@@ -59,6 +59,7 @@
   - GpsProvider - Provide GPS data to AndrOBD
   - SensorProvider - Provide Accelerometer data to AndrOBD
 </details>
+
 #### Native language support
  
 + translatable via [weblate.org](https://hosted.weblate.org/projects/androbd/strings/)
