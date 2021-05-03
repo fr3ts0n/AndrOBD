@@ -82,20 +82,25 @@ It is open source and completely free.
   * Contribute to development of plugins: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
   * Discuss the project in the Telegram [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
   * Tell your friends about open source diagnostic software
- 
-:microscope: **Special request**: AndrOBD is looking for helping hands on designing and implementing of a modern new GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126))
-
-## 🌎 Localization
-
-Help translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/)
-
+  * Translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/) :earth_americas:
 <details>
   <summary>Translation status</summary>
   
-[![Translation status](https://hosted.weblate.org/widgets/androbd/-/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/?utm_source=widget)
+**Aplication strings:**
 
-*some percentage indicators may include more components, if translators started translating them, therefore having lower values.*
+[![App strings](https://hosted.weblate.org/widgets/androbd/-/strings/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
+
+**OBD data descriptions:**
+
+[![OBD data descriptions](https://hosted.weblate.org/widgets/androbd/-/obd-data-descriptions/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
+
+**Fault codes:**
+
+[![Fault codes](https://hosted.weblate.org/widgets/androbd/-/fault-codes/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
+
 </details>
+ 
+:microscope: **Special request**: AndrOBD is looking for helping hands on designing and implementing of a modern new GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126))
 
 ## :books: Documentation
 
