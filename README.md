@@ -76,7 +76,7 @@ It is open source and completely free.
   * Discuss the project in the Telegram [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
   * Tell your friends about open source diagnostic software
 
-### 🌎 Translation
+## 🌎 Translation
 
 Help translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/)
 
@@ -86,13 +86,13 @@ Help translate this app into more languages on [Weblate](https://hosted.weblate.
 [![Translation status](https://hosted.weblate.org/widgets/androbd/-/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/?utm_source=widget)
 </details>
 
-#### :books: Documentation
+## :books: Documentation
 
 * [FAQ](https://github.com/fr3ts0n/AndrOBD/wiki/Frequently-asked-questions) - Frequently asked questions
 
 * [Wiki](https://github.com/fr3ts0n/AndrOBD/wiki) - AndrOBD database
 
-### Support this project
+## Support this project
 
 <table>
   <tr>
@@ -119,6 +119,7 @@ Help translate this app into more languages on [Weblate](https://hosted.weblate.
   </tr>
 </table>
 
+#### Supporters
 <details>
   <summary>Donators list</summary>
   
@@ -135,11 +136,10 @@ Help translate this app into more languages on [Weblate](https://hosted.weblate.
 | 2020/07 | Klemen Skerbiš | €5 |
 </details>
 
-#### Supporters
 <details>
   <summary>Big thanks to</summary>
   
-### Graphic design
+#### Graphic design
 
 Very special Thanks to @anaufalm for the
 [beautiful graphic design artwork and logos](https://steemit.com/utopian-io/@naufal/my-design-logo-for-androbd-valid-commit-and-added-to-v2-0-3).
