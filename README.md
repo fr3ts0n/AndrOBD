@@ -21,7 +21,7 @@ It is open source, as well as being completely free.
 </tr>
 </table>
 
-##  :red_car: Features
+##  :oncoming_automobile: Features
 <details>
   <summary>Expand for features list</summary>
 
