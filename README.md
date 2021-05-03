@@ -74,7 +74,7 @@ It is open source, as well as being completely free.
 | :--: | :--: | :--: |
 | ![Screenshot of functions](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_02.png) | ![Screenshot of OBD data](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_06.png) | ![Screenshot of Dashboard](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_09.png) |
 
-## Development support & chat
+## :family_man_woman_boy:  Development support & chat
 
 ### AndrOBD channel (Telegram)
 
@@ -84,7 +84,7 @@ Alpha and beta test releases
 
 #### AndrOBD chat (Telegram)
 
-Discussions and chats
+Discussions and chat
 
 [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
 
@@ -147,11 +147,11 @@ It feels good to see that our work is appreciated.
   </tr>
   <tr>
     <td align="center">
-      <a href="https://liberapay.com/fr3ts0n/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+      <a href="https://liberapay.com/AndrOBD/donate/"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
     </td>
     <td>Liberapay</td>
     <td>
-      <a href="https://liberapay.com/AndrOBD/">https://liberapay.com/AndrOBD/donate/</a>
+      <a href="https://liberapay.com/AndrOBD/donate/">https://liberapay.com/AndrOBD/donate</a>
     </td>
   </tr>
   <tr>
