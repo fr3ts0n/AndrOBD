@@ -76,7 +76,7 @@ It is open source and completely free.
 *More screenshots available on [the Website](https://fr3ts0n.github.io/AndrOBD/)*
 
 ## :family: Join the team
-  * Test the app with different devices, test alpha & beta releases in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
+  * Test the app with different devices, alpha & beta releases are in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
   * Report issues in the [issue tracker](https://github.com/fr3ts0n/AndrOBD/issues)
   * Create a [Pull Request](https://opensource.guide/how-to-contribute/#opening-a-pull-request)
   * Contribute to development of plugins: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
@@ -107,21 +107,21 @@ Help translate this app into more languages on [Weblate](https://hosted.weblate.
   </tr>
   <tr>
     <td align="center"><a href="https://www.paypal.me/fr3ts0n"><img src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif"/></a></td>
-    <td>PayPal</td>
+    <td align="center">PayPal</td>
     <td><a href="https://www.paypal.me/fr3ts0n">https://www.paypal.me/fr3ts0n</a></td>
   </tr>
   <tr>
     <td align="center">
       <a href="https://liberapay.com/AndrOBD/donate/"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
     </td>
-    <td>Liberapay</td>
+    <td align="center">Liberapay</td>
     <td>
       <a href="https://liberapay.com/AndrOBD/donate/">https://liberapay.com/AndrOBD/donate</a>
     </td>
   </tr>
   <tr>
     <td align="center"><a href="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP"><img src="manual/bitcoin_qr_code.png" alt="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP" width="128px" height="128px"></a></td>
-    <td align="center"><a href="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP"><img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin"/></a></td>
+    <td align="center">Bitcoin</a></td>
     <td><a href="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP">19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP</a></td>
   </tr>
 </table>
