@@ -76,7 +76,7 @@ It is open source, as well as being completely free.
 
 ### 🌎 Translation
 
-Help translate this app on [Weblate](https://hosted.weblate.org/engage/androbd/) into more languages 
+Help translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/)
 
 <details>
   <summary>Translation status</summary>
