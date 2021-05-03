@@ -109,7 +109,7 @@ It is open source and completely free.
 
 * [Wiki](https://github.com/fr3ts0n/AndrOBD/wiki) - AndrOBD database
 
-## Support this project
+## Support by donating
 
 <table>
   <tr>
