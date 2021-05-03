@@ -4,7 +4,8 @@ AndrOBD allows you to use your Android device to connect to your car's on-board 
 It is open source, as well as being completely free.
 
 ![Android CI](https://github.com/fr3ts0n/AndrOBD/workflows/Android%20CI/badge.svg)
-
+[![GitHub issues](https://img.shields.io/github/issues/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/issues)
+[![GitHub license](https://img.shields.io/github/license/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/blob/master/LICENSE)
 <table>
 <tr>
   <td>
