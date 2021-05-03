@@ -66,6 +66,7 @@ It is open source, as well as being completely free.
 | Functions | OBD data | Dashboard |
 | :--: | :--: | :--: |
 | ![Screenshot of functions](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_02.png) | ![Screenshot of OBD data](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_06.png) | ![Screenshot of Dashboard](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_09.png) |
+*More screenshots available on [the Website](https://fr3ts0n.github.io/AndrOBD/)*
 
 ## :family: Join the team
   * Test the app with different devices, test alpha & beta releases in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
