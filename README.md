@@ -19,15 +19,14 @@
 </tr>
 </table>
 
-## Features
+##  :red_car: Features
 
-### OBD connections
-
+#### OBD connections
 * Bluetooth
 * USB
 * Wifi
 
-### OBD Features
+#### OBD Features
 
 * Read fault codes
 * Clear fault codes
@@ -35,7 +34,7 @@
 * Read freeze frame data
 * Read vehicle info data
 
-### Additional features
+#### Additional features
 
 * Day/Night view
 * Data charts
@@ -45,12 +44,12 @@
 * Load recorded data (for analysis)
 * CSV export
 
-### Customisation of PID data
+#### Customisation of PID data
 
 + PID data items
 + Data conversions
 
-### Plugin extension support
+#### Plugin extension support
 
 - Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
 - Available Plugins:
@@ -58,24 +57,14 @@
   - GpsProvider - Provide GPS data to AndrOBD
   - SensorProvider - Provide Accelerometer data to AndrOBD
 
-### Native language support
+#### Native language support
  
 + translatable via [weblate.org](https://hosted.weblate.org/projects/androbd/strings/)
   + Program dialogs
   + Data item descriptions
   + Fault code descriptions
 
-# Project support
-
-### Development support
-
-### AndrOBD project wiki
-
-AndrOBD Documentation, tech Infos, Q&A ...
-
-[FAQs](https://github.com/fr3ts0n/AndrOBD/wiki/Frequently-asked-questions)
-
-[Wiki](https://github.com/fr3ts0n/AndrOBD/wiki)
+## Development support & chat
 
 ### AndrOBD channel (Telegram)
 
@@ -83,13 +72,21 @@ Alpha and beta test releases
 
 [AndrOBD_DEV](https://t.me/AndrOBD_dev)
 
-### AndrOBD chat (Telegram)
+#### AndrOBD chat (Telegram)
 
 Discussions and chats
 
 [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
 
-## Translations
+#### AndrOBD project wiki
+
+AndrOBD Documentation, tech Infos, Q&A ...
+
+[FAQs](https://github.com/fr3ts0n/AndrOBD/wiki/Frequently-asked-questions)
+
+[Wiki](https://github.com/fr3ts0n/AndrOBD/wiki)
+
+### Translations
 
 You are invited to contribute my [translating into your favourite language](https://hosted.weblate.org/engage/androbd/).
 
@@ -102,7 +99,7 @@ You are invited to contribute my [translating into your favourite language](http
 Thanks to all hard-working translators for their contributions.
 <br>You all do an incredible job!
 
-## Hall of fame
+### Hall of fame
 <details>
   <summary>Big thanks to</summary>
   
@@ -111,20 +108,20 @@ Thanks to all hard-working translators for their contributions.
 Very special Thanks to @anaufalm for the
 [beautiful graphic design artwork and logos](https://steemit.com/utopian-io/@naufal/my-design-logo-for-androbd-valid-commit-and-added-to-v2-0-3).
 
-### Start page
+#### Start page
 
 Thank you very much @sampoder for your beautiful [AndrOBD start page](https://fr3ts0n.github.io/AndrOBD/)
 
-### Internet promotion
+#### Internet promotion
 
 Big hands to @aha999 for promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
 
-### Hosting translations
+#### Hosting translations
 
 Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 </details>
 
-## Support this project
+### Support this project
 
 Thank you to all AndrOBD supporters.
 It feels good to see that our work is appreciated.
