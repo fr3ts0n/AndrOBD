@@ -157,4 +157,4 @@ Big hands to @aha999 for promoting [AndrOBD on Reddit](https://www.reddit.com/r/
 Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 </details>
 
-*Thanks to the open source community, supporters and donators who pick this project up, AndrOBD will be able to get more development and new features, and hopefully even more than that.*
+*Thanks to the open source community, any supporters who pick this project up, AndrOBD will be able to get more development and new features, and hopefully even more than that.*
