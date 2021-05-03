@@ -5,8 +5,9 @@ It is open source, as well as being completely free.
 
 ![Android CI](https://github.com/fr3ts0n/AndrOBD/workflows/Android%20CI/badge.svg)
 [![GitHub issues](https://img.shields.io/github/issues/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/issues)
-[![GitHub license](https://img.shields.io/github/license/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/blob/master/LICENSE)
 ![Liberapay receiving](https://img.shields.io/liberapay/receives/andrOBD)
+[![GitHub license](https://img.shields.io/github/license/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/blob/master/LICENSE)
+
 <table>
 <tr>
   <td>
