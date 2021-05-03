@@ -76,7 +76,7 @@ It is open source and completely free.
 *More screenshots available on [the Website](https://fr3ts0n.github.io/AndrOBD/)*
 
 ## :family: Join the team
-  * Test the app with different devices, alpha & beta releases are in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
+  * Test the app with different devices, alpha & beta releases are posted in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
   * Report issues in the [issue tracker](https://github.com/fr3ts0n/AndrOBD/issues)
   * Create a [Pull Request](https://opensource.guide/how-to-contribute/#opening-a-pull-request)
   * Contribute to development of plugins: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
