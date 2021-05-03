@@ -108,7 +108,7 @@ It is open source and completely free.
 
 * [Wiki](https://github.com/fr3ts0n/AndrOBD/wiki) - AndrOBD database
 
-## :purple_heart: Support by donating
+## :battery: Support by donating
 
 <table>
   <tr>
