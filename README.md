@@ -148,20 +148,19 @@ Help translate this app into more languages on [Weblate](https://hosted.weblate.
   
 #### Graphic design
 
-Very special Thanks to @anaufalm for the
-[beautiful graphic design artwork and logos](https://steemit.com/utopian-io/@naufal/my-design-logo-for-androbd-valid-commit-and-added-to-v2-0-3).
+* Very special Thanks to [anaufalm](https://github.com/anaufalm) for the [beautiful graphic design artwork and logos](https://steemit.com/utopian-io/@naufal/my-design-logo-for-androbd-valid-commit-and-added-to-v2-0-3).
 
 #### Start page
 
-Thank you very much @sampoder for your beautiful [AndrOBD start page](https://fr3ts0n.github.io/AndrOBD/)
+* Thank you very much [sampoder](https://github.com/sampoder/) for a beautiful [AndrOBD start page](https://fr3ts0n.github.io/AndrOBD/)
 
 #### Internet promotion
 
-Big hands to @aha999 for promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
+* Big hands to [aha999](https://github.com/aha999/) for promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
 
 #### Hosting translations
 
-Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
+* Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 </details>
 
 *Thanks to the open source community, any supporters who pick this project up, AndrOBD will be able to get more development and new features, and hopefully even more than that.*
