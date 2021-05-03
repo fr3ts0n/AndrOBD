@@ -150,7 +150,7 @@ It feels good to see that our work is appreciated.
 </details>
 <table>
   <tr>
-    <th colspan="3">Thank you for any project support:</th>
+    <th colspan="3">Thank you for any donations</th>
   </tr>
   <tr>
     <td align="center"><a href="https://www.paypal.me/fr3ts0n"><img src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif"/></a></td>
