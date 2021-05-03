@@ -172,4 +172,4 @@ It is open source and completely free.
 * Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 </details>
 
-*Thanks to the open source community, any supporters who pick this project up, AndrOBD will be able to get more development and new features, and hopefully even more than that.*
+*Thanks to the open source community and any supporters who pick this project up, AndrOBD will be able to get more development, new features, and hopefully even more than that.*
