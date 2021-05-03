@@ -9,7 +9,8 @@
 AndrOBD allows you to use your Android device to connect to your car's on-board diagnostics system via any ELM327 OBD adapter.
 It is open source and completely free.
 
-### :arrow_forward: Install
+## :arrow_forward: Install
+
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/fr3ts0n/AndrOBD?label=latest%20version&sort=semver)](https://github.com/fr3ts0n/AndrOBD/releases)
 [![F-Droid](https://img.shields.io/f-droid/v/com.fr3ts0n.ecu.gui.androbd)](https://f-droid.org/en/packages/com.fr3ts0n.ecu.gui.androbd/)
 
