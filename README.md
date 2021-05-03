@@ -85,8 +85,9 @@ It is open source and completely free.
   * Translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/) :earth_americas:
 <details>
   <summary>Translation status</summary>
-  
-**Aplication strings:**
+  &nbsp;
+
+**AndrOBD UI:**
 
 [![App strings](https://hosted.weblate.org/widgets/androbd/-/strings/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
 
