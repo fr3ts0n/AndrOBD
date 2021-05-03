@@ -97,9 +97,9 @@ AndrOBD Documentation, tech Infos, Q&A ...
 
 [Wiki](https://github.com/fr3ts0n/AndrOBD/wiki)
 
-### Translations
+### Translation
 
-You are invited to contribute my [translating into your favourite language](https://hosted.weblate.org/engage/androbd/).
+You are invited to contribute by [translating into your favourite language](https://hosted.weblate.org/engage/androbd/).
 
 <details>
   <summary>Translation status</summary>
