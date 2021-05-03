@@ -6,6 +6,7 @@ It is open source and completely free.
 ![Android CI](https://github.com/fr3ts0n/AndrOBD/workflows/Android%20CI/badge.svg)
 [![GitHub issues](https://img.shields.io/github/issues/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/issues)
 ![Liberapay receiving](https://img.shields.io/liberapay/receives/andrOBD)
+![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/AndrOBD)
 [![GitHub license](https://img.shields.io/github/license/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/blob/master/LICENSE)
 
 [<img src="https://f-droid.org/badge/get-it-on.png"
@@ -85,9 +86,7 @@ Help translate this app into more languages on [Weblate](https://hosted.weblate.
 [![Translation status](https://hosted.weblate.org/widgets/androbd/-/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/?utm_source=widget)
 </details>
 
-#### :books: AndrOBD project wiki
-
-AndrOBD Documentation, tech Infos, Q&A ...
+#### :books: Documentation
 
 * [FAQ](https://github.com/fr3ts0n/AndrOBD/wiki/Frequently-asked-questions) - Frequently asked questions
 
