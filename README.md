@@ -15,21 +15,22 @@ It is open source and completely free.
   height="80">](https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/)
 
 ##  :oncoming_automobile: Features
-<details>
-  <summary>Expand for features list</summary>
 
-#### OBD connections
+#### OBD connection types
 * Bluetooth
 * USB
 * Wifi
 
-#### OBD Features
+#### OBD Functionality
 
 * Read fault codes
 * Clear fault codes
 * Read/record live data
 * Read freeze frame data
 * Read vehicle info data
+
+<details>
+  <summary>Expand features list</summary>
 
 #### Additional features
 
@@ -68,12 +69,14 @@ It is open source and completely free.
 | Functions | OBD data | Dashboard |
 | :--: | :--: | :--: |
 | ![Screenshot of functions](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_02.png) | ![Screenshot of OBD data](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_06.png) | ![Screenshot of Dashboard](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_09.png) |
+
 *More screenshots available on [the Website](https://fr3ts0n.github.io/AndrOBD/)*
 
 ## :family: Join the team
   * Test the app with different devices, test alpha & beta releases in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
   * Report issues in the [issue tracker](https://github.com/fr3ts0n/AndrOBD/issues)
   * Create a [Pull Request](https://opensource.guide/how-to-contribute/#opening-a-pull-request)
+  * Contribute to development of plugins: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
   * Discuss the project in the Telegram [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
   * Tell your friends about open source diagnostic software
 
