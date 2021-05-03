@@ -84,18 +84,15 @@ Help translate this app on [Weblate](https://hosted.weblate.org/engage/androbd/)
 [![Translation status](https://hosted.weblate.org/widgets/androbd/-/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/?utm_source=widget)
 </details>
 
-#### AndrOBD project wiki
+#### :books: AndrOBD project wiki
 
 AndrOBD Documentation, tech Infos, Q&A ...
 
-* [FAQs](https://github.com/fr3ts0n/AndrOBD/wiki/Frequently-asked-questions)
+* [FAQ](https://github.com/fr3ts0n/AndrOBD/wiki/Frequently-asked-questions) - Frequently asked questions
 
-* [Wiki](https://github.com/fr3ts0n/AndrOBD/wiki)
+* [Wiki](https://github.com/fr3ts0n/AndrOBD/wiki) - AndrOBD database
 
 ### Support this project
-
-Thank you to all AndrOBD supporters.
-It feels good to see that our work is appreciated.
 
 <table>
   <tr>
@@ -160,3 +157,4 @@ Big hands to @aha999 for promoting [AndrOBD on Reddit](https://www.reddit.com/r/
 Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 </details>
 
+We thank you, all AndrOBD supporters. It is great to see this project growing.
