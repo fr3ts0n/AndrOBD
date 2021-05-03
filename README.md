@@ -151,7 +151,7 @@ It feels good to see that our work is appreciated.
     </td>
     <td>Liberapay</td>
     <td>
-      <a href="https://liberapay.com/AndrOBD/">https://liberapay.com/AndrOBD/</a>
+      <a href="https://liberapay.com/AndrOBD/">https://liberapay.com/AndrOBD/donate/</a>
     </td>
   </tr>
   <tr>
