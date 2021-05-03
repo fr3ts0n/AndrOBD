@@ -111,11 +111,11 @@ It is open source and completely free.
 
 ## :battery: Support by donating
 
-Treat us with any amount of coffee, as it enables us to put more free time into the active development.
+Buy us a coffee or two, as it enables us to put more free time into the active development.
 
 <table>
   <tr>
-    <th colspan="3">Thank you for any donation</th>
+    <th colspan="3">Thank you for donating</th>
   </tr>
   <tr>
     <td align="center"><a href="https://www.paypal.me/fr3ts0n"><img src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif"/></a></td>
