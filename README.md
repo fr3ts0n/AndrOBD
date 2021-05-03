@@ -83,9 +83,9 @@ It is open source and completely free.
   * Discuss the project in the Telegram [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
   * Tell your friends about open source diagnostic software
  
-:checkered_flag: **Special request**: AndrOBD is looking for helping hands on designing and implementing of a modern new GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126))
+:microscope: **Special request**: AndrOBD is looking for helping hands on designing and implementing of a modern new GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126))
 
-## 🌎 Translation
+## 🌎 Localization
 
 Help translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/)
 
