@@ -26,12 +26,12 @@ It is open source and completely free.
 
 ##  :oncoming_automobile: Features
 
-#### OBD connection types
+#### Connection types
 * Bluetooth
 * USB
 * Wifi
 
-#### OBD Functionality
+#### Functionality
 
 * Read fault codes
 * Clear fault codes
@@ -93,7 +93,7 @@ It is open source and completely free.
   <summary>Translation status</summary>
   &nbsp;
 
-**AndrOBD dialogs:**
+**App dialogs:**
 
 [![App strings](https://hosted.weblate.org/widgets/androbd/-/strings/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
 
@@ -168,7 +168,7 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
 
 #### Internet promotion
 
-* Big hands to [aha999](https://github.com/aha999/) for promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
+* Big hands to [aha999](https://github.com/aha999/) for a fancier Readme, promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
 
 #### Hosting translations
 
