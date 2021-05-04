@@ -61,9 +61,9 @@ It is open source and completely free.
 
 - Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
 - Available Plugins:
-  - MQTT publisher - Publish OBD data to MQTT broker
-  - GpsProvider - Provide GPS data to AndrOBD
-  - SensorProvider - Provide Accelerometer data to AndrOBD
+  - [MQTT publisher](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.mqtt/) - Publish OBD data to MQTT broker
+  - [GpsProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.gpsprovider/) - Provide GPS data to AndrOBD
+  - [SensorProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.sensorprovider/) - Provide Accelerometer data to AndrOBD
 
 #### Native language support
  
@@ -86,7 +86,7 @@ It is open source and completely free.
   * Test the app with different devices, alpha & beta releases are posted in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
   * Report issues in the [issue tracker](https://github.com/fr3ts0n/AndrOBD/issues)
   * Create a [Pull Request](https://opensource.guide/how-to-contribute/#opening-a-pull-request)
-  * Contribute to development of plugins: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
+  * Contribute to development of plugin extensions: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
   * Discuss the project in the Telegram [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
   * Translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/)
 <details>
