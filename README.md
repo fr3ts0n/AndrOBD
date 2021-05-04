@@ -7,7 +7,7 @@
 [![GitHub license](https://img.shields.io/github/license/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/blob/master/LICENSE)
 
 AndrOBD allows your Android device to connect to your car's on-board diagnostics system via any ELM327 OBD adapter, display various information & perform operations.
-It is open source and completely free.
+It is open source and completely free. The application also has a built in Demo mode that simulates live data, so you don't require an adapter to test it.
 
 ## :books: Documentation
 
