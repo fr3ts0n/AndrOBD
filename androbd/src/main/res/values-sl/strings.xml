@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Prevedel K. Skerbiš-Aha999</string>
+    <string name="translation_credits">Prevedel Aha999</string>
     <string name="app_description">Android aplikacija za OBD diagnostiko z adapterji ELM327</string>
     <string name="title_connecting">Povezovanje…</string>
     <string name="title_connected_to">Povezano %s</string>
