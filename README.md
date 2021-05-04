@@ -69,7 +69,7 @@ It is open source and completely free.
  
 + translatable via [weblate.org](https://hosted.weblate.org/projects/androbd/strings/)
   + Program dialogs
-  + Data item descriptions
+  + OBD data descriptions
   + Fault code descriptions
 
 </details>
@@ -93,7 +93,7 @@ It is open source and completely free.
   <summary>Translation status</summary>
   &nbsp;
 
-**AndrOBD UI:**
+**AndrOBD dialogs:**
 
 [![App strings](https://hosted.weblate.org/widgets/androbd/-/strings/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
 
