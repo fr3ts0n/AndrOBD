@@ -67,10 +67,10 @@ It is open source and completely free. The application also has a built in Demo 
 
 **Native language support**
  
-+ translatable via [weblate.org](https://hosted.weblate.org/projects/androbd/strings/)
-  + Program dialogs
-  + OBD data descriptions
-  + Fault code descriptions
++ translatable via [weblate.org](https://hosted.weblate.org/engage/androbd/)
+  + [Program dialogs](https://hosted.weblate.org/projects/androbd/strings/)
+  + [OBD data descriptions](https://hosted.weblate.org/projects/androbd/obd-data-descriptions/)
+  + [Fault code descriptions](https://hosted.weblate.org/projects/androbd/fault-codes/)
 
 </details>
 
