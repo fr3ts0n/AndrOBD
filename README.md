@@ -26,12 +26,12 @@ It is open source and completely free. The application also has a built in Demo 
 
 ##  :oncoming_automobile: Features
 
-#### Connection types
+**Connection types**
 * Bluetooth
 * USB
 * Wifi
 
-#### Functionality
+**Functionality**
 
 * Read fault codes
 * Clear fault codes
@@ -40,9 +40,9 @@ It is open source and completely free. The application also has a built in Demo 
 * Read vehicle info data
 
 <details>
-  <summary>Expand features list</summary>
-
-#### Additional features
+  <summary>Expand features list</summary>&nbsp;
+  
+**Additional features**
 
 * Day/Night view
 * Data charts
@@ -52,12 +52,12 @@ It is open source and completely free. The application also has a built in Demo 
 * Load recorded data (for analysis)
 * CSV export
 
-#### Customisation of PID data
+**Customisation of PID data**
 
 * PID data items
 * Data conversions
 
-#### Plugin extension support
+**Plugin extension support**
 
 - Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
 - Available Plugins:
@@ -65,7 +65,7 @@ It is open source and completely free. The application also has a built in Demo 
   - [GpsProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.gpsprovider/) - Provide GPS data to AndrOBD
   - [SensorProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.sensorprovider/) - Provide Accelerometer data to AndrOBD
 
-#### Native language support
+**Native language support**
  
 + translatable via [weblate.org](https://hosted.weblate.org/projects/androbd/strings/)
   + Program dialogs
@@ -158,19 +158,19 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
 <details>
   <summary>Contributors</summary>
   
-#### Graphic design
+**Graphic design**
 
 * Very special Thanks to [anaufalm](https://github.com/anaufalm) for the [beautiful graphic design artwork and logos](https://steemit.com/utopian-io/@naufal/my-design-logo-for-androbd-valid-commit-and-added-to-v2-0-3).
 
-#### Start page
+**Start page**
 
 * Thank you very much [sampoder](https://github.com/sampoder/) for a beautiful [AndrOBD start page](https://fr3ts0n.github.io/AndrOBD/)
 
-#### Internet promotion
+**Internet promotion**
 
 * Big hands to [aha999](https://github.com/aha999/) for a fancier Readme, promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
 
-#### Hosting translations
+**Hosting translations**
 
 * Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 </details>
