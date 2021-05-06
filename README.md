@@ -40,7 +40,8 @@ It is open source and completely free. The application also has a built in Demo 
 * Read vehicle info data
 
 <details>
-  <summary>Expand features list</summary>&nbsp;
+  <summary>Expand features list</summary>
+&nbsp;
   
 **Additional features**
 
@@ -91,7 +92,7 @@ It is open source and completely free. The application also has a built in Demo 
   * Translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/)
 <details>
   <summary>Translation status</summary>
-  &nbsp;
+&nbsp;
 
 **App dialogs:**
 
@@ -141,6 +142,7 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
 #### Supporters
 <details>
   <summary>Donators</summary>
+&nbsp;
   
 | Date | Supporter | Donation  |
 |------|-----------|----------:|
@@ -157,6 +159,7 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
 
 <details>
   <summary>Contributors</summary>
+&nbsp;
   
 **Graphic design**
 
