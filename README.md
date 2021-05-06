@@ -27,11 +27,6 @@ It is open source and completely free. The application also has a built in Demo 
 
 ##  :oncoming_automobile: Features
 
-**Connection types**
-* Bluetooth
-* USB
-* Wifi
-
 **Functionality**
 
 * Read fault codes
@@ -39,6 +34,11 @@ It is open source and completely free. The application also has a built in Demo 
 * Read/record live data
 * Read freeze frame data
 * Read vehicle info data
+
+**Connection types**
+* Bluetooth
+* USB
+* Wi-Fi
 
 <details>
   <summary>Expand features list</summary>
