@@ -7,6 +7,7 @@ It is open source and completely free. The application also has a built in Demo 
 [![GitHub issues](https://img.shields.io/github/issues/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/issues)
 [![Liberapay receiving](https://img.shields.io/liberapay/receives/AndrOBD?label=Liberapay)](https://liberapay.com/AndrOBD/donate/)
 [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/AndrOBD)](https://www.reddit.com/r/AndrOBD/)
+[![Telegram](https://img.shields.io/badge/chat-on%20Telegram-blue)](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
 [![GitHub license](https://img.shields.io/github/license/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/blob/master/LICENSE)
 
 ## :books: Documentation
