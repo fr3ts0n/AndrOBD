@@ -20,6 +20,7 @@ It is open source and completely free. The application also has a built in Demo 
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/fr3ts0n/AndrOBD?label=latest%20version&sort=semver)](https://github.com/fr3ts0n/AndrOBD/releases)
 [![F-Droid](https://img.shields.io/f-droid/v/com.fr3ts0n.ecu.gui.androbd)](https://f-droid.org/en/packages/com.fr3ts0n.ecu.gui.androbd/)
+[![Telegram](https://img.shields.io/badge/alpha/beta-on%20Telegram-blue)](https://t.me/AndrOBD_dev)
 
 [<img src="https://f-droid.org/badge/get-it-on.png"
   alt="Get it on F-Droid"
