@@ -121,7 +121,7 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
     <th colspan="3">Thank you for donating</th>
   </tr>
   <tr>
-    <td align="center"><a href="https://www.paypal.me/fr3ts0n"><img src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif"/></a></td>
+    <td align="center"><a href="https://www.paypal.me/fr3ts0n"><img src="https://github.com/aha999/DonateButtons/blob/master/paypal-donate-icon-7.png" height=25/></a></td>
     <td align="center">PayPal</td>
     <td><a href="https://www.paypal.me/fr3ts0n">https://www.paypal.me/fr3ts0n</a></td>
   </tr>
