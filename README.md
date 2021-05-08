@@ -141,6 +141,12 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
   </tr>
 </table>
 
+#### Reviews
+* [AlternativeTo](https://alternativeto.net/software/androbd/about/)
+* [Slant](https://www.slant.co/options/41149/~androbd-review#3)
+
+
+
 #### Supporters
 <details>
   <summary>Donators</summary>
