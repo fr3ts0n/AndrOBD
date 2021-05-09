@@ -147,7 +147,7 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
 
 
 
-#### Supporters
+#### Credits
 <details>
   <summary>Donators</summary>
 &nbsp;
