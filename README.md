@@ -80,7 +80,7 @@ It is open source and completely free. The application also has a built in Demo 
 | :--: | :--: | :--: |
 | ![Screenshot of functions](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_02.png) | ![Screenshot of OBD data](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_06.png) | ![Screenshot of Dashboard](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_09.png) |
 
-*More screenshots available on [the Website](https://fr3ts0n.github.io/AndrOBD/)*
+*More screenshots available on [the Website](https://fr3ts0n.github.io/AndrOBD/) or in the [Screenshots folder](https://github.com/aha999/AndrOBD/tree/master/fastlane/metadata/android/en-US/images/phoneScreenshots)*
 
 ## :family: Join the team
   * Test the app with different devices, alpha & beta releases are posted in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
