@@ -26,12 +26,12 @@ It is open source and completely free. The application also has a built in Demo 
 
 ##  :oncoming_automobile: Features
 
-**Connection types**
+#### Connection types
 * Bluetooth
 * USB
 * Wi-Fi
 
-**Functionality**
+#### Functionality
 
 * Read fault codes
 * Clear fault codes
@@ -41,9 +41,8 @@ It is open source and completely free. The application also has a built in Demo 
 
 <details>
   <summary>Expand features list</summary>
-&nbsp;
   
-**Additional features**
+#### Additional features
 
 * Day/Night view
 * Data charts
@@ -53,12 +52,12 @@ It is open source and completely free. The application also has a built in Demo 
 * Load recorded data (for analysis)
 * CSV export
 
-**Customisation of PID data**
+#### Customisation of PID data
 
 * PID data items
 * Data conversions
 
-**Plugin extension support**
+#### Plugin extension support
 
 - Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
 - Available Plugins:
@@ -66,7 +65,7 @@ It is open source and completely free. The application also has a built in Demo 
   - [GpsProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.gpsprovider/) - Provide GPS data to AndrOBD
   - [SensorProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.sensorprovider/) - Provide Accelerometer data to AndrOBD
 
-**Native language support**
+#### Native language support
  
 + translatable via [weblate.org](https://hosted.weblate.org/engage/androbd/)
   + [Program dialogs](https://hosted.weblate.org/projects/androbd/strings/)
@@ -92,23 +91,22 @@ It is open source and completely free. The application also has a built in Demo 
   * Translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/)
 <details>
   <summary>Translation status</summary>
-&nbsp;
 
-**App dialogs:**
+#### App dialogs:
 
 [![App strings](https://hosted.weblate.org/widgets/androbd/-/strings/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
 
-**OBD data descriptions:**
+#### OBD data descriptions:
 
 [![OBD data descriptions](https://hosted.weblate.org/widgets/androbd/-/obd-data-descriptions/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
 
-**Fault codes:**
+#### Fault codes:
 
 [![Fault codes](https://hosted.weblate.org/widgets/androbd/-/fault-codes/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
 
 </details>
  
-**Special request**: AndrOBD is looking for helping hands on designing and implementing of a modern new GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126))
+#### Special request: AndrOBD is looking for helping hands on designing and implementing of a modern new GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126))
 
 ## :battery: Support by donating
 
@@ -165,21 +163,20 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
 
 <details>
   <summary>Contributors</summary>
-&nbsp;
   
-**Graphic design**
+#### Graphic design
 
 * Very special Thanks to [anaufalm](https://github.com/anaufalm) for the [beautiful graphic design artwork and logos](https://steemit.com/utopian-io/@naufal/my-design-logo-for-androbd-valid-commit-and-added-to-v2-0-3).
 
-**Start page**
+#### Start page
 
 * Thank you very much [sampoder](https://github.com/sampoder/) for a beautiful [AndrOBD start page](https://fr3ts0n.github.io/AndrOBD/)
 
-**Internet promotion**
+#### Internet promotion
 
 * Big hands to [aha999](https://github.com/aha999/) for a fancier Readme, promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
 
-**Hosting translations**
+#### Hosting translations
 
 * Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
 </details>
