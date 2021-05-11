@@ -59,18 +59,18 @@ It is open source and completely free. The application also has a built in Demo 
 
 #### Plugin extension support
 
-- Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
-- Available Plugins:
-  - [MQTT publisher](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.mqtt/) - Publish OBD data to MQTT broker
-  - [GpsProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.gpsprovider/) - Provide GPS data to AndrOBD
-  - [SensorProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.sensorprovider/) - Provide Accelerometer data to AndrOBD
+* Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
+* Available Plugins:
+  * [MQTT publisher](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.mqtt/) - Publish OBD data to MQTT broker
+  * [GpsProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.gpsprovider/) - Provide GPS data to AndrOBD
+  * [SensorProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.sensorprovider/) - Provide Accelerometer data to AndrOBD
 
 #### Native language support
  
-+ translatable via [weblate.org](https://hosted.weblate.org/engage/androbd/)
-  + [Program dialogs](https://hosted.weblate.org/projects/androbd/strings/)
-  + [OBD data descriptions](https://hosted.weblate.org/projects/androbd/obd-data-descriptions/)
-  + [Fault code descriptions](https://hosted.weblate.org/projects/androbd/fault-codes/)
+* translatable via [weblate.org](https://hosted.weblate.org/engage/androbd/)
+  * [Program dialogs](https://hosted.weblate.org/projects/androbd/strings/)
+  * [OBD data descriptions](https://hosted.weblate.org/projects/androbd/obd-data-descriptions/)
+  * [Fault code descriptions](https://hosted.weblate.org/projects/androbd/fault-codes/)
 
 </details>
 
