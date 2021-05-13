@@ -117,7 +117,7 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
     <th colspan="3">Thank you for donating</th>
   </tr>
   <tr>
-    <td align="center"><a href="https://www.paypal.me/fr3ts0n"><img src="https://github.com/aha999/AndrOBD/blob/master/manual/paypal-donate-icon.png" height=25/></a></td>
+    <td align="center"><a href="https://www.paypal.me/fr3ts0n"><img src="/manual/paypal-donate-icon.png" height=25/></a></td>
     <td align="center">PayPal</td>
     <td><a href="https://www.paypal.me/fr3ts0n">https://www.paypal.me/fr3ts0n</a></td>
   </tr>
@@ -131,7 +131,7 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
     </td>
   </tr>
   <tr>
-    <td align="center"><a href="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP"><img src="manual/bitcoin_qr_code.png" alt="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP" width="128px" height="128px"></a></td>
+    <td align="center"><a href="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP"><img src="/manual/bitcoin_qr_code.png" alt="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP" width="128px" height="128px"></a></td>
     <td align="center">Bitcoin</a></td>
     <td><a href="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP">19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP</a></td>
   </tr>
