@@ -387,6 +387,7 @@
                 android:icon="@drawable/ic_coin"
                 android:key="paypal"
                 android:title="PayPal.me"
+                android:summary="https://PayPal.me/fr3ts0n"
                 >
                 <intent
                     android:action="android.intent.action.VIEW"
@@ -396,10 +397,11 @@
                 android:icon="@drawable/ic_coin"
                 android:key="bitcoin"
                 android:title="Bitcoin"
+                android:summary="bitcoin://19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP"
                 >
                 <intent
                     android:action="android.intent.action.VIEW"
-                    android:data="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP"/>
+                    android:data="bitcoin://19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP"/>
             </Preference>
         </PreferenceCategory>
     </PreferenceScreen>
