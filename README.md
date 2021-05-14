@@ -4,32 +4,32 @@ AndrOBD allows your Android device to connect to your car's on-board diagnostics
 It is open source and completely free. The application also has a built in Demo mode that simulates live data, so you don't require an adapter to test it.
 
 ![Android CI](https://github.com/fr3ts0n/AndrOBD/workflows/Android%20CI/badge.svg)
-[![GitHub issues](https://img.shields.io/github/issues/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/issues)
+[![GitHub issues](https://img.shields.io/github/issues/fr3ts0n/AndrOBD?color=red)](https://github.com/fr3ts0n/AndrOBD/issues)
 [![Liberapay receiving](https://img.shields.io/liberapay/receives/AndrOBD?label=Liberapay)](https://liberapay.com/AndrOBD/donate/)
-[![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/AndrOBD)](https://www.reddit.com/r/AndrOBD/)
-[![GitHub license](https://img.shields.io/github/license/fr3ts0n/AndrOBD)](https://github.com/fr3ts0n/AndrOBD/blob/master/LICENSE)
+[![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/AndrOBD?color=orange)](https://www.reddit.com/r/AndrOBD/)
+[![Telegram](https://img.shields.io/badge/chat-on%20Telegram-blue)](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
+[![GitHub license](https://img.shields.io/github/license/fr3ts0n/AndrOBD?color=lightgrey)](https://github.com/fr3ts0n/AndrOBD/blob/master/LICENSE)
 
-## :books: Documentation
+## Documentation
 
 * [FAQ](https://github.com/fr3ts0n/AndrOBD/wiki/Frequently-asked-questions) - Frequently asked questions
 
 * [Wiki](https://github.com/fr3ts0n/AndrOBD/wiki) - AndrOBD knowledge database
 
-## :arrow_forward: Install
+## Install
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/fr3ts0n/AndrOBD?label=latest%20version&sort=semver)](https://github.com/fr3ts0n/AndrOBD/releases)
 [![F-Droid](https://img.shields.io/f-droid/v/com.fr3ts0n.ecu.gui.androbd)](https://f-droid.org/en/packages/com.fr3ts0n.ecu.gui.androbd/)
+[![Telegram](https://img.shields.io/badge/alpha/beta-on%20Telegram-blue)](https://t.me/AndrOBD_dev)
 
-[<img src="https://f-droid.org/badge/get-it-on.png"
-  alt="Get it on F-Droid"
-  height="80">](https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/)
+[<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/)
 
-##  :oncoming_automobile: Features
+##  Features
 
 #### Connection types
 * Bluetooth
 * USB
-* Wifi
+* Wi-Fi
 
 #### Functionality
 
@@ -41,7 +41,7 @@ It is open source and completely free. The application also has a built in Demo 
 
 <details>
   <summary>Expand features list</summary>
-
+  
 #### Additional features
 
 * Day/Night view
@@ -59,30 +59,30 @@ It is open source and completely free. The application also has a built in Demo 
 
 #### Plugin extension support
 
-- Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
-- Available Plugins:
-  - [MQTT publisher](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.mqtt/) - Publish OBD data to MQTT broker
-  - [GpsProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.gpsprovider/) - Provide GPS data to AndrOBD
-  - [SensorProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.sensorprovider/) - Provide Accelerometer data to AndrOBD
+* Development: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
+* Available Plugins:
+  * [MQTT publisher](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.mqtt/) - Publish OBD data to MQTT broker
+  * [GpsProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.gpsprovider/) - Provide GPS data to AndrOBD
+  * [SensorProvider](https://f-droid.org/en/packages/com.fr3ts0n.androbd.plugin.sensorprovider/) - Provide Accelerometer data to AndrOBD
 
 #### Native language support
  
-+ translatable via [weblate.org](https://hosted.weblate.org/projects/androbd/strings/)
-  + Program dialogs
-  + OBD data descriptions
-  + Fault code descriptions
+* translatable via [weblate.org](https://hosted.weblate.org/engage/androbd/)
+  * [Program dialogs](https://hosted.weblate.org/projects/androbd/strings/)
+  * [OBD data descriptions](https://hosted.weblate.org/projects/androbd/obd-data-descriptions/)
+  * [Fault code descriptions](https://hosted.weblate.org/projects/androbd/fault-codes/)
 
 </details>
 
-## :eyes: Screenshots
+## Screenshots
 
 | Functions | OBD data | Dashboard |
 | :--: | :--: | :--: |
 | ![Screenshot of functions](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_02.png) | ![Screenshot of OBD data](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_06.png) | ![Screenshot of Dashboard](/fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_09.png) |
 
-*More screenshots available on [the Website](https://fr3ts0n.github.io/AndrOBD/)*
+*More screenshots available on [the Website](https://fr3ts0n.github.io/AndrOBD/) or in the [Screenshots folder](https://github.com/fr3ts0n/AndrOBD/tree/master/fastlane/metadata/android/en-US/images/phoneScreenshots)*
 
-## :family: Join the team
+## Join the team
   * Test the app with different devices, alpha & beta releases are posted in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
   * Report issues in the [issue tracker](https://github.com/fr3ts0n/AndrOBD/issues)
   * Create a [Pull Request](https://opensource.guide/how-to-contribute/#opening-a-pull-request)
@@ -91,25 +91,24 @@ It is open source and completely free. The application also has a built in Demo 
   * Translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/)
 <details>
   <summary>Translation status</summary>
-  &nbsp;
 
-**App dialogs:**
+#### App dialogs:
 
 [![App strings](https://hosted.weblate.org/widgets/androbd/-/strings/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
 
-**OBD data descriptions:**
+#### OBD data descriptions:
 
 [![OBD data descriptions](https://hosted.weblate.org/widgets/androbd/-/obd-data-descriptions/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
 
-**Fault codes:**
+#### Fault codes:
 
 [![Fault codes](https://hosted.weblate.org/widgets/androbd/-/fault-codes/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
 
 </details>
  
-**Special request**: AndrOBD is looking for helping hands on designing and implementing of a modern new GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126))
+#### Special request: AndrOBD is looking for helping hands on designing and implementing of a modern new GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126))
 
-## :battery: Support by donating
+## Support by donating
 
 Buy us a coffee or two, as it enables us to put more free time into the active development.
 
@@ -118,7 +117,7 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
     <th colspan="3">Thank you for donating</th>
   </tr>
   <tr>
-    <td align="center"><a href="https://www.paypal.me/fr3ts0n"><img src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif"/></a></td>
+    <td align="center"><a href="https://www.paypal.me/fr3ts0n"><img src="/manual/paypal-donate-icon.png" height=25/></a></td>
     <td align="center">PayPal</td>
     <td><a href="https://www.paypal.me/fr3ts0n">https://www.paypal.me/fr3ts0n</a></td>
   </tr>
@@ -132,15 +131,22 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
     </td>
   </tr>
   <tr>
-    <td align="center"><a href="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP"><img src="manual/bitcoin_qr_code.png" alt="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP" width="128px" height="128px"></a></td>
+    <td align="center"><a href="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP"><img src="/manual/bitcoin_qr_code.png" alt="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP" width="128px" height="128px"></a></td>
     <td align="center">Bitcoin</a></td>
     <td><a href="bitcoin:19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP">19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP</a></td>
   </tr>
 </table>
 
-#### Supporters
+#### Reviews (rate the app)
+* [AlternativeTo](https://alternativeto.net/software/androbd/about/)
+* [Slant](https://www.slant.co/options/41149/~androbd-review#3)
+
+
+
+#### Credits
 <details>
   <summary>Donators</summary>
+&nbsp;
   
 | Date | Supporter | Donation  |
 |------|-----------|----------:|
