@@ -37,23 +37,8 @@ public class VidItemAdapter extends ObdItemAdapter
 	}
 
 	@Override
-	public Collection<Object> getPreferredItems(PvList pvs)
+	public Collection getPreferredItems(PvList pvs)
 	{
 		return pvs.values();
 	}
-
-	/* (non-Javadoc)
-	 * @see com.fr3ts0n.ecu.gui.androbd.ObdItemAdapter#getView(int, android.view.View, android.view.ViewGroup)
-	@Override
-	public View getView(int position, View v, ViewGroup parent)
-	{
-		// let superclass format the item
-		v = super.getView(position, v, parent);
-		// hide the checkbox
-		CheckBox cbx = (CheckBox) v.findViewById(R.id.check);
-		cbx.setVisibility(View.GONE);
-
-		return v;
-	}
-   */
 }

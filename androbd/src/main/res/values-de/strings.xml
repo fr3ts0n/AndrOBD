@@ -37,6 +37,16 @@
 \n 
 \n Andere, herstellerspezifische Einstellungen können dadurch verloren gehen. 
 \n Dadurch kann eine Lernphase nötig werden, während welcher der Motor ungleichmäßig läuft.</string>
+    <string name="obd_test_ctrl">OBD Teststeuerung\n\n
+Der angeforderte Test kann folgendes verusachen:\n
+- Fahrzeugbewegung\n
+- Abgasrauch\n
+- Hohe Abgastemperatur\n
+- Laute Motorgeräusche\n
+- Kraftstoffdämpfe\n
+- etc.\n\n
+Bitte bestätigen Sie diesen Test auf eigene Gefahr in einer betriebssicheren Umgebung durchzuführen!
+    </string>
     <string name="demo_started">DEMO-Modus gestartet</string>
     <string name="demo_stopped">DEMO-Modus beendet</string>
     <string name="load">Messung laden</string>
@@ -166,4 +176,5 @@
     <string name="master">Hauptrechner</string>
     <string name="comm_baudrate">ELM Baudrate</string>
     <string name="comm_baudrate_description">USB serielle Übertragungsgeschwindigkeit</string>
+    <string name="service_testcontrol">OBD Teststeuerung</string>
 </resources>

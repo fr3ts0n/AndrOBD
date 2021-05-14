@@ -225,6 +225,7 @@ public class MainActivity extends PluginManager
 	 */
 	private static ObdItemAdapter mPidAdapter;
 	private static VidItemAdapter mVidAdapter;
+	private static TidItemAdapter mTidAdapter;
 	private static DfcItemAdapter mDfcAdapter;
 	private static PluginDataAdapter mPluginDataAdapter;
 	private static ObdItemAdapter currDataAdapter;
@@ -342,6 +343,7 @@ public class MainActivity extends PluginManager
 		// Set up all data adapters
 		mPidAdapter = new ObdItemAdapter(this, R.layout.obd_item, ObdProt.PidPvs);
 		mVidAdapter = new VidItemAdapter(this, R.layout.obd_item, ObdProt.VidPvs);
+		mTidAdapter = new TidItemAdapter(this, R.layout.obd_item, ObdProt.VidPvs);
 		mDfcAdapter = new DfcItemAdapter(this, R.layout.obd_item, ObdProt.tCodes);
 		mPluginDataAdapter = new PluginDataAdapter(this, R.layout.obd_item, mPluginPvs);
 		currDataAdapter = mPidAdapter;
@@ -617,6 +619,10 @@ public class MainActivity extends PluginManager
 
 			case R.id.service_freezeframes:
 				setObdService(ObdProt.OBD_SVC_FREEZEFRAME, item.getTitle());
+				return true;
+
+			case R.id.service_testcontrol:
+				setObdService(ObdProt.OBD_SVC_CTRL_MODE, item.getTitle());
 				return true;
 
 			case R.id.service_codes:
@@ -908,6 +914,14 @@ public class MainActivity extends PluginManager
 					Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
 				}
 				break;
+
+			case ObdProt.OBD_SVC_CTRL_MODE:
+				EcuDataPv testPv = (EcuDataPv) getListAdapter().getItem(position);
+				// Confirm & perform OBD test control ...
+				runObdTestControl(testPv.get(EcuDataPv.FID_DESCRIPT).toString(),
+								  ObdProt.OBD_SVC_CTRL_MODE,
+								  testPv.getAsInt(EcuDataPv.FID_PID));
+				break;
 		}
 		return true;
 	}
@@ -978,6 +992,7 @@ public class MainActivity extends PluginManager
 						// set adapters data source to loaded list instances
 						mPidAdapter.setPvList(ObdProt.PidPvs);
 						mVidAdapter.setPvList(ObdProt.VidPvs);
+						mTidAdapter.setPvList(ObdProt.VidPvs);
 						mDfcAdapter.setPvList(ObdProt.tCodes);
 						// set OBD data mode to the one selected by input file
 						setObdService(CommService.elm.getService(), getString(R.string.saved_data));
@@ -1863,6 +1878,10 @@ public class MainActivity extends PluginManager
 				Toast.makeText(this, getString(R.string.long_press_dfc_hint), Toast.LENGTH_LONG).show();
 				break;
 
+			case ObdProt.OBD_SVC_CTRL_MODE:
+				currDataAdapter = mTidAdapter;
+				break;
+
 			case ObdProt.OBD_SVC_NONE:
 				setContentView(R.layout.startup_layout);
 				// intentionally no break to initialize adapter
@@ -2098,6 +2117,30 @@ public class MainActivity extends PluginManager
 				})
 			.setNegativeButton(android.R.string.no, null)
 			.show();
+	}
+
+	/**
+	 * perform OBD test control
+	 * confirmation dialog is shown and the operation is confirmed
+	 */
+	private void runObdTestControl(String testControlName, int service, int tid)
+	{
+		dlgBuilder
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setTitle(testControlName)
+				.setMessage(R.string.obd_test_ctrl)
+				.setPositiveButton(android.R.string.yes,
+								   new DialogInterface.OnClickListener()
+								   {
+									   @Override
+									   public void onClick(DialogInterface dialog, int which)
+									   {
+										   char emptyBuffer[] = {};
+										   CommService.elm.writeTelegram(emptyBuffer, service, tid);
+									   }
+								   })
+				.setNegativeButton(android.R.string.no, null)
+				.show();
 	}
 
 	/**

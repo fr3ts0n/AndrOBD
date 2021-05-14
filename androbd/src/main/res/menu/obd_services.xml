@@ -18,6 +18,10 @@
         android:title="@string/service_freezeframes"
         android:icon="@android:drawable/ic_menu_recent_history"/>
     <item
+        android:id="@+id/service_testcontrol"
+        android:title="@string/service_testcontrol"
+        android:icon="@android:drawable/ic_menu_slideshow"/>
+    <item
         android:id="@+id/service_codes"
         android:title="@string/obd_codes"
         android:icon="@android:drawable/ic_menu_myplaces"/>

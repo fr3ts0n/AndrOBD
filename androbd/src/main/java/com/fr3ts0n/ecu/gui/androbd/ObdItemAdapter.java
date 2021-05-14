@@ -137,7 +137,7 @@ class ObdItemAdapter extends ArrayAdapter<Object>
     private Collection<Object> getMatchingItems(PvList pvs, Set<String> pidsToShow)
     {
         HashSet<Object> filtered = new HashSet<>();
-        for (Object key : pidsToShow)
+        for (String key : pidsToShow)
         {
             IndexedProcessVar pv = (IndexedProcessVar) pvs.get(key);
             if (pv != null)
