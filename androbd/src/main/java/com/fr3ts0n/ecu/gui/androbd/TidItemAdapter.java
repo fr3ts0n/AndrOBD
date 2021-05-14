@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.pvs.PvList;
 
 import java.util.Collection;
@@ -49,17 +50,26 @@ public class TidItemAdapter extends ObdItemAdapter
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        // get ObdItem view
-        View view = super.getView(position, convertView, parent);
+        // get data PV
+        EcuDataPv currPv = (EcuDataPv) getItem(position);
 
-        // Hide value ...
-        TextView tvValue = view.findViewById(R.id.obd_value);
-        tvValue.setVisibility(View.GONE);
-        // Show icon ...
-        ImageView ivIcon = view.findViewById(R.id.obd_icon);
-        ivIcon.setImageDrawable(view.getResources().getDrawable(android.R.drawable.ic_menu_slideshow));
+        if (convertView == null)
+        {
+            convertView = mInflater.inflate(R.layout.obd_item, parent, false);
+        }
+
+        // Show icon
+        ImageView ivIcon = convertView.findViewById(R.id.obd_icon);
         ivIcon.setVisibility(View.VISIBLE);
 
-        return view;
+        // Hide value
+        TextView tvValue = convertView.findViewById(R.id.obd_value);
+        tvValue.setVisibility(View.GONE);
+
+        // set description
+        TextView tvUnits = convertView.findViewById(R.id.obd_units);
+        tvUnits.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
+
+        return convertView;
     }
 }
