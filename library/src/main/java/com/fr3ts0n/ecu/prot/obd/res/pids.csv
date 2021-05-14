@@ -50,26 +50,26 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	mnemonic (
 0x01,0x02	0x1B	1	1	0	8	0xFF	O2_PERCENT	%.1f			o2_sensor_fuel_trim_b2s4	O2 Sensor fuel trim B2S4	Bank 2	o2_sensor_formula		
 0x01,0x02	0x1C	0	1	0	8	0xFF	OBD_TYPE	%.0f			obd_type	OBD conforms to	obd_requirements_formula			
 0x01,0x02	0x1D	0	1	0	8	0xFF	O2_PRESENT_MAP	%.0f			map_oxygen_sensors_present	Oxygen sensors present	obd_requirements_formula			
-0x01,0x02	0x1E	0	1	0	1	0x1	STATE_BIT	%.0f			status_power_take_off	Power Take-Off Status	pto_status_formula
+0x01,0x02	0x1E	0	1	0	1	0x1	STATE_BIT	%.0f			status_power_take_off	Power Take-Off Status	pto_status_formula			
 0x01,0x02	0x1F	0	2	0	16	0xFFFF	HOURS	%.2f			running_time	Time Since Engine Start				
 0x01,0x02	0x21	0	2	0	16	0xFFFF	DISTANCE	%.0f			distance_sine_mil_active	Distance since MIL activated				
 0x01,0x02	0x22	0	2	0	16	0xFFFF	PRESS_REL	%.3f			fuel_pressure_rel	Fuel Rail Pressure (rel. to manifold vacuum)	fuel rail pressure relative to manifold vacuum			
 0x01,0x02	0x23	0	2	0	16	0xFFFF	PRESS_WIDERANGE	%.1f			fuel_pressure	Fuel Pressure (gauge)	fuel rail pressure (gauge	wide range		
 0x01,0x02	0x24	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b1s1	O2 Sensor B1S1 lambda	Bank 1 (WR)	o2_sensor_wrv_formula	-o2 sensors (wide range	voltage
 0x01,0x02	0x24	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b1s1	O2 Sensor B1S1	Bank 1 (WR)	o2_sensor_wrv_formula	-o2 sensors (wide range	voltage
-0x01,0x02	0x25	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b1s2	O2 Sensor B1S2 lambda	Bank 1 (WR)	o2_sensor_wrv_formula
+0x01,0x02	0x25	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b1s2	O2 Sensor B1S2 lambda	Bank 1 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x25	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b1s2	O2 Sensor B1S2	Bank 1 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x26	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b1s3	O2 Sensor B1S3 lambda	Bank 1 (WR)	o2_sensor_wrv_formula
+0x01,0x02	0x26	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b1s3	O2 Sensor B1S3 lambda	Bank 1 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x26	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b1s3	O2 Sensor B1S3	Bank 1 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x27	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b1s4	O2 Sensor B1S4 lambda	Bank 1 (WR)	o2_sensor_wrv_formula
+0x01,0x02	0x27	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b1s4	O2 Sensor B1S4 lambda	Bank 1 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x27	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b1s4	O2 Sensor B1S4	Bank 1 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x28	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b2s1	O2 Sensor B2S1 lambda	Bank 2 (WR)	o2_sensor_wrv_formula
+0x01,0x02	0x28	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b2s1	O2 Sensor B2S1 lambda	Bank 2 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x28	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b2s1	O2 Sensor B2S1	Bank 2 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x29	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b2s2	O2 Sensor B2S2 lambda	Bank 2 (WR)	o2_sensor_wrv_formula
+0x01,0x02	0x29	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b2s2	O2 Sensor B2S2 lambda	Bank 2 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x29	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b2s2	O2 Sensor B2S2	Bank 2 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x2A	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b2s3	O2 Sensor B2S3 lambda	Bank 2 (WR)	o2_sensor_wrv_formula
+0x01,0x02	0x2A	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b2s3	O2 Sensor B2S3 lambda	Bank 2 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x2A	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b2s3	O2 Sensor B2S3	Bank 2 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x2B	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b2s4	O2 Sensor B2S4 lambda	Bank 2 (WR)	o2_sensor_wrv_formula
+0x01,0x02	0x2B	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b2s4	O2 Sensor B2S4 lambda	Bank 2 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x2B	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b2s4	O2 Sensor B2S4	Bank 2 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x2C	0	1	0	8	0xFF	PERCENT	%.1f			egr_ratio_commanded	Commanded EGR				
 0x01,0x02	0x2D	0	1	0	8	0xFF	PERCENT_REL	%.2f			egr_error	EGR Error				
@@ -81,19 +81,19 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	mnemonic (
 0x01,0x02	0x33	0	1	0	8	0xFF	PRESS_AIR	%.1f			barometric_pressure	Barometric Pressure (absolute)				
 0x01,0x02	0x34	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s1	O2 Sensor 1 lambda	Bank 1 (WR)	o2_sensor_wrc_formula	-o2 sensors (wide range	current
 0x01,0x02	0x34	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			o2_sensor_current_s1	O2 Sensor 1 current	Bank 1 (WR)	o2_sensor_wrc_formula	-o2 sensors (wide range	current
-0x01,0x02	0x35	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s2	O2 Sensor 2 lambda	Bank 1 (WR)	o2_sensor_wrc_formula
+0x01,0x02	0x35	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s2	O2 Sensor 2 lambda	Bank 1 (WR)	o2_sensor_wrc_formula		
 0x01,0x02	0x35	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			o2_sensor_current_s2	O2 Sensor 2 current	Bank 1 (WR)	o2_sensor_wrc_formula		
-0x01,0x02	0x36	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s3	O2 Sensor 3 lambda	Bank 1 (WR)	o2_sensor_wrc_formula
+0x01,0x02	0x36	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s3	O2 Sensor 3 lambda	Bank 1 (WR)	o2_sensor_wrc_formula		
 0x01,0x02	0x36	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			o2_sensor_current_s3	O2 Sensor 3 current	Bank 1 (WR)	o2_sensor_wrc_formula		
-0x01,0x02	0x37	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s4	O2 Sensor 4 lambda	Bank 1 (WR)	o2_sensor_wrc_formula
+0x01,0x02	0x37	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s4	O2 Sensor 4 lambda	Bank 1 (WR)	o2_sensor_wrc_formula		
 0x01,0x02	0x37	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			o2_sensor_current_s4	O2 Sensor 4 current	Bank 1 (WR)	o2_sensor_wrc_formula		
-0x01,0x02	0x38	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s5	O2 Sensor 5 lambda	Bank 2 (WR)	o2_sensor_wrc_formula
+0x01,0x02	0x38	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s5	O2 Sensor 5 lambda	Bank 2 (WR)	o2_sensor_wrc_formula		
 0x01,0x02	0x38	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			o2_sensor_current_s5	O2 Sensor 5 current	Bank 2 (WR)	o2_sensor_wrc_formula		
-0x01,0x02	0x39	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s6	O2 Sensor 6 lambda	Bank 2 (WR)	o2_sensor_wrc_formula
+0x01,0x02	0x39	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s6	O2 Sensor 6 lambda	Bank 2 (WR)	o2_sensor_wrc_formula		
 0x01,0x02	0x39	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			o2_sensor_current_s6	O2 Sensor 6 current	Bank 2 (WR)	o2_sensor_wrc_formula		
-0x01,0x02	0x3A	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s7	O2 Sensor 7 lambda	Bank 2 (WR)	o2_sensor_wrc_formula
+0x01,0x02	0x3A	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s7	O2 Sensor 7 lambda	Bank 2 (WR)	o2_sensor_wrc_formula		
 0x01,0x02	0x3A	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			o2_sensor_current_s7	O2 Sensor 7 current	Bank 2 (WR)	o2_sensor_wrc_formula		
-0x01,0x02	0x3B	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s8	O2 Sensor 8 lambda	Bank 2 (WR)	o2_sensor_wrc_formula
+0x01,0x02	0x3B	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_s8	O2 Sensor 8 lambda	Bank 2 (WR)	o2_sensor_wrc_formula		
 0x01,0x02	0x3B	2	2	0	16	0xFFFF	O2_CURRENT	%.1f			o2_sensor_current_s8	O2 Sensor 8 current	Bank 2 (WR)	o2_sensor_wrc_formula		
 0x01,0x02	0x3C	0	2	0	16	0xFFFF	TEMP_WIDERANGE	%.0f	-40	950	cat_temperature_b1s1	CAT Temperature B1S1	B1S1			
 0x01,0x02	0x3D	0	2	0	16	0xFFFF	TEMP_WIDERANGE	%.0f	-40	950	cat_temperature_b2s1	CAT Temperature B2S1	B2S1			
@@ -378,6 +378,8 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	mnemonic (
 0x01,0x02	0xA6	0	4	0	32	0xFFFFFFFF	ODO_DISTANCE	%.1f			odometer_reading	Odometer				
 0x01,0x02	0xC4	1	1	5	1	0xFF	GEN_SWITCH	%.0f			status_engine_idle_request	Engine IDLE Request				
 0x01,0x02	0xC4	1	1	6	1	0xFF	GEN_SWITCH	%.0f			status_engine_stop_request	Engine STOP Request				
+0x08	0x01	0	0	0	0	0x00	ASCII	%s			TST_EVAPLEAK	Evaporative system leak test	TST_EVAPLEAK			
+0x08	0x02	0	0	0	0	0x00	ASCII	%s			TST_DPFREGEN	Diesel Particulate Filter Regeneration	TST_EVAPLEAK			
 0x09	0x01	0	1	0	8	0xFF	ONETOONE	%.0f			counts_vin_length	Message count VIN				
 0x09	0x02	0	1	0	8	0xFF	ONETOONE	%.0f			vin_numitems	Number of VIN items				
 0x09	0x02	1	17	0	136	0x00	ASCII	%s			vehicle_identification_number	Vehicle identification number				

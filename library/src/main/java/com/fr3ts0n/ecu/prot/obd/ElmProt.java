@@ -1129,6 +1129,10 @@ public class ElmProt
 							handleTelegram("490601234567".toCharArray());
 							break;
 						
+						case OBD_SVC_CTRL_MODE:
+							handleTelegram("4800C0000000".toCharArray());
+							break;
+
 						case OBD_SVC_NONE:
 							// just keep quiet until soneone requests something
 							break;

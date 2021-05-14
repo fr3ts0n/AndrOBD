@@ -54,10 +54,10 @@ public class ObdProt extends ProtoHeader
     public static final int OBD_SVC_FREEZEFRAME = 0x02;
     public static final int OBD_SVC_READ_CODES = 0x03;
     public static final int OBD_SVC_CLEAR_CODES = 0x04;
-    private static final int OBD_SVC_O2_RESULT = 0x05;
-    private static final int OBD_SVC_MON_RESULT = 0x06;
+    public static final int OBD_SVC_O2_RESULT = 0x05;
+    public static final int OBD_SVC_MON_RESULT = 0x06;
     public static final int OBD_SVC_PENDINGCODES = 0x07;
-    private static final int OBD_SVC_CTRL_MODE = 0x08;
+    public static final int OBD_SVC_CTRL_MODE = 0x08;
     public static final int OBD_SVC_VEH_INFO = 0x09;
     public static final int OBD_SVC_PERMACODES = 0x0A;
 
@@ -622,8 +622,8 @@ public class ObdProt extends ProtoHeader
                         }
                         break;
 
-                    // get vehicle information (mode 9)
-                    case OBD_SVC_VEH_INFO:
+                    case OBD_SVC_CTRL_MODE: // Test control mode
+                    case OBD_SVC_VEH_INFO:  // get vehicle information (mode 9)
                         msgPid = (Integer) getParamValue(ID_OBD_PID, buffer);
                         switch (msgPid)
                         {
@@ -801,6 +801,7 @@ public class ObdProt extends ProtoHeader
                 break;
 
             case OBD_SVC_VEH_INFO:
+            case OBD_SVC_CTRL_MODE:
                 // Clear data items
                 pidSupported.clear();
                 VidPvs.clear();
@@ -834,7 +835,10 @@ public class ObdProt extends ProtoHeader
 
             case OBD_SVC_DATA:
             case OBD_SVC_FREEZEFRAME:
-                // request for PID's supported
+            case OBD_SVC_CTRL_MODE:
+            case OBD_SVC_VEH_INFO:
+                // read vehicle information
+                // request for PID/TID's supported
                 writeTelegram(emptyBuffer, obdService, 0);
                 break;
 
@@ -861,12 +865,6 @@ public class ObdProt extends ProtoHeader
                 }
                 break;
 
-            case OBD_SVC_VEH_INFO:
-                // read vehicle information
-                writeTelegram(emptyBuffer, obdService, 0);
-                break;
-
-            case OBD_SVC_CTRL_MODE:
             case OBD_SVC_O2_RESULT:
             case OBD_SVC_MON_RESULT:
             default:
