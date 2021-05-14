@@ -10,13 +10,13 @@ It is open source and completely free. The application also has a built in Demo 
 [![Telegram](https://img.shields.io/badge/chat-on%20Telegram-blue)](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
 [![GitHub license](https://img.shields.io/github/license/fr3ts0n/AndrOBD?color=lightgrey)](https://github.com/fr3ts0n/AndrOBD/blob/master/LICENSE)
 
-## :books: Documentation
+## Documentation
 
 * [FAQ](https://github.com/fr3ts0n/AndrOBD/wiki/Frequently-asked-questions) - Frequently asked questions
 
 * [Wiki](https://github.com/fr3ts0n/AndrOBD/wiki) - AndrOBD knowledge database
 
-## :arrow_forward: Install
+## Install
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/fr3ts0n/AndrOBD?label=latest%20version&sort=semver)](https://github.com/fr3ts0n/AndrOBD/releases)
 [![F-Droid](https://img.shields.io/f-droid/v/com.fr3ts0n.ecu.gui.androbd)](https://f-droid.org/en/packages/com.fr3ts0n.ecu.gui.androbd/)
@@ -24,7 +24,7 @@ It is open source and completely free. The application also has a built in Demo 
 
 [<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/com.fr3ts0n.ecu.gui.androbd/)
 
-##  :oncoming_automobile: Features
+##  Features
 
 #### Connection types
 * Bluetooth
@@ -74,7 +74,7 @@ It is open source and completely free. The application also has a built in Demo 
 
 </details>
 
-## :eyes: Screenshots
+## Screenshots
 
 | Functions | OBD data | Dashboard |
 | :--: | :--: | :--: |
@@ -82,7 +82,7 @@ It is open source and completely free. The application also has a built in Demo 
 
 *More screenshots available on [the Website](https://fr3ts0n.github.io/AndrOBD/) or in the [Screenshots folder](https://github.com/fr3ts0n/AndrOBD/tree/master/fastlane/metadata/android/en-US/images/phoneScreenshots)*
 
-## :family: Join the team
+## Join the team
   * Test the app with different devices, alpha & beta releases are posted in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
   * Report issues in the [issue tracker](https://github.com/fr3ts0n/AndrOBD/issues)
   * Create a [Pull Request](https://opensource.guide/how-to-contribute/#opening-a-pull-request)
@@ -108,7 +108,7 @@ It is open source and completely free. The application also has a built in Demo 
  
 #### Special request: AndrOBD is looking for helping hands on designing and implementing of a modern new GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126))
 
-## :battery: Support by donating
+## Support by donating
 
 Buy us a coffee or two, as it enables us to put more free time into the active development.
 
