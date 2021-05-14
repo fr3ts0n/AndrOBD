@@ -918,9 +918,9 @@ public class MainActivity extends PluginManager
 			case ObdProt.OBD_SVC_CTRL_MODE:
 				EcuDataPv testPv = (EcuDataPv) getListAdapter().getItem(position);
 				// Confirm & perform OBD test control ...
-				runObdTestControl(testPv.get(EcuDataPv.FID_DESCRIPT).toString(),
-								  ObdProt.OBD_SVC_CTRL_MODE,
-								  testPv.getAsInt(EcuDataPv.FID_PID));
+				confirmObdTestControl(testPv.get(EcuDataPv.FID_DESCRIPT).toString(),
+									  ObdProt.OBD_SVC_CTRL_MODE,
+									  testPv.getAsInt(EcuDataPv.FID_PID));
 				break;
 		}
 		return true;
@@ -2119,27 +2119,54 @@ public class MainActivity extends PluginManager
 			.show();
 	}
 
+
 	/**
-	 * perform OBD test control
+	 * confirm OBD test control
 	 * confirmation dialog is shown and the operation is confirmed
 	 */
-	private void runObdTestControl(String testControlName, int service, int tid)
+	private void confirmObdTestControl(String testControlName, int service, int tid)
 	{
 		dlgBuilder
 				.setIcon(android.R.drawable.ic_dialog_alert)
 				.setTitle(testControlName)
-				.setMessage(R.string.obd_test_ctrl)
+				.setMessage(R.string.obd_test_confirm)
 				.setPositiveButton(android.R.string.yes,
 								   new DialogInterface.OnClickListener()
 								   {
 									   @Override
 									   public void onClick(DialogInterface dialog, int which)
 									   {
-										   char emptyBuffer[] = {};
-										   CommService.elm.writeTelegram(emptyBuffer, service, tid);
+									   	  runObdTestControl(testControlName, service, tid);
 									   }
 								   })
 				.setNegativeButton(android.R.string.no, null)
+				.show();
+	}
+
+	/**
+	 * perform OBD test control
+	 * confirmation dialog is shown and the operation is confirmed
+	 */
+	private void runObdTestControl(String testControlName, int service, int tid)
+	{
+		// start desired test TID
+		char emptyBuffer[] = {};
+		CommService.elm.writeTelegram(emptyBuffer, service, tid);
+
+		// Show test progress message
+		dlgBuilder
+				.setIcon(android.R.drawable.ic_dialog_info)
+				.setTitle(testControlName)
+				.setMessage(R.string.obd_test_progress)
+				.setPositiveButton(android.R.string.ok,
+								   new DialogInterface.OnClickListener()
+								   {
+									   @Override
+									   public void onClick(DialogInterface dialog, int which)
+									   {
+									   }
+								   })
+				.setNegativeButton(null, null)
 				.show();
 	}
 

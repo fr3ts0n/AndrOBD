@@ -38,15 +38,17 @@ Other manufacturer specific clearing/resetting actions may occur.\n
 The loss of data may cause the vehicle to run poorly for a short \n
 period of time while the ECU recalibrates itself.
     </string>
-    <string name="obd_test_ctrl">OBD test control requested.\n\n
-The requested OBD test control may generate:\n
-- Vehicle motion\n
-- Exhaust smoke\n
-- High exhaust temperature\n
-- Loud engine noise\n
-- Fuel vapor\n
-- etc.\n\n
-Please confirm to perform this test control on your own risk in a safe test environment only!
+    <string name="obd_test_progress">OBD test control in progress.\n
+        Please check vehicle reaction.</string>
+    <string name="obd_test_confirm">OBD test control requested.\n\n
+        The requested OBD test control may generate:\n
+        - Vehicle motion\n
+        - Exhaust smoke\n
+        - High exhaust temperature\n
+        - Loud engine noise\n
+        - Fuel vapor\n
+        - etc.\n\n
+        Please confirm to perform this test control on your own risk in a safe test environment only!
     </string>
     <!--  BtDeviceListActivity -->
     <string name="select_device">Select adapter</string>
