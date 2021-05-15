@@ -145,7 +145,7 @@
     <string name="send_after_export_descr">Direkt nach dem Export nach Senden der CSV-Datei fragen\?</string>
     <string name="tab">Tab</string>
     <string name="comma">Komma</string>
-    <string name="configure">Konfigurieren</string>
+    <string name="configure">Konfiguration</string>
     <string name="data_disable_max">Daten Deaktivierungs-Limit</string>
     <string name="data_disable_max_description">Anzahl fehlerhaft erhalterer Daten bevor Datenpunkt deaktiviert wird</string>
     <string name="plugin_manager">Pluginverwaltung</string>
