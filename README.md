@@ -104,6 +104,10 @@ It is open source and completely free. The application also has a built in Demo 
 
 [![Fault codes](https://hosted.weblate.org/widgets/androbd/-/fault-codes/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
 
+#### Plugin framework:
+
+[![Plugin framework](https://hosted.weblate.org/widgets/androbd/-/androbd-plugin-framework/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
+
 </details>
  
 #### Special request: AndrOBD is looking for helping hands on designing and implementing of a modern new GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126))
