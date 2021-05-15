@@ -105,6 +105,7 @@ It is open source and completely free. The application also has a built in Demo 
 [![Fault codes](https://hosted.weblate.org/widgets/androbd/-/fault-codes/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
 
 #### Plugin framework:
+
 [![Plugin framework](https://hosted.weblate.org/widgets/androbd/-/androbd-plugin-framework/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
 
 </details>
