@@ -35,8 +35,8 @@
     <string name="common_settings">Pogoste nastavitve</string>
     <string name="measure_system_description">Sistem merskih enot (metrični/imperialni)</string>
     <string name="measure_system">Merske enote</string>
-    <string name="metric">metrični</string>
-    <string name="imperial">imperialni</string>
+    <string name="metric">metrične</string>
+    <string name="imperial">imperialne</string>
     <string name="debugging">Odpravljanje napak</string>
     <string name="last_elm">Znova vzpostavi povezavo z zadnjim ELM adapterjem</string>
     <string name="last_ecu">Znova vzpostavi povezavo z zadnjim ELM</string>
@@ -156,7 +156,7 @@
     <string name="csv_field_delimiter_description">Ločilni znak(i) med CSV podatkovnimi polji</string>
     <string name="csv_field_delimiter">ločilo CSV polj</string>
     <string name="data_disable_max_description">Število zaporednih neveljavnih podatkovnih odzivov, preden bo predmet onemogočen</string>
-    <string name="data_disable_max">Omenogoči limit podatkovnih predmetov</string>
+    <string name="data_disable_max">Onemogoči limit podatkovnih predmetov</string>
     <string name="device_port_description">IP vhod omrežja ELM naprave</string>
     <string name="elm_custom_init_descr">ELM zagonski ukazi po meri</string>
     <string name="use_last_settings_description">Uporabi zadnje nastavitve ob zagonu (BT naslov, ECU naslov, Prikazni predmeti...)</string>
