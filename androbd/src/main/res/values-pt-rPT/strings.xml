@@ -136,7 +136,6 @@
     <string name="use_last_settings_description">Usar as últimas definições na inicialização (endereço BT, endereço da ECU, itens a Exibir...)</string>
     <string name="common_settings_description">Definições comuns para o controlo da aplicação</string>
     <string name="secure_connect_description">Usar a ligação Bluetooth encriptada</string>
-    <string name="last_none">NENHUM</string>
     <string name="elm_custom_init">Inicialização personalizada do ELM</string>
     <string name="elm_custom_init_descr">Comandos de inicialização personalizados ELM</string>
     <string name="UNDEFINED">Indefinido</string>

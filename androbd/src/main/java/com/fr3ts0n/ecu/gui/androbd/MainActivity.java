@@ -26,6 +26,8 @@ import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -876,6 +878,7 @@ public class MainActivity extends PluginManager
 	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
 	{
 		Intent intent;
+		EcuDataPv pv;
 
 		switch (CommService.elm.getService())
 		{
@@ -883,7 +886,7 @@ public class MainActivity extends PluginManager
 			 * ->Long click on an item starts the single item dashboard activity
 			 */
 			case ObdProt.OBD_SVC_DATA:
-				EcuDataPv pv = (EcuDataPv) getListAdapter().getItem(position);
+				pv = (EcuDataPv) getListAdapter().getItem(position);
 				/* only numeric values may be shown as graph/dashboard */
 				if (pv.get(EcuDataPv.FID_VALUE) instanceof Number)
 				{
@@ -915,12 +918,23 @@ public class MainActivity extends PluginManager
 				}
 				break;
 
+			case ObdProt.OBD_SVC_VEH_INFO:
+				// copy VID content to clipboard ...
+				pv = (EcuDataPv) getListAdapter().getItem(position);
+				ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+				ClipData clip = ClipData.newPlainText(String.valueOf(pv.get(EcuDataPv.FID_DESCRIPT)),
+													  String.valueOf(pv.get(EcuDataPv.FID_VALUE)));
+				clipboard.setPrimaryClip(clip);
+				// Show Toast message
+				Toast.makeText(this, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show();
+				break;
+
 			case ObdProt.OBD_SVC_CTRL_MODE:
-				EcuDataPv testPv = (EcuDataPv) getListAdapter().getItem(position);
+				pv = (EcuDataPv) getListAdapter().getItem(position);
 				// Confirm & perform OBD test control ...
-				confirmObdTestControl(testPv.get(EcuDataPv.FID_DESCRIPT).toString(),
+				confirmObdTestControl(pv.get(EcuDataPv.FID_DESCRIPT).toString(),
 									  ObdProt.OBD_SVC_CTRL_MODE,
-									  testPv.getAsInt(EcuDataPv.FID_PID));
+									  pv.getAsInt(EcuDataPv.FID_PID));
 				break;
 		}
 		return true;

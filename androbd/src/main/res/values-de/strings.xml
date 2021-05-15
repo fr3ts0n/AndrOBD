@@ -179,4 +179,5 @@
     <string name="comm_baudrate">ELM Baudrate</string>
     <string name="comm_baudrate_description">USB serielle Übertragungsgeschwindigkeit</string>
     <string name="service_testcontrol">OBD Teststeuerung</string>
+    <string name="copied_to_clipboard">Kopiert in Zwischenablage</string>
 </resources>

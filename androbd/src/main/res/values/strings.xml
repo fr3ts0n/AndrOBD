@@ -2,9 +2,10 @@
 <resources>
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
-    <string name="copyright_fr3ts0n" translatable="false">© 2015-2020 fr3ts0n</string>
+    <string name="copyright_fr3ts0n" translatable="false">© 2015-2021 fr3ts0n</string>
     <string name="translation_credits">Translation by fr3ts0n</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 Bluetooth adapter</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="title_connecting">Connecting…</string>
     <string name="title_connected_to">Connected %s</string>
     <string name="logo">Logo</string>
