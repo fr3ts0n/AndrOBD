@@ -86,8 +86,6 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-import static com.fr3ts0n.ecu.gui.androbd.SettingsActivity.ELM_TIMING_SELECT;
-
 /**
  * Main Activity for AndrOBD app
  */
@@ -142,7 +140,7 @@ public class MainActivity extends PluginManager
 	public static final String TOAST = "toast";
 	private static final String MEASURE_SYSTEM = "measure_system";
 	private static final String NIGHT_MODE = "night_mode";
-	private static final String ELM_ADAPTIVE_TIMING = ELM_TIMING_SELECT;
+	private static final String ELM_ADAPTIVE_TIMING = "adaptive_timing_mode";
 	private static final String ELM_RESET_ON_NRC = "elm_reset_on_nrc";
 	private static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
 	public static final String PREF_AUTOHIDE = "autohide_toolbar";
@@ -287,9 +285,9 @@ public class MainActivity extends PluginManager
 	};
 
 	/**
-	 * activation of night mode
+	 * current status of night mode
 	 */
-	private boolean nightMode = false;
+	public static  boolean nightMode = false;
 	/**
 	 * current OBD service
 	 */
@@ -570,7 +568,7 @@ public class MainActivity extends PluginManager
 		{
 			case R.id.day_night_mode:
 				// toggle night mode setting
-				prefs.edit().putBoolean(NIGHT_MODE, !isNightMode()).apply();
+				prefs.edit().putBoolean(NIGHT_MODE, !nightMode).apply();
 				return true;
 
 			case R.id.secure_connect_scan:
@@ -1334,16 +1332,16 @@ public class MainActivity extends PluginManager
 		}
 	};
 
-	private boolean isNightMode()
+	protected void setNightMode(boolean nightMode)
 	{
-		return nightMode;
-	}
+		// store last mode selection
+		MainActivity.nightMode = nightMode;
 
-	private void setNightMode(boolean nightMode)
-	{
-		this.nightMode = nightMode;
+		// Set display theme based on specified mode
 		setTheme(nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
 		getWindow().getDecorView().setBackgroundColor(nightMode ? Color.BLACK : Color.WHITE);
+
+		// Trigger screen update to get immediate reaction
 		setObdService(obdService, null);
 	}
 
