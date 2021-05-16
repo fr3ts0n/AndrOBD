@@ -169,4 +169,19 @@
     <string name="elm_timeout_descr">Minimalni iztek v [ms] čakanja na odziv ELM</string>
     <string name="min_elm_timeout">Min. ELM iztek [ms]</string>
     <string name="service_freezeframes">OBD Freeze Frames</string>
+    <string name="obd_test_confirm">Zahtevan je nadzor preskusa OBD.
+\n
+\nZahtevani nadzor preskusa OBD lahko ustvari:
+\n- Gibanje vozila
+\n- izpušni dim
+\n- Visoko temperaturo izpušnih plinov
+\n- Glasen hrup motorja
+\n- hlape goriva
+\n- itd.
+\n
+\nPotrdite, da boste ta testni nadzor izvedli na lastno odgovornost samo v varnem testnem okolju!</string>
+    <string name="obd_test_progress">V teku je nadzor preskusa OBD.
+\nPreverite reakcijo vozila.</string>
+    <string name="service_testcontrol">OBD testni nadzor</string>
+    <string name="copied_to_clipboard">Kopirano v odložišče</string>
 </resources>
