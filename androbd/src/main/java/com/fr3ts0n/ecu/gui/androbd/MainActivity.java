@@ -1229,20 +1229,26 @@ public class MainActivity extends PluginManager
 	private int[] toIntArray(String input)
 	{
 		int[] result = {};
+		int numValidEntries = 0;
 		try
 		{
-			String beforeSplit = input.replaceAll("\\[|\\]|\\s", "");
-			String[] split = beforeSplit.split("\\,");
-			result = new int[split.length];
-			for (int i = 0; i < split.length; i++)
+			String beforeSplit = input.replaceAll("\\[|]|\\s", "");
+			String[] split = beforeSplit.split(",");
+			int[] ints = new int[split.length];
+			for (String s : split)
 			{
-				result[i] = Integer.parseInt(split[i]);
+				if (s.length() > 0)
+				{
+					ints[numValidEntries++] = Integer.parseInt(s);
+				}
 			}
+			result = Arrays.copyOf(ints, numValidEntries);
 		}
 		catch(Exception ex)
 		{
 			log.severe(ex.toString());
 		}
+
 		return result;
 	}
 
@@ -1978,8 +1984,10 @@ public class MainActivity extends PluginManager
 			// trim to really detected value (workaround for invalid length reported)
 			selectedPositions = Arrays.copyOf(selectedPositions, j);
 		}
+		String strPreselect = Arrays.toString(selectedPositions);
+		log.fine("Preselection: '"+strPreselect+"'");
 		// save this as last seleted positions
-		prefs.edit().putString(PRESELECT.LAST_ITEMS.toString(), Arrays.toString(selectedPositions))
+		prefs.edit().putString(PRESELECT.LAST_ITEMS.toString(), strPreselect)
 			.apply();
 		return selectedPositions;
 	}
@@ -2199,55 +2207,45 @@ public class MainActivity extends PluginManager
 				case LIST:
 					setFiltered(false);
 					getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+					this.dataViewMode = dataViewMode;
 					break;
 
 				case FILTERED:
-					setFiltered(true);
-					getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+					if (getListView().getCheckedItemCount() > 0)
+					{
+						setFiltered(true);
+						getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+						this.dataViewMode = dataViewMode;
+					}
 					break;
 
 				case HEADUP:
 				case DASHBOARD:
-					/* if we are in OBD data mode:
-					 * -> Short click on an item starts the readout activity
-					 */
-					if (CommService.elm.getService() == ObdProt.OBD_SVC_DATA)
+					if (getListView().getCheckedItemCount() > 0)
 					{
-						if (getListView().getCheckedItemCount() > 0)
-						{
-							DashBoardActivity.setAdapter(getListAdapter());
-							Intent intent = new Intent(this, DashBoardActivity.class);
-							intent.putExtra(DashBoardActivity.POSITIONS, getSelectedPositions());
-							intent.putExtra(DashBoardActivity.RES_ID,
-								dataViewMode == DATA_VIEW_MODE.DASHBOARD
-								? R.layout.dashboard
-								: R.layout.head_up);
-							startActivityForResult(intent, REQUEST_GRAPH_DISPLAY_DONE);
-						}
+						DashBoardActivity.setAdapter(getListAdapter());
+						Intent intent = new Intent(this, DashBoardActivity.class);
+						intent.putExtra(DashBoardActivity.POSITIONS, getSelectedPositions());
+						intent.putExtra(DashBoardActivity.RES_ID,
+							dataViewMode == DATA_VIEW_MODE.DASHBOARD
+							? R.layout.dashboard
+							: R.layout.head_up);
+						startActivityForResult(intent, REQUEST_GRAPH_DISPLAY_DONE);
+						this.dataViewMode = dataViewMode;
 					}
 					break;
 
 				case CHART:
-					/* if we are in OBD data mode:
-					 * -> Short click on an item starts the readout activity
-					 */
-					if (CommService.elm.getService() == ObdProt.OBD_SVC_DATA)
+					if (getListView().getCheckedItemCount() > 0)
 					{
-						if (getListView().getCheckedItemCount() > 0)
-						{
-							ChartActivity.setAdapter(getListAdapter());
-							Intent intent = new Intent(this, ChartActivity.class);
-							intent.putExtra(ChartActivity.POSITIONS, getSelectedPositions());
-							startActivityForResult(intent, REQUEST_GRAPH_DISPLAY_DONE);
-						}
-						else
-						{
-							setMenuItemEnable(R.id.chart_selected, false);
-						}
+						ChartActivity.setAdapter(getListAdapter());
+						Intent intent = new Intent(this, ChartActivity.class);
+						intent.putExtra(ChartActivity.POSITIONS, getSelectedPositions());
+						startActivityForResult(intent, REQUEST_GRAPH_DISPLAY_DONE);
+						this.dataViewMode = dataViewMode;
 					}
 					break;
 			}
-			this.dataViewMode = dataViewMode;
 
 			// remember this as the last data view mode (if not regular list)
 			if (dataViewMode != DATA_VIEW_MODE.LIST)
