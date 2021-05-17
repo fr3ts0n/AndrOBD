@@ -169,4 +169,19 @@
     <string name="master">ראשי</string>
     <string name="comm_baudrate_description">מהירות תקשורת טורית ב־USB</string>
     <string name="comm_baudrate">קצב העברה של ELM</string>
+    <string name="obd_test_confirm">התקבלה בקשה לבקרת בדיקת OBD.
+\n
+\nבקרת בדיקת ה־OBD שנתבקשה עשויה ליישר:
+\n- תנועה של כלי הרכב
+\n- עשן מצינור הפליטה
+\n- עלייה בטמפרטורת צינור הפליטה
+\n- רעש חזק מהמנוע
+\n- אדי דלק
+\n- וכו׳
+\n
+\nנא לאשר שבקרת בדיקה זו מתבצעת על אחריות ובסביבת בדיקות בטוחה בלבד!</string>
+    <string name="obd_test_progress">בקרת בדיקת OBD מתבצעת.
+\nנא לבדוק את תגובת כלי הרכב.</string>
+    <string name="service_testcontrol">בקרת בדיקת OBD</string>
+    <string name="copied_to_clipboard">הועתק ללוח הגזירים</string>
 </resources>
