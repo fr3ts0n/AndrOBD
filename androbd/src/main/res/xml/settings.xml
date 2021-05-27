@@ -403,6 +403,16 @@
                     android:action="android.intent.action.VIEW"
                     android:data="bitcoin://19UApzsc5eDJ5VNDNYCA1bpszPnkcpWeFP"/>
             </Preference>
+            <Preference
+                android:icon="@drawable/ic_coin"
+                android:key="liberapay"
+                android:title="LiberaPay"
+                android:summary="https://liberapay.com/AndrOBD/donate"
+                >
+                <intent
+                    android:action="android.intent.action.VIEW"
+                    android:data="https://liberapay.com/AndrOBD/donate"/>
+            </Preference>
         </PreferenceCategory>
     </PreferenceScreen>
 
