@@ -171,10 +171,7 @@ public class DashBoardActivity extends Activity
 
 		// set data adapter
 		adapter = new ObdGaugeAdapter( this,
-									   R.layout.obd_gauge,
-									   minWidth,
-									   minHeight,
-									   metrics);
+									   R.layout.obd_gauge);
 
 		EcuDataPv currPv;
 		pidNumbers.clear();
@@ -251,7 +248,7 @@ public class DashBoardActivity extends Activity
 		// start display update task
 		try
 		{
-			refreshTimer.schedule(updateTask, 0, 100);
+			refreshTimer.schedule(updateTask, 0, 250);
 		} catch (Exception e)
 		{
 			// exception ignored here ...

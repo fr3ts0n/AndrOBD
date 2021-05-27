@@ -19,7 +19,8 @@
         app:sv_speedometerColor="#20FFFFFF"
         app:sv_speedometerMode="TOP"
         app:sv_indicatorColor="#ffffffff"
-        app:sv_cutPadding="15dp" />
+        app:sv_cutPadding="15dp"
+        app:sv_withTremble="false" />
 
     <TextView
         android:id="@+id/label"

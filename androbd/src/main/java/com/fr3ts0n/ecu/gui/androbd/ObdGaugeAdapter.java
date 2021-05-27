@@ -19,7 +19,6 @@
 package com.fr3ts0n.ecu.gui.androbd;
 
 import android.content.Context;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,9 +48,6 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 	private transient static final String FID_GAUGE_SERIES = "GAUGE_SERIES";
 	private final transient LayoutInflater mInflater;
 	private static int resourceId;
-	private final transient int minWidth;
-	private final transient int minHeight;
-	private final DisplayMetrics mDisplayMetrics;
 
 	/** format for numeric labels */
 	private static final NumberFormat labelFormat = new DecimalFormat("0;-#");
@@ -62,15 +58,12 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		TextView tvDescr;
 	}
 
-	public ObdGaugeAdapter(Context context, int resource, int minWidth, int minHeight, DisplayMetrics metrics)
+	public ObdGaugeAdapter(Context context, int resource)
 	{
 		super(context, resource);
 		mInflater = (LayoutInflater) context
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		resourceId = resource;
-		this.minWidth = minWidth;
-		this.minHeight = minHeight;
-		mDisplayMetrics = metrics;
 	}
 
 	/* (non-Javadoc)
@@ -164,7 +157,7 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 
 		holder.gauge.setMinSpeed(minValue.floatValue());
 		holder.gauge.setMaxSpeed(maxValue.floatValue());
-		holder.gauge.speedTo(value.floatValue());
+		holder.gauge.speedTo(value.floatValue(),0);
 
 		return convertView;
 	}
