@@ -151,14 +151,16 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		Number minValue = (Number) currPv.get(EcuDataPv.FID_MIN);
 		Number maxValue = (Number) currPv.get(EcuDataPv.FID_MAX);
 		Number value =    (Number) currPv.get(EcuDataPv.FID_VALUE);
+		String format = (String) currPv.get(EcuDataPv.FID_FORMAT);
 
 		if (minValue == null) minValue = 0f;
 		if (maxValue == null) maxValue = 255f;
 
 		// Tick triangles show in PID color
 		holder.gauge.setTrianglesColor(pidColor);
-
+		// Use PID specific units and value format
 		holder.gauge.setUnit(currPv.getUnits());
+		holder.gauge.setSpeedTextListener(aFloat -> String.format(format, aFloat));
 
 		holder.gauge.setMinSpeed(minValue.floatValue());
 		holder.gauge.setMaxSpeed(maxValue.floatValue());
