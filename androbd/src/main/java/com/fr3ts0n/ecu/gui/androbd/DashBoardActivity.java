@@ -26,23 +26,26 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.prot.obd.ObdProt;
+import com.fr3ts0n.pvs.PvChangeEvent;
+import com.fr3ts0n.pvs.PvChangeListener;
+import com.github.anastr.speedviewlib.Gauge;
 
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 /**
  * Display selected data items as dashboard
  */
 public class DashBoardActivity extends Activity
+		implements PvChangeListener
 {
 	/**
 	 * For passing the index number of the <code>Sensor</code> in its
@@ -69,7 +72,7 @@ public class DashBoardActivity extends Activity
 	/** Map to uniquely collect PID numbers */
 	private final HashSet<Integer> pidNumbers = new HashSet<>();
 
-	private static final int MESSAGE_UPDATE_VIEW = 7;
+	protected static final int MESSAGE_UPDATE_VIEW = 1;
 
 	private static ListAdapter mAdapter = null;
 	/** display metrics */
@@ -104,7 +107,7 @@ public class DashBoardActivity extends Activity
 	/**
 	 * Handle message requests
 	 */
-	private transient final Handler mHandler = new Handler()
+	protected transient final Handler mHandler = new Handler()
 	{
 		@Override
 		public void handleMessage(Message msg)
@@ -113,25 +116,19 @@ public class DashBoardActivity extends Activity
 			switch (msg.what)
 			{
 				case MESSAGE_UPDATE_VIEW:
-					grid.invalidateViews();
+					EcuDataPv currPv = (EcuDataPv)msg.obj;
+					View itemView = grid.getChildAt(msg.arg1);
+					if(itemView != null)
+					{
+						Gauge gauge = itemView.findViewById(R.id.chart);
+						if(gauge != null)
+						{
+							Number val = (Number)currPv.get(EcuDataPv.FID_VALUE);
+							gauge.speedTo(val.floatValue());
+						}
+					}
 					break;
 			}
-		}
-	};
-
-	private final Timer refreshTimer = new Timer();
-
-	/**
-	 * Timer Task to cyclically update data screen
-	 */
-	private final TimerTask updateTask = new TimerTask()
-	{
-		@Override
-		public void run()
-		{
-			/* forward message to update the view */
-			Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_UPDATE_VIEW);
-			mHandler.sendMessage(msg);
 		}
 	};
 
@@ -159,31 +156,21 @@ public class DashBoardActivity extends Activity
 		{
 			// read for corresponding number of gauges & orientation
 			numColumns = rowCols[positions.length][(width>height)?0:1];
-			numRows    = rowCols[positions.length][(width>height)?1:0];
 		}
-		// calc max gauge size
-		int minWidth = width / numColumns;
-		int minHeight = height / numRows;
-
 		/* get grid object */
-		grid = findViewById(android.R.id.list);
 		grid.setNumColumns(numColumns);
 
-		// set data adapter
-		adapter = new ObdGaugeAdapter( this,
-									   R.layout.obd_gauge);
-
-		EcuDataPv currPv;
+		adapter.clear();
 		pidNumbers.clear();
 		for (int position : positions)
 		{
 			// get corresponding Process variable
-			currPv = (EcuDataPv) mAdapter.getItem(position);
+			EcuDataPv currPv = (EcuDataPv) mAdapter.getItem(position);
 			if (currPv != null)
 			{
-				currPv.setRenderingComponent(null);
 				pidNumbers.add(currPv.getAsInt(EcuDataPv.FID_PID));
 				adapter.add(currPv);
+				currPv.addPvChangeListener(this, PvChangeEvent.PV_MODIFIED);
 			}
 		}
 		grid.setAdapter(adapter);
@@ -212,6 +199,15 @@ public class DashBoardActivity extends Activity
 			getString(R.string.app_name));
 		wakeLock.acquire();
 
+		// set the desired content screen
+		int resId = getIntent().getIntExtra(RES_ID, R.layout.dashboard);
+		setContentView(resId);
+		grid = findViewById(android.R.id.list);
+
+		// create data adapter
+		adapter = new ObdGaugeAdapter( this,
+									   R.layout.obd_gauge);
+
 		/* get PIDs to be shown */
 		positions = getIntent().getIntArrayExtra(POSITIONS);
 	}
@@ -237,22 +233,10 @@ public class DashBoardActivity extends Activity
 	protected void onResume()
 	{
 		super.onResume();
-		// set the desired content screen
-		int resId = getIntent().getIntExtra(RES_ID, R.layout.dashboard);
-		setContentView(resId);
 		// set scaling of dashboard items
 		updateDashboardScaling();
 		// limit selected PIDs to selection
 		MainActivity.setFixedPids(pidNumbers);
-
-		// start display update task
-		try
-		{
-			refreshTimer.schedule(updateTask, 0, 250);
-		} catch (Exception e)
-		{
-			// exception ignored here ...
-		}
 	}
 
 	@Override
@@ -268,9 +252,19 @@ public class DashBoardActivity extends Activity
 	@Override
 	protected void onPause()
 	{
-		refreshTimer.purge();
 		adapter.clear();
 		super.onPause();
 	}
 
+	@Override
+	public void pvChanged(PvChangeEvent event)
+	{
+		if(event.getKey().equals(EcuDataPv.FIELDS[EcuDataPv.FID_VALUE])
+				&& event.getValue() instanceof Number)
+		{
+			int pos = adapter.getPosition((EcuDataPv)event.getSource());
+			Message msg = mHandler.obtainMessage(MESSAGE_UPDATE_VIEW, pos,0, event.getSource());
+			mHandler.sendMessage(msg);
+		}
+	}
 }

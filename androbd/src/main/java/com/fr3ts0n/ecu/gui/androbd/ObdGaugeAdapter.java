@@ -26,12 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.fr3ts0n.ecu.EcuDataPv;
-import com.fr3ts0n.pvs.ProcessVar;
-import com.fr3ts0n.pvs.PvChangeEvent;
-import com.fr3ts0n.pvs.PvChangeListener;
 import com.github.anastr.speedviewlib.AwesomeSpeedometer;
-
-import org.achartengine.model.CategorySeries;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -42,10 +37,8 @@ import java.util.Objects;
  *
  * @author erwin
  */
-class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
-	PvChangeListener
+class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv>
 {
-	private transient static final String FID_GAUGE_SERIES = "GAUGE_SERIES";
 	private final transient LayoutInflater mInflater;
 	private static int resourceId;
 
@@ -64,45 +57,6 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		mInflater = (LayoutInflater) context
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		resourceId = resource;
-	}
-
-	/* (non-Javadoc)
-	 * @see android.widget.ArrayAdapter#remove(java.lang.Object)
-	 */
-	@Override
-	public void remove(EcuDataPv object)
-	{
-		object.remove(FID_GAUGE_SERIES);
-		object.removePvChangeListener(this);
-		object.setRenderingComponent(null);
-		super.remove(object);
-	}
-
-	/* (non-Javadoc)
-	 * @see android.widget.ArrayAdapter#add(java.lang.Object)
-	 */
-	@Override
-	public void add(EcuDataPv currPv)
-	{
-		try
-		{
-			CategorySeries category = (CategorySeries) currPv.get(FID_GAUGE_SERIES);
-			if (category == null)
-			{
-				category = new CategorySeries(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
-				category.add(String.valueOf(currPv.get(EcuDataPv.FID_UNITS)),
-						((Number)currPv.get(EcuDataPv.FID_VALUE)).doubleValue());
-				currPv.put(FID_GAUGE_SERIES, category);
-				currPv.setRenderingComponent(null);
-			}
-		}
-		finally
-		{
-			// make this adapter to listen for PV data updates
-			currPv.addPvChangeListener(this, PvChangeEvent.PV_MODIFIED);
-		}
-
-		super.add(currPv);
 	}
 
 	/* (non-Javadoc)
@@ -157,22 +111,8 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 
 		holder.gauge.setMinSpeed(minValue.floatValue());
 		holder.gauge.setMaxSpeed(maxValue.floatValue());
-		holder.gauge.speedTo(value.floatValue(),0);
+		holder.gauge.speedTo(value.floatValue());
 
 		return convertView;
-	}
-
-	@Override
-	public void pvChanged(PvChangeEvent event)
-	{
-		if(event.getKey().equals(EcuDataPv.FIELDS[EcuDataPv.FID_VALUE])
-				&& event.getValue() instanceof Number)
-		{
-			ProcessVar currPv = (ProcessVar) event.getSource();
-			CategorySeries series = (CategorySeries) currPv.get(FID_GAUGE_SERIES);
-			series.set(0,
-					   String.valueOf(currPv.get(EcuDataPv.FID_UNITS)),
-					   ((Number)event.getValue()).doubleValue());
-		}
 	}
 }
