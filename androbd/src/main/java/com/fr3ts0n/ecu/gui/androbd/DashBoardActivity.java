@@ -143,7 +143,7 @@ public class DashBoardActivity extends Activity
 	{
 		// calculate minimum gauge size (1.6 inch) based on screen density
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		MIN_GAUGE_SIZE = Math.min( metrics.densityDpi * 16 / 10,
+		MIN_GAUGE_SIZE = Math.min( metrics.densityDpi * 15 / 10,
 								   Math.min(metrics.widthPixels, metrics.heightPixels));
 
 		int height = metrics.heightPixels;
