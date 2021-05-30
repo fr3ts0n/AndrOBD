@@ -6,7 +6,7 @@
     <string name="back_again_to_exit">Stiskni zpět pro zavření aplikace</string>
     <string name="action_connect">Připojit</string>
     <string name="obd_none">ŽÁDNÁ služba</string>
-    <string name="obd_services">OBD Služby</string>
+    <string name="obd_services">Služby OBD</string>
     <string name="select_device">Zvolte adaptér</string>
     <string name="none_paired">Žádná spárovaná zařízení</string>
     <string name="none_found">Nebylo nalezeno žádné zařízení</string>
@@ -35,17 +35,135 @@
     <string name="STOPPED">Zastaveno</string>
     <string name="DISCONNECTED">Odpojeno</string>
     <string name="ERROR">Chyba</string>
-    <string name="translation_credits">Přeložil fr3ts0n</string>
-    <string name="app_description">Android OBD autodiagnostika pro ELM327 Bluetooth adaptér</string>
-    <string name="obd_veh_info">OBD Info o autě</string>
-    <string name="obd_data">OBD Data</string>
-    <string name="obd_codes">OBD chybové kódy</string>
-    <string name="obd_permanentcodes">OBD chybové kódy (permanentní)</string>
+    <string name="translation_credits">Přeložil cewbdex</string>
+    <string name="app_description">Android OBD autodiagnostika pro Bluetooth adaptér ELM327</string>
+    <string name="obd_veh_info">Informace o autě z OBD</string>
+    <string name="obd_data">Data OBD</string>
+    <string name="obd_codes">Chybové kódy OBD</string>
+    <string name="obd_permanentcodes">Chybové kódy OBD (permanentní)</string>
     <string name="obd_clearcodes">Vyčistit chybové kódy</string>
-    <string name="release_history">Historie verzí …</string>
+    <string name="release_history">Historie vydání…</string>
     <string name="time">Čas [s]</string>
     <string name="check_cust_settings">Prosím zkontrolujte vaše nastavení přizpůsobení
 \n</string>
     <string name="NODATA">Žádná data</string>
     <string name="graphic_design">Grafický design</string>
+    <string name="last_service">poslední služba OBD</string>
+    <string name="obd_opt_description">Možnosti OBD protokolu a komunikace s vozidlem</string>
+    <string name="obd_pendingcodes">Chybové kódy OBD (čekající)</string>
+    <string name="obd_clear_info">Tímto se vyresetuje MIL a vymažou všechny emisně-související
+\n diagnostické informace zahrnující:
+\n - Diagnostické chybové kódy
+\n - Snímky zmražených dat
+\n - Testovací data lambda sondy
+\n - Status testů monitorování systému
+\n - Výsledky on-board monitorovacích testů
+\n - Ujetá vzdálenost s aktivní MIL
+\n - Počet startů motoru od vymazání DTC
+\n - Ujetá vzdálenost od vymazání DTC
+\n - Doba běhu motoru s aktivní MIL
+\n - Čas od vymazání DTC
+\n
+\n Mohou nastat jiné čisticí/resetujicí akce (dle výrobce).
+\n Tato ztráta dat může způsobit, že vozidlo na chvíli nepojede optimálně,
+\n dokud ECU neprovede sebekalibraci.</string>
+    <string name="service_freezeframes">Snímky zmražených dat OBD</string>
+    <string name="master">master</string>
+    <string name="elm_reset_on_nrc_descr">Resetovat adaptér ELM při chybě NRC (Negative Result Code)\?</string>
+    <string name="elm_reset_on_nrc">Resetovat při NRC</string>
+    <string name="select_fault_code">Vyberte chybový kód…</string>
+    <string name="data_items">Datové položky</string>
+    <string name="extension_files">Soubory přizpůsobení protokolu (CSV)</string>
+    <string name="last_view_mode">poslední režim zobrazení dat</string>
+    <string name="last_data_items">poslední vybrané datové položky</string>
+    <string name="items_for_display_descr">Vyberte všechny datové položky pro zobrazení…</string>
+    <string name="items_for_display">Datové položky k zobrazení</string>
+    <string name="filter">Filtr vybrán</string>
+    <string name="snapshot">zachycení</string>
+    <string name="service_testcontrol">Ovládání OBD testů</string>
+    <string name="long_press_dfc_hint">Dlouze podržte DTC pro online vyhledávání…</string>
+    <string name="comm_baudrate_description">Sériová komunikační rychlost USB</string>
+    <string name="comm_baudrate">Přenosová rychlost ELM</string>
+    <string name="plugin_manager_desc">Správce detekovaných rozšíření</string>
+    <string name="unfilter">Odebrat filtr</string>
+    <string name="plugin_data">Data rozšíření</string>
+    <string name="libraries_sum">Knihovny použité v projektu…</string>
+    <string name="libraries">Knihovny…</string>
+    <string name="donation">Podpořit projekt…</string>
+    <string name="license">Licencování…</string>
+    <string name="toolbar_overlay_sum">Zobrazit stavový řádek překrytím hlavního zobrazení</string>
+    <string name="toolbar_overlay">Zobrazit jako překrytí</string>
+    <string name="send_after_export_descr">Dotázat se na poslání CSV souboru ihned po exportu\?</string>
+    <string name="send_after_export">Poslat po exportu</string>
+    <string name="semicolon">Středník</string>
+    <string name="comma">Čárka</string>
+    <string name="tab">Tabulátor</string>
+    <string name="csv_text_quoted_description">Textové položky CSV jsou v uvozovkách</string>
+    <string name="csv_text_quoted">Uvozený text CSV</string>
+    <string name="csv_rec_delimiter_description">Rozdělovací znak(y) mezi datovými záznamy CSV</string>
+    <string name="csv_rec_delimiter">Rozdělovač záznamů CSV</string>
+    <string name="csv_field_delimiter_description">Rozdělovací znak(y) mezi datovými položkami CSV</string>
+    <string name="csv_field_delimiter">Rozdělovač položek CSV</string>
+    <string name="csv_export_description">Možnosti formátování exportovaných souborů CSV</string>
+    <string name="csv_export_options">Možnosti exportu CSV</string>
+    <string name="autohide_delay_description">Prodleva bez aktivity v sekundách po které se skryje stavový řádek</string>
+    <string name="autohide_delay">Prodleva skrytí stavového řádku [s]</string>
+    <string name="autohide_toolbar_description">Automaticky skrýt stavový řádek po prodlevě bez aktivity</string>
+    <string name="autohide_toolbar">Skrýt stavový řádek</string>
+    <string name="data_disable_max">Limit zákazu datové položky</string>
+    <string name="data_disable_max_description">Počet po sobě jdoucích neplatných datových odezev, po kterých bude položka zakázána</string>
+    <string name="device_port">Port ELM</string>
+    <string name="device_port_description">Port síťového zařízení ELM</string>
+    <string name="device_address">IP adresa ELM</string>
+    <string name="device_address_description">IP adresa síťového zařízení ELM</string>
+    <string name="obd_error">Chyba protokolu OBD</string>
+    <string name="RXERROR">Chyba RX (příjmu)</string>
+    <string name="DATAERROR">Chyba dat</string>
+    <string name="BUSERROR">Chyba sběrnice</string>
+    <string name="ECU_DETECTED">ECU detekována</string>
+    <string name="ECU_DETECT">Detekce ECU…</string>
+    <string name="INITIALIZED">Inicializováno</string>
+    <string name="INITIALIZING">Inicializace…</string>
+    <string name="UNDEFINED">Nedefinovaný</string>
+    <string name="elm_custom_init_descr">Vlastní příkazy inicializace ELM</string>
+    <string name="elm_custom_init">Vlastní inicializace ELM</string>
+    <string name="elm_options">Možnosti ELM</string>
+    <string name="secure_connect_description">Použít šifrované spojení přes Bluetooth</string>
+    <string name="secure_connect">Zabezpečené spojení</string>
+    <string name="common_settings_description">Společná nastavení pro ovládání aplikace</string>
+    <string name="use_last_settings">Použít poslední nastavení</string>
+    <string name="use_last_settings_description">Použít poslední nastavení při startu (adresa BT, adresa ECU, zobrazované položky, ...)</string>
+    <string name="disconnect">Odpojit</string>
+    <string name="select_ecu_addr">Vyberte adresu ECU…</string>
+    <string name="elm_adaptive_timing_descr">Povolit adaptivní časování pro ovladače ELM\?</string>
+    <string name="elm_adaptive_timing">Adaptivní časování ELM</string>
+    <string name="disable_elm_cmds_descr">povolit/zakázat příkazy ELM</string>
+    <string name="disable_elm_cmds">Zakázané příkazy ELM</string>
+    <string name="night_mode">Noční režim</string>
+    <string name="night_mode_description">Nastavit tmavé pozadí obrazovky</string>
+    <string name="day_night_mode">Denní/noční režim zobrazení</string>
+    <string name="elm_timeout_descr">Minimální časový limit čekání v [ms] na odpovědi ELM</string>
+    <string name="min_elm_timeout">Min. časový limit ELM [ms]</string>
+    <string name="connectionlost">Připojení k zařízení bylo ztraceno</string>
+    <string name="unabletoconnect">Nelze se připojit k zařízení</string>
+    <string name="devices_found">Nalezeno %d USB zařízení</string>
+    <string name="select_medium">Typ adaptéru…</string>
+    <string name="configure">Konfigurovat</string>
+    <string name="plugin_manager">Správce rozšíření</string>
+    <string name="select_protocol">Preferovaný protokol OBD</string>
+    <string name="obd_options">Možnosti OBD</string>
+    <string name="select_extension">Vyberte soubor s koncovkou \".csv\"…</string>
+    <string name="dev_opt_description">Nastavení pro lazení a přizpůsobení</string>
+    <string name="development_options">Vývojářská nastavení</string>
+    <string name="keep_screen_on_description">Nevypínat obrazovku pokud je aktivní hlavní nebo datové zobrazení</string>
+    <string name="keep_screen_on">Udržet hlavní obrazovku zapnutou</string>
+    <string name="last_ecu">znovu připojit poslední ECU</string>
+    <string name="last_elm">znovu připojit poslední ELM adaptér</string>
+    <string name="logging_level_description">Úroveň detailů pro logování do souboru ladění</string>
+    <string name="logging_level">Úroveň logování</string>
+    <string name="hud">Head Up Displej</string>
+    <string name="demo">Demo…</string>
+    <string name="demo_started">Režim DEMO spuštěn</string>
+    <string name="demo_stopped">Režim DEMO zastaven</string>
+    <string name="copied_to_clipboard">Zkopírováno do schránky</string>
 </resources>
