@@ -44,7 +44,7 @@
     <string name="obd_clearcodes">Vyčistit chybové kódy</string>
     <string name="release_history">Historie vydání…</string>
     <string name="time">Čas [s]</string>
-    <string name="check_cust_settings">Prosím zkontrolujte vaše nastavení přizpůsobení
+    <string name="check_cust_settings">Zkontrolujte vaše nastavení přizpůsobení
 \n</string>
     <string name="NODATA">Žádná data</string>
     <string name="graphic_design">Grafický design</string>
@@ -79,8 +79,8 @@
     <string name="items_for_display_descr">Vyberte všechny datové položky pro zobrazení…</string>
     <string name="items_for_display">Datové položky k zobrazení</string>
     <string name="filter">Filtr vybrán</string>
-    <string name="snapshot">zachycení</string>
-    <string name="service_testcontrol">Ovládání OBD testů</string>
+    <string name="snapshot">zachytit</string>
+    <string name="service_testcontrol">Zkoušky akčních členů OBD</string>
     <string name="long_press_dfc_hint">Dlouze podržte DTC pro online vyhledávání…</string>
     <string name="comm_baudrate_description">Sériová komunikační rychlost USB</string>
     <string name="comm_baudrate">Přenosová rychlost ELM</string>
@@ -167,4 +167,19 @@
     <string name="demo_stopped">Režim DEMO zastaven</string>
     <string name="copied_to_clipboard">Zkopírováno do schránky</string>
     <string name="reset_preselections">Zresetovat poslední předvolby</string>
+    <string name="extension_loading">Načítání rozšíření</string>
+    <string name="conversions">Převody dat</string>
+    <string name="obd_test_progress">Probíhá zkouška akčních členů OBD.
+\n Kontrolujte odezvu vozidla.</string>
+    <string name="obd_test_confirm">Vyslán požadavek zkoušky akčních členů.
+\n
+\n Požadavek zkoušky akčních členů může vytvářet:
+\n - Pohyby vozidla
+\n - Výfukový kouř
+\n - Vysokou teplotu výfuku
+\n - Hlasité zvuky motoru
+\n - Výpary paliva
+\n - A další...
+\n
+\n Proveďte zkoušku v bezpečném zkušebním prostředí na svou vlastní zodpovědnost!</string>
 </resources>
