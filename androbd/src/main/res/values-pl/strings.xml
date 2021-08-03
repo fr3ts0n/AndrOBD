@@ -148,7 +148,7 @@
     <string name="send_after_export">Wyślij po wyeksportowaniu</string>
     <string name="send_after_export_descr">Pytasz o wysłanie pliku CSV zaraz po wyeksportowaniu?</string>
     <string name="plugin_manager">zarządzanie wtyczkami</string>
-    <string name="configure">Konfiguruj</string>
+    <string name="configure">Skonfiguruj</string>
     <string name="data_disable_max">Maksymalna liczba odczytów</string>
     <string name="data_disable_max_description">Maksymalna liczba błędów danych, po której pozycja będzie wyłączana</string>
     <string name="toolbar_overlay">Pokaż na wierzchu</string>
@@ -157,7 +157,7 @@
     <string name="donation">Wesprzyj projekt …</string>
     <string name="libraries">Biblioteki …</string>
     <string name="libraries_sum">Biblioteki użyte w projekcie …</string>
-    <string name="release_history">Historia wersji …</string>
+    <string name="release_history">Historia wydań…</string>
     <string name="graphic_design">Projekt graficzny</string>
     <string name="unfilter">Usuń filtr</string>
     <string name="plugin_data">Informacje wtyczek</string>
@@ -168,4 +168,8 @@
     <string name="process_vars">Zmienne procesu</string>
     <string name="comm_baudrate_description">Szybkość komunikacji szeregowej USB</string>
     <string name="comm_baudrate">Szybkość transmisji ELM</string>
+    <string name="obd_test_progress">Trwa kontrola testu OBD.
+\n Proszę sprawdzić reakcję pojazdu.</string>
+    <string name="service_testcontrol">Kontrola testu OBD</string>
+    <string name="copied_to_clipboard">Skopiowano do schowka</string>
 </resources>
