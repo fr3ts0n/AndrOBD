@@ -110,7 +110,8 @@ It is open source and completely free. The application also has a built in Demo 
 
 </details>
  
-#### ⚠️ Special request: AndrOBD is looking for helping hands on designing and implementing of a modern new GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126)) ⚠️ Contributers will be thanked for their work and included/linked in the Readme.
+#### ⚠️ Special request ⚠️
+* AndrOBD is looking for helping hands on designing and implementing of a modern new GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126)). Contributers will be credited/linked in the Readme.
 
 ## Support by donating
 
