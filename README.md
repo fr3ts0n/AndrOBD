@@ -94,19 +94,19 @@ It is open source and completely free. The application also has a built in Demo 
 
 #### App dialogs:
 
-[![App strings](https://hosted.weblate.org/widgets/androbd/-/strings/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
+[![App strings](https://hosted.weblate.org/widgets/androbd/-/strings/multi-auto.svg)](https://hosted.weblate.org/projects/androbd/strings/)
 
 #### OBD data descriptions:
 
-[![OBD data descriptions](https://hosted.weblate.org/widgets/androbd/-/obd-data-descriptions/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
+[![OBD data descriptions](https://hosted.weblate.org/widgets/androbd/-/obd-data-descriptions/multi-auto.svg)](https://hosted.weblate.org/projects/androbd/obd-data-descriptions/)
 
 #### Fault codes:
 
-[![Fault codes](https://hosted.weblate.org/widgets/androbd/-/fault-codes/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
+[![Fault codes](https://hosted.weblate.org/widgets/androbd/-/fault-codes/multi-auto.svg)](https://hosted.weblate.org/projects/androbd/fault-codes/)
 
 #### Plugin framework:
 
-[![Plugin framework](https://hosted.weblate.org/widgets/androbd/-/androbd-plugin-framework/multi-auto.svg)](https://hosted.weblate.org/engage/androbd/)
+[![Plugin framework](https://hosted.weblate.org/widgets/androbd/-/androbd-plugin-framework/multi-auto.svg)](https://hosted.weblate.org/projects/androbd/androbd-plugin-framework/)
 
 </details>
  
