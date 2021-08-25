@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">Prevod by Nenad163</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="translation_credits">Prevod by Nenad163 &amp; Aezrath</string>
     <string name="app_description">Android aplikacija za dijagnostiku automobila putem ELM327 ODB adaptera</string>
     <string name="title_connecting">Povezivanje…</string>
     <string name="title_connected_to">Povezan %s</string>
@@ -30,12 +31,10 @@
 \nDruga brisanja/resetovanja vezana za proizvodjace mogu biti pokrenuta.
 \nGubitak podataka moze izazvati da vozilo ide usporeno na kraci
 \nvremenski period dok se ECU ne rekalibrise.</string>
-
     <string name="select_device">Izaberite adapter</string>
     <string name="none_paired">Nema uparenih uredjaja</string>
     <string name="none_found">Nema pronadjenih uredjaja</string>
     <string name="title_paired_devices">Upareni uredjaji</string>
-
     <string name="send_to">Posalji dalje</string>
     <string name="share">Podeli</string>
     <string name="time">Vreme [s]</string>
@@ -48,7 +47,6 @@
     <string name="saved_data">Snimljeni podaci</string>
     <string name="loaded">ucitano</string>
     <string name="saved">snimljeno</string>
-
     <string name="connected_to">"Povezan sa "</string>
     <string name="demo">DEMO…</string>
     <string name="saving_data">Snimanje podataka …</string>
@@ -56,7 +54,6 @@
     <string name="dashboard">Komandna tabla</string>
     <string name="hud">Displej za prikaz informacija</string>
     <string name="filter">Filter izabran</string>
-
     <string name="settings">Podesavanja</string>
     <string name="common_settings">Zajednicka podesavanja</string>
     <string name="measure_system_description">Sistem mernih jedinica (metricni / imperijalni )</string>
@@ -73,10 +70,8 @@
     <string name="last_service">poslednji OBD servis</string>
     <string name="last_data_items">poslednje izabrane stavke podataka</string>
     <string name="last_view_mode">poslednji mod prikaza podataka</string>
-
     <string name="keep_screen_on">Drzi glavni ekran ukljucen</string>
     <string name="keep_screen_on_description">Ne iskljucuj ekran ako su glavni ekran ili podaci prikazani na displeju</string>
-
     <string name="development_options">Opcije razvoja</string>
     <string name="dev_opt_description">Opcije za debagiranje i prilagodjavanje</string>
     <string name="extension_files">Fajlovi za prilagodjavanje protokola (csv)</string>
@@ -91,7 +86,6 @@
     <string name="select_protocol">Preferirani OBD protokol</string>
     <string name="select_fault_code">Izaberite kod greske …</string>
     <string name="select_medium">Tip adaptera …</string>
-
     <string name="devices_found">%d USB uredjaj(a) pronadjeno</string>
     <string name="min_elm_timeout">Min. ELM istek vremena [ms]</string>
     <string name="unabletoconnect">Nemoguce povezivanje sa uredjajem</string>
@@ -117,7 +111,6 @@
     <string name="elm_options">ELM opcije</string>
     <string name="elm_custom_init">ELM posebna inicijalizacija</string>
     <string name="elm_custom_init_descr">Posebne komande za ELM inicijalizaciju</string>
-
     <string name="UNDEFINED">Nedefinisano</string>
     <string name="INITIALIZING">Inicijalizacija …</string>
     <string name="INITIALIZED">Inicijalizovano</string>
@@ -154,4 +147,40 @@
     <string name="semicolon">Kolona</string>
     <string name="send_after_export">Posalji posle izvezivanja</string>
     <string name="send_after_export_descr">Pitaj za slanje CSV fajla odmah posle izvezivanja?</string>
-    </resources>
+    <string name="comm_baudrate_description">Brzina USB serijske komunikacije</string>
+    <string name="comm_baudrate">ELM brzina prenosa</string>
+    <string name="master">master</string>
+    <string name="graph_actions">Grafikon akcija</string>
+    <string name="plugin_manager_desc">Menadzer za detektovane dodace</string>
+    <string name="unfilter">Uklonite filter</string>
+    <string name="process_vars">Promenljive procesa</string>
+    <string name="long_press_dfc_hint">Dugo pritisnite DFC za onlajn pretragu…</string>
+    <string name="plugin_data">Podaci o dodatku</string>
+    <string name="graphic_design">Graficki dizajn</string>
+    <string name="release_history">Istorija izdanja…</string>
+    <string name="libraries_sum">Biblioteke koriscene u projektu…</string>
+    <string name="libraries">Biblioteke…</string>
+    <string name="donation">Podrzi projekat…</string>
+    <string name="license">Licensiranje…</string>
+    <string name="toolbar_overlay_sum">Prikazi traku sa alatkama koja se preklapa sa glavnim ekranom</string>
+    <string name="toolbar_overlay">Prikazi kao preklapanje</string>
+    <string name="data_disable_max_description">Broj nevazecih uzastopnih odgovora podataka pre nego sto stavka bude onemogucena</string>
+    <string name="data_disable_max">Ograničenje onemogućavanja stavke podataka</string>
+    <string name="configure">Konfigurisi</string>
+    <string name="plugin_manager">Menadzer plugin-ova</string>
+    <string name="obd_test_confirm">OBD test kontrole zatrazen.
+\n
+\nZatrazeni OBD test kontrole moze da generise:
+\n- Kretanje vozila
+\n- Dim auspuha
+\n- Visoku temperaturu auspuha
+\n- Glasu buku motora
+\n- Isparivanje goriva
+\n- Itd.
+\n
+\nMolimo potvrdite da uradite ovaj test kontrole na sopstveni rizik u bezbednom okruzenju!</string>
+    <string name="obd_test_progress">OBD test kontrole u toku.
+\nMolimo proverite reakciju vozila.</string>
+    <string name="service_testcontrol">OBD test kontrole</string>
+    <string name="copied_to_clipboard">Kopirano u medjuspremnik</string>
+</resources>
