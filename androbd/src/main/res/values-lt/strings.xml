@@ -1,2 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="csv_text_quoted_description">CSV teksto laukai įtraukiami į kabutes</string>
+    <string name="csv_text_quoted">CSV teksto citatos</string>
+    <string name="csv_rec_delimiter_description">Neriboti simbolio (-ų) tarp CSV duomenų įrašų</string>
+    <string name="csv_rec_delimiter">CSV įrašų neribojimas</string>
+    <string name="csv_field_delimiter_description">Neriboti simbolio (-ų) tarp CSV duomenų laukelių</string>
+    <string name="csv_field_delimiter">CSV laukelio neribojimas</string>
+    <string name="elm_reset_on_nrc_descr">Iš naujo nustatyti ELM adapterį esant NRC klaidai\?</string>
+    <string name="elm_reset_on_nrc">Atstatyti esant NRC</string>
+    <string name="elm_adaptive_timing_descr">Leisti adaptyvų laiko valdymą ELM tvarkyklėse\?</string>
+    <string name="elm_adaptive_timing">ELM adaptyvus laikas</string>
+    <string name="elm_timeout_descr">Minimalus ELM atsakymų laukimo laiko limitas [ms]</string>
+    <string name="min_elm_timeout">Min. ELM laiko limitas [ms]</string>
+    <string name="development_options">Kūrimo parinktys</string>
+    <string name="obd_pendingcodes">OBD klaidų kodai (dabartiniai)</string>
+    <string name="service_testcontrol">OBD bandymo kontrolė</string>
+    <string name="obd_clear_info">Tai iš naujo nustatys MIL ir pašalins visą su emisijomis susijusią diagnostikos
+\n informacija, įskaitant:
+\n - Diagnostikos klaidų kodus (DTC)
+\n - Sustabdytų kadrų duomenis
+\n - Deguonies sensoriaus bandymo duomenis
+\n - Sistemos stebėjimo bandymų būsenas
+\n - Stebėjimo važiuojant bandymų rezultatus
+\n - Nuvažiuotą atstumas įjungus MIL
+\n - Variklio įšilimų skaičių nuo DTC pašalinimo
+\n - Nuvažiuotą atstumą nuo DTC pašalinimo
+\n - Variklio veikimo laiką, kai įjungtas MIL
+\n - Laiką nuo DTC pašalinimo
+\n
+\n Gali būti atliekami kiti gamintojui būdingi išvalymo/atstatymo veiksmai.
+\n Praradus duomenis, transporto priemonė gali kurį laiką prastai,
+\nkol ECU persikalibruoja.</string>
+    <string name="service_freezeframes">OBD sustabdyti kadrai</string>
+    <string name="translation_credits">Išvertė - Gediminas Murauskas</string>
+    <string name="comm_baudrate_description">USB nuosekliojo ryšio greitis</string>
+    <string name="comm_baudrate">ELM perdavimo sparta</string>
+    <string name="master">pagrindinis</string>
+    <string name="graph_actions">Grafiko veiksmai</string>
+    <string name="unfilter">Pašalinti filtrą</string>
+    <string name="process_vars">Proceso kintamieji</string>
+    <string name="long_press_dfc_hint">Ilgai nuspauskite DFC, kad galėtumėte atlikti paiešką internete …</string>
+    <string name="plugin_manager_desc">Aptiktų įskiepių tvarkyklė</string>
+    <string name="plugin_data">Įskiepio duomenys</string>
+    <string name="graphic_design">Grafinis dizainas</string>
+    <string name="libraries_sum">Bibliotekos, naudojamos šiame projekte …</string>
+    <string name="libraries">Bibliotekos …</string>
+    <string name="license">Licencijavimas …</string>
+    <string name="toolbar_overlay_sum">Rodyti įrankių juostą, dengiančią pagrindinį ekraną</string>
+    <string name="toolbar_overlay">Rodyti kaip uždangą</string>
+    <string name="send_after_export_descr">Raginti siųsti CSV failą iškart po eksportavimo\?</string>
+    <string name="send_after_export">Siųsti po eksportavimo</string>
+    <string name="semicolon">KABLIATAŠKIS</string>
+    <string name="comma">KABLELIS</string>
+    <string name="tab">SKIRTUKAS</string>
+    <string name="csv_export_description">CSV eksportavimo failų formatavimo parinktys</string>
+    <string name="csv_export_options">CSV eksportavimo parinktys</string>
+    <string name="autohide_delay_description">Uždelsimas sekundėmis nesant veiklos, iki kol įrankių juosta paslepiama</string>
+    <string name="autohide_delay">Įrankių juostos slėpimo uždelsimas [s]</string>
+    <string name="autohide_toolbar_description">Automatiškai paslėpti įrankių juostą po uždelsimo nesant veiklos</string>
+    <string name="autohide_toolbar">Slėpti įrankių juostą</string>
+    <string name="data_disable_max_description">Iš eilės gaunamų, negaliojančių duomenų atsakymų skaičius, po kurio elementas bus išjungtas</string>
+    <string name="data_disable_max">Duomenų elemento išjungimo limitas</string>
+    <string name="device_port">ELM IP prievadas</string>
+    <string name="device_port_description">ELM įrenginio tinklo IP prievadas</string>
+    <string name="device_address">ELM IP adresas</string>
+    <string name="device_address_description">ELM įrenginio tinklo IP adresas</string>
+    <string name="obd_error">OBD protokolo klaida</string>
+    <string name="ERROR">Klaida</string>
+    <string name="RXERROR">RX klaida</string>
+    <string name="DATAERROR">Duomenų klaida</string>
+    <string name="BUSERROR">BUS klaida</string>
+    <string name="DISCONNECTED">Atsijungė</string>
+    <string name="STOPPED">Sustojo</string>
+    <string name="NODATA">Nėra duomenų</string>
+    <string name="CONNECTED">Prisijungta</string>
+    <string name="CONNECTING">Prisijungiama…</string>
+    <string name="ECU_DETECTED">ECU aptiktas</string>
+    <string name="ECU_DETECT">ECU aptikimas…</string>
+    <string name="donation">Paremkite projektą …</string>
+    <string name="release_history">Leidimų istorija …</string>
+    <string name="INITIALIZED">Inicijuota</string>
+    <string name="INITIALIZING">Inicijuojama…</string>
+    <string name="UNDEFINED">Neapibrėžta</string>
+    <string name="elm_custom_init_descr">ELM pasirinktinio inicijavimo komandos</string>
+    <string name="elm_custom_init">ELM pasirinktinis inicijavimas</string>
+    <string name="elm_options">ELM parinktys</string>
+    <string name="secure_connect_description">Naudokite šifruotą Bluetooth ryšį</string>
+    <string name="secure_connect">Saugus ryšys</string>
+    <string name="common_settings_description">Bendrieji programėlės valdymo nustatymai</string>
+    <string name="use_last_settings">Naudoti vėliausius nustatymus</string>
+    <string name="use_last_settings_description">Įjungimo metu naudokite vėliausius nustatymus (BT adresą, ECU adresą, ekrano elementus ...)</string>
+    <string name="reset_preselections">Iš naujo nustatyti vėliausius išankstinius pasirinkimus</string>
+    <string name="disconnect">Atsijungti</string>
+    <string name="select_ecu_addr">Pasirinkite ECU adresą …</string>
+    <string name="disable_elm_cmds_descr">įjunkite/išjunkite ELM komandas</string>
+    <string name="disable_elm_cmds">Išjungtos ELM komandos</string>
+    <string name="night_mode">Nakties rėžimas</string>
+    <string name="night_mode_description">Nustatyti tamsų ekrano foną</string>
+    <string name="day_night_mode">Dienos/nakties peržiūros režimas</string>
+    <string name="connectionlost">Prarastas ryšys su įrenginiu</string>
+    <string name="unabletoconnect">Nepavyksta prijungti įrenginio</string>
+    <string name="devices_found">Rastas (-i) %d USB įrenginys (-iai)</string>
+    <string name="select_medium">Adapterio tipas …</string>
+    <string name="select_fault_code">Pasirinkite klaidos kodą …</string>
+    <string name="configure">Konfigūruoti</string>
+    <string name="plugin_manager">Įskiepių tvarkyklė</string>
+    <string name="select_protocol">Pageidaujamas OBD protokolas</string>
+    <string name="obd_opt_description">OBD protokolo / transporto priemonės ryšio parinktys</string>
+    <string name="obd_options">OBD parinktys</string>
+    <string name="check_cust_settings">Patikrinkite savo pritaikymo nustatymus
+\n</string>
+    <string name="extension_loading">Pritaikymas įkėlimas</string>
+    <string name="select_extension">Pasirinkite .csv plėtinio failą …</string>
+    <string name="data_items">Duomenų elementai</string>
+    <string name="conversions">Duomenų konvertavimas</string>
+    <string name="extension_files">Protokolo pritaikymo failai (CSV)</string>
+    <string name="dev_opt_description">Derinimo ir pritaikymo parinktys</string>
+    <string name="keep_screen_on_description">Neišjungti ekrano, jei rodomas pagrindinis/duomenų ekranas</string>
+    <string name="keep_screen_on">Laikyti pagrindinį ekraną įjungtą</string>
+    <string name="last_view_mode">vėliausias duomenų peržiūros režimas</string>
+    <string name="last_data_items">vėliausiai pasirinkti duomenų elementai</string>
+    <string name="last_service">vėliausia OBD paslauga</string>
+    <string name="last_ecu">vėl prijunkite vėliausią ECU</string>
+    <string name="last_elm">vėl prijunkite vėliausią ELM adapterį</string>
+    <string name="logging_level_description">Išsamios informacijos, kuri turi būti įrašyta į derinimo žurnalo failą, lygis</string>
+    <string name="logging_level">Registravimo lygis</string>
+    <string name="debugging">Derinimas</string>
+    <string name="items_for_display_descr">Pasirinkite visus duomenų elementus, kurie bus rodomi …</string>
+    <string name="items_for_display">Rodomi duomenų elementai</string>
+    <string name="imperial">imperiniai</string>
+    <string name="metric">metriniai</string>
+    <string name="measure_system">Matavimo vienetai</string>
+    <string name="measure_system_description">Matavimo vienetų sistema (metrinė / imperinė)</string>
+    <string name="common_settings">Bendrieji nustatymai</string>
+    <string name="settings">Nustatymai</string>
+    <string name="filter">Pasirinktas filtras</string>
+    <string name="hud">Ekranas „Head Up“</string>
+    <string name="dashboard">Skydelis</string>
+    <string name="loading_data">Įkeliami duomenys …</string>
+    <string name="saving_data">Išsaugomi duomenys …</string>
+    <string name="demo">Demo…</string>
+    <string name="connected_to">"Prisijungta prie "</string>
+    <string name="saved">Išsaugota</string>
+    <string name="loaded">pakrauta</string>
+    <string name="saved_data">Išsaugoti duomenys</string>
+    <string name="load">Apkrovos matavimas</string>
+    <string name="save">Išsaugoti matavimą</string>
+    <string name="snapshot">momentinė nuotrauka</string>
+    <string name="demo_started">DEMO režimas paleistas</string>
+    <string name="demo_stopped">DEMO režimas sustabdytas</string>
+    <string name="chart">Diagrama</string>
+    <string name="time">Laikas [s]</string>
+    <string name="share">dalintis</string>
+    <string name="send_to">Siųsti į</string>
+    <string name="title_paired_devices">Suporuoti įrenginiai</string>
+    <string name="none_found">Nerasta jokių įrenginių</string>
+    <string name="none_paired">Nėra suporuotų įrenginių</string>
+    <string name="select_device">Pasirinkite adapterį</string>
+    <string name="obd_test_confirm">Inicijuota atlikti OBD bandymo kontrolę.
+\n
+\n Ši OBD bandymo kontrolė gali sugeneruoti:
+\n - Transporto priemonės judėjimą
+\n - Išmetamasias dujas
+\n - Aukštą išmetimo temperatūrą
+\n - Stiprų variklio triukšmą
+\n - Kuro garus
+\n - ir kt.
+\n
+\n Patvirtinkite, kad šią bandymo kontrolę atliksite savo pačių rizika tik saugioje bandymų aplinkoje!</string>
+    <string name="obd_test_progress">Vyksta OBD testo kontrolė.
+\n Patikrinkite transporto priemonės reakciją.</string>
+    <string name="obd_clearcodes">Išvalyti klaidų kodus</string>
+    <string name="obd_permanentcodes">OBD klaidų kodai (nuolatiniai)</string>
+    <string name="obd_codes">OBD klaidų kodai</string>
+    <string name="obd_data">OBD duomenys</string>
+    <string name="obd_veh_info">OBD informacija apie transporto priemonę</string>
+    <string name="obd_services">OBD paslaugos</string>
+    <string name="obd_none">NĖRA ryšio</string>
+    <string name="action_connect">Prisijungti</string>
+    <string name="back_again_to_exit">Dar kartą paspauskite atgal, kad uždarytumėte šią programėlę</string>
+    <string name="logo">Logotipas</string>
+    <string name="title_connected_to">Prijungta prie %s</string>
+    <string name="title_connecting">Prisijungiama…</string>
+    <string name="copied_to_clipboard">Nukopijuota į iškarpinę</string>
+    <string name="app_description">Android OBD transporto priemonių diagnostikos programa, skirta ELM327 Bluetooth adapteriui</string>
+</resources>
