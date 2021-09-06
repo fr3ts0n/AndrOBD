@@ -1850,9 +1850,6 @@ public class MainActivity extends PluginManager
 		getListView().setMultiChoiceModeListener(this);
 		getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-		// un-filter display
-		setFiltered(false);
-
 		// set title
 		ActionBar ab = getActionBar();
 		if (ab != null)
@@ -1872,7 +1869,7 @@ public class MainActivity extends PluginManager
 			}
 		}
 		// set protocol service
-		CommService.elm.setService(newObdService, (getMode() != MODE.FILE));
+		CommService.elm.setService(newObdService, (getMode() != MODE.FILE && getMode() != MODE.OFFLINE));
 		// show / hide freeze frame selector */
 		Spinner ff_selector = findViewById(R.id.ff_selector);
 		ff_selector.setOnItemSelectedListener(ff_selected);
@@ -1907,6 +1904,10 @@ public class MainActivity extends PluginManager
 				currDataAdapter = mVidAdapter;
 				break;
 		}
+
+		// un-filter display
+		setFiltered(false);
+
 		setListAdapter(currDataAdapter);
 
 		// remember this as last selected service
