@@ -56,21 +56,21 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	mnemonic (
 0x01,0x02	0x22	0	2	0	16	0xFFFF	PRESS_REL	%.3f			fuel_pressure_rel	Fuel Rail Pressure (rel. to manifold vacuum)	fuel rail pressure relative to manifold vacuum			
 0x01,0x02	0x23	0	2	0	16	0xFFFF	PRESS_WIDERANGE	%.1f			fuel_pressure	Fuel Pressure (gauge)	fuel rail pressure (gauge	wide range		
 0x01,0x02	0x24	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b1s1	O2 Sensor B1S1 lambda	Bank 1 (WR)	o2_sensor_wrv_formula	-o2 sensors (wide range	voltage
-0x01,0x02	0x24	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b1s1	O2 Sensor B1S1	Bank 1 (WR)	o2_sensor_wrv_formula	-o2 sensors (wide range	voltage
+0x01,0x02	0x24	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.3f			o2_sensor_voltage_b1s1	O2 Sensor B1S1	Bank 1 (WR)	o2_sensor_wrv_formula	-o2 sensors (wide range	voltage
 0x01,0x02	0x25	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b1s2	O2 Sensor B1S2 lambda	Bank 1 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x25	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b1s2	O2 Sensor B1S2	Bank 1 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x25	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.3f			o2_sensor_voltage_b1s2	O2 Sensor B1S2	Bank 1 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x26	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b1s3	O2 Sensor B1S3 lambda	Bank 1 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x26	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b1s3	O2 Sensor B1S3	Bank 1 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x26	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.3f			o2_sensor_voltage_b1s3	O2 Sensor B1S3	Bank 1 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x27	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b1s4	O2 Sensor B1S4 lambda	Bank 1 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x27	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b1s4	O2 Sensor B1S4	Bank 1 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x27	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.3f			o2_sensor_voltage_b1s4	O2 Sensor B1S4	Bank 1 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x28	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b2s1	O2 Sensor B2S1 lambda	Bank 2 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x28	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b2s1	O2 Sensor B2S1	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x28	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.3f			o2_sensor_voltage_b2s1	O2 Sensor B2S1	Bank 2 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x29	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b2s2	O2 Sensor B2S2 lambda	Bank 2 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x29	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b2s2	O2 Sensor B2S2	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x29	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.3f			o2_sensor_voltage_b2s2	O2 Sensor B2S2	Bank 2 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x2A	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b2s3	O2 Sensor B2S3 lambda	Bank 2 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x2A	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b2s3	O2 Sensor B2S3	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x2A	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.3f			o2_sensor_voltage_b2s3	O2 Sensor B2S3	Bank 2 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x2B	0	2	0	16	0xFFFF	LAMBDA	%.3f	0.5	1.5	o2_sensor_lambda_b2s4	O2 Sensor B2S4 lambda	Bank 2 (WR)	o2_sensor_wrv_formula		
-0x01,0x02	0x2B	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.0f			o2_sensor_voltage_b2s4	O2 Sensor B2S4	Bank 2 (WR)	o2_sensor_wrv_formula		
+0x01,0x02	0x2B	2	2	0	16	0xFFFF	O2_VOLT_WIDE	%.3f			o2_sensor_voltage_b2s4	O2 Sensor B2S4	Bank 2 (WR)	o2_sensor_wrv_formula		
 0x01,0x02	0x2C	0	1	0	8	0xFF	PERCENT	%.1f			egr_ratio_commanded	Commanded EGR				
 0x01,0x02	0x2D	0	1	0	8	0xFF	PERCENT_REL	%.2f			egr_error	EGR Error				
 0x01,0x02	0x2E	0	1	0	8	0xFF	PERCENT	%.1f			evaporative_purge_ratio	Commanded Evaporative Purge				
@@ -125,9 +125,9 @@ svc	pid	ofs	len	bit_offset	bit_length	bit_mask	formula	format	min	max	mnemonic (
 0x01,0x02	0x4D	0	2	0	16	0xFFFF	HOURS	%.2f			time_since_mil_on	Engine running while MIL on	minutes run by the engine while MIL activated			
 0x01,0x02	0x4E	0	2	0	16	0xFFFF	HOURS	%.2f			time_since_ecu_reset	Time since DTCs cleared				
 0x01,0x02	0x4F	0	1	0	8	0xFF	ONETOONE	%.0f			equiv_ratio_max	Maximum equivalence ratio				
-0x01,0x02	0x4F	1	1	0	8	0xFF	VOLTAGE_MV	%.0f			o2_sensor_voltage_max	Maximum oxygen sensor voltage				
-0x01,0x02	0x4F	2	1	0	8	0xFF	CURRENT	%.0f			o2_sensor_current_max	Maximum oxygen sensor current				
-0x01,0x02	0x4F	3	1	0	8	0xFF	PRESS_WIDERANGE	%.0f			fuel_pressure_max	Maximum intake manifold absolute pressure				
+0x01,0x02	0x4F	1	1	0	8	0xFF	ONETOONE	%.0f			o2_sensor_voltage_max	Maximum oxygen sensor voltage				
+0x01,0x02	0x4F	2	1	0	8	0xFF	ONETOONE	%.0f			o2_sensor_current_max	Maximum oxygen sensor current				
+0x01,0x02	0x4F	3	1	0	8	0xFF	ONETOONE	%.0f			fuel_pressure_max	Maximum intake manifold absolute pressure				
 0x01,0x02	0x50	0	1	0	8	0xFF	AIRFLOW	%.0f			mass_airflow_max	Maximum air flow rate from mass air flow sensor				
 0x01,0x02	0x51	0	1	0	8	0xFF	FUEL_TYPE	%.0f			fuel_type	Fuel type				
 0x01,0x02	0x52	0	1	0	8	0xFF	PERCENT	%.0f			ethanol_fuel_percentage	Ethanol fuel %				

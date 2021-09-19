@@ -37,6 +37,8 @@ public class LinearConversion extends NumericConversion
 	private int offset = 0;
 	private int offsetPhys = 0;
 	private PvLimits limits = null;
+	// mnemonic of dynamic factor
+	private String factMnemonic = null;
 
 	/**
 	 * Creates a new instance of Conversion
@@ -65,6 +67,26 @@ public class LinearConversion extends NumericConversion
 	}
 
 	/**
+	 * Creates a new instance of Conversion with usage of a optional dynamic conversion factor
+	 *
+	 * @param factor     conversion factor (integer part)
+	 * @param divider    conversion divider (integer part)
+	 * @param offset     linear offset to be added to raw memory value before conversion
+	 * @param offsetPhys physical offset to be added after converting raw value
+	 * @param units      physical units for this conversion
+	 * @param factMnemonic mnemonic of dynamic conversion factor value
+	 */
+	public LinearConversion(int factor, int divider, int offset, int offsetPhys,
+	                        String units, String factMnemonic)
+	{
+		this(factor, divider, offset, offsetPhys, units);
+		if (factMnemonic != null && !factMnemonic.isEmpty())
+		{
+			this.factMnemonic = factMnemonic;
+		}
+	}
+
+	/**
 	 * Creates a new instance of Conversion
 	 *
 	 * @param factor     conversion factor (integer part)
@@ -81,12 +103,40 @@ public class LinearConversion extends NumericConversion
 	}
 
 	/**
+	 * Dynamic update of conversion factor from other measurement value
+	 *
+	 * The dynamic conversion factor overrides the initial, static factor if:
+	 * - Factor is reported by protocol
+	 * - Value > 0
+	 */
+	private void updateCnvFromDynamicFactor()
+	{
+		if (factMnemonic != null)
+		{
+			// Get data item of dynamic conversion factor
+			EcuDataItem newFactItm = EcuDataItems.byMnemonic.get(factMnemonic);
+			if (newFactItm != null)
+			{
+				// Get value of dynamic conversion factor
+				Number factVal = (Number)newFactItm.pv.get(EcuDataPv.FID_VALUE);
+				// If there is a valid value, update factor with dynamic factor
+				if (factVal != null && factVal.intValue() > 0)
+				{
+					// update conversion factor from dynamic value
+					factor = factVal.intValue();
+				}
+			}
+		}
+	}
+
+	/**
 	 * convert measurement item from storage format to physical value
 	 *
 	 * @param value raw memory value to be converted
 	 */
 	public Number memToPhys(long value)
 	{
+		updateCnvFromDynamicFactor();
 		float result = ((float) (value + offset) * factor / divider + offsetPhys);
 		if (limits != null)
 		{

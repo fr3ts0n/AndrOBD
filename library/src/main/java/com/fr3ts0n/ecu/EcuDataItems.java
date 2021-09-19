@@ -45,9 +45,14 @@ import java.util.logging.Logger;
  */
 public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDataItem>>>
 {
-	/** SerialVerion UID */
+	/**
+	 * SerialVersion UID
+	 */
 	private static final long serialVersionUID = 5525561909111851836L;
-	/** CSV field positions */
+
+	/**
+	 * CSV field positions
+	 */
 	enum FLD
 	{
 		SVC,
@@ -71,6 +76,8 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	public static EcuConversions cnv;
 	// the data logger
 	private static final Logger log = Logger.getLogger("data.items");
+	// map of MNEMONIC data item
+	protected static final HashMap<String, EcuDataItem> byMnemonic = new HashMap<>();
 
 	/**
 	 * Create data items from default CSV pidResource files
@@ -78,14 +85,15 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	 */
 	public EcuDataItems()
 	{
-		this( "prot/obd/res/pids.csv",
-              "prot/obd/res/conversions.csv",
-              "com.fr3ts0n.ecu.prot.obd.res.messages");
+		this("prot/obd/res/pids.csv",
+		     "prot/obd/res/conversions.csv",
+		     "com.fr3ts0n.ecu.prot.obd.res.messages");
 	}
 
 	/**
 	 * Create data items from CSV pidResource file
-	 * @param pidResource resource file for PIDs (csv)
+	 *
+	 * @param pidResource        resource file for PIDs (csv)
 	 * @param conversionResource resource file for conversions (csv)
 	 */
 	public EcuDataItems(String pidResource, String conversionResource, String resourceBundleName)
@@ -169,6 +177,9 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 										 label,
 					                     params[FLD.MNEMONIC.ordinal()]);
 
+				// Add item to mnemonic map
+				byMnemonic.put(params[FLD.MNEMONIC.ordinal()], newItm);
+
 				// enter data item for all specified services
 				String[] services = params[FLD.SVC.ordinal()].split(","); //$NON-NLS-1$
 				for (String service : services)
@@ -214,7 +225,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		HashMap<Integer, Vector<EcuDataItem>> currSvc = get(service);
 		if (currSvc != null)
 		{
-			for(Vector<EcuDataItem> currVec : currSvc.values())
+			for (Vector<EcuDataItem> currVec : currSvc.values())
 			{
 				result.addAll(currVec);
 			}
@@ -224,6 +235,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 
 	/**
 	 * append new data item to specified service
+	 *
 	 * @param service service to add item to
 	 * @param newItem EcuDataItem to be added
 	 */
@@ -253,7 +265,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		// update map of services
 		put(service, currSvc);
 		// debug message of new enty
-		log.finer("+" + service + "/" + String.format("0x%02X",newItem.pid) + " - " + currVec); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		log.finer("+" + service + "/" + String.format("0x%02X", newItem.pid) + " - " + currVec); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 	}
 
 	/**

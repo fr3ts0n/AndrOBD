@@ -116,12 +116,25 @@ public class EcuConversions extends HashMap<String, Conversion[]>
 				params = currLine.split("\t");
 				if (params[FLD_TYPE].equals(CNV_TYPE_LINEAR))
 				{
-					// create linear conversion
-					newCnv = new LinearConversion(Integer.parseInt(params[FLD_FACTOR]),
-						Integer.parseInt(params[FLD_DIVIDER]),
-						Integer.parseInt(params[FLD_OFFSET]),
-						Integer.parseInt(params[FLD_PHOFFSET]),
-						params[FLD_UNITS]);
+					if(params.length > FLD_PARAMETERS)
+					{
+						// create linear conversion (w/ dynamic parameters)
+						newCnv = new LinearConversion(Integer.parseInt(params[FLD_FACTOR]),
+													  Integer.parseInt(params[FLD_DIVIDER]),
+													  Integer.parseInt(params[FLD_OFFSET]),
+													  Integer.parseInt(params[FLD_PHOFFSET]),
+													  params[FLD_UNITS],
+													  params[FLD_PARAMETERS]);
+					}
+					else
+					{
+						// create linear conversion (w/o dynamic parameter)
+						newCnv = new LinearConversion(Integer.parseInt(params[FLD_FACTOR]),
+													  Integer.parseInt(params[FLD_DIVIDER]),
+													  Integer.parseInt(params[FLD_OFFSET]),
+													  Integer.parseInt(params[FLD_PHOFFSET]),
+													  params[FLD_UNITS]);
+					}
 				}
 				else if (params[FLD_TYPE].equals(CNV_TYPE_HASH))
 				{
