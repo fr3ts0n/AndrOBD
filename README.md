@@ -90,7 +90,7 @@ It is open source and completely free. The application also has a built in Demo 
   * Discuss the project in the Telegram [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
   * Translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/)
 <details>
-  <summary>Translation status</summary>
+  <summary>Expand translation status</summary>
 
 #### App dialogs:
 
