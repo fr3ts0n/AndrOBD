@@ -155,10 +155,10 @@
     <string name="toolbar_overlay">Visa som överlagring</string>
     <string name="toolbar_overlay_sum">Visa verktygsfält ovan på huvudskärm</string>
     <string name="license">Licensiering…</string>
-    <string name="donation">Stöd projektet…</string>
+    <string name="donation">Stöd projekt …</string>
     <string name="libraries">Bibliotek…</string>
     <string name="libraries_sum">Bibliotek som använts i projektet…</string>
-    <string name="release_history">Versionshistorik…</string>
+    <string name="release_history">Historik för utgåvan …</string>
     <string name="graphic_design">Grafisk design</string>
     <string name="plugin_data">Insticksdata</string>
     <string name="long_press_dfc_hint">Klicka och håll in DFC för att söka online …</string>
