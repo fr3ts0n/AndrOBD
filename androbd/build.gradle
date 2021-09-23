@@ -8,8 +8,8 @@ android {
         minSdkVersion 17
         // SDK 25 to allow background service mechanism for plugins
         targetSdkVersion 25
-        versionCode 20402
-        versionName 'V2.4.2'
+        versionCode 20403
+        versionName 'V2.4.3'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
