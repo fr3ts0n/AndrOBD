@@ -450,6 +450,12 @@ public class ObdProt extends ProtoHeader
     {
         currSupportedPid = 0;
 
+        // Clear PID list on initial bitmask (offset 0)
+        if( start == 0)
+        {
+            pidSupported.clear();
+        }
+
         // loop through bits and mark corresponding PIDs as supported
         for (int i = 0; i < 0x1F; i++)
         {
@@ -458,15 +464,22 @@ public class ObdProt extends ProtoHeader
                 pidSupported.add(i + start + 1);
             }
         }
-        log.fine(Long.toHexString(bitmask).toUpperCase() + "(" + Long.toHexString(
-                start) + "):" + pidSupported);
+
+        log.fine(Long.toHexString(bitmask).toUpperCase()
+                     + "(" + Long.toHexString(start) + "):"
+                     + pidSupported);
+
         // if next block may be requested
         if ((bitmask & 1) != 0)
+        {
             // request next block
             cmdQueue.add(String.format("%02X%02X", obdService, start + 0x20));
+        }
         else
+        {
             // setup PID PVs
             preparePidPvs(obdService, pvList);
+        }
     }
 
     /** Holds value of property numCodes. */
@@ -602,7 +615,10 @@ public class ObdProt extends ProtoHeader
                             case 0xA0:
                             case 0xC0:
                             case 0xE0:
-                                long msgPayload = Long.valueOf(new String(getPayLoad(buffer,8)), 16);
+                                // Check for optional message count byte, find offset to payload
+                                int offset = (buffer.length % 4 == 0) ? 4 : 6;
+                                // get payload data and mark the indicated supported PIDs
+                                long msgPayload = Long.valueOf(new String(buffer, offset, 8), 16);
                                 markSupportedPids(msgService, msgPid, msgPayload, PidPvs);
                                 break;
 
@@ -635,7 +651,10 @@ public class ObdProt extends ProtoHeader
                             case 0xA0:
                             case 0xC0:
                             case 0xE0:
-                                long msgPayload = Long.valueOf(new String(getPayLoad(buffer,8)), 16);
+                                // Check for optional message count byte, find offset to payload
+                                int offset = (buffer.length % 4 == 0) ? 4 : 6;
+                                // get payload data and mark the indicated supported PIDs
+                                long msgPayload = Long.valueOf(new String(buffer, offset, 8), 16);
                                 markSupportedPids(msgService, msgPid, msgPayload, VidPvs);
                                 break;
 
