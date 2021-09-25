@@ -920,13 +920,27 @@ public class ElmProt
 				
 				// is this a multy-line response
 				int idx = bufferStr.indexOf(':');
+
+				// .. or a ISO multi line response with format SVC PID MSGID DATA...
+				if((idx < 0) && (buffer.length == 14))
+				{
+					String msgIdStr = bufferStr.substring(4,6);
+					int msgId = Integer.valueOf(msgIdStr,0x10);
+					idx = msgId == 1 ? 0 : 5; // index of last digit message id
+				}
+
 				if (idx >= 0)
 				{
 					/* no length known, set marker for pending response
 					   response will be finished on reception of prompt */
 					responsePending = (charsExpected == 0);
-					
-					if (buffer[0] == '0')
+
+					if(idx == 0)
+					{
+						// initial ISO multiline message
+						lastRxMsg = bufferStr.replaceAll("00", "");
+					}
+					else if (buffer[0] == '0')
 					{
 						// first line of a multiline message
 						lastRxMsg = bufferStr.substring(idx + 1);
