@@ -23,7 +23,6 @@ class ElmProtTest
 	@Test
 	void handleTelegram_MessageCount()
 	{
-		prot.setService(ObdProt.OBD_SVC_NONE);
 		prot.setService(ObdProt.OBD_SVC_VEH_INFO);
 		// PID message includes optional message counter
 		prot.handleTelegram("490001F0000000>".toCharArray());
@@ -40,7 +39,6 @@ class ElmProtTest
 	@Test
 	void handleTelegram_NoMessageCount()
 	{
-		prot.setService(ObdProt.OBD_SVC_NONE);
 		prot.setService(ObdProt.OBD_SVC_VEH_INFO);
 		// PID message without optional message counter
 		prot.handleTelegram("4900A5000000".toCharArray());
@@ -60,7 +58,6 @@ class ElmProtTest
 		EcuDataItem itm = prot.dataItems.getPidDataItems(0x09, 0x02).get(1);
 		itm.pv.addPvChangeListener(this);
 
-		prot.setService(ObdProt.OBD_SVC_NONE);
 		prot.setService(ObdProt.OBD_SVC_VEH_INFO);
 
 		prot.sendTelegram("0902".toCharArray());
@@ -83,7 +80,6 @@ class ElmProtTest
 		EcuDataItem itm = prot.dataItems.getPidDataItems(0x09, 0x02).get(1);
 		itm.pv.addPvChangeListener(this);
 
-		prot.setService(ObdProt.OBD_SVC_NONE);
 		prot.setService(ObdProt.OBD_SVC_VEH_INFO);
 
 		// PID message without optional message counter
@@ -105,12 +101,11 @@ class ElmProtTest
 		EcuDataItem itm = prot.dataItems.getPidDataItems(0x09, 0x04).get(1);
 		itm.pv.addPvChangeListener(this);
 
-		prot.setService(ObdProt.OBD_SVC_NONE);
 		prot.setService(ObdProt.OBD_SVC_VEH_INFO);
 
 		// PID message without optional message counter
 		// send CAL-IDs "GSPA..." without length id
-		prot.handleTelegram("0:490402475350".toCharArray());
+		prot.handleTelegram("0:490401475350".toCharArray());
 		prot.handleTelegram("1:412D3132333435".toCharArray());
 		prot.handleTelegram("2:363738393030".toCharArray());
 		prot.handleTelegram(">".toCharArray());

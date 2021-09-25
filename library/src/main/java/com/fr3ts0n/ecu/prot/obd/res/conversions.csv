@@ -21,7 +21,7 @@ IGN_MON_STATUS	BITMAP	0	METRIC	1	1	0	0		Ignition monitor status	0=Compression ig
 INTEGER	INTEGER	0	METRIC	1	1	0	0		INTEGER		
 LAMBDA	LINEAR	0	METRIC	2	65535	0	0		Lambda (0-2)	equiv_ratio_max	
 LAMBDA_O2	LINEAR	0	METRIC	1	8192	0	0		O2 Lambda (PID 8C)		
-O2_CURRENT	LINEAR	0	METRIC	128	32768	-32768	0	mA	O2 current	o2_sensor_current_max
+O2_CURRENT	LINEAR	0	METRIC	128	32768	-32768	0	mA	O2 current	o2_sensor_current_max	
 O2_PERCENT	LINEAR	0	METRIC	100	128	-128	0	%	8-Bit percentage (O2)		
 O2_PRESENT_MAP	BITMAP	0	METRIC	1	1	0	0		O2-Sensors present	0=B1S1;1=B1S2;2=B2S1;3=B2S2;4=B3S1;5=B3S2;6=B4S1;7=B4S2	
 O2_PRESENT13	BITMAP	0	METRIC	1	1	0	0		O2-Sensors present	0=B1S1;1=B1S2;2=B1S3;3=B1S4;4=B2S1;5=B2S2;6=B2S3;7=B2S4	
@@ -70,19 +70,19 @@ STATE_BIT	BITMAP	0	METRIC	1	1	0	0		BIT/Switch state (single Bit)	0=active
 STATE_DPF	BITMAP	0	METRIC	1	1	0	0		DPF state	0=DPF regenerating;1=Active Regen;2=NOx Absorber regenerating;3=NOx Absorber desulferizing	
 STATE_INDUC	HASH	0	METRIC	1	1	0	0		State of inducement system	0=inactive;1=enabled;2=active;3=n/a	
 STATE_LOOP	HASH	0	METRIC	1	1	0	0		Loop status	0=Reserved;1=Open Loop;2=Closed Loop;3=Fault Present	
-STATE_LOOP8	BITMAP	0	METRIC	1	1	0	0		Bitmasked loop states	0=Available;8=Closed Loop	
+STATE_LOOP8	BITMAP	0	METRIC	1	1	0	0		Bitmasked loop states	0=Closed Loop;8=Available	
 STATE_MIL	HASH	0	METRIC	1	1	0	0		MIL display state	0=Off;1=On demand;2=Short;3=Continuous;14=Error;15=n/a	
 STATE_MONITOR	BITMAP	0	METRIC	1	2	0	0		Monitoring state	0=incomplete	
 STATE_PM	BITMAP	0	METRIC	1	1	0	0		PM sensor state	0=measuring;1=regenerating	
 STATE_SCR	BITMAP	0	METRIC	1	1	0	0		SCR state	0=Reagent Level low;1=Reagent incorrect;2=Deviation in reagent consumption;3=NOx emissions too high	
 STRATEGY_MIL	HASH	0	METRIC	1	1	0	0		MIL display strategy coding	0=NON discriminatory;1=discriminatory;2=reserved;3=n/a	
-SWITCH_STATUS_8	BITMAP	0	METRIC	1	1	0	0		Switch status	0=available;8=active	
+SWITCH_STATUS_8	BITMAP	0	METRIC	1	1	0	0		Switch status	0=active;8=available	
 TEMP_WIDERANGE	LINEAR	0	IMPERIAL	9	50	-400	32	°F	Temperature (wide range)		
 TEMP_WIDERANGE	LINEAR	0	METRIC	1	10	-400	0	°C	Temperature (wide range)		
 TEMPERATURE	LINEAR	0	IMPERIAL	9	5	-40	32	°F	Temperature		
 TEMPERATURE	LINEAR	0	METRIC	1	1	-40	0	°C	Temperature		
 TEST_STATUS_4	BITMAP	0	METRIC	1	1	0	0		8 Bit Status check	0=available;4=incomplete	
-TEST_STATUS_8	BITMAP	0	METRIC	1	1	0	0		Catalyst test status	0=available;8=incomplete	
+TEST_STATUS_8	BITMAP	0	METRIC	1	1	0	0		Catalyst test status	0=incomplete;8=available	
 TORQUE	LINEAR	0	METRIC	1	1	0	0	Nm	Torque		
 VEHSPEED	LINEAR	0	IMPERIAL	1000	1609	0	0	mph	vehicle speed		
 VEHSPEED	LINEAR	0	METRIC	1	1	0	0	km/h	vehicle speed		
