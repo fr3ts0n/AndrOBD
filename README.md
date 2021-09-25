@@ -161,6 +161,7 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
 | 2020/10 | Frank White | $8 |
 | 2021/03 | Raphael Högger | CHF60 |
 | 2021/04 | Klemen Skerbiš | €5 |
+| 2021/06 | Christoph Goetz | €5 |
 </details>
 
 <details>
