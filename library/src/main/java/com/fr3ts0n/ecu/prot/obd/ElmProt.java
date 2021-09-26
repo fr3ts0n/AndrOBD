@@ -938,7 +938,7 @@ public class ElmProt
 					if(idx == 0)
 					{
 						// initial ISO multiline message
-						lastRxMsg = bufferStr.replaceAll("00", "");
+						lastRxMsg = bufferStr;
 					}
 					else if (buffer[0] == '0')
 					{

@@ -175,7 +175,10 @@ public class EcuDataItem
 			}
 			else
 			{
-				result = String.copyValueOf(buffer, ofs, bytes);
+				// get number of padding \0 characters
+				int padChars = 0; while(buffer[ofs + padChars] == 0) padChars++;
+				// copy string content after padding characters ...
+				result = String.copyValueOf(buffer, ofs + padChars, bytes);
 			}
             // decrement error counter
             currErrorCount = Math.max(0, currErrorCount -1);
