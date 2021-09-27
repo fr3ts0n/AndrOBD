@@ -115,4 +115,16 @@ class ElmProtTest
 
 		itm.pv.removePvChangeListener(this);
 	}
+
+	@Test
+	void handleTelegram_ReadDfc_Empty()
+	{
+		prot.setService(ObdProt.OBD_SVC_READ_CODES);
+
+		// PID message without optional message counter
+		// send CAL-IDs "GSPA..." without length id
+		prot.handleTelegram("43000000000000".toCharArray());
+
+		assertEquals(true, ObdProt.tCodes.get(0).toString().contains("P0000"));
+	}
 }

@@ -924,21 +924,25 @@ public class ElmProt
 				// .. or a ISO multi line response with format SVC PID MSGID DATA...
 				if((idx < 0) && (buffer.length == 14))
 				{
-					String msgIdStr = bufferStr.substring(4,6);
-					int msgId = Integer.valueOf(msgIdStr,0x10);
-					idx = msgId == 1 ? 0 : 5; // index of last digit message id
+					final int[] dfcServices = {OBD_SVC_READ_CODES, OBD_SVC_PENDINGCODES, OBD_SVC_PERMACODES};
+					int msgService = Integer.valueOf(bufferStr.substring(0, 2), 0x10) & ~0x40;
+					// If response to current service and no DFC response ...
+					if(msgService == getService()
+					   && Arrays.binarySearch(dfcServices, msgService) < 0)
+					{
+						// Use header on 1st response, cut from continuation messages
+						int msgId = Integer.valueOf(bufferStr.substring(4,6),0x10);
+						idx = msgId <= 1 ? 0 : 5; // index of last digit message id
+					}
 				}
 
 				if (idx >= 0)
 				{
-					/* no length known, set marker for pending response
-					   response will be finished on reception of prompt */
-					responsePending = (charsExpected == 0);
-
 					if(idx == 0)
 					{
 						// initial ISO multiline message
 						lastRxMsg = bufferStr;
+						charsExpected = 0;
 					}
 					else if (buffer[0] == '0')
 					{
@@ -951,6 +955,10 @@ public class ElmProt
 						// concat response without line counter
 						lastRxMsg += bufferStr.substring(idx + 1);
 					}
+
+					/* no length known, set marker for pending response
+					   response will be finished on reception of prompt */
+					responsePending = (charsExpected == 0);
 				}
 				else
 				{
