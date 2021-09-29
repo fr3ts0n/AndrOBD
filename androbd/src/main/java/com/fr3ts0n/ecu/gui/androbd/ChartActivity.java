@@ -30,6 +30,7 @@ import android.os.PowerManager.WakeLock;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 
 import com.fr3ts0n.ecu.EcuDataPv;
@@ -200,13 +201,15 @@ public class ChartActivity extends Activity
 		setTitle(R.string.chart);
 
 		/* get PIDs to be shown */
-		int positions[] = getIntent().getIntArrayExtra(POSITIONS);
+		int[] positions = getIntent().getIntArrayExtra(POSITIONS);
 
 		// set up overall chart properties
 		sensorData = new XYMultipleSeriesDataset();
 		renderer = new XYMultipleSeriesRenderer(positions.length);
 		chartView = ChartFactory.getTimeChartView(this, sensorData, renderer, "H:mm:ss");
 		// set up global renderer
+		float textSize = new EditText(this).getTextSize();
+		renderer.setLabelsTextSize(textSize/2);
 		renderer.setXTitle(getString(R.string.time));
 		renderer.setXLabels(5);
 		renderer.setYLabels(5);
@@ -229,7 +232,7 @@ public class ChartActivity extends Activity
 			// auto hide toolbar
 			toolBarHider = new AutoHider( this,
 			                              mHandler,
-				timeout * 1000);
+			                              timeout * 1000);
 			toolBarHider.start(1000);
 			// wake up on touch
 			chartView.setOnTouchListener(toolBarHider);
