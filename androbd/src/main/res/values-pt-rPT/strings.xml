@@ -169,4 +169,5 @@
     <string name="long_press_dfc_hint">Pressione e segure DFC para pesquisa on-line …</string>
     <string name="comm_baudrate_description">Velocidade da comunicação serial por USB</string>
     <string name="comm_baudrate">Taxa de transmissão do ELM</string>
+    <string name="copied_to_clipboard">Copiado para a área de transferência</string>
 </resources>
