@@ -74,6 +74,10 @@ class ElmProtTest
 		itm.pv.removePvChangeListener(this);
 	}
 
+	/**
+	 * VIN via multiline messages
+	 * @Verifies AndrOBD/#174
+	 */
 	@Test
 	void handleTelegram_Vin_Multiline()
 	{
@@ -95,6 +99,10 @@ class ElmProtTest
 		itm.pv.removePvChangeListener(this);
 	}
 
+	/**
+	 * CAL-ID via multiline messages
+	 * @Verifies AndrOBD/#174
+	 */
 	@Test
 	void handleTelegram_CalId_Multiline()
 	{
@@ -116,15 +124,76 @@ class ElmProtTest
 		itm.pv.removePvChangeListener(this);
 	}
 
+	/**
+	 * Read empty DFCs with normal header (DFC count)
+	 * @Verifies AndrOBD #178
+	 */
 	@Test
 	void handleTelegram_ReadDfc_Empty()
 	{
 		prot.setService(ObdProt.OBD_SVC_READ_CODES);
+		ObdProt.tCodes.clear();
+
+		// PID message without optional message counter
+		// send CAL-IDs "GSPA..." without length id
+		prot.handleTelegram("430000000000".toCharArray());
+
+		assertEquals(1, ObdProt.tCodes.size());
+		assertEquals(true, ObdProt.tCodes.containsKey(0x0000));
+	}
+
+	/**
+	 * Read empty DFCs with minimal short header
+	 * @Verifies AndrOBD #178
+	 */
+	@Test
+	void handleTelegram_ReadDfc_ShortEmpty()
+	{
+		prot.setService(ObdProt.OBD_SVC_READ_CODES);
+		ObdProt.tCodes.clear();
+
+		// PID message without optional message counter
+		// send CAL-IDs "GSPA..." without length id
+		prot.handleTelegram("43000000".toCharArray());
+
+		assertEquals(1, ObdProt.tCodes.size());
+		assertEquals(true, ObdProt.tCodes.containsKey(0x0000));
+	}
+
+	/**
+	 * Read empty DFCs with ISO header (message count)and DFC count
+	 * @Verifies AndrOBD #178
+	 */
+	@Test
+	void handleTelegram_ReadDfc_ISO_Empty()
+	{
+		prot.setService(ObdProt.OBD_SVC_READ_CODES);
+		ObdProt.tCodes.clear();
 
 		// PID message without optional message counter
 		// send CAL-IDs "GSPA..." without length id
 		prot.handleTelegram("43000000000000".toCharArray());
 
-		assertEquals(true, ObdProt.tCodes.get(0).toString().contains("P0000"));
+		assertEquals(1, ObdProt.tCodes.size());
+		assertEquals(true, ObdProt.tCodes.containsKey(0x0000));
+	}
+	/**
+	 * Read 3 DFCs with DFC count
+	 * @Verifies AndrOBD #178
+	 */
+	@Test
+	void handleTelegram_ReadDfc_ISO()
+	{
+		prot.setService(ObdProt.OBD_SVC_READ_CODES);
+		ObdProt.tCodes.clear();
+
+		// 3 DFCs with dfc count
+		prot.handleTelegram("430301230456".toCharArray());
+		prot.handleTelegram("4307890000".toCharArray());
+
+		assertEquals(3, ObdProt.tCodes.size());
+		assertEquals(true, ObdProt.tCodes.containsKey(0x0123));
+		assertEquals(true, ObdProt.tCodes.containsKey(0x0456));
+		assertEquals(true, ObdProt.tCodes.containsKey(0x0789));
 	}
 }

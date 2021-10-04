@@ -4,6 +4,8 @@ import com.fr3ts0n.pvs.ProcessVar;
 import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -22,8 +24,9 @@ class EcuDataItemsTest
 
 	/**
 	 * Test Dynamic Lambda PID 0x24 AB
+	 * @Verifies AndrOBD/#173
 	 */
-	@org.junit.jupiter.api.Test
+	@Test
 	void updateDataItems_Lambda()
 	{
 		ProcessVar pv = items.getPidDataItems(0x01, 0x24).get(0).pv;
@@ -48,8 +51,9 @@ class EcuDataItemsTest
 
 	/**
 	 * Test dynamic O2 voltage PID 0x24 CD
+	 * @Verifies AndrOBD/#173
 	 */
-	@org.junit.jupiter.api.Test
+	@Test
 	void updateDataItems_O2Voltage()
 	{
 		ProcessVar pv = items.getPidDataItems(0x01, 0x24).get(1).pv;
@@ -74,8 +78,9 @@ class EcuDataItemsTest
 
 	/**
 	 * Test dynamic O2 current PID 0x34 CD
+	 * @Verifies AndrOBD/#173
 	 */
-	@org.junit.jupiter.api.Test
+	@Test
 	void updateDataItems_O2Current()
 	{
 		ProcessVar pv = items.getPidDataItems(0x01, 0x34).get(1).pv;
