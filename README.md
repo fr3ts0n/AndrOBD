@@ -177,7 +177,7 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
 
 #### Internet promotion
 
-* Big hands to [aha999](https://github.com/aha999/) for a fancier Readme, promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
+* Big hands to [aha999](https://github.com/aha999/) for a fancier Readme, community help and many ideas to improve AndrOBD.
 
 #### Hosting translations
 
