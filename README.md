@@ -1,6 +1,6 @@
 ![AndrOBD](fastlane/metadata/android/en-US/images/tvBanner.png)
 
-AndrOBD allows your Android device to connect to your car's on-board diagnostics system via any ELM327 OBD adapter, display various information & perform operations.
+AndrOBD allows your Android device to connect to your car's on-board diagnostics system via any ELM327 compatible OBD adapter, display various information & perform operations.
 It is open source and completely free. The application also has a built in Demo mode that simulates live data, so you don't require an adapter to test it.
 
 ![Android CI](https://github.com/fr3ts0n/AndrOBD/workflows/Android%20CI/badge.svg)
