@@ -157,9 +157,9 @@
     <string name="release_history">Історія випусків…</string>
     <string name="toolbar_overlay">Показати, як накладання</string>
     <string name="toolbar_overlay_sum">Показувати панель перекриття основного екрана</string>
-    <string name="libraries_sum">Бібліотеки, які використовуються в проекті…</string>
+    <string name="libraries_sum">Бібліотеки, які використовуються в проєкті…</string>
     <string name="data_disable_max_description">Кількість недійсних послідовних відповідей даних перед елементом буде вимкнено</string>
-    <string name="donation">Підтримка проекту …</string>
+    <string name="donation">Підтримка проєкту …</string>
     <string name="data_disable_max">Ліміт відключення даних</string>
     <string name="graphic_design">Графічний дизайн</string>
     <string name="plugin_data">Дані плагіна</string>
