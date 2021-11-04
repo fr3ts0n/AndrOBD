@@ -277,12 +277,9 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	 */
 	public void updateDataItems(int service, int pid, char[] buffer)
 	{
-		EcuDataItem currItm;
 		Vector<EcuDataItem> currItms = getPidDataItems(service, pid);
-
-		for (EcuDataItem currItm1 : currItms)
+		for (EcuDataItem currItm : currItms)
 		{
-			currItm = currItm1;
 			currItm.updatePvFomBuffer(buffer);
 		}
 	}
