@@ -173,7 +173,7 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
 
 #### Start page
 
-* Thank you very much [sampoder](https://github.com/sampoder/) for a beautiful [AndrOBD start page](https://fr3ts0n.github.io/AndrOBD/)
+* Thank you very much [sampoder](https://github.com/sampoder/) for a beautiful [AndrOBD start page](https://fr3ts0n.github.io/AndrOBD/).
 
 #### Internet promotion
 
@@ -181,7 +181,7 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
 
 #### Hosting translations
 
-* Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
+* Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).
 </details>
 
 *Thanks to the open source community and any supporters who pick this project up, AndrOBD will be able to get more development, new features, and hopefully even more than that.*
