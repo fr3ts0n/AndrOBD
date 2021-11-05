@@ -1,6 +1,6 @@
 ![AndrOBD](fastlane/metadata/android/en-US/images/tvBanner.png)
 
-AndrOBD allows your Android device to connect to your car's on-board diagnostics system via any ELM327 OBD adapter, display various information & perform operations.
+AndrOBD allows your Android device to connect to your car's on-board diagnostics system via any ELM327 compatible OBD adapter, display various information & perform operations.
 It is open source and completely free. The application also has a built in Demo mode that simulates live data, so you don't require an adapter to test it.
 
 ![Android CI](https://github.com/fr3ts0n/AndrOBD/workflows/Android%20CI/badge.svg)
@@ -90,7 +90,7 @@ It is open source and completely free. The application also has a built in Demo 
   * Discuss the project in the Telegram [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
   * Translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/)
 <details>
-  <summary>Translation status</summary>
+  <summary>Expand translation status</summary>
 
 #### App dialogs:
 
@@ -173,15 +173,15 @@ Buy us a coffee or two, as it enables us to put more free time into the active d
 
 #### Start page
 
-* Thank you very much [sampoder](https://github.com/sampoder/) for a beautiful [AndrOBD start page](https://fr3ts0n.github.io/AndrOBD/)
+* Thank you very much [sampoder](https://github.com/sampoder/) for a beautiful [AndrOBD start page](https://fr3ts0n.github.io/AndrOBD/).
 
 #### Internet promotion
 
-* Big hands to [aha999](https://github.com/aha999/) for a fancier Readme, promoting [AndrOBD on Reddit](https://www.reddit.com/r/AndrOBD/) and for many ideas to improve AndrOBD.
+* Big hands to [aha999](https://github.com/aha999/) for a fancier Readme, community help and many ideas to improve AndrOBD.
 
 #### Hosting translations
 
-* Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).)
+* Special thanks to [Michal Čihař](https://github.com/nijel) for hosting translations on [weblate.org](http://weblate.org/).
 </details>
 
 *Thanks to the open source community and any supporters who pick this project up, AndrOBD will be able to get more development, new features, and hopefully even more than that.*
