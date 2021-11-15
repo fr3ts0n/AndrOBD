@@ -186,4 +186,19 @@
     <string name="master">maître</string>
     <string name="comm_baudrate">Taux de baud ELM</string>
     <string name="comm_baudrate_description">Vitesse de communication en série USB</string>
+    <string name="copied_to_clipboard">Copié dans le presse-papier</string>
+    <string name="obd_test_progress">Test de contrôle de ODB en cours.
+\nVeuillez vérifier le comportement du véhicule.</string>
+    <string name="obd_test_confirm">Contrôle de test de ODB demandé.
+\n
+\nCe test peut générer :
+\n- Une déplacement du véhicule
+\n- De la fumée d\'échappement
+\n- Une haute température d\'échappement
+\n- Un bruit fort du moteur
+\n- Des vapeurs de carburant
+\n- etc.
+\n
+\nVeillez à passer ce test de contrôle dans un environnement assez sûr car vous êtes seul responsable !</string>
+    <string name="service_testcontrol">Contrôle de test de ODB</string>
 </resources>
