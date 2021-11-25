@@ -295,6 +295,8 @@ period of time while the ECU recalibrates itself.
     <string name="master">master</string>
     <string name="comm_baudrate">ELM baud rate</string>
     <string name="comm_baudrate_description">USB serial communication speed</string>
+    <string name="full_screen_display">Full screen display</string>
+    <string name="full_screen_display_description">Use full screen for app display</string>
     <string-array name="baud_rates" translatable="false">
         <item>2400</item>
         <item>9600</item>

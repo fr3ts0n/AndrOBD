@@ -144,6 +144,7 @@ public class MainActivity extends PluginManager
 	private static final String ELM_RESET_ON_NRC = "elm_reset_on_nrc";
 	private static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
 	public static final String PREF_AUTOHIDE = "autohide_toolbar";
+	public static final String PREF_FULLSCREEN = "full_screen";
 	private static final String PREF_OVERLAY = "toolbar_overlay";
 	public static final String PREF_AUTOHIDE_DELAY = "autohide_delay";
 	private static final String PREF_DATA_DISABLE_MAX = "data_disable_max";
@@ -308,9 +309,6 @@ public class MainActivity extends PluginManager
 		// instantiate superclass
 		super.onCreate(savedInstanceState);
 
-		// requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-			WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		requestWindowFeature(Window.FEATURE_PROGRESS);
 
 		// get additional permissions
@@ -795,6 +793,14 @@ public class MainActivity extends PluginManager
 			getWindow().addFlags(prefs.getBoolean(KEEP_SCREEN_ON, false)
 			                     ? WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 			                     : 0);
+		}
+
+		// FULL SCREEN operation based on preference settings
+		if (key == null || PREF_FULLSCREEN.equals(key))
+		{
+			getWindow().setFlags(prefs.getBoolean(PREF_FULLSCREEN, true)
+				                 ? WindowManager.LayoutParams.FLAG_FULLSCREEN : 0,
+			                     WindowManager.LayoutParams.FLAG_FULLSCREEN );
 		}
 
 		// night mode

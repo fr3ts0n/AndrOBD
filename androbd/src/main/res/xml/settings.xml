@@ -25,6 +25,13 @@
             android:title="@string/keep_screen_on"
             />
 
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="full_screen"
+            android:summary="@string/full_screen_display_description"
+            android:title="@string/full_screen_display"
+            />
+
         <PreferenceCategory
             android:title="@string/autohide_toolbar">
 
