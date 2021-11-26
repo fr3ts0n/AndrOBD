@@ -120,10 +120,15 @@ public class LinearConversion extends NumericConversion
 				// Get value of dynamic conversion factor
 				Number factVal = (Number)newFactItm.pv.get(EcuDataPv.FID_VALUE);
 				// If there is a valid value, update factor with dynamic factor
-				if (factVal != null && factVal.intValue() > 0)
+				if (    factVal != null                 // Factor defined
+                     && factVal.intValue() > 0          // and specified ...
+                     && factVal.intValue() != factor    // and changed
+                   )
 				{
 					// update conversion factor from dynamic value
 					factor = factVal.intValue();
+					// Notify all users of this conversion to update the data ranges
+					EcuDataItems.notifyConversionChange(this);
 				}
 			}
 		}

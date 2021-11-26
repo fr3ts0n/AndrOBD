@@ -234,6 +234,27 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	}
 
 	/**
+	 * Notify about a change of conversion factors
+	 *
+	 * - Updates MIN/MAX range of all items using specified conversion
+	 *
+	 * @param conversion Conversion which notifies changes
+	 */
+	protected static void notifyConversionChange(NumericConversion conversion)
+	{
+		// Loop through all items ...
+		for (EcuDataItem item : byMnemonic.values())
+		{
+			// If item uses specified conversion ...
+			if(item.cnv[EcuDataItem.cnvSystem] == conversion)
+			{
+				// update MIN/MAX limits of item
+				item.updateLimits(null, null);
+			}
+		}
+	}
+
+	/**
 	 * append new data item to specified service
 	 *
 	 * @param service service to add item to

@@ -116,8 +116,6 @@ public class EcuDataItem
 		label = labelText;
 		mnemonic = _mnemonic;
 		pv = new EcuDataPv();
-		Number minVal = minValue;
-		Number maxVal = maxValue;
 
 		// initialize new PID with current data
 		pv.put(EcuDataPv.FID_PID, Integer.valueOf(pid));
@@ -132,11 +130,35 @@ public class EcuDataItem
 		pv.put(EcuDataPv.FID_VALUE, Float.valueOf(0));
 		pv.put(EcuDataPv.FID_FORMAT, fmt);
 		pv.put(EcuDataPv.FID_CNVID, cnv);
+		updateLimits(minValue, maxValue);
+	}
+
+	/**
+	 * Update MIN/MAX limit values
+	 *
+	 * - if values are specified, this sets the MIN/MAX limits to specified values
+	 * - if NOT specified the MIN/MAX range is calculated from the data range using the given conversion
+	 *
+	 * This update is required on:
+	 * - Initialisation
+	 * - Update of dynamic conversion factors
+	 *
+	 * @param minValue	Specific MIN value or NULL if not specified
+	 * @param maxValue	Specific MAX value or NULL if not specified
+	 */
+	protected void updateLimits(Number minValue, Number maxValue)
+	{
+		// set specified values
+		Number minVal = minValue;
+		Number maxVal = maxValue;
+		// Check conversion
 		if(cnv != null && cnv[cnvSystem] != null)
 		{
+			// If MIN/MAX value un-specified. calculate from data range conversion
 			if(minVal == null) minVal = cnv[cnvSystem].memToPhys(0);
 			if(maxVal == null) maxVal = cnv[cnvSystem].memToPhys((1L<<numBits)-1);
 		}
+		// Update limits ...
 		pv.put(EcuDataPv.FID_MIN, minVal);
 		pv.put(EcuDataPv.FID_MAX, maxVal);
 	}
