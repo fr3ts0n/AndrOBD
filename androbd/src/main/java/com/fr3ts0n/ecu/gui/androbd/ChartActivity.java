@@ -73,31 +73,6 @@ public class ChartActivity extends Activity
 	private final TreeSet<Integer> pidNumbers = new TreeSet<>();
 
 	/**
-	 * List of colors to be used for series
-	 */
-	private static final int[] colors =
-		{
-			Color.LTGRAY,
-			Color.DKGRAY,
-			Color.RED,
-			Color.BLUE,
-			Color.GREEN,
-			Color.GRAY,
-			Color.CYAN,
-			Color.parseColor("#FF000080"), // navy
-			Color.YELLOW,
-			Color.parseColor("#FF00FFFF"), // aqua
-			Color.parseColor("#FFFF00FF"), // fuchsia
-			Color.parseColor("#FF800000"), // maroon
-			Color.parseColor("#FF00FF00"), // lime
-			Color.MAGENTA,
-			Color.parseColor("#FF808000"), // olive
-			Color.parseColor("#FF800080"), // purple
-			Color.parseColor("#FFC0C0C0"), // silver
-			Color.parseColor("#FF008080"), // teal
-		};
-
-	/**
 	 * list of colors to be used for series
 	 */
 	private static final BasicStroke[] stroke =
@@ -143,17 +118,6 @@ public class ChartActivity extends Activity
 	}
 
 	/**
-	 * get color for an ID number preferrably unique pid number
-	 * this is to get persistent coloring/lining for each id
-	 * @param id id to get color for
-	 * @return color for given ID
-	 */
-	public static int getItemColor(int id)
-	{
-		return colors[id % colors.length];
-	}
-
-	/**
 	 * get stroke for an ID number preferrably unique pid number
 	 * this is to get persistent coloring/lining for each id
 	 * @param id id to get color for
@@ -161,7 +125,7 @@ public class ChartActivity extends Activity
 	 */
 	private static BasicStroke getStroke(int id)
 	{
-		return stroke[(id / colors.length) % stroke.length];
+		return stroke[(id / ColorAdapter.colors.length) % stroke.length];
 	}
 
 	@Override
@@ -227,12 +191,12 @@ public class ChartActivity extends Activity
 		if(MainActivity.prefs.getBoolean(MainActivity.PREF_AUTOHIDE,false))
 		{
 			// get autohide timeout [s]
-			int timeout = Integer.valueOf(
+			int timeout = Integer.parseInt(
 				MainActivity.prefs.getString(MainActivity.PREF_AUTOHIDE_DELAY,"15") );
 			// auto hide toolbar
 			toolBarHider = new AutoHider( this,
 			                              mHandler,
-			                              timeout * 1000);
+			                              timeout * 1000L);
 			toolBarHider.start(1000);
 			// wake up on touch
 			chartView.setOnTouchListener(toolBarHider);
@@ -384,6 +348,9 @@ public class ChartActivity extends Activity
 			// add PID to unique list of PIDs
 			pidNumbers.add(pid);
 
+			// Get display color ...
+			int pidColor = ColorAdapter.getItemColor(currPv);
+
 			// get contained data series
 			currSeries = (XYSeries) currPv.get(ObdItemAdapter.FID_DATA_SERIES);
 			if (currSeries == null) continue;
@@ -400,10 +367,10 @@ public class ChartActivity extends Activity
 			renderer.setYTitle(String.valueOf(currPv.get(EcuDataPv.FID_UNITS)), i);
 			renderer.setYAxisAlign(((i % 2) == 0) ? Align.LEFT : Align.RIGHT, i);
 			renderer.setYLabelsAlign(((i % 2) == 0) ? Align.LEFT : Align.RIGHT, i);
-			renderer.setYLabelsColor(i, getItemColor(pid!=0?pid:position));
+			renderer.setYLabelsColor(i, pidColor);
 			/* set up new line renderer */
 			XYSeriesRenderer r = new XYSeriesRenderer();
-			r.setColor(getItemColor(pid!=0?pid:position));
+			r.setColor(pidColor);
 			r.setStroke(getStroke(pid!=0?pid:position));
 			// register line renderer
 			renderer.addSeriesRenderer(i, r);

@@ -20,6 +20,7 @@ package com.fr3ts0n.ecu.gui.androbd;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +29,7 @@ import android.os.PowerManager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 
@@ -45,7 +47,7 @@ import java.util.Objects;
  * Display selected data items as dashboard
  */
 public class DashBoardActivity extends Activity
-		implements PvChangeListener
+		implements PvChangeListener, AdapterView.OnItemLongClickListener
 {
 	/**
 	 * For passing the index number of the <code>Sensor</code> in its
@@ -203,6 +205,7 @@ public class DashBoardActivity extends Activity
 		int resId = getIntent().getIntExtra(RES_ID, R.layout.dashboard);
 		setContentView(resId);
 		grid = findViewById(android.R.id.list);
+		grid.setOnItemLongClickListener(this);
 
 		// create data adapter
 		adapter = new ObdGaugeAdapter( this,
@@ -266,5 +269,16 @@ public class DashBoardActivity extends Activity
 			Message msg = mHandler.obtainMessage(MESSAGE_UPDATE_VIEW, pos,0, event.getSource());
 			mHandler.sendMessage(msg);
 		}
+	}
+
+	@Override
+	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
+	{
+		EcuDataPv pv = adapter.getItem(position);
+		PidCustomization.pv = pv;
+		Intent intent = new Intent(this, PidCustomization.class);
+		startActivity(intent);
+
+		return true;
 	}
 }

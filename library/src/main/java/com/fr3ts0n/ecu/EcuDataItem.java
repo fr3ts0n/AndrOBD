@@ -156,7 +156,7 @@ public class EcuDataItem
 		{
 			// If MIN/MAX value un-specified. calculate from data range conversion
 			if(minVal == null) minVal = cnv[cnvSystem].memToPhys(0);
-			if(maxVal == null) maxVal = cnv[cnvSystem].memToPhys((1L<<numBits)-1);
+			if(maxVal == null) maxVal = cnv[cnvSystem].memToPhys((((1L<<numBits)-1) & bitMask));
 		}
 		// Update limits ...
 		pv.put(EcuDataPv.FID_MIN, minVal);

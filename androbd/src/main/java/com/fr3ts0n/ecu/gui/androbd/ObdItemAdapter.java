@@ -190,6 +190,8 @@ class ObdItemAdapter extends ArrayAdapter<Object>
         Number min = (Number) currPv.get(EcuDataPv.FID_MIN);
         Number max = (Number) currPv.get(EcuDataPv.FID_MAX);
         int pid = currPv.getAsInt(EcuDataPv.FID_PID);
+        // Get display color ...
+        int pidColor = ColorAdapter.getItemColor(currPv);
 
         try
         {
@@ -216,7 +218,7 @@ class ObdItemAdapter extends ArrayAdapter<Object>
                     && colVal instanceof Number)
             {
                 pb.setVisibility(ProgressBar.VISIBLE);
-                pb.getProgressDrawable().setColorFilter(ChartActivity.getItemColor(pid!=0?pid:position), PorterDuff.Mode.SRC_IN);
+                pb.getProgressDrawable().setColorFilter(pidColor, PorterDuff.Mode.SRC_IN);
                 pb.setProgress((int) (100 * ((((Number) colVal).doubleValue() - min.doubleValue()) / (max.doubleValue() - min.doubleValue()))));
             } else
             {

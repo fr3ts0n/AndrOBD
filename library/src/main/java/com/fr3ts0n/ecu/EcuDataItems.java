@@ -77,7 +77,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	// the data logger
 	private static final Logger log = Logger.getLogger("data.items");
 	// map of MNEMONIC data item
-	protected static final HashMap<String, EcuDataItem> byMnemonic = new HashMap<>();
+	public static final HashMap<String, EcuDataItem> byMnemonic = new HashMap<>();
 
 	/**
 	 * Create data items from default CSV pidResource files

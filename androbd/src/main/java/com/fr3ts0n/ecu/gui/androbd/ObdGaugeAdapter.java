@@ -87,8 +87,8 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv>
 			// recall previous holder
 			holder = (ViewHolder)convertView.getTag();
 		}
-
-		int pidColor = ChartActivity.getItemColor(pid!=0?pid:position);
+		// Get display color ...
+		int pidColor = ColorAdapter.getItemColor(currPv);
 
 		// Taint background with PID color
 		convertView.setBackgroundColor(pidColor & 0x10FFFFFF);
