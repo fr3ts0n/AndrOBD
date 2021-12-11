@@ -155,12 +155,73 @@ public class EcuDataItem
 		if(cnv != null && cnv[cnvSystem] != null)
 		{
 			// If MIN/MAX value un-specified. calculate from data range conversion
-			if(minVal == null) minVal = cnv[cnvSystem].memToPhys(0);
-			if(maxVal == null) maxVal = cnv[cnvSystem].memToPhys((((1L<<numBits)-1) & bitMask));
+			if(minVal == null) minVal = physMin();
+			if(maxVal == null) maxVal = physMax();
 		}
 		// Update limits ...
 		pv.put(EcuDataPv.FID_MIN, minVal);
 		pv.put(EcuDataPv.FID_MAX, maxVal);
+	}
+
+	/**
+	 * Return minimum raw (integer) value before conversion
+	 * - calculated based on bit width & mask
+	 *
+	 * @apiNote Just for completeness, This wil always return a 0
+	 *
+	 * @return MIM raw integer value
+	 */
+	public long rawMin()
+	{
+		return 0L;
+	}
+
+	/**
+	 * Return maximum raw (integer) value before conversion
+	 * - calculated based on bit width & mask
+	 *
+	 * @return MAX raw integer value
+	 */
+	public long rawMax()
+	{
+		return((((1L<<numBits)-1) & bitMask));
+	}
+
+	/**
+	 * Return physical value from raw value
+	 * @param rawVal RAW integer value
+	 * @return Physical value
+	 */
+	public Number physVal(long rawVal)
+	{
+		return( cnv[cnvSystem].memToPhys( rawVal ));
+	}
+
+	public long rawVal(Number physVal)
+	{
+		return cnv[cnvSystem].physToMem(physVal).longValue();
+	}
+
+	/**
+	 * Return physically minimum value
+	 * - Value is calculated from bit width and data conversion
+	 *
+	 * @return MIN value
+	 */
+	public Number physMin()
+	{
+		return physVal(rawMin());
+	}
+
+	/**
+	 * Return physically maximum value
+	 * - Value is calculated from bit width and data conversion
+	 *
+	 * @return MAX value
+	 */
+	public Number physMax()
+	{
+		return physVal(rawMax());
 	}
 
 	@Override
@@ -193,7 +254,7 @@ public class EcuDataItem
 				value = (value & bitMask);
 
 				// now run conversion to physical value on it ...
-				result = cnv[cnvSystem].memToPhys(value);
+				result = physVal(value);
 			}
 			else
 			{

@@ -33,6 +33,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 
+import com.fr3ts0n.ecu.EcuDataItem;
+import com.fr3ts0n.ecu.EcuDataItems;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.prot.obd.ObdProt;
 import com.fr3ts0n.pvs.PvChangeEvent;
@@ -274,8 +276,12 @@ public class DashBoardActivity extends Activity
 	@Override
 	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
 	{
+		// Set data item to be customized
 		EcuDataPv pv = adapter.getItem(position);
-		PidCustomization.pv = pv;
+		EcuDataItem item = EcuDataItems.byMnemonic.get(pv.get(EcuDataPv.FID_MNEMONIC));
+		PidCustomization.item = item;
+
+		// start customization ...
 		Intent intent = new Intent(this, PidCustomization.class);
 		startActivity(intent);
 

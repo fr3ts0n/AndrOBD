@@ -1098,6 +1098,7 @@ public class MainActivity extends PluginManager
         {
             // specific key -> update single
             updatePidColor(key);
+            updatePidDisplayRange(key);
         }
         else
         {
@@ -1106,6 +1107,7 @@ public class MainActivity extends PluginManager
             {
                 // update by key
                 updatePidColor(currKey);
+                updatePidDisplayRange(currKey);
             }
         }
     }
@@ -1124,6 +1126,36 @@ public class MainActivity extends PluginManager
             Integer color = prefs.getInt(key, Color.GRAY);
             itm.pv.put(EcuDataPv.FID_COLOR, color);
             log.info(String.format("PID pref %s=#%08x", key, color));
+        }
+    }
+
+    /**
+     * Update PID PV display color from preference
+     * @param key Preference key
+     */
+    private void updatePidDisplayRange(String key)
+    {
+        final String[] rangeFields = new String[]
+        {
+            EcuDataPv.FID_MIN,
+            EcuDataPv.FID_MAX
+        };
+        // Loop through <MIN/MAX>> fields
+        for (String field : rangeFields )
+        {
+            // If preference key matches PID/<MIN/MAX>
+            int pos = key.indexOf("/".concat(field));
+            if(pos >= 0)
+            {
+                // Find corresponding data item
+                String mnemonic = key.substring(0, pos);
+                EcuDataItem itm = EcuDataItems.byMnemonic.get(mnemonic);
+                Number value = prefs.getFloat(key, 0);
+                // update display range limit in data item
+                itm.pv.put(field, value);
+
+                log.info(String.format("PID pref %s=%f", key, value));
+            }
         }
     }
 
