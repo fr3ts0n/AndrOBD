@@ -82,11 +82,8 @@ public class PidCustomization
 
         // Color selection
         Integer color = ColorAdapter.getItemColor(item.pv);
-        if(color != null)
-        {
-            int pos = colorAdapter.getPosition(color);
-            spColor.setSelection(pos);
-        }
+        int pos = colorAdapter.getPosition(color);
+        spColor.setSelection(pos);
 
         // Display range
         TextView tvUnits = findViewById(R.id.range_units);
