@@ -188,7 +188,7 @@ public class EcuDataItem
 	}
 
 	/**
-	 * Return physical value from raw value
+	 * Return physical value from raw (integer) value
 	 * @param rawVal RAW integer value
 	 * @return Physical value
 	 */
@@ -197,6 +197,13 @@ public class EcuDataItem
 		return( cnv[cnvSystem].memToPhys( rawVal ));
 	}
 
+	/**
+	 * Return raw (integer) value from physical value
+	 * - calculation based on conversion
+	 *
+	 * @param physVal physical value
+	 * @return raw integer value
+	 */
 	public long rawVal(Number physVal)
 	{
 		return cnv[cnvSystem].physToMem(physVal).longValue();

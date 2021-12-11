@@ -158,15 +158,16 @@ public class PidCustomization
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
         {
+            String format = (String) item.pv.get(EcuDataPv.FID_FORMAT);
             if(seekBar == sbMin)
             {
                 dispMin = item.physVal(progress);
-                tvMin.setText(String.valueOf(dispMin.floatValue()));
+                tvMin.setText(String.format(format, dispMin));
             }
             else
             {
                 dispMax = item.physVal(progress);
-                tvMax.setText(String.valueOf(dispMax.floatValue()));
+                tvMax.setText(String.format(format, dispMax));
             }
         }
 
