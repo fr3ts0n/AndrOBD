@@ -81,7 +81,7 @@ public class PidCustomization
         tv.setText((String)item.pv.get(EcuDataPv.FID_DESCRIPT));
 
         // Color selection
-        Integer color = (Integer)item.pv.get(EcuDataPv.FID_COLOR);
+        Integer color = ColorAdapter.getItemColor(item.pv);
         if(color != null)
         {
             int pos = colorAdapter.getPosition(color);
