@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
     android:orientation="vertical">
 
     <TextView
@@ -55,57 +54,16 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <SeekBar
+            android:id="@+id/sb_min"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <SeekBar
+            android:id="@+id/sb_max"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="12">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:text="@string/range_min" />
-
-            <SeekBar
-                android:id="@+id/sb_min"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="10" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="start" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="12">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="start" />
-
-            <SeekBar
-                android:id="@+id/sb_max"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:progress="100" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="@string/range_max" />
-
-        </LinearLayout>
+            android:progress="100" />
     </LinearLayout>
 
     <LinearLayout
