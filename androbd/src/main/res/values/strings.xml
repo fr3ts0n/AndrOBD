@@ -298,7 +298,7 @@ period of time while the ECU recalibrates itself.
     <string name="full_screen_display">Full screen display</string>
     <string name="full_screen_display_description">Use full screen for app display</string>
     <string name="display_color">Display color</string>
-    <string name="customize_display">Customize display</string>
+    <string name="customize_display">Customize data display</string>
     <string name="display_range">Display range</string>
     <string name="range_max">MAX</string>
     <string name="range_min">MIN</string>

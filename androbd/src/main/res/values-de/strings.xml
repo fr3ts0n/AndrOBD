@@ -182,4 +182,7 @@
     <string name="copied_to_clipboard">Kopiert in Zwischenablage</string>
     <string name="full_screen_display">Vollbildanzeige</string>
     <string name="full_screen_display_description">Gesamten Bildschirm zur Anzeige verwenden</string>
+    <string name="display_color">Ansichtsfarbe</string>
+    <string name="customize_display">Datenanzeige anpassen</string>
+    <string name="display_range">Ansichts- Datenbereich</string>
 </resources>
