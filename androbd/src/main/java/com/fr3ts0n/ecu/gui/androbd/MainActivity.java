@@ -1123,9 +1123,13 @@ public class MainActivity extends PluginManager
         {
             String mnemonic = key.substring(0, pos);
             EcuDataItem itm = EcuDataItems.byMnemonic.get(mnemonic);
-            Integer color = prefs.getInt(key, Color.GRAY);
-            itm.pv.put(EcuDataPv.FID_COLOR, color);
-            log.info(String.format("PID pref %s=#%08x", key, color));
+            // Default BLACK is to detect key removal
+            Integer color = prefs.getInt(key, Color.BLACK);
+            if(Color.BLACK != color)
+            {
+                itm.pv.put(EcuDataPv.FID_COLOR, color);
+                log.info(String.format("PID pref %s=#%08x", key, color));
+            }
         }
     }
 
@@ -1141,20 +1145,24 @@ public class MainActivity extends PluginManager
             EcuDataPv.FID_MAX
         };
         // Loop through <MIN/MAX>> fields
-        for (String field : rangeFields )
+        for (String field : rangeFields)
         {
             // If preference key matches PID/<MIN/MAX>
             int pos = key.indexOf("/".concat(field));
-            if(pos >= 0)
+            if (pos >= 0)
             {
-                // Find corresponding data item
-                String mnemonic = key.substring(0, pos);
-                EcuDataItem itm = EcuDataItems.byMnemonic.get(mnemonic);
-                Number value = prefs.getFloat(key, 0);
-                // update display range limit in data item
-                itm.pv.put(field, value);
+                // Default MAX_VALUE is to detect key removal
+                Number value = prefs.getFloat(key, Float.MAX_VALUE);
+                if (Float.MAX_VALUE != value.floatValue())
+                {
+                    // Find corresponding data item
+                    String mnemonic = key.substring(0, pos);
+                    EcuDataItem itm = EcuDataItems.byMnemonic.get(mnemonic);
+                    // update display range limit in data item
+                    itm.pv.put(field, value);
 
-                log.info(String.format("PID pref %s=%f", key, value));
+                    log.info(String.format("PID pref %s=%f", key, value));
+                }
             }
         }
     }

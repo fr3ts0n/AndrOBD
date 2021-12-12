@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -50,11 +51,21 @@ public class PidCustomization
     /** Display range MIN/MAX values */
     Number dispMin, dispMax;
 
+    Button btnCancel, btnOk, btnReset;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pid_customization);
+
+        btnOk       = findViewById(R.id.btnOk);
+        btnCancel   = findViewById(R.id.btnCancel);
+        btnReset    = findViewById(R.id.btnReset);
+
+        btnOk.setOnClickListener(okClicked);
+        btnCancel.setOnClickListener(cancelClicked);
+        btnReset.setOnClickListener(resetClicked);
 
         // Color selection
         colorAdapter = new ColorAdapter(this, android.R.layout.simple_spinner_item);
@@ -109,26 +120,6 @@ public class PidCustomization
         sbMax.setProgress((int) item.rawVal(dispMax));
     }
 
-    @Override
-    protected void onPause()
-    {
-        SharedPreferences.Editor ed = MainActivity.prefs.edit();
-        String mnemonic = (String)item.pv.get(EcuDataPv.FID_MNEMONIC);
-        // Save Color selection
-        String prefName = mnemonic.concat("/").concat(EcuDataPv.FID_COLOR);
-        ed.putInt(prefName, dispColor);
-
-        // Save range selection
-        prefName = mnemonic.concat("/").concat(EcuDataPv.FID_MIN);
-        ed.putFloat(prefName, dispMin.floatValue());
-        prefName = mnemonic.concat("/").concat(EcuDataPv.FID_MAX);
-        ed.putFloat(prefName, dispMax.floatValue());
-
-        ed.apply();
-
-        super.onPause();
-    }
-
     /**
      * Listener for Color selection
      */
@@ -144,6 +135,79 @@ public class PidCustomization
         public void onNothingSelected(AdapterView<?> parent)
         {
 
+        }
+    };
+
+    /**
+     * OK Button handler
+     */
+    View.OnClickListener okClicked = new View.OnClickListener()
+    {
+
+        @Override
+        public void onClick(View v)
+        {
+            SharedPreferences.Editor ed = MainActivity.prefs.edit();
+
+            String mnemonic = (String)item.pv.get(EcuDataPv.FID_MNEMONIC);
+            // Save Color selection
+            String prefName = mnemonic.concat("/").concat(EcuDataPv.FID_COLOR);
+            ed.putInt(prefName, dispColor);
+
+            // Save range selection
+            prefName = mnemonic.concat("/").concat(EcuDataPv.FID_MIN);
+            ed.putFloat(prefName, dispMin.floatValue());
+            prefName = mnemonic.concat("/").concat(EcuDataPv.FID_MAX);
+            ed.putFloat(prefName, dispMax.floatValue());
+
+            ed.apply();
+
+            finish();
+        }
+    };
+
+    /**
+     * CANCEL Button handler
+     */
+    View.OnClickListener cancelClicked = new View.OnClickListener()
+    {
+
+        @Override
+        public void onClick(View v)
+        {
+            finish();
+        }
+    };
+
+    /**
+     * RESET Button handler
+     */
+    View.OnClickListener resetClicked = new View.OnClickListener()
+    {
+
+        @Override
+        public void onClick(View v)
+        {
+            SharedPreferences.Editor ed = MainActivity.prefs.edit();
+
+            String mnemonic = (String)item.pv.get(EcuDataPv.FID_MNEMONIC);
+            // Reset Color selection
+            String prefName = mnemonic.concat("/").concat(EcuDataPv.FID_COLOR);
+            ed.remove(prefName);
+            item.pv.remove(EcuDataPv.FID_COLOR);
+
+            // Reset range selection
+            prefName = mnemonic.concat("/").concat(EcuDataPv.FID_MIN);
+            ed.remove(prefName);
+            item.pv.remove(EcuDataPv.FID_MIN);
+
+            prefName = mnemonic.concat("/").concat(EcuDataPv.FID_MAX);
+            ed.remove(prefName);
+            item.pv.remove(EcuDataPv.FID_MAX);
+
+            ed.apply();
+
+            finish();
         }
     };
 
