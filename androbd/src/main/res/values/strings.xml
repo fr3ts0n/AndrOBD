@@ -300,8 +300,6 @@ period of time while the ECU recalibrates itself.
     <string name="display_color">Display color</string>
     <string name="customize_display">Customize data display</string>
     <string name="display_range">Display range</string>
-    <string name="range_max">MAX</string>
-    <string name="range_min">MIN</string>
     <string name="reset_default">Default</string>
     <string-array name="baud_rates" translatable="false">
         <item>2400</item>

@@ -185,4 +185,5 @@
     <string name="display_color">Ansichtsfarbe</string>
     <string name="customize_display">Datenanzeige anpassen</string>
     <string name="display_range">Ansichts- Datenbereich</string>
+    <string name="reset_default">Vorgabe</string>
 </resources>
