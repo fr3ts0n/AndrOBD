@@ -39,6 +39,7 @@
     <item
         android:id="@+id/obd_services"
         android:icon="@android:drawable/ic_menu_more"
+        android:enabled="false"
         android:showAsAction="always"
         android:title="@string/obd_services">
         <menu/><!-- submenu: obd_service.xml -->
