@@ -13,10 +13,6 @@
     <string name="CONNECTING">S’està connectant…</string>
     <string name="toolbar_overlay">Mostra com a superposició</string>
     <string name="graphic_design">Disseny gràfic</string>
-    <string name="process_vars">Variables del procés</string>
-    <string name="plugin_data">Dades del connector</string>
-    <string name="plugin_manager_desc">Gestor per a connectors detectats</string>
-    <string name="unfilter">Suprimeix el filtre</string>
     <string name="hud">Visualitzador frontal</string>
     <string name="load">Carrega una mesura</string>
     <string name="save">Desa la mesura</string>

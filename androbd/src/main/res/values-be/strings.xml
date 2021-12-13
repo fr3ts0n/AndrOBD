@@ -160,12 +160,6 @@
     <string name="libraries_sum">Выкарыстаныя ў праекце бібліятэкі …</string>
     <string name="release_history">Гісторыя выпускаў …</string>
     <string name="graphic_design">Графічны дэзайн</string>
-    <string name="plugin_data">Даныя дадаткаў</string>
     <string name="long_press_dfc_hint">Зацісніце DFC для анлайн-пошуку…</string>
-    <string name="process_vars">Зменныя працэсу</string>
-    <string name="unfilter">Зняць фільтр</string>
-    <string name="plugin_manager_desc">Кіраўнік выяўленых дадаткаў</string>
-    <string name="graph_actions">Рысаваць дзеянні</string>
-    <string name="master">вядучы</string>
     <string name="comm_baudrate_description">Хуткасць паслядоўнага парта USB</string>
 </resources>

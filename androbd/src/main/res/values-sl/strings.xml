@@ -89,11 +89,7 @@
     <string name="libraries_sum">Knjižnice uporabljene v projektu …</string>
     <string name="release_history">Zgodovina različic …</string>
     <string name="graphic_design">Grafični dizajn</string>
-    <string name="plugin_data">Podatki vtičnikov</string>
     <string name="long_press_dfc_hint">Dolgi pritisk na DFC za spletno iskanje …</string>
-    <string name="unfilter">Odstrani filter</string>
-    <string name="plugin_manager_desc">Upravljalec zaznanih vtičnikov</string>
-    <string name="graph_actions">Dejanja grafa</string>
     <string name="back_again_to_exit">Znova pritisni gumb Nazaj, da zapreš aplikacijo</string>
     <string name="filter">Filter izbran</string>
     <string name="unabletoconnect">Povezava z napravo je neuspešna</string>
@@ -129,8 +125,7 @@
     <string name="send_after_export">Pošlji po izvozu</string>
     <string name="send_after_export_descr">Vprašaj za pošiljanje CSV datoteke takoj po izvozu\?</string>
     <string name="toolbar_overlay_sum">Prikaži orodno vrstico nad glavnim zaslonom</string>
-    <string name="process_vars">Spremenljivke procesa</string>
-    <string name="obd_clear_info">To bo ponastavilo MIL lučko motorja in počistilo vso diagnostiko, 
+    <string name="obd_clear_info">To bo ponastavilo MIL lučko motorja in počistilo vso diagnostiko,
 \npovezano z emisijskimi podatki, vključujoč:
 \n- Diagnostične kode napak
 \n- Freeze frame podatki
@@ -148,7 +143,6 @@
 \ndokler se ECU računalnik ne re-kalibrira.</string>
     <string name="comm_baudrate_description">Hitrost serijske komunikacije USB</string>
     <string name="comm_baudrate">ELM hitrost prenosa</string>
-    <string name="master">glavno</string>
     <string name="csv_text_quoted_description">CSV podatkovna polja so vključena v narekovajih</string>
     <string name="csv_text_quoted">CSV besedilo v narekovajih</string>
     <string name="csv_rec_delimiter_description">Ločilni znak(i) med CSV podatkovnimi zapisi</string>

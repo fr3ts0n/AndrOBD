@@ -158,13 +158,7 @@
     <string name="tab">TAB</string>
     <string name="toolbar_overlay_sum">Показать панель инструментов, перекрывающую главный экран</string>
     <string name="graphic_design">Графический дизайн</string>
-    <string name="plugin_data">Данные плагинов</string>
     <string name="long_press_dfc_hint">Зажмите DFC для поиска в интернете…</string>
-    <string name="process_vars">Переменные процесса</string>
-    <string name="unfilter">Снять фильтр</string>
-    <string name="plugin_manager_desc">Менеджер обнаруженных плагинов</string>
-    <string name="graph_actions">Действия с графиком</string>
-    <string name="master">основной</string>
     <string name="send_after_export_descr">Запрос на отправку CSV-файла сразу после экспорта\?</string>
     <string name="comm_baudrate_description">Скорость последовательного порта USB</string>
     <string name="comm_baudrate">Скорость передачи ELM в бодах</string>

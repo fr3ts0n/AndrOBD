@@ -160,13 +160,7 @@
     <string name="libraries_sum">Projede kullanılan eklentiler …</string>
     <string name="release_history">Versiyon geçmişi …</string>
     <string name="graphic_design">Grafik tasarım</string>
-    <string name="plugin_data">Eklenti verisi</string>
-    <string name="unfilter">Filtreyi kaldır</string>
-    <string name="plugin_manager_desc">Algılanan eklentileri yönet</string>
-    <string name="graph_actions">Graph eylemleri</string>
-    <string name="master">master</string>
     <string name="long_press_dfc_hint">Çevrimiçi arama için DFC tuşuna uzun basın …</string>
-    <string name="process_vars">Process değişkenleri</string>
     <string name="comm_baudrate_description">USB seri haberleşme hızı</string>
     <string name="comm_baudrate">ELM baud oranı</string>
 </resources>

@@ -160,13 +160,7 @@
     <string name="libraries_sum">Bibliotecas utilizadas en el proyecto…</string>
     <string name="release_history">Historial de versiones…</string>
     <string name="graphic_design">Diseño gráfico</string>
-    <string name="unfilter">Quitar filtro</string>
-    <string name="plugin_data">Datos de complemento</string>
     <string name="long_press_dfc_hint">Pulsación prolongada en DFC para buscar en línea…</string>
-    <string name="process_vars">Variables de proceso</string>
-    <string name="plugin_manager_desc">Gestor de complementos detectados</string>
-    <string name="graph_actions">Acciones de grafo</string>
-    <string name="master">master</string>
     <string name="comm_baudrate_description">Velocidad de comunicación en serie del USB</string>
     <string name="comm_baudrate">Tasa de baudios ELM</string>
 </resources>

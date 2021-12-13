@@ -156,13 +156,7 @@
     <string name="send_after_export_descr">المطالبة بإرسال ملف CSV مباشرة بعد التصدير ؟</string>
     <string name="toolbar_overlay">إظهار كطبقة فوقية</string>
     <string name="toolbar_overlay_sum">إظهار شريط الأدوات متداخلا مع الشاشة الرئيسية</string>
-    <string name="plugin_data">بيانات البرنامج المساعد</string>
     <string name="long_press_dfc_hint">اضغط لفترة طويلة على DFC للبحث عبر الإنترنت …</string>
-    <string name="process_vars">متغيرات العملية</string>
-    <string name="unfilter">إزالة عامل التصفية</string>
-    <string name="plugin_manager_desc">مدير للبرامج المساعدة المكتشفة</string>
-    <string name="graph_actions">إجراءات الرسم البياني</string>
-    <string name="master">الرئيسي</string>
     <string name="comm_baudrate_description">سرعة الاتصال التسلسلي USB</string>
     <string name="comm_baudrate">معدل الباود ELM</string>
 </resources>

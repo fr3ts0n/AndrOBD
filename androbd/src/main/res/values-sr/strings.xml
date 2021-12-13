@@ -149,13 +149,7 @@
     <string name="send_after_export_descr">Pitaj za slanje CSV fajla odmah posle izvezivanja?</string>
     <string name="comm_baudrate_description">Brzina USB serijske komunikacije</string>
     <string name="comm_baudrate">ELM brzina prenosa</string>
-    <string name="master">master</string>
-    <string name="graph_actions">Grafikon akcija</string>
-    <string name="plugin_manager_desc">Menadzer za detektovane dodace</string>
-    <string name="unfilter">Uklonite filter</string>
-    <string name="process_vars">Promenljive procesa</string>
     <string name="long_press_dfc_hint">Dugo pritisnite DFC za onlajn pretragu…</string>
-    <string name="plugin_data">Podaci o dodatku</string>
     <string name="graphic_design">Graficki dizajn</string>
     <string name="release_history">Istorija izdanja…</string>
     <string name="libraries_sum">Biblioteke koriscene u projektu…</string>

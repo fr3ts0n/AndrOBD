@@ -177,13 +177,7 @@
     <string name="libraries_sum">Bibliothèques utilisées…</string>
     <string name="release_history">Historique des versions…</string>
     <string name="graphic_design">Design graphique</string>
-    <string name="plugin_data">Données du greffon</string>
     <string name="long_press_dfc_hint">Pressez longuement DFC pour la recherche en ligne…</string>
-    <string name="process_vars">Traîter les variables</string>
-    <string name="unfilter">Supprimer le filtre</string>
-    <string name="plugin_manager_desc">Gestionnaire pour les greffons détectés</string>
-    <string name="graph_actions">Actions du graphique</string>
-    <string name="master">maître</string>
     <string name="comm_baudrate">Taux de baud ELM</string>
     <string name="comm_baudrate_description">Vitesse de communication en série USB</string>
     <string name="copied_to_clipboard">Copié dans le presse-papier</string>

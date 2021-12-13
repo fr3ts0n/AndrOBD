@@ -160,13 +160,7 @@
     <string name="release_history">היסטוריית מהדורות…</string>
     <string name="toolbar_overlay">הצגה כשכבת על</string>
     <string name="graphic_design">עיצוב גרפי</string>
-    <string name="plugin_data">נתוני תוסף</string>
     <string name="long_press_dfc_hint">לחיצה ארוכה לחיפוש השגיאה באינטרנט…</string>
-    <string name="process_vars">משתנים של התהליך</string>
-    <string name="unfilter">הסרת מסנן</string>
-    <string name="plugin_manager_desc">מנהל לתוספים שהתגלו</string>
-    <string name="graph_actions">פעולות תרשים</string>
-    <string name="master">ראשי</string>
     <string name="comm_baudrate_description">מהירות תקשורת טורית ב־USB</string>
     <string name="comm_baudrate">קצב העברה של ELM</string>
     <string name="obd_test_confirm">התקבלה בקשה לבקרת בדיקת OBD.

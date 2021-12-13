@@ -68,7 +68,6 @@
 \n Tato ztráta dat může způsobit, že vozidlo na chvíli nepojede optimálně,
 \n dokud ECU neprovede sebekalibraci.</string>
     <string name="service_freezeframes">Snímky zmražených dat OBD</string>
-    <string name="master">master</string>
     <string name="elm_reset_on_nrc_descr">Resetovat adaptér ELM při chybě NRC (Negative Result Code)\?</string>
     <string name="elm_reset_on_nrc">Resetovat při NRC</string>
     <string name="select_fault_code">Vyberte chybový kód…</string>
@@ -84,9 +83,6 @@
     <string name="long_press_dfc_hint">Dlouze podržte DTC pro online vyhledávání…</string>
     <string name="comm_baudrate_description">Sériová komunikační rychlost USB</string>
     <string name="comm_baudrate">Přenosová rychlost ELM</string>
-    <string name="plugin_manager_desc">Správce detekovaných rozšíření</string>
-    <string name="unfilter">Odebrat filtr</string>
-    <string name="plugin_data">Data rozšíření</string>
     <string name="libraries_sum">Knihovny použité v projektu…</string>
     <string name="libraries">Knihovny…</string>
     <string name="donation">Podpořit projekt…</string>

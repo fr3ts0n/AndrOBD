@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="graph_actions">Gráfico de accións</string>
-    <string name="plugin_manager_desc">Xestor de complementos detectados</string>
-    <string name="unfilter">Eliminar o filtro</string>
-    <string name="process_vars">Procesar variables</string>
     <string name="long_press_dfc_hint">Prema longo DFC para a busca en liña …</string>
-    <string name="plugin_data">Datos do complemento</string>
     <string name="graphic_design">Deseño gráfico</string>
     <string name="release_history">Historial de versións…</string>
     <string name="libraries_sum">Bibliotecas utilizadas no proxecto …</string>
@@ -108,7 +103,6 @@
     <string name="common_settings">Configuración común</string>
     <string name="settings">Configuración</string>
     <string name="use_last_settings_description">Use a última configuración no inicio (enderezo BT, enderezo ECU, elementos de visualización...)</string>
-    <string name="master">master</string>
     <string name="filter">Filtro seleccionado</string>
     <string name="dashboard">Panel de control</string>
     <string name="loading_data">Cargando datos…</string>

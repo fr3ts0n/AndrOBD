@@ -35,13 +35,7 @@
     <string name="translation_credits">Išvertė - Gediminas Murauskas</string>
     <string name="comm_baudrate_description">USB nuosekliojo ryšio greitis</string>
     <string name="comm_baudrate">ELM perdavimo sparta</string>
-    <string name="master">pagrindinis</string>
-    <string name="graph_actions">Grafiko veiksmai</string>
-    <string name="unfilter">Pašalinti filtrą</string>
-    <string name="process_vars">Proceso kintamieji</string>
     <string name="long_press_dfc_hint">Ilgai nuspauskite DFC, kad galėtumėte atlikti paiešką internete …</string>
-    <string name="plugin_manager_desc">Aptiktų įskiepių tvarkyklė</string>
-    <string name="plugin_data">Įskiepio duomenys</string>
     <string name="graphic_design">Grafinis dizainas</string>
     <string name="libraries_sum">Bibliotekos, naudojamos šiame projekte …</string>
     <string name="libraries">Bibliotekos …</string>

@@ -160,11 +160,5 @@
     <string name="libraries_sum">Bibliotek som använts i projektet…</string>
     <string name="release_history">Historik för utgåvan …</string>
     <string name="graphic_design">Grafisk design</string>
-    <string name="plugin_data">Insticksdata</string>
     <string name="long_press_dfc_hint">Klicka och håll in DFC för att söka online …</string>
-    <string name="process_vars">Bearbeta variabler</string>
-    <string name="unfilter">Ta bort filter</string>
-    <string name="plugin_manager_desc">Hantering av detekterade insticksprogram</string>
-    <string name="graph_actions">Grafhandlingar</string>
-    <string name="master">bemästra</string>
 </resources>

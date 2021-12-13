@@ -9,7 +9,6 @@
     <string name="app_description">አንድሮይድ ኦቢዲ መኪና መመርመሪያ አፕልከሽን</string>
     <string name="select_ecu_addr">የኢሲዩን አድራሻ ምረጥ…</string>
     <string name="saved_data">መረጃውን አስቀምጥ</string>
-    <string name="master">master</string>
     <string name="toolbar_overlay">Show as overlay</string>
     <string name="service_freezeframes">Freeze Frames</string>
     <string name="save">መለኪያውን አስቀምጥ</string>
@@ -35,7 +34,6 @@
     <string name="semicolon">SEMICOLON</string>
     <string name="translation_credits">በ እዮብ ሽፈራው</string>
     <string name="extension_loading">ማስተካከያዎች በመጫን ላይ</string>
-    <string name="process_vars">Process variables</string>
     <string name="saved">ተቀምጥዋል</string>
     <string name="connected_to">"ተገናኝትዋል ከ "</string>
     <string name="obd_opt_description">የፕሮቶኮል እና ኮሚኒከሽን አማራጮች</string>
@@ -56,11 +54,9 @@
     <string name="hud">Head Up Display</string>
     <string name="logging_level_description">Level of details to be logged into debug log file</string>
     <string name="none_paired">ምንም አይነት መሳሪያ አልተጣመረም</string>
-    <string name="plugin_manager_desc">Manager for detected plugins</string>
     <string name="configure">አስተካክል</string>
     <string name="disable_elm_cmds">ያልተመረጡ ELM ኮማንዶች</string>
     <string name="UNDEFINED">ያልታወቀ</string>
-    <string name="unfilter">ፊልተሩን ያጥፉ</string>
     <string name="long_press_dfc_hint">ኦንላይን ላይ ለመፈለግ DFC የሚለውን ለትንሽ ደቂቃ ይጫኑ…</string>
     <string name="saving_data">ዳታ በማስቀመጥ ላይ …</string>
     <string name="development_options">ደቨሎፕመንት አማራጮች</string>
@@ -75,7 +71,6 @@
     <string name="measure_system">መለኪያ ዩኒት</string>
     <string name="reset_preselections">Reset last pre-selections</string>
     <string name="obd_pendingcodes">በመፈጠር ላይ ያሉ ብልሽቶች</string>
-    <string name="plugin_data">Plugin data</string>
     <string name="select_extension">.csv የፋይል አማራጮችን ይምረጡ…</string>
     <string name="csv_text_quoted_description">CSV text fields are included within quotes</string>
     <string name="last_ecu">በፊት ከነበረው ኢሲዩ ጋር አጣምር</string>
@@ -122,7 +117,6 @@
     <string name="ECU_DETECT">በማግኘት ላይ…</string>
     <string name="secure_connect_description">Use encrypted Bluetooth connection</string>
     <string name="settings">መቸት</string>
-    <string name="graph_actions">ግራፍ አክሽን</string>
     <string name="libraries">ላይብረሪዎች …</string>
     <string name="last_elm">በፊት ከነበረው አዳብተር ጋር አጣምር</string>
     <string name="elm_timeout_descr">Minimum timeout in [ms] to wait for ELM responses</string>

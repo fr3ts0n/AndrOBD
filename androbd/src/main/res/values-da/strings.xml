@@ -159,14 +159,7 @@
     <string name="csv_text_quoted">CSV-tekst´citeret</string>
     <string name="csv_text_quoted_description">CSV-tekstfelter er inkluderet inde i Citater</string>
     <string name="send_after_export_descr">Prompt for at sende CSV fil umiddelbart efter export\?</string>
-    <string name="plugin_data">Plugin-data</string>
     <string name="long_press_dfc_hint">Long press DFC for online søgning …</string>
-    <string name="process_vars">Proces variabler</string>
-    <string name="unfilter">fjern filter</string>
-    <string name="plugin_manager_desc">Manager for detekterede plugins</string>
-    <string name="graph_actions">Graf handlinger</string>
-    <string name="master">master
-\n(mester)</string>
     <string name="comm_baudrate_description">USB Datahastighed</string>
     <string name="comm_baudrate">ELM Datahastighed</string>
 </resources>

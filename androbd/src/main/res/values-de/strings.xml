@@ -170,12 +170,6 @@
     <string name="release_history">Versionen …</string>
     <string name="graphic_design">Grafisches Design</string>
     <string name="long_press_dfc_hint">Fehlercode lange drücken für Online-Suche</string>
-    <string name="plugin_data">Plugin-Daten</string>
-    <string name="process_vars">Prozessvariablen</string>
-    <string name="unfilter">Filter entfernen</string>
-    <string name="plugin_manager_desc">Verwaltung von erkannten Plugin-Erweiterungen</string>
-    <string name="graph_actions">Grafik-Aktionen</string>
-    <string name="master">Hauptrechner</string>
     <string name="comm_baudrate">ELM Baudrate</string>
     <string name="comm_baudrate_description">USB serielle Übertragungsgeschwindigkeit</string>
     <string name="service_testcontrol">OBD Teststeuerung</string>

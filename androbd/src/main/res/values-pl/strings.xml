@@ -159,13 +159,7 @@
     <string name="libraries_sum">Biblioteki użyte w projekcie …</string>
     <string name="release_history">Historia wydań…</string>
     <string name="graphic_design">Projekt graficzny</string>
-    <string name="unfilter">Usuń filtr</string>
-    <string name="plugin_data">Informacje wtyczek</string>
     <string name="long_press_dfc_hint">Długo naciśnij DFC aby wyszukać online …</string>
-    <string name="plugin_manager_desc">Menadżer wykrytych wtyczek</string>
-    <string name="graph_actions">Wykres graficzny</string>
-    <string name="master">master</string>
-    <string name="process_vars">Zmienne procesu</string>
     <string name="comm_baudrate_description">Szybkość komunikacji szeregowej USB</string>
     <string name="comm_baudrate">Szybkość transmisji ELM</string>
     <string name="obd_test_progress">Trwa kontrola testu OBD.

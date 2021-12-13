@@ -106,12 +106,8 @@
 \n A perda de dados pode fazer com que o veículo funcione mal durante um 
 \n curto período de tempo enquanto a ECU se recalibra.</string>
     <string name="time">Tempo [s]</string>
-    <string name="graph_actions">Ações de gráfico</string>
     <string name="hud">Ecrã de Alertas</string>
-    <string name="unfilter">Limpar filtro de selecção</string>
     <string name="logging_level_description">Nível de detalhes a serem registados no ficheiro de registos de depuração</string>
-    <string name="master">principal</string>
-    <string name="process_vars">Variáveis de processo</string>
     <string name="last_view_mode">último modo de visualização de dados</string>
     <string name="keep_screen_on">Manter o ecrã principal ligado</string>
     <string name="keep_screen_on_description">Não DESLIGAR ecrã se o ecrã principal/dados estiver a ser exibido</string>
@@ -156,7 +152,6 @@
     <string name="csv_rec_delimiter_description">Caractere(s) delimitador(es) entre registos de dados CSV</string>
     <string name="csv_text_quoted">Texto CSV citado</string>
     <string name="csv_text_quoted_description">Campos de texto CSV são incluídos entre aspas</string>
-    <string name="plugin_manager_desc">Gerir plugins instalados</string>
     <string name="toolbar_overlay">Mostrar como sobreposição</string>
     <string name="toolbar_overlay_sum">Mostrar barra de ferramentas de sobreposição ao ecrã principal</string>
     <string name="license">Licenciamento…</string>
@@ -165,7 +160,6 @@
     <string name="libraries_sum">Bibliotecas usadas no projeto…</string>
     <string name="release_history">Histórico de lançamentos…</string>
     <string name="graphic_design">Design gráfico</string>
-    <string name="plugin_data">Dados do plugin</string>
     <string name="long_press_dfc_hint">Pressione e segure DFC para pesquisa on-line …</string>
     <string name="comm_baudrate_description">Velocidade da comunicação serial por USB</string>
     <string name="comm_baudrate">Taxa de transmissão do ELM</string>

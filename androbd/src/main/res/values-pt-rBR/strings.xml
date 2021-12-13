@@ -160,13 +160,7 @@
     <string name="libraries_sum">Bibliotecas utilizadas no projeto…</string>
     <string name="release_history">Histórico de lançamentos…</string>
     <string name="graphic_design">Design gráfico</string>
-    <string name="plugin_data">dados do Plugin</string>
     <string name="long_press_dfc_hint">Segure DFC para pesquisa online…</string>
-    <string name="process_vars">variáveis de processo</string>
-    <string name="unfilter">Remover filtro</string>
-    <string name="plugin_manager_desc">Gerenciador de plugins</string>
-    <string name="graph_actions">Gráfico de ações</string>
-    <string name="master">principal</string>
     <string name="comm_baudrate_description">Velocidade da comunicação serial USB</string>
     <string name="comm_baudrate">Taxa de transmissão do ELM</string>
     <string name="obd_test_confirm">Controle de teste OBD foi solicitado.
