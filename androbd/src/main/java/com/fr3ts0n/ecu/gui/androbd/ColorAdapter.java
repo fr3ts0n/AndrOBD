@@ -1,7 +1,6 @@
 package com.fr3ts0n.ecu.gui.androbd;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -22,24 +21,25 @@ public class ColorAdapter
      */
     static final Integer[] colors =
     {
-        Color.LTGRAY,
-        Color.DKGRAY,
-        Color.RED,
-        Color.BLUE,
-        Color.GREEN,
-        Color.GRAY,
-        Color.CYAN,
-        Color.parseColor("#FF000080"), // navy
-        Color.YELLOW,
-        Color.parseColor("#FF00FFFF"), // aqua
-        Color.parseColor("#FFFF00FF"), // fuchsia
-        Color.parseColor("#FF800000"), // maroon
-        Color.parseColor("#FF00FF00"), // lime
-        Color.MAGENTA,
-        Color.parseColor("#FF808000"), // olive
-        Color.parseColor("#FF800080"), // purple
-        Color.parseColor("#FFC0C0C0"), // silver
-        Color.parseColor("#FF008080"), // teal
+        0xFFF44336, // RED 500
+        0xFFE91E63, // PINK 500
+        0xFFFF2C93, // LIGHT PINK 500
+        0xFF9C27B0, // PURPLE 500
+        0xFF673AB7, // DEEP PURPLE 500
+        0xFF3F51B5, // INDIGO 500
+        0xFF2196F3, // BLUE 500
+        0xFF03A9F4, // LIGHT BLUE 500
+        0xFF00BCD4, // CYAN 500
+        0xFF009688, // TEAL 500
+        0xFF4CAF50, // GREEN 500
+        0xFF8BC34A, // LIGHT GREEN 500
+        0xFFCDDC39, // LIME 500
+        0xFFFFEB3B, // YELLOW 500
+        0xFFFFC107, // AMBER 500
+        0xFFFF9800, // ORANGE 500
+        0xFF795548, // BROWN 500
+        0xFF607D8B, // BLUE GREY 500
+        0xFF9E9E9E, // GREY 500
     };
 
     public ColorAdapter(Context context, int resource)

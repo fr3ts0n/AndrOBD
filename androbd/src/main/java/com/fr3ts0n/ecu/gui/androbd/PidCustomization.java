@@ -68,7 +68,7 @@ public class PidCustomization
         btnReset.setOnClickListener(resetClicked);
 
         // Color selection
-        colorAdapter = new ColorAdapter(this, android.R.layout.simple_spinner_item);
+        colorAdapter = new ColorAdapter(this, android.R.layout.simple_spinner_dropdown_item);
         spColor = findViewById(R.id.pid_color);
         spColor.setAdapter(colorAdapter);
         spColor.setOnItemSelectedListener(colorSelected);
