@@ -155,12 +155,27 @@
     <string name="toolbar_overlay">Mostra in sovraimpressione</string>
     <string name="toolbar_overlay_sum">Mostra la barra degli oggetti sopra lo schermo principale</string>
     <string name="license">Verifica…</string>
-    <string name="donation">Supporta il progetto…</string>
+    <string name="donation">Sostieni il progetto …</string>
     <string name="libraries">Librerie…</string>
     <string name="libraries_sum">Librerie usate nel progetto…</string>
-    <string name="release_history">Storico versioni…</string>
+    <string name="release_history">Cronologia delle versioni …</string>
     <string name="graphic_design">design grafico</string>
     <string name="long_press_dfc_hint">Premi a lungo DFC per cercare online…</string>
     <string name="comm_baudrate_description">Velocità di comunicazione seriale USB</string>
     <string name="comm_baudrate">Tasso di baud ELM</string>
+    <string name="obd_test_progress">Controllo test OBD in corso.
+\n Si prega di controllare la reazione del veicolo.</string>
+    <string name="obd_test_confirm">Prova controllo OBD richiesto.
+\n
+\n Il controllo di prova OBD richiesto può generare:
+\n - Movimento del veicolo
+\n - Fumo di scarico
+\n - Alta temperatura di scarico
+\n - Forte rumore del motore
+\n - Vapori di carburante
+\n - ecc.
+\n
+\n Conferma di eseguire questo controllo di prova a tuo rischio e pericolo solo in un ambiente di prova sicuro!</string>
+    <string name="copied_to_clipboard">Copiato negli appunti</string>
+    <string name="service_testcontrol">Controllo test OBD</string>
 </resources>
