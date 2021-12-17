@@ -178,4 +178,10 @@
 \nנא לבדוק את תגובת כלי הרכב.</string>
     <string name="service_testcontrol">בקרת בדיקת OBD</string>
     <string name="copied_to_clipboard">הועתק ללוח הגזירים</string>
+    <string name="display_color">צבע תצוגה</string>
+    <string name="reset_default">ברירת מחדל</string>
+    <string name="full_screen_display_description">להשתמש בתצוגת יישומון מלאה</string>
+    <string name="full_screen_display">תצוגה במסך מלא</string>
+    <string name="customize_display">התאמת תצוגת הנתונים</string>
+    <string name="display_range">טווח תצוגה</string>
 </resources>
