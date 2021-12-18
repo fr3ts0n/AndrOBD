@@ -178,4 +178,10 @@
 \n Favor observar a reação do veículo.</string>
     <string name="service_testcontrol">Controle de teste OBD</string>
     <string name="copied_to_clipboard">Copiado para área de transferência</string>
+    <string name="full_screen_display">Exibe em tela inteira</string>
+    <string name="full_screen_display_description">Usa a tela cheia para exibir o aplicativo</string>
+    <string name="display_color">Cor da tela</string>
+    <string name="display_range">Faixa da exibição</string>
+    <string name="customize_display">Personaliza os dados da tela</string>
+    <string name="reset_default">Padrão</string>
 </resources>
