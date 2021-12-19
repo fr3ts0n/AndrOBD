@@ -178,4 +178,10 @@
 \n - A další...
 \n
 \n Proveďte zkoušku v bezpečném zkušebním prostředí na svou vlastní zodpovědnost!</string>
+    <string name="full_screen_display_description">Použít celou obrazovku pro zobrazení</string>
+    <string name="full_screen_display">Zobrazení na celou obrazovku</string>
+    <string name="customize_display">Přizpůsobit zobrazení dat</string>
+    <string name="reset_default">Výchozí</string>
+    <string name="display_color">Barva obrazovky</string>
+    <string name="display_range">Rozsah zobrazení</string>
 </resources>
