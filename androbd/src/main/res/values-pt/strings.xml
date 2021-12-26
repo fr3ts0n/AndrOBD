@@ -163,4 +163,25 @@
     <string name="title_connecting">A ligar…</string>
     <string name="app_description">App de diagnóstico de veículo OBD para Android para o adaptador Bluetooth ELM327</string>
     <string name="translation_credits">Tradução por Manuela Silva e Silvério Santos</string>
+    <string name="full_screen_display">Exibição no ecrã inteiro</string>
+    <string name="obd_test_progress">Controle de teste OBD em progresso.
+\nPor favor, verifique a reação do veículo.</string>
+    <string name="obd_test_confirm">Controlo de teste OBD solicitado.
+\n
+\n O controlo de teste OBD solicitado pode gerar:
+\n - Movimento do veículo
+\n - Fumo de escape
+\n - Alta temperatura de escape
+\n - Ruído alto do motor
+\n - Vapor de combustível
+\n - etc.
+\n
+\n Por favor, confirme para realizar este controle de teste apenas por sua conta e risco em um ambiente de teste seguro!</string>
+    <string name="full_screen_display_description">Usar o ecrã inteiro para exibir a app</string>
+    <string name="reset_default">Padrão</string>
+    <string name="copied_to_clipboard">Copiado para a área de transferência</string>
+    <string name="service_testcontrol">Controle de teste OBD</string>
+    <string name="display_color">Cor do ecrã</string>
+    <string name="customize_display">Personalizar a exibição de dados</string>
+    <string name="display_range">Faixa da exibição</string>
 </resources>
