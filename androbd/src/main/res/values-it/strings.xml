@@ -178,4 +178,10 @@
 \n Conferma di eseguire questo controllo di prova a tuo rischio e pericolo solo in un ambiente di prova sicuro!</string>
     <string name="copied_to_clipboard">Copiato negli appunti</string>
     <string name="service_testcontrol">Controllo test OBD</string>
+    <string name="full_screen_display">Display a tutto schermo</string>
+    <string name="full_screen_display_description">Utilizzare lo schermo intero per la visualizzazione delle app</string>
+    <string name="display_color">Colore del display</string>
+    <string name="customize_display">Personalizzare la visualizzazione dei dati</string>
+    <string name="display_range">Gamma del display</string>
+    <string name="reset_default">Di default</string>
 </resources>
