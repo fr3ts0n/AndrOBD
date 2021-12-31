@@ -178,4 +178,10 @@
     <string name="title_connecting">Prisijungiama…</string>
     <string name="copied_to_clipboard">Nukopijuota į iškarpinę</string>
     <string name="app_description">Android OBD transporto priemonių diagnostikos programa, skirta ELM327 Bluetooth adapteriui</string>
+    <string name="full_screen_display">Viso ekrano ekranas</string>
+    <string name="full_screen_display_description">Programos rodymui naudokite visą ekraną</string>
+    <string name="display_color">Ekrano spalva</string>
+    <string name="customize_display">Duomenų rodymo pritaikymas</string>
+    <string name="display_range">Rodymo diapazonas</string>
+    <string name="reset_default">Numatytoji</string>
 </resources>
