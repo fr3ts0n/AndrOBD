@@ -178,4 +178,10 @@
 \nPreverite reakcijo vozila.</string>
     <string name="service_testcontrol">OBD testni nadzor</string>
     <string name="copied_to_clipboard">Kopirano v odložišče</string>
+    <string name="full_screen_display">Celozaslonski prikaz</string>
+    <string name="full_screen_display_description">Uporaba celotnega zaslona za prikaz aplikacije</string>
+    <string name="display_color">Barva zaslona</string>
+    <string name="customize_display">Prilagajanje prikaza podatkov</string>
+    <string name="display_range">Območje prikaza</string>
+    <string name="reset_default">Privzeto</string>
 </resources>
