@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Tłumaczenie przez fr3ts0n</string>
+    <string name="translation_credits">Tłumaczenie fr3ts0n</string>
     <string name="app_description">Aplikacja dla systemu Android do diagnostyki pojazdów poprzez OBD poprzez adapter Bluetooth ELM327</string>
     <string name="title_connecting">Łączenie…</string>
     <string name="title_connected_to">Połączono %s</string>
@@ -166,4 +166,21 @@
 \n Proszę sprawdzić reakcję pojazdu.</string>
     <string name="service_testcontrol">Kontrola testu OBD</string>
     <string name="copied_to_clipboard">Skopiowano do schowka</string>
+    <string name="reset_default">Domyślnie</string>
+    <string name="obd_test_confirm">Żądana kontrola badania OBD.
+\n
+\n Żądana kontrola badania OBD może generować:
+\n - Ruch pojazdu
+\n - dymienie z wydechu
+\n - wysoką temperaturę spalin
+\n - Głośny hałas silnika
+\n - Opary paliwa
+\n - itp.
+\n
+\n Proszę potwierdzić wykonanie tej kontroli testowej na własne ryzyko, tylko w bezpiecznym środowisku testowym!</string>
+    <string name="display_range">Zakres wyświetlania</string>
+    <string name="customize_display">Dostosuj wyświetlanie danych</string>
+    <string name="display_color">Kolor ekranu</string>
+    <string name="full_screen_display_description">Użyj pełnego ekranu do wyświetlania aplikacji</string>
+    <string name="full_screen_display">Wyświetlacz pełnoekranowy</string>
 </resources>
