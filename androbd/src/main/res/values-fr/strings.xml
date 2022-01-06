@@ -195,4 +195,10 @@
 \n
 \nVeillez à passer ce test de contrôle dans un environnement assez sûr car vous êtes seul responsable !</string>
     <string name="service_testcontrol">Contrôle de test de ODB</string>
+    <string name="full_screen_display">Affichage plein-écran</string>
+    <string name="customize_display">Personnaliser les données d\'affichage</string>
+    <string name="display_range">Intervalle d\'affichage</string>
+    <string name="full_screen_display_description">Utiliser le plein-écran pour l\'affichage de l\'application</string>
+    <string name="display_color">Couleur d\'affichage</string>
+    <string name="reset_default">Par défaut</string>
 </resources>
