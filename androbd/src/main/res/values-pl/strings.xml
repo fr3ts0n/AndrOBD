@@ -81,7 +81,7 @@
     <string name="select_extension">Wybierz plik z rozszerzeniem .csv…</string>
     <string name="extension_loading">Ładowania personalizacji</string>
     <string name="check_cust_settings">Proszę sprawdź ustawienia personalizacji\n</string>
-    <string name="obd_options">Opcje ODB</string>
+    <string name="obd_options">Opcje OBD</string>
     <string name="obd_opt_description">Opcje protokołu OBD / komunikacja pojazdu</string>
     <string name="select_protocol">Preferowany protokół OBD</string>
     <string name="select_fault_code">Wybierz kod błędu…</string>
