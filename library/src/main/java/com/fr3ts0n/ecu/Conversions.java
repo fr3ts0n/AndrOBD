@@ -91,7 +91,7 @@ public class Conversions
 	});
 
 	/** limits for RPM display */
-	private static final PvLimits rpmLimits = new PvLimits(0.0f, 6000.0f);
+	private static final PvLimits rpmLimits = new PvLimits(0.0f, 12000.0f);
 
 	private static final Conversion[][] cnvFactors =
 		{
