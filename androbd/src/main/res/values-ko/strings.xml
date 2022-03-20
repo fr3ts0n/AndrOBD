@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">번역 김명준</string>
+    <string name="translation_credits">번역: 김명준, 이정희</string>
     <string name="app_description">ELEM327 블루투스 아답터용 안드로이드 OBD 자량 진단 앱</string>
     <string name="title_connecting">연결중…</string>
     <string name="title_connected_to">연결됨</string>
@@ -85,7 +85,7 @@
     <string name="obd_opt_description">OBD 프로토콜 / 차량 통신 옵션</string>
     <string name="select_protocol">선호하는 OBD 프로토콜</string>
     <string name="plugin_manager">플러그인 관리자</string>
-    <string name="configure">환결설정</string>
+    <string name="configure">구성하기</string>
     <string name="select_fault_code">오류 코드 선택 …</string>
     <string name="select_medium">어댑터 종류 …</string>
     <string name="devices_found">%d USB 디바이스를 찾음</string>
@@ -157,10 +157,31 @@
     <string name="donation">지원 프로젝트 …</string>
     <string name="libraries">라이브러리…</string>
     <string name="libraries_sum">프로젝트에 사용 된 라이브러리 …</string>
-    <string name="release_history">출시 내역 …</string>
+    <string name="release_history">릴리스 이력…</string>
     <string name="graphic_design">그래픽 디자인</string>
     <string name="long_press_dfc_hint">온라인 검색을 하려면 DFC를 길게 누르세요…</string>
     <string name="service_freezeframes">OBD 프레임 멈춤</string>
     <string name="comm_baudrate_description">USB 직렬 통신 속도</string>
     <string name="comm_baudrate">ELM 보오 레이트</string>
+    <string name="copied_to_clipboard">클립보드에 복사됨</string>
+    <string name="service_testcontrol">OBD 테스트 제어</string>
+    <string name="display_color">디스플레이 색상</string>
+    <string name="customize_display">데이터 화면표시 사용자 정의</string>
+    <string name="display_range">화면표시 범위</string>
+    <string name="reset_default">기본값</string>
+    <string name="obd_test_progress">OBD 테스트 제어가 진행중입니다.
+\n 차량 반응을 확인하십시오.</string>
+    <string name="obd_test_confirm">OBD 테스트 제어가 요청되었습니다.
+\n
+\n 요청된 OBD 테스트 컨트롤은 다음을 생성할 수 있습니다.
+\n - 차량의 움직임
+\n - 매연
+\n - 높은 배기 온도
+\n - 시끄러운 엔진 소음
+\n - 연료 증기
+\n - 기타.
+\n
+\n 안전한 테스트 환경에서만 자신의 위험을 감수하고, 이 테스트 제어를 수행하도록 확인하십시오!</string>
+    <string name="full_screen_display_description">앱 표시에 전체 화면 사용</string>
+    <string name="full_screen_display">전체 화면 표시</string>
 </resources>
