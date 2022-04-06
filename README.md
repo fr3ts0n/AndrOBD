@@ -82,10 +82,10 @@ It is open source and completely free. The application also has a built in Demo 
 
 *More screenshots available on [the Website](https://fr3ts0n.github.io/AndrOBD/) or in the [Screenshots folder](https://github.com/fr3ts0n/AndrOBD/tree/master/fastlane/metadata/android/en-US/images/phoneScreenshots)*
 
-## Join the team
-  * Test the app with different devices, alpha & beta releases are posted in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
+## Contribute
   * Report issues in the [issue tracker](https://github.com/fr3ts0n/AndrOBD/issues)
   * Create a [Pull Request](https://opensource.guide/how-to-contribute/#opening-a-pull-request)
+  * Test the app with different devices, alpha & beta releases are posted in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
   * Contribute to development of plugin extensions: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
   * Discuss the project in the Telegram [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
   * Translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/)
