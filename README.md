@@ -82,13 +82,14 @@ It is open source and completely free. The application also has a built in Demo 
 
 *More screenshots available on [the Website](https://fr3ts0n.github.io/AndrOBD/) or in the [Screenshots folder](https://github.com/fr3ts0n/AndrOBD/tree/master/fastlane/metadata/android/en-US/images/phoneScreenshots)*
 
-## Join the team
-  * Test the app with different devices, alpha & beta releases are posted in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
+## Contribute
   * Report issues in the [issue tracker](https://github.com/fr3ts0n/AndrOBD/issues)
-  * Create a [Pull Request](https://opensource.guide/how-to-contribute/#opening-a-pull-request)
+  * Create a [Pull Request](https://docs.github.com/en/pull-requests)
+  * Test the app with different devices, alpha & beta releases are posted in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
   * Contribute to development of plugin extensions: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
   * Discuss the project in the Telegram [AndrOBD chat](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg)
   * Translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/)
+
 <details>
   <summary>Expand translation status</summary>
 
@@ -110,12 +111,12 @@ It is open source and completely free. The application also has a built in Demo 
 
 </details>
  
-#### ⚠️ Special request ⚠️
-* AndrOBD is looking for helping hands on designing and implementing of a modern new GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126)). Contributers will be credited/linked in the Readme.
+#### ⚠️ Design request ⚠️
+* AndrOBD is looking for help with designing and implementing of a new modern GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126)). Contributers will be credited/linked in the Readme.
 
 ## Support by donating
 
-Buy us a coffee or two, as it enables us to put more free time into the active development.
+Buy us a coffee or donate in the amount that you see valuable for the project, as it will enable us to put more free time into the active development.
 
 <table>
   <tr>
