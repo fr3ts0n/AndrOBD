@@ -112,7 +112,7 @@ It is open source and completely free. The application also has a built in Demo 
 </details>
  
 #### ⚠️ Design request ⚠️
-* AndrOBD is looking for help with designing and implementing of a new modern GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126)), *Java & Kotlin are [supported](https://github.com/fr3ts0n/AndrOBD/wiki/Frequently-asked-questions#what-programming-languages-can-be-used-for-contributions)*. Contributers will be credited/linked in the Readme.
+* AndrOBD is looking for help with designing and implementing of a new modern GUI ([#104](https://github.com/fr3ts0n/AndrOBD/issues/104), [#126](https://github.com/fr3ts0n/AndrOBD/issues/126)), *Java & Kotlin [can be used](https://github.com/fr3ts0n/AndrOBD/wiki/Frequently-asked-questions#what-programming-languages-can-be-used-for-contributions)*. Contributers will be credited/linked in the Readme.
 
 ## Support by donating
 
