@@ -49,7 +49,7 @@
     <string name="obd_options">OBD možnosti</string>
     <string name="obd_opt_description">Možnosti OBD protokola / komunikacije z vozilom</string>
     <string name="select_protocol">Prednostni OBD protokol</string>
-    <string name="plugin_manager">Upravljalec vtičnikov</string>
+    <string name="plugin_manager">Upravljanje vtičnikov</string>
     <string name="configure">Konfiguriraj</string>
     <string name="select_fault_code">Izberi kodo napake …</string>
     <string name="select_medium">Tip adapterja …</string>
