@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Oversettelse av fr3ts0n</string>
+    <string name="translation_credits">Translation by fr3ts0n /StayicBlue</string>
     <string name="title_connecting">Kobler til…</string>
     <string name="title_connected_to">Tilkoblet %s</string>
     <string name="logo">Logo</string>
-    <string name="back_again_to_exit">Trykk \\\"Tilbake\\\" igjen for å lukke dette programmet.</string>
+    <string name="back_again_to_exit">"Trykk  tilbake igjen for å lukke dette programmet."</string>
     <string name="action_connect">Koble til</string>
     <string name="obd_none">INGEN tjeneste</string>
     <string name="obd_services">OBD-tjenester</string>
@@ -13,7 +13,7 @@
     <string name="obd_codes">OBD-feilkoder</string>
     <string name="obd_permanentcodes">OBD-feilkoder (permanente)</string>
     <string name="obd_pendingcodes">OBD-feilkoder (ventende)</string>
-    <string name="obd_clearcodes">Tøm feilkoder</string>
+    <string name="obd_clearcodes">Slett feilkoder</string>
     <string name="select_device">Velg adapter</string>
     <string name="none_found">Fant ingen enheter</string>
     <string name="send_to">Send til</string>
@@ -110,7 +110,7 @@
     <string name="toolbar_overlay">Vis som overlag</string>
     <string name="toolbar_overlay_sum">Vis verktøyslinje over hovedskjermen</string>
     <string name="app_description">Android OBD-kjøretøydiagnostikkprogram for ELM327-Blåtannsadapter</string>
-    <string name="service_freezeframes">OBD Freeze Frames</string>
+    <string name="service_freezeframes">OBD Lås Ramme</string>
     <string name="obd_clear_info">Dette vil tilbakestille MIL og tømme all utslippsrelatert diagnostikk
 \n informasjon, inkludert:
 \n - Diagnostikkfeilkoder
@@ -163,4 +163,17 @@
     <string name="long_press_dfc_hint">Trykk lenge på DFC for nettbasert søk…</string>
     <string name="comm_baudrate_description">USB-seriellkommunikasjonshastighet</string>
     <string name="comm_baudrate">ELM-baudrate</string>
+    <string name="service_testcontrol">OBD test kontroll</string>
+    <string name="copied_to_clipboard">Kopiert til utklippstavle</string>
+    <string name="obd_test_progress">OBD-testkontroll pågår. Vennligst sjekk kjøretøyets reaksjon.</string>
+    <string name="obd_test_confirm">OBD-testkontroll forespurt.
+\n
+\n Den forespurte OBD-testkontrollen kan generere:
+\n - Kjøretøyets bevegelse
+\n - Eksosrøyk 
+\n- Høy eksostemperatur 
+\n- Høy motorstøy 
+\n- Drivstoffdamp 
+\n- etc. 
+\nVennligst bekreft å utføre denne testkontrollen på egen risiko kun i et trygt testmiljø.</string>
 </resources>
