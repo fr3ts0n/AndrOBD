@@ -163,4 +163,8 @@
     <string name="long_press_dfc_hint">Pulsación prolongada en DFC para buscar en línea…</string>
     <string name="comm_baudrate_description">Velocidad de comunicación en serie del USB</string>
     <string name="comm_baudrate">Tasa de baudios ELM</string>
+    <string name="copied_to_clipboard">Copiado al portapapeles</string>
+    <string name="service_testcontrol">test de control OBD</string>
+    <string name="obd_test_progress">Prueba de control OBD en progreso.
+\nPor favor comprueba la reacción del vehículo.</string>
 </resources>
