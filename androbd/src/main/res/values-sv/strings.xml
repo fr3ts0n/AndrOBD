@@ -161,4 +161,6 @@
     <string name="release_history">Historik för utgåvan …</string>
     <string name="graphic_design">Grafisk design</string>
     <string name="long_press_dfc_hint">Klicka och håll in DFC för att söka online …</string>
+    <string name="copied_to_clipboard">Kopierades till klippbordet</string>
+    <string name="service_testcontrol">Testkontroll för OBD</string>
 </resources>
