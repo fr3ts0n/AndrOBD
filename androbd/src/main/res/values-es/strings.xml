@@ -155,7 +155,7 @@
     <string name="toolbar_overlay">Mostrar como capa sobrepuesta</string>
     <string name="toolbar_overlay_sum">Mostrar barra de herramientas superpuesta en la pantalla principal</string>
     <string name="license">Licencias…</string>
-    <string name="donation">Apoyar el proyecto…</string>
+    <string name="donation">Soportar el proyecto..</string>
     <string name="libraries">Bibliotecas…</string>
     <string name="libraries_sum">Bibliotecas utilizadas en el proyecto…</string>
     <string name="release_history">Historial de versiones…</string>
@@ -167,4 +167,21 @@
     <string name="service_testcontrol">test de control OBD</string>
     <string name="obd_test_progress">Prueba de control OBD en progreso.
 \nPor favor comprueba la reacción del vehículo.</string>
+    <string name="full_screen_display">Visualización a pantalla completa</string>
+    <string name="full_screen_display_description">Usar pantalla completa para visualizar la aplicación</string>
+    <string name="display_color">Color de pantalla</string>
+    <string name="customize_display">Adaptar la visualización de datos</string>
+    <string name="display_range">Alcance de visualización</string>
+    <string name="reset_default">Por defecto</string>
+    <string name="obd_test_confirm">Se requiere el control de prueba OBD.
+\n
+\nEl control OBD de prueba requerido puede producir:
+\n-Movimiento del vehículo
+\n-Una cantidad elevada de humo del escape
+\n-Alta temperatura del escape
+\n-Ruido elevado del motor
+\n-Vaporización de combustible
+\n-etc.
+\n
+\nPor favor, confirme que realizará la prueba, bajo su responsablidad, en un lugar de prueba seguro!</string>
 </resources>
