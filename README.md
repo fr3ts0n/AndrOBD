@@ -165,6 +165,8 @@ Buy us a coffee or donate in the amount that you see valuable for the project, a
 | 2021/04 | Klemen Skerbiš | €5 |
 | 2021/06 | Christoph Goetz | €5 |
 | 2021/11 | Raphael Högger | CHF60 |
+| 2022/05 | Cecil Harper | €6 |
+| 2022/07 | Daniel Singh | $10 |
 </details>
 
 <details>
