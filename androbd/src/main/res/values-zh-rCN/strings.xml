@@ -162,4 +162,9 @@
     <string name="long_press_dfc_hint">长按DFC进行在线搜索…</string>
     <string name="comm_baudrate_description">USB 串行通讯速度</string>
     <string name="comm_baudrate">ELM 波特率</string>
+    <string name="copied_to_clipboard">复制到剪贴版</string>
+    <string name="display_color">屏幕颜色</string>
+    <string name="reset_default">默认</string>
+    <string name="full_screen_display">全屏</string>
+    <string name="full_screen_display_description">为APP全屏</string>
 </resources>
