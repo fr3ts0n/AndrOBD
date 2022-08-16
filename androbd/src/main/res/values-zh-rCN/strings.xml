@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">由 fr3ts0n和infinitysky 翻译</string>
+    <string name="translation_credits">由 fr3ts0n、infinitysky和TTsdzb 翻译</string>
     <string name="app_description">Android OBD，用于ELM327蓝牙适配器的车辆诊断应用</string>
     <string name="title_connecting">正在连接…</string>
     <string name="title_connected_to">已连接 %s</string>
@@ -162,9 +162,25 @@
     <string name="long_press_dfc_hint">长按DFC进行在线搜索…</string>
     <string name="comm_baudrate_description">USB 串行通讯速度</string>
     <string name="comm_baudrate">ELM 波特率</string>
-    <string name="copied_to_clipboard">复制到剪贴版</string>
+    <string name="copied_to_clipboard">已复制到剪贴板</string>
     <string name="display_color">屏幕颜色</string>
     <string name="reset_default">默认</string>
     <string name="full_screen_display">全屏</string>
     <string name="full_screen_display_description">为APP全屏</string>
+    <string name="service_testcontrol">OBD控制测试</string>
+    <string name="obd_test_progress">OBD控制测试进行中。
+\n 请检查车辆行为。</string>
+    <string name="obd_test_confirm">将进行OBD控制测试。
+\n
+\n 这可能会导致：
+\n - 车辆移动
+\n - 产生更多废气
+\n - 废气温度高
+\n - 引擎发出更大噪音
+\n - 释放燃油蒸汽
+\n 等状况。
+\n
+\n 请自行确认并保证该测试在安全场合中进行！</string>
+    <string name="customize_display">自定义数据显示</string>
+    <string name="display_range">显示范围</string>
 </resources>
