@@ -4,10 +4,10 @@
     <string name="comm_baudrate">Taxa de transmissão do ELM</string>
     <string name="long_press_dfc_hint">Pressione e segure DFC para pesquisa on-line …</string>
     <string name="graphic_design">Design gráfico</string>
-    <string name="release_history">Histórico de lançamentos…</string>
+    <string name="release_history">Histórico de lançamentos</string>
     <string name="libraries_sum">Bibliotecas usadas no projeto…</string>
     <string name="libraries">Bibliotecas…</string>
-    <string name="donation">Apoiar o projeto…</string>
+    <string name="donation">Apoiar projeto…</string>
     <string name="license">Licenciamento…</string>
     <string name="toolbar_overlay_sum">Mostrar barra de ferramentas de sobreposição ao ecrã principal</string>
     <string name="toolbar_overlay">Mostrar como sobreposição</string>
