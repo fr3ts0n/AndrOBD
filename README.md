@@ -89,7 +89,7 @@ It is open source and completely free. The application also has a built in Demo 
   * Test the app with different devices, alpha & beta releases are posted in the Telegram [AndrOBD release channel](https://t.me/AndrOBD_dev)
   * Contribute to development of plugin extensions: [AndrOBD-Plugin repository](https://github.com/fr3ts0n/AndrOBD-Plugin)
   * Discuss the project in the [Telegram](https://t.me/joinchat/G60ltQv5CCEQ94BZ5yWQbg) or [Matrix](https://matrix.to/#/#AndrOBD:matrix.org) chat rooms
-  * Translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/)
+  * Translate this app into more languages on [Weblate](https://hosted.weblate.org/engage/androbd/), or have a look at [Language translation](https://github.com/fr3ts0n/AndrOBD/wiki/Language-translation) section in the Wiki for more info.
 
 <details>
   <summary>Expand translation status</summary>
