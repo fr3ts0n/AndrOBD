@@ -154,10 +154,10 @@
     <string name="toolbar_overlay">오버레이로 표시</string>
     <string name="toolbar_overlay_sum">기본 화면을 겹쳐서 표시하는 툴바</string>
     <string name="license">라이센스 …</string>
-    <string name="donation">지원 프로젝트 …</string>
+    <string name="donation">프로젝트 지원 …</string>
     <string name="libraries">라이브러리…</string>
     <string name="libraries_sum">프로젝트에 사용 된 라이브러리 …</string>
-    <string name="release_history">릴리스 이력…</string>
+    <string name="release_history">개정 이력…</string>
     <string name="graphic_design">그래픽 디자인</string>
     <string name="long_press_dfc_hint">온라인 검색을 하려면 DFC를 길게 누르세요…</string>
     <string name="service_freezeframes">OBD 프레임 멈춤</string>
