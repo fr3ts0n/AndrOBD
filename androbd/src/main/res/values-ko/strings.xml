@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">번역: 김명준, 이정희</string>
+    <string name="translation_credits">번역: 김명준, 이정희, DDinghoya</string>
     <string name="app_description">ELEM327 블루투스 아답터용 안드로이드 OBD 자량 진단 앱</string>
     <string name="title_connecting">연결중…</string>
     <string name="title_connected_to">연결됨</string>
@@ -85,7 +85,7 @@
     <string name="obd_opt_description">OBD 프로토콜 / 차량 통신 옵션</string>
     <string name="select_protocol">선호하는 OBD 프로토콜</string>
     <string name="plugin_manager">플러그인 관리자</string>
-    <string name="configure">구성하기</string>
+    <string name="configure">구성</string>
     <string name="select_fault_code">오류 코드 선택 …</string>
     <string name="select_medium">어댑터 종류 …</string>
     <string name="devices_found">%d USB 디바이스를 찾음</string>
