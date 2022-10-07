@@ -147,17 +147,39 @@
     <string name="send_after_export">Küld, miután exportál</string>
     <string name="send_after_export_descr">Kérdezzen rá a CSV fájl elküldésére közvetlenül az exportálás után?</string>
     <string name="plugin_manager">Bővítménykezelő</string>
-    <string name="configure">Konfiguráció</string>
+    <string name="configure">Konfigurálás</string>
     <string name="data_disable_max">Adattiltási limit</string>
     <string name="data_disable_max_description">Érvénytelen egymás utáni adatok száma tiltás előtt</string>
     <string name="toolbar_overlay">Megjelenítés legfelelül</string>
     <string name="toolbar_overlay_sum">Eszköztár megjelenítése a főképernyő felett</string>
     <string name="license">Licenszelés …</string>
-    <string name="donation">Projekt támogatása …</string>
+    <string name="donation">A projekt támogatása …</string>
     <string name="libraries">Könyvtárak …</string>
     <string name="libraries_sum">A projektben alkalmazott könyvtárak …</string>
-    <string name="release_history">Kiadási történet …</string>
+    <string name="release_history">Kiadási előzmények …</string>
     <string name="graphic_design">Grafikus terv</string>
     <string name="long_press_dfc_hint">DFC hosszú érintése online kereséshez…</string>
     <string name="copied_to_clipboard">Másolva a vágólapra</string>
+    <string name="service_testcontrol">OBD Tesztellenőrzés</string>
+    <string name="obd_test_progress">OBD teszt ellenőrzése folyamatban.
+\nKérjük, ellenőrizze a jármű válaszát.</string>
+    <string name="comm_baudrate_description">USB soros kommunikáció sebesség</string>
+    <string name="full_screen_display">Teljes képernyő</string>
+    <string name="comm_baudrate">ELM baud ráta</string>
+    <string name="obd_test_confirm">OBD teszt vezérlési kérelem.
+\n
+\n A kért OBD teszt ellenőrzés a következő jelenségeket generálhatja:
+\n - Jármű mozgása
+\n - Kipufogó füst
+\n - Magas kipufogógáz-hőmérséklet
+\n - Hangos motorzaj
+\n - üzemanyaggőz
+\n - stb.
+\n
+\n Kérjük, erősítse meg, hogy ezt a tesztellenőrzést csak saját felelősségére, biztonságos tesztkörnyezetben végzi el!</string>
+    <string name="full_screen_display_description">Teljes képernyő használata az alkalmazás megjelenítéséhez</string>
+    <string name="customize_display">Az adatok megjelenítésének testreszabása</string>
+    <string name="reset_default">Alapértelmezett</string>
+    <string name="display_color">A kijelző színe</string>
+    <string name="display_range">Megjelenítési tartomány</string>
 </resources>
