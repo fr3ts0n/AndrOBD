@@ -159,4 +159,5 @@
     <string name="release_history">Kiadási történet …</string>
     <string name="graphic_design">Grafikus terv</string>
     <string name="long_press_dfc_hint">DFC hosszú érintése online kereséshez…</string>
+    <string name="copied_to_clipboard">Másolva a vágólapra</string>
 </resources>
