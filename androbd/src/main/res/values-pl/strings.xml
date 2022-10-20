@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Tłumaczenie fr3ts0n</string>
+    <string name="translation_credits">Tłumaczenie - Zespół Weblate</string>
     <string name="app_description">Aplikacja dla systemu Android do diagnostyki pojazdów poprzez OBD poprzez adapter Bluetooth ELM327</string>
     <string name="title_connecting">Łączenie…</string>
     <string name="title_connected_to">Połączono %s</string>
@@ -99,7 +99,7 @@
     <string name="elm_adaptive_timing">czas adaptacji ELM</string>
     <string name="elm_adaptive_timing_descr">Czy pozwolić na adaptacyjną obsługę taktowania sterowników ELM?</string>
     <string name="select_ecu_addr">Wskaż adres ECU …</string>
-    <string name="disconnect">Rozłączyć się</string>
+    <string name="disconnect">Rozłącz</string>
     <string name="reset_preselections">Zresetuj ostatnią selekcję wstępną</string>
     <string name="use_last_settings_description">Użyj ostatnich ustawień przy starcie (adres BT, adres ECU, elementy wyświetlacza ...)</string>
     <string name="use_last_settings">Użyj ostatnich ustawień</string>
@@ -147,13 +147,13 @@
     <string name="semicolon">Średnik</string>
     <string name="send_after_export">Wyślij po wyeksportowaniu</string>
     <string name="send_after_export_descr">Pytasz o wysłanie pliku CSV zaraz po wyeksportowaniu?</string>
-    <string name="plugin_manager">zarządzanie wtyczkami</string>
+    <string name="plugin_manager">Menedżer wtyczek</string>
     <string name="configure">Skonfiguruj</string>
     <string name="data_disable_max">Maksymalna liczba odczytów</string>
     <string name="data_disable_max_description">Maksymalna liczba błędów danych, po której pozycja będzie wyłączana</string>
     <string name="toolbar_overlay">Pokaż na wierzchu</string>
     <string name="toolbar_overlay_sum">Pokaż pasek narzędzi na wierzchu</string>
-    <string name="license">Licencjonowanie …</string>
+    <string name="license">Licencje …</string>
     <string name="donation">Wesprzyj projekt …</string>
     <string name="libraries">Biblioteki …</string>
     <string name="libraries_sum">Biblioteki użyte w projekcie …</string>
