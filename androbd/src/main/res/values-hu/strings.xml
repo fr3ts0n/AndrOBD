@@ -17,20 +17,20 @@
     <string name="obd_pendingcodes">OBD hibakódok (kérdéses)</string>
     <string name="obd_clearcodes">Hibakódok törlése</string>
     <string name="obd_clear_info">Ez visszaállítja a MIL-t és törli az összes emissziós diagnosztikai információt, beleértve:
-\n- Diagnosztikai hibakódok   
-\n- Emissziós Pillanatkép Adatok   
-\n- Oxigén szenzor vizsgálati adatok   
-\n- Rendszerállapot ellenőrző tesztek   
-\n- Fedélzeti diagnosztikai vizsgálatok eredményei   
-\n- Aktív MIL közben megtett út   
-\n- Bemelegítések száma DTC törlése óta   
-\n- Megtett út, DTC törlése óta   
-\n- Motor futási idő, aktivált MIL közben   
+\n- Diagnosztikai hibakódok  
+\n- Emissziós Pillanatkép Adatok  
+\n- Oxigén szenzor (lambda szonda) vizsgálati adatok  
+\n- Rendszerállapot ellenőrző tesztek  
+\n- Fedélzeti diagnosztikai vizsgálatok eredményei  
+\n- Aktív MIL közben megtett út  
+\n- Bemelegítések száma DTC törlése óta  
+\n- Megtett út a DTC törlése óta  
+\n- Motor futási idő aktivált MIL közben  
 \n- DTC törlés óta eltelt idő
 \n
-\n Egyéb gyártó-specifikus törlési/visszaállítási műveletek történhetnek.
-\n Az adatvesztés miatt a jármű rosszul futhat rövid ideig,
-\n míg az ECU újrakalibrálódik.</string>
+\nEgyéb gyártóspecifikus törlési/visszaállítási műveletek is előfordulhatnak.
+\nAz adatvesztés miatt a jármű rövid ideig rosszul működhet,
+\namíg az ECU újrakalibrálja magát.</string>
     <string name="select_device">Válassz ki egy eszközt</string>
     <string name="none_paired">Nincs párosított eszköz</string>
     <string name="none_found">Nem található eszköz</string>
