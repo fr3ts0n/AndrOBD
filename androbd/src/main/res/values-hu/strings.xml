@@ -162,7 +162,7 @@
     <string name="copied_to_clipboard">Másolva a vágólapra</string>
     <string name="service_testcontrol">OBD Tesztellenőrzés</string>
     <string name="obd_test_progress">OBD teszt ellenőrzése folyamatban.
-\nKérjük, ellenőrizze a jármű válaszát.</string>
+\nKérjük, figyelje a jármű reakcióit.</string>
     <string name="comm_baudrate_description">USB soros kommunikáció sebesség</string>
     <string name="full_screen_display">Teljes képernyő</string>
     <string name="comm_baudrate">ELM baud ráta</string>
@@ -176,7 +176,7 @@
 \n - üzemanyaggőz
 \n - stb.
 \n
-\n Kérjük, erősítse meg, hogy ezt a tesztellenőrzést csak saját felelősségére, biztonságos tesztkörnyezetben végzi el!</string>
+\n Kérjük, erősítse meg, hogy ezt a teszt ellenőrzést csak saját felelősségére, biztonságos tesztkörnyezetben végzi el!</string>
     <string name="full_screen_display_description">Teljes képernyő használata az alkalmazás megjelenítéséhez</string>
     <string name="customize_display">Az adatok megjelenítésének testreszabása</string>
     <string name="reset_default">Alapértelmezett</string>
