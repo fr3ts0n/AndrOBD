@@ -93,7 +93,7 @@ period of time while the ECU recalibrates itself.
     </string-array>
     <string name="items_for_display">Data items to display</string>
     <string name="items_for_display_descr">Select all data items to be displayed …</string>
-    <string-array name="empty" translatable="false" />
+    <string-array name="empty" translatable="false"/>
     <string name="debugging">Debugging</string>
     <string name="logging_level">Logging level</string>
     <string name="logging_level_description">Level of details to be logged into debug log file</string>
