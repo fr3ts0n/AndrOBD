@@ -163,4 +163,10 @@
     <string name="long_press_dfc_hint">Klicka och håll in DFC för att söka online …</string>
     <string name="copied_to_clipboard">Kopierades till klippbordet</string>
     <string name="service_testcontrol">Testkontroll för OBD</string>
+    <string name="obd_test_progress">OBD-testkontroll pågår.
+\n Kontrollera fordonets reaktion.</string>
+    <string name="comm_baudrate">ELM-baudfrekvens</string>
+    <string name="comm_baudrate_description">Hastighet för seriell USB-kommunikation</string>
+    <string name="display_range">Visningsområde</string>
+    <string name="reset_default">Standard</string>
 </resources>
