@@ -16,16 +16,16 @@
     <string name="obd_permanentcodes">OBD hibakódok (állandó)</string>
     <string name="obd_pendingcodes">OBD hibakódok (kérdéses)</string>
     <string name="obd_clearcodes">Hibakódok törlése</string>
-    <string name="obd_clear_info">Ez visszaállítja a MIL-t és törli az összes emissziós diagnosztikai információt, beleértve:
+    <string name="obd_clear_info">Ez visszaállítja a motorkontroll lámpát és törli az összes emissziós diagnosztikai információt, beleértve:
 \n- Diagnosztikai hibakódok  
-\n- Emissziós Pillanatkép Adatok  
+\n- Emissziós pillanatkép adatok  
 \n- Oxigén szenzor (lambda szonda) vizsgálati adatok  
 \n- Rendszerállapot ellenőrző tesztek  
 \n- Fedélzeti diagnosztikai vizsgálatok eredményei  
-\n- Aktív MIL közben megtett út  
+\n- Aktív motorkontroll lámpa közben megtett úttávolság  
 \n- Bemelegítések száma DTC törlése óta  
 \n- Megtett út a DTC törlése óta  
-\n- Motor futási idő aktivált MIL közben  
+\n- Motor futási idő aktivált motorkontroll lámpa közben  
 \n- DTC törlés óta eltelt idő
 \n
 \nEgyéb gyártóspecifikus törlési/visszaállítási műveletek is előfordulhatnak.
