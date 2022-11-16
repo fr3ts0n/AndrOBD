@@ -39,7 +39,7 @@ public class PidCustomization
     /**
      * Range selection
      */
-    TextView tvMin, tvMax, tvUnits;
+    TextView tvMin, tvMax, tvUnits, tvUpdate;
     /** SeekBars for customizing range
      * @implNote
      * Since all SeekBars operate on integer values only,
@@ -48,8 +48,12 @@ public class PidCustomization
      * physical item representation (using item specific conversion)
      */
     SeekBar sbMin, sbMax;
+    /** Seek bar to set expected update period */
+    SeekBar sbUpdatePeriod;
     /** Display range MIN/MAX values */
     Number dispMin, dispMax;
+    /** expected PID update period [ms]*/
+    long updatePeriod;
 
     Button btnCancel, btnOk, btnReset;
 
@@ -82,6 +86,10 @@ public class PidCustomization
 
         sbMin.setOnSeekBarChangeListener(sbChanged);
         sbMax.setOnSeekBarChangeListener(sbChanged);
+
+        tvUpdate = findViewById(R.id.txt_update_period);
+        sbUpdatePeriod = findViewById(R.id.sb_update_period);
+        sbUpdatePeriod.setOnSeekBarChangeListener(sbUpdateChanged);
     }
 
     @Override
@@ -118,6 +126,9 @@ public class PidCustomization
         dispMax = (Number) item.pv.get(EcuDataPv.FID_MAX);
         if(dispMax == null) dispMax = item.physMax();
         sbMax.setProgress((int) item.rawVal(dispMax));
+
+        updatePeriod = item.updatePeriod_ms;
+        sbUpdatePeriod.setProgress((int)(updatePeriod / 1000));
     }
 
     /**
@@ -159,6 +170,9 @@ public class PidCustomization
             ed.putFloat(prefName, dispMin.floatValue());
             prefName = mnemonic.concat("/").concat(EcuDataPv.FID_MAX);
             ed.putFloat(prefName, dispMax.floatValue());
+
+            prefName = mnemonic.concat("/").concat(EcuDataPv.FID_UPDT_PERIOD);
+            ed.putLong(prefName, updatePeriod);
 
             ed.apply();
 
@@ -233,15 +247,28 @@ public class PidCustomization
         }
 
         @Override
-        public void onStartTrackingTouch(SeekBar seekBar)
-        {
+        public void onStartTrackingTouch(SeekBar seekBar) { }
 
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) { }
+    };
+
+    /**
+     * Listener for SeekBar UpdatePeriod changes
+     */
+    SeekBar.OnSeekBarChangeListener sbUpdateChanged = new SeekBar.OnSeekBarChangeListener()
+    {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
+        {
+            updatePeriod = (long)(progress * 1000);
+            tvUpdate.setText(String.valueOf(progress));
         }
 
         @Override
-        public void onStopTrackingTouch(SeekBar seekBar)
-        {
+        public void onStartTrackingTouch(SeekBar seekBar) { }
 
-        }
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) { }
     };
 }
