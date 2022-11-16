@@ -66,6 +66,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 		FORMAT,
 		MIN,
 		MAX,
+		UPDATE_MIN,
 		MNEMONIC,
 		LABEL,
 		DESCRIPTION,
@@ -161,6 +162,11 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 				catch(NumberFormatException ex) {	/* ignore */ }
 				try {	maxVal = Float.parseFloat(params[FLD.MAX.ordinal()]);	}
 				catch(NumberFormatException e) { /* ignore */	}
+
+				long updateVal = 0;
+				try {	updateVal = Long.parseLong(params[FLD.UPDATE_MIN.ordinal()]);	}
+				catch(NumberFormatException ex) { updateVal = 0; }
+
 				String label = Messages.getString(params[FLD.MNEMONIC.ordinal()],
 				                                  params[FLD.LABEL.ordinal()]);
 				// create linear conversion
@@ -174,6 +180,7 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 										 params[FLD.FORMAT.ordinal()],
 										 minVal,
 										 maxVal,
+										 updateVal,
 										 label,
 					                     params[FLD.MNEMONIC.ordinal()]);
 
@@ -295,14 +302,22 @@ public class EcuDataItems extends HashMap<Integer, HashMap<Integer, Vector<EcuDa
 	 * @param service service of current data
 	 * @param pid     pid of current data
 	 * @param buffer  data buffer to do conversions on
+	 * @return Next expected update interval
 	 */
-	public void updateDataItems(int service, int pid, char[] buffer)
+	public long updateDataItems(int service, int pid, char[] buffer)
 	{
+		long nextUpdate = 0;
+
 		Vector<EcuDataItem> currItms = getPidDataItems(service, pid);
-		for (EcuDataItem currItm : currItms)
+		if(currItms != null)
 		{
-			currItm.updatePvFomBuffer(buffer);
+			for (EcuDataItem currItm : currItms)
+			{
+				long currItmUpdate = currItm.updatePvFomBuffer(buffer);
+				nextUpdate = Math.max(nextUpdate, currItmUpdate);
+			}
 		}
+		return nextUpdate;
 	}
 
 }

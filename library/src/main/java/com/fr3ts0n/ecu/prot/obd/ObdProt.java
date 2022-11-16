@@ -27,6 +27,7 @@ import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataItems;
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.ObdCodeItem;
+import com.fr3ts0n.ecu.ObdPid;
 import com.fr3ts0n.prot.ProtoHeader;
 import com.fr3ts0n.prot.TelegramListener;
 import com.fr3ts0n.prot.TelegramWriter;
@@ -35,6 +36,7 @@ import com.fr3ts0n.pvs.PvList;
 
 import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -181,7 +183,7 @@ public class ObdProt extends ProtoHeader
     private int msgService = OBD_SVC_NONE;
 
     /** List of PIDs supported by the vehicle */
-    private static final Vector<Integer> pidSupported = new Vector<Integer>();
+    private static final Vector<ObdPid> pidSupported = new Vector<ObdPid>();
 
     /** positive response fields */
     private static final int ID_OBD_SVC = 0;
@@ -408,25 +410,25 @@ public class ObdProt extends ProtoHeader
         resetFixedPid();
 
         HashMap<String, EcuDataPv> newList = new HashMap<String, EcuDataPv>();
-        for (Integer currPid : pidSupported)
+        for (ObdPid currPid : pidSupported)
         {
-            Vector<EcuDataItem> items = dataItems.getPidDataItems(obdService, currPid);
+            Vector<EcuDataItem> items = dataItems.getPidDataItems(obdService, currPid.intValue());
             // if no items defined, create dummy item
             if (items == null)
             {
-                log.warning(String.format("unknown PID %02X", currPid));
+                log.warning(String.format("unknown PID %02X", currPid.intValue()));
 
                 // create new dummy item / OneToOne conversion
                 Conversion[] dummyCnvs = {EcuConversions.dfltCnv, EcuConversions.dfltCnv};
-                EcuDataItem newItem = new EcuDataItem(currPid, 0, 0, 0, 32, 0xFFFFFFFF, dummyCnvs,
-                                                      "%#08x", null, null,
-                                                      String.format("PID %02X", currPid),
-                                                      String.format("PID_%02X", currPid)
+                EcuDataItem newItem = new EcuDataItem(currPid.intValue(), 0, 0, 0, 32, 0xFFFFFFFF, dummyCnvs,
+                                                      "%#08x", null, null, 0,
+                                                      String.format("PID %02X", currPid.intValue()),
+                                                      String.format("PID_%02X", currPid.intValue())
                                                      );
                 dataItems.appendItemToService(obdService, newItem);
 
                 // re-load data items for this PID
-                items = dataItems.getPidDataItems(obdService, currPid);
+                items = dataItems.getPidDataItems(obdService, currPid.intValue());
             }
             // loop through all items found ...
             for (EcuDataItem pidPv : items)
@@ -461,7 +463,7 @@ public class ObdProt extends ProtoHeader
         {
             if ((bitmask & (0x80000000L >> i)) != 0)
             {
-                pidSupported.add(i + start + 1);
+                pidSupported.add(new ObdPid(i + start + 1));
             }
         }
 
@@ -486,7 +488,7 @@ public class ObdProt extends ProtoHeader
     private int numCodes;
 
     /** fixed PIDs to limit PID loop to single access */
-    private static final Vector<Integer> fixedPids = new Vector<Integer>();
+    private static final Vector<ObdPid> fixedPids = new Vector<ObdPid>();
 
     /**
      * Set fixed PID for faster data update
@@ -494,14 +496,11 @@ public class ObdProt extends ProtoHeader
      */
     public static synchronized void setFixedPid(int[] pidCodes)
     {
-        int curr;
-        currSupportedPid = 0;
-        for (Integer aPidSupported : pidSupported)
+        for (ObdPid currPid : pidSupported)
         {
-            curr = aPidSupported;
-            if (Arrays.binarySearch(pidCodes, curr) >= 0)
+            if (Arrays.binarySearch(pidCodes, currPid.intValue()) >= 0)
             {
-                fixedPids.add(curr);
+                fixedPids.add(currPid);
             }
         }
     }
@@ -517,17 +516,24 @@ public class ObdProt extends ProtoHeader
      */
     synchronized Integer getNextSupportedPid()
     {
-        Vector<Integer> pidsToCheck = (fixedPids.size() > 0) ? fixedPids : pidSupported;
         Integer result = 0;
-
-        if (pidsToCheck.size() > 0)
+        /* get corresponding PID list */
+        Vector<ObdPid> pidsToCheck = (fixedPids.size() > 0) ? fixedPids : pidSupported;
+        try
         {
-            result = pidsToCheck.get(currSupportedPid);
-            currSupportedPid++;
-            currSupportedPid %= (pidsToCheck.size());
-            pidsWrapped = (currSupportedPid == 0);
+            /* sort by next expected request */
+            Collections.sort(pidsToCheck, ObdPid.requestSorter);
+            ObdPid pid = pidsToCheck.firstElement();
+            pid.setNextRequest(System.currentTimeMillis());
+            /* and return first list element */
+            result = pid.intValue();
         }
-        return (result);
+        catch(Exception e)
+        {
+            /* ignore */
+        }
+
+        return result;
     }
 
     /**
@@ -630,10 +636,19 @@ public class ObdProt extends ProtoHeader
                                 setNumCodes(Long.valueOf(msgPayload).intValue());
                                 // no break here ...
                             default:
-                                dataItems.updateDataItems(msgService,
-                                                          msgPid,
-                                                          hexToBytes(String.valueOf(
-                                                                  getPayLoad(buffer))));
+                                long updatePeriod =
+                                    dataItems.updateDataItems(msgService,
+                                                            msgPid,
+                                                            hexToBytes(String.valueOf(
+                                                                    getPayLoad(buffer))));
+                                /* Update expected request timestamp for PID */
+                                for( ObdPid pid : pidSupported)
+                                {
+                                    if(pid.intValue()==msgPid)
+                                    {
+                                        pid.setNextRequest(System.currentTimeMillis()+updatePeriod);
+                                    }
+                                }
                                 break;
                         }
                         break;
@@ -659,10 +674,19 @@ public class ObdProt extends ProtoHeader
                                 break;
 
                             default:
-                                dataItems.updateDataItems(msgService,
-                                                          msgPid,
-                                                          hexToBytes(String.valueOf(
-                                                                  getPayLoad(buffer))));
+                                long updatePeriod =
+                                    dataItems.updateDataItems(msgService,
+                                                                msgPid,
+                                                                hexToBytes(String.valueOf(
+                                                                        getPayLoad(buffer))));
+                                /* Update expected request timestamp for PID */
+                                for( ObdPid pid : pidSupported)
+                                {
+                                    if(pid.intValue()==msgPid)
+                                    {
+                                        pid.setNextRequest(System.currentTimeMillis()+updatePeriod);
+                                    }
+                                }
                                 break;
                         }
                         break;

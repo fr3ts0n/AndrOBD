@@ -58,6 +58,7 @@ public class EcuDataItem
 	private String mnemonic;     ///< unique textual mnemonic
 	public EcuDataPv pv;        ///< the process variable for displaying
 	private int currErrorCount = 0;     ///< current number of consecutive conversion errors
+	public long updatePeriod_ms = 0; ///< Minimum update period in ms
 
 	// Logger object
 	private static final Logger log = Logger.getLogger("data.ecu");
@@ -90,6 +91,7 @@ public class EcuDataItem
 	 * @param format formatting string for text representation
 	 * @param minValue minimum physical value to display/scale
 	 * @param maxValue maximum physical value to display/scale
+	 * @param minUpdatePeriod Minimum expected data update period in ms
 	 * @param labelText descriptive text label
 	 */
 	public EcuDataItem( int newPid,
@@ -102,6 +104,7 @@ public class EcuDataItem
 	                    String format,
 	                    Number minValue,
 	                    Number maxValue,
+						long minUpdatePeriod,
 	                    String labelText,
 						String _mnemonic)
 	{
@@ -113,6 +116,7 @@ public class EcuDataItem
 		bitMask = maskingBits;
 		cnv = conversions;
 		fmt = format;
+		updatePeriod_ms = minUpdatePeriod;
 		label = labelText;
 		mnemonic = _mnemonic;
 		pv = new EcuDataPv();
@@ -287,8 +291,9 @@ public class EcuDataItem
 	 * Update process var from Buffer value
 	 *
 	 * @param buffer communication buffer content
+	 * @return Next expected update period
 	 */
-	public void updatePvFomBuffer(char[] buffer)
+	public long updatePvFomBuffer(char[] buffer)
 	{
 		// process data item
 		try
@@ -317,6 +322,9 @@ public class EcuDataItem
 		{
 			log.warning(ex.toString());
 		}
+
+		/* return next expected update period */
+		return updatePeriod_ms;
 	}
 
 	@Override
