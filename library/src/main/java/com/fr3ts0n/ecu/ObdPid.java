@@ -12,7 +12,7 @@ public class ObdPid
     extends Number
 {
     /** The PID value itself */
-    private int pid = 0;
+    private final int pid;
     /** Timestamp (system ms) for next expected data request */
     private long nextRequest_ms = 0;
 
@@ -41,6 +41,11 @@ public class ObdPid
         return (long)pid;
     }
 
+    @Override
+    public String toString() {
+        return Integer.toString(pid, 16);
+    }
+
     /**
      * Set timestamp of next expected PID request
      * @param _nextRequest Timestamp [ms] of next expected request
@@ -53,10 +58,10 @@ public class ObdPid
     /**
      * Comparator to allow list / vector sorting by next request
      */
-    public static Comparator<ObdPid> requestSorter = new Comparator<ObdPid>() 
+    public static Comparator<ObdPid> requestSorter = new Comparator<ObdPid>()
     {
         @Override
-        public int compare(ObdPid arg0, ObdPid arg1) 
+        public int compare(ObdPid arg0, ObdPid arg1)
         {
             return Long.compare(arg0.nextRequest_ms, arg1.nextRequest_ms);
         }
