@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:gravity="end"
-                android:text="1000" />
+                android:text="100" />
 
         </LinearLayout>
 
@@ -112,7 +112,7 @@
             android:id="@+id/sb_update_period"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="1000"
+            android:max="100"
             android:progress="100" />
 
     </LinearLayout>
