@@ -56,6 +56,15 @@ public class ObdPid
     }
 
     /**
+     * Get timestamp of next expected PID request
+     * @return Timestamp of next expected PID request
+     */
+    public long getNextRequest()
+    {
+        return nextRequest_ms;
+    }
+
+    /**
      * Comparator to allow list / vector sorting by next request
      */
     public static Comparator<ObdPid> requestSorter = new Comparator<ObdPid>()

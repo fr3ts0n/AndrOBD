@@ -524,6 +524,9 @@ public class ObdProt extends ProtoHeader
             /* sort by next expected request */
             Collections.sort(pidsToCheck, ObdPid.requestSorter);
             ObdPid pid = pidsToCheck.firstElement();
+            /* detect wrap around in PID list */
+            pidsWrapped = pid.getNextRequest() != 0;
+            /* mark PID as handled */
             pid.setNextRequest(System.currentTimeMillis());
             /* and return first list element */
             result = pid.intValue();
