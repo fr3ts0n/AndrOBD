@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:labelFor="@id/pid_color"
-            android:text="Update period [s]" />
+            android:text="@string/update_period_s" />
 
         <LinearLayout
             android:layout_width="match_parent"

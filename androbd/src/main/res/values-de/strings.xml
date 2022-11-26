@@ -180,4 +180,5 @@
     <string name="customize_display">Datenanzeige anpassen</string>
     <string name="display_range">Ansichts- Datenbereich</string>
     <string name="reset_default">Vorgabe</string>
+    <string name="update_period_s">Aktualisierungszeit [s]</string>
 </resources>

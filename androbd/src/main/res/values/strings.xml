@@ -295,6 +295,7 @@ period of time while the ECU recalibrates itself.
     <string name="customize_display">Customize data display</string>
     <string name="display_range">Display range</string>
     <string name="reset_default">Default</string>
+    <string name="update_period_s">Update period [s]</string>
     <string-array name="baud_rates" translatable="false">
         <item>2400</item>
         <item>9600</item>
