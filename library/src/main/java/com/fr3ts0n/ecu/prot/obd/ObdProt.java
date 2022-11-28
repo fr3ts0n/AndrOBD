@@ -730,6 +730,8 @@ public class ObdProt extends ProtoHeader
                                                            "customer.specific.trouble.code.see.manual"));
                                 }
                                 log.fine(String.format("+DFC: %04x: %s", key, code.toString()));
+                                // Remember received message service to know code status
+                                code.put(EcuCodeItem.FID_STATUS, Integer.valueOf(msgService));
                                 tCodes.put(key, code);
                                 // if number of codes hasn't been delivered yet ...
                                 if(!hasNumCodes)
@@ -892,10 +894,12 @@ public class ObdProt extends ProtoHeader
             case OBD_SVC_PENDINGCODES:
             case OBD_SVC_PERMACODES:
                 numCodes = 0;
+                // Queue requests for reading all trouble codes
+                cmdQueue.add(String.format("%02X", OBD_SVC_READ_CODES, 0));
+                cmdQueue.add(String.format("%02X", OBD_SVC_PENDINGCODES, 0));
+                cmdQueue.add(String.format("%02X", OBD_SVC_PERMACODES, 0));
                 // read PID number of codes ...
-                cmdQueue.add("0101");
-                // read trouble codes
-                writeTelegram(emptyBuffer, obdService, 0);
+                writeTelegram(emptyBuffer, OBD_SVC_DATA, 1);
                 break;
 
             case OBD_SVC_CLEAR_CODES:

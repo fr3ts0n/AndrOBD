@@ -1059,37 +1059,28 @@ public class ElmProt
 					{
 						// read any kinds of trouble codes
 						case OBD_SVC_READ_CODES:
+						case OBD_SVC_PENDINGCODES:
+						case OBD_SVC_PERMACODES:
 							// simulate 12 TCs set as multy line response
+							// number of codes = 12 + MIL ON
+							handleTelegram("41018C000000".toCharArray());
 							// send codes as multy line response
 							handleTelegram("014".toCharArray());
 							handleTelegram("0:438920B920BD".toCharArray());
 							handleTelegram("1:C002242A246E02".toCharArray());
 							handleTelegram("2:36010101162453".toCharArray());
-							// number of codes = 12 + MIL ON
-							handleTelegram("41018C000000".toCharArray());
-							Thread.sleep(500);
-							break;
-						
-						case OBD_SVC_PENDINGCODES:
+
 							// simulate 12 TCs set as subsequent single line responses
 							// send codes as subsequent single line responses
-							handleTelegram("470920B920BD".toCharArray());
-							handleTelegram("4709C002242A246E".toCharArray());
-							handleTelegram("4709023601010116".toCharArray());
-							handleTelegram("4709245300000000".toCharArray());
-							// number of codes = 12 + MIL OFF
-							handleTelegram("41010C000000".toCharArray());
-							Thread.sleep(500);
-							break;
-						
-						case OBD_SVC_PERMACODES:
+							handleTelegram("478420BA20BC".toCharArray());
+							handleTelegram("4784C004242B".toCharArray());
+
 							// test pattern from AndrOBD/#78
 							// 4 DFCs, 10 byte multiline response , padded
 							handleTelegram("00A".toCharArray());
-							handleTelegram("0:4A0401180122".toCharArray());
+							handleTelegram("0:4A8401180122".toCharArray());
 							handleTelegram("1:02232610000000".toCharArray());
-							// number of codes = 4 + MIL OFF
-							handleTelegram("410104000000".toCharArray());
+
 							Thread.sleep(500);
 							break;
 						

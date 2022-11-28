@@ -78,16 +78,7 @@ public class EcuCodeItem extends IndexedProcessVar
   @Override
   public String toString()
   {
-    StringBuilder result = new StringBuilder();
-    for(int i=0; i<FIELDS.length; i++)
-    {
-      Object val = get(i);
-      if(val != null)
-      {
-        result.append(String.valueOf(val)).append(" ");
-      }
-    }
-    return result.toString();
+    return String.format("%02X.%s", get(FID_STATUS), get(FID_CODE));
   }
 
   /**
