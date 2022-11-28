@@ -2,7 +2,7 @@
 <resources>
     <!--  AndrOBD -->
     <string name="app_name" translatable="false">AndrOBD</string>
-    <string name="copyright_fr3ts0n" translatable="false">© 2015-2021 fr3ts0n</string>
+    <string name="copyright_fr3ts0n" translatable="false">© 2015-2022 fr3ts0n</string>
     <string name="translation_credits">Translation by fr3ts0n</string>
     <string name="app_description">Android OBD vehicle diagnostics app for ELM327 Bluetooth adapter</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
@@ -295,6 +295,7 @@ period of time while the ECU recalibrates itself.
     <string name="customize_display">Customize data display</string>
     <string name="display_range">Display range</string>
     <string name="reset_default">Default</string>
+    <string name="update_period_s">Update period [s]</string>
     <string-array name="baud_rates" translatable="false">
         <item>2400</item>
         <item>9600</item>

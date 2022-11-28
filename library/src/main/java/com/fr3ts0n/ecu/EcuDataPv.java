@@ -44,6 +44,7 @@ public class EcuDataPv extends IndexedProcessVar
 	public static final String FID_BIT_OFS = "BIT_OFS";
 	public static final String FID_MNEMONIC = "MNEMONIC";
 	public static final String FID_COLOR = "COLOR";
+	public static final String FID_UPDT_PERIOD = "PERIOD";
 
 	public static final String[] FIELDS =
 		{

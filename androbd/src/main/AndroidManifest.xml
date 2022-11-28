@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fr3ts0n.ecu.gui.androbd">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- start/stop bluetooth adapter -->
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- connect/disconnect bluetooth devices -->
     <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- to keep Bluetooth measurement running even when screen is inactive -->

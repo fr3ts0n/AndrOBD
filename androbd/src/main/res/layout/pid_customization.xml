@@ -76,6 +76,57 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:labelFor="@id/pid_color"
+            android:text="@string/update_period_s" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="12">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="start"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/txt_update_period"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:gravity="center"
+                android:labelFor="@id/sb_update_period"
+                android:text="s" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="end"
+                android:text="100" />
+
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/sb_update_period"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="100" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/pid_color"
             android:text="@string/display_color" />
 
         <Spinner
