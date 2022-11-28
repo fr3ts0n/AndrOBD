@@ -831,14 +831,6 @@ public class MainActivity extends PluginManager
                 setObdService(ObdProt.OBD_SVC_READ_CODES, item.getTitle());
                 return true;
 
-            case R.id.service_permacodes:
-                setObdService(ObdProt.OBD_SVC_PERMACODES, item.getTitle());
-                return true;
-
-            case R.id.service_pendingcodes:
-                setObdService(ObdProt.OBD_SVC_PENDINGCODES, item.getTitle());
-                return true;
-
             case R.id.service_clearcodes:
                 clearObdFaultCodes();
                 setObdService(ObdProt.OBD_SVC_READ_CODES, item.getTitle());

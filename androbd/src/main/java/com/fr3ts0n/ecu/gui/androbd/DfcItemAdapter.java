@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fr3ts0n.ecu.EcuCodeItem;
+import com.fr3ts0n.ecu.prot.obd.ObdProt;
 import com.fr3ts0n.pvs.IndexedProcessVar;
 import com.fr3ts0n.pvs.PvList;
 
@@ -66,6 +67,23 @@ public class DfcItemAdapter extends ObdItemAdapter
 		// Show icon
 		ImageView ivIcon = v.findViewById(R.id.obd_icon);
 		ivIcon.setImageResource(android.R.drawable.ic_menu_myplaces);
+		try
+		{
+			// Show icon based on code status (pending/permanent/normal)
+			Integer svc = (Integer)currPv.get(EcuCodeItem.FID_STATUS);
+			switch(svc)
+			{
+				case ObdProt.OBD_SVC_PENDINGCODES:
+					ivIcon.setImageResource(android.R.drawable.ic_menu_recent_history);
+					break;
+
+				case ObdProt.OBD_SVC_PERMACODES:
+					ivIcon.setImageResource(android.R.drawable.ic_dialog_alert);
+					break;
+			}
+		}
+		catch(Exception ex) { /* ignore */ }
+
 		ivIcon.setVisibility(View.VISIBLE);
 
 		TextView tvDescr = v.findViewById(R.id.obd_label);
