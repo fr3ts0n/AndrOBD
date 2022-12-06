@@ -163,4 +163,26 @@
     <string name="long_press_dfc_hint">Çevrimiçi arama için DFC tuşuna uzun basın …</string>
     <string name="comm_baudrate_description">USB seri haberleşme hızı</string>
     <string name="comm_baudrate">ELM baud oranı</string>
+    <string name="copied_to_clipboard">Panoya kopyalandı</string>
+    <string name="service_testcontrol">OBD test denetimi</string>
+    <string name="obd_test_progress">OBD test denetimi devam ediyor.
+\n Lütfen araç tepkisini gözden geçirin.</string>
+    <string name="reset_default">Öntanımlı</string>
+    <string name="display_range">Görüntü aralığı</string>
+    <string name="update_period_s">Güncelleme süresi [s]</string>
+    <string name="full_screen_display_description">Uygulama görüntüsü için tam ekran kullan</string>
+    <string name="display_color">Görüntü rengi</string>
+    <string name="customize_display">Veri görüntüsünü özelleştirin</string>
+    <string name="obd_test_confirm">OBD test denetimi istendi.
+\n
+\n İstenen OBD test denetimi şunları oluşturulabilir:
+\n - Araç hareketi
+\n - Egzoz dumanı
+\n - Yüksek egzoz sıcaklığı
+\n - Yüksek motor sesi
+\n - Yakıt buharı
+\n - vs.
+\n
+\n Lütfen bu test denetimini yalnızca güvenli bir test ortamında kendi sorumluluğunuzda gerçekleştirdiğinizi onaylayın!</string>
+    <string name="full_screen_display">Tam ekran görüntü</string>
 </resources>
