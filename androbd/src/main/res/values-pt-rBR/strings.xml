@@ -184,4 +184,5 @@
     <string name="display_range">Faixa da exibição</string>
     <string name="customize_display">Personaliza os dados da tela</string>
     <string name="reset_default">Padrão</string>
+    <string name="update_period_s">Período[s] de atualização</string>
 </resources>
