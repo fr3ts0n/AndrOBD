@@ -184,4 +184,5 @@
     <string name="customize_display">Duomenų rodymo pritaikymas</string>
     <string name="display_range">Rodymo diapazonas</string>
     <string name="reset_default">Numatytoji</string>
+    <string name="update_period_s">Atnaujinimų periodiškumas [s]</string>
 </resources>
