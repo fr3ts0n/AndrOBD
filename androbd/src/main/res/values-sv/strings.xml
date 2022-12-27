@@ -169,4 +169,20 @@
     <string name="comm_baudrate_description">Hastighet för seriell USB-kommunikation</string>
     <string name="display_range">Visningsområde</string>
     <string name="reset_default">Standard</string>
+    <string name="full_screen_display">Helskärmsvisning</string>
+    <string name="full_screen_display_description">Använd helskärm för att visa appen</string>
+    <string name="display_color">Visningsfärg</string>
+    <string name="customize_display">Anpassa datavisning</string>
+    <string name="update_period_s">Uppdateringsperiod [er]</string>
+    <string name="obd_test_confirm">OBD-testkontroll begärs.
+\n
+\n Den begärda OBD-provningskontrollen kan generera:
+\n - Fordonsrörelse.
+\n - Avgasrök.
+\n - Hög avgastemperatur
+\n - Högt motorljud
+\n - Bränsleångor
+\n - etc.
+\n
+\n Bekräfta att du utför denna testkontroll på egen risk och endast i en säker testmiljö!</string>
 </resources>
