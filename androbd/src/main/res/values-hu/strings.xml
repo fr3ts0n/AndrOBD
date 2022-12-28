@@ -182,4 +182,5 @@
     <string name="reset_default">Alapértelmezett</string>
     <string name="display_color">A kijelző színe</string>
     <string name="display_range">Megjelenítési tartomány</string>
+    <string name="update_period_s">Frissítési időszak [s]</string>
 </resources>
