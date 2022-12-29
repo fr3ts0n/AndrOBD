@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="translation_credits">번역: 김명준, 이정희, DDinghoya</string>
-    <string name="app_description">ELEM327 블루투스 아답터용 안드로이드 OBD 자량 진단 앱</string>
+    <string name="app_description">ELEM327 블루투스 어탭터용 안드로이드 OBD 자량 진단 앱</string>
     <string name="title_connecting">연결중…</string>
     <string name="title_connected_to">연결됨</string>
     <string name="logo">로고</string>
@@ -31,7 +31,7 @@
 \n  다른 제조업체의 특정 삭제 / 재설정 작업이 발생할 수 있습니다.
 \n  데이터 손실로 인해 차량이 짧게 작동 할 수 있습니다.
 \n  ECU가 스스로를 재 보정하는 동안.</string>
-    <string name="select_device">아답터 선택</string>
+    <string name="select_device">어댑터 선택</string>
     <string name="none_paired">디바이스와 연결안됨</string>
     <string name="none_found">디바이스를 찾을수 없습니다</string>
     <string name="title_paired_devices">디바이스 연결됨</string>
@@ -56,16 +56,16 @@
     <string name="filter">선택한 필터</string>
     <string name="settings">설정</string>
     <string name="common_settings">공통설정</string>
-    <string name="measure_system_description">시스템측정단위(미터법/영국식)</string>
+    <string name="measure_system_description">측정 단위 시스템 (미터법 / 영국식)</string>
     <string name="measure_system">측정단위</string>
     <string name="metric">미터법</string>
-    <string name="imperial">영국미터법</string>
+    <string name="imperial">영국식 미터법</string>
     <string name="items_for_display">표시할 데이터 항목</string>
     <string name="items_for_display_descr">표시 할 모든 데이터 항목을 선택하십시요…</string>
     <string name="debugging">디버깅</string>
     <string name="logging_level">로그인 레벨</string>
     <string name="logging_level_description">디버그 로그 파일에 기록 할 세부 정보 수준</string>
-    <string name="last_elm">마지막 ELM-adapter 다시 연결</string>
+    <string name="last_elm">마지막 ELM-어댑터 다시 연결</string>
     <string name="last_ecu">마지막 ECU 다시 연결</string>
     <string name="last_service">마지막 OBD 서비스</string>
     <string name="last_data_items">마지막으로 선택한 데이터 항목</string>
@@ -87,7 +87,7 @@
     <string name="plugin_manager">플러그인 관리자</string>
     <string name="configure">구성</string>
     <string name="select_fault_code">오류 코드 선택 …</string>
-    <string name="select_medium">어댑터 종류 …</string>
+    <string name="select_medium">어댑터 유형 …</string>
     <string name="devices_found">%d USB 디바이스를 찾음</string>
     <string name="min_elm_timeout">Min. ELM 시간종료 [ms]</string>
     <string name="unabletoconnect">기기를 연결할 수 없습니다</string>
@@ -136,7 +136,7 @@
     <string name="data_disable_max_description">"항목이 비활성화되기 전에  잘못된 데이터 응답 수"</string>
     <string name="autohide_toolbar">툴바 숨기기</string>
     <string name="autohide_toolbar_description">지연없는 활동 후 도구 모음 자동 숨기기</string>
-    <string name="autohide_delay">툴바 지연 숨기기 [s]</string>
+    <string name="autohide_delay">툴바 지연 숨기기 [초]</string>
     <string name="autohide_delay_description">몇 초동안 활동이 없을때 툴바를 숨길지여부</string>
     <string name="csv_export_options">CSV 내보내기 옵션</string>
     <string name="csv_export_description">CSV 내보내기 파일 형식 지정 옵션</string>
@@ -184,4 +184,5 @@
 \n 안전한 테스트 환경에서만 자신의 위험을 감수하고, 이 테스트 제어를 수행하도록 확인하십시오!</string>
     <string name="full_screen_display_description">앱 표시에 전체 화면 사용</string>
     <string name="full_screen_display">전체 화면 표시</string>
+    <string name="update_period_s">업데이트 기간 [s]</string>
 </resources>
