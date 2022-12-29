@@ -167,6 +167,8 @@ Buy us a coffee or donate in the amount that you see valuable for the project, a
 | 2021/11 | Raphael Högger | CHF60 |
 | 2022/05 | Cecil Harper | €6 |
 | 2022/07 | Daniel Singh | $10 |
+| 2022/09 | Andrew Hofmans | €5 |
+| 2022/11 | Glenn Fowler | $5 |
 </details>
 
 <details>
