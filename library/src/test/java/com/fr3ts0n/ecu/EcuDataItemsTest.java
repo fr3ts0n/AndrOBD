@@ -104,6 +104,31 @@ class EcuDataItemsTest
 	}
 
 	/**
+	 * Test dynamic change of conversion system (metric/imperial)
+	 * @Verifies AndrOBD/#230
+	 */
+	@Test
+	void TestConversionSystem()
+	{
+		EcuDataPv pv = items.getPidDataItems(0x01, 0x05).get(0).pv;
+		pv.addPvChangeListener(this, PvChangeEvent.PV_MODIFIED);
+
+		// Check metric conversion + Units
+		EcuDataItem.cnvSystem = EcuDataItem.SYSTEM_METRIC;
+		items.updateDataItems(0x01,0x05, new char[]{0x10,0x00,0x00,0x00});
+		assertEquals(-24.0, resultValue.doubleValue(),0.01);
+		assertEquals("°C", pv.get(EcuDataPv.FID_UNITS));
+
+		// Check imperial conversion + Units
+		EcuDataItem.cnvSystem = EcuDataItem.SYSTEM_IMPERIAL;
+		items.updateDataItems(0x01,0x05, new char[]{0x10,0x00,0x00,0x00});
+		assertEquals(-11.2, resultValue.doubleValue(),0.01);
+		assertEquals("°F", pv.get(EcuDataPv.FID_UNITS));
+
+		pv.removePvChangeListener(this);
+	}
+
+	/**
 	 * Handle PV change event
 	 * - store changed value to test result
 	 *

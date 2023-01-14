@@ -293,6 +293,7 @@ public class EcuDataItem
 	 * @param buffer communication buffer content
 	 * @return Next expected update period
 	 */
+	@SuppressWarnings("DefaultLocale")
 	public long updatePvFomBuffer(char[] buffer)
 	{
 		// process data item
@@ -304,6 +305,7 @@ public class EcuDataItem
 			if(currErrorCount < MAX_ERROR_COUNT)
 			{
 				pv.put(EcuDataPv.FID_VALUE, result);
+				pv.put(EcuDataPv.FID_UNITS, pv.getUnits());
 				log.fine(String.format("%02X %-30s %16s %s",
 										pid,
 										label,

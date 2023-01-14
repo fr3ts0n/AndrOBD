@@ -117,13 +117,13 @@ public class MainActivity extends PluginManager
      * Mapping list from Plugin.CsvField to EcuDataPv.key
      */
     static final Object[] csvFidMap =
-            {
-                    EcuDataPv.FID_MNEMONIC,
-                    EcuDataPv.FIELDS[EcuDataPv.FID_DESCRIPT],
-                    EcuDataPv.FID_MIN,
-                    EcuDataPv.FID_MAX,
-                    EcuDataPv.FIELDS[EcuDataPv.FID_UNITS]
-            };
+    {
+        EcuDataPv.FID_MNEMONIC,
+        EcuDataPv.FIELDS[EcuDataPv.FID_DESCRIPT],
+        EcuDataPv.FID_MIN,
+        EcuDataPv.FID_MAX,
+        EcuDataPv.FIELDS[EcuDataPv.FID_UNITS]
+    };
     private static final String DEVICE_ADDRESS = "device_address";
     private static final String DEVICE_PORT = "device_port";
     private static final String MEASURE_SYSTEM = "measure_system";
