@@ -156,6 +156,17 @@ public class BtCommService extends CommService
 			mBtWorkerThread.cancel();
 			mBtWorkerThread = null;
 		}
+
+		// Delay connection for 500ms (Fix issue AndrOBD/#233)
+		try
+		{
+			Thread.sleep(500);
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+
 		// Start the thread to manage the connection and perform transmissions
 		mBtWorkerThread = new BtWorkerThread(socket, socketType);
 		mBtWorkerThread.start();

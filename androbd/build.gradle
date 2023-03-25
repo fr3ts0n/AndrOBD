@@ -9,7 +9,7 @@ android {
         // SDK 25 to allow background service mechanism for plugins
         targetSdkVersion 25
         versionCode 20603
-        versionName 'V2.6.3'
+        versionName 'V2.6.4'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
