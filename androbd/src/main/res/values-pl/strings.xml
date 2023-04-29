@@ -183,4 +183,5 @@
     <string name="display_color">Kolor ekranu</string>
     <string name="full_screen_display_description">Użyj pełnego ekranu do wyświetlania aplikacji</string>
     <string name="full_screen_display">Wyświetlacz pełnoekranowy</string>
+    <string name="update_period_s">Częstotliwość odświeżania [s]</string>
 </resources>
