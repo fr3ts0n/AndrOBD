@@ -47,7 +47,7 @@
     <string name="saved_data">Mentett Adatok</string>
     <string name="loaded">betöltve</string>
     <string name="saved">mentve</string>
-    <string name="connected_to">"Csatlakozás … "</string>
+    <string name="connected_to">"Csatlakozva "</string>
     <string name="demo">Demo…</string>
     <string name="saving_data">Adat mentése …</string>
     <string name="loading_data">Adat betöltés …</string>
