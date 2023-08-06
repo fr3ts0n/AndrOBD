@@ -169,6 +169,9 @@ Buy us a coffee or donate in the amount that you see valuable for the project, a
 | 2022/07 | Daniel Singh | $10 |
 | 2022/09 | Andrew Hofmans | €5 |
 | 2022/11 | Glenn Fowler | $5 |
+| 2023/01 | Remy Piper | €10 |
+| 2023/03 | Hausmeister0815 | $60 |
+| 2023/07 | Christian Böttcher | €10 |
 </details>
 
 <details>
