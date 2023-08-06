@@ -602,8 +602,22 @@ public class MainActivity extends PluginManager
                     initialBtStateEnabled = mBluetoothAdapter.isEnabled();
                     if (!initialBtStateEnabled)
                     {
+                        // request to enable bluetooth
                         Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                         startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+                    }
+                    else
+                    {
+                        // last device to be auto-connected?
+                        if(istRestoreWanted(PRESELECT.LAST_DEV_ADDRESS))
+                        {
+                            // auto-connect ...
+                            setMode(MODE.ONLINE);
+                        }
+                        else
+                        {
+                            // leave "connect" action to the user
+                        }
                     }
                 }
                 break;
