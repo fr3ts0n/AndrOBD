@@ -42,4 +42,34 @@
     <string name="ERROR">తప్పు</string>
     <string name="device_address">ELM IP చిరునామ</string>
     <string name="release_history">పురాణం ని వదిలివేయిట …</string>
+    <string name="app_description">ELM327 బ్లూటూత్ అడాప్టర్ కోసం Android OBD వెహికల్ డయాగ్నోస్టిక్స్ యాప్</string>
+    <string name="service_freezeframes">OBD ఫ్రీజ్ ఫ్రేమ్‌లు</string>
+    <string name="title_connecting">కనెక్ట్ చేస్తోంది…</string>
+    <string name="copied_to_clipboard">క్లిప్‌బోర్డ్‌కి కాపీ చేయబడింది</string>
+    <string name="service_testcontrol">OBD పరీక్ష నియంత్రణ</string>
+    <string name="action_connect">కనెక్ట్ చేయండి</string>
+    <string name="title_connected_to">%s కనెక్ట్ చేయబడింది</string>
+    <string name="obd_permanentcodes">OBD తప్పు కోడ్‌లు (శాశ్వత)</string>
+    <string name="obd_test_progress">"OBD పరీక్ష నియంత్రణ ప్రోగ్రెస్‌లో ఉంది.
+\n  .దయచేసి వాహనం ప్రతిచర్యను తనిఖీ చేయండి."</string>
+    <string name="obd_pendingcodes">OBD తప్పు కోడ్‌లు (పెండింగ్‌లో ఉన్నాయి)</string>
+    <string name="obd_clearcodes">తప్పు కోడ్‌లను క్లియర్ చేయండి</string>
+    <string name="back_again_to_exit">ఈ యాప్‌ను మూసివేయడానికి మళ్లీ వెనుకకు నొక్కండి</string>
+    <string name="obd_codes">OBD తప్పు కోడ్‌లు</string>
+    <string name="obd_clear_info">"ఇది MILని రీసెట్ చేస్తుంది మరియు అన్ని ఉద్గార సంబంధిత విశ్లేషణలను క్లియర్ చేస్తుంది
+\n  సమాచారం, సహా:
+\n  - డయాగ్నస్టిక్ ట్రబుల్ కోడ్‌లు
+\n  - ఫ్రేమ్ డేటాను స్తంభింపజేయండి
+\n  - ఆక్సిజన్ సెన్సార్ పరీక్ష డేటా
+\n  - సిస్టమ్ పర్యవేక్షణ పరీక్షల స్థితి
+\n  - ఆన్-బోర్డ్ పర్యవేక్షణ పరీక్ష ఫలితాలు
+\n  - MIL యాక్టివేట్ అయినప్పుడు ప్రయాణించిన దూరం
+\n  - DTCలు క్లియర్ చేసినప్పటి నుండి వార్మప్‌ల సంఖ్య
+\n  - DTCలు క్లియర్ చేసినప్పటి నుండి దూరం ప్రయాణించింది
+\n  - MIL యాక్టివేట్ అయినప్పుడు ఇంజిన్ రన్ టైమ్
+\n  - DTCలు క్లియర్ అయినప్పటి నుండి సమయం
+\n
+\n  ఇతర తయారీదారు నిర్దిష్ట క్లియరింగ్/రీసెట్ చర్యలు సంభవించవచ్చు.
+\n  డేటా కోల్పోవడం వల్ల వాహనం కొద్దిసేపటి వరకు పేలవంగా నడుస్తుంది
+\n  ECU స్వయంగా రీకాలిబ్రేట్ చేసుకునే సమయం."</string>
 </resources>
