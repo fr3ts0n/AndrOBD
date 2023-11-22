@@ -184,4 +184,5 @@
 \n-etc.
 \n
 \nPor favor, confirme que realizará la prueba, bajo su responsablidad, en un lugar de prueba seguro!</string>
+    <string name="update_period_s">Periodo de actualización [s]</string>
 </resources>
