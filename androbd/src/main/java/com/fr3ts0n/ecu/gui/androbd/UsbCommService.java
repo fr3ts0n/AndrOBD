@@ -48,7 +48,7 @@ public class UsbCommService extends CommService
 {
 	private static UsbSerialPort sPort = null;
 	private SerialInputOutputManager mSerialIoManager;
-	public static final String INTENT_ACTION_GRANT_USB = BuildConfig.APPLICATION_ID + ".GRANT_USB";
+	public static final String INTENT_ACTION_GRANT_USB = ".GRANT_USB";
 
 	public static final String PREF_KEY_BAUDRATE = "comm_baudrate";
 	public static final int DEFAULT_BAUDRATE = 38400;
@@ -174,7 +174,8 @@ public class UsbCommService extends CommService
 			
 			// Request runtime permission to access USB serial port
 			UsbDevice device = sPort.getDriver().getDevice();
-			PendingIntent usbPermissionIntent = PendingIntent.getBroadcast(mContext, 0, new Intent(INTENT_ACTION_GRANT_USB), 0);
+			String intentStr = mContext.getPackageName() + INTENT_ACTION_GRANT_USB;
+			PendingIntent usbPermissionIntent = PendingIntent.getBroadcast(mContext, 0, new Intent(intentStr), android.app.PendingIntent.FLAG_IMMUTABLE);
 			usbManager.requestPermission(device, usbPermissionIntent);
 			// Ensure access toUSB port is granted ...
 			if (!usbManager.hasPermission(device))
