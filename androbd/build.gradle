@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 30
+    compileSdk 34
     defaultConfig {
         applicationId 'com.fr3ts0n.ecu.gui.androbd'
         minSdkVersion 17
