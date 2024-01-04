@@ -144,9 +144,9 @@
 \n A perda de datos pode provocar que o vehículo funcione mal por un curto
 \n período de tempo mentres a ECU se recalibra de novo.</string>
     <string name="obd_clearcodes">Limpar os códigos de fallo</string>
-    <string name="obd_pendingcodes">Códigos de fallo OBD (pendentes)</string>
-    <string name="obd_permanentcodes">Códigos de fallo OBD (permanentes)</string>
-    <string name="obd_codes">Códigos de fallo OBD</string>
+    <string name="obd_pendingcodes">Códigos de erro OBD (pendentes)</string>
+    <string name="obd_permanentcodes">Códigos de erro OBD (permanentes)</string>
+    <string name="obd_codes">Códigos de erro OBD</string>
     <string name="service_freezeframes">Conxela datos OBD</string>
     <string name="obd_data">Datos OBD</string>
     <string name="obd_veh_info">Información do vehículo OBD</string>
@@ -158,5 +158,33 @@
     <string name="title_connected_to">Conectado a %s</string>
     <string name="title_connecting">Conectando …</string>
     <string name="app_description">Aplicación de diagnóstico de vehículos Android OBD para adaptador Bluetooth ELM327</string>
-    <string name="translation_credits">Tradución por aluaces</string>
+    <string name="translation_credits">Tradución por aluaces, n1cklim</string>
+    <string name="display_range">Rango de visualización</string>
+    <string name="comm_baudrate">Velocidade do ELM</string>
+    <string name="copied_to_clipboard">Copiado ao portapapeis</string>
+    <string name="elm_adaptive_timing">Tempo adaptativo do ELM</string>
+    <string name="service_testcontrol">Control de proba do OBD</string>
+    <string name="full_screen_display_description">Usar pantalla completa para a visualización da aplicación</string>
+    <string name="update_period_s">Período de actualización</string>
+    <string name="hud">Encabezar a pantalla</string>
+    <string name="obd_test_progress">OBD proba de control en progreso.
+\n Por favor, comproba a reacción do vehículo.</string>
+    <string name="full_screen_display">Pantalla completa</string>
+    <string name="elm_adaptive_timing_descr">Permitir o manexo da sincronización de enerxía adaptativa nos drivers do ELM?</string>
+    <string name="display_color">Cór na pantalla</string>
+    <string name="comm_baudrate_description">Velocidade das comunicacións por USB</string>
+    <string name="reset_default">Por defecto</string>
+    <string name="obd_test_confirm">OBD proba de control solicitada.
+\n
+\n A solicitude de control de OBD debe xerar:
+\n - Movemento do vehículo
+\n - Fume dende o tubo de escape
+\n - Alta temperatura do tubo de escape
+\n - Son elevado do motor
+\n - Vapor do combustible
+\n - etc.
+\n
+\n Porfavor, confirma que leva a cabo este test de control baixo o teu risco e nun entorno seguro!</string>
+    <string name="customize_display">Personalizar o rango de visualización dos datos</string>
+    <string name="data_disable_max">Límite de desactivación de elementos de datos</string>
 </resources>
