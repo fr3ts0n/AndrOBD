@@ -201,4 +201,5 @@
     <string name="full_screen_display_description">Utiliser le plein-écran pour l\'affichage de l\'application</string>
     <string name="display_color">Couleur d\'affichage</string>
     <string name="reset_default">Par défaut</string>
+    <string name="update_period_s">Fréquence de mise à jour [s]</string>
 </resources>
