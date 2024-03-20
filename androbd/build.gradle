@@ -10,7 +10,7 @@ android {
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 25
         versionCode 20607
-        versionName 'V2.6.7'
+        versionName 'V2.6.8'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
