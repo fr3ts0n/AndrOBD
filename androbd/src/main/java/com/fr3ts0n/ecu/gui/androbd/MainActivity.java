@@ -223,6 +223,14 @@ public class MainActivity extends PluginManager
      * toast for showing exit message
      */
     private static Toast exitToast = null;
+
+    /**
+     * Flag to temporarily ignore NRCs
+     * This flag ist used to temporarily allow negative OBD responses without issuing an error message.
+     * i.e. un-supported mode 0x0A for DFC reading
+     */
+    private static boolean ignoreNrcs = false;
+
     /**
      * handler for freeze frame selection
      */
@@ -426,38 +434,41 @@ public class MainActivity extends PluginManager
                     // handle negative result code from OBD protocol
                     case MESSAGE_OBD_NRC:
                         // show error dialog ...
-                        evt = (PropertyChangeEvent) msg.obj;
-                        ObdProt.NRC nrc = (ObdProt.NRC) evt.getOldValue();
-                        String nrcMsg = (String) evt.getNewValue();
-                        switch (nrc.disp)
+                        if(! ignoreNrcs)
                         {
-                            case ERROR:
-                                dlgBuilder
+                            evt = (PropertyChangeEvent) msg.obj;
+                            ObdProt.NRC nrc = (ObdProt.NRC) evt.getOldValue();
+                            String nrcMsg = (String) evt.getNewValue();
+                            switch (nrc.disp)
+                            {
+                                case ERROR:
+                                    dlgBuilder
                                         .setIcon(android.R.drawable.ic_dialog_alert)
                                         .setTitle(R.string.obd_error)
                                         .setMessage(nrcMsg)
                                         .setPositiveButton(null, null)
                                         .show();
-                                break;
-                            // Display warning (with confirmation)
-                            case WARN:
-                                dlgBuilder
+                                    break;
+                                // Display warning (with confirmation)
+                                case WARN:
+                                    dlgBuilder
                                         .setIcon(android.R.drawable.ic_dialog_info)
                                         .setTitle(R.string.obd_error)
                                         .setMessage(nrcMsg)
                                         .setPositiveButton(null, null)
                                         .show();
-                                break;
-                            // Display notification (no confirmation)
-                            case NOTIFY:
-                                Toast.makeText(getApplicationContext(),
+                                    break;
+                                // Display notification (no confirmation)
+                                case NOTIFY:
+                                    Toast.makeText(getApplicationContext(),
                                         nrcMsg,
                                         Toast.LENGTH_SHORT).show();
-                                break;
+                                    break;
 
-                            case HIDE:
-                            default:
-                                // intentionally ignore
+                                case HIDE:
+                                default:
+                                    // intentionally ignore
+                            }
                         }
                         break;
 
@@ -1956,6 +1967,8 @@ public class MainActivity extends PluginManager
     {
         // remember this as current OBD service
         obdService = newObdService;
+        ignoreNrcs = false;
+
         // set list view
         setContentView(mListView);
         getListView().setOnItemLongClickListener(this);
@@ -2000,6 +2013,8 @@ public class MainActivity extends PluginManager
             case ObdProt.OBD_SVC_PENDINGCODES:
             case ObdProt.OBD_SVC_PERMACODES:
             case ObdProt.OBD_SVC_READ_CODES:
+                // NOT all DFC modes are supported by all vehicles, disable NRC handling for this request
+                ignoreNrcs = true;
                 currDataAdapter = mDfcAdapter;
                 Toast.makeText(this, getString(R.string.long_press_dfc_hint), Toast.LENGTH_LONG).show();
                 break;
