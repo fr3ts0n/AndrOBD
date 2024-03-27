@@ -9,8 +9,8 @@ android {
         // SDK 25 to allow background service mechanism for plugins
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 25
-        versionCode 20607
-        versionName 'V2.6.8'
+        versionCode 20609
+        versionName 'V2.6.9'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -45,4 +45,5 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.github.mik3y:usb-serial-for-android:3.3.0'
     implementation 'com.github.anastr:speedviewlib:1.6.1'
+    implementation 'androidx.core:core-ktx:1.12.0'
 }
