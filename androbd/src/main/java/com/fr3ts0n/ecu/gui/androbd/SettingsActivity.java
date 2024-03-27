@@ -19,9 +19,11 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
@@ -36,6 +38,7 @@ import com.fr3ts0n.ecu.prot.obd.ElmProt;
 import com.fr3ts0n.ecu.prot.obd.ObdProt;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -108,7 +111,8 @@ public class SettingsActivity
 		                                                new PrefsFragment()).commit();
 	}
 
-	public static class PrefsFragment
+	@SuppressLint("ValidFragment")
+	public class PrefsFragment
 		extends PreferenceFragment
 		implements Preference.OnPreferenceClickListener,
 		SharedPreferences.OnSharedPreferenceChangeListener
@@ -135,7 +139,7 @@ public class SettingsActivity
 			// set up ELM command selection
 			setupElmCmdSelection();
             // set up ELM adaptive timing mode selection
-            setupElmTimingSelection();
+			setupElmTimingSelection();
 			// set up selectable PID list
 			setupPidSelection();
 			// update network selection fields
@@ -181,11 +185,11 @@ public class SettingsActivity
             int i = 0;
             for (ElmProt.AdaptTimingMode mode : values)
             {
-                titles[i] = mode.toString();
-                keys[i] = mode.toString();
-	            i++;
+				titles[i] = mode.toString();
+				keys[i] = mode.toString();
+				i++;
             }
-            // set enries and keys
+            // set entries and keys
             pref.setEntries(titles);
             pref.setEntryValues(keys);
             pref.setDefaultValue(titles[0]);
@@ -374,6 +378,17 @@ public class SettingsActivity
 				{
 					ed.putString(key, value);
 					pref.setSummary(value != null ? value : getString(R.string.select_extension));
+
+					if(value != null)
+					{
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+						{
+						/* Remember persistent read permission for selected file,
+						   otherwise we will NOT be allowed to load it on startup ... ;( */
+							getContentResolver().takePersistableUriPermission(Objects.requireNonNull(data.getData()),
+															                  Intent.FLAG_GRANT_READ_URI_PERMISSION);
+						}
+					}
 				}
 			}
 
