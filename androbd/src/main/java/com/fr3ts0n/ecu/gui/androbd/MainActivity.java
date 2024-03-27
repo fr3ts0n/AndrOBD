@@ -54,6 +54,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.core.content.FileProvider;
+
 import com.fr3ts0n.androbd.plugin.Plugin;
 import com.fr3ts0n.androbd.plugin.mgr.PluginManager;
 import com.fr3ts0n.ecu.EcuCodeItem;
@@ -1913,9 +1915,10 @@ public class MainActivity extends PluginManager
         File file = new File(FileHelper.getPath(this));
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        Uri data = Uri.fromFile(file);
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        Uri uri = FileProvider.getUriForFile(MainActivity.this, getPackageName()+".provider", file);
         String type = "*/*";
-        intent.setDataAndType(data, type);
+        intent.setDataAndType(uri, type);
         startActivityForResult(intent, REQUEST_SELECT_FILE);
     }
 
