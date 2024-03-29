@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="logo">لۆگۆ</string>
     <string name="back_again_to_exit">دووبارە گەڕانەوە دابگرە بۆ داخستنی ئەم نەرمەواڵەیە</string>
@@ -13,12 +13,10 @@
     <string name="obd_pendingcodes"/>
     <string name="obd_clearcodes"/>
     <string name="obd_clear_info"/>
-
     <string name="select_device"/>
     <string name="none_paired"/>
     <string name="none_found">هیچ ئامێرێک نەدۆزرایەوە</string>
     <string name="title_paired_devices"/>
-
     <string name="send_to">ناردن بۆ</string>
     <string name="share">هاوبەشکردن</string>
     <string name="time"/>
@@ -31,7 +29,6 @@
     <string name="saved_data"/>
     <string name="loaded"/>
     <string name="saved">پاشەکەوت کرا</string>
-
     <string name="connected_to"/>
     <string name="demo"/>
     <string name="saving_data"/>
@@ -39,7 +36,6 @@
     <string name="dashboard"/>
     <string name="hud"/>
     <string name="filter"/>
-
     <string name="settings">ڕێکخستنەکان</string>
     <string name="development_options">بژاردەکانی پەرەپێدان</string>
     <string name="dev_opt_description"/>
@@ -54,7 +50,6 @@
     <string name="select_protocol"/>
     <string name="select_fault_code"/>
     <string name="select_medium">جۆری گونجێنەر …</string>
-
     <string name="devices_found"/>
     <string name="min_elm_timeout"/>
     <string name="unabletoconnect"/>
@@ -81,7 +76,6 @@
     <string name="elm_options"/>
     <string name="elm_custom_init"/>
     <string name="elm_custom_init_descr"/>
-
     <string name="UNDEFINED"/>
     <string name="INITIALIZING"/>
     <string name="INITIALIZED"/>
@@ -105,7 +99,7 @@
     <string name="autohide_toolbar_description"/>
     <string name="autohide_delay"/>
     <string name="autohide_delay_description"/>
-<string name="translation_credits">وەرگێڕدراوە لەلایەن هەڤاڵ عبدالکریم</string>
+    <string name="translation_credits">وەرگێڕدراوە لەلایەن هەڤاڵ عبدالکریم</string>
     <string name="title_connecting">لە پەیوەندیدایە…</string>
     <string name="title_connected_to">پەیوەستکراو %s</string>
 </resources>
