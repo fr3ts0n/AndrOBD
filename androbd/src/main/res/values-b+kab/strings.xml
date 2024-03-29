@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="translation_credits">Tasuqilt sɣur fr3ts0n</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="translation_credits">Tasuqilt sɣur fr3ts0n</string>
     <string name="app_description">Asnas Android n tesleṭ n tkerrust OBD i umezgay Bluetooth ELM327</string>
     <string name="title_connecting">Tuqqna…</string>
     <string name="title_connected_to">Yeqqen ar %s</string>
@@ -12,4 +13,4 @@
     <string name="obd_data">Isefka OBD</string>
     <string name="service_freezeframes">OBD tilmiyin tusbiḍin</string>
     <string name="settings">Iγewwaren</string>
-    </resources>
+</resources>
