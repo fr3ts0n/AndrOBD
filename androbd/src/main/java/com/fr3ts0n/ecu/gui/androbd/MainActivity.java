@@ -171,7 +171,7 @@ public class MainActivity extends PluginManager
     /**
      * Timer for display updates
      */
-    private static final Timer updateTimer = new Timer();
+    private static Timer updateTimer;
     /**
      * empty string set as default parameter
      */
@@ -248,19 +248,6 @@ public class MainActivity extends PluginManager
         public void onNothingSelected(AdapterView<?> parent)
         {
 
-        }
-    };
-    /**
-     * Timer Task to cyclically update data screen
-     */
-    private transient final TimerTask updateTask = new TimerTask()
-    {
-        @Override
-        public void run()
-        {
-            /* forward message to update the view */
-            Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_UPDATE_VIEW);
-            mHandler.sendMessage(msg);
         }
     };
     /**
@@ -640,8 +627,6 @@ public class MainActivity extends PluginManager
                 setMode(MODE.ONLINE);
                 break;
         }
-        // set up data update timer
-        updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
     }
 
     /**
@@ -651,13 +636,39 @@ public class MainActivity extends PluginManager
     public void onStart()
     {
         super.onStart();
-
         // If the adapter is null, then Bluetooth is not supported
         if (CommService.medium == CommService.MEDIUM.BLUETOOTH && mBluetoothAdapter == null)
         {
             // start ELM protocol demo loop
             setMode(MODE.DEMO);
         }
+    }
+
+    @Override protected void onPause()
+    {
+        super.onPause();
+
+        // stop data display update timer
+        updateTimer.cancel();
+    }
+
+    @Override protected void onResume()
+    {
+        // set up data display update timer
+        updateTimer = new Timer();
+        final TimerTask updateTask = new TimerTask()
+        {
+            @Override
+            public void run()
+            {
+                /* forward message to update the view */
+                Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_UPDATE_VIEW);
+                mHandler.sendMessage(msg);
+            }
+        };
+        updateTimer.schedule(updateTask, 0, DISPLAY_UPDATE_TIME);
+
+        super.onResume();
     }
 
     /*
