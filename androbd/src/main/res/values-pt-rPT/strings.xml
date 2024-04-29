@@ -184,4 +184,5 @@
     <string name="full_screen_display">Exibição de ecrã completo</string>
     <string name="full_screen_display_description">Use o ecrã completo para exibir a aplicação</string>
     <string name="display_range">Limite de exibição</string>
+    <string name="update_period_s">Período de atualização [s]</string>
 </resources>
