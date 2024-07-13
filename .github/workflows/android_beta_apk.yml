@@ -20,7 +20,7 @@ jobs:
         run: ./gradlew assembleDebug --stacktrace
 
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
-          name: my-build-apk
+          name: androbd-beta 
           path: ./**/*.apk
