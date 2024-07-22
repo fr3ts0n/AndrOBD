@@ -135,7 +135,7 @@
     <string name="common_settings_description">Common settings for app control</string>
     <string name="day_night_mode">የቀን/ማታ ማሳያ አማራጮች</string>
     <string name="INITIALIZED">ተነስትዋል</string>
-    <string name="obd_clear_info">አሁን የመረጡት ጠቅላላ የመኪናውን የብልሽት መረጃ ይሰርዛል መኪናው ድጋሚ እስኪነሳ ድረስ</string>
+    <string name="obd_clear_info">ኮነክትድ %s</string>
     <string name="load">መለኪያውን ጫን</string>
     <string name="loading_data">ዳታ በመጫን ላይ…</string>
     <string name="csv_rec_delimiter">CSV ሪከርድ መለያ</string>
@@ -146,4 +146,17 @@
     <string name="data_disable_max">Data item disable limit</string>
     <string name="check_cust_settings">አባክዎ ማስተካከያ መቸቶን ይመልከቱ
 \n</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="service_testcontrol">OBD test control</string>
+    <string name="obd_test_confirm">ለመዝጋት ተመለስ የሚለውን ቁልፍ ይጫኑ</string>
+    <string name="obd_test_progress">መለያ</string>
+    <string name="comm_baudrate">ታሪኮችን ልቀቅ …</string>
+    <string name="comm_baudrate_description">USB serial communication speed</string>
+    <string name="customize_display">Customize data display</string>
+    <string name="full_screen_display">Full screen display</string>
+    <string name="full_screen_display_description">Use full screen for app display</string>
+    <string name="display_color">Display color</string>
+    <string name="display_range">Display range</string>
+    <string name="reset_default">Default</string>
+    <string name="update_period_s">Update period [s]</string>
 </resources>
