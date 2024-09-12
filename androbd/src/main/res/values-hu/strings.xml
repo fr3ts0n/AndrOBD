@@ -2,15 +2,15 @@
 <resources>
     <string name="translation_credits">Fordította: gidano, summoner</string>
     <string name="app_description">Android OBD járműdiagnosztika alkalmazás ELM327 Bluetooth adapterhez</string>
-    <string name="title_connecting">Csatlakozás…</string>
-    <string name="title_connected_to">Csatlakozva: %s</string>
+    <string name="title_connecting">Kapcsolódás…</string>
+    <string name="title_connected_to">Kapcsolódva: %s</string>
     <string name="logo">Logó</string>
-    <string name="back_again_to_exit">Kilépéshez nyomd ismét a Vissza gombot</string>
-    <string name="action_connect">Csatlakozás</string>
+    <string name="back_again_to_exit">Nyomja meg ismét a „Vissza” gombot a kilépéshez</string>
+    <string name="action_connect">Kapcsolódás</string>
     <string name="obd_none">NINCS szolgáltatás</string>
-    <string name="obd_services">OBD Szolgáltatások</string>
-    <string name="obd_veh_info">OBD Jármű Infó</string>
-    <string name="obd_data">OBD Adat</string>
+    <string name="obd_services">OBD szolgáltatások</string>
+    <string name="obd_veh_info">OBD információk a járműről</string>
+    <string name="obd_data">OBD adat</string>
     <string name="service_freezeframes">OBD Pillanatkép Adatok</string>
     <string name="obd_codes">OBD hibakódok</string>
     <string name="obd_permanentcodes">OBD hibakódok (állandó)</string>
@@ -160,7 +160,7 @@
     <string name="graphic_design">Grafikus terv</string>
     <string name="long_press_dfc_hint">Hibakód hosszú nyomva tartása online kereséshez …</string>
     <string name="copied_to_clipboard">Másolva a vágólapra</string>
-    <string name="service_testcontrol">OBD Tesztellenőrzés</string>
+    <string name="service_testcontrol">OBD tesztellenőrzés</string>
     <string name="obd_test_progress">OBD teszt ellenőrzése folyamatban.
 \nKérjük, figyelje a jármű reakcióit.</string>
     <string name="comm_baudrate_description">USB soros kommunikáció sebesség</string>
