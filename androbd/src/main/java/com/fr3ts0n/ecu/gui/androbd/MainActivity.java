@@ -806,6 +806,8 @@ public class MainActivity extends PluginManager
             case R.id.day_night_mode:
                 // toggle night mode setting
                 prefs.edit().putBoolean(NIGHT_MODE, !nightMode).apply();
+                Intent workerServiceIntent = new Intent(this, WorkerService.class);
+                startService(workerServiceIntent);
                 return true;
 
             case R.id.secure_connect_scan:
@@ -874,6 +876,7 @@ public class MainActivity extends PluginManager
                 setObdService(ObdProt.OBD_SVC_READ_CODES, item.getTitle());
                 return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }

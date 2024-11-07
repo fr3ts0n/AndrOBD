@@ -304,4 +304,6 @@ period of time while the ECU recalibrates itself.
         <item>57600</item>
         <item>115200</item>
     </string-array>
+    <string name="notification_channel_name">Androdb service</string>
+    <string name="notification_channel_description">Androdb service</string>
 </resources>

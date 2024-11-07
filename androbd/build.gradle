@@ -40,10 +40,13 @@ android {
 }
 
 dependencies {
+    def core_version = "1.12.0"
+
     implementation project(':plugin')
     implementation project(':library')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.github.mik3y:usb-serial-for-android:3.8.0'
     implementation 'com.github.anastr:speedviewlib:1.6.1'
-    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation "androidx.core:core:$core_version"
+    implementation "androidx.core:core-ktx:$core_version"
 }

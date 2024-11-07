@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
     <!-- start/stop bluetooth adapter -->
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- connect/disconnect bluetooth devices -->
     <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- to keep Bluetooth measurement running even when screen is inactive -->
@@ -8,6 +9,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- allow access to WIFI adapter -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
     <application
         android:allowBackup="true"
@@ -16,11 +20,17 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.Dark">
+        <service
+            android:name=".WorkerService"
+            android:enabled="true"
+            android:foregroundServiceType="connectedDevice|dataSync"
+            android:exported="false">
+        </service>
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,8 +69,9 @@
             android:label="@string/settings" />
         <activity
             android:name=".PidCustomization"
-            android:label="@string/customize_display"
-            android:configChanges="touchscreen|orientation|screenSize" />
+            android:configChanges="touchscreen|orientation|screenSize"
+            android:label="@string/customize_display" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -68,7 +79,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
     </application>
 
