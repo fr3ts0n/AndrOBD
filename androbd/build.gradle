@@ -37,6 +37,11 @@ android {
         abortOnError false
     }
     namespace 'com.fr3ts0n.ecu.gui.androbd'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 }
 
 dependencies {

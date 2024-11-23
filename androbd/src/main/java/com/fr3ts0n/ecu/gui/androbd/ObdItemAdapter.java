@@ -139,6 +139,8 @@ class ObdItemAdapter extends ArrayAdapter<Object>
         HashSet<Object> filtered = new HashSet<>();
         for (String key : pidsToShow)
         {
+            if (key == null) continue;
+
             IndexedProcessVar pv = (IndexedProcessVar) pvs.get(key);
             if (pv != null)
                 filtered.add(pv);
@@ -239,7 +241,7 @@ class ObdItemAdapter extends ArrayAdapter<Object>
     /**
      * Handler for data item changes
      */
-    PvChangeListener dataChangeHandler = new PvChangeListener()
+    static PvChangeListener dataChangeHandler = new PvChangeListener()
     {
         @Override
         public void pvChanged(PvChangeEvent event)

@@ -28,8 +28,11 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -37,6 +40,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
@@ -135,12 +139,12 @@ public class MainActivity extends PluginManager
     private static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
     private static final String PREF_OVERLAY = "toolbar_overlay";
     private static final String PREF_DATA_DISABLE_MAX = "data_disable_max";
-    private static final int MESSAGE_FILE_WRITTEN = 3;
-    private static final int MESSAGE_DATA_ITEMS_CHANGED = 6;
-    private static final int MESSAGE_OBD_STATE_CHANGED = 8;
-    private static final int MESSAGE_OBD_NUMCODES = 9;
-    private static final int MESSAGE_OBD_ECUS = 10;
-    private static final int MESSAGE_OBD_NRC = 11;
+    public static final int MESSAGE_FILE_WRITTEN = 3;
+    public static final int MESSAGE_DATA_ITEMS_CHANGED = 6;
+    public static final int MESSAGE_OBD_STATE_CHANGED = 8;
+    public static final int MESSAGE_OBD_NUMCODES = 9;
+    public static final int MESSAGE_OBD_ECUS = 10;
+    public static final int MESSAGE_OBD_NRC = 11;
     private static final String TAG = "AndrOBD";
     /**
      * internal Intent request codes
@@ -207,12 +211,12 @@ public class MainActivity extends PluginManager
     /**
      * Data list adapters
      */
-    private static ObdItemAdapter mPidAdapter;
-    private static VidItemAdapter mVidAdapter;
-    private static TidItemAdapter mTidAdapter;
-    private static DfcItemAdapter mDfcAdapter;
-    private static PluginDataAdapter mPluginDataAdapter;
-    private static ObdItemAdapter currDataAdapter;
+    public static ObdItemAdapter mPidAdapter;
+    public static VidItemAdapter mVidAdapter;
+    public static TidItemAdapter mTidAdapter;
+    public static DfcItemAdapter mDfcAdapter;
+    public static PluginDataAdapter mPluginDataAdapter;
+    public static ObdItemAdapter currDataAdapter;
     /**
      * initial state of bluetooth adapter
      */
@@ -253,7 +257,7 @@ public class MainActivity extends PluginManager
     /**
      * Member object for the BT comm services
      */
-    private CommService mCommService = null;
+    //private CommService mCommService = null;
     /**
      * file helper
      */
@@ -306,7 +310,7 @@ public class MainActivity extends PluginManager
                         switch ((CommService.STATE) msg.obj)
                         {
                             case CONNECTED:
-                                onConnect();
+                                onConnect(!WorkerService.isRunning);
                                 break;
 
                             case CONNECTING:
@@ -350,6 +354,8 @@ public class MainActivity extends PluginManager
                         break;
 
                     case MESSAGE_TOAST:
+                        stopWorkerService();
+
                         Toast.makeText(getApplicationContext(),
                                 msg.getData().getString(TOAST),
                                 Toast.LENGTH_SHORT).show();
@@ -487,6 +493,68 @@ public class MainActivity extends PluginManager
         }
     };
 
+    private WorkerService mWorkerService = null;
+
+    interface WorkerServiceConnectionTask {
+        void func();
+    }
+
+    private WorkerServiceConnectionTask mWorkerServiceConnectionPendingTask = null;
+
+    private final ServiceConnection mWorkerServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            WorkerService.WorkerServiceBinder binder = (WorkerService.WorkerServiceBinder) service;
+            MainActivity.this.mWorkerService = binder.getService();
+            MainActivity.this.mWorkerService.setMainActivityHandler(mHandler);
+            MainActivity.this.mWorkerService.requestCurrentCommServiceState();
+
+            if (MainActivity.this.mWorkerServiceConnectionPendingTask != null)
+            {
+                MainActivity.this.mWorkerServiceConnectionPendingTask.func();
+                MainActivity.this.mWorkerServiceConnectionPendingTask = null;
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            MainActivity.this.unbindWorkerService();
+        }
+    };
+
+    private void bindWorkerService() {
+        Intent intent = new Intent(getApplicationContext(), WorkerService.class);
+        bindService(intent, mWorkerServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindWorkerService() {
+        mWorkerService.removeMainActivityHandler();
+        mWorkerService = null;
+        unbindService(mWorkerServiceConnection);
+    }
+
+    private void startOrBindWorkerService() {
+        if (!WorkerService.isRunning) {
+            Intent intent = new Intent(getApplicationContext(), WorkerService.class);
+            startService(intent);
+        }
+
+        if (mWorkerService == null) {
+            bindWorkerService();
+        }
+    }
+
+    private void stopWorkerService() {
+        if (WorkerService.isRunning) {
+            if (mWorkerService != null) {
+                unbindWorkerService();
+            }
+
+            Intent intent = new Intent(this, WorkerService.class);
+            stopService(intent);
+        }
+    }
+
     /**
      * Set fixed PIDs for protocol to specified list of PIDs
      *
@@ -589,6 +657,10 @@ public class MainActivity extends PluginManager
             CommService.medium = CommService.MEDIUM.USB;
         }
 
+        if (WorkerService.isRunning){
+            bindWorkerService();
+        }
+
         switch (CommService.medium)
         {
             case BLUETOOTH:
@@ -682,17 +754,17 @@ public class MainActivity extends PluginManager
         // Stop toolbar hider thread
         setAutoHider(false);
 
-        try
-        {
-            // Reduce ELM power consumption by setting it to sleep
-            CommService.elm.goToSleep();
-            // wait until message is out ...
-            Thread.sleep(100, 0);
-        } catch (InterruptedException e)
-        {
-            // do nothing
-            log.log(Level.FINER, e.getLocalizedMessage());
-        }
+//        try
+//        {
+//            // Reduce ELM power consumption by setting it to sleep
+//            CommService.elm.goToSleep();
+//            // wait until message is out ...
+//            Thread.sleep(100, 0);
+//        } catch (InterruptedException e)
+//        {
+//            // do nothing
+//            log.log(Level.FINER, e.getLocalizedMessage());
+//        }
 
         /* don't listen to ELM data changes any more */
         removeDataListeners();
@@ -702,11 +774,13 @@ public class MainActivity extends PluginManager
         // stop demo service if it was started
         setMode(MODE.OFFLINE);
 
+        unbindWorkerService();
+
         // stop communication service
-        if (mCommService != null)
-        {
-            mCommService.stop();
-        }
+        //if (mCommService != null)
+        //{
+        //    mCommService.stop();
+        //}
 
         // if bluetooth adapter was switched OFF before ...
         if (mBluetoothAdapter != null && !initialBtStateEnabled)
@@ -806,8 +880,6 @@ public class MainActivity extends PluginManager
             case R.id.day_night_mode:
                 // toggle night mode setting
                 prefs.edit().putBoolean(NIGHT_MODE, !nightMode).apply();
-                Intent workerServiceIntent = new Intent(this, WorkerService.class);
-                startService(workerServiceIntent);
                 return true;
 
             case R.id.secure_connect_scan:
@@ -821,10 +893,11 @@ public class MainActivity extends PluginManager
 
             case R.id.disconnect:
                 // stop communication service
-                if (mCommService != null)
-                {
-                    mCommService.stop();
-                }
+                stopWorkerService();
+                //if (mCommService != null)
+                //{
+                //    mCommService.stop();
+                //}
                 setMode(MODE.OFFLINE);
                 return true;
 
@@ -966,8 +1039,14 @@ public class MainActivity extends PluginManager
                 // DeviceListActivity returns with a device to connect
                 if (resultCode == Activity.RESULT_OK)
                 {
-                    mCommService = new UsbCommService(this, mHandler);
-                    mCommService.connect(UsbDeviceListActivity.selectedPort, true);
+                    mWorkerServiceConnectionPendingTask = () -> {
+                        mWorkerService.connectDeviceUsb();
+                    };
+
+                    startOrBindWorkerService();
+
+                    //mCommService = new UsbCommService(this, mHandler);
+                    //mCommService.connect(UsbDeviceListActivity.selectedPort, true);
                 } else
                 {
                     setMode(MODE.OFFLINE);
@@ -1955,11 +2034,18 @@ public class MainActivity extends PluginManager
      */
     private void connectBtDevice(String address, boolean secure)
     {
+        mWorkerServiceConnectionPendingTask = () -> {
+            BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+            mWorkerService.connectBT(device, secure);
+        };
+
+        startOrBindWorkerService();
+
         // Get the BluetoothDevice object
-        BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+        //BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
         // Attempt to connect to the device
-        mCommService = new BtCommService(this, mHandler);
-        mCommService.connect(device, secure);
+        //mCommService = new BtCommService(this, mHandler);
+        //mCommService.connect(device, secure);
     }
 
     /**
@@ -1970,9 +2056,14 @@ public class MainActivity extends PluginManager
      */
     private void connectNetworkDevice(String address, int port)
     {
+        mWorkerServiceConnectionPendingTask = () -> {
+            mWorkerService.connectNetworkDevice(address, port);
+        };
+
+        startOrBindWorkerService();
         // Attempt to connect to the device
-        mCommService = new NetworkCommService(this, mHandler);
-        ((NetworkCommService) mCommService).connect(address, port);
+        //mCommService = new NetworkCommService(this, mHandler);
+        //((NetworkCommService) mCommService).connect(address, port);
     }
 
     /**
@@ -2170,7 +2261,7 @@ public class MainActivity extends PluginManager
      * Handle bluetooth connection established ...
      */
     @SuppressLint("StringFormatInvalid")
-    private void onConnect()
+    private void onConnect(boolean elmRestartRequired)
     {
         stopDemoService();
 
@@ -2183,7 +2274,9 @@ public class MainActivity extends PluginManager
         // display connection status
         setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
         // send RESET to Elm adapter
-        CommService.elm.reset();
+        if (elmRestartRequired) {
+            CommService.elm.reset();
+        }
     }
 
     /**
