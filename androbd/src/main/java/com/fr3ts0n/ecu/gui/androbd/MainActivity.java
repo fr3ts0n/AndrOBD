@@ -70,7 +70,6 @@ import com.fr3ts0n.ecu.prot.obd.ElmProt;
 import com.fr3ts0n.ecu.prot.obd.ObdProt;
 import com.fr3ts0n.pvs.ProcessVar;
 import com.fr3ts0n.pvs.PvChangeEvent;
-import com.fr3ts0n.pvs.PvChangeListener;
 import com.fr3ts0n.pvs.PvList;
 
 import java.beans.PropertyChangeEvent;
@@ -96,8 +95,7 @@ import java.util.logging.SimpleFormatter;
  * Main Activity for AndrOBD app
  */
 public class MainActivity extends PluginManager
-        implements PvChangeListener,
-        AdapterView.OnItemLongClickListener,
+        implements AdapterView.OnItemLongClickListener,
         PropertyChangeListener,
         SharedPreferences.OnSharedPreferenceChangeListener,
         AbsListView.MultiChoiceModeListener
@@ -329,12 +327,25 @@ public class MainActivity extends PluginManager
                     // data has been read - finish up
                     case MESSAGE_FILE_READ:
                         // set listeners for data structure changes
-                        setDataListeners();
+                        //setDataListeners();
                         // set adapters data source to loaded list instances
                         mPidAdapter.setPvList(ObdProt.PidPvs);
                         mVidAdapter.setPvList(ObdProt.VidPvs);
                         mTidAdapter.setPvList(ObdProt.VidPvs);
                         mDfcAdapter.setPvList(ObdProt.tCodes);
+
+                        mWorkerServiceConnectionPendingTask = () -> {
+                            mWorkerServiceBinder.connectToFile();
+                        };
+
+                        if (!mIsWorkerServiceBound) {
+                            startOrBindWorkerService();
+                        }
+                        else {
+                            mWorkerServiceConnectionPendingTask.func();
+                            mWorkerServiceConnectionPendingTask = null;
+                        }
+
                         // set OBD data mode to the one selected by input file
                         setObdService(CommService.elm.getService(), getString(R.string.saved_data));
                         // Check if last data selection shall be restored
@@ -366,7 +377,7 @@ public class MainActivity extends PluginManager
                         switch (event.getType())
                         {
                             case PvChangeEvent.PV_ADDED:
-                                currDataAdapter.setPvList(currDataAdapter.pvs);
+                                //currDataAdapter.setPvList(currDataAdapter.pvs);
                                 try
                                 {
                                     if (event.getSource() == ObdProt.PidPvs)
@@ -493,7 +504,9 @@ public class MainActivity extends PluginManager
         }
     };
 
-    private WorkerService mWorkerService = null;
+    private WorkerService.WorkerServiceBinder mWorkerServiceBinder = null;
+    private boolean mIsWorkerServiceBound = false;
+    private boolean mIsWorkerServiceStarted = WorkerService.isRunning;
 
     interface WorkerServiceConnectionTask {
         void func();
@@ -504,21 +517,22 @@ public class MainActivity extends PluginManager
     private final ServiceConnection mWorkerServiceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            WorkerService.WorkerServiceBinder binder = (WorkerService.WorkerServiceBinder) service;
-            MainActivity.this.mWorkerService = binder.getService();
-            MainActivity.this.mWorkerService.setMainActivityHandler(mHandler);
-            MainActivity.this.mWorkerService.requestCurrentCommServiceState();
+            mWorkerServiceBinder = (WorkerService.WorkerServiceBinder) service;
+            mWorkerServiceBinder.setHandler(mHandler);
+            mWorkerServiceBinder.sendSavedDataToHandler();
 
-            if (MainActivity.this.mWorkerServiceConnectionPendingTask != null)
+            if (mWorkerServiceConnectionPendingTask != null)
             {
-                MainActivity.this.mWorkerServiceConnectionPendingTask.func();
-                MainActivity.this.mWorkerServiceConnectionPendingTask = null;
+                mWorkerServiceConnectionPendingTask.func();
+                mWorkerServiceConnectionPendingTask = null;
             }
+
+            mIsWorkerServiceBound = true;
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            MainActivity.this.unbindWorkerService();
+            unbindWorkerService();
         }
     };
 
@@ -528,30 +542,33 @@ public class MainActivity extends PluginManager
     }
 
     private void unbindWorkerService() {
-        mWorkerService.removeMainActivityHandler();
-        mWorkerService = null;
+        mWorkerServiceBinder.removeHandler();
+        mWorkerServiceBinder = null;
+        mIsWorkerServiceBound = false;
         unbindService(mWorkerServiceConnection);
     }
 
     private void startOrBindWorkerService() {
-        if (!WorkerService.isRunning) {
+        if (!mIsWorkerServiceStarted) {
             Intent intent = new Intent(getApplicationContext(), WorkerService.class);
             startService(intent);
+            mIsWorkerServiceStarted = true;
         }
 
-        if (mWorkerService == null) {
+        if (!mIsWorkerServiceBound) {
             bindWorkerService();
         }
     }
 
     private void stopWorkerService() {
-        if (WorkerService.isRunning) {
-            if (mWorkerService != null) {
+        if (mIsWorkerServiceStarted) {
+            if (mIsWorkerServiceBound) {
                 unbindWorkerService();
             }
 
             Intent intent = new Intent(this, WorkerService.class);
             stopService(intent);
+            mIsWorkerServiceStarted = false;
         }
     }
 
@@ -635,7 +652,7 @@ public class MainActivity extends PluginManager
         // create file helper instance
         fileHelper = new FileHelper(this);
         // set listeners for data structure changes
-        setDataListeners();
+        //setDataListeners();
         // automate elm status display
         CommService.elm.addPropertyChangeListener(this);
 
@@ -657,7 +674,7 @@ public class MainActivity extends PluginManager
             CommService.medium = CommService.MEDIUM.USB;
         }
 
-        if (WorkerService.isRunning){
+        if (mIsWorkerServiceStarted){
             bindWorkerService();
         }
 
@@ -767,14 +784,16 @@ public class MainActivity extends PluginManager
 //        }
 
         /* don't listen to ELM data changes any more */
-        removeDataListeners();
+        //removeDataListeners();
         // don't listen to ELM property changes any more
         CommService.elm.removePropertyChangeListener(this);
 
         // stop demo service if it was started
         setMode(MODE.OFFLINE);
 
-        unbindWorkerService();
+        if (mIsWorkerServiceBound) {
+            unbindWorkerService();
+        }
 
         // stop communication service
         //if (mCommService != null)
@@ -1040,7 +1059,7 @@ public class MainActivity extends PluginManager
                 if (resultCode == Activity.RESULT_OK)
                 {
                     mWorkerServiceConnectionPendingTask = () -> {
-                        mWorkerService.connectDeviceUsb();
+                        mWorkerServiceBinder.connectToUsb();
                     };
 
                     startOrBindWorkerService();
@@ -1381,17 +1400,17 @@ public class MainActivity extends PluginManager
      *
      * @param event PvChangeEvent which is reported
      */
-    @Override
-    public synchronized void pvChanged(PvChangeEvent event)
-    {
-        // forward PV change to the UI Activity
-        Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DATA_ITEMS_CHANGED);
-        if (!event.isChildEvent())
-        {
-            msg.obj = event;
-            mHandler.sendMessage(msg);
-        }
-    }
+    //@Override
+    //public synchronized void pvChanged(PvChangeEvent event)
+    //{
+    //    // forward PV change to the UI Activity
+    //    Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DATA_ITEMS_CHANGED);
+    //    if (!event.isChildEvent())
+    //    {
+    //        msg.obj = event;
+    //        mHandler.sendMessage(msg);
+    //    }
+    //}
 
     /**
      * Check if restore of specified preselection is wanted from settings
@@ -1402,6 +1421,7 @@ public class MainActivity extends PluginManager
     private boolean istRestoreWanted(PRESELECT preselect)
     {
         return prefs.getStringSet(PREF_USE_LAST, emptyStringSet).contains(preselect.toString());
+        //return prefs.contains(preselect.toString());
     }
 
     /**
@@ -1681,38 +1701,38 @@ public class MainActivity extends PluginManager
     /**
      * set listeners for data structure changes
      */
-    private void setDataListeners()
-    {
-        // add pv change listeners to trigger model updates
-        ObdProt.PidPvs.addPvChangeListener(this,
-                PvChangeEvent.PV_ADDED
-                        | PvChangeEvent.PV_CLEARED
-        );
-        ObdProt.VidPvs.addPvChangeListener(this,
-                PvChangeEvent.PV_ADDED
-                        | PvChangeEvent.PV_CLEARED
-        );
-        ObdProt.tCodes.addPvChangeListener(this,
-                PvChangeEvent.PV_ADDED
-                        | PvChangeEvent.PV_CLEARED
-        );
-        mPluginPvs.addPvChangeListener(this,
-                PvChangeEvent.PV_ADDED
-                        | PvChangeEvent.PV_CLEARED
-        );
-    }
+    //private void setDataListeners()
+    //{
+    //    // add pv change listeners to trigger model updates
+    //    ObdProt.PidPvs.addPvChangeListener(this,
+    //            PvChangeEvent.PV_ADDED
+    //                    | PvChangeEvent.PV_CLEARED
+    //    );
+    //    ObdProt.VidPvs.addPvChangeListener(this,
+    //            PvChangeEvent.PV_ADDED
+    //                    | PvChangeEvent.PV_CLEARED
+    //    );
+    //    ObdProt.tCodes.addPvChangeListener(this,
+    //            PvChangeEvent.PV_ADDED
+    //                    | PvChangeEvent.PV_CLEARED
+    //    );
+    //    mPluginPvs.addPvChangeListener(this,
+    //            PvChangeEvent.PV_ADDED
+    //                    | PvChangeEvent.PV_CLEARED
+    //    );
+    //}
 
     /**
      * set listeners for data structure changes
      */
-    private void removeDataListeners()
-    {
-        // remove pv change listeners
-        ObdProt.PidPvs.removePvChangeListener(this);
-        ObdProt.VidPvs.removePvChangeListener(this);
-        ObdProt.tCodes.removePvChangeListener(this);
-        mPluginPvs.removePvChangeListener(this);
-    }
+    //private void removeDataListeners()
+    //{
+    //    // remove pv change listeners
+    //    ObdProt.PidPvs.removePvChangeListener(this);
+    //    ObdProt.VidPvs.removePvChangeListener(this);
+    //    ObdProt.tCodes.removePvChangeListener(this);
+    //    mPluginPvs.removePvChangeListener(this);
+    //}
 
     /**
      * get current operating mode
@@ -1720,6 +1740,14 @@ public class MainActivity extends PluginManager
     private MODE getMode()
     {
         return mode;
+    }
+
+    private void startBtDeviceListActivity() {
+        Intent serverIntent = new Intent(this, BtDeviceListActivity.class);
+        startActivityForResult(serverIntent,
+                prefs.getBoolean("bt_secure_connection", false)
+                        ? REQUEST_CONNECT_DEVICE_SECURE
+                        : REQUEST_CONNECT_DEVICE_INSECURE);
     }
 
     /**
@@ -1769,11 +1797,7 @@ public class MainActivity extends PluginManager
                                 } else
                                 {
                                     // ... otherwise launch the BtDeviceListActivity to see devices and do scan
-                                    Intent serverIntent = new Intent(this, BtDeviceListActivity.class);
-                                    startActivityForResult(serverIntent,
-                                            prefs.getBoolean("bt_secure_connection", false)
-                                                    ? REQUEST_CONNECT_DEVICE_SECURE
-                                                    : REQUEST_CONNECT_DEVICE_INSECURE);
+                                    startBtDeviceListActivity();
                                 }
                             }
                             break;
@@ -2036,7 +2060,7 @@ public class MainActivity extends PluginManager
     {
         mWorkerServiceConnectionPendingTask = () -> {
             BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
-            mWorkerService.connectBT(device, secure);
+            mWorkerServiceBinder.connectToBluetooth(device, secure);
         };
 
         startOrBindWorkerService();
@@ -2057,7 +2081,7 @@ public class MainActivity extends PluginManager
     private void connectNetworkDevice(String address, int port)
     {
         mWorkerServiceConnectionPendingTask = () -> {
-            mWorkerService.connectNetworkDevice(address, port);
+            mWorkerServiceBinder.connectToNetwork(address, port);
         };
 
         startOrBindWorkerService();

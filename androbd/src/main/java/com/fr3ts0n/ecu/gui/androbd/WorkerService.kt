@@ -16,81 +16,103 @@ import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Message
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import com.fr3ts0n.ecu.gui.androbd.CommService.STATE
-import com.fr3ts0n.ecu.prot.obd.Messages
-import com.fr3ts0n.ecu.prot.obd.ObdProt
 import com.fr3ts0n.pvs.PvChangeEvent
 import com.fr3ts0n.pvs.PvChangeListener
-import com.fr3ts0n.pvs.PvList
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import java.beans.PropertyChangeListener
+import java.util.SortedMap
 
 class WorkerService : Service() {
     private val binder = WorkerServiceBinder()
     private val receiver = Receiver()
-    private var mCommService: CommService? = null
-    var mMainActivityHandler: Handler? = null
-    private var isNotificationVisible = false
+    private lateinit var mCommService: CommService
+    private var mMainActivityHandler: Handler? = null
+    private var mIsNotificationVisible = false
     private var mLastBluetoothDeviceAddress = ""
     private var mIsCommServiceConnected = false
-    private var mCommServiceState: CommService.STATE? = null
 
-    private var mHandler: Handler? = null
+    private lateinit var mHandler: Handler
     private val mPvListListeners: ArrayList<PvListChangeListener> = ArrayList()
-    private var mMessageQueue: HashMap<Int, Message> = HashMap()
+    private var mMessageQueue: SortedMap<Int, Message> = sortedMapOf()
+
+    private val mCoroutineScope = CoroutineScope(Dispatchers.Main)
 
     inner class WorkerServiceBinder : Binder() {
-        val service: WorkerService
-            get() = this@WorkerService
+        fun setHandler(handler: Handler) = setMainActivityHandler(handler)
+        fun removeHandler() = removeMainActivityHandler()
+        fun connectToBluetooth(device: BluetoothDevice, isSecure: Boolean) =
+            connectBT(device, isSecure)
+
+        fun sendSavedDataToHandler() = requestEventsToActivityHandler()
+        fun connectToUsb() = connectDeviceUsb()
+        fun connectToNetwork(address: String?, port: Int) = connectNetworkDevice(address, port)
+        fun connectToFile() = connectFile()
+        fun addELMPropertyChangeListener(listener: PropertyChangeListener) {}
     }
 
     inner class Receiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             if (intent.action.equals(ACTION_STOP_SERVICE)) {
-                this@WorkerService.stop()
+                if (mIsCommServiceConnected) stopCommService()
+                stop()
             }
         }
     }
 
-    private inner class PvListChangeListener(val mAdapter: ObdItemAdapter, val mPvList: PvList) :
-        PvChangeListener {
+    private inner class PvListChangeListener(val mAdapter: ObdItemAdapter) : PvChangeListener {
         init {
-            mPvList.addPvChangeListener(this)
+            mAdapter.pvs.addPvChangeListener(this)
         }
 
         override fun pvChanged(event: PvChangeEvent) {
-            mAdapter.setPvList(mAdapter.pvs)
+            mCoroutineScope.launch {
+                if (event.isChildEvent) return@launch
+
+                when (event.type) {
+                    PvChangeEvent.PV_ADDED -> mAdapter.setPvList(mAdapter.pvs)
+                    PvChangeEvent.PV_CLEARED -> mAdapter.clear()
+                }
+
+                mMainActivityHandler?.obtainMessage(MainActivity.MESSAGE_DATA_ITEMS_CHANGED)
+                    ?.apply {
+                        obj = event
+
+                        mMessageQueue[what] = Message.obtain(this)
+
+                        sendToTarget()
+                    }
+            }
         }
 
         fun unsubscribeFromPvList() {
-            mPvList.removePvChangeListener(this)
+            mAdapter.pvs.removePvChangeListener(this)
         }
     }
 
     override fun onBind(intent: Intent): IBinder {
-        unsubscribeFromPvListChanges();
-        subscribeToPvListChanges();
-
-        mMessageQueue.apply {
-            forEach {
-                mMainActivityHandler?.obtainMessage(it.key, it.value.obj)?.apply {
-                    data = it.value.data
-                    sendToTarget()
-                }
-            }
-            clear()
-        }
+        onRebind(intent)
 
         return binder
+    }
+
+    override fun onUnbind(intent: Intent?): Boolean = true
+
+    override fun onRebind(intent: Intent?) {
+        resubscribeToPvListChanges()
     }
 
     override fun onCreate() {
         isRunning = true
 
         createNotificationChannel()
-
-        subscribeToPvListChanges()
 
         val intentFilter = IntentFilter(ACTION_STOP_SERVICE)
         val receiverFlags = ContextCompat.RECEIVER_NOT_EXPORTED
@@ -99,59 +121,59 @@ class WorkerService : Service() {
     }
 
     override fun onDestroy() {
-        isRunning = false
+        mCoroutineScope.cancel()
+
+        try {
+            CommService.elm.goToSleep();
+            Thread.sleep(100, 0);
+        } catch (e: InterruptedException) {
+            Log.v(TAG, e.localizedMessage ?: "")
+        }
 
         unsubscribeFromPvListChanges()
 
-        if (isNotificationVisible) {
+        if (mIsNotificationVisible) {
             stopForeground()
         }
 
         stopCommService()
 
         unregisterReceiver(receiver)
+
+        isRunning = false
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         mHandler = object : Handler(mainLooper) {
             override fun handleMessage(msg: Message) {
-                if (msg.what == MainActivity.MESSAGE_STATE_CHANGE) {
-                    val msgState = msg.obj as STATE
-                    if (msgState == STATE.CONNECTED ||
-                        msgState == STATE.CONNECTING
-                    ) {
-                        this@WorkerService.startForeground()
-                        this@WorkerService.isNotificationVisible = true
-                    } else {
-                        if (this@WorkerService.isNotificationVisible) {
-                            this@WorkerService.stopForeground()
-                            this@WorkerService.isNotificationVisible = false
+
+                when (msg.what) {
+                    MainActivity.MESSAGE_STATE_CHANGE -> {
+                        when (val msgState = msg.obj as STATE) {
+                            STATE.CONNECTING, STATE.CONNECTED -> {
+                                startForeground()
+                                mIsNotificationVisible = true
+
+                                if (msgState == STATE.CONNECTED) mIsCommServiceConnected = true
+                            }
+
+                            else -> {
+                                if (mIsNotificationVisible) {
+                                    stopForeground()
+                                    mIsNotificationVisible = false
+                                }
+
+                                mIsCommServiceConnected = false
+                                mLastBluetoothDeviceAddress = ""
+                                mMessageQueue.clear()
+                            }
                         }
-
-                        this@WorkerService.mIsCommServiceConnected = false
-                        this@WorkerService.mLastBluetoothDeviceAddress = ""
-                        this@WorkerService.mMessageQueue.clear()
                     }
-
-                    if (msgState == STATE.CONNECTED) {
-                        this@WorkerService.mIsCommServiceConnected = true
-                    }
-
-                    this@WorkerService.mCommServiceState = msgState
                 }
 
-                val requiredStateTypes = arrayOf(
-                    MainActivity.MESSAGE_STATE_CHANGE,
-                    MainActivity.MESSAGE_DEVICE_NAME,
-                    MainActivity.MESSAGE_DATA_ITEMS_CHANGED,
-                    MainActivity.MESSAGE_TOAST
-                )
+                mMessageQueue[msg.what] = Message.obtain(msg)
 
-                if (msg.what in requiredStateTypes) {
-                    this@WorkerService.mMessageQueue[msg.what] = msg
-                }
-
-                this@WorkerService.mMainActivityHandler?.obtainMessage(msg.what, msg.obj)?.apply {
+                mMainActivityHandler?.obtainMessage(msg.what, msg.obj)?.apply {
                     data = msg.data
                     sendToTarget()
                 }
@@ -165,64 +187,75 @@ class WorkerService : Service() {
 
     fun stop() {
         stopCommService()
-        if (isNotificationVisible) {
+
+        if (mIsNotificationVisible) {
             stopForeground()
         }
 
         stopSelf()
     }
 
-    fun requestCurrentCommServiceState() {
-        mCommServiceState?.let {
-            mMainActivityHandler
-                ?.obtainMessage(MainActivity.MESSAGE_STATE_CHANGE, it)
-                ?.sendToTarget()
+    private fun requestEventsToActivityHandler() {
+        mMainActivityHandler?.let { handler ->
+            mMessageQueue.values.forEach {
+                handler.sendMessage(it)
+            }
+
+            mMessageQueue.clear()
         }
     }
 
     fun connectBT(device: BluetoothDevice, isSecure: Boolean) {
         if (mIsCommServiceConnected && mLastBluetoothDeviceAddress == device.address && mMainActivityHandler != null) {
+            requestEventsToActivityHandler()
             return
         }
 
-        mCommService = BtCommService(this, mHandler).also {
-            stopCommService()
+        mCommService = BtCommService(this, mHandler).also { btService ->
             mLastBluetoothDeviceAddress = device.address
-            it.connect(device, isSecure)
+            btService.connect(device, isSecure)
         }
     }
 
 
     fun connectDeviceUsb() {
-        mCommService = UsbCommService(this, mHandler).also {
-            stopCommService()
-            it.connect(UsbDeviceListActivity.selectedPort, true)
+        mCommService = UsbCommService(this, mHandler).also { usbService ->
+            usbService.connect(UsbDeviceListActivity.selectedPort, true)
         }
     }
 
     fun connectNetworkDevice(address: String?, port: Int) {
-        mCommService = NetworkCommService(this, mHandler).also {
+        mCommService = NetworkCommService(this, mHandler).also { networkService ->
             stopCommService()
-            it.connect(address, port)
+            networkService.connect(address, port)
         }
     }
 
+    fun connectFile() {
+        resubscribeToPvListChanges()
+        if (mIsCommServiceConnected) stopCommService()
+    }
+
     private fun stopCommService() {
-        mCommService?.let {
-            it.stop()
-            mCommService = null
+        if (mIsCommServiceConnected) {
+            mCommService.stop()
             mIsCommServiceConnected = false
         }
     }
 
     private fun subscribeToPvListChanges() {
         mPvListListeners.apply {
-            add(PvListChangeListener(MainActivity.mPidAdapter, ObdProt.PidPvs))
-            add(PvListChangeListener(MainActivity.mVidAdapter, ObdProt.VidPvs))
-            add(PvListChangeListener(MainActivity.mTidAdapter, ObdProt.VidPvs))
-            add(PvListChangeListener(MainActivity.mDfcAdapter, ObdProt.tCodes))
-            add(PvListChangeListener(MainActivity.mPluginDataAdapter, MainActivity.mPluginPvs))
+            add(PvListChangeListener(MainActivity.mPidAdapter))
+            add(PvListChangeListener(MainActivity.mVidAdapter))
+            add(PvListChangeListener(MainActivity.mTidAdapter))
+            add(PvListChangeListener(MainActivity.mDfcAdapter))
+            add(PvListChangeListener(MainActivity.mPluginDataAdapter))
         }
+    }
+
+    private fun resubscribeToPvListChanges() {
+        unsubscribeFromPvListChanges()
+        subscribeToPvListChanges()
     }
 
     private fun unsubscribeFromPvListChanges() {
@@ -241,7 +274,7 @@ class WorkerService : Service() {
     }
 
     private fun startForeground() {
-        if (isNotificationVisible) {
+        if (mIsNotificationVisible) {
             return
         }
 
@@ -253,13 +286,13 @@ class WorkerService : Service() {
 
         ServiceCompat.startForeground(this, 9999, createNotification("Service started"), type)
 
-        isNotificationVisible = true
+        mIsNotificationVisible = true
     }
 
     private fun stopForeground() {
-        if (isNotificationVisible) {
+        if (mIsNotificationVisible) {
             ServiceCompat.stopForeground(this@WorkerService, ServiceCompat.STOP_FOREGROUND_REMOVE)
-            isNotificationVisible = false
+            mIsNotificationVisible = false
         }
     }
 
@@ -307,5 +340,6 @@ class WorkerService : Service() {
         const val ACTION_STOP_SERVICE: String =
             "com.fr3tsOn.ecu.gui.androbd.action.STOP_WORKER_SERVICE"
         const val CHANNEL_ID = "com.fr3tsOn.ecu.gui.androbd.CHANNEL_ID"
+        private const val TAG = "AndrOBD WorkerService"
     }
 }
