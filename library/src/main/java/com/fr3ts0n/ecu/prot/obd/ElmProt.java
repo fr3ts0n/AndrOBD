@@ -88,7 +88,11 @@ public class ElmProt
 	 * custom ELM initialisation commands
 	 */
 	private final Vector<String> customInitCommands = new Vector<String>();
-	
+	/**
+	 * last detected message counter ID
+	 */
+	private int lastMsgId = 0;
+
 	/**
 	 * ELM protocol ID's
 	 */
@@ -918,7 +922,7 @@ public class ElmProt
 					return (result);
 				}
 				
-				// is this a multy-line response
+				// is this a multi-line response
 				int idx = bufferStr.indexOf(':');
 
 				// .. or a ISO multi line response with format SVC PID MSGID DATA...
@@ -932,7 +936,25 @@ public class ElmProt
 					{
 						// Use header on 1st response, cut from continuation messages
 						int msgId = Integer.valueOf(bufferStr.substring(4,6),0x10);
-						idx = msgId <= 1 ? 0 : 5; // index of last digit message id
+						if(msgId <= 1)
+						{
+							// 1st response line
+							idx = 0;
+							lastMsgId = msgId;
+						}
+						else if (msgId == (lastMsgId + 1))
+						{
+							// continuation line
+							idx = 5;
+							lastMsgId = msgId;
+						}
+						else
+						{
+							// NOT a ISO multi line message
+							idx = -1;
+							// cut additional (padding) byte
+							bufferStr = bufferStr.substring(0,buffer.length-2);
+						}
 					}
 				}
 

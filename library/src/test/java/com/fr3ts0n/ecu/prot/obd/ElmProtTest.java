@@ -52,6 +52,66 @@ class ElmProtTest
 		// assertEquals(1, prot.getNextSupportedPid());
 	}
 
+	/**
+	 * PID message with trailing padding response bytes
+	 * - either from Adapter, or from vehicle OBD?
+	 * @Verifies AndrOBD/#283
+	 */
+	@Test
+	void handleTelegram_Clio2023_Data()
+	{
+		prot.setService(ObdProt.OBD_SVC_DATA);
+		// PID message without optional message counter
+		prot.handleTelegram("4100BE3EA817AA".toCharArray());
+		// ensure, trailing padding bytes are detected and cut off
+		// BE3EA817 -> PID's 1,3,4,5,6,7 ... set
+		assertEquals(1, prot.getNextSupportedPid());
+		assertEquals(3, prot.getNextSupportedPid());
+		assertEquals(4, prot.getNextSupportedPid());
+		assertEquals(5, prot.getNextSupportedPid());
+		assertEquals(6, prot.getNextSupportedPid());
+		assertEquals(7, prot.getNextSupportedPid());
+		assertEquals(11, prot.getNextSupportedPid());
+		assertEquals(12, prot.getNextSupportedPid());
+		assertEquals(13, prot.getNextSupportedPid());
+		assertEquals(14, prot.getNextSupportedPid());
+		assertEquals(15, prot.getNextSupportedPid());
+		assertEquals(17, prot.getNextSupportedPid());
+		assertEquals(19, prot.getNextSupportedPid());
+		assertEquals(21, prot.getNextSupportedPid());
+		assertEquals(28, prot.getNextSupportedPid());
+		assertEquals(30, prot.getNextSupportedPid());
+		assertEquals(31, prot.getNextSupportedPid());
+		// PIDs repeat again
+		// assertEquals(1, prot.getNextSupportedPid());
+	}
+
+	/**
+	 * PID message with trailing padding response bytes
+	 * - either from Adapter, or from vehicle OBD?
+	 * @Verifies AndrOBD/#283
+	 */
+	@Test
+	void handleTelegram_Clio2023_VehicleInfo()
+	{
+		prot.setService(ObdProt.OBD_SVC_VEH_INFO);
+		// PID message without optional message counter
+		prot.handleTelegram("490055430280AA".toCharArray());
+		// ensure, trailing padding bytes are detected and cut off
+		// 55430280 -> PID's 2,4,6,8 ... set
+		assertEquals(2, prot.getNextSupportedPid());
+		assertEquals(4, prot.getNextSupportedPid());
+		assertEquals(6, prot.getNextSupportedPid());
+		assertEquals(8, prot.getNextSupportedPid());
+		assertEquals(10, prot.getNextSupportedPid());
+		assertEquals(15, prot.getNextSupportedPid());
+		assertEquals(16, prot.getNextSupportedPid());
+		assertEquals(23, prot.getNextSupportedPid());
+		assertEquals(25, prot.getNextSupportedPid());
+		// PIDs repeat again
+		// assertEquals(1, prot.getNextSupportedPid());
+	}
+
 	@Test
 	void handleTelegram_Vin_ISO_Multiline()
 	{
