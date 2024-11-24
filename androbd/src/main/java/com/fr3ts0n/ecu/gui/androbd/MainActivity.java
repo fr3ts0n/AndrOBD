@@ -96,7 +96,6 @@ import java.util.logging.SimpleFormatter;
  */
 public class MainActivity extends PluginManager
         implements AdapterView.OnItemLongClickListener,
-        PropertyChangeListener,
         SharedPreferences.OnSharedPreferenceChangeListener,
         AbsListView.MultiChoiceModeListener
 {
@@ -326,8 +325,6 @@ public class MainActivity extends PluginManager
 
                     // data has been read - finish up
                     case MESSAGE_FILE_READ:
-                        // set listeners for data structure changes
-                        //setDataListeners();
                         // set adapters data source to loaded list instances
                         mPidAdapter.setPvList(ObdProt.PidPvs);
                         mVidAdapter.setPvList(ObdProt.VidPvs);
@@ -377,7 +374,6 @@ public class MainActivity extends PluginManager
                         switch (event.getType())
                         {
                             case PvChangeEvent.PV_ADDED:
-                                //currDataAdapter.setPvList(currDataAdapter.pvs);
                                 try
                                 {
                                     if (event.getSource() == ObdProt.PidPvs)
@@ -651,11 +647,6 @@ public class MainActivity extends PluginManager
 
         // create file helper instance
         fileHelper = new FileHelper(this);
-        // set listeners for data structure changes
-        //setDataListeners();
-        // automate elm status display
-        CommService.elm.addPropertyChangeListener(this);
-
         // set up action bar
         ActionBar actionBar = getActionBar();
         if (actionBar != null)
@@ -771,35 +762,12 @@ public class MainActivity extends PluginManager
         // Stop toolbar hider thread
         setAutoHider(false);
 
-//        try
-//        {
-//            // Reduce ELM power consumption by setting it to sleep
-//            CommService.elm.goToSleep();
-//            // wait until message is out ...
-//            Thread.sleep(100, 0);
-//        } catch (InterruptedException e)
-//        {
-//            // do nothing
-//            log.log(Level.FINER, e.getLocalizedMessage());
-//        }
-
-        /* don't listen to ELM data changes any more */
-        //removeDataListeners();
-        // don't listen to ELM property changes any more
-        CommService.elm.removePropertyChangeListener(this);
-
         // stop demo service if it was started
         setMode(MODE.OFFLINE);
 
         if (mIsWorkerServiceBound) {
             unbindWorkerService();
         }
-
-        // stop communication service
-        //if (mCommService != null)
-        //{
-        //    mCommService.stop();
-        //}
 
         // if bluetooth adapter was switched OFF before ...
         if (mBluetoothAdapter != null && !initialBtStateEnabled)
@@ -913,10 +881,7 @@ public class MainActivity extends PluginManager
             case R.id.disconnect:
                 // stop communication service
                 stopWorkerService();
-                //if (mCommService != null)
-                //{
-                //    mCommService.stop();
-                //}
+
                 setMode(MODE.OFFLINE);
                 return true;
 
@@ -1063,9 +1028,6 @@ public class MainActivity extends PluginManager
                     };
 
                     startOrBindWorkerService();
-
-                    //mCommService = new UsbCommService(this, mHandler);
-                    //mCommService.connect(UsbDeviceListActivity.selectedPort, true);
                 } else
                 {
                     setMode(MODE.OFFLINE);
@@ -1394,25 +1356,6 @@ public class MainActivity extends PluginManager
     }
 
     /**
-     * Handler for PV change events This handler just forwards the PV change
-     * events to the android handler, since all adapter / GUI actions have to be
-     * performed from the main handler
-     *
-     * @param event PvChangeEvent which is reported
-     */
-    //@Override
-    //public synchronized void pvChanged(PvChangeEvent event)
-    //{
-    //    // forward PV change to the UI Activity
-    //    Message msg = mHandler.obtainMessage(MainActivity.MESSAGE_DATA_ITEMS_CHANGED);
-    //    if (!event.isChildEvent())
-    //    {
-    //        msg.obj = event;
-    //        mHandler.sendMessage(msg);
-    //    }
-    //}
-
-    /**
      * Check if restore of specified preselection is wanted from settings
      *
      * @param preselect specified preselect
@@ -1697,42 +1640,6 @@ public class MainActivity extends PluginManager
 
         return result;
     }
-
-    /**
-     * set listeners for data structure changes
-     */
-    //private void setDataListeners()
-    //{
-    //    // add pv change listeners to trigger model updates
-    //    ObdProt.PidPvs.addPvChangeListener(this,
-    //            PvChangeEvent.PV_ADDED
-    //                    | PvChangeEvent.PV_CLEARED
-    //    );
-    //    ObdProt.VidPvs.addPvChangeListener(this,
-    //            PvChangeEvent.PV_ADDED
-    //                    | PvChangeEvent.PV_CLEARED
-    //    );
-    //    ObdProt.tCodes.addPvChangeListener(this,
-    //            PvChangeEvent.PV_ADDED
-    //                    | PvChangeEvent.PV_CLEARED
-    //    );
-    //    mPluginPvs.addPvChangeListener(this,
-    //            PvChangeEvent.PV_ADDED
-    //                    | PvChangeEvent.PV_CLEARED
-    //    );
-    //}
-
-    /**
-     * set listeners for data structure changes
-     */
-    //private void removeDataListeners()
-    //{
-    //    // remove pv change listeners
-    //    ObdProt.PidPvs.removePvChangeListener(this);
-    //    ObdProt.VidPvs.removePvChangeListener(this);
-    //    ObdProt.tCodes.removePvChangeListener(this);
-    //    mPluginPvs.removePvChangeListener(this);
-    //}
 
     /**
      * get current operating mode
@@ -2064,12 +1971,6 @@ public class MainActivity extends PluginManager
         };
 
         startOrBindWorkerService();
-
-        // Get the BluetoothDevice object
-        //BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
-        // Attempt to connect to the device
-        //mCommService = new BtCommService(this, mHandler);
-        //mCommService.connect(device, secure);
     }
 
     /**
@@ -2085,9 +1986,6 @@ public class MainActivity extends PluginManager
         };
 
         startOrBindWorkerService();
-        // Attempt to connect to the device
-        //mCommService = new NetworkCommService(this, mHandler);
-        //((NetworkCommService) mCommService).connect(address, port);
     }
 
     /**
@@ -2310,50 +2208,6 @@ public class MainActivity extends PluginManager
     {
         // handle further initialisations
         setMode(MODE.OFFLINE);
-    }
-
-    /**
-     * Property change listener to ELM-Protocol
-     *
-     * @param evt the property change event to be handled
-     */
-    public void propertyChange(PropertyChangeEvent evt)
-    {
-        /* handle protocol status changes */
-        if (ElmProt.PROP_STATUS.equals(evt.getPropertyName()))
-        {
-            // forward property change to the UI Activity
-            Message msg = mHandler.obtainMessage(MESSAGE_OBD_STATE_CHANGED);
-            msg.obj = evt;
-            mHandler.sendMessage(msg);
-        } else
-        {
-            if (ElmProt.PROP_NUM_CODES.equals(evt.getPropertyName()))
-            {
-                // forward property change to the UI Activity
-                Message msg = mHandler.obtainMessage(MESSAGE_OBD_NUMCODES);
-                msg.obj = evt;
-                mHandler.sendMessage(msg);
-            } else
-            {
-                if (ElmProt.PROP_ECU_ADDRESS.equals(evt.getPropertyName()))
-                {
-                    // forward property change to the UI Activity
-                    Message msg = mHandler.obtainMessage(MESSAGE_OBD_ECUS);
-                    msg.obj = evt;
-                    mHandler.sendMessage(msg);
-                } else
-                {
-                    if (ObdProt.PROP_NRC.equals(evt.getPropertyName()))
-                    {
-                        // forward property change to the UI Activity
-                        Message msg = mHandler.obtainMessage(MESSAGE_OBD_NRC);
-                        msg.obj = evt;
-                        mHandler.sendMessage(msg);
-                    }
-                }
-            }
-        }
     }
 
     /**

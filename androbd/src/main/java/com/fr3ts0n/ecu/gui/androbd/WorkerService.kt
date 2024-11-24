@@ -21,14 +21,16 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import com.fr3ts0n.ecu.gui.androbd.CommService.STATE
+import com.fr3ts0n.ecu.prot.obd.ElmProt
+import com.fr3ts0n.ecu.prot.obd.ObdProt
 import com.fr3ts0n.pvs.PvChangeEvent
 import com.fr3ts0n.pvs.PvChangeListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import java.beans.PropertyChangeEvent
 import java.beans.PropertyChangeListener
-import java.util.SortedMap
 
 class WorkerService : Service() {
     private val binder = WorkerServiceBinder()
@@ -41,9 +43,11 @@ class WorkerService : Service() {
 
     private lateinit var mHandler: Handler
     private val mPvListListeners: ArrayList<PvListChangeListener> = ArrayList()
-    private var mMessageQueue: SortedMap<Int, Message> = sortedMapOf()
+    private val mPropListener = PropChangeListener()
+    private var mIsPropListenerSubscribed = false
 
     private val mCoroutineScope = CoroutineScope(Dispatchers.Main)
+    private val mSavedMessages = LastMessages()
 
     inner class WorkerServiceBinder : Binder() {
         fun setHandler(handler: Handler) = setMainActivityHandler(handler)
@@ -55,7 +59,6 @@ class WorkerService : Service() {
         fun connectToUsb() = connectDeviceUsb()
         fun connectToNetwork(address: String?, port: Int) = connectNetworkDevice(address, port)
         fun connectToFile() = connectFile()
-        fun addELMPropertyChangeListener(listener: PropertyChangeListener) {}
     }
 
     inner class Receiver : BroadcastReceiver() {
@@ -85,7 +88,7 @@ class WorkerService : Service() {
                     ?.apply {
                         obj = event
 
-                        mMessageQueue[what] = Message.obtain(this)
+                        mSavedMessages.addMessage(this)
 
                         sendToTarget()
                     }
@@ -94,6 +97,45 @@ class WorkerService : Service() {
 
         fun unsubscribeFromPvList() {
             mAdapter.pvs.removePvChangeListener(this)
+        }
+    }
+
+    private inner class PropChangeListener() : PropertyChangeListener {
+        private fun sendToMainActivityHandler(eventType: Int, evt: PropertyChangeEvent) {
+            mMainActivityHandler?.let { mainActivityHandler ->
+                mainActivityHandler.obtainMessage(eventType).apply {
+                    obj = evt
+                    sendToTarget()
+                }
+            }
+        }
+
+        override fun propertyChange(evt: PropertyChangeEvent?) {
+            mCoroutineScope.launch {
+                val propertyEvent = evt ?: return@launch
+
+                when (propertyEvent.propertyName) {
+                    ElmProt.PROP_STATUS -> sendToMainActivityHandler(
+                        MainActivity.MESSAGE_OBD_STATE_CHANGED,
+                        propertyEvent
+                    )
+
+                    ElmProt.PROP_NUM_CODES -> sendToMainActivityHandler(
+                        MainActivity.MESSAGE_OBD_NUMCODES,
+                        propertyEvent
+                    )
+
+                    ElmProt.PROP_ECU_ADDRESS -> sendToMainActivityHandler(
+                        MainActivity.MESSAGE_OBD_ECUS,
+                        propertyEvent
+                    )
+
+                    ObdProt.PROP_NRC -> sendToMainActivityHandler(
+                        MainActivity.MESSAGE_OBD_NRC,
+                        propertyEvent
+                    )
+                }
+            }
         }
     }
 
@@ -165,13 +207,13 @@ class WorkerService : Service() {
 
                                 mIsCommServiceConnected = false
                                 mLastBluetoothDeviceAddress = ""
-                                mMessageQueue.clear()
+                                mSavedMessages.clear()
                             }
                         }
                     }
                 }
 
-                mMessageQueue[msg.what] = Message.obtain(msg)
+                mSavedMessages.addMessage(msg)
 
                 mMainActivityHandler?.obtainMessage(msg.what, msg.obj)?.apply {
                     data = msg.data
@@ -197,11 +239,8 @@ class WorkerService : Service() {
 
     private fun requestEventsToActivityHandler() {
         mMainActivityHandler?.let { handler ->
-            mMessageQueue.values.forEach {
-                handler.sendMessage(it)
-            }
-
-            mMessageQueue.clear()
+            mSavedMessages.sendAllFromHandler(handler)
+            mSavedMessages.clear()
         }
     }
 
@@ -251,6 +290,9 @@ class WorkerService : Service() {
             add(PvListChangeListener(MainActivity.mDfcAdapter))
             add(PvListChangeListener(MainActivity.mPluginDataAdapter))
         }
+
+        CommService.elm.addPropertyChangeListener(mPropListener)
+        mIsPropListenerSubscribed = true;
     }
 
     private fun resubscribeToPvListChanges() {
@@ -262,6 +304,11 @@ class WorkerService : Service() {
         mPvListListeners.apply {
             forEach { it.unsubscribeFromPvList() }
             clear()
+        }
+
+        if (mIsPropListenerSubscribed) {
+            CommService.elm.removePropertyChangeListener(mPropListener)
+            mIsPropListenerSubscribed = false
         }
     }
 
