@@ -163,8 +163,6 @@ class WorkerService : Service() {
     }
 
     override fun onDestroy() {
-        mCoroutineScope.cancel()
-
         try {
             CommService.elm.goToSleep();
             Thread.sleep(100, 0);
@@ -172,17 +170,23 @@ class WorkerService : Service() {
             Log.v(TAG, e.localizedMessage ?: "")
         }
 
-        unsubscribeFromPvListChanges()
+        ObdProt.PidPvs.clear()
+        ObdProt.VidPvs.clear()
+        ObdProt.tCodes.clear()
 
-        if (mIsNotificationVisible) {
-            stopForeground()
-        }
+        unsubscribeFromPvListChanges()
 
         stopCommService()
 
         unregisterReceiver(receiver)
 
         isRunning = false
+
+        if (mIsNotificationVisible) {
+            stopForeground()
+        }
+
+        mCoroutineScope.cancel()
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
@@ -240,7 +244,6 @@ class WorkerService : Service() {
     private fun requestEventsToActivityHandler() {
         mMainActivityHandler?.let { handler ->
             mSavedMessages.sendAllFromHandler(handler)
-            mSavedMessages.clear()
         }
     }
 

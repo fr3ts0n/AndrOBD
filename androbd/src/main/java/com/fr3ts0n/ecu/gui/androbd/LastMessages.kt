@@ -11,7 +11,11 @@ class LastMessages(private val queue: MutableList<Message> = mutableListOf()) {
         queue.add(Message.obtain(msg))
     }
 
-    fun sendAllFromHandler(handler: Handler) = queue.forEach { handler.sendMessage(it) }
+    fun sendAllFromHandler(handler: Handler) = queue.map {
+        val copied =  Message.obtain(it)
+        handler.sendMessage(it)
+        copied
+    }
 
     fun clear() = queue.clear()
 }
