@@ -21,6 +21,8 @@
 
             // Launch behaviour if source files have been saved after the APK was built. One of: [ ignore warn stop ]. Default: warn
             "staleBuild": "warn",
+
+            "launchActivity": ".MainActivity"
         }
     ]
 }

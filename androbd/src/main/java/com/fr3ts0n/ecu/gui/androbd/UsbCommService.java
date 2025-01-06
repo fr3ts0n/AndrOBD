@@ -117,7 +117,6 @@ public class UsbCommService extends CommService
 	private void setDevice(UsbSerialPort port)
 	{
 		sPort = port;
-		mSerialIoManager = new SerialInputOutputManager(sPort, mListener);
 	}
 
 	@Override
@@ -204,6 +203,9 @@ public class UsbCommService extends CommService
 
 				// start communication thread
 				log.info("Starting io manager ..");
+				// Initialize SerialIoManager AFTER opening sPort
+				// workaround for AndrOBD#285 / https://github.com/mik3y/usb-serial-for-android/issues/611
+				mSerialIoManager = new SerialInputOutputManager(sPort, mListener);
 				Executors.newSingleThreadExecutor().submit(mSerialIoManager);
 
 				// we are connected -> signal connectionEstablished
