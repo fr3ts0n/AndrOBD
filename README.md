@@ -172,6 +172,12 @@ Buy us a coffee or donate in the amount that you see valuable for the project, a
 | 2023/01 | Remy Piper | €10 |
 | 2023/03 | Hausmeister0815 | $60 |
 | 2023/07 | Christian Böttcher | €10 |
+| 2023/11 | @user8446 | $10 |
+| 2024/01 | Hausmeister0815 | €50 |
+| 2024/04 | @BaderSZ | $5 |
+| 2024/05 | Raphael Högger | CHF52 |
+| 2024/11 | @user8446 | $10 |
+
 </details>
 
 <details>
