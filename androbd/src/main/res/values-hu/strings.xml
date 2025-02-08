@@ -11,88 +11,89 @@
     <string name="obd_services">OBD szolgáltatások</string>
     <string name="obd_veh_info">OBD információk a járműről</string>
     <string name="obd_data">OBD adat</string>
-    <string name="service_freezeframes">OBD Pillanatkép Adatok</string>
+    <string name="service_freezeframes">OBD feeze frame adatok</string>
     <string name="obd_codes">OBD hibakódok</string>
     <string name="obd_permanentcodes">OBD hibakódok (állandó)</string>
     <string name="obd_pendingcodes">OBD hibakódok (kérdéses)</string>
     <string name="obd_clearcodes">Hibakódok törlése</string>
-    <string name="obd_clear_info">Ez visszaállítja a motorkontroll-lámpát és törli az összes emissziós diagnosztikai információt, beleértve:
-\n- Diagnosztikai hibakódokat  
-\n- Emissziós pillanatkép adatokat  
-\n- Oxigén szenzor (lambda szonda) vizsgálati adatokat  
-\n- Rendszerállapot ellenőrző teszteket  
-\n- Fedélzeti diagnosztikai vizsgálatok eredményeit  
-\n- Aktív motorkontroll-lámpa közben megtett úttávolságot  
-\n- Bemelegítések száma DTC törlése óta  
-\n- Megtett út a DTC törlése óta  
-\n- Motor futási idő aktivált motorkontroll lámpa közben  
-\n- DTC törlés óta eltelt idő
+    <string name="obd_clear_info">Ez visszaállítja a MIL-t, és törli az összes emisszióval kapcsolatos diagnosztikai
+\n információkat, beleértve a következőket:
+\n - Diagnosztikai hibakódokat
+\n - Naplózott Freeze frame adatokat
+\n - Az Oxigénszenzor(ok) naplózott tesztadatait
+\n - A rendszerfelügyeleti tesztek naplózott állapotait
+\n - A fedélzeti felügyeleti tesztek naplózott eredményeit
+\n - A MIL aktiválása közben megtett naplózott úttávolságot
+\n - A DTC-k törlése óta végzett bemelegítések naplózott számát
+\n - A DTC-k törlése óta megtett naplózott távolságot
+\n - Aktív MIL-el megtett motorjárati naplózott időtartamot
+\n - A DTC-k törlése óta eltelt naplózott időtartamot
 \n
-\nEgyéb gyártóspecifikus törlési/visszaállítási műveletek is előfordulhatnak.
-\nAz adatvesztés miatt a jármű rövid ideig rosszul működhet,
-\namíg az ECU újrakalibrálja magát.</string>
+\n Egyéb gyártóspecifikus törlési/visszaállítási műveletek is előfordulhatnak.
+\n Az adatvesztés miatt a jármű rövid ideig rosszul járhat.
+\n amíg az ECU újrakalibrálja magát.</string>
     <string name="select_device">Válasszon ki egy adaptert</string>
     <string name="none_paired">Nincs párosított eszköz</string>
     <string name="none_found">Nem található eszköz</string>
     <string name="title_paired_devices">Párosított eszközök</string>
-    <string name="send_to">Küldés</string>
+    <string name="send_to">Küldés ide:</string>
     <string name="share">Megosztás</string>
     <string name="time">Idő [mp]</string>
     <string name="chart">Grafikon</string>
     <string name="demo_stopped">DEMO mód leállítva</string>
     <string name="demo_started">DEMO mód elindítva</string>
     <string name="snapshot">pillanatkép</string>
-    <string name="save">Mérések mentése</string>
-    <string name="load">Mérések betöltése</string>
-    <string name="saved_data">Mentett Adatok</string>
+    <string name="save">Mérés mentése</string>
+    <string name="load">Mérés betöltése</string>
+    <string name="saved_data">Mentett adat</string>
     <string name="loaded">betöltve</string>
     <string name="saved">mentve</string>
     <string name="connected_to">"Kapcsolódva a következőhöz: "</string>
     <string name="demo">Demo…</string>
     <string name="saving_data">Adat mentése …</string>
-    <string name="loading_data">Adat betöltés …</string>
+    <string name="loading_data">Adat betöltése …</string>
     <string name="dashboard">Kezelőpult</string>
     <string name="hud">Szem elé vetített kijelző (HUD)</string>
     <string name="filter">Szűrő kiválasztva</string>
     <string name="settings">Beállítások</string>
     <string name="common_settings">Közös beállítások</string>
-    <string name="measure_system_description">Mértékegység (metrikus / angolszász)</string>
+    <string name="measure_system_description">Mértékegységrendszer (metrikus / angolszász)</string>
     <string name="measure_system">Mértékegység</string>
     <string name="metric">metrikus</string>
     <string name="imperial">angolszász</string>
-    <string name="items_for_display">Megjelenő adatok</string>
-    <string name="items_for_display_descr">Jelölje ki a megjeleníteni kívánt elemeket …</string>
+    <string name="items_for_display">Megjelenítendő adatok</string>
+    <string name="items_for_display_descr">Jelölje ki a megjeleníteni kívánt adatokat …</string>
     <string name="debugging">Hibakeresés</string>
     <string name="logging_level">Naplózási szint</string>
     <string name="logging_level_description">A hibakeresési napló részletességi szintje</string>
-    <string name="last_elm">legutóbbi ELM adapter újracsatlakoztatása</string>
-    <string name="last_ecu">legutóbbi ECU újracsatlakoztatása</string>
+    <string name="last_elm">újrakapcsolódás a legutóbb használt ELM adapterhez</string>
+    <string name="last_ecu">újrakapcsolódás a legutóbb vizsgált ECU-hoz</string>
     <string name="last_service">legutóbbi OBD szolgáltatás</string>
     <string name="last_data_items">utoljára kijelölt adatelemek</string>
     <string name="last_view_mode">legutóbbi adatnézet</string>
-    <string name="keep_screen_on">Képernyő bekapcsolva marad</string>
-    <string name="keep_screen_on_description">NE kapcsolja ki a képernyőt, ha a fő, ill. adat képernyőn tartózkodik</string>
-    <string name="development_options">Fejlesztői lehetőségek</string>
-    <string name="dev_opt_description">Hibakeresési és testreszabási lehetőségek</string>
-    <string name="extension_files">Protokoll testreszabási fájlok (CSV)</string>
+    <string name="keep_screen_on">Tartsa bekapcsolva a képernyőt</string>
+    <string name="keep_screen_on_description">NE kapcsolja ki a képernyőt, ha a fő-/adatképernyőn tartózkodik</string>
+    <string name="development_options">Fejlesztői beállítások</string>
+    <string name="dev_opt_description">Beállítások a hibakereséshez és a testreszabáshoz</string>
+    <string name="extension_files">Protokoll-testreszabási fájlok (CSV)</string>
     <string name="conversions">Adatkonverziók</string>
     <string name="data_items">Adatelemek</string>
-    <string name="select_extension">Válasszon .csv kiterjesztésű fájlt …</string>
+    <string name="select_extension">Válasszon ki egy .csv kiterjesztésű fájlt …</string>
     <string name="extension_loading">Testreszabások betöltése</string>
-    <string name="check_cust_settings">Testreszabási beállítások megjelelölése
+    <string name="check_cust_settings">Ellenőrízze a testreszabási beállításokat
 \n</string>
-    <string name="obd_options">OBD lehetőségek</string>
-    <string name="obd_opt_description">OBD protokol / jármű kommunikáció lehetőségek</string>
+    <string name="obd_options">OBD beállítások</string>
+    <string name="obd_opt_description">Beállítások az OBD protokollhoz és a jármű kommunikációhoz</string>
     <string name="select_protocol">Előnyben részesített OBD protokol</string>
-    <string name="select_fault_code">Hibakód kiválasztás …</string>
-    <string name="select_medium">Adapter típus …</string>
+    <string name="select_fault_code">Hibakódkiválasztás …</string>
+    <string name="select_medium">Adaptertípus …</string>
     <string name="devices_found">%d USB-eszköz található</string>
     <string name="min_elm_timeout">Min. ELM várakozás [ms]</string>
     <string name="unabletoconnect">Nem lehet kapcsolódni az eszközhöz</string>
     <string name="connectionlost">Megszakadt a kapcsolat</string>
     <string name="elm_timeout_descr">Minimum várakozási idő [ms] az ELM válaszaira</string>
-    <string name="day_night_mode">Nappali/Éjszakai nézet</string>
-    <string name="night_mode_description">A kijelző sötét hátterű beállítása</string>
+    <string name="day_night_mode">Nappali/éjszakai mód</string>
+    <string name="night_mode_description">Sötét háttér beállítása a kijelzőn</string>
     <string name="night_mode">Éjszakai mód</string>
     <string name="disable_elm_cmds">Letiltott ELM parancsok</string>
     <string name="disable_elm_cmds_descr">ELM parancsok engedélyezése/letiltása</string>
@@ -108,12 +109,12 @@
     <string name="common_settings_description">Közös beállítások az alkalmazás-vezérléshez</string>
     <string name="secure_connect">Biztonságos kapcsolat</string>
     <string name="secure_connect_description">Titkosított Bluetooth kapcsolat használata</string>
-    <string name="elm_options">ELM lehetőségek</string>
-    <string name="elm_custom_init">ELM egyedi inicializálás</string>
-    <string name="elm_custom_init_descr">ELM egyedi inicializálási parancs</string>
+    <string name="elm_options">ELM beállítások</string>
+    <string name="elm_custom_init">ELM egyedi előkészítés</string>
+    <string name="elm_custom_init_descr">ELM egyedi előkészítési parancs</string>
     <string name="UNDEFINED">Nem definiált</string>
-    <string name="INITIALIZING">Inicializálás…</string>
-    <string name="INITIALIZED">Inicializált</string>
+    <string name="INITIALIZING">Előkészítés…</string>
+    <string name="INITIALIZED">Előkészítve</string>
     <string name="ECU_DETECT">ECU keresése…</string>
     <string name="ECU_DETECTED">ECU megtalálva</string>
     <string name="CONNECTING">Kapcsolódás…</string>
@@ -121,36 +122,36 @@
     <string name="NODATA">Nincs adat</string>
     <string name="STOPPED">Leállítva</string>
     <string name="DISCONNECTED">Kapcsolat bontva</string>
-    <string name="BUSERROR">BUSZ hiba</string>
-    <string name="DATAERROR">ADAT hiba</string>
-    <string name="RXERROR">RX hiba</string>
+    <string name="BUSERROR">Buszhiba</string>
+    <string name="DATAERROR">Adathiba</string>
+    <string name="RXERROR">RX-hiba</string>
     <string name="ERROR">Hiba</string>
-    <string name="obd_error">OBD protokoll hiba</string>
+    <string name="obd_error">OBD-protokollhiba</string>
     <string name="device_address_description">ELM eszköz hálózati IP címe</string>
     <string name="device_address">ELM IP címe</string>
     <string name="device_port_description">ELM eszköz hálózati IP port</string>
     <string name="device_port">ELM IP-port</string>
     <string name="autohide_toolbar">Eszközsáv elrejtése</string>
-    <string name="autohide_toolbar_description">Az eszközsáv auto. elrejtése w/o tevékenység késleltetés után</string>
-    <string name="autohide_delay">Eszközsáv elrejtés késleltetése [mp]</string>
-    <string name="autohide_delay_description">Tevékenység nélküli késleltetés másodpercben, mielőtt elrejti az eszközsávot</string>
-    <string name="csv_export_options">CSV export lehetőségek</string>
-    <string name="csv_export_description">CSV export fájlok formázási lehetőségei</string>
+    <string name="autohide_toolbar_description">Automatikusan elrejti az eszköztárat, ha nincs felhasználói aktivitás</string>
+    <string name="autohide_delay">Eszköztár elrejtésének késleltetése [mp]</string>
+    <string name="autohide_delay_description">Felhasználói aktivitás nélküli késleltetés másodpercben, mielőtt elrejti az eszközsávot</string>
+    <string name="csv_export_options">CSV exportálási lehetőségek</string>
+    <string name="csv_export_description">CSV exportálási fájlok formázási lehetőségei</string>
     <string name="csv_field_delimiter">CSV mező elválasztó</string>
-    <string name="csv_field_delimiter_description">Elválasztó karakter(ek) a CSV adat mezői között</string>
-    <string name="csv_rec_delimiter">CSV record elválasztó</string>
-    <string name="csv_rec_delimiter_description">Elválasztó karakter(ek) a CSV rekord mezői között</string>
+    <string name="csv_field_delimiter_description">Elválasztó karakter(ek) a CSV adatmezők között</string>
+    <string name="csv_rec_delimiter">CSV bejegyzés elválasztó</string>
+    <string name="csv_rec_delimiter_description">Elválasztó karakter(ek) a CSV adatbejegyzései között</string>
     <string name="csv_text_quoted">CSV idézett szöveg</string>
-    <string name="csv_text_quoted_description">CSV szövegmezők idézőjelek között legyenek</string>
-    <string name="tab">TAB</string>
-    <string name="comma">VESSZŐ</string>
-    <string name="semicolon">PONTOSVESSZŐ</string>
+    <string name="csv_text_quoted_description">A CSV szöveges mezők idézőjelek közé kerülnek</string>
+    <string name="tab">Tab</string>
+    <string name="comma">Vessző</string>
+    <string name="semicolon">Pontosvessző</string>
     <string name="send_after_export">Küldés exportálás után</string>
     <string name="send_after_export_descr">Kérdezzen rá a CSV fájl elküldésére közvetlenül az exportálás után?</string>
     <string name="plugin_manager">Bővítménykezelő</string>
     <string name="configure">Konfigurálás</string>
     <string name="data_disable_max">Adattiltási limit</string>
-    <string name="data_disable_max_description">Érvénytelen egymás utáni adatok száma tiltás előtt</string>
+    <string name="data_disable_max_description">Egymást követő érvénytelen adatválaszok száma az elem letiltása előtt</string>
     <string name="toolbar_overlay">Megjelenítés legfelül</string>
     <string name="toolbar_overlay_sum">Eszköztár megjelenítése a főképernyő felett</string>
     <string name="license">Licencelés …</string>
@@ -161,27 +162,27 @@
     <string name="graphic_design">Grafikus terv</string>
     <string name="long_press_dfc_hint">Hibakód hosszú nyomva tartása online kereséshez …</string>
     <string name="copied_to_clipboard">Másolva a vágólapra</string>
-    <string name="service_testcontrol">OBD tesztellenőrzés</string>
-    <string name="obd_test_progress">OBD tesztellenőrzése folyamatban.
+    <string name="service_testcontrol">OBD-vezérlésteszt</string>
+    <string name="obd_test_progress">OBD-vezérlésteszt folyamatban.
 \nFigyelje a jármű reakcióit!</string>
     <string name="comm_baudrate_description">USB soros kommunikáció sebesség</string>
     <string name="full_screen_display">Teljes képernyő</string>
     <string name="comm_baudrate">ELM baud ráta</string>
-    <string name="obd_test_confirm">OBD teszt vezérlési kérelem.
+    <string name="obd_test_confirm">OBD-vezérléstesztet kért.
 \n
-\n A kért OBD teszt ellenőrzés a következő jelenségeket generálhatja:
-\n - Jármű mozgása
-\n - Kipufogó füst
-\n - Magas kipufogógáz-hőmérséklet
-\n - Hangos motorzaj
-\n - üzemanyaggőz
+\n A kért OBD-vezérlésteszt generálhat:
+\n - Jármű mozgást
+\n - Kipufogógáz-füstöt
+\n - Magas kipufogógáz-hőmérsékletet
+\n - Hangos motorzajt
+\n - Üzemanyaggőzt
 \n - stb.
 \n
-\nErősítse meg, hogy ezt a teszt ellenőrzést csak saját felelősségére, biztonságos tesztkörnyezetben végzi el!</string>
+\n Erősítse meg, hogy ezt a tesztellenőrzést csak saját felelősségére, biztonságos tesztkörnyezetben végzi el!</string>
     <string name="full_screen_display_description">Teljes képernyő használata az alkalmazás megjelenítéséhez</string>
     <string name="customize_display">Az adatok megjelenítésének testreszabása</string>
     <string name="reset_default">Alapértelmezett</string>
     <string name="display_color">A kijelző színe</string>
     <string name="display_range">Megjelenítési tartomány</string>
-    <string name="update_period_s">Frissítési időszak [s]</string>
+    <string name="update_period_s">Frissítési ciklus [s]</string>
 </resources>
