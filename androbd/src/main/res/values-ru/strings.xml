@@ -163,4 +163,5 @@
     <string name="comm_baudrate_description">Скорость последовательного порта USB</string>
     <string name="comm_baudrate">Скорость передачи ELM в бодах</string>
     <string name="service_testcontrol">Контроль тестирования OBD</string>
+    <string name="copied_to_clipboard">Скопировано в буфер</string>
 </resources>
