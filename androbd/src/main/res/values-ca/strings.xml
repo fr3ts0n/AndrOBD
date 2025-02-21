@@ -42,8 +42,8 @@
     <string name="metric">mètriques</string>
     <string name="debugging">Depuració</string>
     <string name="extension_files">Fitxers de personalització de protocol (CSV)</string>
-    <string name="donation">Doneu suport al projecte…</string>
-    <string name="release_history">Historial de publicacions…</string>
+    <string name="donation">Ajudar el projecte…</string>
+    <string name="release_history">Historial de publicació…</string>
     <string name="libraries_sum">Bibliotecas utilitzades en el projecte…</string>
     <string name="libraries">Biblioteques…</string>
     <string name="send_after_export">Envia després d’exportar</string>
@@ -70,4 +70,5 @@
     <string name="title_connecting">S’està connectant…</string>
     <string name="app_description">Aplicació de diagòstic vehicular per OBD per a l’adaptador Bluetooth ELM327</string>
     <string name="translation_credits">Traducció per Adolf</string>
+    <string name="configure">Configurar</string>
 </resources>
