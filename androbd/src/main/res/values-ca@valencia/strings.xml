@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="donation">Ajudar el projecte…</string>
+    <string name="configure">Configurar</string>
+    <string name="release_history">Historial de publicació…</string>
+</resources>
