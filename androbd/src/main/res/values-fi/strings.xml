@@ -3,4 +3,11 @@
     <string name="configure">Määritä</string>
     <string name="release_history">Julkaisuhistoria…</string>
     <string name="donation">Tue projektia…</string>
+    <string name="copied_to_clipboard">Kopioitu leikepöydälle</string>
+    <string name="title_connecting">Yhdistetään…</string>
+    <string name="title_connected_to">Yhdistetty %s</string>
+    <string name="logo">Logo</string>
+    <string name="back_again_to_exit">Sulje sovellus painamalla Takaisin-painiketta uudelleen</string>
+    <string name="action_connect">Yhdistä</string>
+    <string name="obd_services">Diagnoosipalvelut</string>
 </resources>
