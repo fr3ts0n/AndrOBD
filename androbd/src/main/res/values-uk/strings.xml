@@ -5,27 +5,27 @@
     <string name="title_connecting">З’єдання…</string>
     <string name="title_connected_to">З’єднано з %s</string>
     <string name="logo">Логотип</string>
-    <string name="back_again_to_exit">Щоб закрити додаток, натисніть ще раз</string>
-    <string name="action_connect">З’єднання</string>
+    <string name="back_again_to_exit">Щоб закрити застосунок, натисніть ще раз</string>
+    <string name="action_connect">З\'єднатися</string>
     <string name="obd_none">НЕ підтримується</string>
-    <string name="obd_services">OBD служби</string>
-    <string name="obd_veh_info">OBD дані про автівку</string>
+    <string name="obd_services">Служби OBD</string>
+    <string name="obd_veh_info">OBD дані про авто</string>
     <string name="obd_data">OBD дані</string>
     <string name="service_freezeframes">OBD фрейми, що зупинені</string>
-    <string name="obd_codes">коди помилок OBD</string>
-    <string name="obd_permanentcodes">OBD коди помилок (збережені)</string>
-    <string name="obd_pendingcodes">OBD коди помилок (очікуючі)</string>
-    <string name="obd_clearcodes">Скинути помилки</string>
-    <string name="select_device">Вибір адаптера</string>
-    <string name="none_paired">Немає парних пристроїв</string>
+    <string name="obd_codes">Коди помилок OBD</string>
+    <string name="obd_permanentcodes">Коди помилок OBD (збережені)</string>
+    <string name="obd_pendingcodes">Коди помилок OBD (поточні)</string>
+    <string name="obd_clearcodes">Очистити коди помилок</string>
+    <string name="select_device">Виберіть адаптер</string>
+    <string name="none_paired">Немає пов\'язаних пристроїв</string>
     <string name="none_found">Пристроїв не знайдено</string>
-    <string name="title_paired_devices">Парні пристрої</string>
+    <string name="title_paired_devices">Пов\'язані пристрої</string>
     <string name="send_to">Надіслати до</string>
     <string name="share">Поділитися</string>
-    <string name="time">Час [s]</string>
+    <string name="time">Час [с]</string>
     <string name="chart">Графік</string>
-    <string name="demo_stopped">Демо режим ввимкнено</string>
-    <string name="demo_started">ДЕМО режим увімкнуто</string>
+    <string name="demo_stopped">Демонстраційний режим зупинено</string>
+    <string name="demo_started">Демонстраційний режим розпочато</string>
     <string name="snapshot">знімок</string>
     <string name="save">Зберегти вимірювання</string>
     <string name="load">Завантажити вимірювання</string>
@@ -34,155 +34,128 @@
     <string name="saved">збережено</string>
     <string name="connected_to">"Під’єдано до "</string>
     <string name="demo">Демо…</string>
-    <string name="saving_data">Збереження…</string>
+    <string name="saving_data">Збереження даних…</string>
     <string name="loading_data">Завантаження даних…</string>
     <string name="dashboard">Панель приладів</string>
     <string name="hud">Головний дисплей</string>
-    <string name="filter">Обраний фільтр</string>
+    <string name="filter">Вибраний фільтр</string>
     <string name="settings">Налаштування</string>
     <string name="common_settings">Загальні налаштування</string>
-    <string name="measure_system_description">Система вимірювальних одиниць (метрична/імперська)</string>
+    <string name="measure_system_description">Система одиниць вимірювання (метрична / імперська)</string>
     <string name="measure_system">Одинці виміру</string>
     <string name="metric">метрична</string>
     <string name="imperial">імперська</string>
-    <string name="items_for_display">Дані на екрані</string>
-    <string name="items_for_display_descr">Оберіть дані для відображення…</string>
+    <string name="items_for_display">Дані для показу</string>
+    <string name="items_for_display_descr">Виберіть дані для показу …</string>
     <string name="debugging">Налагодження</string>
-    <string name="logging_level">Рівень логу</string>
-    <string name="logging_level_description">Рівень деталізації при налагодженні в лог-файлі</string>
+    <string name="logging_level">Рівень журналу</string>
+    <string name="logging_level_description">Рівень деталізації для запису у файл журналу налагодження</string>
     <string name="last_elm">повторне з’єднання з останнім ELM-адаптером</string>
-    <string name="last_ecu">"повторне з’єднання з останнім  ЕБУ"</string>
+    <string name="last_ecu">повторне з’єднання з останнім ЕБУ</string>
     <string name="last_service">остання OBD служба</string>
-    <string name="last_data_items">останні обрані показники</string>
-    <string name="last_view_mode">останній режим відображення даних</string>
-    <string name="keep_screen_on">Залишати екран увімкненним</string>
-    <string name="keep_screen_on_description">Не вимикати екран, ящо дані відображаються</string>
+    <string name="last_data_items">останні вибрані показники</string>
+    <string name="last_view_mode">останній режим показу даних</string>
+    <string name="keep_screen_on">Не вимикати екран</string>
+    <string name="keep_screen_on_description">Не вимикати екран, якщо виводяться дані</string>
     <string name="development_options">Опції розробника</string>
     <string name="dev_opt_description">Опції розробки та персоналізації</string>
     <string name="extension_files">Файли персоналізації протоколу (CSV)</string>
     <string name="conversions">Перетворення даних</string>
     <string name="data_items">Показники</string>
-    <string name="select_extension">Оберіть розширення .csv файлу …</string>
+    <string name="select_extension">Виберіть файл з розширенням .csv …</string>
     <string name="extension_loading">Завантаження персоналізації</string>
-    <string name="check_cust_settings">Будь ласка перевірта налаштування персоналізації
-\n</string>
-    <string name="obd_options">OBD налаштування</string>
-    <string name="obd_opt_description">Налаштування протоколу зв’яку між OBD та авто</string>
+    <string name="check_cust_settings">Перевірте налаштування персоналізації\n</string>
+    <string name="obd_options">Опції OBD</string>
+    <string name="obd_opt_description">Опції для протоколу OBD / зв\'язку з автомобілем</string>
     <string name="select_protocol">Бажаний OBD протокол</string>
-    <string name="select_fault_code">Оберіть код помилки…</string>
-    <string name="select_medium">Тип адаптера…</string>
-    <string name="devices_found">Знайдено %d USB-пристрій(пристрої)</string>
-    <string name="min_elm_timeout">Мін. ELM таймаут [ms]</string>
+    <string name="select_fault_code">Виберіть код помилки …</string>
+    <string name="select_medium">Тип адаптера …</string>
+    <string name="devices_found">Знайдено %d USB-пристрої</string>
+    <string name="min_elm_timeout">Мін. час очікування ELM [мс]</string>
     <string name="unabletoconnect">Неможливо з’єднатися з пристроєм</string>
-    <string name="connectionlost">Зв’язок с пристроєм втрачено</string>
-    <string name="elm_timeout_descr">Мінімальний таймаут в [ms] для очікування ELM відповідей</string>
+    <string name="connectionlost">Розірвано з\'єднання з пристроєм</string>
+    <string name="elm_timeout_descr">Мінімальний час очікування в [мс] відповідей ELM</string>
     <string name="day_night_mode">Денний/Нічний режим перегляду</string>
-    <string name="night_mode_description">Встановити темний фон екрану</string>
+    <string name="night_mode_description">Встановити темне тло екрана</string>
     <string name="night_mode">Нічний режим</string>
-    <string name="disable_elm_cmds">Ввимкнені ELM команди</string>
-    <string name="disable_elm_cmds_descr">увімкнути/ввімкнути ELM команди</string>
-    <string name="elm_adaptive_timing">ELM адаптивний час</string>
-    <string name="elm_adaptive_timing_descr">"Дозволити обробку адаптивного часу в  ELM драйверах?"</string>
+    <string name="disable_elm_cmds">Вимкнені команди ELM</string>
+    <string name="disable_elm_cmds_descr">увімкнути/ввімкнути команди ELM</string>
+    <string name="elm_adaptive_timing">Адаптивний таймінг ELM</string>
+    <string name="elm_adaptive_timing_descr">Дозволити обробку адаптивного таймінгу в ELM драйверах?</string>
     <string name="elm_reset_on_nrc">Скинути на NRC</string>
-    <string name="elm_reset_on_nrc_descr">Скинути ELM адаптер на NRC помилку?</string>
-    <string name="select_ecu_addr">Обрати адресу ЕБУ…</string>
-    <string name="disconnect">Роз’єднано</string>
+    <string name="elm_reset_on_nrc_descr">Скинути ELM адаптер за помилки NRC?</string>
+    <string name="select_ecu_addr">Вибрати адресу ЕБУ …</string>
+    <string name="disconnect">Від\'єднати</string>
     <string name="reset_preselections">Скинути попередній вибір</string>
-    <string name="use_last_settings_description">Використовувати останні налаштування при старті (адресу BT, ЕБУ адресу, налаштування екрану...)</string>
+    <string name="use_last_settings_description">Використовувати останні налаштування під час запуску (адресу BT, ЕБУ адресу, показувані показники ...)</string>
     <string name="use_last_settings">Використовувати останні налаштування</string>
-    <string name="common_settings_description">"Загальні налаштування для  конролю додатку"</string>
-    <string name="secure_connect">Безпека з’єднання</string>
-    <string name="secure_connect_description">"Використовувати  зашифровані Bluetooth з’єднання"</string>
-    <string name="elm_options">ELM опції</string>
-    <string name="elm_custom_init">ELM налаштована ініціалізація</string>
-    <string name="elm_custom_init_descr">"ELM  вибіркові команди ініціалізації"</string>
+    <string name="common_settings_description">Загальні налаштування для контролю застосунку</string>
+    <string name="secure_connect">Безпечне з\'єднання</string>
+    <string name="secure_connect_description">Використовувати зашифровані Bluetooth-з’єднання</string>
+    <string name="elm_options">Опції ELM</string>
+    <string name="elm_custom_init">Користувацька ініціалізація ELM</string>
+    <string name="elm_custom_init_descr">Користувацькі команди ініціалізації ELM</string>
     <string name="UNDEFINED">Невизначено</string>
     <string name="INITIALIZING">Ініціалізація…</string>
     <string name="INITIALIZED">Ініціалізовано</string>
-    <string name="ECU_DETECT">Пошук ЕБУ…</string>
-    <string name="ECU_DETECTED">ЕБУ знайдено</string>
+    <string name="ECU_DETECT">Виявлення ЕБУ…</string>
+    <string name="ECU_DETECTED">ЕБУ виявлено</string>
     <string name="CONNECTING">З’єднання…</string>
     <string name="CONNECTED">З’єднано</string>
     <string name="NODATA">Немає даних</string>
     <string name="STOPPED">Зупинено</string>
     <string name="DISCONNECTED">Роз’єднано</string>
     <string name="BUSERROR">Помилка шини</string>
-    <string name="DATAERROR">помилка Даних</string>
-    <string name="RXERROR">помилка отримання</string>
+    <string name="DATAERROR">Помилка Даних</string>
+    <string name="RXERROR">Помилка отримання</string>
     <string name="ERROR">Помилка</string>
-    <string name="obd_error">помилка протоколу OBD</string>
-    <string name="device_address_description">мережева IP адреса ELM пристрою</string>
-    <string name="device_address">ELM IP адреса</string>
-    <string name="device_port_description">мережевий IP порт ELM пристрою</string>
-    <string name="device_port">ELM IP порт</string>
+    <string name="obd_error">Помилка протоколу OBD</string>
+    <string name="device_address_description">Мережева IP-адреса пристрою ELM</string>
+    <string name="device_address">IP-адреса ELM</string>
+    <string name="device_port_description">Мережевий IP-порт пристрою ELM</string>
+    <string name="device_port">IP-порт ELM</string>
     <string name="autohide_toolbar">Сховати панель інструментів</string>
-    <string name="autohide_toolbar_description">"Автоматично ховати панель інструментів після  затримки, якщо немає активності"</string>
-    <string name="autohide_delay">Затримка прибирання панелі інструментів [s]</string>
-    <string name="autohide_delay_description">"Затримка в секундах без активності, перед тим як панель інструментів  буде прибрана"</string>
-    <string name="csv_export_options">Опці експорту CSV</string>
+    <string name="autohide_toolbar_description">Автоматично ховати панель інструментів після затримки, якщо немає активності</string>
+    <string name="autohide_delay">Затримка прибирання панелі інструментів [с]</string>
+    <string name="autohide_delay_description">Час активності в секундах, перед прибиранням панелі інструментів</string>
+    <string name="csv_export_options">Опції експорту CSV</string>
     <string name="csv_export_description">Опції форматування CSV файлів для експорту</string>
-    <string name="csv_field_delimiter">Поле розділювача CSV</string>
-    <string name="csv_field_delimiter_description">Символ(и) розділювача між CSV даними</string>
-    <string name="csv_rec_delimiter">"Розділювач  запису CSV"</string>
+    <string name="csv_field_delimiter">Розділювач полів CSV</string>
+    <string name="csv_field_delimiter_description">Символ(и) розділювача між даними CSV</string>
+    <string name="csv_rec_delimiter">Розділювач запису CSV</string>
     <string name="csv_rec_delimiter_description">Символи розділювача між записами CSV даних</string>
     <string name="csv_text_quoted">CSV текст в лапках</string>
-    <string name="csv_text_quoted_description">"Текстові поля CSV  включені в лапки"</string>
-    <string name="tab">ТАБ</string>
+    <string name="csv_text_quoted_description">Текстові поля CSV в лапках</string>
+    <string name="tab">ТАБУЛЯЦІЯ</string>
     <string name="comma">КОМА</string>
-    <string name="semicolon">КРАПКА_З_КОМОЮ</string>
-    <string name="send_after_export">Зберегти після експорту</string>
+    <string name="semicolon">КРАПКА З КОМОЮ</string>
+    <string name="send_after_export">Надіслати після експорту</string>
     <string name="send_after_export_descr">Запит на надсилання CSV файлу одразу після експорту?</string>
-    <string name="obd_clear_info">Ця дія скине MIL та очистить всі діагностичні дані,
-\nщо стосуються відпрацьованих газів, в тому числі:
-\n- Діагностичні коди проблем
-\n- Дані \"стоп-кадру\" (знімок датників)
-\n- Дані кисневого датника
-\n- Стан випробувань системи моніторингу
-\n- Результати випробувань бортового моніторингу
-\n- Відстань, пройдену після активації MIL
-\n- Кількість прогрівань з моменту очищення DTC
-\n- Відстань, пройдену після очищення DTC
-\n- Час роботи двигуна після активації MIL
-\n- Час з моменту очищення DTC
-\n
-\nМожуть виникнути інші дії скидання, специфічні для виробника.
-\nВтрата даних може призвести до тимчасової незадовільної
-\nроботи автомобіля, доки ЕБК (ECU) не відкалібрується.</string>
+    <string name="obd_clear_info">Ця дія скине MIL та очистить всі діагностичні дані,\n що стосуються відпрацьованих газів, в тому числі:\n - Діагностичні коди проблем\n - Дані стоп-кадру\n - Дані випробування датчика кисню\n - Стан випробувань моніторингу системи\n- Результати випробувань бортового моніторингу\n - Відстань, пройдену після активування MIL\n - Кількість прогрівань з моменту очищення DTC\n - Відстань, пройдену після очищення DTC\n - Час роботи двигуна після активування MIL\n - Час з моменту очищення DTC\n\n Можуть виконатися інші дії очищення/скидання, специфічні для виробника.\n Втрата даних може призвести до короткочасної незадовільної\n роботи автомобіля, доки ЕБУ не відкалібрується.</string>
     <string name="plugin_manager">Менеджер плагінів</string>
-    <string name="configure">Налаштувати</string>
+    <string name="configure">Сконфігурувати</string>
     <string name="license">Ліцензування…</string>
     <string name="libraries">Бібліотеки…</string>
-    <string name="release_history">Історія випусків…</string>
-    <string name="toolbar_overlay">Показати, як накладання</string>
-    <string name="toolbar_overlay_sum">Показувати панель перекриття основного екрана</string>
-    <string name="libraries_sum">Бібліотеки, які використовуються в проєкті…</string>
-    <string name="data_disable_max_description">Кількість недійсних послідовних відповідей даних перед елементом буде вимкнено</string>
+    <string name="release_history">Історія випусків …</string>
+    <string name="toolbar_overlay">Показати як накладку</string>
+    <string name="toolbar_overlay_sum">Показувати панель накладання основного екрана</string>
+    <string name="libraries_sum">Бібліотеки, використані в проєкті …</string>
+    <string name="data_disable_max_description">Кількість недійсних послідовних відповідей перед вимкненням елемента</string>
     <string name="donation">Підтримка проєкту …</string>
-    <string name="data_disable_max">Ліміт відключення даних</string>
+    <string name="data_disable_max">Ліміт вимкнення показників</string>
     <string name="graphic_design">Графічний дизайн</string>
-    <string name="long_press_dfc_hint">Зажміть DFC для пошуку в інтернеті…</string>
-    <string name="comm_baudrate_description">Швидкість послідовного зв\'язку через USB</string>
-    <string name="comm_baudrate">Швидкiсть передачі даних ELM</string>
-    <string name="customize_display">Налаштувати відображення даних</string>
+    <string name="long_press_dfc_hint">Затисніть DFC, щоб шукати онлайн …</string>
+    <string name="comm_baudrate_description">Швидкість послідовної комунікації через USB</string>
+    <string name="comm_baudrate">Швидкість передавання даних ELM</string>
+    <string name="customize_display">Налаштувати показу даних</string>
     <string name="reset_default">Типово</string>
-    <string name="display_color">Колір відображення</string>
+    <string name="display_color">Колір показу</string>
     <string name="copied_to_clipboard">Скопійовано в буфер обміну</string>
-    <string name="obd_test_progress">Виконується випробувальний контроль OBD.
-\n Будь ласка, перевірте реакцію автомобіля.</string>
+    <string name="obd_test_progress">Виконується випробувальний контроль OBD.\n Стежте за реакцією автомобіля.</string>
     <string name="service_testcontrol">Випробувальний контроль OBD</string>
-    <string name="obd_test_confirm">Отримано запит на випробувальний контроль OBD.
-\n
-\n Запитаний контроль OBD може генерувати:
-\n - Рух транспортного засобу
-\n - Дим відпрацьованих газів
-\n - Високу температуру відпрацьованих газів
-\n - Гучний шум двигуна
-\n - Пари палива
-\n - тощо.
-\n
-\nБудь ласка, підтвердьте, що виконуєте випробувальний контроль на свій страх і ризик та лише в безпечному тестовому середовищі!</string>
+    <string name="obd_test_confirm">Отримано запит на випробувальний контроль OBD.\n\n Запитаний контроль OBD може генерувати:\n - Рух транспортного засобу\n - Дим відпрацьованих газів\n - Високу температуру відпрацьованих газів\n - Гучний шум двигуна\n - Пари палива\n - тощо.\n\n Підтвердьте, що виконуєте випробувальний контроль на свій страх і ризик та лише в безпечному тестовому середовищі!</string>
     <string name="full_screen_display">Повноекранний режим</string>
-    <string name="full_screen_display_description">Повноекранний режим для показу програм</string>
-    <string name="display_range">Діапазон відображення</string>
-    <string name="update_period_s">Період оновлення [s]</string>
+    <string name="full_screen_display_description">Повноекранний режим для показу застосунку</string>
+    <string name="display_range">Діапазон показу</string>
+    <string name="update_period_s">Період оновлення [с]</string>
 </resources>
