@@ -73,4 +73,9 @@
     <string name="last_elm">laatste ELM-adapter opnieuw aansluiten</string>
     <string name="logging_level_description">Mate waarin details worden gelogd in het debug logbestand</string>
     <string name="logging_level">Logboekniveau</string>
+    <string name="release_history">Release geschiedenis …</string>
+    <string name="donation">Steun het project …</string>
+    <string name="copied_to_clipboard">Gekopieerd naar klembord</string>
+    <string name="service_testcontrol">OBD controle test</string>
+    <string name="configure">Configureren</string>
 </resources>
