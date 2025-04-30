@@ -166,4 +166,11 @@
     <string name="copied_to_clipboard">Скопировано в буфер</string>
     <string name="obd_test_progress">Продолжается контроль БД-тестов.\nПожалуйста, проверьте реакцию автомобиля.</string>
     <string name="obd_test_confirm">Запрошен контроль тестирования OBD.\n\nЗапрошенный контроль тестирования OBD может генерировать:\n- Движение транспортного средства\n- Выхлопной дым\n- Высокая температура выхлопных газов\n- Громкий шум двигателя\n- Пары топлива\n- и т.д.\n\nПожалуйста, подтвердите, что вы выполняете этот тестовый контроль на свой страх и риск только в безопасной тестовой среде!</string>
+    <string name="full_screen_display">Полноэкранный режим</string>
+    <string name="full_screen_display_description">Отображать приложение на весь экран</string>
+    <string name="display_color">Цвет экрана</string>
+    <string name="customize_display">Настройка отображения данных</string>
+    <string name="display_range">Диапазон показа</string>
+    <string name="reset_default">По-умолчанию</string>
+    <string name="update_period_s">Период обновления [s]</string>
 </resources>
