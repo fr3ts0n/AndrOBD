@@ -155,10 +155,10 @@
     <string name="toolbar_overlay">Mostrar como sobreposição</string>
     <string name="toolbar_overlay_sum">Mostrar barra de ferramentas de sobreposição ao ecrã principal</string>
     <string name="license">Licenciamento…</string>
-    <string name="donation">Apoiar o projeto…</string>
+    <string name="donation">Apoiar projeto…</string>
     <string name="libraries">Bibliotecas…</string>
     <string name="libraries_sum">Bibliotecas usadas no projeto…</string>
-    <string name="release_history">Histórico de lançamentos…</string>
+    <string name="release_history">Histórico de lançamento…</string>
     <string name="graphic_design">Desenho gráfico</string>
     <string name="long_press_dfc_hint">Pressione e segure DFC para pesquisar \'\'on-line\'\'…</string>
     <string name="comm_baudrate_description">Velocidade da comunicação \'\'serial\'\' por USB</string>
@@ -178,7 +178,7 @@
 \n - etc.
 \n
 \n Por favor, confirme para realizar este teste de controlo por sua conta e risco apenas num ambiente de testes seguro!</string>
-    <string name="service_testcontrol">Teste de Controlo de OBD</string>
+    <string name="service_testcontrol">Controlo de teste do OBD</string>
     <string name="obd_test_progress">Teste de controlo de OBD em progresso.
 \n Por favor, veja a reação do veículo.</string>
     <string name="full_screen_display">Exibição de ecrã completo</string>
