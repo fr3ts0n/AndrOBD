@@ -81,7 +81,7 @@
     <string name="check_cust_settings">Controleer uw aanpassingen\n</string>
     <string name="select_protocol">Voorkeurs OBD protocol</string>
     <string name="min_elm_timeout">Min. ELM timeout [ms]</string>
-    <string name="connectionlost">De verbinding met het apparaat is verborken</string>
+    <string name="connectionlost">De verbinding met het apparaat is verbroken</string>
     <string name="unabletoconnect">Kan geen verbinding maken met het apparaat</string>
     <string name="INITIALIZED">Geïnitialiseerd</string>
     <string name="select_ecu_addr">Selecteer ECU adres …</string>
@@ -95,4 +95,21 @@
     <string name="disable_elm_cmds_descr">ELM commandos in-/uitschakelen</string>
     <string name="NODATA">Geen data</string>
     <string name="INITIALIZING">Initialiseren …</string>
+    <string name="elm_custom_init_descr">ELM aangepaste initialisatiecommando\'s</string>
+    <string name="common_settings_description">Algemene instellingen voor app bediening</string>
+    <string name="reset_preselections">Laatste voorselecties resetten</string>
+    <string name="elm_adaptive_timing">ELM adaptieve timing</string>
+    <string name="night_mode_description">Donkere achtergrond instellen</string>
+    <string name="day_night_mode">Dag/Nacht weergavemodus</string>
+    <string name="elm_options">ELM opties</string>
+    <string name="elm_timeout_descr">Minimale timeout in [ms] om te wachten op ELM reacties</string>
+    <string name="secure_connect_description">Gebruik beveiligde Bluetooth verbinding</string>
+    <string name="disable_elm_cmds">Uitgeschakelde ELM commando\'s</string>
+    <string name="elm_reset_on_nrc">Reset bij NRC</string>
+    <string name="elm_adaptive_timing_descr">Adaptieve timing toestaan in ELM-stuurprogramma\'s?</string>
+    <string name="elm_reset_on_nrc_descr">Reset ELM adapter bij NRC fout?</string>
+    <string name="use_last_settings_description">Laatste instellingen gebruiken bij opstarten (BT-adres, ECU-adres, Weergave-items ...)</string>
+    <string name="use_last_settings">Gebruik laatste instellingen</string>
+    <string name="elm_custom_init">ELM aangepaste init</string>
+    <string name="UNDEFINED">Ongedefinieerd</string>
 </resources>
