@@ -81,4 +81,6 @@
     <string name="check_cust_settings">Controleer uw aanpassingen\n</string>
     <string name="select_protocol">Voorkeurs OBD protocol</string>
     <string name="min_elm_timeout">Min. ELM timeout [ms]</string>
+    <string name="connectionlost">De verbinding met het apparaat is verborken</string>
+    <string name="unabletoconnect">Kan geen verbinding maken met het apparaat</string>
 </resources>
