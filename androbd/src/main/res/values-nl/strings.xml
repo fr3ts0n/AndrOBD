@@ -83,4 +83,16 @@
     <string name="min_elm_timeout">Min. ELM timeout [ms]</string>
     <string name="connectionlost">De verbinding met het apparaat is verborken</string>
     <string name="unabletoconnect">Kan geen verbinding maken met het apparaat</string>
+    <string name="INITIALIZED">Geïnitialiseerd</string>
+    <string name="select_ecu_addr">Selecteer ECU adres …</string>
+    <string name="night_mode">Nacht modus</string>
+    <string name="ECU_DETECTED">ECU gedetecteerd</string>
+    <string name="CONNECTED">Verbonden</string>
+    <string name="secure_connect">Beveiligde verbinding</string>
+    <string name="ECU_DETECT">ECU detecteren …</string>
+    <string name="CONNECTING">Verbinden…</string>
+    <string name="disconnect">Loskoppelen</string>
+    <string name="disable_elm_cmds_descr">ELM commandos in-/uitschakelen</string>
+    <string name="NODATA">Geen data</string>
+    <string name="INITIALIZING">Initialiseren …</string>
 </resources>
