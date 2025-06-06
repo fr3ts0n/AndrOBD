@@ -12,22 +12,7 @@
     <string name="none_found">Geen apparaten gevonden</string>
     <string name="none_paired">Geen apparaten gekoppeld</string>
     <string name="select_device">Adapter selecteren</string>
-    <string name="obd_clear_info">Dit zal de MIL resetten en alle emissie-gerelateerde diagnostiek wissen.
-\n informatie, waaronder:
-\n - Diagnostische probleemcodes
-\n - Framegegevens bevriezen
-\n - Testgegevens van de zuurstofsensor
-\n - Status van de systeembewakingstests
-\n - Resultaten van de monitoringtests aan boord
-\n - Afgelegde afstand terwijl MIL geactiveerd is
-\n - Aantal opwarmingen sinds de DTC\'s zijn opgeruimd
-\n - Afgelegde afstand sinds de DTC\'s zijn opgeruimd
-\n - Looptijd van de motor terwijl MIL is geactiveerd
-\n - Tijd sinds de DTC\'s zijn opgeruimd
-\n
-\n Andere fabrikant-specifieke opruim- en resetacties kunnen voorkomen.
-\n Het verlies van gegevens kan ertoe leiden dat het voertuig kortstondig slecht rijdt.
-\n periode terwijl de ECU zichzelf herkalibreert.</string>
+    <string name="obd_clear_info">Dit zal de MIL resetten en alle emissie-gerelateerde diagnostiek\nwissen, waaronder:\n - Diagnostische probleemcodes\n - Freeze frame gegevens\n - Zuurstofsensor testgegevens\n - Status van de systeembewakingstests\n - Resultaten van de boordcontrole tests\n - Afgelegde afstand terwijl MIL geactiveerd is\n - Aantal opwarmingen sinds de DTC\'s zijn opgeruimd\n - Afgelegde afstand sinds de DTC\'s zijn opgeruimd\n - Looptijd van de motor terwijl MIL is geactiveerd\n - Tijd sinds de DTC\'s zijn opgeruimd\n\n Andere fabrikant specifieke opruim- en resetacties kunnen voorkomen.\n Na de reset kan het voertuig kortstondig slechter rijden totdat de ECU\n zichzelf heeft geherkalibreerd.</string>
     <string name="obd_clearcodes">Foutcodes wissen</string>
     <string name="obd_pendingcodes">OBD-foutcodes (in behandeling)</string>
     <string name="obd_permanentcodes">OBD foutcodes (permanent)</string>
@@ -73,9 +58,27 @@
     <string name="last_elm">laatste ELM-adapter opnieuw aansluiten</string>
     <string name="logging_level_description">Mate waarin details worden gelogd in het debug logbestand</string>
     <string name="logging_level">Logboekniveau</string>
-    <string name="release_history">Release geschiedenis …</string>
-    <string name="donation">Steun het project …</string>
+    <string name="release_history">Versie geschiedenis …</string>
+    <string name="donation">Ondersteun het project …</string>
     <string name="copied_to_clipboard">Gekopieerd naar klembord</string>
     <string name="service_testcontrol">OBD controle test</string>
-    <string name="configure">Configureren</string>
+    <string name="configure">Instellen</string>
+    <string name="obd_test_progress">OBD controle test bezig.\n- Controleer reactie voertuig.</string>
+    <string name="select_fault_code">Kies foutcode …</string>
+    <string name="devices_found">%d USB apparaten gevonden</string>
+    <string name="plugin_manager">Pluginmanager</string>
+    <string name="select_medium">Adapter type …</string>
+    <string name="obd_options">OBD opties</string>
+    <string name="extension_loading">Aanpassingen aan het laden</string>
+    <string name="development_options">Ontwikkelopties</string>
+    <string name="obd_test_confirm">"OBD-testcontrole aangevraagd.\n\n  De gevraagde OBD-testcontrole kan het volgende genereren:\n  - Voertuigbeweging\n  - Uitlaatrook\n  - Hoge uitlaattemperatuur\n  - Luid motorgeluid\n  - Brandstofdampen\n  - enz.\n\n  Bevestig dat u deze testcontrole uitsluitend op eigen risico in een veilige testomgeving uitvoert!"</string>
+    <string name="obd_opt_description">Opties voor OBD protocol / voertuig communicatie</string>
+    <string name="dev_opt_description">Opties voor foutopsporing en aanpassingen</string>
+    <string name="extension_files">Protocol aanpassingsbestanden (CSV)</string>
+    <string name="conversions">Gegevensomzettingen</string>
+    <string name="data_items">Gegevensitems</string>
+    <string name="select_extension">Kies bestand met .csv extensie …</string>
+    <string name="check_cust_settings">Controleer uw aanpassingen\n</string>
+    <string name="select_protocol">Voorkeurs OBD protocol</string>
+    <string name="min_elm_timeout">Min. ELM timeout [ms]</string>
 </resources>
