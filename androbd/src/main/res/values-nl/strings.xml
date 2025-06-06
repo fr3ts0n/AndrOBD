@@ -75,7 +75,7 @@
     <string name="obd_opt_description">Opties voor OBD protocol / voertuig communicatie</string>
     <string name="dev_opt_description">Opties voor foutopsporing en aanpassingen</string>
     <string name="extension_files">Protocol aanpassingsbestanden (CSV)</string>
-    <string name="conversions">Gegevensomzettingen</string>
+    <string name="conversions">Dataconversies</string>
     <string name="data_items">Data-items</string>
     <string name="select_extension">Kies bestand met .csv extensie …</string>
     <string name="check_cust_settings">Controleer uw aanpassingen\n</string>
@@ -100,7 +100,7 @@
     <string name="reset_preselections">Laatste voorselecties resetten</string>
     <string name="elm_adaptive_timing">ELM adaptieve timing</string>
     <string name="night_mode_description">Donkere achtergrond instellen</string>
-    <string name="day_night_mode">Dag/Nacht weergavemodus</string>
+    <string name="day_night_mode">Dag/Nacht modus</string>
     <string name="elm_options">ELM opties</string>
     <string name="elm_timeout_descr">Minimale timeout in [ms] om te wachten op ELM reacties</string>
     <string name="secure_connect_description">Gebruik beveiligde Bluetooth verbinding</string>
@@ -156,4 +156,6 @@
     <string name="csv_text_quoted_description">CSV-tekstvelden worden tussen aanhalingstekens geplaatst</string>
     <string name="tab">TAB</string>
     <string name="comma">KOMMA</string>
+    <string name="DISCONNECTED">Verbinding verbroken</string>
+    <string name="STOPPED">Gestopt</string>
 </resources>
