@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translation_credits">Traducido por Adolfo, RamLinux, eltiobarbas, isalgueiro y cinnamon17</string>
+    <string name="translation_credits">Traducido por Adolfo, RamLinux, eltiobarbas, isalgueiro, cinnamon17 y cpynosa</string>
     <string name="app_description">Aplicación de Android de diagnósticos vehiculares para el adaptador Bluetooth ELM327</string>
     <string name="title_connecting">Conectando…</string>
     <string name="title_connected_to">Conectado con %s</string>
