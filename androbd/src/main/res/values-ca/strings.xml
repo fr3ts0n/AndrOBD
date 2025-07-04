@@ -70,7 +70,7 @@
     <string name="title_connecting">Connectant…</string>
     <string name="app_description">Aplicació de diagòstic vehicular per OBD per a l’adaptador Bluetooth ELM327</string>
     <string name="translation_credits">Traducció per Adolf i altres</string>
-    <string name="configure">Configurar</string>
+    <string name="configure">Configura</string>
     <string name="obd_clearcodes">Esborrar codis d\'avaria</string>
     <string name="service_freezeframes">Imatges de congelació OBD</string>
     <string name="obd_codes">Codis d\'avaria OBD</string>
