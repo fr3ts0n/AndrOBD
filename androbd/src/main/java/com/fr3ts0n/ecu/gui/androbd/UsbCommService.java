@@ -206,7 +206,7 @@ public class UsbCommService extends CommService
 				// Initialize SerialIoManager AFTER opening sPort
 				// workaround for AndrOBD#285 / https://github.com/mik3y/usb-serial-for-android/issues/611
 				mSerialIoManager = new SerialInputOutputManager(sPort, mListener);
-				Executors.newSingleThreadExecutor().submit(mSerialIoManager);
+				mSerialIoManager.start();
 
 				// we are connected -> signal connectionEstablished
 				connectionEstablished(sPort.toString());

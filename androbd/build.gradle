@@ -9,14 +9,23 @@ android {
         // SDK 25 to allow background service mechanism for plugins
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 25
-        versionCode 20614
-        versionName 'V2.6.14'
+        versionCode 20615
+        versionName 'V2.6.15'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         lintOptions {
             // Override lint error on targetSdkVersion
             abortOnError false
+        }
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_17
+            targetCompatibility JavaVersion.VERSION_17
+        }
+
+        kotlinOptions {
+            jvmTarget = "17" // Ensure consistency with JavaVersion.VERSION_17
         }
     }
 
@@ -43,7 +52,7 @@ dependencies {
     implementation project(':plugin')
     implementation project(':library')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.github.mik3y:usb-serial-for-android:3.8.1'
+    implementation 'com.github.mik3y:usb-serial-for-android:3.9.0'
     implementation 'com.github.anastr:speedviewlib:1.6.1'
     implementation 'androidx.core:core-ktx:1.12.0'
 }
