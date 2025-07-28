@@ -18,23 +18,7 @@
     <string name="obd_permanentcodes">Codes d\'erreur OBD (permanents)</string>
     <string name="obd_pendingcodes">Codes d\'erreur OBD (actuels)</string>
     <string name="obd_clearcodes">Effacer les codes d\'erreur</string>
-    <string name="obd_clear_info">"Ceci va remettre à zéro le voyant moteur et effacer toutes les informations
-\nde diagnostic dont :
-\n - Les codes Erreurs
-\n  - Les trames de données figées
-\n  - Les données du test du capteur O2
-\n  - L\'état du test du système de surveillance
-\n  - Les résultats des test du système de surveillance
-\n  - La distance parcourue depuis la dernière révision
-\n  - Le nombre de démarrage depuis la dernière RàZ
-\n  - La distance parcourue depuis la dernière RàZ
-\n  - La durée de fonctionnement moteur depuis la dernière révision
-\n  - Le temps écoulé depuis la dernière RàZ des codes défauts standards (DTC)
-\n
-\n
-\n  D\'autres remises à zéro ou suppression peuvent se produire selon les véhicules.
-\n  L\'effacement de certaines données peut détériorer le fonctionnement du véhicule
-\n  le temps que l\'ECU se recalibre."</string>
+    <string name="obd_clear_info">"Ceci va remettre à zéro le voyant moteur et effacer toutes les informations\n\nde diagnostic dont :\n\n - Les codes Erreurs\n\n  - Les trames de données figées\n\n  - Les données du test du capteur O2\n\n  - L\'état du test du système de surveillance\n\n  - Les résultats des test du système de surveillance\n\n  - La distance parcourue depuis la dernière révision\n\n  - Le nombre de démarrage depuis la dernière RàZ\n\n  - La distance parcourue depuis la dernière RàZ\n\n  - La durée de fonctionnement moteur depuis la dernière révision\n\n  - Le temps écoulé depuis la dernière RàZ des codes défauts standards (DTC)\n\n\n\n\n\n  D\'autres remises à zéro ou suppression peuvent se produire selon les véhicules.\n\n  L\'effacement de certaines données peut détériorer le fonctionnement du véhicule\n\n  le temps que l\'ECU se recalibre."</string>
     <!--  BtDeviceListActivity -->
     <string name="select_device">Choisir un adaptateur</string>
     <string name="none_paired">Aucun appareil appairé</string>
