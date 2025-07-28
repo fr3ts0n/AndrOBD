@@ -13,20 +13,5 @@
     <string name="obd_data">Date OBD</string>
     <string name="obd_codes">Coduri de eroare OBD</string>
     <string name="obd_permanentcodes">Coduri de eroare OBD (permanente)</string>
-    <string name="obd_clear_info">"Aceasta va reseta MIL și va șterge toate diagnosticele legate de emisii
-\n  informații, inclusiv:
-\n  - Coduri de diagnosticare a problemelor
-\n  - Înghețați datele cadrului
-\n  - Date de testare a senzorului de oxigen
-\n  - Starea testelor de monitorizare a sistemului
-\n  - Rezultatele testelor de monitorizare la bord
-\n  - Distanța parcursă în timpul activării MIL
-\n  - Numărul de încălziri de la eliminarea DTC-urilor
-\n  - Distanța parcursă de la eliminarea DTC-urilor
-\n  - Durata de funcționare a motorului în timp ce MIL este activat
-\n  - Timp de la eliminarea DTC-urilor
-\n
-\n  Pot apărea alte acțiuni de compensare / resetare specifice producătorului.
-\n  Pierderea datelor poate face ca vehiculul să funcționeze prost pentru o scurtă perioadă de timp
-\n  perioadă de timp în timp ce ECU se recalibrează."</string>
+    <string name="obd_clear_info">"Aceasta va reseta MIL și va șterge toate diagnosticele legate de emisii\n\n  informații, inclusiv:\n\n  - Coduri de diagnosticare a problemelor\n\n  - Înghețați datele cadrului\n\n  - Date de testare a senzorului de oxigen\n\n  - Starea testelor de monitorizare a sistemului\n\n  - Rezultatele testelor de monitorizare la bord\n\n  - Distanța parcursă în timpul activării MIL\n\n  - Numărul de încălziri de la eliminarea DTC-urilor\n\n  - Distanța parcursă de la eliminarea DTC-urilor\n\n  - Durata de funcționare a motorului în timp ce MIL este activat\n\n  - Timp de la eliminarea DTC-urilor\n\n\n\n  Pot apărea alte acțiuni de compensare / resetare specifice producătorului.\n\n  Pierderea datelor poate face ca vehiculul să funcționeze prost pentru o scurtă perioadă de timp\n\n  perioadă de timp în timp ce ECU se recalibrează."</string>
 </resources>
