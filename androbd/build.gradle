@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 34
+    compileSdk 36
     defaultConfig {
         applicationId 'com.fr3ts0n.ecu.gui.androbd'
-        minSdkVersion 17
+        minSdkVersion 21
         // SDK 25 to allow background service mechanism for plugins
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 25
@@ -54,5 +54,5 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.github.mik3y:usb-serial-for-android:3.9.0'
     implementation 'com.github.anastr:speedviewlib:1.6.1'
-    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.core:core-ktx:1.16.0'
 }
