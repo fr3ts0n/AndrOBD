@@ -1205,23 +1205,23 @@ public class MainActivity extends PluginManager
      */
     private void updatePidUpdatePeriod(String key)
     {
-            // If preference key matches PID/<MIN/MAX>
-            int pos = key.indexOf("/".concat(EcuDataPv.FID_UPDT_PERIOD));
-            if (pos >= 0)
+        // If preference key matches PID/<MIN/MAX>
+        int pos = key.indexOf("/".concat(EcuDataPv.FID_UPDT_PERIOD));
+        if (pos >= 0)
+        {
+            // Default MAX_VALUE is to detect key removal
+            long value = prefs.getLong(key, 0);
+            if (0 != value)
             {
-                // Default MAX_VALUE is to detect key removal
-                long value = prefs.getLong(key, 0);
-                if (0 != value)
-                {
-                    // Find corresponding data item
-                    String mnemonic = key.substring(0, pos);
-                    EcuDataItem itm = EcuDataItems.byMnemonic.get(mnemonic);
-                    // update display range limit in data item
-                    itm.updatePeriod_ms = value;
+                // Find corresponding data item
+                String mnemonic = key.substring(0, pos);
+                EcuDataItem itm = EcuDataItems.byMnemonic.get(mnemonic);
+                // update display range limit in data item
+                itm.updatePeriod_ms = value;
 
-                    log.info(String.format("PID pref %s=%f", key, value));
-                }
+                log.info(String.format("PID pref %s=%d", key, value));
             }
+        }
     }
 
     /**
