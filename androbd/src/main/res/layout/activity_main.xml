@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 
+Modern AndrOBD Main Activity Layout with Navigation Drawer
+- Uses Material Design 3 components
+- Implements navigation drawer pattern for modern Android UI
+- Maintains compatibility with existing PluginManager architecture
+-->
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,11 +15,12 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <!-- Main content area -->
+    <!-- Main content area with CoordinatorLayout for Material Design behaviors -->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- App bar with toolbar -->
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
@@ -29,12 +36,12 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <!-- Main content -->
+        <!-- Main content - includes the existing OBD list functionality -->
         <include 
             layout="@layout/content_main"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <!-- Floating Action Button for connection -->
+        <!-- Floating Action Button for primary connect/disconnect action -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_connect"
             android:layout_width="wrap_content"
@@ -46,7 +53,7 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <!-- Navigation drawer -->
+    <!-- Navigation drawer with Material Design navigation view -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

@@ -57,6 +57,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.FileProvider;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -1027,6 +1028,35 @@ public class MainActivity extends PluginManager
         clearPreselections();
         recreate();
     }
+
+    /**
+     * Update FAB icon and behavior based on connection state
+     * @param isConnected true if connected to device
+     */
+    private void updateFabForConnectionState(boolean isConnected) {
+        if (fabConnect != null) {
+            if (isConnected) {
+                fabConnect.setImageResource(R.drawable.action_disconnect);
+                fabConnect.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (mCommService != null) {
+                            mCommService.stop();
+                        }
+                        setMode(MODE.OFFLINE);
+                    }
+                });
+            } else {
+                fabConnect.setImageResource(R.drawable.action_connect);
+                fabConnect.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        connectToDevice();
+                    }
+                });
+            }
+        }
+    }
     }
 
     @Override
@@ -1816,6 +1846,8 @@ public class MainActivity extends PluginManager
                     setMenuItemVisible(R.id.disconnect, false);
                     setMenuItemVisible(R.id.secure_connect_scan, true);
                     setMenuItemEnable(R.id.obd_services, false);
+                    // update FAB for connection
+                    updateFabForConnectionState(false);
                     break;
 
                 case ONLINE:
@@ -2328,6 +2360,8 @@ public class MainActivity extends PluginManager
         setMenuItemVisible(R.id.disconnect, true);
 
         setMenuItemEnable(R.id.obd_services, true);
+        // update FAB for connection
+        updateFabForConnectionState(true);
         // display connection status
         setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
         // send RESET to Elm adapter
