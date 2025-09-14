@@ -304,4 +304,9 @@ period of time while the ECU recalibrates itself.
         <item>57600</item>
         <item>115200</item>
     </string-array>
+
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
 </resources>

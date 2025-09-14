@@ -54,7 +54,12 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.fr3ts0n.androbd.plugin.Plugin;
 import com.fr3ts0n.androbd.plugin.mgr.PluginManager;
@@ -68,6 +73,9 @@ import com.fr3ts0n.pvs.ProcessVar;
 import com.fr3ts0n.pvs.PvChangeEvent;
 import com.fr3ts0n.pvs.PvChangeListener;
 import com.fr3ts0n.pvs.PvList;
+
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -96,7 +104,8 @@ public class MainActivity extends PluginManager
         AdapterView.OnItemLongClickListener,
         PropertyChangeListener,
         SharedPreferences.OnSharedPreferenceChangeListener,
-        AbsListView.MultiChoiceModeListener
+        AbsListView.MultiChoiceModeListener,
+        NavigationView.OnNavigationItemSelectedListener
 {
     /**
      * Key names for preferences
@@ -278,6 +287,22 @@ public class MainActivity extends PluginManager
      * current OBD service
      */
     private int obdService = ElmProt.OBD_SVC_NONE;
+    /**
+     * Navigation drawer layout
+     */
+    private DrawerLayout drawerLayout;
+    /**
+     * Navigation view for drawer menu
+     */
+    private NavigationView navigationView;
+    /**
+     * Toolbar for ActionBar
+     */
+    private Toolbar toolbar;
+    /**
+     * Floating Action Button for connection
+     */
+    private FloatingActionButton fabConnect;
     /**
      * current operating mode
      */
@@ -580,8 +605,40 @@ public class MainActivity extends PluginManager
         // start automatic toolbar hider
         setAutoHider(prefs.getBoolean(PREF_AUTOHIDE, false));
 
-        // set content view
-        setContentView(R.layout.startup_layout);
+        // set content view with navigation drawer
+        setContentView(R.layout.activity_main);
+        
+        // Set up toolbar
+        toolbar = findViewById(R.id.toolbar);
+        // Since we can't change PluginManager to AppCompatActivity, we'll work with existing ActionBar
+        
+        // Set up navigation drawer
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        
+        // Set up FAB
+        fabConnect = findViewById(R.id.fab_connect);
+        fabConnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                connectToDevice();
+            }
+        });
+        
+        // Add drawer toggle for hamburger icon
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, 
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        
+        // Enable home button for drawer toggle
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+        }
 
         // override comm medium with USB connect intent
         if ("android.hardware.usb.action.USB_DEVICE_ATTACHED".equals(getIntent().getAction()))
@@ -801,6 +858,16 @@ public class MainActivity extends PluginManager
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        // Handle navigation drawer toggle
+        if (item.getItemId() == android.R.id.home) {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+            return true;
+        }
+
         switch (item.getItemId())
         {
             case R.id.day_night_mode:
@@ -876,6 +943,90 @@ public class MainActivity extends PluginManager
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Handle navigation drawer menu item selection
+     */
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        // Handle navigation view item clicks here
+        if (id == R.id.nav_connect) {
+            connectToDevice();
+        } else if (id == R.id.nav_disconnect) {
+            if (mCommService != null) {
+                mCommService.stop();
+            }
+            setMode(MODE.OFFLINE);
+        } else if (id == R.id.nav_save) {
+            fileHelper.saveDataThreaded();
+        } else if (id == R.id.nav_load) {
+            setMode(MODE.FILE);
+        } else if (id == R.id.nav_reset_preselections) {
+            clearPreselections();
+            recreate();
+        } else if (id == R.id.nav_day_night_mode) {
+            toggleDayNightMode();
+        } else if (id == R.id.nav_plugin_manager) {
+            setManagerView();
+        } else if (id == R.id.nav_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivityForResult(settingsIntent, REQUEST_SETTINGS);
+        } else if (id == R.id.nav_dashboard) {
+            setDataViewMode(DATA_VIEW_MODE.DASHBOARD);
+        } else if (id == R.id.nav_chart) {
+            setDataViewMode(DATA_VIEW_MODE.CHART);
+        }
+
+        // Close drawer after item selection
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    /**
+     * Handle the back pressed to close drawer if open
+     */
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    /**
+     * Connect to OBD device
+     */
+    private void connectToDevice() {
+        // Trigger the existing connect functionality
+        setMode(MODE.ONLINE);
+    }
+
+    /**
+     * Toggle day/night mode
+     */
+    private void toggleDayNightMode() {
+        // Toggle the existing day/night mode functionality
+        prefs.edit().putBoolean(NIGHT_MODE, !nightMode).apply();
+    }
+
+    /**
+     * Show plugin manager
+     */
+    private void showPluginManager() {
+        setManagerView();
+    }
+
+    /**
+     * Reset preselections functionality  
+     */
+    private void resetPreselections() {
+        clearPreselections();
+        recreate();
+    }
     }
 
     @Override

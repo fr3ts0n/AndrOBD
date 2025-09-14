@@ -55,4 +55,13 @@ dependencies {
     implementation 'com.github.mik3y:usb-serial-for-android:3.9.0'
     implementation 'com.github.anastr:speedviewlib:1.6.1'
     implementation 'androidx.core:core-ktx:1.12.0'
+    
+    // Modern Android UI components
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.drawerlayout:drawerlayout:1.2.0'
+    implementation 'androidx.navigation:navigation-fragment:2.7.6'
+    implementation 'androidx.navigation:navigation-ui:2.7.6'
+    implementation 'androidx.fragment:fragment:1.6.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }

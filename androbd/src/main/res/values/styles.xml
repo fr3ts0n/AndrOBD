@@ -1,9 +1,23 @@
 <resources>
     <!-- Application theme. -->
-    <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.Light.DarkActionBar" >
+    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar" >
         <item name="android:activatedBackgroundIndicator">@drawable/activated_background</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorOnSecondary">@android:color/black</item>
     </style>
-    <style name="AppTheme.Dark" parent="@android:style/Theme.DeviceDefault" >
+    
+    <style name="AppTheme.Dark" parent="Theme.Material3.DayNight.NoActionBar" >
         <item name="android:activatedBackgroundIndicator">@drawable/activated_background</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorOnSecondary">@android:color/white</item>
     </style>
+    
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.Material3.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.Material3.Light" />
 </resources>

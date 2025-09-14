@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_action_load"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/nav_chart"
+            android:icon="@android:drawable/ic_menu_more"
+            android:title="Chart" />
+    </group>
+
+    <item android:title="Connection">
+        <menu>
+            <item
+                android:id="@+id/nav_connect"
+                android:icon="@drawable/action_connect"
+                android:title="@string/action_connect" />
+            <item
+                android:id="@+id/nav_disconnect"
+                android:icon="@drawable/action_disconnect"
+                android:title="@string/disconnect" />
+        </menu>
+    </item>
+
+    <item android:title="Data Management">
+        <menu>
+            <item
+                android:id="@+id/nav_save"
+                android:icon="@android:drawable/ic_menu_save"
+                android:title="@string/save" />
+            <item
+                android:id="@+id/nav_load"
+                android:icon="@drawable/ic_action_load"
+                android:title="@string/load" />
+            <item
+                android:id="@+id/nav_reset_preselections"
+                android:icon="@android:drawable/ic_menu_delete"
+                android:title="@string/reset_preselections" />
+        </menu>
+    </item>
+
+    <item android:title="Settings & Tools">
+        <menu>
+            <item
+                android:id="@+id/nav_day_night_mode"
+                android:icon="@drawable/ic_daynight"
+                android:title="@string/day_night_mode" />
+            <item
+                android:id="@+id/nav_plugin_manager"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="@string/plugin_manager" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@android:drawable/ic_menu_preferences"
+                android:title="@string/settings" />
+        </menu>
+    </item>
+
+</menu>
