@@ -1,0 +1,53 @@
+```
+AndrOBD Main Menu Structure
+===========================
+
+Action Bar (Always Visible)
+┌─────────────────────────────────────────────────────────────┐
+│ [Connect] [Disconnect] [⋮ Overflow Menu] [OBD Services ▼] │
+└─────────────────────────────────────────────────────────────┘
+    ↑           ↑              ↑                    ↑
+    │           │              │                    │
+    │           │              │                    └─── OBD Services Submenu
+    │           │              │                          ┌─ Vehicle Info
+    │           │              │                          ├─ Live Data  
+    │           │              │                          ├─ Freeze Frames
+    │           │              │                          ├─ Test Control
+    │           │              │                          ├─ Read Codes
+    │           │              │                          └─ Clear Codes
+    │           │              │
+    │           │              └─ Overflow Menu
+    │           │                  ┌─ Save Measurement
+    │           │                  ├─ Load Measurement
+    │           │                  ├─ Day/Night Mode
+    │           │                  ├─ Settings
+    │           │                  ├─ Plugin Manager
+    │           │                  └─ Reset Preselections
+    │           │
+    │           └─ Disconnect (shown when connected)
+    │
+    └─ Connect (shown when disconnected)
+
+
+Context Menu (Data Views)
+─────────────────────────
+[Chart] [Dashboard] [HUD] [Filter]
+
+
+Chart Activity Menu
+───────────────────
+[Screenshot] [Share]
+
+
+Menu State Management
+─────────────────────
+Connection Status:
+├─ Disconnected: Show [Connect], Hide [Disconnect], Disable [OBD Services]
+└─ Connected: Hide [Connect], Show [Disconnect], Enable [OBD Services]
+
+Data Context:
+├─ No Fault Codes: Disable [Freeze Frames]
+├─ Fault Codes Present: Enable [Freeze Frames]
+├─ No Data: Disable [Save]
+└─ Data Available: Enable [Save]
+```
