@@ -109,9 +109,9 @@ public class DashBoardActivity extends Activity
 	}
 
 	/**
-	 * Handle message requests
+	 * Handle message requests using modern Handler implementation
 	 */
-	protected transient final Handler mHandler = new Handler()
+	protected transient final Handler mHandler = new Handler(android.os.Looper.getMainLooper())
 	{
 		@Override
 		public void handleMessage(Message msg)

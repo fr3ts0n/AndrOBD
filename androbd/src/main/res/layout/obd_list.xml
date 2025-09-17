@@ -5,24 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/mil_off" >
+    android:background="@drawable/mil_off">
 
     <Spinner
         android:id="@+id/ff_selector"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:prompt="@string/select_fault_code"
         android:spinnerMode="dialog"
         android:visibility="visible"
-        />
+        android:contentDescription="@string/select_fault_code"
+        android:minHeight="48dp" />
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         android:layout_gravity="center_horizontal"
         android:choiceMode="multipleChoice"
-        android:dividerHeight="2dp"
-        android:fastScrollEnabled="true" />
+        android:dividerHeight="1dp"
+        android:fastScrollEnabled="true"
+        android:scrollbarStyle="outsideOverlay"
+        android:clipToPadding="false"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp" />
 
 </LinearLayout>

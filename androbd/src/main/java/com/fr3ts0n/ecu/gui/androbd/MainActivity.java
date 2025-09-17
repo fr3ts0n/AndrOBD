@@ -37,6 +37,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
@@ -283,10 +284,11 @@ public class MainActivity extends PluginManager
      */
     private MODE mode = MODE.OFFLINE;
     /**
-     * Handle message requests
+     * Handle message requests using modern Handler implementation
+     * Compatible with both old and new Android versions
      */
     @SuppressLint("HandlerLeak")
-    private transient final Handler mHandler = new Handler()
+    private transient final Handler mHandler = new Handler(Looper.getMainLooper())
     {
         @Override
         public void handleMessage(Message msg)
