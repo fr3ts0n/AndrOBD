@@ -221,9 +221,9 @@ public class ObdBackgroundService extends Service {
     }
     
     // Public methods for service control
-    public void connectToDevice(Object device) {
+    public void connectToDevice(Object device, boolean secure) {
         if (commService != null) {
-            commService.connect(device);
+            commService.connect(device, secure);
         }
     }
     

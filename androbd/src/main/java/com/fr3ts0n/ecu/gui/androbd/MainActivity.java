@@ -142,7 +142,7 @@ public class MainActivity extends PluginManager
     private static final String PREF_OVERLAY = "toolbar_overlay";
     private static final String PREF_DATA_DISABLE_MAX = "data_disable_max";
     private static final int MESSAGE_FILE_WRITTEN = 3;
-    private static final int MESSAGE_DATA_ITEMS_CHANGED = 6;
+    protected static final int MESSAGE_DATA_ITEMS_CHANGED = 6;
     private static final int MESSAGE_OBD_STATE_CHANGED = 8;
     private static final int MESSAGE_OBD_NUMCODES = 9;
     private static final int MESSAGE_OBD_ECUS = 10;
