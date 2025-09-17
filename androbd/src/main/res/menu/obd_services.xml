@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    OBD Services submenu for AndrOBD application
+    Contains all OBD diagnostic functions grouped logically:
+    - Vehicle Information: Basic vehicle data retrieval
+    - Live Data: Real-time engine parameters monitoring
+    - Diagnostic Codes: Fault code management and clearing
+    - Test Functions: Advanced diagnostic tests
+    
+    Compatible with Android 4.1+ (API 16+) using standard Android menu components.
+    Icons use standard Android drawable resources for consistency.
+-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Hidden service for menu state management -->
     <item
         android:id="@+id/service_none"
         android:title="@string/obd_none"
         android:visible="false"/>
+    
+    <!-- Vehicle Information Services -->
     <item
         android:id="@+id/service_vid_data"
         android:title="@string/obd_veh_info"
         android:icon="@android:drawable/ic_menu_info_details"/>
+    
+    <!-- Live Data Monitoring -->
     <item
         android:id="@+id/service_data"
         android:title="@string/obd_data"
         android:icon="@android:drawable/ic_menu_view"/>
+    
+    <!-- Diagnostic History and Freeze Frames -->
     <item
         android:id="@+id/service_freezeframes"
         android:enabled="false"
         android:title="@string/service_freezeframes"
         android:icon="@android:drawable/ic_menu_recent_history"/>
+    
+    <!-- Advanced Test Control -->
     <item
         android:id="@+id/service_testcontrol"
         android:title="@string/service_testcontrol"
         android:icon="@android:drawable/ic_menu_slideshow"/>
+    
+    <!-- Fault Code Management -->
     <item
         android:id="@+id/service_codes"
         android:title="@string/obd_codes"

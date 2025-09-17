@@ -1,4 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+        Chart activity menu for data export and sharing features
+        Compatible with Android 4.1+ using standard menu components
+    -->
     <item
         android:id="@+id/snapshot"
         android:title="@string/snapshot"
