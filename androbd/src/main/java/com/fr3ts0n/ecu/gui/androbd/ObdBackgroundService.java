@@ -191,9 +191,9 @@ public class ObdBackgroundService extends Service {
                 updateNotification("OBD Service", notificationText);
                 break;
                 
-            case MainActivity.MESSAGE_READ:
+            case MainActivity.MESSAGE_DATA_ITEMS_CHANGED:
                 // Process received data
-                String data = (String) msg.obj;
+                String data = msg.obj != null ? msg.obj.toString() : "";
                 notifyDataReceived(data);
                 break;
         }
