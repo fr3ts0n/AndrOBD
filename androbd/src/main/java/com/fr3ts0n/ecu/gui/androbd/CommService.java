@@ -113,6 +113,10 @@ public abstract class CommService
 		mHandler.obtainMessage(MainActivity.MESSAGE_STATE_CHANGE, state).sendToTarget();
 	}
 
+	/**
+	 * Return the current connection state.
+	 * @return current connection state
+	 */
 	synchronized STATE getState()
 	{
 		return mState;
