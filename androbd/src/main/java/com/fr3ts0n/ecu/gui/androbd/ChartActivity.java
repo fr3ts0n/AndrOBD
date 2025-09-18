@@ -55,7 +55,7 @@ import java.util.TreeSet;
  * passes in the number of the <code>Sensor</code>(s) to display. If none is
  * passed, the first available <code>Sensor</code> is used.
  */
-public class ChartActivity extends Activity
+public class ChartActivity extends BaseDrawerActivity
 {
 
 	/**
@@ -139,7 +139,8 @@ public class ChartActivity extends Activity
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setTheme(MainActivity.nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
+		// Note: Theme setting is now handled by BaseDrawerActivity
+		
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -160,6 +161,7 @@ public class ChartActivity extends Activity
 		if (actionBar != null)
 		{
 			actionBar.setDisplayShowTitleEnabled(true);
+			// Home button is now handled by BaseDrawerActivity for drawer toggle
 		}
 
 		setTitle(R.string.chart);
@@ -183,7 +185,7 @@ public class ChartActivity extends Activity
 		renderer.setClickEnabled(false);
 		// set up chart data
 		setUpChartData(positions);
-		// make chart visible
+		// make chart visible - now using BaseDrawerActivity method
 		setContentView(chartView);
 		// limit selected PIDs to selection
 		MainActivity.setFixedPids(pidNumbers);

@@ -322,7 +322,7 @@ public class MainActivity extends PluginManager
     /**
      * current operating mode
      */
-    private MODE mode = MODE.OFFLINE;
+    private static MODE mode = MODE.OFFLINE;
     /**
      * Handle message requests using modern Handler implementation
      * Compatible with both old and new Android versions
@@ -633,6 +633,9 @@ public class MainActivity extends PluginManager
         // Ensure menus are properly created and visible
         invalidateOptionsMenu();
 
+        // Handle any navigation actions passed from other activities
+        handleNavigationAction(getIntent());
+
         // override comm medium with USB connect intent
         if ("android.hardware.usb.action.USB_DEVICE_ATTACHED".equals(getIntent().getAction()))
         {
@@ -695,6 +698,34 @@ public class MainActivity extends PluginManager
         {
             // start ELM protocol demo loop
             setMode(MODE.DEMO);
+        }
+    }
+    
+    /**
+     * Handle new intents (including navigation actions from other activities)
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleNavigationAction(intent);
+    }
+    
+    /**
+     * Handle navigation actions sent from other activities via intent
+     * 
+     * This method processes navigation actions that were triggered from other
+     * activities through the navigation drawer, ensuring consistent behavior
+     * across the entire application.
+     * 
+     * @param intent Intent containing the navigation action
+     */
+    private void handleNavigationAction(Intent intent) {
+        if (intent != null && intent.hasExtra("navigation_action")) {
+            int actionId = intent.getIntExtra("navigation_action", -1);
+            if (actionId != -1) {
+                // Handle the navigation action as if it came from the options menu
+                onNavigationItemSelected(actionId);
+            }
         }
     }
 
@@ -1859,7 +1890,20 @@ public class MainActivity extends PluginManager
     /**
      * get current operating mode
      */
-    private MODE getMode()
+    public MODE getMode()
+    {
+        return mode;
+    }
+    
+    /**
+     * Static method to get current operating mode from external activities
+     * 
+     * This method provides access to the current mode for other activities
+     * that need to sync their navigation drawer state with MainActivity.
+     * 
+     * @return current operating mode
+     */
+    public static MODE getCurrentMode()
     {
         return mode;
     }

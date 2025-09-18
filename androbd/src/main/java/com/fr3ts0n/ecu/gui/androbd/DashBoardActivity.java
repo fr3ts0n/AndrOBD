@@ -48,7 +48,7 @@ import java.util.Objects;
 /**
  * Display selected data items as dashboard
  */
-public class DashBoardActivity extends Activity
+public class DashBoardActivity extends BaseDrawerActivity
 		implements PvChangeListener, AdapterView.OnItemLongClickListener
 {
 	/**
@@ -183,8 +183,12 @@ public class DashBoardActivity extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
+		// Disable drawer for dashboard activity to maintain fullscreen experience
+		disableDrawer();
+		
 		super.onCreate(savedInstanceState);
-		setTheme(MainActivity.nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
+		// Note: Theme setting is now handled by BaseDrawerActivity
+		
 		// set to full screen
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -193,7 +197,7 @@ public class DashBoardActivity extends Activity
 		{
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		}
-		// hide the action bar
+		// hide the action bar for fullscreen dashboard experience
 		ActionBar actionBar = getActionBar();
 		if (actionBar != null) actionBar.hide();
 
