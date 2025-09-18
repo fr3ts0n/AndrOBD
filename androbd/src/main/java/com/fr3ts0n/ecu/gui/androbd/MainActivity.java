@@ -1281,7 +1281,7 @@ public class MainActivity extends PluginManager
                     // update display range limit in data item
                     itm.updatePeriod_ms = value;
 
-                    log.info(String.format("PID pref %s=%f", key, value));
+                    log.info(String.format("PID pref %s=%d", key, value));
                 }
             }
     }
@@ -1981,9 +1981,7 @@ public class MainActivity extends PluginManager
             Thread demoThread = new Thread(CommService.elm);
             demoThread.start();
         }
-        
         // Update menu visibility after mode change
-        updateMenuVisibility();
     }
 
     /**
