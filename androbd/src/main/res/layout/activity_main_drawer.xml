@@ -6,11 +6,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Main content -->
+    <!-- Main content - This will contain the layouts that MainActivity expects -->
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+        
+        <!-- Default startup content with required ListView -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#20FFFFFF"
+                android:contentDescription="@string/logo"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:src="@drawable/logo"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#40000000">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:contentDescription="@string/url_app_mainpage"
+                    android:gravity="center"
+                    android:onClick="browseClickedUrl"
+                    android:text="@string/app_name"
+                    android:textAppearance="@android:style/TextAppearance.Medium"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:contentDescription="@string/url_app_releases"
+                    android:enabled="true"
+                    android:gravity="center"
+                    android:onClick="browseClickedUrl"
+                    android:text="@string/app_version"
+                    android:textAppearance="@android:style/TextAppearance.Small"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/copyright_fr3ts0n"
+                    android:textAppearance="@android:style/TextAppearance.Small" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:contentDescription="@string/url_app_translation"
+                    android:gravity="center"
+                    android:onClick="browseClickedUrl"
+                    android:text="@string/translation_credits"
+                    android:textAppearance="@android:style/TextAppearance.Small" />
+            </LinearLayout>
+
+            <!-- Required ListView for ListActivity compatibility -->
+            <ListView
+                android:id="@android:id/list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+        
+    </FrameLayout>
 
     <!-- Navigation drawer -->
     <LinearLayout

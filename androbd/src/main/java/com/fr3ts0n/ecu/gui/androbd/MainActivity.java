@@ -52,13 +52,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
@@ -635,9 +639,6 @@ public class MainActivity extends PluginManager
         
         // Initialize navigation drawer
         setupNavigationDrawer();
-        
-        // Set the startup layout as the main content
-        setMainContent(R.layout.startup_layout);
         
         // Ensure menus are properly created and visible
         invalidateOptionsMenu();
@@ -1854,11 +1855,56 @@ public class MainActivity extends PluginManager
 
     /**
      * Setup navigation drawer for sidebar menu
+     * This creates a drawer overlay that works with the existing ListActivity structure
      */
     private void setupNavigationDrawer()
     {
-        drawerLayout = findViewById(R.id.drawer_layout);
-        drawerList = findViewById(R.id.nav_list);
+        // Get the current content view
+        View currentContent = findViewById(android.R.id.content);
+        ViewGroup parent = (ViewGroup) currentContent.getParent();
+        
+        // Create drawer layout
+        drawerLayout = new DrawerLayout(this);
+        drawerLayout.setLayoutParams(new ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT));
+        
+        // Remove current content from parent and add to drawer
+        parent.removeView(currentContent);
+        drawerLayout.addView(currentContent);
+        
+        // Create navigation drawer
+        LinearLayout drawerContainer = new LinearLayout(this);
+        drawerContainer.setOrientation(LinearLayout.VERTICAL);
+        drawerContainer.setBackgroundColor(getResources().getColor(android.R.color.background_light));
+        drawerContainer.setClickable(true);
+        
+        DrawerLayout.LayoutParams drawerParams = new DrawerLayout.LayoutParams(
+            (int) (280 * getResources().getDisplayMetrics().density), // 280dp
+            ViewGroup.LayoutParams.MATCH_PARENT);
+        drawerParams.gravity = android.view.Gravity.START;
+        drawerContainer.setLayoutParams(drawerParams);
+        
+        // Create header
+        LinearLayout header = createDrawerHeader();
+        drawerContainer.addView(header);
+        
+        // Create navigation list
+        drawerList = new ListView(this);
+        LinearLayout.LayoutParams listParams = new LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT);
+        drawerList.setLayoutParams(listParams);
+        drawerList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        drawerList.setDivider(null);
+        drawerList.setDividerHeight(0);
+        drawerContainer.addView(drawerList);
+        
+        // Add drawer to layout
+        drawerLayout.addView(drawerContainer);
+        
+        // Add drawer layout back to parent
+        parent.addView(drawerLayout);
         
         // Create navigation items
         drawerItems = new ArrayList<>();
@@ -1883,13 +1929,54 @@ public class MainActivity extends PluginManager
                 NavigationDrawerItem item = drawerItems.get(position);
                 if (item.isEnabled()) {
                     handleDrawerItemClick(item.getId());
-                    drawerLayout.closeDrawer(drawerList);
+                    drawerLayout.closeDrawer(drawerContainer);
                 }
             }
         });
         
         // Update drawer items based on current mode
         updateDrawerItems();
+    }
+    
+    /**
+     * Create the drawer header with app branding
+     */
+    private LinearLayout createDrawerHeader()
+    {
+        LinearLayout header = new LinearLayout(this);
+        header.setOrientation(LinearLayout.VERTICAL);
+        header.setBackgroundColor(0xFF2196F3); // Blue color
+        
+        int padding = (int) (16 * getResources().getDisplayMetrics().density); // 16dp
+        header.setPadding(padding, padding, padding, padding);
+        
+        // App icon
+        ImageView icon = new ImageView(this);
+        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(
+            (int) (64 * getResources().getDisplayMetrics().density), // 64dp
+            (int) (64 * getResources().getDisplayMetrics().density));
+        iconParams.bottomMargin = (int) (8 * getResources().getDisplayMetrics().density);
+        icon.setLayoutParams(iconParams);
+        icon.setImageResource(R.drawable.logo);
+        icon.setContentDescription(getString(R.string.app_name));
+        header.addView(icon);
+        
+        // App name
+        TextView appName = new TextView(this);
+        appName.setText(getString(R.string.app_name));
+        appName.setTextColor(0xFFFFFFFF);
+        appName.setTextSize(18);
+        appName.setTypeface(null, android.graphics.Typeface.BOLD);
+        header.addView(appName);
+        
+        // App version
+        TextView appVersion = new TextView(this);
+        appVersion.setText(getString(R.string.app_version));
+        appVersion.setTextColor(0xCCFFFFFF);
+        appVersion.setTextSize(14);
+        header.addView(appVersion);
+        
+        return header;
     }
     
     /**
@@ -1973,27 +2060,6 @@ public class MainActivity extends PluginManager
         }
     }
     
-    /**
-     * Set main content in the drawer layout
-     */
-    private void setMainContent(int layoutResId)
-    {
-        FrameLayout contentFrame = findViewById(R.id.content_frame);
-        contentFrame.removeAllViews();
-        View content = getLayoutInflater().inflate(layoutResId, contentFrame, false);
-        contentFrame.addView(content);
-    }
-    
-    /**
-     * Set main content with a view
-     */
-    private void setMainContent(View view)
-    {
-        FrameLayout contentFrame = findViewById(R.id.content_frame);
-        contentFrame.removeAllViews();
-        contentFrame.addView(view);
-    }
-
     /**
      * set mesaurement conversion system to metric/imperial
      *
@@ -2253,7 +2319,7 @@ public class MainActivity extends PluginManager
         ignoreNrcs = false;
 
         // set list view
-        setMainContent(mListView);
+        setContentView(mListView);
         getListView().setOnItemLongClickListener(this);
         getListView().setMultiChoiceModeListener(this);
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -2307,7 +2373,7 @@ public class MainActivity extends PluginManager
                 break;
 
             case ObdProt.OBD_SVC_NONE:
-                setMainContent(R.layout.startup_layout);
+                setContentView(R.layout.startup_layout);
                 // intentionally no break to initialize adapter
             case ObdProt.OBD_SVC_VEH_INFO:
                 currDataAdapter = mVidAdapter;
