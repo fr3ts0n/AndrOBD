@@ -2,12 +2,23 @@
 
 ## Overview
 
-The AndrOBD application provides a comprehensive menu interface that gives users direct access to all key features from the main activity. The menu structure is designed for maximum usability and follows Android design guidelines for consistency and accessibility.
+The AndrOBD application provides a comprehensive menu interface that gives users direct access to all key features. The menu structure is designed for maximum usability and follows Android design guidelines for consistency and accessibility.
+
+**⚠️ Navigation Drawer Implementation**: As of the latest version, AndrOBD has been modernized with a Navigation Drawer interface while preserving all existing ActionBar menu functionality. See [Navigation Drawer Implementation](navigation-drawer-implementation.md) for details on the new UI structure.
+
+## Menu Access Methods
+
+AndrOBD now provides multiple ways to access menu functions:
+
+1. **Navigation Drawer** (Primary) - Modern sliding menu accessed via hamburger icon
+2. **ActionBar Menu** (Legacy) - Traditional options menu for backward compatibility
+3. **Context Menus** - Specialized menus for chart and data visualization views
 
 ## Menu Compatibility
 
 - **Target Android Version**: Compatible with Android 4.1+ (API Level 16+)
 - **Menu Components**: Uses standard Android menu components (`Menu`, `MenuItem`) for maximum compatibility
+- **Navigation Drawer**: Uses androidx.drawerlayout and Material Components with fallback support
 - **Icons**: Utilizes Android's built-in drawable resources for consistency across devices
 - **Theme Integration**: Automatically adapts to app's light/dark theme settings
 
