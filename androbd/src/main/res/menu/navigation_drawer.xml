@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Navigation Drawer menu for AndrOBD application
+    Provides unified access to all key features in a modern navigation drawer:
+    - Connection management (Connect/Disconnect)
+    - Data operations (Save/Load measurements)
+    - Display options (Day/Night mode)
+    - Application settings and configuration
+    - OBD diagnostic services (group)
+    
+    Compatible with Android 4.1+ (API 16+) using Material Design NavigationView
+    with fallback support for older Android versions.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <!-- Connection Management Group -->
+    <group 
+        android:id="@+id/group_connection"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_connect"
+            android:icon="@drawable/action_connect"
+            android:title="@string/action_connect"
+            android:visible="true"/>
+        <item
+            android:id="@+id/nav_disconnect"
+            android:icon="@drawable/action_disconnect"
+            android:title="@string/disconnect"
+            android:visible="false"/>
+    </group>
+
+    <!-- Data Management Group -->
+    <group 
+        android:id="@+id/group_data"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_save"
+            android:icon="@android:drawable/ic_menu_save"
+            android:title="@string/save"/>
+        <item
+            android:id="@+id/nav_load"
+            android:icon="@drawable/ic_action_load"
+            android:title="@string/load"/>
+    </group>
+
+    <!-- Display Options Group -->
+    <group 
+        android:id="@+id/group_display"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_day_night_mode"
+            android:icon="@drawable/ic_daynight"
+            android:title="@string/day_night_mode"/>
+    </group>
+
+    <!-- Configuration Group -->
+    <group 
+        android:id="@+id/group_config"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@android:drawable/ic_menu_preferences"
+            android:title="@string/settings"/>
+        <item
+            android:id="@+id/nav_plugin_manager"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="@string/plugin_manager"/>
+        <item
+            android:id="@+id/nav_reset_preselections"
+            android:icon="@android:drawable/ic_menu_delete"
+            android:title="@string/reset_preselections"/>
+    </group>
+
+    <!-- OBD Diagnostic Services Group -->
+    <group 
+        android:id="@+id/group_obd_services"
+        android:checkableBehavior="single">
+        <item android:title="@string/obd_services">
+            <menu>
+                <item
+                    android:id="@+id/nav_service_vid_data"
+                    android:title="@string/obd_veh_info"
+                    android:icon="@android:drawable/ic_menu_info_details"/>
+                <item
+                    android:id="@+id/nav_service_data"
+                    android:title="@string/obd_data"
+                    android:icon="@android:drawable/ic_menu_view"/>
+                <item
+                    android:id="@+id/nav_service_freezeframes"
+                    android:enabled="false"
+                    android:title="@string/service_freezeframes"
+                    android:icon="@android:drawable/ic_menu_recent_history"/>
+                <item
+                    android:id="@+id/nav_service_testcontrol"
+                    android:title="@string/service_testcontrol"
+                    android:icon="@android:drawable/ic_menu_slideshow"/>
+                <item
+                    android:id="@+id/nav_service_codes"
+                    android:title="@string/obd_codes"
+                    android:icon="@android:drawable/ic_menu_myplaces"/>
+                <item
+                    android:id="@+id/nav_service_clearcodes"
+                    android:title="@string/obd_clearcodes"
+                    android:icon="@android:drawable/ic_menu_delete"/>
+            </menu>
+        </item>
+    </group>
+
+</menu>

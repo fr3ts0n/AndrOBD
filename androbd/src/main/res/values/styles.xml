@@ -6,4 +6,20 @@
     <style name="AppTheme.Dark" parent="@android:style/Theme.DeviceDefault" >
         <item name="android:activatedBackgroundIndicator">@drawable/activated_background</item>
     </style>
+    
+    <!-- Navigation Drawer theme for consistent styling -->
+    <style name="NavigationViewTheme" parent="AppTheme">
+        <item name="android:textColorSecondary">?android:attr/textColorPrimary</item>
+    </style>
+    
+    <!-- AppCompat compatibility styles for NavigationView on older Android versions -->
+    <style name="TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    
+    <style name="TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
 </resources>

@@ -60,6 +60,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.fr3ts0n.androbd.plugin.Plugin;
 import com.fr3ts0n.androbd.plugin.mgr.PluginManager;
@@ -102,7 +104,8 @@ public class MainActivity extends PluginManager
         PropertyChangeListener,
         SharedPreferences.OnSharedPreferenceChangeListener,
         AbsListView.MultiChoiceModeListener,
-        ObdBackgroundService.ServiceStateListener
+        ObdBackgroundService.ServiceStateListener,
+        NavigationDrawerHelper.NavigationDrawerListener
 {
     /**
      * Key names for preferences
@@ -238,6 +241,11 @@ public class MainActivity extends PluginManager
      * i.e. un-supported mode 0x0A for DFC reading
      */
     private static boolean ignoreNrcs = false;
+
+    /**
+     * Navigation drawer helper for managing drawer functionality
+     */
+    private NavigationDrawerHelper navigationDrawerHelper;
 
     /**
      * handler for freeze frame selection
@@ -610,13 +618,17 @@ public class MainActivity extends PluginManager
         if (actionBar != null)
         {
             actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.show(); // Ensure action bar is visible
         }
         // start automatic toolbar hider
         setAutoHider(prefs.getBoolean(PREF_AUTOHIDE, false));
 
-        // set content view
-        setContentView(R.layout.startup_layout);
+        // Initialize navigation drawer first, then set initial content
+        initializeNavigationDrawer();
+        
+        // set initial content view
+        setMainContent(R.layout.startup_layout);
         
         // Ensure menus are properly created and visible
         invalidateOptionsMenu();
@@ -784,17 +796,79 @@ public class MainActivity extends PluginManager
         super.onDestroy();
     }
 
+    /**
+     * Initialize the navigation drawer
+     * 
+     * Sets up the drawer layout and navigation view, integrating the drawer
+     * with the existing action bar and maintaining compatibility with the
+     * current activity structure.
+     */
+    private void initializeNavigationDrawer()
+    {
+        // Set the drawer layout as the main content view
+        super.setContentView(R.layout.activity_main_drawer);
+        
+        // Initialize the navigation drawer helper
+        navigationDrawerHelper = new NavigationDrawerHelper(this, this);
+        navigationDrawerHelper.setupNavigationDrawer(R.id.drawer_layout, R.id.nav_view);
+    }
+    
+    /**
+     * Set content in the main content frame (inside drawer layout)
+     * 
+     * This method replaces the traditional setContentView for activities using
+     * the navigation drawer, placing the content inside the drawer's content frame.
+     */
+    private void setMainContent(int layoutResID)
+    {
+        setMainContent(getLayoutInflater().inflate(layoutResID, null));
+    }
+    
+    /**
+     * Set content view in the drawer's content frame
+     * 
+     * This method maintains compatibility with existing code while integrating
+     * the navigation drawer. The existing ListView touch handling is preserved.
+     */
+    private void setMainContent(View view)
+    {
+        navigationDrawerHelper.wrapContentInDrawer(view);
+        
+        // Preserve existing ListView touch handling if the view contains a ListView
+        try {
+            getListView().setOnTouchListener(toolbarAutoHider);
+        } catch (Exception e) {
+            // ListView may not be available in all views, which is fine
+        }
+    }
+
     @Override
     public void setContentView(int layoutResID)
     {
-        setContentView(getLayoutInflater().inflate(layoutResID, null));
+        // If drawer is initialized, use the drawer content frame
+        if (navigationDrawerHelper != null) {
+            setMainContent(layoutResID);
+        } else {
+            // Fallback to traditional method during initialization
+            setContentView(getLayoutInflater().inflate(layoutResID, null));
+        }
     }
 
     @Override
     public void setContentView(View view)
     {
-        super.setContentView(view);
-        getListView().setOnTouchListener(toolbarAutoHider);
+        // If drawer is initialized, use the drawer content frame
+        if (navigationDrawerHelper != null) {
+            setMainContent(view);
+        } else {
+            // Fallback to traditional method during initialization
+            super.setContentView(view);
+            try {
+                getListView().setOnTouchListener(toolbarAutoHider);
+            } catch (Exception e) {
+                // ListView may not be available, which is fine
+            }
+        }
     }
 
     /**
@@ -803,6 +877,11 @@ public class MainActivity extends PluginManager
     @Override
     public void onBackPressed()
     {
+        // First check if navigation drawer should handle the back press
+        if (navigationDrawerHelper != null && navigationDrawerHelper.onBackPressed()) {
+            return; // Drawer was closed, don't proceed with other back handling
+        }
+        
         if (getListAdapter() == pluginHandler)
         {
             setObdService(obdService, null);
@@ -882,6 +961,19 @@ public class MainActivity extends PluginManager
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        // Handle navigation drawer toggle (hamburger menu)
+        if (item.getItemId() == android.R.id.home && navigationDrawerHelper != null) {
+            DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+            if (drawerLayout != null) {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                } else {
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+                return true;
+            }
+        }
+        
         switch (item.getItemId())
         {
             // Display and UI Management
@@ -1673,6 +1765,9 @@ public class MainActivity extends PluginManager
                 // Default visibility for other modes
                 break;
         }
+        
+        // Also update the navigation drawer state to match menu changes
+        updateNavigationState();
     }
 
     /**
@@ -2659,5 +2754,91 @@ public class MainActivity extends PluginManager
                 }
             }
         });
+    }
+    
+    // NavigationDrawerListener interface implementation
+    
+    /**
+     * Handle navigation drawer item selection
+     * 
+     * This method receives navigation item selections from the drawer and
+     * delegates them to the existing menu handling logic, preserving all
+     * current functionality while providing access via the navigation drawer.
+     * 
+     * @param menuId the ID of the selected menu item (mapped to original action IDs)
+     * @return true if the selection was handled
+     */
+    @Override
+    public boolean onNavigationItemSelected(int menuId) {
+        // Create a synthetic MenuItem to reuse existing menu handling logic
+        MenuItem syntheticItem = new MenuItem() {
+            @Override
+            public int getItemId() {
+                return menuId;
+            }
+            
+            // Delegate all other methods to avoid implementing the full interface
+            // These methods are not used by the existing menu handling logic
+            @Override public int getGroupId() { return 0; }
+            @Override public int getOrder() { return 0; }
+            @Override public MenuItem setTitle(CharSequence title) { return this; }
+            @Override public MenuItem setTitle(int title) { return this; }
+            @Override public CharSequence getTitle() { return ""; }
+            @Override public MenuItem setTitleCondensed(CharSequence title) { return this; }
+            @Override public CharSequence getTitleCondensed() { return ""; }
+            @Override public MenuItem setIcon(Drawable icon) { return this; }
+            @Override public MenuItem setIcon(int iconRes) { return this; }
+            @Override public Drawable getIcon() { return null; }
+            @Override public MenuItem setIntent(Intent intent) { return this; }
+            @Override public Intent getIntent() { return null; }
+            @Override public MenuItem setShortcut(char numericChar, char alphaChar) { return this; }
+            @Override public MenuItem setNumericShortcut(char numericChar) { return this; }
+            @Override public char getNumericShortcut() { return 0; }
+            @Override public MenuItem setAlphabeticShortcut(char alphaChar) { return this; }
+            @Override public char getAlphabeticShortcut() { return 0; }
+            @Override public MenuItem setCheckable(boolean checkable) { return this; }
+            @Override public boolean isCheckable() { return false; }
+            @Override public MenuItem setChecked(boolean checked) { return this; }
+            @Override public boolean isChecked() { return false; }
+            @Override public MenuItem setVisible(boolean visible) { return this; }
+            @Override public boolean isVisible() { return true; }
+            @Override public MenuItem setEnabled(boolean enabled) { return this; }
+            @Override public boolean isEnabled() { return true; }
+            @Override public boolean hasSubMenu() { return false; }
+            @Override public android.view.SubMenu getSubMenu() { return null; }
+            @Override public MenuItem setOnMenuItemClickListener(android.view.MenuItem.OnMenuItemClickListener menuItemClickListener) { return this; }
+            @Override public android.view.ContextMenu.ContextMenuInfo getMenuInfo() { return null; }
+            @Override public void setShowAsAction(int actionEnum) {}
+            @Override public MenuItem setShowAsActionFlags(int actionEnum) { return this; }
+            @Override public MenuItem setActionView(View view) { return this; }
+            @Override public MenuItem setActionView(int resId) { return this; }
+            @Override public View getActionView() { return null; }
+            @Override public MenuItem setActionProvider(android.view.ActionProvider actionProvider) { return this; }
+            @Override public android.view.ActionProvider getActionProvider() { return null; }
+            @Override public boolean expandActionView() { return false; }
+            @Override public boolean collapseActionView() { return false; }
+            @Override public boolean isActionViewExpanded() { return false; }
+            @Override public MenuItem setOnActionExpandListener(android.view.MenuItem.OnActionExpandListener listener) { return this; }
+        };
+        
+        // Reuse the existing menu handling logic
+        return onOptionsItemSelected(syntheticItem);
+    }
+    
+    /**
+     * Update navigation drawer state
+     * 
+     * This method is called to update the navigation drawer's menu items
+     * based on the current application state, preserving the dynamic
+     * behavior of the original menu system.
+     */
+    @Override
+    public void updateNavigationState() {
+        if (navigationDrawerHelper != null) {
+            boolean isConnected = (getMode() == MODE.ONLINE || getMode() == MODE.DEMO);
+            boolean obdServicesEnabled = (CommService.elm.getService() != ObdProt.OBD_SVC_NONE);
+            
+            navigationDrawerHelper.updateNavigationVisibility(isConnected, obdServicesEnabled);
+        }
     }
 }

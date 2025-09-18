@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Main Navigation Drawer layout for AndrOBD application
+    
+    This layout provides the foundation for the navigation drawer implementation
+    while maintaining compatibility with Android 4.1+ (API 16+).
+    
+    Structure:
+    - DrawerLayout: Root container for drawer functionality
+    - Main content area: Contains the existing app content
+    - NavigationView: Sliding drawer with menu items
+    
+    The layout preserves existing functionality while adding modern navigation
+    drawer capabilities to all major screens.
+-->
+<androidx.drawerlayout.widget.DrawerLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <!-- Main content container - this will hold the existing activity content -->
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Navigation drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/navigation_drawer"
+        app:theme="@style/NavigationViewTheme" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
