@@ -610,12 +610,16 @@ public class MainActivity extends PluginManager
         if (actionBar != null)
         {
             actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.show(); // Ensure action bar is visible
         }
         // start automatic toolbar hider
         setAutoHider(prefs.getBoolean(PREF_AUTOHIDE, false));
 
         // set content view
         setContentView(R.layout.startup_layout);
+        
+        // Ensure menus are properly created and visible
+        invalidateOptionsMenu();
 
         // override comm medium with USB connect intent
         if ("android.hardware.usb.action.USB_DEVICE_ATTACHED".equals(getIntent().getAction()))
@@ -846,6 +850,10 @@ public class MainActivity extends PluginManager
         MainActivity.menu = menu;
         // update menu item status for current conversion
         setConversionSystem(EcuDataItem.cnvSystem);
+        
+        // Ensure menus are properly visible based on current mode
+        updateMenuVisibility();
+        
         return true;
     }
 
@@ -1601,6 +1609,38 @@ public class MainActivity extends PluginManager
     }
 
     /**
+     * Update menu visibility based on current mode
+     */
+    private void updateMenuVisibility()
+    {
+        if (menu == null) return;
+        
+        switch (mode)
+        {
+            case OFFLINE:
+                // In offline mode, show connect button, hide disconnect
+                setMenuItemVisible(R.id.secure_connect_scan, true);
+                setMenuItemVisible(R.id.disconnect, false);
+                setMenuItemEnable(R.id.obd_services, false);
+                // Ensure other important menu items are visible
+                setMenuItemVisible(R.id.settings, true);
+                setMenuItemVisible(R.id.day_night_mode, true);
+                break;
+                
+            case ONLINE:
+                // In online mode, hide connect button, show disconnect
+                setMenuItemVisible(R.id.secure_connect_scan, false);
+                setMenuItemVisible(R.id.disconnect, true);
+                setMenuItemEnable(R.id.obd_services, true);
+                break;
+                
+            default:
+                // Default visibility for other modes
+                break;
+        }
+    }
+
+    /**
      * start/stop the autmatic toolbar hider
      */
     private void setAutoHider(boolean active)
@@ -1715,10 +1755,7 @@ public class MainActivity extends PluginManager
             switch (mode)
             {
                 case OFFLINE:
-                    // update menu item states
-                    setMenuItemVisible(R.id.disconnect, false);
-                    setMenuItemVisible(R.id.secure_connect_scan, true);
-                    setMenuItemEnable(R.id.obd_services, false);
+                    // Mode handled by updateMenuVisibility()
                     break;
 
                 case ONLINE:
@@ -1944,6 +1981,9 @@ public class MainActivity extends PluginManager
             Thread demoThread = new Thread(CommService.elm);
             demoThread.start();
         }
+        
+        // Update menu visibility after mode change
+        updateMenuVisibility();
     }
 
     /**
@@ -2226,10 +2266,8 @@ public class MainActivity extends PluginManager
         stopDemoService();
 
         mode = MODE.ONLINE;
-        // handle further initialisations
-        setMenuItemVisible(R.id.secure_connect_scan, false);
-        setMenuItemVisible(R.id.disconnect, true);
-
+        // Menu visibility will be handled by updateMenuVisibility() call in setMode
+        
         setMenuItemEnable(R.id.obd_services, true);
         // display connection status
         setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));

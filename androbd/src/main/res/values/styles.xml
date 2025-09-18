@@ -1,17 +1,9 @@
 <resources>
-    <!-- Application theme with modern AppCompat support -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar" >
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.Light.DarkActionBar" >
         <item name="android:activatedBackgroundIndicator">@drawable/activated_background</item>
-        <!-- Modern theme colors while maintaining the existing color scheme -->
-        <item name="colorPrimary">#2196F3</item>
-        <item name="colorPrimaryDark">#1976D2</item>
-        <item name="colorAccent">#FF4081</item>
     </style>
-    <style name="AppTheme.Dark" parent="Theme.AppCompat" >
+    <style name="AppTheme.Dark" parent="@android:style/Theme.DeviceDefault" >
         <item name="android:activatedBackgroundIndicator">@drawable/activated_background</item>
-        <!-- Dark theme colors -->
-        <item name="colorPrimary">#1976D2</item>
-        <item name="colorPrimaryDark">#0D47A1</item>
-        <item name="colorAccent">#FF4081</item>
     </style>
 </resources>
