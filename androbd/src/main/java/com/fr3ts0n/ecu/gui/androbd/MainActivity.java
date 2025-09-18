@@ -1813,6 +1813,9 @@ public class MainActivity extends PluginManager
             // set new mode
             this.mode = mode;
             setStatus(mode.toString());
+
+            // Update menu visibility after mode change
+            updateMenuVisibility();
         }
     }
 
@@ -1981,7 +1984,6 @@ public class MainActivity extends PluginManager
             Thread demoThread = new Thread(CommService.elm);
             demoThread.start();
         }
-        // Update menu visibility after mode change
     }
 
     /**
