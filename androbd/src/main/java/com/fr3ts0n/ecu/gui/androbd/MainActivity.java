@@ -1628,6 +1628,7 @@ public class MainActivity extends PluginManager
                 break;
                 
             case ONLINE:
+            case DEMO:
                 // In online mode, hide connect button, show disconnect
                 setMenuItemVisible(R.id.secure_connect_scan, false);
                 setMenuItemVisible(R.id.disconnect, true);
@@ -1813,6 +1814,8 @@ public class MainActivity extends PluginManager
             // set new mode
             this.mode = mode;
             setStatus(mode.toString());
+            // ensure correct menu visibility
+            updateMenuVisibility();
         }
     }
 
@@ -1981,9 +1984,6 @@ public class MainActivity extends PluginManager
             Thread demoThread = new Thread(CommService.elm);
             demoThread.start();
         }
-        
-        // Update menu visibility after mode change
-        updateMenuVisibility();
     }
 
     /**
