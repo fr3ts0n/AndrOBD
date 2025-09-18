@@ -28,8 +28,11 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -37,6 +40,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
@@ -96,7 +101,8 @@ public class MainActivity extends PluginManager
         AdapterView.OnItemLongClickListener,
         PropertyChangeListener,
         SharedPreferences.OnSharedPreferenceChangeListener,
-        AbsListView.MultiChoiceModeListener
+        AbsListView.MultiChoiceModeListener,
+        ObdBackgroundService.ServiceStateListener
 {
     /**
      * Key names for preferences
@@ -136,7 +142,7 @@ public class MainActivity extends PluginManager
     private static final String PREF_OVERLAY = "toolbar_overlay";
     private static final String PREF_DATA_DISABLE_MAX = "data_disable_max";
     private static final int MESSAGE_FILE_WRITTEN = 3;
-    private static final int MESSAGE_DATA_ITEMS_CHANGED = 6;
+    protected static final int MESSAGE_DATA_ITEMS_CHANGED = 6;
     private static final int MESSAGE_OBD_STATE_CHANGED = 8;
     private static final int MESSAGE_OBD_NUMCODES = 9;
     private static final int MESSAGE_OBD_ECUS = 10;
@@ -254,6 +260,33 @@ public class MainActivity extends PluginManager
      * Member object for the BT comm services
      */
     private CommService mCommService = null;
+    
+    /**
+     * Background OBD service for continuous monitoring
+     */
+    private ObdBackgroundService obdBackgroundService;
+    private boolean serviceBound = false;
+    
+    /**
+     * Service connection for background OBD service
+     */
+    private final ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            ObdBackgroundService.LocalBinder binder = (ObdBackgroundService.LocalBinder) service;
+            obdBackgroundService = binder.getService();
+            serviceBound = true;
+            obdBackgroundService.addStateListener(MainActivity.this);
+            log.info("Connected to OBD background service");
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            serviceBound = false;
+            obdBackgroundService = null;
+            log.info("Disconnected from OBD background service");
+        }
+    };
     /**
      * file helper
      */
@@ -283,10 +316,11 @@ public class MainActivity extends PluginManager
      */
     private MODE mode = MODE.OFFLINE;
     /**
-     * Handle message requests
+     * Handle message requests using modern Handler implementation
+     * Compatible with both old and new Android versions
      */
     @SuppressLint("HandlerLeak")
-    private transient final Handler mHandler = new Handler()
+    private transient final Handler mHandler = new Handler(Looper.getMainLooper())
     {
         @Override
         public void handleMessage(Message msg)
@@ -576,12 +610,16 @@ public class MainActivity extends PluginManager
         if (actionBar != null)
         {
             actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.show(); // Ensure action bar is visible
         }
         // start automatic toolbar hider
         setAutoHider(prefs.getBoolean(PREF_AUTOHIDE, false));
 
         // set content view
         setContentView(R.layout.startup_layout);
+        
+        // Ensure menus are properly created and visible
+        invalidateOptionsMenu();
 
         // override comm medium with USB connect intent
         if ("android.hardware.usb.action.USB_DEVICE_ATTACHED".equals(getIntent().getAction()))
@@ -627,6 +665,10 @@ public class MainActivity extends PluginManager
                 setMode(MODE.ONLINE);
                 break;
         }
+        
+        // Bind to background OBD service for continuous monitoring
+        Intent serviceIntent = new Intent(this, ObdBackgroundService.class);
+        bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
     /**
@@ -650,6 +692,9 @@ public class MainActivity extends PluginManager
 
         // stop data display update timer
         updateTimer.cancel();
+        
+        // Clean up resources to prevent memory leaks
+        ModernUiUtils.optimizeListView(getListView());
     }
 
     @Override protected void onResume()
@@ -707,6 +752,13 @@ public class MainActivity extends PluginManager
         {
             mCommService.stop();
         }
+        
+        // Unbind from background service
+        if (serviceBound) {
+            obdBackgroundService.removeStateListener(this);
+            unbindService(serviceConnection);
+            serviceBound = false;
+        }
 
         // if bluetooth adapter was switched OFF before ...
         if (mBluetoothAdapter != null && !initialBtStateEnabled)
@@ -722,6 +774,12 @@ public class MainActivity extends PluginManager
         /* remove log file handler, if available (file access was granted) */
         if (logFileHandler != null) logFileHandler.close();
         Logger.getLogger("").removeHandler(logFileHandler);
+        
+        // Shutdown background executor to prevent memory leaks
+        ModernUiUtils.shutdownBackgroundExecutor();
+        
+        // Clean up view hierarchy
+        ModernUiUtils.cleanupViewHierarchy(findViewById(android.R.id.content));
 
         super.onDestroy();
     }
@@ -792,6 +850,10 @@ public class MainActivity extends PluginManager
         MainActivity.menu = menu;
         // update menu item status for current conversion
         setConversionSystem(EcuDataItem.cnvSystem);
+        
+        // Ensure menus are properly visible based on current mode
+        updateMenuVisibility();
+        
         return true;
     }
 
@@ -1219,7 +1281,7 @@ public class MainActivity extends PluginManager
                     // update display range limit in data item
                     itm.updatePeriod_ms = value;
 
-                    log.info(String.format("PID pref %s=%f", key, value));
+                    log.info(String.format("PID pref %s=%d", key, value));
                 }
             }
     }
@@ -1547,6 +1609,38 @@ public class MainActivity extends PluginManager
     }
 
     /**
+     * Update menu visibility based on current mode
+     */
+    private void updateMenuVisibility()
+    {
+        if (menu == null) return;
+        
+        switch (mode)
+        {
+            case OFFLINE:
+                // In offline mode, show connect button, hide disconnect
+                setMenuItemVisible(R.id.secure_connect_scan, true);
+                setMenuItemVisible(R.id.disconnect, false);
+                setMenuItemEnable(R.id.obd_services, false);
+                // Ensure other important menu items are visible
+                setMenuItemVisible(R.id.settings, true);
+                setMenuItemVisible(R.id.day_night_mode, true);
+                break;
+                
+            case ONLINE:
+                // In online mode, hide connect button, show disconnect
+                setMenuItemVisible(R.id.secure_connect_scan, false);
+                setMenuItemVisible(R.id.disconnect, true);
+                setMenuItemEnable(R.id.obd_services, true);
+                break;
+                
+            default:
+                // Default visibility for other modes
+                break;
+        }
+    }
+
+    /**
      * start/stop the autmatic toolbar hider
      */
     private void setAutoHider(boolean active)
@@ -1661,10 +1755,7 @@ public class MainActivity extends PluginManager
             switch (mode)
             {
                 case OFFLINE:
-                    // update menu item states
-                    setMenuItemVisible(R.id.disconnect, false);
-                    setMenuItemVisible(R.id.secure_connect_scan, true);
-                    setMenuItemEnable(R.id.obd_services, false);
+                    // Mode handled by updateMenuVisibility()
                     break;
 
                 case ONLINE:
@@ -1722,6 +1813,9 @@ public class MainActivity extends PluginManager
             // set new mode
             this.mode = mode;
             setStatus(mode.toString());
+
+            // Update menu visibility after mode change
+            updateMenuVisibility();
         }
     }
 
@@ -2172,10 +2266,8 @@ public class MainActivity extends PluginManager
         stopDemoService();
 
         mode = MODE.ONLINE;
-        // handle further initialisations
-        setMenuItemVisible(R.id.secure_connect_scan, false);
-        setMenuItemVisible(R.id.disconnect, true);
-
+        // Menu visibility will be handled by updateMenuVisibility() call in setMode
+        
         setMenuItemEnable(R.id.obd_services, true);
         // display connection status
         setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
@@ -2477,5 +2569,60 @@ public class MainActivity extends PluginManager
         LAST_SERVICE,
         LAST_ITEMS,
         LAST_VIEW_MODE,
+    }
+    
+    // Implementation of ObdBackgroundService.ServiceStateListener
+    
+    @Override
+    public void onServiceStateChanged(ObdBackgroundService.ServiceState newState) {
+        log.info("Background service state changed to: " + newState);
+        
+        // Update UI based on service state
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // You can update status indicators here
+                switch (newState) {
+                    case RUNNING:
+                        // Service is running, can start monitoring
+                        break;
+                    case STOPPED:
+                        // Service stopped, update UI accordingly
+                        break;
+                }
+            }
+        });
+    }
+    
+    @Override
+    public void onDataReceived(String data) {
+        // Handle data received from background service
+        // This allows the app to continue receiving data even when in background
+        log.fine("Background service received data: " + data);
+    }
+    
+    @Override
+    public void onConnectionStateChanged(CommService.STATE connectionState) {
+        // Handle connection state changes from background service
+        log.info("Background service connection state: " + connectionState);
+        
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // Update connection status in UI
+                // This mirrors the existing handler logic but from the background service
+                switch (connectionState) {
+                    case CONNECTED:
+                        setMode(MODE.ONLINE);
+                        break;
+                    case CONNECTING:
+                        // Show connecting status
+                        break;
+                    case NONE:
+                        setMode(MODE.OFFLINE);
+                        break;
+                }
+            }
+        });
     }
 }

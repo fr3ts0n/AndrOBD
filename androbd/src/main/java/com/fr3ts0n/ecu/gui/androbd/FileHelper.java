@@ -19,7 +19,6 @@
 package com.fr3ts0n.ecu.gui.androbd;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
@@ -37,6 +36,8 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -50,9 +51,15 @@ class FileHelper
 	/** Date Formatter used to generate file name */
 	@SuppressLint("SimpleDateFormat")
 	private static final SimpleDateFormat dateFmt = new SimpleDateFormat("yyyy.MM.dd-HH.mm.ss");
-	private static ProgressDialog progress;
-
+	private static ModernProgressDialog progress;
+	
 	private static final Logger log = Logger.getLogger(FileHelper.class.getName());
+	
+	/** ExecutorService for background operations */
+	private static final ExecutorService executor = Executors.newSingleThreadExecutor();
+	
+	/** Handler for UI thread operations */
+	private static final Handler mainHandler = new Handler(Looper.getMainLooper());
 	
 	private final Context context;
 	private final ElmProt elm;
@@ -94,7 +101,7 @@ class FileHelper
 
 
 	/**
-	 * Save all data in a independent thread
+	 * Save all data in a independent thread using modern ExecutorService
 	 */
 	void saveDataThreaded()
 	{
@@ -106,22 +113,25 @@ class FileHelper
 			+ ".obd";
 
 		// create progress dialog
-		progress = ProgressDialog.show(context,
+		progress = ModernProgressDialog.show(context,
 			context.getString(R.string.saving_data),
 			mFileName,
 			true);
 
-		Thread saveTask = new Thread()
-		{
-			public void run()
-			{
-				Looper.prepare();
+		executor.execute(new Runnable() {
+			@Override
+			public void run() {
 				saveData(mPath, mFileName);
-				progress.dismiss();
-				Looper.loop();
+				mainHandler.post(new Runnable() {
+					@Override
+					public void run() {
+						if (progress != null) {
+							progress.dismiss();
+						}
+					}
+				});
 			}
-		};
-		saveTask.start();
+		});
 	}
 
 	/**
@@ -142,6 +152,7 @@ class FileHelper
 
 		try
 		{
+			Looper.prepare();
 			outFile.createNewFile();
 			FileOutputStream fStr = new FileOutputStream(outFile);
 			ObjectOutputStream oStr = new ObjectOutputStream(fStr);
@@ -172,30 +183,33 @@ class FileHelper
 	}
 
 	/**
-	 * Load all data in a independent thread
-	 * @param uri Uri of ile to be loaded
+	 * Load all data in a independent thread using modern ExecutorService
+	 * @param uri Uri of file to be loaded
 	 */
 	synchronized void loadDataThreaded(final Uri uri,
 	                                   final Handler reportTo)
 	{
 		// create progress dialog
-		progress = ProgressDialog.show(context,
+		progress = ModernProgressDialog.show(context,
 		                               context.getString(R.string.loading_data),
 		                               uri.getPath(),
 		                               true);
 
-		Thread loadTask = new Thread()
-		{
-			public void run()
-			{
-				Looper.prepare();
+		executor.execute(new Runnable() {
+			@Override
+			public void run() {
 				loadData(uri);
-				progress.dismiss();
-				reportTo.sendMessage(reportTo.obtainMessage(MainActivity.MESSAGE_FILE_READ));
-				Looper.loop();
+				mainHandler.post(new Runnable() {
+					@Override
+					public void run() {
+						if (progress != null) {
+							progress.dismiss();
+						}
+						reportTo.sendMessage(reportTo.obtainMessage(MainActivity.MESSAGE_FILE_READ));
+					}
+				});
 			}
-		};
-		loadTask.start();
+		});
 	}
 
 	/**
@@ -213,6 +227,7 @@ class FileHelper
 
 		try
 		{
+			Looper.prepare();
 			inStr = context.getContentResolver().openInputStream(uri);
 			numBytesLoaded = inStr != null ? inStr.available() : 0;
 			msg = context.getString(R.string.loaded).concat(String.format(" %d Bytes", numBytesLoaded));
