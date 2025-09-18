@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item
         android:id="@+id/secure_connect_scan"
         android:icon="@drawable/action_connect"
         android:showAsAction="always"
         android:title="@string/action_connect"
-        android:visible="true" />
+        android:visible="true"/>
     <item
         android:id="@+id/disconnect"
         android:icon="@drawable/action_disconnect"
         android:showAsAction="always"
         android:title="@string/disconnect"
-        android:visible="false" />
+        android:visible="false"/>
     <item
         android:id="@+id/day_night_mode"
         android:icon="@drawable/ic_daynight"
-        android:title="@string/day_night_mode" />
+        android:title="@string/day_night_mode"/>
     <item
         android:id="@+id/save"
         android:icon="@android:drawable/ic_menu_save"
-        android:title="@string/save" />
+        android:title="@string/save"/>
     <item
         android:id="@+id/load"
         android:icon="@drawable/ic_action_load"
-        android:title="@string/load" />
+        android:title="@string/load"/>
     <item
         android:id="@+id/reset_preselections"
         android:icon="@android:drawable/ic_menu_delete"
-        android:title="@string/reset_preselections" />
+        android:title="@string/reset_preselections"/>
     <item
         android:id="@+id/plugin_manager"
         android:icon="@android:drawable/ic_menu_manage"
@@ -40,8 +39,9 @@
     <item
         android:id="@+id/obd_services"
         android:icon="@android:drawable/ic_menu_more"
-        android:title="@string/obd_services"
-        android:showAsAction="always">
+        android:enabled="false"
+        android:showAsAction="always"
+        android:title="@string/obd_services">
         <menu/><!-- submenu: obd_service.xml -->
     </item>
 </menu>

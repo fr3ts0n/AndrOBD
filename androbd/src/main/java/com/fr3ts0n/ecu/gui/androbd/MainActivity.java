@@ -50,19 +50,13 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
@@ -85,11 +79,9 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.Timer;
@@ -299,12 +291,6 @@ public class MainActivity extends PluginManager
      * file helper
      */
     private FileHelper fileHelper;
-    /**
-     * Navigation drawer components for sidebar menu
-     */
-    private LinearLayout sidebarOverlay;
-    private NavigationDrawerAdapter drawerAdapter;
-    private List<NavigationDrawerItem> drawerItems;
     /**
      * the local list view
      */
@@ -625,18 +611,12 @@ public class MainActivity extends PluginManager
         {
             actionBar.setDisplayShowTitleEnabled(true);
             actionBar.show(); // Ensure action bar is visible
-            // Enable home button for navigation drawer
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeButtonEnabled(true);
         }
         // start automatic toolbar hider
         setAutoHider(prefs.getBoolean(PREF_AUTOHIDE, false));
 
         // set content view
         setContentView(R.layout.startup_layout);
-        
-        // Initialize simple overlay sidebar menu
-        setupSidebarMenu();
         
         // Ensure menus are properly created and visible
         invalidateOptionsMenu();
@@ -885,15 +865,6 @@ public class MainActivity extends PluginManager
     {
         switch (item.getItemId())
         {
-            case android.R.id.home:
-                // Handle hamburger menu click to show sidebar
-                if (sidebarOverlay != null && sidebarOverlay.getVisibility() == View.VISIBLE) {
-                    hideSidebar();
-                } else {
-                    showSidebar();
-                }
-                return true;
-                
             case R.id.day_night_mode:
                 // toggle night mode setting
                 prefs.edit().putBoolean(NIGHT_MODE, !nightMode).apply();
@@ -1657,7 +1628,6 @@ public class MainActivity extends PluginManager
                 break;
                 
             case ONLINE:
-            case DEMO:
                 // In online mode, hide connect button, show disconnect
                 setMenuItemVisible(R.id.secure_connect_scan, false);
                 setMenuItemVisible(R.id.disconnect, true);
@@ -1668,9 +1638,6 @@ public class MainActivity extends PluginManager
                 // Default visibility for other modes
                 break;
         }
-        
-        // Also update navigation drawer items
-        updateDrawerItems();
     }
 
     /**
@@ -1846,228 +1813,9 @@ public class MainActivity extends PluginManager
             // set new mode
             this.mode = mode;
             setStatus(mode.toString());
-            // ensure correct menu visibility
-            updateMenuVisibility();
         }
     }
 
-    /**
-     * Setup simple overlay sidebar menu that doesn't interfere with ListActivity
-     */
-    private void setupSidebarMenu()
-    {
-        // Create a simple overlay sidebar that can be shown/hidden
-        // This approach doesn't interfere with the ListActivity structure
-        sidebarOverlay = new LinearLayout(this);
-        sidebarOverlay.setOrientation(LinearLayout.VERTICAL);
-        sidebarOverlay.setBackgroundColor(0xF0FFFFFF); // Semi-transparent white
-        sidebarOverlay.setClickable(true);
-        sidebarOverlay.setVisibility(View.GONE);
-        
-        // Set position and size
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
-            (int) (280 * getResources().getDisplayMetrics().density), // 280dp width
-            ViewGroup.LayoutParams.MATCH_PARENT
-        );
-        sidebarOverlay.setLayoutParams(params);
-        
-        // Create header
-        LinearLayout header = createSidebarHeader();
-        sidebarOverlay.addView(header);
-        
-        // Create menu list
-        ListView menuList = new ListView(this);
-        LinearLayout.LayoutParams listParams = new LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        );
-        menuList.setLayoutParams(listParams);
-        menuList.setDivider(null);
-        menuList.setDividerHeight(0);
-        
-        // Create navigation items
-        drawerItems = new ArrayList<>();
-        drawerItems.add(new NavigationDrawerItem(R.id.secure_connect_scan, getString(R.string.action_connect), R.drawable.action_connect));
-        drawerItems.add(new NavigationDrawerItem(R.id.disconnect, getString(R.string.disconnect), R.drawable.action_disconnect, false));
-        drawerItems.add(new NavigationDrawerItem(R.id.obd_services, getString(R.string.obd_services), android.R.drawable.ic_menu_more, false));
-        drawerItems.add(new NavigationDrawerItem(R.id.save, getString(R.string.save), android.R.drawable.ic_menu_save));
-        drawerItems.add(new NavigationDrawerItem(R.id.load, getString(R.string.load), R.drawable.ic_action_load));
-        drawerItems.add(new NavigationDrawerItem(R.id.reset_preselections, getString(R.string.reset_preselections), android.R.drawable.ic_menu_delete));
-        drawerItems.add(new NavigationDrawerItem(R.id.plugin_manager, getString(R.string.plugin_manager), android.R.drawable.ic_menu_manage));
-        drawerItems.add(new NavigationDrawerItem(R.id.settings, getString(R.string.settings), android.R.drawable.ic_menu_preferences));
-        drawerItems.add(new NavigationDrawerItem(R.id.day_night_mode, getString(R.string.day_night_mode), R.drawable.ic_daynight));
-        
-        // Setup adapter
-        drawerAdapter = new NavigationDrawerAdapter(this, drawerItems);
-        menuList.setAdapter(drawerAdapter);
-        
-        // Handle menu item clicks
-        menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                NavigationDrawerItem item = drawerItems.get(position);
-                if (item.isEnabled()) {
-                    handleDrawerItemClick(item.getId());
-                    hideSidebar();
-                }
-            }
-        });
-        
-        sidebarOverlay.addView(menuList);
-        
-        // Add overlay to the root view
-        ViewGroup rootView = (ViewGroup) findViewById(android.R.id.content);
-        rootView.addView(sidebarOverlay);
-        
-        // Position sidebar off-screen initially
-        sidebarOverlay.setTranslationX(-280 * getResources().getDisplayMetrics().density);
-        
-        // Update menu items based on current mode
-        updateDrawerItems();
-    }
-    
-    /**
-     * Create simple sidebar header
-     */
-    private LinearLayout createSidebarHeader()
-    {
-        LinearLayout header = new LinearLayout(this);
-        header.setOrientation(LinearLayout.VERTICAL);
-        header.setBackgroundColor(0xFF2196F3);
-        
-        int padding = (int) (16 * getResources().getDisplayMetrics().density);
-        header.setPadding(padding, padding, padding, padding);
-        
-        TextView appName = new TextView(this);
-        appName.setText(getString(R.string.app_name));
-        appName.setTextColor(0xFFFFFFFF);
-        appName.setTextSize(18);
-        appName.setTypeface(null, android.graphics.Typeface.BOLD);
-        header.addView(appName);
-        
-        TextView appVersion = new TextView(this);
-        appVersion.setText(getString(R.string.app_version));
-        appVersion.setTextColor(0xCCFFFFFF);
-        appVersion.setTextSize(14);
-        header.addView(appVersion);
-        
-        return header;
-    }
-    
-    /**
-     * Show sidebar with animation
-     */
-    private void showSidebar()
-    {
-        if (sidebarOverlay != null) {
-            sidebarOverlay.setVisibility(View.VISIBLE);
-            sidebarOverlay.animate()
-                .translationX(0)
-                .setDuration(250)
-                .start();
-        }
-    }
-    
-    /**
-     * Hide sidebar with animation
-     */
-    private void hideSidebar()
-    {
-        if (sidebarOverlay != null) {
-            sidebarOverlay.animate()
-                .translationX(-280 * getResources().getDisplayMetrics().density)
-                .setDuration(250)
-                .withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        sidebarOverlay.setVisibility(View.GONE);
-                    }
-                })
-                .start();
-        }
-    }
-    
-    /**
-     * Handle navigation drawer item clicks
-     */
-    private void handleDrawerItemClick(int itemId)
-    {
-        // Delegate to existing menu handling by creating a simple MenuItem
-        MenuItem fakeMenuItem = new MenuItem() {
-            @Override public int getItemId() { return itemId; }
-            // Minimal implementation - only getItemId() is used by onOptionsItemSelected
-            @Override public int getGroupId() { return 0; }
-            @Override public int getOrder() { return 0; }
-            @Override public MenuItem setTitle(CharSequence title) { return this; }
-            @Override public MenuItem setTitle(int title) { return this; }
-            @Override public CharSequence getTitle() { return ""; }
-            @Override public MenuItem setTitleCondensed(CharSequence title) { return this; }
-            @Override public CharSequence getTitleCondensed() { return null; }
-            @Override public MenuItem setIcon(Drawable icon) { return this; }
-            @Override public MenuItem setIcon(int iconRes) { return this; }
-            @Override public Drawable getIcon() { return null; }
-            @Override public MenuItem setIntent(Intent intent) { return this; }
-            @Override public Intent getIntent() { return null; }
-            @Override public MenuItem setShortcut(char numericChar, char alphaChar) { return this; }
-            @Override public MenuItem setNumericShortcut(char numericChar) { return this; }
-            @Override public char getNumericShortcut() { return 0; }
-            @Override public MenuItem setAlphabeticShortcut(char alphaChar) { return this; }
-            @Override public char getAlphabeticShortcut() { return 0; }
-            @Override public MenuItem setCheckable(boolean checkable) { return this; }
-            @Override public boolean isCheckable() { return false; }
-            @Override public MenuItem setChecked(boolean checked) { return this; }
-            @Override public boolean isChecked() { return false; }
-            @Override public MenuItem setVisible(boolean visible) { return this; }
-            @Override public boolean isVisible() { return true; }
-            @Override public MenuItem setEnabled(boolean enabled) { return this; }
-            @Override public boolean isEnabled() { return true; }
-            @Override public boolean hasSubMenu() { return false; }
-            @Override public SubMenu getSubMenu() { return null; }
-            @Override public MenuItem setOnMenuItemClickListener(OnMenuItemClickListener menuItemClickListener) { return this; }
-            @Override public ContextMenuInfo getMenuInfo() { return null; }
-            @Override public void setShowAsAction(int actionEnum) {}
-            @Override public MenuItem setShowAsActionFlags(int actionEnum) { return this; }
-            @Override public MenuItem setActionView(View view) { return this; }
-            @Override public MenuItem setActionView(int resId) { return this; }
-            @Override public View getActionView() { return null; }
-            @Override public MenuItem setActionProvider(ActionProvider actionProvider) { return this; }
-            @Override public ActionProvider getActionProvider() { return null; }
-            @Override public boolean expandActionView() { return false; }
-            @Override public boolean collapseActionView() { return false; }
-            @Override public boolean isActionViewExpanded() { return false; }
-            @Override public MenuItem setOnActionExpandListener(OnActionExpandListener listener) { return this; }
-        };
-        
-        // Delegate to existing menu handling
-        onOptionsItemSelected(fakeMenuItem);
-    }
-    
-    /**
-     * Update navigation drawer items based on current mode
-     */
-    private void updateDrawerItems()
-    {
-        if (drawerItems == null) return;
-        
-        for (NavigationDrawerItem item : drawerItems) {
-            switch (item.getId()) {
-                case R.id.secure_connect_scan:
-                    item.setEnabled(mode == MODE.OFFLINE);
-                    break;
-                case R.id.disconnect:
-                    item.setEnabled(mode == MODE.ONLINE || mode == MODE.DEMO);
-                    break;
-                case R.id.obd_services:
-                    item.setEnabled(mode == MODE.ONLINE || mode == MODE.DEMO);
-                    break;
-            }
-        }
-        
-        if (drawerAdapter != null) {
-            drawerAdapter.notifyDataSetChanged();
-        }
-    }
-    
     /**
      * set mesaurement conversion system to metric/imperial
      *
@@ -2233,6 +1981,9 @@ public class MainActivity extends PluginManager
             Thread demoThread = new Thread(CommService.elm);
             demoThread.start();
         }
+        
+        // Update menu visibility after mode change
+        updateMenuVisibility();
     }
 
     /**
