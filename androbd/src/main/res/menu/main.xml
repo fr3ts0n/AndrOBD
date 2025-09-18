@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Main menu for AndrOBD application
+    Provides access to key features in a logical grouping:
+    - Connection management (Connect/Disconnect)
+    - Data operations (Save/Load measurements)
+    - Application settings and customization
+    - OBD diagnostic services (submenu)
+    
+    Compatible with Android 4.1+ (API 16+) using standard Android menu components
+    for maximum compatibility and maintainability.
+-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- Connection Management Group -->
     <item
         android:id="@+id/secure_connect_scan"
         android:icon="@drawable/action_connect"
@@ -12,10 +24,8 @@
         android:showAsAction="always"
         android:title="@string/disconnect"
         android:visible="false"/>
-    <item
-        android:id="@+id/day_night_mode"
-        android:icon="@drawable/ic_daynight"
-        android:title="@string/day_night_mode"/>
+    
+    <!-- Data Management Group -->
     <item
         android:id="@+id/save"
         android:icon="@android:drawable/ic_menu_save"
@@ -24,24 +34,34 @@
         android:id="@+id/load"
         android:icon="@drawable/ic_action_load"
         android:title="@string/load"/>
+    
+    <!-- Display and View Options -->
     <item
-        android:id="@+id/reset_preselections"
-        android:icon="@android:drawable/ic_menu_delete"
-        android:title="@string/reset_preselections"/>
+        android:id="@+id/day_night_mode"
+        android:icon="@drawable/ic_daynight"
+        android:title="@string/day_night_mode"/>
+    
+    <!-- Configuration and Management -->
+    <item
+        android:id="@+id/settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/settings" />
     <item
         android:id="@+id/plugin_manager"
         android:icon="@android:drawable/ic_menu_manage"
         android:title="@string/plugin_manager" />
     <item
-        android:id="@+id/settings"
-        android:icon="@android:drawable/ic_menu_preferences"
-        android:title="@string/settings" />
+        android:id="@+id/reset_preselections"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/reset_preselections"/>
+    
+    <!-- OBD Diagnostic Services (Primary feature access) -->
     <item
         android:id="@+id/obd_services"
         android:icon="@android:drawable/ic_menu_more"
         android:enabled="false"
         android:showAsAction="always"
         android:title="@string/obd_services">
-        <menu/><!-- submenu: obd_service.xml -->
+        <menu/><!-- submenu: obd_service.xml - Contains diagnostic functions -->
     </item>
 </menu>

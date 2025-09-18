@@ -840,15 +840,25 @@ public class MainActivity extends PluginManager
 
     /**
      * Handler for options menu creation event
+     * 
+     * Creates the main application menu with organized access to key features:
+     * - Connection management (connect/disconnect to OBD adapter)
+     * - Data operations (save/load measurement data) 
+     * - Settings and configuration
+     * - OBD diagnostic services (submenu)
+     * 
+     * Menu structure is compatible with Android 4.1+ and uses standard
+     * Android menu components for maximum maintainability.
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the main menu with connection, data, and settings options
         getMenuInflater().inflate(R.menu.main, menu);
+        // Inflate the OBD services submenu for diagnostic functions
         getMenuInflater().inflate(R.menu.obd_services, menu.findItem(R.id.obd_services).getSubMenu());
         MainActivity.menu = menu;
-        // update menu item status for current conversion
+        // update menu item status for current conversion system
         setConversionSystem(EcuDataItem.cnvSystem);
         
         // Ensure menus are properly visible based on current mode
@@ -859,24 +869,30 @@ public class MainActivity extends PluginManager
 
     /**
      * Handler for Options menu selection
+     * 
+     * Handles menu item selections with organized functionality:
+     * - Connection Management: Connect/disconnect to OBD adapters
+     * - Data Export: Save and load measurement data  
+     * - Settings: Access application and OBD configuration
+     * - Diagnostics: OBD service functions for vehicle diagnostics
+     * 
+     * Menu structure provides direct access to key features from any screen.
+     * Compatible with Android 4.1+ using standard menu handling.
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         switch (item.getItemId())
         {
+            // Display and UI Management
             case R.id.day_night_mode:
                 // toggle night mode setting
                 prefs.edit().putBoolean(NIGHT_MODE, !nightMode).apply();
                 return true;
 
+            // Connection Management
             case R.id.secure_connect_scan:
                 setMode(MODE.ONLINE);
-                return true;
-
-            case R.id.reset_preselections:
-                clearPreselections();
-                recreate();
                 return true;
 
             case R.id.disconnect:
@@ -888,8 +904,14 @@ public class MainActivity extends PluginManager
                 setMode(MODE.OFFLINE);
                 return true;
 
+            // Application Settings and Configuration
+            case R.id.reset_preselections:
+                clearPreselections();
+                recreate();
+                return true;
+
             case R.id.settings:
-                // Launch the BtDeviceListActivity to see devices and do scan
+                // Launch settings activity for app configuration
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
                 startActivityForResult(settingsIntent, REQUEST_SETTINGS);
                 return true;
@@ -898,8 +920,9 @@ public class MainActivity extends PluginManager
                 setManagerView();
                 return true;
 
+            // Data Export and Management
             case R.id.save:
-                // save recorded data (threaded)
+                // save recorded data (threaded for performance)
                 fileHelper.saveDataThreaded();
                 return true;
 
@@ -907,6 +930,7 @@ public class MainActivity extends PluginManager
                 setMode(MODE.FILE);
                 return true;
 
+            // OBD Diagnostic Services
             case R.id.service_none:
                 setObdService(ObdProt.OBD_SVC_NONE, item.getTitle());
                 return true;
@@ -1564,10 +1588,16 @@ public class MainActivity extends PluginManager
 
     /**
      * Set enabled state for a specified menu item
-     * * this includes shading disabled items to visualize state
+     * This includes visual feedback by shading disabled items to clearly
+     * indicate their state to users.
+     * 
+     * Used to dynamically enable/disable menu options based on:
+     * - Connection status (enable diagnostic functions when connected)
+     * - Data availability (enable freeze frames when fault codes exist)
+     * - Application state (enable disconnect when connected)
      *
-     * @param id      ID of menu item
-     * @param enabled flag if to be enabled/disabled
+     * @param id      ID of menu item to modify
+     * @param enabled flag if item should be enabled/disabled
      */
     private void setMenuItemEnable(int id, boolean enabled)
     {
@@ -1578,11 +1608,11 @@ public class MainActivity extends PluginManager
             {
                 item.setEnabled(enabled);
 
-                // if menu item has icon ...
+                // if menu item has icon, adjust its visual appearance
                 Drawable icon = item.getIcon();
                 if (icon != null)
                 {
-                    // set it's shading
+                    // set icon transparency to provide visual feedback
                     icon.setAlpha(enabled ? 255 : 127);
                 }
             }
@@ -1590,20 +1620,25 @@ public class MainActivity extends PluginManager
     }
 
     /**
-     * Set enabled state for a specified menu item
-     * * this includes shading disabled items to visualize state
+     * Set visibility state for a specified menu item
+     * Used to show/hide menu items based on application context.
+     * 
+     * Examples:
+     * - Show "Connect" when disconnected, hide when connected
+     * - Show "Disconnect" when connected, hide when disconnected  
+     * - Show diagnostic options only when adapter is connected
      *
-     * @param id      ID of menu item
-     * @param enabled flag if to be visible/invisible
+     * @param id      ID of menu item to modify
+     * @param visible flag if item should be visible/hidden
      */
-    private void setMenuItemVisible(int id, boolean enabled)
+    private void setMenuItemVisible(int id, boolean visible)
     {
         if (menu != null)
         {
             MenuItem item = menu.findItem(id);
             if (item != null)
             {
-                item.setVisible(enabled);
+                item.setVisible(visible);
             }
         }
     }
