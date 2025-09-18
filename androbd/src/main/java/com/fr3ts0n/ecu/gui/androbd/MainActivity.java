@@ -66,7 +66,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.fr3ts0n.androbd.plugin.Plugin;
 import com.fr3ts0n.androbd.plugin.mgr.PluginManager;
@@ -303,8 +302,7 @@ public class MainActivity extends PluginManager
     /**
      * Navigation drawer components for sidebar menu
      */
-    private DrawerLayout drawerLayout;
-    private ListView drawerList;
+    private LinearLayout sidebarOverlay;
     private NavigationDrawerAdapter drawerAdapter;
     private List<NavigationDrawerItem> drawerItems;
     /**
@@ -634,11 +632,11 @@ public class MainActivity extends PluginManager
         // start automatic toolbar hider
         setAutoHider(prefs.getBoolean(PREF_AUTOHIDE, false));
 
-        // set content view with navigation drawer
-        setContentView(R.layout.activity_main_drawer);
+        // set content view
+        setContentView(R.layout.startup_layout);
         
-        // Initialize navigation drawer
-        setupNavigationDrawer();
+        // Initialize simple overlay sidebar menu
+        setupSidebarMenu();
         
         // Ensure menus are properly created and visible
         invalidateOptionsMenu();
@@ -888,11 +886,11 @@ public class MainActivity extends PluginManager
         switch (item.getItemId())
         {
             case android.R.id.home:
-                // Handle hamburger menu click to open/close drawer
-                if (drawerLayout.isDrawerOpen(drawerList)) {
-                    drawerLayout.closeDrawer(drawerList);
+                // Handle hamburger menu click to show sidebar
+                if (sidebarOverlay != null && sidebarOverlay.getVisibility() == View.VISIBLE) {
+                    hideSidebar();
                 } else {
-                    drawerLayout.openDrawer(drawerList);
+                    showSidebar();
                 }
                 return true;
                 
@@ -1854,57 +1852,38 @@ public class MainActivity extends PluginManager
     }
 
     /**
-     * Setup navigation drawer for sidebar menu
-     * This creates a drawer overlay that works with the existing ListActivity structure
+     * Setup simple overlay sidebar menu that doesn't interfere with ListActivity
      */
-    private void setupNavigationDrawer()
+    private void setupSidebarMenu()
     {
-        // Get the current content view
-        View currentContent = findViewById(android.R.id.content);
-        ViewGroup parent = (ViewGroup) currentContent.getParent();
+        // Create a simple overlay sidebar that can be shown/hidden
+        // This approach doesn't interfere with the ListActivity structure
+        sidebarOverlay = new LinearLayout(this);
+        sidebarOverlay.setOrientation(LinearLayout.VERTICAL);
+        sidebarOverlay.setBackgroundColor(0xF0FFFFFF); // Semi-transparent white
+        sidebarOverlay.setClickable(true);
+        sidebarOverlay.setVisibility(View.GONE);
         
-        // Create drawer layout
-        drawerLayout = new DrawerLayout(this);
-        drawerLayout.setLayoutParams(new ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT));
-        
-        // Remove current content from parent and add to drawer
-        parent.removeView(currentContent);
-        drawerLayout.addView(currentContent);
-        
-        // Create navigation drawer
-        LinearLayout drawerContainer = new LinearLayout(this);
-        drawerContainer.setOrientation(LinearLayout.VERTICAL);
-        drawerContainer.setBackgroundColor(getResources().getColor(android.R.color.background_light));
-        drawerContainer.setClickable(true);
-        
-        DrawerLayout.LayoutParams drawerParams = new DrawerLayout.LayoutParams(
-            (int) (280 * getResources().getDisplayMetrics().density), // 280dp
-            ViewGroup.LayoutParams.MATCH_PARENT);
-        drawerParams.gravity = android.view.Gravity.START;
-        drawerContainer.setLayoutParams(drawerParams);
+        // Set position and size
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
+            (int) (280 * getResources().getDisplayMetrics().density), // 280dp width
+            ViewGroup.LayoutParams.MATCH_PARENT
+        );
+        sidebarOverlay.setLayoutParams(params);
         
         // Create header
-        LinearLayout header = createDrawerHeader();
-        drawerContainer.addView(header);
+        LinearLayout header = createSidebarHeader();
+        sidebarOverlay.addView(header);
         
-        // Create navigation list
-        drawerList = new ListView(this);
+        // Create menu list
+        ListView menuList = new ListView(this);
         LinearLayout.LayoutParams listParams = new LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT);
-        drawerList.setLayoutParams(listParams);
-        drawerList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        drawerList.setDivider(null);
-        drawerList.setDividerHeight(0);
-        drawerContainer.addView(drawerList);
-        
-        // Add drawer to layout
-        drawerLayout.addView(drawerContainer);
-        
-        // Add drawer layout back to parent
-        parent.addView(drawerLayout);
+            ViewGroup.LayoutParams.MATCH_PARENT
+        );
+        menuList.setLayoutParams(listParams);
+        menuList.setDivider(null);
+        menuList.setDividerHeight(0);
         
         // Create navigation items
         drawerItems = new ArrayList<>();
@@ -1920,48 +1899,45 @@ public class MainActivity extends PluginManager
         
         // Setup adapter
         drawerAdapter = new NavigationDrawerAdapter(this, drawerItems);
-        drawerList.setAdapter(drawerAdapter);
+        menuList.setAdapter(drawerAdapter);
         
-        // Handle drawer item clicks
-        drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        // Handle menu item clicks
+        menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 NavigationDrawerItem item = drawerItems.get(position);
                 if (item.isEnabled()) {
                     handleDrawerItemClick(item.getId());
-                    drawerLayout.closeDrawer(drawerContainer);
+                    hideSidebar();
                 }
             }
         });
         
-        // Update drawer items based on current mode
+        sidebarOverlay.addView(menuList);
+        
+        // Add overlay to the root view
+        ViewGroup rootView = (ViewGroup) findViewById(android.R.id.content);
+        rootView.addView(sidebarOverlay);
+        
+        // Position sidebar off-screen initially
+        sidebarOverlay.setTranslationX(-280 * getResources().getDisplayMetrics().density);
+        
+        // Update menu items based on current mode
         updateDrawerItems();
     }
     
     /**
-     * Create the drawer header with app branding
+     * Create simple sidebar header
      */
-    private LinearLayout createDrawerHeader()
+    private LinearLayout createSidebarHeader()
     {
         LinearLayout header = new LinearLayout(this);
         header.setOrientation(LinearLayout.VERTICAL);
-        header.setBackgroundColor(0xFF2196F3); // Blue color
+        header.setBackgroundColor(0xFF2196F3);
         
-        int padding = (int) (16 * getResources().getDisplayMetrics().density); // 16dp
+        int padding = (int) (16 * getResources().getDisplayMetrics().density);
         header.setPadding(padding, padding, padding, padding);
         
-        // App icon
-        ImageView icon = new ImageView(this);
-        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(
-            (int) (64 * getResources().getDisplayMetrics().density), // 64dp
-            (int) (64 * getResources().getDisplayMetrics().density));
-        iconParams.bottomMargin = (int) (8 * getResources().getDisplayMetrics().density);
-        icon.setLayoutParams(iconParams);
-        icon.setImageResource(R.drawable.logo);
-        icon.setContentDescription(getString(R.string.app_name));
-        header.addView(icon);
-        
-        // App name
         TextView appName = new TextView(this);
         appName.setText(getString(R.string.app_name));
         appName.setTextColor(0xFFFFFFFF);
@@ -1969,7 +1945,6 @@ public class MainActivity extends PluginManager
         appName.setTypeface(null, android.graphics.Typeface.BOLD);
         header.addView(appName);
         
-        // App version
         TextView appVersion = new TextView(this);
         appVersion.setText(getString(R.string.app_version));
         appVersion.setTextColor(0xCCFFFFFF);
@@ -1977,6 +1952,39 @@ public class MainActivity extends PluginManager
         header.addView(appVersion);
         
         return header;
+    }
+    
+    /**
+     * Show sidebar with animation
+     */
+    private void showSidebar()
+    {
+        if (sidebarOverlay != null) {
+            sidebarOverlay.setVisibility(View.VISIBLE);
+            sidebarOverlay.animate()
+                .translationX(0)
+                .setDuration(250)
+                .start();
+        }
+    }
+    
+    /**
+     * Hide sidebar with animation
+     */
+    private void hideSidebar()
+    {
+        if (sidebarOverlay != null) {
+            sidebarOverlay.animate()
+                .translationX(-280 * getResources().getDisplayMetrics().density)
+                .setDuration(250)
+                .withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        sidebarOverlay.setVisibility(View.GONE);
+                    }
+                })
+                .start();
+        }
     }
     
     /**
