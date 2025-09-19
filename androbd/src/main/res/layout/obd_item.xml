@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:activatedBackgroundIndicator"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="4dp">
 
     <TextView
         android:id="@+id/obd_label"

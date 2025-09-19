@@ -775,9 +775,6 @@ public class MainActivity extends PluginManager
         if (logFileHandler != null) logFileHandler.close();
         Logger.getLogger("").removeHandler(logFileHandler);
         
-        // Shutdown background executor to prevent memory leaks
-        ModernUiUtils.shutdownBackgroundExecutor();
-        
         // Clean up view hierarchy
         ModernUiUtils.cleanupViewHierarchy(findViewById(android.R.id.content));
 
@@ -1661,7 +1658,8 @@ public class MainActivity extends PluginManager
                 setMenuItemVisible(R.id.settings, true);
                 setMenuItemVisible(R.id.day_night_mode, true);
                 break;
-                
+
+            case DEMO:
             case ONLINE:
                 // In online mode, hide connect button, show disconnect
                 setMenuItemVisible(R.id.secure_connect_scan, false);
