@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="translation_credits">Tłumaczenie - Zespół Weblate</string>
-    <string name="app_description">Aplikacja dla systemu Android do diagnostyki pojazdów poprzez OBD poprzez adapter Bluetooth ELM327</string>
+    <string name="app_description">Aplikacja dla systemu Android do diagnostyki pojazdów poprzez adapter OBD Bluetooth ELM327</string>
     <string name="title_connecting">Łączenie…</string>
     <string name="title_connected_to">Połączono %s</string>
     <string name="logo">Logo</string>
-    <string name="back_again_to_exit">Naciśnij cofnij ponownie, aby zamknąć tę aplikację</string>
+    <string name="back_again_to_exit">Naciśnij cofnij ponownie, aby zamknąć aplikację</string>
     <string name="action_connect">Połącz</string>
     <string name="obd_none">Brak obsługi</string>
     <string name="obd_services">Usługi OBD</string>
