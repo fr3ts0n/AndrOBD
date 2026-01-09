@@ -9,7 +9,7 @@
     <string name="obd_none">INGEN tjänst</string>
     <string name="obd_services">OBD-tjänster</string>
     <string name="obd_veh_info">OBD fordonsinfo</string>
-    <string name="obd_data">ODB-data</string>
+    <string name="obd_data">OBD-data</string>
     <string name="obd_codes">OBD-felkoder</string>
     <string name="obd_permanentcodes">OBD-felkoder (permanenta)</string>
     <string name="obd_pendingcodes">OBD-felkoder (pendlande)</string>
@@ -43,7 +43,7 @@
     <string name="debugging">Avlusar</string>
     <string name="logging_level">Loggningsnivå</string>
     <string name="keep_screen_on">Behåll den huvudsakliga skärmen på</string>
-    <string name="app_description">Android ODB fordonsdiagnostiksapp för blåtandsadaptern ELM327</string>
+    <string name="app_description">Android OBD fordonsdiagnostiksapp för ELM327-blåtandsadaptrar</string>
     <string name="service_freezeframes">OBD-frysta ramar</string>
     <string name="obd_clear_info">Detta kommer att åẗerställa MIL och rensa all utsläppsrelaterad
 \n diagnostikinformation, inklusive
