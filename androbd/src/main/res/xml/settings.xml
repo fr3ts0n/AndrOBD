@@ -143,7 +143,7 @@
                 android:title="@string/select_protocol"
                 />
 
-            <MultiSelectListPreference
+            <com.fr3ts0n.ecu.gui.androbd.SearchableMultiSelectListPreference
                 android:defaultValue="@array/empty"
                 android:dialogTitle="@string/items_for_display"
                 android:entries="@array/empty"
