@@ -251,8 +251,8 @@ public class SettingsActivity
 		 */
 		void setupPidSelection()
 		{
-			MultiSelectListPreference itemList =
-				(MultiSelectListPreference) findPreference(KEY_DATA_ITEMS);
+			SearchableMultiSelectListPreference itemList =
+				(SearchableMultiSelectListPreference) findPreference(KEY_DATA_ITEMS);
 
 			// collect data items for selection
 			items = ObdProt.dataItems.getSvcDataItems(ObdProt.OBD_SVC_DATA);
