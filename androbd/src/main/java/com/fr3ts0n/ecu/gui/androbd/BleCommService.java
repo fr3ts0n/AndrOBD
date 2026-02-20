@@ -1,5 +1,7 @@
 package com.fr3ts0n.ecu.gui.androbd;
 
+import static java.util.logging.Level.SEVERE;
+
 import android.Manifest;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -12,7 +14,6 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
-import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
@@ -112,7 +113,7 @@ public class BleCommService
 
     @Override
     public int writeTelegram(char[] buffer) {
-        Log.d(TAG,"TX: " + ProtUtils.hexDumpBuffer(buffer));
+        log.finer("TX: " + ProtUtils.hexDumpBuffer(buffer));
         String tgm = String.valueOf(buffer) + "\r";
         write(tgm.getBytes());
         return buffer.length;
@@ -127,7 +128,7 @@ public class BleCommService
     public int handleTelegram(char[] data) {
         int result = 0;
 
-        Log.v(TAG,"RX: " + ProtUtils.hexDumpBuffer(data));
+        log.finer("RX: " + ProtUtils.hexDumpBuffer(data));
 
         for(char chr : data)
         {
@@ -152,7 +153,7 @@ public class BleCommService
                     }
                     catch (Exception ex)
                     {
-                        Log.w(TAG, "handleTelegram", ex);
+                        log.log(SEVERE,"handleTelegram", ex);
                     }
                     message = "";
                     break;
@@ -168,10 +169,11 @@ public class BleCommService
     @Override
     public void connect(Object device, boolean secure) {
         mDevice = (BluetoothDevice)device;
-
         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            log.severe("Missing BLE permission: " + mDevice.getName() + " (" + mDevice.getAddress() + ")");
             return;
         }
+        log.info("BLE connect to " + mDevice.getAddress() + " (" + mDevice.getName() + ")");
         setState(STATE.CONNECTING);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             gatt = mDevice.connectGatt(mContext, true, bluetoothGattCallback, BluetoothDevice.TRANSPORT_LE);
@@ -187,7 +189,7 @@ public class BleCommService
         public void onConnectionStateChange(BluetoothGatt gatt,
                                             int status,
                                             int newState) {
-            Log.d(TAG,"onConnectionStateChange: " + newState);
+            log.fine(String.format("onConnectionStateChange: %s, %s", status, newState));
             switch(newState) {
                 case  BluetoothProfile.STATE_CONNECTED:
                     gatt.discoverServices();
@@ -203,28 +205,26 @@ public class BleCommService
         @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
         @Override
         public void onServicesDiscovered(BluetoothGatt gatt, int status) {
-            Log.d(TAG,String.format("onServicesDiscovered: %d", status));
+            log.fine(String.format("onServicesDiscovered: %d", status));
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 // reset remembered characteristics
                 rxCharacteristic = txCharacteristic = null;
                 List<BluetoothGattService> services;
                 services = gatt.getServices();
-                Log.d(TAG,"GATT sevices:" + services.toString());
                 // find known serial service
                 for (BluetoothGattService service : services) {
+                    log.fine("GATT SVC:" + service.getUuid().toString());
                     if(!serialUUIDs.containsKey(service.getUuid()))
                         continue;
                     // found a service, check characteristics ...
                     UUID[] serCharUUIDs = serialUUIDs.get(service.getUuid());
                     List<BluetoothGattCharacteristic> characteristics = service.getCharacteristics();
-                    Log.d(TAG,"GATT characteristics:" + characteristics.toString());
-
                     // find corresponding RX & TX characteristics
                     for (BluetoothGattCharacteristic characteristic : characteristics) {
-                        Log.d(TAG, characteristic.getUuid().toString());
+                        log.fine("GATT CH:" + characteristic.getUuid().toString());
                         // RX
                         if (characteristic.getUuid().equals(serCharUUIDs[0])) {
-                            Log.i(TAG,"RX characteristic:" + characteristic.getUuid().toString());
+                            log.info("GATT RX:" + characteristic.getUuid().toString());
                             rxCharacteristic = characteristic;
                             // register characteristic for RX notification
                             gatt.setCharacteristicNotification(characteristic, true);
@@ -236,7 +236,7 @@ public class BleCommService
                         }
                         // TX
                         if (characteristic.getUuid().equals(serCharUUIDs[1])){
-                            Log.i(TAG,"TX characteristic:" + characteristic.getUuid().toString());
+                            log.info("GATT TX:" + characteristic.getUuid().toString());
                             // save characteristic for TX
                             txCharacteristic = characteristic;
                         }
@@ -249,7 +249,7 @@ public class BleCommService
                         return;
                     }
                 }
-                // nothing found > connection failed
+                // nothing matching found > connection failed
                 connectionFailed();
             }
         }

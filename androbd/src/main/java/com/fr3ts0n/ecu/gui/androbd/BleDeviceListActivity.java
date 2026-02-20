@@ -7,7 +7,6 @@ import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
@@ -20,6 +19,7 @@ public class BleDeviceListActivity
 {
     private BluetoothLeScanner leScanner;
 
+    @SuppressLint("InlinedApi")
     @Override
     protected void startDeviceScan() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
@@ -43,16 +43,16 @@ public class BleDeviceListActivity
     final ScanCallback scanCallback = new ScanCallback() {
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
-            Log.d(TAG,"BLE: " + result.toString());
+            log.fine("BLE: " + result.toString());
             addDevice(result.getDevice());
         }
         @Override
         public void onScanFailed(int errorCode) {
-            Log.e(TAG,"BLE scan failed with error code: " + errorCode);
+            log.severe("BLE scan failed with error code: " + errorCode);
         }
 
         public void onBatchScanResults(List<ScanResult> results) {
-            Log.d(TAG,"BLE: " + results.toString());
+            log.fine("BLE: " + results.toString());
             for (ScanResult result : results) {
                 addDevice(result.getDevice());
             }

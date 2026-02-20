@@ -730,6 +730,7 @@ public class MainActivity extends PluginManager
      *
      * @see android.app.Activity#onDestroy()
      */
+    @SuppressLint("MissingPermission")
     @Override
     protected void onDestroy()
     {
@@ -2137,6 +2138,7 @@ public class MainActivity extends PluginManager
      * @param address bluetooth device address
      * @param secure  flag to indicate if the connection shall be secure, or not
      */
+    @SuppressLint("NewApi")
     private void connectBleDevice(String address, boolean secure)
     {
         // Get the BluetoothDevice object
@@ -2479,7 +2481,7 @@ public class MainActivity extends PluginManager
     private void runObdTestControl(String testControlName, int service, int tid)
     {
         // start desired test TID
-        char emptyBuffer[] = {};
+        char[] emptyBuffer = {};
         CommService.elm.writeTelegram(emptyBuffer, service, tid);
 
         // Show test progress message
