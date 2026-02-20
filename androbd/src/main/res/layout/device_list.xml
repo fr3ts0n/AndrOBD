@@ -4,14 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/title_paired_devices"
-        android:background="#666"
-        android:textColor="#fff"
-    />
-    <ListView android:id="@+id/paired_devices"
+    <ListView android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
     />

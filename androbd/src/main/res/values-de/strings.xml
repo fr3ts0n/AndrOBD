@@ -6,6 +6,7 @@
     <string name="chart">Diagramm</string>
     <string name="logo">Logo</string>
     <string name="none_found">Keine Geräte gefunden</string>
+    <string name="select_ble_device">BLE-Adapter wählen</string>
     <string name="none_paired">Keine Geräte gepaart</string>
     <string name="obd_clearcodes">Fehlercodes löschen</string>
     <string name="obd_codes">OBD Fehlercodes</string>

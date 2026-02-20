@@ -18,6 +18,8 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import static android.bluetooth.BluetoothDevice.ADDRESS_TYPE_PUBLIC;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -34,6 +36,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -59,6 +62,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
 import com.fr3ts0n.androbd.plugin.Plugin;
@@ -630,6 +634,11 @@ public class MainActivity extends PluginManager
         switch (CommService.medium)
         {
             case BLUETOOTH:
+            case BLE:
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
+                    return;
+                }
                 // Get local Bluetooth adapter
                 mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
                 log.fine("Adapter: " + mBluetoothAdapter);
@@ -1034,7 +1043,17 @@ public class MainActivity extends PluginManager
                             BtDeviceListActivity.EXTRA_DEVICE_ADDRESS);
                     // save reported address as last setting
                     prefs.edit().putString(PRESELECT.LAST_DEV_ADDRESS.toString(), address).apply();
-                    connectBtDevice(address, secureConnection);
+                    switch(CommService.medium)
+                    {
+                        case BLE:
+                            connectBleDevice(address, secureConnection);
+                            break;
+
+                        case BLUETOOTH:
+                        default:
+                            connectBtDevice(address, secureConnection);
+                            break;
+                    }
                 } else
                 {
                     setMode(MODE.OFFLINE);
@@ -1820,6 +1839,32 @@ public class MainActivity extends PluginManager
                             }
                             break;
 
+                        case BLE:
+                            if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled())
+                            {
+                                Toast.makeText(this, getString(R.string.none_found), Toast.LENGTH_SHORT).show();
+                                mode = MODE.OFFLINE;
+                            } else
+                            {
+                                // if pre-settings shall be used ...
+                                String address = prefs.getString(PRESELECT.LAST_DEV_ADDRESS.toString(), null);
+                                if (istRestoreWanted(PRESELECT.LAST_DEV_ADDRESS)
+                                        && address != null)
+                                {
+                                    // ... connect with previously connected device
+                                    connectBleDevice(address, prefs.getBoolean("bt_secure_connection", false));
+                                } else
+                                {
+                                    // ... otherwise launch the BtDeviceListActivity to see devices and do scan
+                                    Intent serverIntent = new Intent(this, BleDeviceListActivity.class);
+                                    startActivityForResult(serverIntent,
+                                            prefs.getBoolean("bt_secure_connection", false)
+                                                    ? REQUEST_CONNECT_DEVICE_SECURE
+                                                    : REQUEST_CONNECT_DEVICE_INSECURE);
+                                }
+                            }
+                            break;
+
                         case USB:
                             Intent enableIntent = new Intent(this, UsbDeviceListActivity.class);
                             startActivityForResult(enableIntent, REQUEST_CONNECT_DEVICE_USB);
@@ -2084,6 +2129,23 @@ public class MainActivity extends PluginManager
         // Attempt to connect to the device
         mCommService = new BtCommService(this, mHandler);
         mCommService.connect(device, secure);
+    }
+
+    /**
+     * Initiate a connect to the selected BLE device
+     *
+     * @param address bluetooth device address
+     * @param secure  flag to indicate if the connection shall be secure, or not
+     */
+    private void connectBleDevice(String address, boolean secure)
+    {
+        // Get the BluetoothDevice object
+        BluetoothDevice device = mBluetoothAdapter.getRemoteLeDevice(address, ADDRESS_TYPE_PUBLIC);
+        // Attempt to connect to the device
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            mCommService = new BleCommService(this, mHandler);
+            mCommService.connect(device, secure);
+        }
     }
 
     /**

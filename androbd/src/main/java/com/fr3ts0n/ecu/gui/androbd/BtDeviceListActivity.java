@@ -18,17 +18,24 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.Set;
 import java.util.logging.Level;
@@ -43,14 +50,15 @@ import java.util.logging.Logger;
 public class BtDeviceListActivity extends Activity
 {
 	// Debugging
-	private static final String TAG = BtDeviceListActivity.class.getSimpleName();
-	private static final Logger log = Logger.getLogger(TAG);
+	static final String TAG = BtDeviceListActivity.class.getSimpleName();
+	protected static final Logger log = Logger.getLogger(TAG);
 	
 	// Return Intent extra
 	public static final String EXTRA_DEVICE_ADDRESS = "device_address";
 
 	// Member fields
-	private BluetoothAdapter mBtAdapter;
+	protected BluetoothAdapter mBtAdapter;
+	protected ArrayAdapter<BluetoothDevice> mBtDevices;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -64,53 +72,85 @@ public class BtDeviceListActivity extends Activity
 		
 		// Get the local Bluetooth adapter
 		mBtAdapter = BluetoothAdapter.getDefaultAdapter();
+		stopDeviceScan();
 
-		ArrayAdapter<String> mPairedDevicesArrayAdapter =
-			new ArrayAdapter<>(this, R.layout.device_name);
+		mBtDevices =
+			new ArrayAdapter<BluetoothDevice>(this, R.layout.device_name){
+				final LayoutInflater mInflater =
+						(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				@SuppressLint("MissingPermission")
+                @NonNull
+				@Override
+				public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+					TextView tv;
+					BluetoothDevice dev = getItem(position);
+					if (convertView != null) {
+						tv = (TextView) convertView;
+					} else {
+						tv = (TextView)mInflater.inflate(R.layout.device_name,
+														 parent,
+											 false);
+					}
+					tv.setText(String.format("%s\n%s", dev.getName(), dev.getAddress()));
+					return tv;
+				}
+			};
 		
 		// Find and set up the ListView for paired devices
-		ListView pairedListView = findViewById(R.id.paired_devices);
-		pairedListView.setAdapter(mPairedDevicesArrayAdapter);
+		ListView pairedListView = findViewById(R.id.list);
+		pairedListView.setAdapter(mBtDevices);
+		// set up list selection handlers
+		pairedListView.setOnItemClickListener(mDeviceClickListener);
+	}
 
-		if(mBtAdapter == null || !mBtAdapter.isEnabled())
-		{
-			String noDevices = getResources().getText(R.string.none_paired).toString();
-			mPairedDevicesArrayAdapter.add(noDevices);
-			
-			return;
-		}
-		
-		// Get a set of currently paired devices
-		Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
+	@Override
+	protected void onStart() {
+		super.onStart();
+		startDeviceScan();
+	}
 
-		// If there are paired devices, add each one to the ArrayAdapter
-		if (pairedDevices.size() > 0)
-		{
-			// set up list selection handlers
-			pairedListView.setOnItemClickListener(mDeviceClickListener);
-			for (BluetoothDevice device : pairedDevices)
-			{
-				mPairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
-			}
-		} else
-		{
-			String noDevices = getResources().getText(R.string.none_paired).toString();
-			mPairedDevicesArrayAdapter.add(noDevices);
+	@Override
+	protected void onStop() {
+		super.onStop();
+		stopDeviceScan();
+	}
+
+	protected void addDevice(BluetoothDevice device) {
+		if (mBtDevices.getPosition(device) < 0) {
+			mBtDevices.add(device);
 		}
 	}
-	
+
+	@SuppressLint("MissingPermission") // permission is checked before
+	protected void startDeviceScan() {
+		if(mBtAdapter != null && mBtAdapter.isEnabled())
+		{
+			// Get a set of currently paired devices
+			Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
+
+			for (BluetoothDevice device : pairedDevices)
+			{
+				addDevice(device);
+			}
+		}
+	}
+
+	@SuppressLint("MissingPermission") // permission is checked before
+	protected void stopDeviceScan() {
+		// Cancel discovery because it's costly and we're about to connect
+		mBtAdapter.cancelDiscovery();
+	}
+
 	// The on-click listener for all devices in the ListViews
 	private final OnItemClickListener mDeviceClickListener = new OnItemClickListener()
 	{
-		public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3)
+		public void onItemClick(AdapterView<?> av, View v, int position, long id)
 		{
-			// Cancel discovery because it's costly and we're about to connect
-			mBtAdapter.cancelDiscovery();
-
 			// Get the device MAC address, which is the last 17 chars in the View
-			String info = ((TextView) v).getText().toString();
-			String address = info.substring(info.length() - 17);
 			//String address = "00:0D:18:A0:4E:35"; //FORCE OBD MAC Address
+			BluetoothDevice currDev = (BluetoothDevice)av.getItemAtPosition(position);
+			String address = currDev.getAddress();
+
 			// Create the result Intent and include the MAC address
 			Intent intent = new Intent();
 			intent.putExtra(EXTRA_DEVICE_ADDRESS, address);

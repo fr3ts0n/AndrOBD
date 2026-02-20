@@ -38,6 +38,7 @@ public abstract class CommService
 	public enum MEDIUM
 	{
 		BLUETOOTH,    ///< Bluetooth device
+		BLE,          ///< Bluetooth LE device
 		USB,          ///< USB device
 		NETWORK       ///< Network/WIFI device
 	}
@@ -56,7 +57,7 @@ public abstract class CommService
 	}
 
 	// Debugging
-	private static final String TAG = "CommService";
+	static final String TAG = "CommService";
 
 	static final Logger log = Logger.getLogger(TAG);
 
