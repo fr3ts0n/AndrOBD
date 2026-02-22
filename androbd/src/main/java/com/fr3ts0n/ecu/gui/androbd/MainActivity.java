@@ -633,11 +633,16 @@ public class MainActivity extends PluginManager
 
         switch (CommService.medium)
         {
-            case BLUETOOTH:
             case BLE:
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+                    log.warning("permission.BLUETOOTH_SCAN missing");
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 1);
+                }
+                // NO break here
+            case BLUETOOTH:
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    log.warning("permission.BLUETOOTH_CONNECT missing");
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
-                    return;
                 }
                 // Get local Bluetooth adapter
                 mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();

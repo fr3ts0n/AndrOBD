@@ -3,6 +3,7 @@ package com.fr3ts0n.ecu.gui.androbd;
 import static java.util.logging.Level.SEVERE;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCallback;
@@ -86,19 +87,14 @@ public class BleCommService
     }
 
     @Override
-    @RequiresPermission(Manifest.permission.BLUETOOTH)
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     public void stop() {
-        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
         gatt.disconnect();
     }
 
     @Override
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     public void write(byte[] out) {
-        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
         if(gatt != null && txCharacteristic != null)
         {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -112,6 +108,7 @@ public class BleCommService
     }
 
     @Override
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     public int writeTelegram(char[] buffer) {
         log.finer("TX: " + ProtUtils.hexDumpBuffer(buffer));
         String tgm = String.valueOf(buffer) + "\r";
@@ -120,6 +117,7 @@ public class BleCommService
     }
 
     @Override
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     public int writeTelegram(char[] buffer, int type, Object id) {
         return writeTelegram(buffer);
     }
@@ -167,12 +165,9 @@ public class BleCommService
     }
 
     @Override
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     public void connect(Object device, boolean secure) {
         mDevice = (BluetoothDevice)device;
-        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            log.severe("Missing BLE permission: " + mDevice.getName() + " (" + mDevice.getAddress() + ")");
-            return;
-        }
         log.info("BLE connect to " + mDevice.getAddress() + " (" + mDevice.getName() + ")");
         setState(STATE.CONNECTING);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -202,6 +197,7 @@ public class BleCommService
             }
         }
 
+        @SuppressLint("DefaultLocale")
         @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
         @Override
         public void onServicesDiscovered(BluetoothGatt gatt, int status) {
