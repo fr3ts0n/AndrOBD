@@ -643,6 +643,12 @@ public class MainActivity extends PluginManager
                     log.warning("permission.BLUETOOTH_CONNECT missing");
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
                 }
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    log.warning("permission.ACCESS_FINE_LOCATION missing");
+                    ActivityCompat.requestPermissions(this, new String[]{
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                            Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                }
                 // Get local Bluetooth adapter
                 mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
                 log.fine("Adapter: " + mBluetoothAdapter);
