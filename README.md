@@ -149,34 +149,37 @@ Buy us a coffee or donate in the amount that you see valuable for the project, a
   <summary>Donators</summary>
 &nbsp;
   
-| Date | Supporter | Donation  |
-|------|-----------|----------:|
-| 2018/02 | John Zimmerer | $10 |
-| 2018/12 | Martin Bourdoiseau | €20 |
-| 2019/06 | Jeffrey O'Connell | $10 |
-| 2019/08 | Christoph Schmid | €10 |
-| 2020/01 | Glenn Fowler | $5 |
-| 2020/02 | Klemen Skerbiš | €5 |
-| 2020/06 | Jairus Martin | $10 |
-| 2020/06 | rusefi llc | €25 |
-| 2020/07 | Klemen Skerbiš | €5 |
-| 2020/10 | Frank White | $8 |
-| 2021/03 | Raphael Högger | CHF60 |
-| 2021/04 | Klemen Skerbiš | €5 |
-| 2021/06 | Christoph Goetz | €5 |
-| 2021/11 | Raphael Högger | CHF60 |
-| 2022/05 | Cecil Harper | €6 |
-| 2022/07 | Daniel Singh | $10 |
-| 2022/09 | Andrew Hofmans | €5 |
-| 2022/11 | Glenn Fowler | $5 |
-| 2023/01 | Remy Piper | €10 |
-| 2023/03 | Hausmeister0815 | $60 |
-| 2023/07 | Christian Böttcher | €10 |
-| 2023/11 | @user8446 | $10 |
-| 2024/01 | Hausmeister0815 | €50 |
-| 2024/04 | @BaderSZ | $5 |
-| 2024/05 | Raphael Högger | CHF52 |
-| 2024/11 | @user8446 | $10 |
+| Date    | Supporter              | Donation |
+|---------|------------------------|---------:|
+| 2018/02 | John Zimmerer          |      $10 |
+| 2018/12 | Martin Bourdoiseau     |      €20 |
+| 2019/06 | Jeffrey O'Connell      |      $10 |
+| 2019/08 | Christoph Schmid       |      €10 |
+| 2020/01 | Glenn Fowler           |       $5 |
+| 2020/02 | Klemen Skerbiš         |       €5 |
+| 2020/06 | Jairus Martin          |      $10 |
+| 2020/06 | rusefi llc             |      €25 |
+| 2020/07 | Klemen Skerbiš         |       €5 |
+| 2020/10 | Frank White            |       $8 |
+| 2021/03 | Raphael Högger         |    CHF60 |
+| 2021/04 | Klemen Skerbiš         |       €5 |
+| 2021/06 | Christoph Goetz        |       €5 |
+| 2021/11 | Raphael Högger         |    CHF60 |
+| 2022/05 | Cecil Harper           |       €6 |
+| 2022/07 | Daniel Singh           |      $10 |
+| 2022/09 | Andrew Hofmans         |       €5 |
+| 2022/11 | Glenn Fowler           |       $5 |
+| 2023/01 | Remy Piper             |      €10 |
+| 2023/03 | Hausmeister0815        |      $60 |
+| 2023/07 | Christian Böttcher     |      €10 |
+| 2023/11 | @user8446              |      $10 |
+| 2024/01 | Hausmeister0815        |      €50 |
+| 2024/04 | @BaderSZ               |       $5 |
+| 2024/05 | Raphael Högger         |    CHF52 |
+| 2024/11 | @user8446              |      $10 |
+| 2025/05 | Klemen Skerbiš         |      $20 |
+| 2025/12 | @user8446              |      $10 |
+| 2026/01 | Raphael Kröpfli-Högger |    CHF30 |
 
 </details>
 
