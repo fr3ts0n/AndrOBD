@@ -30,3 +30,8 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:6.0.3'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:6.0.3'
 }
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
