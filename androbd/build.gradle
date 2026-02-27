@@ -1,51 +1,37 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 34
+    namespace = 'com.fr3ts0n.ecu.gui.androbd'
+    compileSdk 36
+
+    buildFeatures {
+        resValues = true
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId 'com.fr3ts0n.ecu.gui.androbd'
         minSdkVersion 17
         // SDK 25 to allow background service mechanism for plugins
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 25
-        versionCode 20702
-        versionName 'V2.7.2'
+        versionCode 20703
+        versionName 'V2.7.3'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        lintOptions {
-            // Override lint error on targetSdkVersion
-            abortOnError false
-        }
+        resValue "string", "app_version", versionName
 
         compileOptions {
-            sourceCompatibility JavaVersion.VERSION_17
-            targetCompatibility JavaVersion.VERSION_17
+            sourceCompatibility JavaVersion.VERSION_21
+            targetCompatibility JavaVersion.VERSION_21
         }
 
-        kotlinOptions {
-            jvmTarget = "17" // Ensure consistency with JavaVersion.VERSION_17
+        lintOptions {
+            // Override lint error on targetSdkVersion
+            abortOnError = false
         }
     }
-
-    applicationVariants.configureEach { variant ->
-        variant.resValue "string", "app_version", variant.versionName
-    }
-
-    buildTypes {
-        release {
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-
-    productFlavors {
-    }
-    lint {
-        abortOnError false
-    }
-    namespace 'com.fr3ts0n.ecu.gui.androbd'
 }
 
 dependencies {
@@ -54,5 +40,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.github.mik3y:usb-serial-for-android:3.9.0'
     implementation 'com.github.anastr:speedviewlib:1.6.1'
-    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.annotation:annotation:1.9.1'
+    implementation 'androidx.core:core:1.12.0'
 }

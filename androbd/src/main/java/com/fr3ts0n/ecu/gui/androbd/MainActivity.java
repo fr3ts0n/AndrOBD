@@ -270,7 +270,7 @@ public class MainActivity extends PluginManager
      */
     private ObdBackgroundService obdBackgroundService;
     private boolean serviceBound = false;
-    
+
     /**
      * Service connection for background OBD service
      */
@@ -899,83 +899,97 @@ public class MainActivity extends PluginManager
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        switch (item.getItemId())
+        int id = item.getItemId();
         {
             // Display and UI Management
-            case R.id.day_night_mode:
+            if(id == R.id.day_night_mode) {
                 // toggle night mode setting
                 prefs.edit().putBoolean(NIGHT_MODE, !nightMode).apply();
                 return true;
+            }
 
             // Connection Management
-            case R.id.secure_connect_scan:
+            if(id == R.id.secure_connect_scan) {
                 setMode(MODE.ONLINE);
                 return true;
+            }
 
-            case R.id.disconnect:
+            if(id == R.id.disconnect) {
                 // stop communication service
-                if (mCommService != null)
-                {
+                if (mCommService != null) {
                     mCommService.stop();
                 }
                 setMode(MODE.OFFLINE);
                 return true;
+            }
 
             // Application Settings and Configuration
-            case R.id.reset_preselections:
+            if(id == R.id.reset_preselections) {
                 clearPreselections();
                 recreate();
                 return true;
+            }
 
-            case R.id.settings:
+            if(id == R.id.settings) {
                 // Launch settings activity for app configuration
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
                 startActivityForResult(settingsIntent, REQUEST_SETTINGS);
                 return true;
+            }
 
-            case R.id.plugin_manager:
+            if(id == R.id.plugin_manager) {
                 setManagerView();
                 return true;
+            }
 
             // Data Export and Management
-            case R.id.save:
+            if(id == R.id.save) {
                 // save recorded data (threaded for performance)
                 fileHelper.saveDataThreaded();
                 return true;
+            }
 
-            case R.id.load:
+            if(id == R.id.load) {
                 setMode(MODE.FILE);
                 return true;
+            }
 
             // OBD Diagnostic Services
-            case R.id.service_none:
+            if(id == R.id.service_none) {
                 setObdService(ObdProt.OBD_SVC_NONE, item.getTitle());
                 return true;
+            }
 
-            case R.id.service_data:
+            if(id == R.id.service_data) {
                 setObdService(ObdProt.OBD_SVC_DATA, item.getTitle());
                 return true;
+            }
 
-            case R.id.service_vid_data:
+            if(id == R.id.service_vid_data) {
                 setObdService(ObdProt.OBD_SVC_VEH_INFO, item.getTitle());
                 return true;
+            }
 
-            case R.id.service_freezeframes:
+            if(id == R.id.service_freezeframes) {
                 setObdService(ObdProt.OBD_SVC_FREEZEFRAME, item.getTitle());
                 return true;
+            }
 
-            case R.id.service_testcontrol:
+            if(id == R.id.service_testcontrol) {
                 setObdService(ObdProt.OBD_SVC_CTRL_MODE, item.getTitle());
                 return true;
+            }
 
-            case R.id.service_codes:
+            if(id == R.id.service_codes) {
                 setObdService(ObdProt.OBD_SVC_READ_CODES, item.getTitle());
                 return true;
+            }
 
-            case R.id.service_clearcodes:
+            if(id == R.id.service_clearcodes) {
                 clearObdFaultCodes();
                 setObdService(ObdProt.OBD_SVC_READ_CODES, item.getTitle());
                 return true;
+            }
         }
 
         return super.onOptionsItemSelected(item);
@@ -1004,24 +1018,28 @@ public class MainActivity extends PluginManager
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item)
     {
-        switch (item.getItemId())
-        {
-            case R.id.chart_selected:
-                setDataViewMode(DATA_VIEW_MODE.CHART);
-                return true;
+        int id = item.getItemId();
 
-            case R.id.hud_selected:
-                setDataViewMode(DATA_VIEW_MODE.HEADUP);
-                return true;
-
-            case R.id.dashboard_selected:
-                setDataViewMode(DATA_VIEW_MODE.DASHBOARD);
-                return true;
-
-            case R.id.filter_selected:
-                setDataViewMode(DATA_VIEW_MODE.FILTERED);
-                return true;
+        if(id == R.id.chart_selected) {
+            setDataViewMode(DATA_VIEW_MODE.CHART);
+            return true;
         }
+
+        if(id == R.id.hud_selected) {
+            setDataViewMode(DATA_VIEW_MODE.HEADUP);
+            return true;
+        }
+
+        if(id == R.id.dashboard_selected) {
+            setDataViewMode(DATA_VIEW_MODE.DASHBOARD);
+            return true;
+        }
+
+        if(id == R.id.filter_selected) {
+            setDataViewMode(DATA_VIEW_MODE.FILTERED);
+            return true;
+        }
+
         return false;
     }
 
