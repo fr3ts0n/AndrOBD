@@ -18,12 +18,15 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +39,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 
 import java.util.Set;
 import java.util.logging.Level;
@@ -64,7 +68,13 @@ public class BtDeviceListActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+			if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+				ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
+			}
+		}
+
 		// Set result CANCELED in case the user backs out
 		setResult(Activity.RESULT_CANCELED);
 		// Setup the window
@@ -137,8 +147,8 @@ public class BtDeviceListActivity extends Activity
 
 	@SuppressLint("MissingPermission") // permission is checked before
 	protected void stopDeviceScan() {
-		// Cancel discovery because it's costly and we're about to connect
-		mBtAdapter.cancelDiscovery();
+			// Cancel discovery because it's costly and we're about to connect
+			mBtAdapter.cancelDiscovery();
 	}
 
 	// The on-click listener for all devices in the ListViews
