@@ -15,8 +15,8 @@ android {
         // SDK 25 to allow background service mechanism for plugins
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 25
-        versionCode 20703
-        versionName 'V2.7.3'
+        versionCode 20704
+        versionName 'V2.7.4'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
