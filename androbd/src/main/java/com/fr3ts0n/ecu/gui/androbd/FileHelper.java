@@ -21,7 +21,6 @@ package com.fr3ts0n.ecu.gui.androbd;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
@@ -36,6 +35,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
@@ -84,9 +84,7 @@ class FileHelper
 	static String getPath(Context context)
 	{
 		// generate file name
-		return Environment.getExternalStorageDirectory()
-			+ File.separator
-			+ context.getPackageName();
+		return Objects.requireNonNull(context.getExternalFilesDir("")).getPath();
 	}
 
 	/**
