@@ -2,7 +2,7 @@ pluginManagement {
     repositories {
         mavenCentral()
         google()
-        maven { url 'https://jitpack.io' }
+        maven { url = 'https://jitpack.io' }
     }
 }
 include ':androbd', ':library', ':plugin'

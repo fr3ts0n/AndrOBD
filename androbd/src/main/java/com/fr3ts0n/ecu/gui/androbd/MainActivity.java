@@ -18,6 +18,8 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import static android.bluetooth.BluetoothDevice.ADDRESS_TYPE_PUBLIC;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -34,6 +36,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -59,6 +62,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
 import com.fr3ts0n.androbd.plugin.Plugin;
@@ -266,7 +270,7 @@ public class MainActivity extends PluginManager
      */
     private ObdBackgroundService obdBackgroundService;
     private boolean serviceBound = false;
-    
+
     /**
      * Service connection for background OBD service
      */
@@ -629,7 +633,22 @@ public class MainActivity extends PluginManager
 
         switch (CommService.medium)
         {
+            case BLE:
             case BLUETOOTH:
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+                    log.warning("permission.BLUETOOTH_SCAN missing");
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 1);
+                }
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    log.warning("permission.BLUETOOTH_CONNECT missing");
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
+                }
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    log.warning("permission.ACCESS_FINE_LOCATION missing");
+                    ActivityCompat.requestPermissions(this, new String[]{
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                            Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                }
                 // Get local Bluetooth adapter
                 mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
                 log.fine("Adapter: " + mBluetoothAdapter);
@@ -721,6 +740,7 @@ public class MainActivity extends PluginManager
      *
      * @see android.app.Activity#onDestroy()
      */
+    @SuppressLint("MissingPermission")
     @Override
     protected void onDestroy()
     {
@@ -879,83 +899,97 @@ public class MainActivity extends PluginManager
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        switch (item.getItemId())
+        int id = item.getItemId();
         {
             // Display and UI Management
-            case R.id.day_night_mode:
+            if(id == R.id.day_night_mode) {
                 // toggle night mode setting
                 prefs.edit().putBoolean(NIGHT_MODE, !nightMode).apply();
                 return true;
+            }
 
             // Connection Management
-            case R.id.secure_connect_scan:
+            if(id == R.id.secure_connect_scan) {
                 setMode(MODE.ONLINE);
                 return true;
+            }
 
-            case R.id.disconnect:
+            if(id == R.id.disconnect) {
                 // stop communication service
-                if (mCommService != null)
-                {
+                if (mCommService != null) {
                     mCommService.stop();
                 }
                 setMode(MODE.OFFLINE);
                 return true;
+            }
 
             // Application Settings and Configuration
-            case R.id.reset_preselections:
+            if(id == R.id.reset_preselections) {
                 clearPreselections();
                 recreate();
                 return true;
+            }
 
-            case R.id.settings:
+            if(id == R.id.settings) {
                 // Launch settings activity for app configuration
                 Intent settingsIntent = new Intent(this, SettingsActivity.class);
                 startActivityForResult(settingsIntent, REQUEST_SETTINGS);
                 return true;
+            }
 
-            case R.id.plugin_manager:
+            if(id == R.id.plugin_manager) {
                 setManagerView();
                 return true;
+            }
 
             // Data Export and Management
-            case R.id.save:
+            if(id == R.id.save) {
                 // save recorded data (threaded for performance)
                 fileHelper.saveDataThreaded();
                 return true;
+            }
 
-            case R.id.load:
+            if(id == R.id.load) {
                 setMode(MODE.FILE);
                 return true;
+            }
 
             // OBD Diagnostic Services
-            case R.id.service_none:
+            if(id == R.id.service_none) {
                 setObdService(ObdProt.OBD_SVC_NONE, item.getTitle());
                 return true;
+            }
 
-            case R.id.service_data:
+            if(id == R.id.service_data) {
                 setObdService(ObdProt.OBD_SVC_DATA, item.getTitle());
                 return true;
+            }
 
-            case R.id.service_vid_data:
+            if(id == R.id.service_vid_data) {
                 setObdService(ObdProt.OBD_SVC_VEH_INFO, item.getTitle());
                 return true;
+            }
 
-            case R.id.service_freezeframes:
+            if(id == R.id.service_freezeframes) {
                 setObdService(ObdProt.OBD_SVC_FREEZEFRAME, item.getTitle());
                 return true;
+            }
 
-            case R.id.service_testcontrol:
+            if(id == R.id.service_testcontrol) {
                 setObdService(ObdProt.OBD_SVC_CTRL_MODE, item.getTitle());
                 return true;
+            }
 
-            case R.id.service_codes:
+            if(id == R.id.service_codes) {
                 setObdService(ObdProt.OBD_SVC_READ_CODES, item.getTitle());
                 return true;
+            }
 
-            case R.id.service_clearcodes:
+            if(id == R.id.service_clearcodes) {
                 clearObdFaultCodes();
                 setObdService(ObdProt.OBD_SVC_READ_CODES, item.getTitle());
                 return true;
+            }
         }
 
         return super.onOptionsItemSelected(item);
@@ -984,24 +1018,28 @@ public class MainActivity extends PluginManager
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item)
     {
-        switch (item.getItemId())
-        {
-            case R.id.chart_selected:
-                setDataViewMode(DATA_VIEW_MODE.CHART);
-                return true;
+        int id = item.getItemId();
 
-            case R.id.hud_selected:
-                setDataViewMode(DATA_VIEW_MODE.HEADUP);
-                return true;
-
-            case R.id.dashboard_selected:
-                setDataViewMode(DATA_VIEW_MODE.DASHBOARD);
-                return true;
-
-            case R.id.filter_selected:
-                setDataViewMode(DATA_VIEW_MODE.FILTERED);
-                return true;
+        if(id == R.id.chart_selected) {
+            setDataViewMode(DATA_VIEW_MODE.CHART);
+            return true;
         }
+
+        if(id == R.id.hud_selected) {
+            setDataViewMode(DATA_VIEW_MODE.HEADUP);
+            return true;
+        }
+
+        if(id == R.id.dashboard_selected) {
+            setDataViewMode(DATA_VIEW_MODE.DASHBOARD);
+            return true;
+        }
+
+        if(id == R.id.filter_selected) {
+            setDataViewMode(DATA_VIEW_MODE.FILTERED);
+            return true;
+        }
+
         return false;
     }
 
@@ -1034,7 +1072,17 @@ public class MainActivity extends PluginManager
                             BtDeviceListActivity.EXTRA_DEVICE_ADDRESS);
                     // save reported address as last setting
                     prefs.edit().putString(PRESELECT.LAST_DEV_ADDRESS.toString(), address).apply();
-                    connectBtDevice(address, secureConnection);
+                    switch(CommService.medium)
+                    {
+                        case BLE:
+                            connectBleDevice(address, secureConnection);
+                            break;
+
+                        case BLUETOOTH:
+                        default:
+                            connectBtDevice(address, secureConnection);
+                            break;
+                    }
                 } else
                 {
                     setMode(MODE.OFFLINE);
@@ -1820,6 +1868,32 @@ public class MainActivity extends PluginManager
                             }
                             break;
 
+                        case BLE:
+                            if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled())
+                            {
+                                Toast.makeText(this, getString(R.string.none_found), Toast.LENGTH_SHORT).show();
+                                mode = MODE.OFFLINE;
+                            } else
+                            {
+                                // if pre-settings shall be used ...
+                                String address = prefs.getString(PRESELECT.LAST_DEV_ADDRESS.toString(), null);
+                                if (istRestoreWanted(PRESELECT.LAST_DEV_ADDRESS)
+                                        && address != null)
+                                {
+                                    // ... connect with previously connected device
+                                    connectBleDevice(address, prefs.getBoolean("bt_secure_connection", false));
+                                } else
+                                {
+                                    // ... otherwise launch the BtDeviceListActivity to see devices and do scan
+                                    Intent serverIntent = new Intent(this, BleDeviceListActivity.class);
+                                    startActivityForResult(serverIntent,
+                                            prefs.getBoolean("bt_secure_connection", false)
+                                                    ? REQUEST_CONNECT_DEVICE_SECURE
+                                                    : REQUEST_CONNECT_DEVICE_INSECURE);
+                                }
+                            }
+                            break;
+
                         case USB:
                             Intent enableIntent = new Intent(this, UsbDeviceListActivity.class);
                             startActivityForResult(enableIntent, REQUEST_CONNECT_DEVICE_USB);
@@ -2084,6 +2158,24 @@ public class MainActivity extends PluginManager
         // Attempt to connect to the device
         mCommService = new BtCommService(this, mHandler);
         mCommService.connect(device, secure);
+    }
+
+    /**
+     * Initiate a connect to the selected BLE device
+     *
+     * @param address bluetooth device address
+     * @param secure  flag to indicate if the connection shall be secure, or not
+     */
+    @SuppressLint("NewApi")
+    private void connectBleDevice(String address, boolean secure)
+    {
+        // Get the BluetoothDevice object
+        BluetoothDevice device = mBluetoothAdapter.getRemoteLeDevice(address, ADDRESS_TYPE_PUBLIC);
+        // Attempt to connect to the device
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            mCommService = new BleCommService(this, mHandler);
+            mCommService.connect(device, secure);
+        }
     }
 
     /**
@@ -2417,7 +2509,7 @@ public class MainActivity extends PluginManager
     private void runObdTestControl(String testControlName, int service, int tid)
     {
         // start desired test TID
-        char emptyBuffer[] = {};
+        char[] emptyBuffer = {};
         CommService.elm.writeTelegram(emptyBuffer, service, tid);
 
         // Show test progress message

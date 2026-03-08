@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- start/stop bluetooth adapter -->
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30"/>
     <!-- connect/disconnect bluetooth devices -->
-    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30"/>
+    <!-- needed for BLE scan / connect -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:maxSdkVersion="30"/>
+
     <!-- to keep Bluetooth measurement running even when screen is inactive -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- allow saving screenshots -->
@@ -50,7 +60,14 @@
         <activity
             android:name=".BtDeviceListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/select_device" />
+            android:label="@string/select_device"
+            android:exported="true"/>
+        <activity
+            android:name=".BleDeviceListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/select_ble_device"
+            android:exported="true"
+            tools:targetApi="21" />
         <activity
             android:name=".ChartActivity"
             android:configChanges="touchscreen|orientation|screenSize"

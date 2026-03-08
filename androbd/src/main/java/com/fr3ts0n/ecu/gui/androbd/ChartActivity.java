@@ -18,6 +18,7 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Color;
@@ -206,35 +207,27 @@ public class ChartActivity extends Activity
 	/**
 	 * Handle message requests
 	 */
-	private transient final Handler mHandler = new Handler()
+	@SuppressLint("HandlerLeak")
+    private transient final Handler mHandler = new Handler()
 	{
 		@Override
 		public void handleMessage(Message msg)
 		{
 
-			switch (msg.what)
-			{
-				case MainActivity.MESSAGE_UPDATE_VIEW:
-					/* update chart */
-					chartView.invalidate();
-					break;
-
-				// set toolbar visibility
-				case MainActivity.MESSAGE_TOOLBAR_VISIBLE:
-					Boolean visible = (Boolean)msg.obj;
-					// set action bar visibility
-					ActionBar ab = getActionBar();
-					if(ab != null)
-					{
-						if(visible)
-						{
-							ab.show();
-						} else
-						{
-							ab.hide();
-						}
+			if (msg.what == MainActivity.MESSAGE_UPDATE_VIEW) {
+				/* update chart */
+				chartView.invalidate();
+			} else if (msg.what == MainActivity.MESSAGE_TOOLBAR_VISIBLE) {
+				Boolean visible = (Boolean) msg.obj;
+				// set action bar visibility
+				ActionBar ab = getActionBar();
+				if (ab != null) {
+					if (visible) {
+						ab.show();
+					} else {
+						ab.hide();
 					}
-					break;
+				}
 			}
 		}
 	};
@@ -248,15 +241,11 @@ public class ChartActivity extends Activity
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		switch (item.getItemId())
-		{
-			case R.id.share:
-				new ExportTask(this).execute(sensorData);
-				break;
-
-			case R.id.snapshot:
-				Screenshot.takeScreenShot(this, getWindow().peekDecorView());
-				break;
+		int itemId = item.getItemId();
+		if (itemId == R.id.share) {
+			new ExportTask(this).execute(sensorData);
+		} else if (itemId == R.id.snapshot) {
+			Screenshot.takeScreenShot(this, getWindow().peekDecorView());
 		}
 		return super.onOptionsItemSelected(item);
 	}
