@@ -546,6 +546,9 @@ public class MainActivity extends PluginManager
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        // Apply locale before anything else
+        SettingsActivity.applyLocale(this);
+
         // instantiate superclass
         super.onCreate(savedInstanceState);
 
@@ -718,6 +721,9 @@ public class MainActivity extends PluginManager
 
     @Override protected void onResume()
     {
+        // Apply locale on resume (in case it was changed in settings)
+        SettingsActivity.applyLocale(this);
+
         // set up data display update timer
         updateTimer = new Timer();
         final TimerTask updateTask = new TimerTask()

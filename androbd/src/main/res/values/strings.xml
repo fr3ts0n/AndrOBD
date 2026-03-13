@@ -305,4 +305,36 @@ period of time while the ECU recalibrates itself.
         <item>57600</item>
         <item>115200</item>
     </string-array>
+
+    <!-- Language selection -->
+    <string name="language_selection">Language / Язык / Lingua</string>
+    <string name="language_selection_description">Select application language</string>
+    <string name="language_system_default">System default</string>
+    <string name="language_english">English</string>
+    <string name="language_russian">Русский</string>
+    <string name="language_italian">Italiano</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_french">Français</string>
+    <string name="language_spanish">Español</string>
+    <string name="restart_required">Restart required to apply language change</string>
+
+    <string-array name="language_options" translatable="false">
+        <item>@string/language_system_default</item>
+        <item>@string/language_english</item>
+        <item>@string/language_russian</item>
+        <item>@string/language_italian</item>
+        <item>@string/language_german</item>
+        <item>@string/language_french</item>
+        <item>@string/language_spanish</item>
+    </string-array>
+
+    <string-array name="language_values" translatable="false">
+        <item>system</item>
+        <item>en</item>
+        <item>ru</item>
+        <item>it</item>
+        <item>de</item>
+        <item>fr</item>
+        <item>es</item>
+    </string-array>
 </resources>
