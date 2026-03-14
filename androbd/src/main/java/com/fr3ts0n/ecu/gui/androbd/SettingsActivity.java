@@ -23,6 +23,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
@@ -32,6 +34,8 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.prot.obd.ElmProt;
@@ -93,6 +97,33 @@ public class SettingsActivity
 	static final String ELM_CMD_DISABLE = "elm_cmd_disable";
     static final String ELM_TIMING_SELECT = "adaptive_timing_mode";
     private static final String KEY_BITCOIN = "bitcoin";
+    static final String KEY_APP_LANGUAGE = "app_language";
+
+	/**
+	 * Apply locale based on user preference
+	 *
+	 * @param activity Activity context
+	 */
+	public static void applyLocale(Activity activity)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+		String language = prefs.getString(KEY_APP_LANGUAGE, "system");
+
+		if (!"system".equals(language))
+		{
+			Locale locale = new Locale(language);
+			Locale.setDefault(locale);
+
+			Resources resources = activity.getResources();
+			Configuration config = resources.getConfiguration();
+			config.setLocale(locale);
+
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+				activity.createConfigurationContext(config);
+			}
+			resources.updateConfiguration(config, resources.getDisplayMetrics());
+		}
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -102,6 +133,9 @@ public class SettingsActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		// Apply locale before calling super.onCreate()
+		applyLocale(this);
+
 		super.onCreate(savedInstanceState);
 		setTheme(MainActivity.nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -421,6 +455,17 @@ public class SettingsActivity
 					.setEnabled(ElmProt.AdaptTimingMode.SOFTWARE.toString()
 						          .equals(((ListPreference)pref).getValue())
 					           );
+
+			if(KEY_APP_LANGUAGE.equals(key))
+			{
+				// Apply new language immediately
+				applyLocale(getActivity());
+
+				// Show restart message
+				Toast.makeText(getActivity(),
+				              getString(R.string.restart_required),
+				              Toast.LENGTH_LONG).show();
+			}
 		}
 	}
 }

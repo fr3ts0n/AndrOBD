@@ -173,4 +173,16 @@
     <string name="display_range">Диапазон показа</string>
     <string name="reset_default">По-умолчанию</string>
     <string name="update_period_s">Период обновления [s]</string>
+
+    <!-- Language selection -->
+    <string name="language_selection">Язык / Language / Lingua</string>
+    <string name="language_selection_description">Выберите язык приложения</string>
+    <string name="language_system_default">Системный</string>
+    <string name="language_english">English</string>
+    <string name="language_russian">Русский</string>
+    <string name="language_italian">Italiano</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_french">Français</string>
+    <string name="language_spanish">Español</string>
+    <string name="restart_required">Требуется перезапуск для применения изменения языка</string>
 </resources>

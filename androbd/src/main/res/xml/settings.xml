@@ -78,6 +78,16 @@
             android:title="@string/measure_system"
             />
 
+        <ListPreference
+            android:defaultValue="system"
+            android:dialogTitle="@string/language_selection"
+            android:entries="@array/language_options"
+            android:entryValues="@array/language_values"
+            android:key="app_language"
+            android:summary="@string/language_selection_description"
+            android:title="@string/language_selection"
+            />
+
     </PreferenceScreen>
 
 
