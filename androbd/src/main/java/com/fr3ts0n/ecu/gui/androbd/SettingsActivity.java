@@ -19,7 +19,6 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,7 +30,7 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceFragment;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
@@ -42,13 +41,16 @@ import com.fr3ts0n.ecu.prot.obd.ElmProt;
 import com.fr3ts0n.ecu.prot.obd.ObdProt;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SettingsActivity
-	extends Activity
+	extends
+		PreferenceActivity
+	implements
+		SharedPreferences.OnSharedPreferenceChangeListener,
+		Preference.OnPreferenceClickListener
 {
 	/** The logger object */
 	private static final Logger log = Logger.getLogger(SettingsActivity.class.getName());
@@ -130,6 +132,7 @@ public class SettingsActivity
 	 *
 	 * @see android.preference.PreferenceActivity#onCreate(android.os.Bundle)
 	 */
+	Vector<EcuDataItem> items;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -140,48 +143,29 @@ public class SettingsActivity
 		setTheme(MainActivity.nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-		// Display the fragment as the main content.
-		getFragmentManager().beginTransaction().replace(android.R.id.content,
-		                                                new PrefsFragment()).commit();
-	}
+		addPreferencesFromResource(R.xml.settings);
 
-	@SuppressLint("ValidFragment")
-	public class PrefsFragment
-		extends PreferenceFragment
-		implements Preference.OnPreferenceClickListener,
-		SharedPreferences.OnSharedPreferenceChangeListener
-	{
-		Vector<EcuDataItem> items;
-
-		@Override
-		public void onCreate(Bundle savedInstanceState)
+		for (String key : extKeys)
 		{
-			super.onCreate(savedInstanceState);
-
-			// Load the preferences from an XML resource
-			addPreferencesFromResource(R.xml.settings);
-
-			for (String key : extKeys)
-			{
-				setPrefsText(key);
-			}
-
-			// set up communication media selection
-			setupCommMediaSelection();
-			// set up protocol selection
-			setupProtoSelection();
-			// set up ELM command selection
-			setupElmCmdSelection();
-            // set up ELM adaptive timing mode selection
-			setupElmTimingSelection();
-			// set up selectable PID list
-			setupPidSelection();
-			// update network selection fields
-			updateNetworkSelections();
-			findPreference(KEY_BITCOIN).setOnPreferenceClickListener(this);
-			// add handler for selection update
-			prefs.registerOnSharedPreferenceChangeListener(this);
+			setPrefsText(key);
 		}
+
+		// set up communication media selection
+		setupCommMediaSelection();
+		// set up protocol selection
+		setupProtoSelection();
+		// set up ELM command selection
+		setupElmCmdSelection();
+		// set up ELM adaptive timing mode selection
+		setupElmTimingSelection();
+		// set up selectable PID list
+		setupPidSelection();
+		// update network selection fields
+		updateNetworkSelections();
+		findPreference(KEY_BITCOIN).setOnPreferenceClickListener(this);
+		// add handler for selection update
+		prefs.registerOnSharedPreferenceChangeListener(this);
+	}
 
 		/**
 		 * set up protocol selection
@@ -390,7 +374,7 @@ public class SettingsActivity
 			catch(Exception e)
 			{
 				log.log(Level.SEVERE, "Settings", e);
-				Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+				Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
 			}
 			return true;
 		}
@@ -412,17 +396,6 @@ public class SettingsActivity
 				{
 					ed.putString(key, value);
 					pref.setSummary(value != null ? value : getString(R.string.select_extension));
-
-					if(value != null)
-					{
-						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-						{
-						/* Remember persistent read permission for selected file,
-						   otherwise we will NOT be allowed to load it on startup ... ;( */
-							getContentResolver().takePersistableUriPermission(Objects.requireNonNull(data.getData()),
-															                  Intent.FLAG_GRANT_READ_URI_PERMISSION);
-						}
-					}
 				}
 			}
 
@@ -459,13 +432,12 @@ public class SettingsActivity
 			if(KEY_APP_LANGUAGE.equals(key))
 			{
 				// Apply new language immediately
-				applyLocale(getActivity());
+				applyLocale(this);
 
 				// Show restart message
-				Toast.makeText(getActivity(),
+				Toast.makeText(this,
 				              getString(R.string.restart_required),
 				              Toast.LENGTH_LONG).show();
 			}
 		}
 	}
-}

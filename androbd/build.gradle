@@ -12,11 +12,9 @@ android {
     defaultConfig {
         applicationId 'com.fr3ts0n.ecu.gui.androbd'
         minSdkVersion 17
-        // SDK 25 to allow background service mechanism for plugins
-        //noinspection ExpiredTargetSdkVersion
-        targetSdkVersion 25
-        versionCode 20704
-        versionName 'V2.7.4'
+        targetSdkVersion 36
+        versionCode 20705
+        versionName 'V2.7.5'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

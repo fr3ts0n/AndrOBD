@@ -19,6 +19,7 @@
 package com.fr3ts0n.ecu.gui.androbd;
 
 import static android.bluetooth.BluetoothDevice.ADDRESS_TYPE_PUBLIC;
+import static android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -46,7 +47,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
-import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
@@ -61,6 +61,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.window.OnBackInvokedCallback;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
@@ -552,22 +553,16 @@ public class MainActivity extends PluginManager
         // instantiate superclass
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_PROGRESS);
-
-        // get additional permissions
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
-            // Storage Permissions
-            final int REQUEST_EXTERNAL_STORAGE = 1;
-            final String[] PERMISSIONS_STORAGE = {
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-            };
-            requestPermissions(PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
-            // Workaround for FileUriExposedException in Android >= M
-            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-            StrictMode.setVmPolicy(builder.build());
+        // for compatibility with newer SDK builds
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            getOnBackInvokedDispatcher().registerOnBackInvokedCallback(PRIORITY_DEFAULT, new OnBackInvokedCallback() {
+                @Override
+                public void onBackInvoked() {
+                    handleBackPressed();
+                }
+            });
         }
+        requestWindowFeature(Window.FEATURE_PROGRESS);
 
         dlgBuilder = new AlertDialog.Builder(this);
 
@@ -823,8 +818,7 @@ public class MainActivity extends PluginManager
     /**
      * handle pressing of the BACK-KEY
      */
-    @Override
-    public void onBackPressed()
+    public void handleBackPressed()
     {
         if (getListAdapter() == pluginHandler)
         {
