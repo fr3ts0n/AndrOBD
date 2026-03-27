@@ -558,7 +558,7 @@ public class MainActivity extends PluginManager
             getOnBackInvokedDispatcher().registerOnBackInvokedCallback(PRIORITY_DEFAULT, new OnBackInvokedCallback() {
                 @Override
                 public void onBackInvoked() {
-                    handleBackPressed();
+                    onBackPressed();
                 }
             });
         }
@@ -818,7 +818,7 @@ public class MainActivity extends PluginManager
     /**
      * handle pressing of the BACK-KEY
      */
-    public void handleBackPressed()
+    public void onBackPressed()
     {
         if (getListAdapter() == pluginHandler)
         {
