@@ -13,8 +13,8 @@ android {
         applicationId 'com.fr3ts0n.ecu.gui.androbd'
         minSdkVersion 17
         targetSdkVersion 36
-        versionCode 20705
-        versionName 'V2.7.5'
+        versionCode 20706
+        versionName 'V2.7.6'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
