@@ -307,7 +307,7 @@ period of time while the ECU recalibrates itself.
     </string-array>
 
     <!-- Language selection -->
-    <string name="language_selection">Language / Язык / Lingua</string>
+    <string name="language_selection" translatable="false">Language / Язык / Lingua</string>
     <string name="language_selection_description">Select application language</string>
     <string name="language_system_default">System default</string>
     <string name="language_english">English</string>

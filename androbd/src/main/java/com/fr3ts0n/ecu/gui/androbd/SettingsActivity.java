@@ -110,21 +110,22 @@ public class SettingsActivity
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
 		String language = prefs.getString(KEY_APP_LANGUAGE, "system");
-
-		if (!"system".equals(language))
-		{
-			Locale locale = new Locale(language);
-			Locale.setDefault(locale);
-
-			Resources resources = activity.getResources();
-			Configuration config = resources.getConfiguration();
-			config.setLocale(locale);
-
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-				activity.createConfigurationContext(config);
-			}
-			resources.updateConfiguration(config, resources.getDisplayMetrics());
+		Locale locale;
+		if ("system".equals(language)) {
+			locale = Resources.getSystem().getConfiguration().locale;
+		} else {
+			locale = new Locale(language);
 		}
+		Locale.setDefault(locale);
+
+		Resources resources = activity.getResources();
+		Configuration config = resources.getConfiguration();
+		config.setLocale(locale);
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+			activity.createConfigurationContext(config);
+		}
+		resources.updateConfiguration(config, resources.getDisplayMetrics());
 	}
 
 	/*

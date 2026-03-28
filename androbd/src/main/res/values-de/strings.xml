@@ -182,4 +182,7 @@
     <string name="display_range">Ansichts- Datenbereich</string>
     <string name="reset_default">Vorgabe</string>
     <string name="update_period_s">Aktualisierungszeit [s]</string>
+    <string name="language_selection_description">Sprache auswählen</string>
+    <string name="language_system_default">Systemsprache</string>
+    <string name="restart_required">Neustart zur Anwendung</string>
 </resources>

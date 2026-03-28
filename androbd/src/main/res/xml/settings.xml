@@ -8,6 +8,16 @@
         android:summary="@string/common_settings_description"
         android:title="@string/common_settings">
 
+        <ListPreference
+            android:defaultValue="system"
+            android:dialogTitle="@string/language_selection"
+            android:entries="@array/language_options"
+            android:entryValues="@array/language_values"
+            android:key="app_language"
+            android:summary="@string/language_selection_description"
+            android:title="@string/language_selection"
+            />
+
         <MultiSelectListPreference
             android:defaultValue="@array/empty"
             android:dialogTitle="@string/use_last_settings"
@@ -76,16 +86,6 @@
             android:key="measure_system"
             android:summary="@string/measure_system_description"
             android:title="@string/measure_system"
-            />
-
-        <ListPreference
-            android:defaultValue="system"
-            android:dialogTitle="@string/language_selection"
-            android:entries="@array/language_options"
-            android:entryValues="@array/language_values"
-            android:key="app_language"
-            android:summary="@string/language_selection_description"
-            android:title="@string/language_selection"
             />
 
     </PreferenceScreen>
