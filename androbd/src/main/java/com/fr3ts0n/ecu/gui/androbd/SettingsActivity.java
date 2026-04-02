@@ -139,9 +139,8 @@ public class SettingsActivity
 	{
 		// Apply locale before calling super.onCreate()
 		applyLocale(this);
-
-		super.onCreate(savedInstanceState);
 		setTheme(MainActivity.nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
+		super.onCreate(savedInstanceState);
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 		addPreferencesFromResource(R.xml.settings);
