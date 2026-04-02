@@ -10,11 +10,10 @@ android {
     }
 
     defaultConfig {
-        applicationId 'com.fr3ts0n.ecu.gui.androbd'
         minSdkVersion 17
         targetSdkVersion 36
-        versionCode 20706
-        versionName 'V2.7.6'
+        versionCode 20707
+        versionName 'V2.7.7'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
