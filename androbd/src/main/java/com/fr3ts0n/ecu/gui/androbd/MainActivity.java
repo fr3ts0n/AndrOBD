@@ -549,6 +549,9 @@ public class MainActivity extends PluginManager
     {
         // Apply locale before anything else
         SettingsActivity.applyLocale(this);
+        // get preferences
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        setNightMode(prefs.getBoolean(NIGHT_MODE, false));
 
         // instantiate superclass
         super.onCreate(savedInstanceState);
@@ -1613,9 +1616,6 @@ public class MainActivity extends PluginManager
         // Set display theme based on specified mode
         setTheme(nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
         getWindow().getDecorView().setBackgroundColor(nightMode ? Color.BLACK : Color.WHITE);
-
-        // Trigger screen update to get immediate reaction
-        setObdService(obdService, null);
     }
 
     private void setNumCodes(int newNumCodes)

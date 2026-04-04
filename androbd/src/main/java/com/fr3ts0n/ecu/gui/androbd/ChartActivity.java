@@ -141,9 +141,9 @@ public class ChartActivity extends Activity
 	{
 		// Apply locale before anything else
 		SettingsActivity.applyLocale(this);
+		setTheme(MainActivity.nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
 
 		super.onCreate(savedInstanceState);
-		setTheme(MainActivity.nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
 

@@ -89,6 +89,7 @@ public final class UsbDeviceListActivity extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
+		setTheme(MainActivity.nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.usb_list);
 
