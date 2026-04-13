@@ -9,7 +9,7 @@
     <string name="logo">Logo</string>
     <string name="back_again_to_exit">Sulje sovellus painamalla Takaisin-painiketta uudelleen</string>
     <string name="action_connect">Yhdistä</string>
-    <string name="obd_services">Diagnoosipalvelut</string>
+    <string name="obd_services">Vianmäärityspalvelut</string>
     <string name="app_description">Android OBD -ajoneuvodiagnostiikkasovellus ELM327-Bluetooth-sovittimelle</string>
     <string name="obd_veh_info">Vianmääritysjärjestelmän ajoneuvotiedot</string>
     <string name="obd_data">Vianmääritysjärjestelmän tiedot</string>
@@ -155,4 +155,5 @@
     <string name="display_range">Näyttöalue</string>
     <string name="reset_default">Oletus</string>
     <string name="update_period_s">Päivitysväli [s]</string>
+    <string name="obd_none">EI palvelua</string>
 </resources>
