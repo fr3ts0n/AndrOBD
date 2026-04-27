@@ -47,6 +47,11 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:mimeType="application/octet-stream"
+                    android:pathPattern=".*\\.obd"
+                    android:scheme="content" />
             </intent-filter>
 
             <meta-data

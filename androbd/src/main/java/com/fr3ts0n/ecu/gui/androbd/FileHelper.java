@@ -150,7 +150,11 @@ class FileHelper
 
 		try
 		{
-			Looper.prepare();
+			try {
+				Looper.prepare();
+			} catch (Exception e) {
+				// ignore
+			}
 			outFile.createNewFile();
 			FileOutputStream fStr = new FileOutputStream(outFile);
 			ObjectOutputStream oStr = new ObjectOutputStream(fStr);
@@ -225,7 +229,11 @@ class FileHelper
 
 		try
 		{
-			Looper.prepare();
+			try {
+				Looper.prepare();
+			} catch (Exception e) {
+				// ignore
+			}
 			inStr = context.getContentResolver().openInputStream(uri);
 			numBytesLoaded = inStr != null ? inStr.available() : 0;
 			msg = context.getString(R.string.loaded).concat(String.format(" %d Bytes", numBytesLoaded));

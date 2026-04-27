@@ -626,6 +626,14 @@ public class MainActivity extends PluginManager
         // Ensure menus are properly created and visible
         invalidateOptionsMenu();
 
+        // handle VIEW file intent
+        if("android.intent.action.VIEW".equals(getIntent().getAction())) {
+            setMode(MODE.FILE);
+            Uri uri = getIntent().getData();
+            loadDataFromUri(uri);
+            return;
+        }
+
         // override comm medium with USB connect intent
         if ("android.hardware.usb.action.USB_DEVICE_ATTACHED".equals(getIntent().getAction()))
         {
@@ -955,6 +963,7 @@ public class MainActivity extends PluginManager
 
             if(id == R.id.load) {
                 setMode(MODE.FILE);
+                selectFileToLoad();
                 return true;
             }
 
@@ -1126,12 +1135,7 @@ public class MainActivity extends PluginManager
                 {
                     // Get the Uri of the selected file
                     Uri uri = data.getData();
-                    log.info("Load content: " + uri);
-                    // load data ...
-                    fileHelper.loadDataThreaded(uri, mHandler);
-                    // don't allow saving it again
-                    setMenuItemEnable(R.id.save, false);
-                    setMenuItemEnable(R.id.obd_services, true);
+                    loadDataFromUri(uri);
                 }
                 break;
 
@@ -1148,6 +1152,15 @@ public class MainActivity extends PluginManager
                 dataViewMode = DATA_VIEW_MODE.LIST;
                 break;
         }
+    }
+
+    void loadDataFromUri(Uri uri) {
+        log.info("Load content: " + uri);
+        // load data ...
+        fileHelper.loadDataThreaded(uri, mHandler);
+        // don't allow saving it again
+        setMenuItemEnable(R.id.save, false);
+        setMenuItemEnable(R.id.obd_services, true);
     }
 
     @Override
@@ -1913,7 +1926,6 @@ public class MainActivity extends PluginManager
 
                 case FILE:
                     setStatus(R.string.saved_data);
-                    selectFileToLoad();
                     break;
 
             }
@@ -2125,13 +2137,12 @@ public class MainActivity extends PluginManager
      */
     private void selectFileToLoad()
     {
-        File file = new File(FileHelper.getPath(this));
+        File file = new File(FileHelper.getPath(this)+"/*.obd");
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        Uri uri = FileProvider.getUriForFile(MainActivity.this, getPackageName()+".provider", file);
-        String type = "*/*";
-        intent.setDataAndType(uri, type);
+        Uri uri = FileProvider.getUriForFile(this, getPackageName()+".provider", file);
+        intent.setDataAndType(uri,"*/*");
         startActivityForResult(intent, REQUEST_SELECT_FILE);
     }
 
