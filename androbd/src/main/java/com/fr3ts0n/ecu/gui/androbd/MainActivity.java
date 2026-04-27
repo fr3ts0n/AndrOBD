@@ -549,12 +549,6 @@ public class MainActivity extends PluginManager
     {
         // Apply locale before anything else
         SettingsActivity.applyLocale(this);
-        // get preferences
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        setNightMode(prefs.getBoolean(NIGHT_MODE, false));
-
-        // instantiate superclass
-        super.onCreate(savedInstanceState);
 
         // for compatibility with newer SDK builds
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -566,6 +560,13 @@ public class MainActivity extends PluginManager
             });
         }
         requestWindowFeature(Window.FEATURE_PROGRESS);
+
+        // get preferences
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        setNightMode(prefs.getBoolean(NIGHT_MODE, false));
+
+        // instantiate superclass
+        super.onCreate(savedInstanceState);
 
         dlgBuilder = new AlertDialog.Builder(this);
 
@@ -592,16 +593,16 @@ public class MainActivity extends PluginManager
         // get list view
         mListView = getWindow().getLayoutInflater().inflate(R.layout.obd_list, null);
 
+        // Log program startup
+        log.info(String.format("%s %s starting",
+                getString(R.string.app_name),
+                getString(R.string.app_version)));
+
         // update all settings from preferences
         onSharedPreferenceChanged(prefs, null);
 
         // set up logging system
         setupLoggers();
-
-        // Log program startup
-        log.info(String.format("%s %s starting",
-                getString(R.string.app_name),
-                getString(R.string.app_version)));
 
         // create file helper instance
         fileHelper = new FileHelper(this);
@@ -640,65 +641,87 @@ public class MainActivity extends PluginManager
             CommService.medium = CommService.MEDIUM.USB;
         }
 
-        switch (CommService.medium)
-        {
-            case BLE:
-            case BLUETOOTH:
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-                    log.warning("permission.BLUETOOTH_SCAN missing");
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 1);
-                }
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    log.warning("permission.ACCESS_FINE_LOCATION missing");
-                    ActivityCompat.requestPermissions(this, new String[]{
-                            Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                }
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                    log.warning("permission.BLUETOOTH_CONNECT missing");
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
-                    return;
-                }
-                // Get local Bluetooth adapter
-                mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-                log.fine("Adapter: " + mBluetoothAdapter);
-                // If BT is not on, request that it be enabled.
-                if (getMode() != MODE.DEMO && mBluetoothAdapter != null)
-                {
-                    // remember initial bluetooth state
-                    initialBtStateEnabled = mBluetoothAdapter.isEnabled();
-                    if (!initialBtStateEnabled)
-                    {
-                        // request to enable bluetooth
-                        Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                        startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-                    }
-                    else
-                    {
-                        // last device to be auto-connected?
-                        if(istRestoreWanted(PRESELECT.LAST_DEV_ADDRESS))
-                        {
-                            // auto-connect ...
-                            setMode(MODE.ONLINE);
-                        }
-                        else
-                        {
-                            // leave "connect" action to the user
-                        }
-                    }
-                }
-                break;
+        initSelectedMode();
 
-            case USB:
-            case NETWORK:
-                setMode(MODE.ONLINE);
-                break;
-        }
-        
         // Bind to background OBD service for continuous monitoring
         Intent serviceIntent = new Intent(this, ObdBackgroundService.class);
         bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
+
+    /**
+     * Initialize selected operation mode mode
+     */
+    protected void initSelectedMode()
+    {
+        try
+        {
+            switch (CommService.medium) {
+                case DEMO:
+                    setMode(MODE.DEMO);
+                    break;
+
+                case BLE:
+                case BLUETOOTH:
+                    // Get local Bluetooth adapter
+                    mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+                    log.fine("Adapter: " + mBluetoothAdapter);
+
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+                        log.warning("permission.BLUETOOTH_SCAN missing");
+                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 1);
+                    }
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        log.warning("permission.ACCESS_FINE_LOCATION missing");
+                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+                    }
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        log.warning("permission.ACCESS_FINE_LOCATION missing");
+                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                    }
+
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                        log.warning("permission.BLUETOOTH_CONNECT missing");
+                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
+                    }
+
+                    // If BT is not on, request that it be enabled.
+                    if (getMode() != MODE.DEMO && mBluetoothAdapter != null)
+                    {
+                        // remember initial bluetooth state
+                        initialBtStateEnabled = mBluetoothAdapter.isEnabled();
+                        if (!initialBtStateEnabled)
+                        {
+                            // request to enable bluetooth
+                            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+                        }
+                        else
+                        {
+                            // last device to be auto-connected?
+                            if(istRestoreWanted(PRESELECT.LAST_DEV_ADDRESS))
+                            {
+                                // auto-connect ...
+                                setMode(MODE.ONLINE);
+                            }
+                            else
+                            {
+                                // leave "connect" action to the user
+                            }
+                        }
+                    }
+                    break;
+
+                case USB:
+                case NETWORK:
+                    setMode(MODE.ONLINE);
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            log.log(Level.WARNING, "initSelectedMode:", ex);
+        }
+   }
 
     /**
      * Handler for application start event
@@ -707,12 +730,6 @@ public class MainActivity extends PluginManager
     public void onStart()
     {
         super.onStart();
-        // If the adapter is null, then Bluetooth is not supported
-        if (CommService.medium == CommService.MEDIUM.BLUETOOTH && mBluetoothAdapter == null)
-        {
-            // start ELM protocol demo loop
-            setMode(MODE.DEMO);
-        }
     }
 
     @Override protected void onPause()
@@ -1124,8 +1141,8 @@ public class MainActivity extends PluginManager
                     setMode(MODE.ONLINE);
                 } else
                 {
-                    // Start demo service Thread
-                    setMode(MODE.DEMO);
+                    // Set offline mode
+                    setMode(MODE.OFFLINE);
                 }
                 break;
 
@@ -1856,6 +1873,10 @@ public class MainActivity extends PluginManager
                 case ONLINE:
                     switch (CommService.medium)
                     {
+                        case DEMO:
+                            startDemoService();
+                            break;
+
                         case BLUETOOTH:
                             if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled())
                             {
@@ -2092,6 +2113,7 @@ public class MainActivity extends PluginManager
     {
         if (getMode() != MODE.DEMO)
         {
+            mode = MODE.DEMO;
             setStatus(getString(R.string.demo));
             Toast.makeText(this, getString(R.string.demo_started), Toast.LENGTH_SHORT).show();
 

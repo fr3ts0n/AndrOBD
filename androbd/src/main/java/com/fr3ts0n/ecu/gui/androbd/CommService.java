@@ -37,6 +37,7 @@ public abstract class CommService
 	/** communication media */
 	public enum MEDIUM
 	{
+		DEMO,         ///< Demo mode (fake communication)
 		BLUETOOTH,    ///< Bluetooth device
 		BLE,          ///< Bluetooth LE device
 		USB,          ///< USB device
