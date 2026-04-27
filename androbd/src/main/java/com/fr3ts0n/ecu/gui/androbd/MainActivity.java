@@ -847,6 +847,7 @@ public class MainActivity extends PluginManager
     /**
      * handle pressing of the BACK-KEY
      */
+    @SuppressLint("GestureBackNavigation")
     public void onBackPressed()
     {
         if (getListAdapter() == pluginHandler)
