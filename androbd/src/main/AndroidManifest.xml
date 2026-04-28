@@ -54,7 +54,6 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data
-                    android:host="${applicationId}.provider"
                     android:mimeType="application/octet-stream"
                     android:pathPattern=".*\\.obd"
                     android:scheme="content" />
