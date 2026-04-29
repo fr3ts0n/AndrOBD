@@ -11,6 +11,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiresApi (api = Build.VERSION_CODES.LOLLIPOP)
@@ -22,11 +23,16 @@ public class BleDeviceListActivity
     @SuppressLint("InlinedApi")
     @Override
     protected void startDeviceScan() {
+        List<String> missingPermissions = new ArrayList<>();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 1);
+            missingPermissions.add(Manifest.permission.BLUETOOTH_SCAN);
         }
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
+            missingPermissions.add(Manifest.permission.BLUETOOTH_CONNECT);
+        }
+        if (!missingPermissions.isEmpty()) {
+            ActivityCompat.requestPermissions(this, missingPermissions.toArray(new String[0]), 1);
+            return;
         }
         leScanner = mBtAdapter.getBluetoothLeScanner();
         leScanner.startScan(scanCallback);
