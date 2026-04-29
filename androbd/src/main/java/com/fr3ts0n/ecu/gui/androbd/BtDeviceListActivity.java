@@ -72,7 +72,7 @@ public class BtDeviceListActivity extends Activity
 		super.onCreate(savedInstanceState);
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-			List<String> missingPermissions = new ArrayList<>();
+			ArrayList<String> missingPermissions = new ArrayList<>();
 			if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
 				missingPermissions.add(Manifest.permission.BLUETOOTH_SCAN);
 			}

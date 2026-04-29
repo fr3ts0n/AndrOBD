@@ -677,7 +677,7 @@ public class MainActivity extends PluginManager
                     log.fine("Adapter: " + mBluetoothAdapter);
 
                     // Collect missing BT/location permissions and request them all at once
-                    List<String> missingPermissions = new ArrayList<>();
+                    ArrayList<String> missingPermissions = new ArrayList<>();
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                         // API 31+: new Bluetooth permissions replace location for scanning
                         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {

@@ -23,7 +23,7 @@ public class BleDeviceListActivity
     @SuppressLint("InlinedApi")
     @Override
     protected void startDeviceScan() {
-        List<String> missingPermissions = new ArrayList<>();
+        ArrayList<String> missingPermissions = new ArrayList<>();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
             missingPermissions.add(Manifest.permission.BLUETOOTH_SCAN);
         }
