@@ -2,10 +2,12 @@ package com.fr3ts0n.ecu;
 
 import com.fr3ts0n.ecu.prot.obd.Messages;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,10 +18,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 class HashConversionTest
 {
+	private static Locale savedLocale;
+
 	@BeforeAll
 	static void initMessages()
 	{
+		savedLocale = Locale.getDefault();
+		Locale.setDefault(Locale.ENGLISH);
 		Messages.init("com.fr3ts0n.ecu.prot.obd.res.messages");
+	}
+
+	@AfterAll
+	static void restoreLocale()
+	{
+		Locale.setDefault(savedLocale);
 	}
 
 	/** physToPhysFmtString returns mapped string for known key */
