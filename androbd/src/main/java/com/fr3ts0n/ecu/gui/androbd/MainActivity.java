@@ -42,13 +42,14 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
-import android.provider.DocumentsContract;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.provider.DocumentsContract;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -2211,10 +2212,20 @@ public class MainActivity extends PluginManager
         intent.setType("*/*");
         // Hint the file picker to start in the app's external files directory (API 26+)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            Uri initialUri = DocumentsContract.buildDocumentUri(
-                "com.android.externalstorage.documents",
-                "primary:Android/data/" + getPackageName() + "/files");
-            intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, initialUri);
+            try {
+                File extFilesDir = getExternalFilesDir(null);
+                File extStorageDir = Environment.getExternalStorageDirectory();
+                if (extFilesDir != null && extStorageDir != null) {
+                    String relativePath = extFilesDir.getAbsolutePath()
+                        .substring(extStorageDir.getAbsolutePath().length() + 1);
+                    Uri initialUri = DocumentsContract.buildDocumentUri(
+                        "com.android.externalstorage.documents",
+                        "primary:" + relativePath);
+                    intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, initialUri);
+                }
+            } catch (Exception e) {
+                // ignore — the file picker will open at its default location
+            }
         }
         startActivityForResult(intent, REQUEST_SELECT_FILE);
     }
