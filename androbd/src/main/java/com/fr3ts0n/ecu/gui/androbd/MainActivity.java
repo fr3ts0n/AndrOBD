@@ -86,6 +86,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -2196,17 +2197,49 @@ public class MainActivity extends PluginManager
     }
 
     /**
-     * Select file to be loaded
+     * Select file to be loaded.
+     * Shows a custom dialog listing .obd files from the app's external files directory,
+     * which the SAF file picker cannot browse on Android 11+ due to scoped storage restrictions.
      */
     private void selectFileToLoad()
     {
-        File file = new File(FileHelper.getPath(this)+"/*.obd");
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        Uri uri = FileProvider.getUriForFile(this, getPackageName()+".provider", file);
-        intent.setDataAndType(uri,"*/*");
-        startActivityForResult(intent, REQUEST_SELECT_FILE);
+        File filesDir = getExternalFilesDir(null);
+        File[] obdFiles = (filesDir != null)
+            ? filesDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".obd"))
+            : null;
+
+        if (obdFiles == null || obdFiles.length == 0)
+        {
+            Toast.makeText(this, R.string.no_obd_files_found, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Arrays.sort(obdFiles, new Comparator<File>()
+        {
+            @Override
+            public int compare(File a, File b)
+            {
+                return a.getName().compareTo(b.getName());
+            }
+        });
+        final String[] fileNames = new String[obdFiles.length];
+        for (int i = 0; i < obdFiles.length; i++)
+        {
+            fileNames[i] = obdFiles[i].getName();
+        }
+        final File[] finalFiles = obdFiles;
+
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.load)
+            .setItems(fileNames, (dialog, which) ->
+            {
+                Uri uri = FileProvider.getUriForFile(this,
+                    getPackageName() + ".provider",
+                    finalFiles[which]);
+                loadDataFromUri(uri);
+            })
+            .setNegativeButton(android.R.string.cancel, null)
+            .show();
     }
 
     /**

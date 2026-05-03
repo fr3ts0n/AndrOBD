@@ -68,6 +68,7 @@ period of time while the ECU recalibrates itself.
     <string name="save">Save measurement</string>
     <string name="load">Load measurement</string>
     <string name="saved_data">Saved Data</string>
+    <string name="no_obd_files_found">No OBD files found</string>
     <string name="loaded">loaded</string>
     <string name="saved">saved</string>
     <string name="connected_to">"Connected to "</string>
