@@ -26,14 +26,14 @@ public class ColorAdapterTest
     @Test
     public void getItemColor_firstElement()
     {
-        assertEquals(ColorAdapter.colors[0], ColorAdapter.getItemColor(0));
+        assertEquals((int) ColorAdapter.colors[0], ColorAdapter.getItemColor(0));
     }
 
     /** index 1 returns the second color */
     @Test
     public void getItemColor_secondElement()
     {
-        assertEquals(ColorAdapter.colors[1], ColorAdapter.getItemColor(1));
+        assertEquals((int) ColorAdapter.colors[1], ColorAdapter.getItemColor(1));
     }
 
     /** last valid index returns last color */
@@ -41,7 +41,7 @@ public class ColorAdapterTest
     public void getItemColor_lastElement()
     {
         int last = ColorAdapter.colors.length - 1;
-        assertEquals(ColorAdapter.colors[last], ColorAdapter.getItemColor(last));
+        assertEquals((int) ColorAdapter.colors[last], ColorAdapter.getItemColor(last));
     }
 
     /** index exactly equal to colors.length wraps around to index 0 */
@@ -49,7 +49,7 @@ public class ColorAdapterTest
     public void getItemColor_wrapsAroundAtLength()
     {
         int len = ColorAdapter.colors.length;
-        assertEquals(ColorAdapter.colors[0], ColorAdapter.getItemColor(len));
+        assertEquals((int) ColorAdapter.colors[0], ColorAdapter.getItemColor(len));
     }
 
     /** large index wraps correctly via modulo */
@@ -58,7 +58,7 @@ public class ColorAdapterTest
     {
         int len = ColorAdapter.colors.length;
         int large = len * 5 + 3;
-        assertEquals(ColorAdapter.colors[3], ColorAdapter.getItemColor(large));
+        assertEquals((int) ColorAdapter.colors[3], ColorAdapter.getItemColor(large));
     }
 
     /** every color has a non-zero alpha channel (fully-opaque ARGB) */
