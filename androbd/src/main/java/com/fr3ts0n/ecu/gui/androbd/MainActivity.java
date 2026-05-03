@@ -43,13 +43,11 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.provider.DocumentsContract;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -66,6 +64,7 @@ import android.widget.Toast;
 import android.window.OnBackInvokedCallback;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import com.fr3ts0n.androbd.plugin.Plugin;
 import com.fr3ts0n.androbd.plugin.mgr.PluginManager;
@@ -87,6 +86,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -2197,37 +2197,42 @@ public class MainActivity extends PluginManager
     }
 
     /**
-     * Select file to be loaded
+     * Select file to be loaded.
+     * Shows a custom dialog listing .obd files from the app's external files directory,
+     * which the SAF file picker cannot browse on Android 11+ due to scoped storage restrictions.
      */
     private void selectFileToLoad()
     {
-        Intent intent;
-        // ACTION_OPEN_DOCUMENT (API 19+) shows the full file browser instead of just media
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        } else {
-            intent = new Intent(Intent.ACTION_GET_CONTENT);
+        File filesDir = getExternalFilesDir(null);
+        File[] obdFiles = (filesDir != null)
+            ? filesDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".obd"))
+            : null;
+
+        if (obdFiles == null || obdFiles.length == 0)
+        {
+            Toast.makeText(this, R.string.no_obd_files_found, Toast.LENGTH_SHORT).show();
+            return;
         }
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("*/*");
-        // Hint the file picker to start in the app's external files directory (API 26+)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            try {
-                File extFilesDir = getExternalFilesDir(null);
-                File extStorageDir = Environment.getExternalStorageDirectory();
-                if (extFilesDir != null && extStorageDir != null) {
-                    String relativePath = extFilesDir.getAbsolutePath()
-                        .substring(extStorageDir.getAbsolutePath().length() + 1);
-                    Uri initialUri = DocumentsContract.buildDocumentUri(
-                        "com.android.externalstorage.documents",
-                        "primary:" + relativePath);
-                    intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, initialUri);
-                }
-            } catch (Exception e) {
-                // ignore — the file picker will open at its default location
-            }
+
+        Arrays.sort(obdFiles, Comparator.comparing(File::getName));
+        final String[] fileNames = new String[obdFiles.length];
+        for (int i = 0; i < obdFiles.length; i++)
+        {
+            fileNames[i] = obdFiles[i].getName();
         }
-        startActivityForResult(intent, REQUEST_SELECT_FILE);
+        final File[] finalFiles = obdFiles;
+
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.load)
+            .setItems(fileNames, (dialog, which) ->
+            {
+                Uri uri = FileProvider.getUriForFile(this,
+                    getPackageName() + ".provider",
+                    finalFiles[which]);
+                loadDataFromUri(uri);
+            })
+            .setNegativeButton(android.R.string.cancel, null)
+            .show();
     }
 
     /**
