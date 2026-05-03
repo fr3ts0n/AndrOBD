@@ -15,7 +15,7 @@ android {
         versionCode 20709
         versionName 'V2.7.9'
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         resValue "string", "app_version", versionName
 
@@ -39,4 +39,12 @@ dependencies {
     implementation 'com.github.anastr:speedviewlib:1.6.1'
     implementation 'androidx.annotation:annotation:1.9.1'
     implementation 'androidx.core:core:1.12.0'
+
+    // Local (JVM) unit tests
+    testImplementation 'junit:junit:4.13.2'
+
+    // Android instrumented tests
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test:runner:1.6.1'
+    androidTestImplementation 'androidx.test:rules:1.6.1'
 }
