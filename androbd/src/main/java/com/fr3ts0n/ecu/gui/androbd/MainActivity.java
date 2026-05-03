@@ -94,6 +94,8 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.TreeSet;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
@@ -312,6 +314,10 @@ public class MainActivity extends PluginManager
      * AutoHider for the toolbar
      */
     private AutoHider toolbarAutoHider;
+    /**
+     * ExecutorService for background I/O operations
+     */
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
     /**
      * log file handler
      */
@@ -865,7 +871,10 @@ public class MainActivity extends PluginManager
         /* remove log file handler, if available (file access was granted) */
         if (logFileHandler != null) logFileHandler.close();
         Logger.getLogger("").removeHandler(logFileHandler);
-        
+
+        // Shut down the background executor
+        executor.shutdown();
+
         // Clean up view hierarchy
         ModernUiUtils.cleanupViewHierarchy(findViewById(android.R.id.content));
 
@@ -2084,56 +2093,78 @@ public class MainActivity extends PluginManager
 
     /**
      * Load optional extension files which may have
-     * been defined in preferences
+     * been defined in preferences.
+     * I/O is performed on a background thread to avoid blocking the main thread.
      */
     private void loadPreferredExtensions()
     {
-        String errors = "";
+        final String convFilePath = prefs.getString(SettingsActivity.extKeys[0], null);
+        final String pidFilePath  = prefs.getString(SettingsActivity.extKeys[1], null);
 
-        // custom conversions
-        try
+        executor.execute(new Runnable()
         {
-            String filePath = prefs.getString(SettingsActivity.extKeys[0], null);
-            if (filePath != null)
+            @Override
+            public void run()
             {
-                log.info("Load ext. conversions: " + filePath);
-                Uri uri = Uri.parse(filePath);
-                InputStream inStr = getContentResolver().openInputStream(uri);
-                EcuDataItems.cnv.loadFromStream(inStr);
-            }
-        } catch (Exception e)
-        {
-            log.log(Level.SEVERE, "Load ext. conversions: ", e);
-            e.printStackTrace();
-            errors += e.getLocalizedMessage() + "\n";
-        }
+                final StringBuilder errors = new StringBuilder();
 
-        // custom PIDs
-        try
-        {
-            String filePath = prefs.getString(SettingsActivity.extKeys[1], null);
-            if (filePath != null)
-            {
-                log.info("Load ext. conversions: " + filePath);
-                Uri uri = Uri.parse(filePath);
-                InputStream inStr = getContentResolver().openInputStream(uri);
-                ObdProt.dataItems.loadFromStream(inStr);
-            }
-        } catch (Exception e)
-        {
-            log.log(Level.SEVERE, "Load ext. PIDs: ", e);
-            e.printStackTrace();
-            errors += e.getLocalizedMessage() + "\n";
-        }
+                // custom conversions
+                if (convFilePath != null)
+                {
+                    try (InputStream inStr = getContentResolver().openInputStream(Uri.parse(convFilePath)))
+                    {
+                        if (inStr != null)
+                        {
+                            log.info("Load ext. conversions: " + convFilePath);
+                            EcuDataItems.cnv.loadFromStream(inStr);
+                        }
+                    } catch (Exception e)
+                    {
+                        log.log(Level.SEVERE, "Load ext. conversions: ", e);
+                        e.printStackTrace();
+                        errors.append(e.getLocalizedMessage()).append("\n");
+                    }
+                }
 
-        if (errors.length() != 0)
-        {
-            dlgBuilder
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle(R.string.extension_loading)
-                    .setMessage(getString(R.string.check_cust_settings) + errors)
-                    .show();
-        }
+                // custom PIDs
+                if (pidFilePath != null)
+                {
+                    try (InputStream inStr = getContentResolver().openInputStream(Uri.parse(pidFilePath)))
+                    {
+                        if (inStr != null)
+                        {
+                            log.info("Load ext. PIDs: " + pidFilePath);
+                            ObdProt.dataItems.loadFromStream(inStr);
+                        }
+                    } catch (Exception e)
+                    {
+                        log.log(Level.SEVERE, "Load ext. PIDs: ", e);
+                        e.printStackTrace();
+                        errors.append(e.getLocalizedMessage()).append("\n");
+                    }
+                }
+
+                // show any errors on the main thread
+                if (errors.length() != 0)
+                {
+                    mHandler.post(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            if (!isFinishing() && !isDestroyed())
+                            {
+                                dlgBuilder
+                                        .setIcon(android.R.drawable.ic_dialog_alert)
+                                        .setTitle(R.string.extension_loading)
+                                        .setMessage(getString(R.string.check_cust_settings) + errors)
+                                        .show();
+                            }
+                        }
+                    });
+                }
+            }
+        });
     }
 
     /**
