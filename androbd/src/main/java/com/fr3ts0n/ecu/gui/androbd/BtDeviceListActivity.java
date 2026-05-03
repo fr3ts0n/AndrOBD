@@ -41,6 +41,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -71,11 +72,15 @@ public class BtDeviceListActivity extends Activity
 		super.onCreate(savedInstanceState);
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+			ArrayList<String> missingPermissions = new ArrayList<>();
 			if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-				ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 1);
+				missingPermissions.add(Manifest.permission.BLUETOOTH_SCAN);
 			}
 			if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-				ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
+				missingPermissions.add(Manifest.permission.BLUETOOTH_CONNECT);
+			}
+			if (!missingPermissions.isEmpty()) {
+				ActivityCompat.requestPermissions(this, missingPermissions.toArray(new String[0]), 1);
 			}
 		}
 

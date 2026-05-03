@@ -84,6 +84,7 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
@@ -163,6 +164,8 @@ public class MainActivity extends PluginManager
     private static final int REQUEST_SETTINGS = 5;
     private static final int REQUEST_CONNECT_DEVICE_USB = 6;
     private static final int REQUEST_GRAPH_DISPLAY_DONE = 7;
+    private static final int REQUEST_BT_PERMISSIONS = 8;
+    private static final int REQUEST_NOTIFICATIONS = 9;
     /**
      * app exit parameters
      */
@@ -641,6 +644,13 @@ public class MainActivity extends PluginManager
             CommService.medium = CommService.MEDIUM.USB;
         }
 
+        // Request POST_NOTIFICATIONS permission on API 33+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_NOTIFICATIONS);
+            }
+        }
+
         initSelectedMode();
 
         // Bind to background OBD service for continuous monitoring
@@ -666,22 +676,28 @@ public class MainActivity extends PluginManager
                     mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
                     log.fine("Adapter: " + mBluetoothAdapter);
 
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-                        log.warning("permission.BLUETOOTH_SCAN missing");
-                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 1);
+                    // Collect missing BT/location permissions and request them all at once
+                    ArrayList<String> missingPermissions = new ArrayList<>();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                        // API 31+: new Bluetooth permissions replace location for scanning
+                        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+                            log.warning("permission.BLUETOOTH_SCAN missing");
+                            missingPermissions.add(Manifest.permission.BLUETOOTH_SCAN);
+                        }
+                        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                            log.warning("permission.BLUETOOTH_CONNECT missing");
+                            missingPermissions.add(Manifest.permission.BLUETOOTH_CONNECT);
+                        }
+                    } else {
+                        // API 23-30: location permission required for BT/BLE scan
+                        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            log.warning("permission.ACCESS_FINE_LOCATION missing");
+                            missingPermissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+                        }
                     }
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        log.warning("permission.ACCESS_FINE_LOCATION missing");
-                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-                    }
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        log.warning("permission.ACCESS_FINE_LOCATION missing");
-                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                    }
-
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                        log.warning("permission.BLUETOOTH_CONNECT missing");
-                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1);
+                    if (!missingPermissions.isEmpty()) {
+                        ActivityCompat.requestPermissions(this, missingPermissions.toArray(new String[0]), REQUEST_BT_PERMISSIONS);
+                        return;
                     }
 
                     // If BT is not on, request that it be enabled.
@@ -730,6 +746,30 @@ public class MainActivity extends PluginManager
     public void onStart()
     {
         super.onStart();
+    }
+
+    /**
+     * Handle permission request results.
+     * Retries BT/BLE mode initialisation once the required permissions are granted.
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @androidx.annotation.NonNull String[] permissions,
+                                           @androidx.annotation.NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_BT_PERMISSIONS) {
+            boolean allGranted = true;
+            for (int result : grantResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    allGranted = false;
+                    break;
+                }
+            }
+            if (allGranted) {
+                initSelectedMode();
+            }
+        }
     }
 
     @Override protected void onPause()

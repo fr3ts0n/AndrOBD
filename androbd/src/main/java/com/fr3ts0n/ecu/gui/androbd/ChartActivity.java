@@ -18,11 +18,14 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -33,6 +36,9 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ListAdapter;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.fr3ts0n.ecu.prot.obd.ObdProt;
@@ -69,6 +75,9 @@ public class ChartActivity extends Activity
 	 * <code>SensorManager</code>
 	 */
 	public static final String POSITIONS = "POSITIONS";
+
+	/** Permission request code for WRITE_EXTERNAL_STORAGE (screenshot, API 23-28) */
+	private static final int REQUEST_WRITE_STORAGE = 1;
 
 	/** Map to uniquely collect PID numbers */
 	private final TreeSet<Integer> pidNumbers = new TreeSet<>();
@@ -248,7 +257,16 @@ public class ChartActivity extends Activity
 		if (itemId == R.id.share) {
 			new ExportTask(this).execute(sensorData);
 		} else if (itemId == R.id.snapshot) {
-			Screenshot.takeScreenShot(this, getWindow().peekDecorView());
+			// WRITE_EXTERNAL_STORAGE is required on API 23-28 for the screenshot
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
+					&& ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+							!= PackageManager.PERMISSION_GRANTED) {
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+						REQUEST_WRITE_STORAGE);
+			} else {
+				Screenshot.takeScreenShot(this, getWindow().peekDecorView());
+			}
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -270,6 +288,22 @@ public class ChartActivity extends Activity
 		// allow sleeping again
 		wakeLock.release();
 		super.onDestroy();
+	}
+
+	/**
+	 * Take screenshot once WRITE_EXTERNAL_STORAGE permission is granted (API 23-28).
+	 */
+	@Override
+	public void onRequestPermissionsResult(int requestCode,
+	                                       @NonNull String[] permissions,
+	                                       @NonNull int[] grantResults)
+	{
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if (requestCode == REQUEST_WRITE_STORAGE
+				&& grantResults.length > 0
+				&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+			Screenshot.takeScreenShot(this, getWindow().peekDecorView());
+		}
 	}
 
 	private final Timer refreshTimer = new Timer();

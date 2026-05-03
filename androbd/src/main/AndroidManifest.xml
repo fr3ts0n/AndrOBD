@@ -11,8 +11,11 @@
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
         android:usesPermissionFlags="neverForLocation" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- location only needed for BT/BLE scan on API 23-30; replaced by BLUETOOTH_SCAN on API 31+ -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:maxSdkVersion="30" />
 
     <!-- to keep Bluetooth measurement running even when screen is inactive -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -26,6 +29,8 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <!-- For foreground service -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Required for foreground service of type connectedDevice (API 34+) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
 
     <application
         android:allowBackup="true"
@@ -103,7 +108,8 @@
         <service
             android:name=".ObdBackgroundService"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="false"
+            android:foregroundServiceType="connectedDevice" />
     </application>
 
 </manifest>
