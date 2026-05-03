@@ -2214,7 +2214,14 @@ public class MainActivity extends PluginManager
             return;
         }
 
-        Arrays.sort(obdFiles, Comparator.comparing(File::getName));
+        Arrays.sort(obdFiles, new Comparator<File>()
+        {
+            @Override
+            public int compare(File a, File b)
+            {
+                return a.getName().compareTo(b.getName());
+            }
+        });
         final String[] fileNames = new String[obdFiles.length];
         for (int i = 0; i < obdFiles.length; i++)
         {
