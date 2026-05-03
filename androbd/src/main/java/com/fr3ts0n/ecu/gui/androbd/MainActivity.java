@@ -42,6 +42,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.DocumentsContract;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -64,7 +65,6 @@ import android.widget.Toast;
 import android.window.OnBackInvokedCallback;
 
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
 
 import com.fr3ts0n.androbd.plugin.Plugin;
 import com.fr3ts0n.androbd.plugin.mgr.PluginManager;
@@ -2200,12 +2200,22 @@ public class MainActivity extends PluginManager
      */
     private void selectFileToLoad()
     {
-        File file = new File(FileHelper.getPath(this)+"/*.obd");
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        Intent intent;
+        // ACTION_OPEN_DOCUMENT (API 19+) shows the full file browser instead of just media
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        } else {
+            intent = new Intent(Intent.ACTION_GET_CONTENT);
+        }
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        Uri uri = FileProvider.getUriForFile(this, getPackageName()+".provider", file);
-        intent.setDataAndType(uri,"*/*");
+        intent.setType("*/*");
+        // Hint the file picker to start in the app's external files directory (API 26+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Uri initialUri = DocumentsContract.buildDocumentUri(
+                "com.android.externalstorage.documents",
+                "primary:Android/data/" + getPackageName() + "/files");
+            intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, initialUri);
+        }
         startActivityForResult(intent, REQUEST_SELECT_FILE);
     }
 
