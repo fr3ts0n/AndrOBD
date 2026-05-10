@@ -195,4 +195,5 @@
     <string name="language_spanish">Spanyol</string>
     <string name="restart_required">A nyelvváltoztatás érvénybe lépéséhez az alkalmazás újraindítása szükséges</string>
     <string name="select_ble_device">BLE-adapter kiválasztása</string>
+    <string name="no_obd_files_found">Nem találhatók OBD-fájlok</string>
 </resources>
