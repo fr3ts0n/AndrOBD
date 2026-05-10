@@ -186,4 +186,13 @@
     <string name="display_color">Couleur d\'affichage</string>
     <string name="reset_default">Par défaut</string>
     <string name="update_period_s">Fréquence de mise à jour [s]</string>
+    <string name="select_ble_device">Sélectionner adaptateur BLE</string>
+    <string name="language_selection_description">Sélectionner langue d\'application</string>
+    <string name="language_system_default">Prédéfini dans système</string>
+    <string name="language_english">Anglais</string>
+    <string name="language_russian">Russe</string>
+    <string name="language_italian">Italien</string>
+    <string name="language_german">Allemand</string>
+    <string name="language_spanish">Espagnol</string>
+    <string name="restart_required">Redémarrage requis pour appliquer le changement de langue</string>
 </resources>
