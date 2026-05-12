@@ -110,8 +110,7 @@ public class MainActivity extends PluginManager
         AdapterView.OnItemLongClickListener,
         PropertyChangeListener,
         SharedPreferences.OnSharedPreferenceChangeListener,
-        AbsListView.MultiChoiceModeListener,
-        ObdBackgroundService.ServiceStateListener
+        AbsListView.MultiChoiceModeListener
 {
     /**
      * Key names for preferences
@@ -272,32 +271,6 @@ public class MainActivity extends PluginManager
      */
     private CommService mCommService = null;
     
-    /**
-     * Background OBD service for continuous monitoring
-     */
-    private ObdBackgroundService obdBackgroundService;
-    private boolean serviceBound = false;
-
-    /**
-     * Service connection for background OBD service
-     */
-    private final ServiceConnection serviceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            ObdBackgroundService.LocalBinder binder = (ObdBackgroundService.LocalBinder) service;
-            obdBackgroundService = binder.getService();
-            serviceBound = true;
-            obdBackgroundService.addStateListener(MainActivity.this);
-            log.info("Connected to OBD background service");
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            serviceBound = false;
-            obdBackgroundService = null;
-            log.info("Disconnected from OBD background service");
-        }
-    };
     /**
      * file helper
      */
@@ -659,10 +632,6 @@ public class MainActivity extends PluginManager
         }
 
         initSelectedMode();
-
-        // Bind to background OBD service for continuous monitoring
-        Intent serviceIntent = new Intent(this, ObdBackgroundService.class);
-        bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
     /**
@@ -850,13 +819,6 @@ public class MainActivity extends PluginManager
             mCommService.stop();
         }
         
-        // Unbind from background service
-        if (serviceBound) {
-            obdBackgroundService.removeStateListener(this);
-            unbindService(serviceConnection);
-            serviceBound = false;
-        }
-
         // if bluetooth adapter was switched OFF before ...
         if (mBluetoothAdapter != null && !initialBtStateEnabled)
         {
@@ -2855,60 +2817,5 @@ public class MainActivity extends PluginManager
         LAST_SERVICE,
         LAST_ITEMS,
         LAST_VIEW_MODE,
-    }
-    
-    // Implementation of ObdBackgroundService.ServiceStateListener
-    
-    @Override
-    public void onServiceStateChanged(ObdBackgroundService.ServiceState newState) {
-        log.info("Background service state changed to: " + newState);
-        
-        // Update UI based on service state
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                // You can update status indicators here
-                switch (newState) {
-                    case RUNNING:
-                        // Service is running, can start monitoring
-                        break;
-                    case STOPPED:
-                        // Service stopped, update UI accordingly
-                        break;
-                }
-            }
-        });
-    }
-    
-    @Override
-    public void onDataReceived(String data) {
-        // Handle data received from background service
-        // This allows the app to continue receiving data even when in background
-        log.fine("Background service received data: " + data);
-    }
-    
-    @Override
-    public void onConnectionStateChanged(CommService.STATE connectionState) {
-        // Handle connection state changes from background service
-        log.info("Background service connection state: " + connectionState);
-        
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                // Update connection status in UI
-                // This mirrors the existing handler logic but from the background service
-                switch (connectionState) {
-                    case CONNECTED:
-                        setMode(MODE.ONLINE);
-                        break;
-                    case CONNECTING:
-                        // Show connecting status
-                        break;
-                    case NONE:
-                        setMode(MODE.OFFLINE);
-                        break;
-                }
-            }
-        });
     }
 }

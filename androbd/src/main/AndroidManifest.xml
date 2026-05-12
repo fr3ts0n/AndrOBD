@@ -103,13 +103,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths"/>
         </provider>
-        
-        <!-- Background OBD service -->
-        <service
-            android:name=".ObdBackgroundService"
-            android:enabled="true"
-            android:exported="false"
-            android:foregroundServiceType="connectedDevice" />
     </application>
 
 </manifest>
