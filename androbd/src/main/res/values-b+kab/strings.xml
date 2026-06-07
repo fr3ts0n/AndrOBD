@@ -13,4 +13,5 @@
     <string name="obd_data">Isefka OBD</string>
     <string name="service_freezeframes">OBD tilmiyin tusbiḍin</string>
     <string name="settings">Iγewwaren</string>
+    <string name="select_device">Fren amezgay</string>
 </resources>
