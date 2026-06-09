@@ -195,4 +195,6 @@
     <string name="language_german">Allemand</string>
     <string name="language_spanish">Espagnol</string>
     <string name="restart_required">Redémarrage requis pour appliquer le changement de langue</string>
+    <string name="no_obd_files_found">Aucun fichier OBD trouvé</string>
+    <string name="language_french">Français</string>
 </resources>
