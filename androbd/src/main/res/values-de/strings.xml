@@ -185,4 +185,6 @@
     <string name="language_selection_description">Sprache auswählen</string>
     <string name="language_system_default">Systemsprache</string>
     <string name="restart_required">Neustart zur Anwendung</string>
+    <string name="no_obd_files_found">Keine OBD-Dateien gefunden</string>
+    <string name="language_english"></string>
 </resources>
