@@ -112,7 +112,7 @@ public class ChartActivity extends Activity
 	/**
 	 * the wake lock to keep app communication alive
 	 */
-	private static WakeLock wakeLock;
+	private WakeLock wakeLock;
 
 	private static ListAdapter mAdapter = null;
 
