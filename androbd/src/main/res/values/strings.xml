@@ -97,6 +97,10 @@ period of time while the ECU recalibrates itself.
     <string name="items_for_display_descr">Select all data items to be displayed …</string>
     <string-array name="empty" translatable="false"/>
     <string name="debugging">Debugging</string>
+    <string name="open_log_dir">Open log directory</string>
+    <string name="open_log_dir_description">Open the log folder in a file manager</string>
+    <string name="log_dir_not_found">Log directory not found — enable logging and restart the app first</string>
+    <string name="log_dir_no_app">No file manager found — path copied to clipboard</string>
     <string name="logging_level">Logging level</string>
     <string name="logging_level_description">Level of details to be logged into debug log file</string>
     <string-array name="logging_options" translatable="false">

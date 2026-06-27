@@ -20,8 +20,11 @@
 package com.fr3ts0n.ecu.gui.androbd;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
@@ -99,6 +102,7 @@ public class SettingsActivity
 	static final String ELM_CMD_DISABLE = "elm_cmd_disable";
     static final String ELM_TIMING_SELECT = "adaptive_timing_mode";
     private static final String KEY_BITCOIN = "bitcoin";
+    private static final String KEY_OPEN_LOG_DIR = "open_log_dir";
     static final String KEY_APP_LANGUAGE = "app_language";
 
 	/**
@@ -163,6 +167,7 @@ public class SettingsActivity
 		// update network selection fields
 		updateNetworkSelections();
 		findPreference(KEY_BITCOIN).setOnPreferenceClickListener(this);
+		findPreference(KEY_OPEN_LOG_DIR).setOnPreferenceClickListener(this);
 		// add handler for selection update
 		prefs.registerOnSharedPreferenceChangeListener(this);
 	}
@@ -353,6 +358,39 @@ public class SettingsActivity
 			}
 		}
 
+		private void openLogDirectory()
+		{
+			java.io.File logDir = new java.io.File(
+					FileHelper.getPath(this), "log");
+			if (!logDir.isDirectory())
+			{
+				Toast.makeText(this,
+						R.string.log_dir_not_found,
+						Toast.LENGTH_LONG).show();
+				return;
+			}
+			try
+			{
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setDataAndType(Uri.fromFile(logDir), "resource/folder");
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(Intent.createChooser(intent,
+						getString(R.string.open_log_dir)));
+			}
+			catch (Exception e)
+			{
+				// No file manager installed, or Android 7+ blocked file:// URI;
+				// copy the path to clipboard as a fallback.
+				ClipboardManager cm = (ClipboardManager)
+						getSystemService(CLIPBOARD_SERVICE);
+				cm.setPrimaryClip(ClipData.newPlainText(
+						"log_dir", logDir.getAbsolutePath()));
+				Toast.makeText(this,
+						R.string.log_dir_no_app,
+						Toast.LENGTH_LONG).show();
+			}
+		}
+
 		@Override
 		public boolean onPreferenceClick(Preference preference)
 		{
@@ -363,6 +401,11 @@ public class SettingsActivity
 				{
 					// special handling for bitcoin VIEW intent
 					startActivity(intent);
+				}
+				else if(KEY_OPEN_LOG_DIR.equals(preference.getKey()))
+				{
+					openLogDirectory();
+					return true;
 				}
 				else
 				{
