@@ -157,4 +157,8 @@
     <string name="update_period_s">Päivitysväli [s]</string>
     <string name="obd_none">EI palvelua</string>
     <string name="translation_credits">Kääntänyt MK</string>
+    <string name="obd_clear_info">Tämä nollaa vikailmoitusvalon ja poistaa kaikki päästöihin liittyvät vianmääritystiedot,\n kuten seuraavat:\n - Vikakoodit\n - Vikatilannetiedot\n - Happianturin testaustiedot\n - Järjestelmän valvontatestien tila\n - Ajoneuvon sisäisten valvontatestien tulokset\n - Vikailmoitusvalo aktivoituneena ajettu matka\n - Vikakoodien poistamisen jälkeiset lämmityskerrat\n - Vikakoodien poistamisen jälkeen ajettu matka\n - Moottorin käyntiaika vikailmoitusvalo aktivoituneena\n - Vikakoodien poistamisesta kulunut aika\n\n Myös muita, valmistajakohtauksia nollauksia tai poistoja saatetaan tehdä.\n Tietojen häviäminen voi saada ajoneuvon käymään heikosti\n jonkin aikaa, kun ohjausyksikkö kalibroi itsensä uudelleen.</string>
+    <string name="select_ble_device">Valitse BLE-sovitin</string>
+    <string name="no_obd_files_found">OBD-tiedostoja ei löytynyt</string>
+    <string name="restart_required">Kielen vaihtaminen edellyttää uudelleenkäynnistystä</string>
 </resources>
