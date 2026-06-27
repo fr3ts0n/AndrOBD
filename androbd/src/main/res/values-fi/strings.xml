@@ -156,4 +156,5 @@
     <string name="reset_default">Oletus</string>
     <string name="update_period_s">Päivitysväli [s]</string>
     <string name="obd_none">EI palvelua</string>
+    <string name="translation_credits">Kääntänyt MK</string>
 </resources>
