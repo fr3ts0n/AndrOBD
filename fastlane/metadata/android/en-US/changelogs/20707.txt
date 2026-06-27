@@ -1,0 +1,4 @@
+V2.7.7 - SDK36 Consistency Fixes
+
+* Fixed UI theme consistency issues
+* Fixed Bluetooth and BLE permission handling across Android versions

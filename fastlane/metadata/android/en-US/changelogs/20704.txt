@@ -1,0 +1,8 @@
+V2.7.4 - BLE Device Support
+
+* Added Bluetooth Low Energy (BLE) OBD adapter support
+* Added themed and monochrome launcher icon (Android 13+)
+* Added searchable multi-select list in settings
+* Improved menu structure and organisation
+* Background service and resource optimisation
+* Restored previously missing menu items
