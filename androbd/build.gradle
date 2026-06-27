@@ -23,11 +23,14 @@ android {
             sourceCompatibility JavaVersion.VERSION_17
             targetCompatibility JavaVersion.VERSION_17
         }
+    }
 
-        lintOptions {
-            // Override lint error on targetSdkVersion
-            abortOnError = false
-        }
+    lint {
+        // abortOnError was previously inside defaultConfig{} where AGP ignores it.
+        // Moved here (android{} level) so it takes effect. To enforce lint on new
+        // code, run ./gradlew lint, commit the generated lint-baseline.xml, and
+        // remove this line.
+        abortOnError false
     }
 }
 
