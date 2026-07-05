@@ -227,6 +227,18 @@ public class ChartActivity extends Activity
 		{
 
 			if (msg.what == MainActivity.MESSAGE_UPDATE_VIEW) {
+				// Carry-forward: if a series hasn't received a new value for more than
+				// 1.5 s, add a duplicate point at the current time so the flat line
+				// extends to the right rather than being absent (issue #180).
+				long now = System.currentTimeMillis();
+				for (org.achartengine.model.XYSeries series : sensorData.getSeries())
+				{
+					int count = series.getItemCount();
+					if (count > 0 && now - (long) series.getX(count - 1) > 1500)
+					{
+						series.add(now, series.getY(count - 1));
+					}
+				}
 				/* update chart */
 				chartView.invalidate();
 			} else if (msg.what == MainActivity.MESSAGE_TOOLBAR_VISIBLE) {
