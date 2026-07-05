@@ -64,7 +64,8 @@ public class BtCommService extends CommService
 		// Always cancel discovery because it will slow down a connection
 		// Member fields
 		BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
-		mAdapter.cancelDiscovery();
+		if (mAdapter != null)
+			mAdapter.cancelDiscovery();
 		
 		// set up protocol handlers
 		elm.addTelegramWriter(ser);
@@ -264,17 +265,24 @@ public class BtCommService extends CommService
 				StringBuilder message = new StringBuilder(msg);
 				// dump supported UUID's
 				message.append(" - UUIDs:");
-				ParcelUuid[] uuids = socket.getRemoteDevice().getUuids();
-				if(uuids != null)
+				if (socket != null)
 				{
-					for (ParcelUuid uuid: uuids)
+					ParcelUuid[] uuids = socket.getRemoteDevice().getUuids();
+					if(uuids != null)
 					{
-						message.append(uuid.getUuid().toString()).append(",");
+						for (ParcelUuid uuid: uuids)
+						{
+							message.append(uuid.getUuid().toString()).append(",");
+						}
+					}
+					else
+					{
+						message.append("NONE (Invalid BT implementation)");
 					}
 				}
 				else
 				{
-					message.append("NONE (Invalid BT implementation)");
+					message.append("NONE (null socket)");
 				}
 				log.log(Level.INFO, message.toString());
 			}
