@@ -264,7 +264,7 @@
             <ListPreference
                 android:defaultValue="INFO"
                 android:dialogTitle="@string/logging_level"
-                android:entries="@array/logging_options"
+                android:entries="@array/logging_options_display"
                 android:entryValues="@array/logging_options"
                 android:key="log_master"
                 android:summary="@string/logging_level_description"

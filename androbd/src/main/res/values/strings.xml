@@ -110,6 +110,17 @@ period of time while the ECU recalibrates itself.
         <item>FINEST</item>
         <item>ALL</item>
     </string-array>
+    <string-array name="logging_options_display">
+        <item>OFF — no logging</item>
+        <item>SEVERE — errors only</item>
+        <item>WARNING — errors and warnings</item>
+        <item>INFO — standard diagnostic information</item>
+        <item>CONFIG — configuration messages</item>
+        <item>FINE — detailed debug (may affect performance)</item>
+        <item>FINER — more detailed debug</item>
+        <item>FINEST — maximum detail (may affect performance)</item>
+        <item>ALL — all messages</item>
+    </string-array>
     <!--
     * key values for restore options
     * - must align with enum MainActivity.PRESELECT
