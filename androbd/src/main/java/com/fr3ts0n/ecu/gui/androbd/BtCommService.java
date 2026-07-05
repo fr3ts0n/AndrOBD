@@ -208,8 +208,8 @@ public class BtCommService extends CommService
 	@Override
 	public synchronized void write(byte[] out)
 	{
-		// Perform the write un-synchronized
-		mBtWorkerThread.write(out);
+		if (mBtWorkerThread != null)
+			mBtWorkerThread.write(out);
 	}
 
 	/**
