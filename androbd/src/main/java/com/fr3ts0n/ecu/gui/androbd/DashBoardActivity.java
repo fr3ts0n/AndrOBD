@@ -69,7 +69,7 @@ public class DashBoardActivity extends Activity
 	/**
 	 * the wake lock to keep app communication alive
 	 */
-	private static PowerManager.WakeLock wakeLock;
+	private PowerManager.WakeLock wakeLock;
 	private transient ObdGaugeAdapter adapter;
 	private transient GridView grid;
 
