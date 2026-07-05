@@ -1617,6 +1617,25 @@ public class MainActivity extends PluginManager
     }
 
     /**
+     * Return a human-readable protocol description for well-known ECU addresses,
+     * or an empty string if the address is not recognised.
+     */
+    private static String describeEcuAddress(int addr)
+    {
+        switch (addr)
+        {
+            case 0x7E8:      return "ECM (11-bit CAN)";
+            case 0x7E9:      return "TCM (11-bit CAN)";
+            case 0x7EA:      return "SCM (11-bit CAN)";
+            case 0x18DAF110: return "ECM (29-bit CAN)";
+            case 0x18DAF121: return "TCM (29-bit CAN)";
+            case 0x10:       return "ECM (KW2000/ISO9141)";
+            case 0x12:       return "TCM (KW2000/ISO9141)";
+            default:         return "";
+        }
+    }
+
+    /**
      * Prompt for selection of a single ECU from list of available ECUs
      *
      * @param ecuAdresses List of available ECUs
@@ -1638,12 +1657,14 @@ public class MainActivity extends PluginManager
                 // NO match with preference -> allow selection
 
                 // .. allow selection of single ECU address ...
-                final CharSequence[] entries = new CharSequence[ecuAdresses.size()];
-                // create list of entries
-                int i = 0;
-                for (Integer addr : ecuAdresses)
+                final Integer[] addrArray = ecuAdresses.toArray(new Integer[0]);
+                final CharSequence[] entries = new CharSequence[addrArray.length];
+                for (int i = 0; i < addrArray.length; i++)
                 {
-                    entries[i++] = String.format("0x%X", addr);
+                    String desc = describeEcuAddress(addrArray[i]);
+                    entries[i] = desc.isEmpty()
+                            ? String.format("0x%X", addrArray[i])
+                            : String.format("0x%X — %s", addrArray[i], desc);
                 }
                 // show dialog ...
                 dlgBuilder
@@ -1653,8 +1674,7 @@ public class MainActivity extends PluginManager
                             @Override
                             public void onClick(DialogInterface dialog, int which)
                             {
-                                int address =
-                                        Integer.parseInt(entries[which].toString().substring(2), 16);
+                                int address = addrArray[which];
                                 // set address
                                 CommService.elm.setEcuAddress(address);
                                 // set this as preference (preference change will trigger ELM command)
