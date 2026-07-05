@@ -2031,6 +2031,10 @@ public class MainActivity extends PluginManager
      */
     private void setupLoggers()
     {
+        // Apply level first; if logging is OFF, skip creating the log directory and file.
+        setLogLevels();
+        if (Level.OFF.equals(rootLogger.getLevel())) return;
+
         // set file handler for log file output
         String logFileName = FileHelper.getPath(this).concat(File.separator).concat("log");
         try
@@ -2063,8 +2067,6 @@ public class MainActivity extends PluginManager
             });
             // add file logging ...
             rootLogger.addHandler(logFileHandler);
-            // set
-            setLogLevels();
         } catch (IOException e)
         {
             // try to log error (at least with system logging)
