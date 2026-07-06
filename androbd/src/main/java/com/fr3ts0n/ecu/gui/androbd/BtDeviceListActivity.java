@@ -110,7 +110,14 @@ public class BtDeviceListActivity extends Activity
 														 parent,
 											 false);
 					}
-					tv.setText(String.format("%s\n%s", dev.getName(), dev.getAddress()));
+					String displayName;
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+						String alias = dev.getAlias();
+						displayName = (alias != null && !alias.isEmpty()) ? alias : dev.getName();
+					} else {
+						displayName = dev.getName();
+					}
+					tv.setText(String.format("%s\n%s", displayName, dev.getAddress()));
 					return tv;
 				}
 			};
