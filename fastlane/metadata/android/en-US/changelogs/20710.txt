@@ -1,0 +1,10 @@
+V2.7.10 - Fixes / Updates
+
+* Fixed Bluetooth communication crash on some devices (null-guard for missing/revoked Bluetooth adapter)
+* Fixed WakeLock leak on screen rotation in Chart and Dashboard views
+* Fixed chart display for sensors that stop changing (now shows a flat line instead of a gap)
+* Fixed log directory being recreated even when logging is disabled
+* Added descriptions to logging level and ECU selector options in Settings
+* Added CONTRIBUTING.md for new contributors
+* Updated CI configuration
+* Translation updates: Chinese (Simplified), Finnish, German
