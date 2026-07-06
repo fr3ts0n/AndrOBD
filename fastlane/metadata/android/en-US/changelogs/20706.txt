@@ -1,0 +1,4 @@
+V2.7.6 - SDK36 Support
+
+* Updated target SDK to Android 16 (API level 36)
+* Added in-app language selection

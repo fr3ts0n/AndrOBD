@@ -1,0 +1,5 @@
+V2.6.15 - Library Updates and Bug Fixes
+
+* Updated USB serial communication library to v3.9.0
+* Fixed build configuration issue (#281)
+* Translation updates: Spanish, Turkish, Portuguese, Czech, Dutch, Amharic, Italian, Swedish, Catalan, Russian

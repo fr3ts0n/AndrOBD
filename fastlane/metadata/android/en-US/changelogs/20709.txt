@@ -1,0 +1,6 @@
+V2.7.9 - Fixes / Updates
+
+* Fixed Bluetooth permission declarations to cover the full Android version range (4.2–16 / API 17–36)
+* Fixed file picker not showing external storage when loading .obd recording files
+* Fixed app freeze (ANR) when loading external PID or conversion files on startup
+* Improved test coverage across library, app, and plugin framework
