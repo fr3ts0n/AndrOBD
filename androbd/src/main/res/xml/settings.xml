@@ -270,6 +270,11 @@
                 android:summary="@string/logging_level_description"
                 android:title="@string/logging_level"
                 />
+            <Preference
+                android:key="open_log_dir"
+                android:title="@string/open_log_dir"
+                android:summary="@string/open_log_dir_description"
+                />
         </PreferenceCategory>
 
         <PreferenceCategory
