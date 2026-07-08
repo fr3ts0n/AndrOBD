@@ -20,7 +20,6 @@ package com.fr3ts0n.ecu.gui.androbd;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
@@ -39,6 +38,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ import java.util.logging.Logger;
  * by the user, the MAC address of the device is sent back to the parent
  * Activity in the result Intent.
  */
-public class BtDeviceListActivity extends Activity
+public class BtDeviceListActivity extends AppCompatActivity
 {
 	// Debugging
 	static final String TAG = BtDeviceListActivity.class.getSimpleName();
@@ -85,7 +85,7 @@ public class BtDeviceListActivity extends Activity
 		}
 
 		// Set result CANCELED in case the user backs out
-		setResult(Activity.RESULT_CANCELED);
+		setResult(RESULT_CANCELED);
 		// Setup the window
 		setContentView(R.layout.device_list);
 		
@@ -182,7 +182,7 @@ public class BtDeviceListActivity extends Activity
 			intent.putExtra(EXTRA_DEVICE_ADDRESS, address);
 
 			// Set result and finish this Activity
-			setResult(Activity.RESULT_OK, intent);
+			setResult(RESULT_OK, intent);
 			log.log(Level.FINE, "Sending Result...");
 			finish();
 		}

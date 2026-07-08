@@ -20,7 +20,6 @@
 package com.fr3ts0n.ecu.gui.androbd;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.usb.UsbDevice;
@@ -38,6 +37,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TwoLineListItem;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
@@ -53,7 +54,7 @@ import java.util.logging.Logger;
  *
  * @author mike wakerly (opensource@hoho.com)
  */
-public final class UsbDeviceListActivity extends Activity
+public final class UsbDeviceListActivity extends AppCompatActivity
 {
 	private static final String TAG = UsbDeviceListActivity.class.getSimpleName();
 	private static final Logger log = Logger.getLogger(TAG);
@@ -155,7 +156,7 @@ public final class UsbDeviceListActivity extends Activity
 				// Create the result Intent and include the MAC address
 				Intent intent = new Intent();
 				// Set result and finish this Activity
-				setResult(Activity.RESULT_OK, intent);
+				setResult(RESULT_OK, intent);
 				log.fine("Sending Result...");
 				finish();
 			}

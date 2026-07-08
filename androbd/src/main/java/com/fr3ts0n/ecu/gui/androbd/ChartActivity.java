@@ -20,8 +20,6 @@ package com.fr3ts0n.ecu.gui.androbd;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
@@ -38,6 +36,8 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.fr3ts0n.ecu.EcuDataPv;
@@ -62,7 +62,7 @@ import java.util.TreeSet;
  * passes in the number of the <code>Sensor</code>(s) to display. If none is
  * passed, the first available <code>Sensor</code> is used.
  */
-public class ChartActivity extends Activity
+public class ChartActivity extends AppCompatActivity
 {
 
 	/**
@@ -169,7 +169,7 @@ public class ChartActivity extends Activity
 		wakeLock.acquire();
 
 		// set up action bar
-		ActionBar actionBar = getActionBar();
+		ActionBar actionBar = getSupportActionBar();
 		if (actionBar != null)
 		{
 			actionBar.setDisplayShowTitleEnabled(true);
@@ -244,7 +244,7 @@ public class ChartActivity extends Activity
 			} else if (msg.what == MainActivity.MESSAGE_TOOLBAR_VISIBLE) {
 				Boolean visible = (Boolean) msg.obj;
 				// set action bar visibility
-				ActionBar ab = getActionBar();
+				ActionBar ab = getSupportActionBar();
 				if (ab != null) {
 					if (visible) {
 						ab.show();

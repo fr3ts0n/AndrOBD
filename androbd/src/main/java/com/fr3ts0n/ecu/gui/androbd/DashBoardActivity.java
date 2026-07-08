@@ -18,8 +18,6 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -32,6 +30,9 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListAdapter;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataItems;
@@ -48,7 +49,7 @@ import java.util.Objects;
 /**
  * Display selected data items as dashboard
  */
-public class DashBoardActivity extends Activity
+public class DashBoardActivity extends AppCompatActivity
 		implements PvChangeListener, AdapterView.OnItemLongClickListener
 {
 	/**
@@ -197,7 +198,7 @@ public class DashBoardActivity extends Activity
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		}
 		// hide the action bar
-		ActionBar actionBar = getActionBar();
+		ActionBar actionBar = getSupportActionBar();
 		if (actionBar != null) actionBar.hide();
 
 		// prevent activity from falling asleep
