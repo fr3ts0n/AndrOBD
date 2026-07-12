@@ -196,4 +196,8 @@
     <string name="restart_required">A nyelvváltoztatás érvénybe lépéséhez az alkalmazás újraindítása szükséges</string>
     <string name="select_ble_device">BLE-adapter kiválasztása</string>
     <string name="no_obd_files_found">Nem találhatók OBD-fájlok</string>
+    <string name="open_log_dir">Naplókönyvtár megnyitása</string>
+    <string name="open_log_dir_description">Napló mappájának megnyitása egy fájlkezelőben</string>
+    <string name="log_dir_not_found">Nem található a naplókönyvtár. Először engedélyezze a naplózást, és indítsa újra az alkalmazást.</string>
+    <string name="log_dir_no_app">Nem található fájlkezelő. Az elérési út a vágólapra lett másolva.</string>
 </resources>
