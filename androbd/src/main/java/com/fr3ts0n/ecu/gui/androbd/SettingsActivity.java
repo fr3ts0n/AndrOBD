@@ -29,13 +29,17 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
-import android.preference.ListPreference;
-import android.preference.MultiSelectListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.EditTextPreference;
+import androidx.preference.ListPreference;
+import androidx.preference.MultiSelectListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 import java.util.Locale;
 
@@ -48,62 +52,22 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SettingsActivity
-	extends
-		PreferenceActivity
-	implements
-		SharedPreferences.OnSharedPreferenceChangeListener,
-		Preference.OnPreferenceClickListener
+public class SettingsActivity extends AppCompatActivity
 {
-	/** The logger object */
-	private static final Logger log = Logger.getLogger(SettingsActivity.class.getName());
-	
-	/**
-	 * app preferences
-	 */
-	private static SharedPreferences prefs;
-	/**
-	 * preference keys for extension files
-	 */
+	// Preference keys referenced from outside this class (MainActivity, ObdItemAdapter) -
+	// kept at this level, unlike the Settings-internal-only keys below, so those external
+	// call sites don't need to change.
 	static final String[] extKeys =
 	{
 		"ext_file_conversions",
 		"ext_file_dataitems"
 	};
-
-	/**
-	 * key ids for device network settings
-	 */
-	private static final String[] networkKeys =
-	{
-		"device_address",
-		"device_port"
-	};
-	/**
-	 * key ids for device network settings
-	 */
-	private static final String[] bluetoothKeys =
-	{
-		"bt_secure_connection"
-	};
-	/**
-	 * key ids for device network settings
-	 */
-	private static final String[] usbKeys =
-	{
-			"comm_baudrate"
-	};
-
-	// Preference key for data items
 	static final String KEY_DATA_ITEMS = "data_items";
 	static final String KEY_PROT_SELECT = "protocol";
 	static final String KEY_COMM_MEDIUM = "comm_medium";
 	static final String ELM_MIN_TIMEOUT = "elm_min_timeout";
 	static final String ELM_CMD_DISABLE = "elm_cmd_disable";
-    static final String ELM_TIMING_SELECT = "adaptive_timing_mode";
-    private static final String KEY_BITCOIN = "bitcoin";
-    private static final String KEY_OPEN_LOG_DIR = "open_log_dir";
-    static final String KEY_APP_LANGUAGE = "app_language";
+	private static final String KEY_APP_LANGUAGE = "app_language";
 
 	/**
 	 * Apply locale based on user preference
@@ -132,12 +96,6 @@ public class SettingsActivity
 		resources.updateConfiguration(config, resources.getDisplayMetrics());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see android.preference.PreferenceActivity#onCreate(android.os.Bundle)
-	 */
-	Vector<EcuDataItem> items;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -145,32 +103,121 @@ public class SettingsActivity
 		applyLocale(this);
 		setTheme(MainActivity.nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
 		super.onCreate(savedInstanceState);
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-		addPreferencesFromResource(R.xml.settings);
-
-		for (String key : extKeys)
+		if (savedInstanceState == null)
 		{
-			setPrefsText(key);
+			getSupportFragmentManager()
+				.beginTransaction()
+				.replace(android.R.id.content, new SettingsFragment())
+				.commit();
+		}
+	}
+
+	/**
+	 * The actual preference screen - AndroidX preference dialogs/screens are hosted in a
+	 * fragment rather than directly in an Activity, unlike the old {@code PreferenceActivity}
+	 * API this was originally written against.
+	 */
+	public static class SettingsFragment
+		extends
+			PreferenceFragmentCompat
+		implements
+			SharedPreferences.OnSharedPreferenceChangeListener,
+			Preference.OnPreferenceClickListener
+	{
+		/** The logger object */
+		private static final Logger log = Logger.getLogger(SettingsFragment.class.getName());
+
+		/**
+		 * app preferences
+		 */
+		private SharedPreferences prefs;
+
+		/**
+		 * key ids for device network settings
+		 */
+		private static final String[] networkKeys =
+		{
+			"device_address",
+			"device_port"
+		};
+		/**
+		 * key ids for device network settings
+		 */
+		private static final String[] bluetoothKeys =
+		{
+			"bt_secure_connection"
+		};
+		/**
+		 * key ids for device network settings
+		 */
+		private static final String[] usbKeys =
+		{
+				"comm_baudrate"
+		};
+
+		static final String ELM_TIMING_SELECT = "adaptive_timing_mode";
+		private static final String KEY_BITCOIN = "bitcoin";
+		private static final String KEY_OPEN_LOG_DIR = "open_log_dir";
+
+		Vector<EcuDataItem> items;
+
+		@Override
+		public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey)
+		{
+			prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
+
+			setPreferencesFromResource(R.xml.settings, rootKey);
+
+			for (String key : extKeys)
+			{
+				setPrefsText(key);
+			}
+
+			// set up communication media selection
+			setupCommMediaSelection();
+			// set up protocol selection
+			setupProtoSelection();
+			// set up ELM command selection
+			setupElmCmdSelection();
+			// set up ELM adaptive timing mode selection
+			setupElmTimingSelection();
+			// set up selectable PID list
+			setupPidSelection();
+			// update network selection fields
+			updateNetworkSelections();
+			findPreference(KEY_BITCOIN).setOnPreferenceClickListener(this);
+			findPreference(KEY_OPEN_LOG_DIR).setOnPreferenceClickListener(this);
 		}
 
-		// set up communication media selection
-		setupCommMediaSelection();
-		// set up protocol selection
-		setupProtoSelection();
-		// set up ELM command selection
-		setupElmCmdSelection();
-		// set up ELM adaptive timing mode selection
-		setupElmTimingSelection();
-		// set up selectable PID list
-		setupPidSelection();
-		// update network selection fields
-		updateNetworkSelections();
-		findPreference(KEY_BITCOIN).setOnPreferenceClickListener(this);
-		findPreference(KEY_OPEN_LOG_DIR).setOnPreferenceClickListener(this);
-		// add handler for selection update
-		prefs.registerOnSharedPreferenceChangeListener(this);
-	}
+		@Override
+		public void onResume()
+		{
+			super.onResume();
+			// add handler for selection update
+			prefs.registerOnSharedPreferenceChangeListener(this);
+		}
+
+		@Override
+		public void onPause()
+		{
+			prefs.unregisterOnSharedPreferenceChangeListener(this);
+			super.onPause();
+		}
+
+		@Override
+		public void onDisplayPreferenceDialog(@NonNull Preference preference)
+		{
+			if (preference instanceof SearchableMultiSelectListPreference)
+			{
+				SearchableMultiSelectListPreferenceDialogFragment fragment =
+					SearchableMultiSelectListPreferenceDialogFragment.newInstance(preference.getKey());
+				fragment.setTargetFragment(this, 0);
+				fragment.show(getParentFragmentManager(), "androidx.preference.PreferenceFragment.DIALOG");
+				return;
+			}
+			super.onDisplayPreferenceDialog(preference);
+		}
 
 		/**
 		 * set up protocol selection
@@ -196,29 +243,29 @@ public class SettingsActivity
 			pref.setSummary(pref.getEntry());
 		}
 
-        /**
-         * set up protocol selection
-         */
-        void setupElmTimingSelection()
-        {
-            ListPreference pref = (ListPreference) findPreference(ELM_TIMING_SELECT);
-            ElmProt.AdaptTimingMode[] values = ElmProt.AdaptTimingMode.values();
-            CharSequence[] titles = new CharSequence[values.length];
-            CharSequence[] keys = new CharSequence[values.length];
-            int i = 0;
-            for (ElmProt.AdaptTimingMode mode : values)
-            {
+		/**
+		 * set up protocol selection
+		 */
+		void setupElmTimingSelection()
+		{
+			ListPreference pref = (ListPreference) findPreference(ELM_TIMING_SELECT);
+			ElmProt.AdaptTimingMode[] values = ElmProt.AdaptTimingMode.values();
+			CharSequence[] titles = new CharSequence[values.length];
+			CharSequence[] keys = new CharSequence[values.length];
+			int i = 0;
+			for (ElmProt.AdaptTimingMode mode : values)
+			{
 				titles[i] = mode.toString();
 				keys[i] = mode.toString();
 				i++;
-            }
-            // set entries and keys
-            pref.setEntries(titles);
-            pref.setEntryValues(keys);
-            pref.setDefaultValue(titles[0]);
-            // show current selection
-            pref.setSummary(pref.getEntry());
-        }
+			}
+			// set entries and keys
+			pref.setEntries(titles);
+			pref.setEntryValues(keys);
+			pref.setDefaultValue(titles[0]);
+			// show current selection
+			pref.setSummary(pref.getEntry());
+		}
 
 		/**
 		 * set up protocol selection
@@ -361,10 +408,10 @@ public class SettingsActivity
 		private void openLogDirectory()
 		{
 			java.io.File logDir = new java.io.File(
-					FileHelper.getPath(this), "log");
+					FileHelper.getPath(requireContext()), "log");
 			if (!logDir.isDirectory())
 			{
-				Toast.makeText(this,
+				Toast.makeText(requireContext(),
 						R.string.log_dir_not_found,
 						Toast.LENGTH_LONG).show();
 				return;
@@ -382,10 +429,10 @@ public class SettingsActivity
 				// No file manager installed, or Android 7+ blocked file:// URI;
 				// copy the path to clipboard as a fallback.
 				ClipboardManager cm = (ClipboardManager)
-						getSystemService(CLIPBOARD_SERVICE);
+						requireContext().getSystemService(CLIPBOARD_SERVICE);
 				cm.setPrimaryClip(ClipData.newPlainText(
 						"log_dir", logDir.getAbsolutePath()));
-				Toast.makeText(this,
+				Toast.makeText(requireContext(),
 						R.string.log_dir_no_app,
 						Toast.LENGTH_LONG).show();
 			}
@@ -417,7 +464,7 @@ public class SettingsActivity
 			catch(Exception e)
 			{
 				log.log(Level.SEVERE, "Settings", e);
-				Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+				Toast.makeText(requireContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 			}
 			return true;
 		}
@@ -475,12 +522,13 @@ public class SettingsActivity
 			if(KEY_APP_LANGUAGE.equals(key))
 			{
 				// Apply new language immediately
-				applyLocale(this);
+				SettingsActivity.applyLocale(requireActivity());
 
 				// Show restart message
-				Toast.makeText(this,
+				Toast.makeText(requireContext(),
 				              getString(R.string.restart_required),
 				              Toast.LENGTH_LONG).show();
 			}
 		}
 	}
+}
