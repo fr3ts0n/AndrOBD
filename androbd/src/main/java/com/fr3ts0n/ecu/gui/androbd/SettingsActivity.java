@@ -29,11 +29,15 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.MultiSelectListPreference;
@@ -210,8 +214,85 @@ public class SettingsActivity extends AppCompatActivity
 			setupPidSelection();
 			// update network selection fields
 			updateNetworkSelections();
-			findPreference(KEY_BITCOIN).setOnPreferenceClickListener(this);
-			findPreference(KEY_OPEN_LOG_DIR).setOnPreferenceClickListener(this);
+			setPrefClickListener(KEY_BITCOIN);
+			setPrefClickListener(KEY_OPEN_LOG_DIR);
+		}
+
+		/**
+		 * Each time a nested PreferenceScreen is entered or backed out of, this fragment's
+		 * view is destroyed and a new one created (FragmentTransaction.replace()). Something
+		 * in the framework/AppCompat already positions list_container correctly below the
+		 * status bar and action bar for a freshly created fragment - but that mechanism
+		 * doesn't reliably re-run for every (re)created instance, occasionally leaving
+		 * list_container at y=0, rendered under the status bar and action bar. Only patch
+		 * it when that's actually happened (current position is at/near the top) - the
+		 * expected offset is already correct far more often than not, and blindly adding
+		 * padding regardless would double it up on top of whatever positioned it correctly
+		 * in the first place. Posted rather than applied inline, both so the view has a
+		 * real on-screen position to check yet, and so the action bar has its final
+		 * measured height.
+		 */
+		@Override
+		public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+		{
+			super.onViewCreated(view, savedInstanceState);
+			view.post(() -> fixUnpaddedListContainer(view));
+		}
+
+		private void fixUnpaddedListContainer(@NonNull View fragmentView)
+		{
+			View listContainer = fragmentView.findViewById(android.R.id.list_container);
+			if (listContainer == null) return;
+
+			int statusBarHeight = 0;
+			WindowInsetsCompat insets = ViewCompat.getRootWindowInsets(fragmentView);
+			if (insets != null)
+			{
+				statusBarHeight = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+			}
+
+			int actionBarHeight = 0;
+			if (requireActivity() instanceof AppCompatActivity)
+			{
+				ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+				if (actionBar != null)
+				{
+					actionBarHeight = actionBar.getHeight();
+				}
+			}
+			int expectedTop = statusBarHeight + actionBarHeight;
+
+			int[] screenLocation = new int[2];
+			listContainer.getLocationOnScreen(screenLocation);
+			int actualTop = screenLocation[1];
+
+			// Comfortably below "unpadded" (0) but still well short of the correct offset -
+			// avoids both a false negative from minor measurement variance and a false
+			// positive that would double-pad an already-correct layout.
+			if (actualTop < statusBarHeight)
+			{
+				listContainer.setPadding(
+					listContainer.getPaddingLeft(),
+					listContainer.getPaddingTop() + (expectedTop - actualTop),
+					listContainer.getPaddingRight(),
+					listContainer.getPaddingBottom());
+			}
+		}
+
+		/**
+		 * Set this fragment as the click listener for a preference, if it exists in the
+		 * currently displayed (sub-)screen. findPreference() only searches the tree rooted
+		 * at whichever screen setPreferencesFromResource() was given - a key that lives in
+		 * a different top-level PreferenceScreen won't be found, which is expected rather
+		 * than an error.
+		 */
+		private void setPrefClickListener(String key)
+		{
+			Preference pref = findPreference(key);
+			if (pref != null)
+			{
+				pref.setOnPreferenceClickListener(this);
+			}
 		}
 
 		@Override
@@ -249,6 +330,7 @@ public class SettingsActivity extends AppCompatActivity
 		void setupProtoSelection()
 		{
 			ListPreference pref = (ListPreference) findPreference(KEY_PROT_SELECT);
+			if (pref == null) return;
 			ElmProt.PROT[] values = ElmProt.PROT.values();
 			CharSequence[] titles = new CharSequence[values.length];
 			CharSequence[] keys = new CharSequence[values.length];
@@ -273,6 +355,7 @@ public class SettingsActivity extends AppCompatActivity
 		void setupElmTimingSelection()
 		{
 			ListPreference pref = (ListPreference) findPreference(ELM_TIMING_SELECT);
+			if (pref == null) return;
 			ElmProt.AdaptTimingMode[] values = ElmProt.AdaptTimingMode.values();
 			CharSequence[] titles = new CharSequence[values.length];
 			CharSequence[] keys = new CharSequence[values.length];
@@ -298,6 +381,7 @@ public class SettingsActivity extends AppCompatActivity
 		{
 			MultiSelectListPreference pref =
 				(MultiSelectListPreference) findPreference(ELM_CMD_DISABLE);
+			if (pref == null) return;
 			ElmProt.CMD[] values = ElmProt.CMD.values();
 			HashSet<String> selections = new HashSet<>();
 			CharSequence[] titles = new CharSequence[values.length];
@@ -322,6 +406,7 @@ public class SettingsActivity extends AppCompatActivity
 		void setupCommMediaSelection()
 		{
 			ListPreference pref = (ListPreference) findPreference(KEY_COMM_MEDIUM);
+			if (pref == null) return;
 			CommService.MEDIUM[] values = CommService.MEDIUM.values();
 			CharSequence[] titles = new CharSequence[values.length];
 			CharSequence[] keys = new CharSequence[values.length];
@@ -347,6 +432,7 @@ public class SettingsActivity extends AppCompatActivity
 		{
 			SearchableMultiSelectListPreference itemList =
 				(SearchableMultiSelectListPreference) findPreference(KEY_DATA_ITEMS);
+			if (itemList == null) return;
 
 			// collect data items for selection
 			items = ObdProt.dataItems.getSvcDataItems(ObdProt.OBD_SVC_DATA);
@@ -381,6 +467,7 @@ public class SettingsActivity extends AppCompatActivity
 		void setPrefsText(String key)
 		{
 			Preference prefComp = findPreference(key);
+			if (prefComp == null) return;
 			prefComp.setOnPreferenceClickListener(this);
 			String value = prefs.getString(key, null);
 			if (value != null)
@@ -411,21 +498,21 @@ public class SettingsActivity extends AppCompatActivity
 			for(String key : networkKeys)
 			{
 				Preference pref = findPreference(key);
-				pref.setEnabled(networkSelected);
+				if (pref != null) pref.setEnabled(networkSelected);
 			}
 
 			// enable/disable bluetooth specific entries
 			for(String key : bluetoothKeys)
 			{
 				Preference pref = findPreference(key);
-				pref.setEnabled(bluetoothSelected);
+				if (pref != null) pref.setEnabled(bluetoothSelected);
 			}
 
 			// enable/disable usb specific entries
 			for(String key : usbKeys)
 			{
 				Preference pref = findPreference(key);
-				pref.setEnabled(usbSelected);
+				if (pref != null) pref.setEnabled(usbSelected);
 			}
 		}
 
