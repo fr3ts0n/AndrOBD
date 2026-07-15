@@ -40,6 +40,7 @@ import androidx.preference.MultiSelectListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
+import androidx.preference.PreferenceScreen;
 
 import java.util.Locale;
 
@@ -53,6 +54,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SettingsActivity extends AppCompatActivity
+	implements PreferenceFragmentCompat.OnPreferenceStartScreenCallback
 {
 	// Preference keys referenced from outside this class (MainActivity, ObdItemAdapter) -
 	// kept at this level, unlike the Settings-internal-only keys below, so those external
@@ -111,6 +113,28 @@ public class SettingsActivity extends AppCompatActivity
 				.replace(android.R.id.content, new SettingsFragment())
 				.commit();
 		}
+	}
+
+	/**
+	 * Called when the user taps a nested {@code PreferenceScreen} (e.g. "OBD Options",
+	 * "CSV Export Options"). AndroidX Preference does not navigate to sub-screens on its
+	 * own - the hosting activity has to swap in a new {@link SettingsFragment} rooted at
+	 * the tapped screen's key, or the tap silently does nothing.
+	 */
+	@Override
+	public boolean onPreferenceStartScreen(PreferenceFragmentCompat caller, PreferenceScreen pref)
+	{
+		SettingsFragment fragment = new SettingsFragment();
+		Bundle args = new Bundle();
+		args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, pref.getKey());
+		fragment.setArguments(args);
+
+		getSupportFragmentManager()
+			.beginTransaction()
+			.replace(android.R.id.content, fragment)
+			.addToBackStack(pref.getKey())
+			.commit();
+		return true;
 	}
 
 	/**
