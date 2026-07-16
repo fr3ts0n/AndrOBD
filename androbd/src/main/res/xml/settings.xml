@@ -4,6 +4,7 @@
                   android:title="@string/settings">
 
     <PreferenceScreen
+        android:key="screen_common_settings"
         android:icon="@android:drawable/ic_menu_manage"
         android:summary="@string/common_settings_description"
         android:title="@string/common_settings">
@@ -92,6 +93,7 @@
 
 
     <PreferenceScreen
+        android:key="screen_obd_options"
         android:icon="@android:drawable/ic_menu_manage"
         android:summary="@string/obd_opt_description"
         android:title="@string/obd_options">
@@ -213,6 +215,7 @@
     </PreferenceScreen>
 
     <PreferenceScreen
+        android:key="screen_csv_export_options"
         android:icon="@android:drawable/ic_menu_save"
         android:summary="@string/csv_export_description"
         android:title="@string/csv_export_options"
@@ -254,6 +257,7 @@
     </PreferenceScreen>
 
     <PreferenceScreen
+        android:key="screen_development_options"
         android:icon="@android:drawable/ic_menu_manage"
         android:summary="@string/dev_opt_description"
         android:title="@string/development_options"
@@ -322,6 +326,7 @@
     </PreferenceScreen>
 
     <PreferenceScreen
+        android:key="screen_app_info"
         android:icon="@android:drawable/ic_menu_info_details"
         android:summary="@string/app_version"
         android:title="@string/app_name"
@@ -362,6 +367,7 @@
                 android:data="@string/url_app_translation"/>
         </Preference>
         <PreferenceScreen
+            android:key="screen_license"
             android:icon="@drawable/ic_scale"
             android:title="@string/license"
             >
