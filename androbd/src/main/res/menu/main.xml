@@ -28,7 +28,7 @@
     <!-- Data Management Group -->
     <item
         android:id="@+id/save"
-        android:icon="@android:drawable/ic_menu_save"
+        android:icon="@drawable/ic_save"
         android:title="@string/save"/>
     <item
         android:id="@+id/load"
@@ -44,21 +44,21 @@
     <!-- Configuration and Management -->
     <item
         android:id="@+id/settings"
-        android:icon="@android:drawable/ic_menu_preferences"
+        android:icon="@drawable/ic_settings"
         android:title="@string/settings" />
     <item
         android:id="@+id/plugin_manager"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/ic_build"
         android:title="@string/plugin_manager" />
     <item
         android:id="@+id/reset_preselections"
-        android:icon="@android:drawable/ic_menu_delete"
+        android:icon="@drawable/ic_delete"
         android:title="@string/reset_preselections"/>
     
     <!-- OBD Diagnostic Services (Primary feature access) -->
     <item
         android:id="@+id/obd_services"
-        android:icon="@android:drawable/ic_menu_more"
+        android:icon="@drawable/ic_more"
         android:enabled="false"
         android:showAsAction="always"
         android:title="@string/obd_services">
