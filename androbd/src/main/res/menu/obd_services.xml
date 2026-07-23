@@ -21,34 +21,34 @@
     <item
         android:id="@+id/service_vid_data"
         android:title="@string/obd_veh_info"
-        android:icon="@android:drawable/ic_menu_info_details"/>
+        android:icon="@drawable/ic_info"/>
     
     <!-- Live Data Monitoring -->
     <item
         android:id="@+id/service_data"
         android:title="@string/obd_data"
-        android:icon="@android:drawable/ic_menu_view"/>
+        android:icon="@drawable/ic_visibility"/>
     
     <!-- Diagnostic History and Freeze Frames -->
     <item
         android:id="@+id/service_freezeframes"
         android:enabled="false"
         android:title="@string/service_freezeframes"
-        android:icon="@android:drawable/ic_menu_recent_history"/>
+        android:icon="@drawable/ic_history"/>
     
     <!-- Advanced Test Control -->
     <item
         android:id="@+id/service_testcontrol"
         android:title="@string/service_testcontrol"
-        android:icon="@android:drawable/ic_menu_slideshow"/>
+        android:icon="@drawable/ic_slideshow"/>
     
     <!-- Fault Code Management -->
     <item
         android:id="@+id/service_codes"
         android:title="@string/obd_codes"
-        android:icon="@android:drawable/ic_menu_myplaces"/>
+        android:icon="@drawable/ic_code"/>
     <item
         android:id="@+id/service_clearcodes"
         android:title="@string/obd_clearcodes"
-        android:icon="@android:drawable/ic_menu_delete"/>
+        android:icon="@drawable/ic_delete"/>
 </menu>

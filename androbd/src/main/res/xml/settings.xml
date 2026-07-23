@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:icon="@android:drawable/ic_menu_manage"
+                  android:icon="@drawable/ic_build"
                   android:title="@string/settings">
 
     <PreferenceScreen
         android:key="screen_common_settings"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/ic_build"
         android:summary="@string/common_settings_description"
         android:title="@string/common_settings">
 
@@ -94,7 +94,7 @@
 
     <PreferenceScreen
         android:key="screen_obd_options"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/ic_build"
         android:summary="@string/obd_opt_description"
         android:title="@string/obd_options">
 
@@ -216,7 +216,7 @@
 
     <PreferenceScreen
         android:key="screen_csv_export_options"
-        android:icon="@android:drawable/ic_menu_save"
+        android:icon="@drawable/ic_save"
         android:summary="@string/csv_export_description"
         android:title="@string/csv_export_options"
         >
@@ -258,7 +258,7 @@
 
     <PreferenceScreen
         android:key="screen_development_options"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:icon="@drawable/ic_build"
         android:summary="@string/dev_opt_description"
         android:title="@string/development_options"
         >
@@ -327,12 +327,12 @@
 
     <PreferenceScreen
         android:key="screen_app_info"
-        android:icon="@android:drawable/ic_menu_info_details"
+        android:icon="@drawable/ic_info"
         android:summary="@string/app_version"
         android:title="@string/app_name"
         >
         <Preference
-            android:icon="@android:drawable/ic_menu_info_details"
+            android:icon="@drawable/ic_info"
             android:title="@string/app_name"
             android:summary="@string/copyright_fr3ts0n"
             >
@@ -341,7 +341,7 @@
                 android:data="@string/url_app_mainpage"/>
         </Preference>
         <Preference
-            android:icon="@android:drawable/ic_menu_info_details"
+            android:icon="@drawable/ic_info"
             android:summary="@string/app_version"
             android:title="@string/release_history"
             >
@@ -350,7 +350,7 @@
                 android:data="@string/url_app_releases"/>
         </Preference>
         <Preference
-            android:icon="@android:drawable/ic_menu_info_details"
+            android:icon="@drawable/ic_info"
             android:title="@string/graphic_design"
             android:summary="@string/design_credits"
             >
@@ -359,7 +359,7 @@
                 android:data="https://github.com/anaufalm"/>
         </Preference>
         <Preference
-            android:icon="@android:drawable/ic_menu_info_details"
+            android:icon="@drawable/ic_info"
             android:title="@string/translation_credits"
             >
             <intent
