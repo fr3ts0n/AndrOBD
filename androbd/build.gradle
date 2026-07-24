@@ -26,11 +26,11 @@ android {
     }
 
     lint {
-        // abortOnError was previously inside defaultConfig{} where AGP ignores it.
-        // Moved here (android{} level) so it takes effect. To enforce lint on new
-        // code, run ./gradlew lint, commit the generated lint-baseline.xml, and
-        // remove this line.
-        abortOnError false
+        // Existing findings (278 issues, 187 of them Error severity as of
+        // 2026-07-24) are grandfathered into this baseline rather than fixed
+        // individually -- fixing them is real, separate effort. New lint
+        // issues not in the baseline still fail the build.
+        baseline = file("lint-baseline.xml")
     }
 
     buildTypes {

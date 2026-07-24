@@ -1,0 +1,3082 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 9.1.0" type="baseline" client="gradle" dependencies="false" name="AGP (9.1.0)" variant="all" version="9.1.0">
+
+    <issue
+        id="MissingPermission"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
+        errorLine1="   mAdapter.cancelDiscovery();"
+        errorLine2="   ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/BtCommService.java"
+            line="68"
+            column="4"/>
+    </issue>
+
+    <issue
+        id="MissingPermission"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
+        errorLine1="        connectionEstablished(device.getName());"
+        errorLine2="                              ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/BtCommService.java"
+            line="176"
+            column="31"/>
+    </issue>
+
+    <issue
+        id="MissingPermission"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
+        errorLine1="     ParcelUuid[] uuids = socket.getRemoteDevice().getUuids();"
+        errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/BtCommService.java"
+            line="270"
+            column="27"/>
+    </issue>
+
+    <issue
+        id="ScopedStorage"
+        message="WRITE_EXTERNAL_STORAGE no longer provides write access when targeting Android 10+"
+        errorLine1="    &lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;"
+        errorLine2="                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="23"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="                    log.info(String.format(&quot;PID pref %s=%f&quot;, key, value));"
+        errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/MainActivity.java"
+            line="1374"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="                    log.info(String.format(&quot;PID pref %s=%d&quot;, key, value));"
+        errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/MainActivity.java"
+            line="1400"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `toLowerCase(Locale)` instead. For strings meant to be internal use `Locale.ROOT`, otherwise `Locale.getDefault()`."
+        errorLine1="            ? filesDir.listFiles((dir, name) -> name.toLowerCase().endsWith(&quot;.obd&quot;))"
+        errorLine2="                                                     ~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/MainActivity.java"
+            line="2223"
+            column="54"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="   log.info(String.format(&quot;Connecting to %s port %d&quot;, device, portNum));"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/NetworkCommService.java"
+            line="124"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `toLowerCase(Locale)` instead. For strings meant to be internal use `Locale.ROOT`, otherwise `Locale.getDefault()`."
+        errorLine1="                String filter = s.toString().toLowerCase();"
+        errorLine2="                                             ~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/SearchableMultiSelectListPreferenceDialogFragment.java"
+            line="127"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `toLowerCase(Locale)` instead. For strings meant to be internal use `Locale.ROOT`, otherwise `Locale.getDefault()`."
+        errorLine1="                    if (items[i].toString().toLowerCase().contains(filter)) {"
+        errorLine2="                                            ~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/SearchableMultiSelectListPreferenceDialogFragment.java"
+            line="135"
+            column="45"/>
+    </issue>
+
+    <issue
+        id="InlinedApi"
+        message="Field requires API level 24 (current min is 23): `android.R.id#list_container`"
+        errorLine1="   View listContainer = fragmentView.findViewById(android.R.id.list_container);"
+        errorLine2="                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/SettingsActivity.java"
+            line="244"
+            column="51"/>
+    </issue>
+
+    <issue
+        id="OldTargetApi"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details."
+        errorLine1="        targetSdkVersion 36"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="14"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="SuspiciousIndentation"
+        message="The indentation string here is different from on the previous line (`&quot; &quot;` vs `\t`)"
+        errorLine1="  fileName = path.concat(File.separator+FileHelper.getFileName()"
+        errorLine2="~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/ExportTask.java"
+            line="77"
+            column="1"/>
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/ExportTask.java"
+            line="76"
+            column="1"
+            message="Previous line indentation here"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `usesPermissionFlags` is only used in API level 31 and higher (current min is 23)"
+        errorLine1="        android:usesPermissionFlags=&quot;neverForLocation&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="12"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AppBundleLocaleChanges"
+        message="Found dynamic locale changes, but did not find corresponding Play Core library calls for downloading languages and splitting by language is not disabled in the `bundle` configuration"
+        errorLine1="  config.setLocale(locale);"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/SettingsActivity.java"
+            line="97"
+            column="3"/>
+    </issue>
+
+    <issue
+        id="AppCompatResource"
+        message="Should use `app:showAsAction` with the appcompat library with `xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;`"
+        errorLine1="        android:showAsAction=&quot;ifRoom&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/chart.xml"
+            line="9"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AppCompatResource"
+        message="Should use `app:showAsAction` with the appcompat library with `xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;`"
+        errorLine1="        android:showAsAction=&quot;ifRoom&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/chart.xml"
+            line="14"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AppCompatResource"
+        message="Should use `app:showAsAction` with the appcompat library with `xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;`"
+        errorLine1="        android:showAsAction=&quot;always&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/context_graph.xml"
+            line="16"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AppCompatResource"
+        message="Should use `app:showAsAction` with the appcompat library with `xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;`"
+        errorLine1="        android:showAsAction=&quot;always&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/context_graph.xml"
+            line="21"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AppCompatResource"
+        message="Should use `app:showAsAction` with the appcompat library with `xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;`"
+        errorLine1="        android:showAsAction=&quot;always&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/context_graph.xml"
+            line="26"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AppCompatResource"
+        message="Should use `app:showAsAction` with the appcompat library with `xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;`"
+        errorLine1="        android:showAsAction=&quot;always&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/context_graph.xml"
+            line="31"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AppCompatResource"
+        message="Should use `app:showAsAction` with the appcompat library with `xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;`"
+        errorLine1="        android:showAsAction=&quot;always&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/main.xml"
+            line="18"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AppCompatResource"
+        message="Should use `app:showAsAction` with the appcompat library with `xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;`"
+        errorLine1="        android:showAsAction=&quot;always&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/main.xml"
+            line="24"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AppCompatResource"
+        message="Should use `app:showAsAction` with the appcompat library with `xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;`"
+        errorLine1="        android:showAsAction=&quot;always&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/main.xml"
+            line="63"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AppLinkUrlError"
+        message="At least one `host` must be specified"
+        errorLine1="                &lt;data"
+        errorLine2="                ^">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="56"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="InflateParams"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)"
+        errorLine1="        mListView = getWindow().getLayoutInflater().inflate(R.layout.obd_list, null);"
+        errorLine2="                                                                               ~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/MainActivity.java"
+            line="577"
+            column="80"/>
+    </issue>
+
+    <issue
+        id="AndroidGradlePluginVersion"
+        message="A newer version of Gradle than 9.4.1 is available: 9.6.1"
+        errorLine1="distributionUrl=https\://services.gradle.org/distributions/gradle-9.4.1-bin.zip"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="$HOME/dev/androbd/gradle/wrapper/gradle-wrapper.properties"
+            line="4"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.core:core than 1.12.0 is available: 1.19.0"
+        errorLine1="    implementation &apos;androidx.core:core:1.12.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="53"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.7.1"
+        errorLine1="    implementation &apos;androidx.appcompat:appcompat:1.7.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="54"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.google.android.material:material than 1.12.0 is available: 1.14.0"
+        errorLine1="    implementation &apos;com.google.android.material:material:1.12.0&apos;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="55"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="Deprecated"
+        message="`android:capitalize` is deprecated: Use `inputType` instead"
+        errorLine1="                android:capitalize=&quot;characters&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/xml/settings.xml"
+            line="122"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="Deprecated"
+        message="`android:capitalize` is deprecated: Use `inputType` instead"
+        errorLine1="                android:capitalize=&quot;characters&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/xml/settings.xml"
+            line="131"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="Deprecated"
+        message="`android:capitalize` is deprecated: Use `inputType` instead"
+        errorLine1="                android:capitalize=&quot;characters&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/xml/settings.xml"
+            line="174"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="Deprecated"
+        message="`android:numeric` is deprecated: Use `inputType` instead"
+        errorLine1="                android:numeric=&quot;integer&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/xml/settings.xml"
+            line="193"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="Deprecated"
+        message="`android:capitalize` is deprecated: Use `inputType` instead"
+        errorLine1="                android:capitalize=&quot;characters&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/xml/settings.xml"
+            line="206"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="StringFormatMatches"
+        message="Inconsistent formatting types for argument #1 in format string `devices_found` (&apos;%s&apos;): Found both &apos;`s`&apos; here and &apos;`d`&apos; in values/strings.xml"
+        errorLine1="    &lt;string name=&quot;devices_found&quot;>Обнаружено USB устройств: %sd&lt;/string>"
+        errorLine2="                                                           ~~">
+        <location
+            file="src/main/res/values-ru/strings.xml"
+            line="83"
+            column="60"/>
+        <location
+            file="src/main/res/values/strings.xml"
+            line="172"
+            column="5"
+            message="Conflicting argument type (`d&apos;) here"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;translation_credits&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;translation_credits&quot;>Translation by fr3ts0n&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="6"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;app_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ckb&quot;, &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;app_description&quot;>Android OBD vehicle diagnostics app for ELM327 Bluetooth adapter&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="7"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;copied_to_clipboard&quot; is not translated in &quot;be&quot; (Belarusian), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;copied_to_clipboard&quot;>Copied to clipboard&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="8"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;title_connecting&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;title_connecting&quot;>Connecting…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="9"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;title_connected_to&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;title_connected_to&quot;>Connected %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="10"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;logo&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;logo&quot;>Logo&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="11"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;back_again_to_exit&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;back_again_to_exit&quot;>Press back again to close this app&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="12"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;action_connect&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;action_connect&quot;>Connect&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="14"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_none&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;obd_none&quot;>NO service&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="15"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_services&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;obd_services&quot;>OBD Services&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="16"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_veh_info&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;obd_veh_info&quot;>OBD Vehicle Info&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="17"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_data&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;obd_data&quot;>OBD Data&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="18"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;service_freezeframes&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;service_freezeframes&quot;>OBD Freeze Frames&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="19"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;service_testcontrol&quot; is not translated in &quot;be&quot; (Belarusian), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ar&quot; (Arabic), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;service_testcontrol&quot;>OBD test control&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="20"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_codes&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;obd_codes&quot;>OBD fault codes&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="21"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_permanentcodes&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;obd_permanentcodes&quot;>OBD fault codes (permanent)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="22"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_pendingcodes&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;obd_pendingcodes&quot;>OBD fault codes (pending)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="23"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_clearcodes&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;obd_clearcodes&quot;>Clear fault codes&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="24"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_clear_info&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian)"
+        errorLine1="    &lt;string name=&quot;obd_clear_info&quot;>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="25"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_test_progress&quot; is not translated in &quot;be&quot; (Belarusian), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ar&quot; (Arabic), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;obd_test_progress&quot;>OBD test control in progress.\n"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="42"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_test_confirm&quot; is not translated in &quot;be&quot; (Belarusian), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;obd_test_confirm&quot;>OBD test control requested.\n\n"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="44"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;select_device&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;select_device&quot;>Select adapter&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="55"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;select_ble_device&quot; is not translated in &quot;be&quot; (Belarusian), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;select_ble_device&quot;>Select BLE adapter&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="56"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;none_paired&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;none_paired&quot;>No Devices Paired&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="57"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;none_found&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;none_found&quot;>No Devices Found&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="58"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;title_paired_devices&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;title_paired_devices&quot;>Paired Devices&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="59"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;send_to&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;send_to&quot;>Send to&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="61"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;share&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;share&quot;>share&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="62"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;time&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;time&quot;>Time [s]&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="63"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;chart&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;chart&quot;>Chart&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="64"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;demo_stopped&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;demo_stopped&quot;>DEMO mode stopped&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="65"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;demo_started&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;demo_started&quot;>DEMO mode started&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="66"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;snapshot&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;snapshot&quot;>snapshot&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="67"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;save&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;save&quot;>Save measurement&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="68"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;load&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;load&quot;>Load measurement&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="69"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;saved_data&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;saved_data&quot;>Saved Data&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="70"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;no_obd_files_found&quot; is not translated in &quot;be&quot; (Belarusian), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;no_obd_files_found&quot;>No OBD files found&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="71"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;loaded&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;loaded&quot;>loaded&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="72"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;saved&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;saved&quot;>saved&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="73"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;connected_to&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;connected_to&quot;>&quot;Connected to &quot;&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="74"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;demo&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;demo&quot;>Demo…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="75"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;saving_data&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;saving_data&quot;>Saving data …&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="76"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;loading_data&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;loading_data&quot;>Loading data …&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="77"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;dashboard&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;dashboard&quot;>Dashboard&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="78"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;hud&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;hud&quot;>Head Up Display&lt;/string>"
+        errorLine2="            ~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="79"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;filter&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;filter&quot;>Filter selected&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="80"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;settings&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;settings&quot;>Settings&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="82"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;common_settings&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;common_settings&quot;>Common settings&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="83"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;measure_system_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;measure_system_description&quot;>Measurement units system (metric / imperial)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="84"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;measure_system&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;measure_system&quot;>Measurement units&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="85"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;metric&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;metric&quot;>metric&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="86"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;imperial&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;imperial&quot;>imperial&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="87"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;items_for_display&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;items_for_display&quot;>Data items to display&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="96"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;items_for_display_descr&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;items_for_display_descr&quot;>Select all data items to be displayed …&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="97"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;debugging&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;debugging&quot;>Debugging&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="99"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;open_log_dir&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;fr&quot; (French), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;open_log_dir&quot;>Open log directory&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="100"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;open_log_dir_description&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;fr&quot; (French), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;open_log_dir_description&quot;>Open the log folder in a file manager&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="101"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;log_dir_not_found&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;fr&quot; (French), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;log_dir_not_found&quot;>Log directory not found — enable logging and restart the app first&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="102"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;log_dir_no_app&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;fr&quot; (French), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;log_dir_no_app&quot;>No file manager found — path copied to clipboard&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="103"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;logging_level&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;logging_level&quot;>Logging level&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="104"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;logging_level_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;logging_level_description&quot;>Level of details to be logged into debug log file&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="105"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;last_elm&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;last_elm&quot;>re-connect last ELM-adapter&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="150"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;last_ecu&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;last_ecu&quot;>re-connect last ECU&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="151"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;last_service&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;last_service&quot;>last OBD service&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="152"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;last_data_items&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;last_data_items&quot;>last selected data items&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="153"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;last_view_mode&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;last_view_mode&quot;>last data view mode&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="154"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;keep_screen_on&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;keep_screen_on&quot;>Keep main screen on&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="155"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;keep_screen_on_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;keep_screen_on_description&quot;>Do not turn OFF screen if main/data screen is on display&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="156"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;development_options&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;development_options&quot;>Development options&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="157"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;dev_opt_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;dev_opt_description&quot;>Options for debugging and customisation&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="158"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;extension_files&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;extension_files&quot;>Protocol customisation files (CSV)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="159"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;conversions&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;conversions&quot;>Data Conversions&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="160"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;data_items&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;data_items&quot;>Data items&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="161"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;select_extension&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;select_extension&quot;>Select .csv extension file …&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="162"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;extension_loading&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;extension_loading&quot;>Customisation loading&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="163"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;check_cust_settings&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;check_cust_settings&quot;>Please check your customisation settings\n&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="164"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_options&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;obd_options&quot;>OBD options &lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="165"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_opt_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;obd_opt_description&quot;>Options for OBD protocol / vehicle communication &lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="166"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;select_protocol&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;select_protocol&quot;>Preferred OBD protocol &lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="167"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;plugin_manager&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;plugin_manager&quot;>Plugin manager&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="168"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;configure&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;configure&quot;>Configure&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="169"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;select_fault_code&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;select_fault_code&quot;>Select fault code …&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="170"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;select_medium&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;select_medium&quot;>Adapter type …&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="171"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;devices_found&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;devices_found&quot;>%d USB device(s) found&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="172"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;min_elm_timeout&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;min_elm_timeout&quot;>Min. ELM timeout [ms]&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="173"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;unabletoconnect&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;unabletoconnect&quot;>Unable to connect device&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="174"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;connectionlost&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;connectionlost&quot;>Device connection was lost&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="175"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;elm_timeout_descr&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;elm_timeout_descr&quot;>Minimum timeout in [ms] to wait for ELM responses&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="176"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;day_night_mode&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;day_night_mode&quot;>Day/Night view mode&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="177"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;night_mode_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;night_mode_description&quot;>Set display to dark background&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="178"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;night_mode&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;night_mode&quot;>Night mode&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="179"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;disable_elm_cmds&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;disable_elm_cmds&quot;>Disabled ELM commands&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="180"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;disable_elm_cmds_descr&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;disable_elm_cmds_descr&quot;>enable/disable ELM commands&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="181"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;elm_adaptive_timing&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;elm_adaptive_timing&quot;>ELM adaptive timing&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="182"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;elm_adaptive_timing_descr&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;elm_adaptive_timing_descr&quot;>Allow adaptive timing handling in ELM drivers?&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="183"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;elm_reset_on_nrc&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;elm_reset_on_nrc&quot;>Reset on NRC&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="184"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;elm_reset_on_nrc_descr&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;elm_reset_on_nrc_descr&quot;>Reset ELM adapter on NRC error?&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="185"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;select_ecu_addr&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;select_ecu_addr&quot;>Select ECU address …&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="186"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;disconnect&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;disconnect&quot;>Disconnect&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="187"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;reset_preselections&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;reset_preselections&quot;>Reset last pre-selections&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="188"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;use_last_settings_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Use last settings at startup (BT address, ECU address, Display items …)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="189"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;use_last_settings&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;use_last_settings&quot;>Use last settings&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="190"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;common_settings_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;common_settings_description&quot;>Common settings for app control&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="191"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;secure_connect&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;secure_connect&quot;>Secure connection&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="192"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;secure_connect_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;secure_connect_description&quot;>Use encrypted Bluetooth connection&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="193"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;elm_options&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;elm_options&quot;>ELM options&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="194"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;elm_custom_init&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;elm_custom_init&quot;>ELM custom init&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="195"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;elm_custom_init_descr&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;elm_custom_init_descr&quot;>ELM custom initialisation commands&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="196"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;UNDEFINED&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;UNDEFINED&quot;>Undefined&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="198"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;INITIALIZING&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;INITIALIZING&quot;>Initializing…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="199"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;INITIALIZED&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;INITIALIZED&quot;>Initialized&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="200"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;ECU_DETECT&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;ECU_DETECT&quot;>ECU detect…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="201"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;ECU_DETECTED&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;ECU_DETECTED&quot;>ECU detected&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="202"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;CONNECTING&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;CONNECTING&quot;>Connecting…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="203"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;CONNECTED&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;CONNECTED&quot;>Connected&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="204"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;NODATA&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;NODATA&quot;>No data&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="205"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;STOPPED&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;STOPPED&quot;>Stopped&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="206"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;DISCONNECTED&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;DISCONNECTED&quot;>Disconnected&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="207"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;BUSERROR&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;BUSERROR&quot;>BUS error&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="208"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;DATAERROR&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;DATAERROR&quot;>DATA error&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="209"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;RXERROR&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;RXERROR&quot;>RX error&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="210"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;ERROR&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;ERROR&quot;>Error&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="211"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;obd_error&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;obd_error&quot;>OBD protocol error&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="212"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;device_address_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;device_address_description&quot;>ELM device network IP address&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="213"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;device_address&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;device_address&quot;>ELM IP address&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="214"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;device_port_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;device_port_description&quot;>ELM device network IP port&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="215"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;device_port&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;device_port&quot;>ELM IP port&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="216"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;data_disable_max&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;data_disable_max&quot;>Data item disable limit&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="217"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;data_disable_max_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;data_disable_max_description&quot;>Number of invalid consecutive data responses before item will be disabled&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="218"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;autohide_toolbar&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;autohide_toolbar&quot;>Hide toolbar&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="219"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;autohide_toolbar_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;autohide_toolbar_description&quot;>Automatically hide toolbar after delay w/o activity&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="220"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;autohide_delay&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;autohide_delay&quot;>Hide toolbar delay [s]&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="221"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;autohide_delay_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;autohide_delay_description&quot;>Delay in seconds w/o activity, before Toolbar is hidden&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="222"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;csv_export_options&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;csv_export_options&quot;>CSV export options&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="241"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;csv_export_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;csv_export_description&quot;>Options for formatting CSV export files&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="242"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;csv_field_delimiter&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;csv_field_delimiter&quot;>CSV field delimiter&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="243"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;csv_field_delimiter_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;csv_field_delimiter_description&quot;>Delimiter character(s) between CSV data fields&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="244"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;csv_rec_delimiter&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;csv_rec_delimiter&quot;>CSV record delimiter&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="245"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;csv_rec_delimiter_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;csv_rec_delimiter_description&quot;>Delimiter character(s) between CSV data records&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="246"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;csv_text_quoted&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;csv_text_quoted&quot;>CSV text quoted&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="247"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;csv_text_quoted_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;csv_text_quoted_description&quot;>CSV text fields are included within quotes&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="248"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;tab&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;tab&quot;>TAB&lt;/string>"
+        errorLine2="            ~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="249"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;comma&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;comma&quot;>COMMA&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="250"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;semicolon&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;semicolon&quot;>SEMICOLON&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="251"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;send_after_export&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;send_after_export&quot;>Send after export&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="252"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;send_after_export_descr&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;send_after_export_descr&quot;>Prompt for sending CSV file right after export?&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="253"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;toolbar_overlay&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;toolbar_overlay&quot;>Show as overlay&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="254"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;toolbar_overlay_sum&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;toolbar_overlay_sum&quot;>Show toolbar overlapping main screen&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="255"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;license&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;license&quot;>Licensing …&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="256"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;donation&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;donation&quot;>Support project …&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="257"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;libraries&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;libraries&quot;>Libraries …&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="258"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;libraries_sum&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;libraries_sum&quot;>Libraries used in project …&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="259"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;release_history&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;release_history&quot;>Release history …&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="260"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;graphic_design&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;graphic_design&quot;>Graphic design&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="284"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;long_press_dfc_hint&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;long_press_dfc_hint&quot;>Long press DFC for online search …&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="286"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;comm_baudrate&quot; is not translated in &quot;be&quot; (Belarusian), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;comm_baudrate&quot;>ELM baud rate&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="307"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;comm_baudrate_description&quot; is not translated in &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;te&quot; (Telugu), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;comm_baudrate_description&quot;>USB serial communication speed&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="308"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;full_screen_display&quot; is not translated in &quot;be&quot; (Belarusian), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;full_screen_display&quot;>Full screen display&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="309"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;full_screen_display_description&quot; is not translated in &quot;be&quot; (Belarusian), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;full_screen_display_description&quot;>Use full screen for app display&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="310"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;display_color&quot; is not translated in &quot;be&quot; (Belarusian), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;display_color&quot;>Display color&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="311"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;customize_display&quot; is not translated in &quot;be&quot; (Belarusian), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;customize_display&quot;>Customize data display&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="312"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;display_range&quot; is not translated in &quot;be&quot; (Belarusian), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;display_range&quot;>Display range&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="313"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;reset_default&quot; is not translated in &quot;be&quot; (Belarusian), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;reset_default&quot;>Default&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="314"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;update_period_s&quot; is not translated in &quot;be&quot; (Belarusian), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;enm&quot; (English, Middle (1100-1500)), &quot;el&quot; (Greek), &quot;zh&quot; (Chinese), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian)"
+        errorLine1="    &lt;string name=&quot;update_period_s&quot;>Update period [s]&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="315"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;language_selection_description&quot; is not translated in &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;language_selection_description&quot;>Select application language&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="327"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;language_system_default&quot; is not translated in &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;language_system_default&quot;>System default&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="328"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;language_english&quot; is not translated in &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;language_english&quot;>English&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="329"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;language_russian&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;language_russian&quot;>Русский&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="330"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;language_italian&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;language_italian&quot;>Italiano&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="331"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;language_german&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;language_german&quot;>Deutsch&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="332"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;language_french&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;language_french&quot;>Français&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="333"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;language_spanish&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;language_spanish&quot;>Español&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="334"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;restart_required&quot; is not translated in &quot;be&quot; (Belarusian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;restart_required&quot;>Restart required to apply language change&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="335"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="Typos"
+        message="&quot;caracter&quot; is a common misspelling; did you mean &quot;carácter&quot;?"
+        errorLine1="    &lt;string name=&quot;csv_field_delimiter_description&quot;>Delimitador(es) de caracter(es) entre los campos CSV&lt;/string>"
+        errorLine2="                                                                      ~~~~~~~~">
+        <location
+            file="src/main/res/values-es/strings.xml"
+            line="145"
+            column="71"/>
+    </issue>
+
+    <issue
+        id="Untranslatable"
+        message="The resource string &quot;language_selection&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;ru&quot; (Russian) here"
+        errorLine1="    &lt;string name=&quot;language_selection&quot;>Язык / Language / Lingua&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-ru/strings.xml"
+            line="178"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Inconsistent number of arguments in formatting string `title_connected_to`; found both 0 here and 1 in values/strings.xml"
+        errorLine1="    &lt;string name=&quot;title_connected_to&quot;>연결됨&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-ko/strings.xml"
+            line="6"
+            column="5"/>
+        <location
+            file="src/main/res/values/strings.xml"
+            line="10"
+            column="5"
+            message="Conflicting number of arguments (1) here"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        message="Inconsistent number of arguments in formatting string `obd_clear_info`; found both 1 here and 0 in values/strings.xml"
+        errorLine1="    &lt;string name=&quot;obd_clear_info&quot;>ኮነክትድ %s&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-am/strings.xml"
+            line="138"
+            column="5"/>
+        <location
+            file="src/main/res/values/strings.xml"
+            line="25"
+            column="5"
+            message="Conflicting number of arguments (0) here"/>
+    </issue>
+
+    <issue
+        id="DataExtractionRules"
+        message="The attribute `android:fullBackupContent` is deprecated from Android 12 and higher and may be removed in future versions. Consider adding the attribute `android:dataExtractionRules` specifying an `@xml` resource which configures cloud backups and device transfers on Android 12 and higher."
+        errorLine1="        android:fullBackupContent=&quot;true&quot;"
+        errorLine2="                                   ~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="38"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="Wakelock"
+        message="Wakelocks should be released in `onPause`, not `onDestroy`"
+        errorLine1="  wakeLock.release();"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/ChartActivity.java"
+            line="301"
+            column="3"/>
+    </issue>
+
+    <issue
+        id="Wakelock"
+        message="Wakelocks should be released in `onPause`, not `onDestroy`"
+        errorLine1="  wakeLock.release();"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/DashBoardActivity.java"
+            line="234"
+            column="3"/>
+    </issue>
+
+    <issue
+        id="WakelockTimeout"
+        message="Provide a timeout when requesting a wakelock with `PowerManager.Wakelock.acquire(long timeout)`. This will ensure the OS will cleanup any wakelocks that last longer than you intend, and will save your user&apos;s battery."
+        errorLine1="  wakeLock.acquire();"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/ChartActivity.java"
+            line="169"
+            column="3"/>
+    </issue>
+
+    <issue
+        id="WakelockTimeout"
+        message="Provide a timeout when requesting a wakelock with `PowerManager.Wakelock.acquire(long timeout)`. This will ensure the OS will cleanup any wakelocks that last longer than you intend, and will save your user&apos;s battery."
+        errorLine1="  wakeLock.acquire();"
+        errorLine2="  ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/DashBoardActivity.java"
+            line="208"
+            column="3"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; `SDK_INT` is always >= 21"
+        errorLine1="            tools:targetApi=&quot;21&quot; />"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="80"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; `SDK_INT` is always >= 18"
+        errorLine1="@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)"
+        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/BleCommService.java"
+            line="31"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; `SDK_INT` is always >= 23"
+        errorLine1="        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/BleCommService.java"
+            line="173"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; `SDK_INT` is always >= 21"
+        errorLine1="@RequiresApi (api = Build.VERSION_CODES.LOLLIPOP)"
+        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/BleDeviceListActivity.java"
+            line="17"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; `SDK_INT` is always >= 23"
+        errorLine1="        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/MainActivity.java"
+            line="2298"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="This field leaks a context object"
+        errorLine1=" private final Activity activity;"
+        errorLine2=" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/ExportTask.java"
+            line="51"
+            column="2"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields (static reference to `ModernProgressDialog` which has field `messageView` pointing to `TextView`); this is a memory leak"
+        errorLine1=" private static ModernProgressDialog progress;"
+        errorLine2="         ~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/FileHelper.java"
+            line="54"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="VectorPath"
+        message="Very long vector path (4677 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector."
+        errorLine1="        android:pathData=&quot;M 106.525 70.605 C 107.058 70.166 107.664 69.804 108.34 69.518 C 109.017 69.232 109.784 69.089 110.642 69.089 L 110.642 72.521 C 109.498 72.521 108.526 72.921 107.726 73.722 C 106.925 74.561 106.525 75.533 106.525 76.639 L 106.525 83.817 L 103.094 83.817 L 103.094 69.489 L 106.525 69.489 Z M 101.093 63.77 L 101.093 83.817 L 97.662 83.817 L 97.662 76.668 C 97.662 75.504 97.262 74.532 96.462 73.75 C 95.661 72.95 94.699 72.549 93.574 72.549 C 92.431 72.549 91.459 72.95 90.658 73.75 C 89.858 74.551 89.457 75.524 89.457 76.668 C 89.457 77.793 89.858 78.755 90.658 79.556 C 91.039 79.956 91.482 80.257 91.988 80.457 C 92.492 80.657 93.021 80.757 93.574 80.757 C 94.127 80.757 94.632 80.662 95.089 80.471 L 96.319 83.531 C 95.442 83.97 94.432 84.189 93.288 84.189 C 92.24 84.189 91.273 83.994 90.386 83.603 C 89.5 83.212 88.733 82.673 88.085 81.987 C 87.437 81.301 86.932 80.5 86.57 79.585 C 86.208 78.669 86.027 77.697 86.027 76.668 C 86.027 75.619 86.208 74.637 86.57 73.722 C 86.932 72.807 87.437 72.006 88.085 71.32 C 88.733 70.633 89.5 70.095 90.386 69.704 C 91.273 69.313 92.24 69.118 93.288 69.118 C 94.203 69.118 95.023 69.261 95.747 69.546 C 96.471 69.833 97.11 70.195 97.662 70.633 L 97.662 63.77 Z M 78.536 69.118 C 79.47 69.118 80.318 69.294 81.081 69.647 C 81.843 69.999 82.496 70.486 83.039 71.105 C 83.582 71.725 84.002 72.444 84.297 73.264 C 84.593 74.084 84.74 74.961 84.74 75.895 L 84.74 83.817 L 81.31 83.817 L 81.31 75.895 C 81.31 74.942 80.976 74.151 80.309 73.522 C 79.661 72.873 78.88 72.549 77.965 72.549 C 77.031 72.549 76.24 72.873 75.592 73.522 C 74.944 74.17 74.62 74.961 74.62 75.895 L 74.62 83.817 L 71.189 83.817 L 71.189 69.518 L 74.62 69.518 L 74.62 70.605 C 75.134 70.166 75.716 69.809 76.364 69.532 C 77.012 69.256 77.736 69.118 78.536 69.118 Z M 69.331 69.489 L 69.331 83.817 L 65.9 83.817 L 65.9 76.668 C 65.9 75.524 65.5 74.551 64.699 73.75 C 63.899 72.95 62.927 72.549 61.783 72.549 C 61.231 72.549 60.702 72.654 60.197 72.864 C 59.692 73.074 59.249 73.369 58.867 73.75 C 58.067 74.551 57.667 75.524 57.667 76.668 C 57.667 77.793 58.067 78.755 58.867 79.556 C 59.249 79.956 59.692 80.257 60.197 80.457 C 60.702 80.657 61.231 80.757 61.783 80.757 C 62.355 80.757 62.87 80.662 63.327 80.471 L 64.557 83.531 C 63.68 83.97 62.66 84.189 61.498 84.189 C 60.449 84.189 59.482 83.994 58.596 83.603 C 57.71 83.212 56.942 82.673 56.294 81.987 C 55.646 81.301 55.141 80.5 54.779 79.585 C 54.417 78.669 54.236 77.697 54.236 76.668 C 54.236 75.619 54.417 74.637 54.779 73.722 C 55.141 72.807 55.646 72.006 56.294 71.32 C 56.942 70.633 57.71 70.095 58.596 69.704 C 59.482 69.313 60.449 69.118 61.498 69.118 C 62.431 69.118 63.261 69.261 63.985 69.546 C 64.709 69.833 65.348 70.195 65.9 70.633 L 65.9 69.489 Z M 118.218 87.197 L 118.218 123.338 L 112.033 123.338 L 112.033 110.449 C 112.033 108.353 111.311 106.6 109.868 105.191 C 108.425 103.747 106.69 103.025 104.663 103.025 C 102.602 103.025 100.849 103.747 99.406 105.191 C 97.963 106.634 97.242 108.387 97.242 110.449 C 97.242 112.477 97.963 114.213 99.406 115.656 C 100.093 116.378 100.892 116.92 101.803 117.28 C 102.713 117.641 103.667 117.822 104.663 117.822 C 105.659 117.822 106.57 117.65 107.395 117.306 L 109.611 122.823 C 108.03 123.613 106.209 124.008 104.148 124.008 C 102.258 124.008 100.514 123.656 98.917 122.952 C 97.319 122.247 95.936 121.276 94.768 120.039 C 93.599 118.801 92.689 117.358 92.036 115.708 C 91.383 114.058 91.057 112.305 91.057 110.449 C 91.057 108.559 91.383 106.789 92.036 105.139 C 92.689 103.489 93.599 102.046 94.768 100.808 C 95.936 99.571 97.319 98.6 98.917 97.895 C 100.514 97.191 102.258 96.838 104.148 96.838 C 105.797 96.838 107.274 97.096 108.58 97.612 C 109.885 98.127 111.037 98.78 112.033 99.571 L 112.033 87.197 Z M 75.905 96.89 C 77.794 96.89 79.538 97.242 81.136 97.947 C 82.734 98.651 84.117 99.622 85.285 100.86 C 86.453 102.097 87.363 103.541 88.016 105.191 C 88.669 106.84 88.995 108.61 88.995 110.501 C 88.995 112.357 88.669 114.11 88.016 115.759 C 87.363 117.409 86.453 118.853 85.285 120.09 C 84.117 121.327 82.734 122.298 81.136 123.003 C 79.538 123.708 77.794 124.06 75.905 124.06 C 73.878 124.06 72.039 123.665 70.39 122.874 L 72.606 117.358 C 73.431 117.701 74.359 117.873 75.389 117.873 C 77.485 117.873 79.237 117.151 80.646 115.708 C 82.089 114.264 82.811 112.529 82.811 110.501 C 82.811 108.438 82.089 106.686 80.646 105.242 C 79.203 103.799 77.451 103.077 75.389 103.077 C 73.397 103.077 71.644 103.799 70.132 105.242 C 68.689 106.686 67.968 108.438 67.968 110.501 L 67.968 123.39 L 61.783 123.39 L 61.783 87.249 L 67.968 87.249 L 67.968 99.622 C 68.964 98.832 70.115 98.179 71.421 97.663 C 72.726 97.148 74.221 96.89 75.905 96.89 Z&quot;"
+        errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/drawable/ic_launcher_monochrome.xml"
+            line="10"
+            column="27"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@drawable/mil_off` with a theme that also paints a background (inferred theme is `@android:style/Theme.Holo`)"
+        errorLine1="    android:background=&quot;@drawable/mil_off&quot;>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/obd_list.xml"
+            line="8"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_notification` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/ic_notification.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.obd_permanentcodes` appears to be unused"
+        errorLine1="    &lt;string name=&quot;obd_permanentcodes&quot;>OBD fault codes (permanent)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="22"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.obd_pendingcodes` appears to be unused"
+        errorLine1="    &lt;string name=&quot;obd_pendingcodes&quot;>OBD fault codes (pending)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="23"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.none_paired` appears to be unused"
+        errorLine1="    &lt;string name=&quot;none_paired&quot;>No Devices Paired&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="57"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.title_paired_devices` appears to be unused"
+        errorLine1="    &lt;string name=&quot;title_paired_devices&quot;>Paired Devices&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="59"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.configure` appears to be unused"
+        errorLine1="    &lt;string name=&quot;configure&quot;>Configure&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="169"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Usar as últimas definições na inicialização (endereço BT, endereço da ECU, itens a Exibir...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-pt/strings.xml"
+            line="63"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Įjungimo metu naudokite vėliausius nustatymus (BT adresą, ECU adresą, ekrano elementus ...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-lt/strings.xml"
+            line="86"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Використовувати останні налаштування під час запуску (адресу BT, ЕБУ адресу, показувані показники ...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-uk/strings.xml"
+            line="90"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Użyj ostatnich ustawień przy starcie (adres BT, adres ECU, elementy wyświetlacza ...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-pl/strings.xml"
+            line="104"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Utiliser derniers paramètres au démarrage (adresse Bluetooth, addresse ECU, éléments affichés ...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-fr/strings.xml"
+            line="105"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Use a última configuración no inicio (enderezo BT, enderezo ECU, elementos de visualización...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-gl/strings.xml"
+            line="105"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Koristi poslednja podešavanja pri pokretanju(BT adresu, ECU adresu, prikazane podatke ...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-sr/strings.xml"
+            line="106"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>시작시 마지막 설정 사용 (BT 주소, ECU 주소, 항목 표시 ...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-ko/strings.xml"
+            line="108"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>使用最后的设置启动（BT地址，ECU地址，显示项...）&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-zh-rCN/strings.xml"
+            line="108"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Usar as últimas configurações na inicialização (endereço BT, endereço ECU, exibir itens...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-pt-rBR/strings.xml"
+            line="109"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>在啟動時使用最後設置（BT 位址、ECU 位址、顯示專案 ...）&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-zh-rTW/strings.xml"
+            line="109"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Laatste instellingen gebruiken bij opstarten (BT-adres, ECU-adres, Weergave-items ...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-nl/strings.xml"
+            line="111"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Použít poslední nastavení při startu (adresa BT, adresa ECU, zobrazované položky, ...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-cs/strings.xml"
+            line="131"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Brug sidste anvendte indstillinger ved opstart (BT adresse, ECU adresse, Data punkter ...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-da/strings.xml"
+            line="132"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Usar as últimas definições na inicialização (endereço BT, endereço da ECU, itens a Exibir...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-pt-rPT/strings.xml"
+            line="132"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>استخدم الإعدادات الأخيرة عند بدء التشغيل (عنوان BT ، عنوان وحدة التحكم الإلكترونية (ECU) ، عناصر العرض ...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-ar/strings.xml"
+            line="134"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Uporabi zadnje nastavitve ob zagonu (BT naslov, ECU naslov, Prikazni predmeti...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-sl/strings.xml"
+            line="156"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;obd_test_confirm&quot;>Vyslán požadavek zkoušky akčních členů."
+        errorLine2="                                    ^">
+        <location
+            file="src/main/res/values-cs/strings.xml"
+            line="170"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="TypographyEllipsis"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?"
+        errorLine1="    &lt;string name=&quot;use_last_settings_description&quot;>Gunakan pengaturan terakhir saat pengaktifan (alamat BT, alamat ECU, Item tampilan...)&lt;/string>"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-in/strings.xml"
+            line="177"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/logo.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/logo.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/mil_off.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/mil_off.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/mil_on.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/mil_on.png"/>
+    </issue>
+
+    <issue
+        id="IconMissingDensityFolder"
+        message="Missing density variation folders in `src/main/res`: drawable-hdpi, drawable-mdpi, drawable-xhdpi">
+        <location
+            file="src/main/res"/>
+    </issue>
+
+    <issue
+        id="ButtonOrder"
+        message="Cancel button should be on the left (was &quot;@string/reset_default | Cancel | OK&quot;, should be &quot;Cancel | @string/reset_default | OK&quot;)"
+        errorLine1="        &lt;Button"
+        errorLine2="         ~~~~~~">
+        <location
+            file="src/main/res/layout/pid_customization.xml"
+            line="151"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)"
+        errorLine1="        &lt;Button"
+        errorLine2="         ~~~~~~">
+        <location
+            file="src/main/res/layout/pid_customization.xml"
+            line="144"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)"
+        errorLine1="        &lt;Button"
+        errorLine2="         ~~~~~~">
+        <location
+            file="src/main/res/layout/pid_customization.xml"
+            line="151"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)"
+        errorLine1="        &lt;Button"
+        errorLine2="         ~~~~~~">
+        <location
+            file="src/main/res/layout/pid_customization.xml"
+            line="158"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="AlwaysShowAction"
+        message="Prefer &quot;`ifRoom`&quot; instead of &quot;`always`&quot;"
+        errorLine1="        android:showAsAction=&quot;always&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/context_graph.xml"
+            line="16"
+            column="9"/>
+        <location
+            file="src/main/res/menu/context_graph.xml"
+            line="21"
+            column="9"/>
+        <location
+            file="src/main/res/menu/context_graph.xml"
+            line="26"
+            column="9"/>
+        <location
+            file="src/main/res/menu/context_graph.xml"
+            line="31"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AlwaysShowAction"
+        message="Prefer &quot;`ifRoom`&quot; instead of &quot;`always`&quot;"
+        errorLine1="        android:showAsAction=&quot;always&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/main.xml"
+            line="18"
+            column="9"/>
+        <location
+            file="src/main/res/menu/main.xml"
+            line="24"
+            column="9"/>
+        <location
+            file="src/main/res/menu/main.xml"
+            line="63"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="Custom view ``GraphicalView`` has `setOnTouchListener` called on it but does not override `performClick`"
+        errorLine1="   chartView.setOnTouchListener(toolBarHider);"
+        errorLine2="   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/ChartActivity.java"
+            line="215"
+            column="4"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="Custom view ``ListView`` has `setOnTouchListener` called on it but does not override `performClick`"
+        errorLine1="        getListView().setOnTouchListener(toolbarAutoHider);"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/fr3ts0n/ecu/gui/androbd/MainActivity.java"
+            line="856"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/obd_item.xml"
+            line="42"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="KeyboardInaccessibleWidget"
+        message="&apos;clickable&apos; attribute found, please also add &apos;focusable&apos;"
+        errorLine1="            android:clickable=&quot;true&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/startup_layout.xml"
+            line="26"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="KeyboardInaccessibleWidget"
+        message="&apos;clickable&apos; attribute found, please also add &apos;focusable&apos;"
+        errorLine1="            android:clickable=&quot;true&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/startup_layout.xml"
+            line="37"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="KeyboardInaccessibleWidget"
+        message="&apos;clickable&apos; attribute found, please also add &apos;focusable&apos;"
+        errorLine1="            android:clickable=&quot;true&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/startup_layout.xml"
+            line="57"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;TextView&quot;, should use `@string` resource"
+        errorLine1="        android:text=&quot;TextView&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/obd_gauge.xml"
+            line="30"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;0.0&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;0.0&quot; />"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/pid_customization.xml"
+            line="37"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;/min&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;/min&quot; />"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/pid_customization.xml"
+            line="45"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;100.0&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;100.0&quot; />"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/pid_customization.xml"
+            line="53"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;0&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;0&quot; />"
+        errorLine2="                ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/pid_customization.xml"
+            line="91"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;s&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;s&quot; />"
+        errorLine2="                ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/pid_customization.xml"
+            line="100"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;100&quot;, should use `@string` resource"
+        errorLine1="                android:text=&quot;100&quot; />"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/pid_customization.xml"
+            line="107"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="RtlSymmetry"
+        message="When you define `paddingLeft` you should probably also define `paddingRight` for right-to-left symmetry"
+        errorLine1="        android:paddingLeft=&quot;5dp&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/usb_list.xml"
+            line="32"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider replacing `android:paddingLeft` with `android:paddingStart=&quot;5dp&quot;` to better support right-to-left layouts"
+        errorLine1="        android:paddingLeft=&quot;5dp&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/usb_list.xml"
+            line="32"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="RtlEnabled"
+        message="The project references RTL attributes, but does not explicitly enable or disable RTL support with `android:supportsRtl` in the manifest">
+        <location
+            file="src/main/AndroidManifest.xml"/>
+    </issue>
+
+</issues>
