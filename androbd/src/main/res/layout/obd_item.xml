@@ -44,7 +44,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:visibility="gone"
-            android:src="@android:drawable/ic_menu_slideshow" />
+            android:src="@drawable/ic_code" />
 
     </LinearLayout>
 

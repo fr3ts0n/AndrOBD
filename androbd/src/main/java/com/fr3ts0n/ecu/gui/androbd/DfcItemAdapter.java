@@ -66,7 +66,7 @@ public class DfcItemAdapter extends ObdItemAdapter
 
 		// Show icon
 		ImageView ivIcon = v.findViewById(R.id.obd_icon);
-		ivIcon.setImageResource(android.R.drawable.ic_menu_myplaces);
+		ivIcon.setImageResource(R.drawable.ic_code);
 		try
 		{
 			// Show icon based on code status (pending/permanent/normal)
@@ -74,7 +74,7 @@ public class DfcItemAdapter extends ObdItemAdapter
 			switch(svc)
 			{
 				case ObdProt.OBD_SVC_PENDINGCODES:
-					ivIcon.setImageResource(android.R.drawable.ic_menu_recent_history);
+					ivIcon.setImageResource(R.drawable.ic_history);
 					break;
 
 				case ObdProt.OBD_SVC_PERMACODES:
