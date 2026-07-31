@@ -184,4 +184,19 @@
     <string name="full_screen_display_description">Użyj pełnego ekranu do wyświetlania aplikacji</string>
     <string name="full_screen_display">Wyświetlacz pełnoekranowy</string>
     <string name="update_period_s">Częstotliwość odświeżania [s]</string>
+    <string name="select_ble_device">Wybierz adapter BLE</string>
+    <string name="no_obd_files_found">Nie znaleziono plików OBD</string>
+    <string name="open_log_dir">Otwórz katalog dziennika</string>
+    <string name="open_log_dir_description">Otwórz katalog dziennika w menadżerze plików</string>
+    <string name="log_dir_not_found">Nie znaleziono katalogu dziennika - najpierw włącz dziennik i zrestartuj aplikację</string>
+    <string name="log_dir_no_app">Nie znaleziono menadżera plików - ścieżkę skopiowano do schowka</string>
+    <string name="language_selection_description">Wybierz język aplikacji</string>
+    <string name="language_system_default">Domyślny systemowy</string>
+    <string name="language_english">English</string>
+    <string name="language_russian">Русский</string>
+    <string name="language_italian">Italiano</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_french">Français</string>
+    <string name="language_spanish">Español</string>
+    <string name="restart_required">Wymagany restart aplikacji aby zastosować zmianę języka</string>
 </resources>
