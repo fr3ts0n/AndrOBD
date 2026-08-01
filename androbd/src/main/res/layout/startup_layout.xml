@@ -5,14 +5,23 @@
     android:orientation="vertical"
     >
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#20FFFFFF"
-        android:contentDescription="@string/logo"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:src="@drawable/logo"/>
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="240dp"
+            android:maxHeight="240dp"
+            android:contentDescription="@string/logo"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:src="@drawable/logo"/>
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
