@@ -326,17 +326,23 @@ period of time while the ECU recalibrates itself.
     <string name="language_selection" translatable="false">Language / Язык / Lingua</string>
     <string name="language_selection_description">Select application language</string>
     <string name="language_system_default">System default</string>
-    <string name="language_english">English</string>
-    <string name="language_russian">Русский</string>
-    <string name="language_italian">Italiano</string>
-    <string name="language_german">Deutsch</string>
-    <string name="language_french">Français</string>
-    <string name="language_spanish">Español</string>
+    <string name="language_english" translatable="false">English</string>
+    <string name="language_estonian" translatable="false">Eesti</string>
+    <string name="language_tamil" translatable="false">நாகர்</string>
+    <string name="language_portugal" translatable="false">Português</string>
+    <string name="language_russian" translatable="false">Русский</string>
+    <string name="language_italian" translatable="false">Italiano</string>
+    <string name="language_german" translatable="false">Deutsch</string>
+    <string name="language_french" translatable="false">Français</string>
+    <string name="language_spanish" translatable="false">Español</string>
     <string name="restart_required">Restart required to apply language change</string>
 
     <string-array name="language_options" translatable="false">
         <item>@string/language_system_default</item>
         <item>@string/language_english</item>
+        <item>@string/language_estonian</item>
+        <item>@string/language_tamil</item>
+        <item>@string/language_portugal</item>
         <item>@string/language_russian</item>
         <item>@string/language_italian</item>
         <item>@string/language_german</item>
@@ -347,6 +353,9 @@ period of time while the ECU recalibrates itself.
     <string-array name="language_values" translatable="false">
         <item>system</item>
         <item>en</item>
+        <item>et</item>
+        <item>ta</item>
+        <item>pt</item>
         <item>ru</item>
         <item>it</item>
         <item>de</item>
