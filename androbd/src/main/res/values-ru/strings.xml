@@ -173,7 +173,6 @@
     <string name="display_range">Диапазон показа</string>
     <string name="reset_default">По-умолчанию</string>
     <string name="update_period_s">Период обновления [s]</string>
-
     <!-- Language selection -->
     <string name="language_selection">Язык / Language / Lingua</string>
     <string name="language_selection_description">Выберите язык приложения</string>
@@ -185,4 +184,10 @@
     <string name="language_french">Français</string>
     <string name="language_spanish">Español</string>
     <string name="restart_required">Требуется перезапуск для применения изменения языка</string>
+    <string name="select_ble_device">Выберите адаптер BLE</string>
+    <string name="no_obd_files_found">Файлы OBD не найдены</string>
+    <string name="open_log_dir">Открыть папку журнала</string>
+    <string name="open_log_dir_description">Откройте папку журнала в файловом менеджере</string>
+    <string name="log_dir_not_found">Папка журнала не найден — сначала включите журналирование и перезапустите приложение</string>
+    <string name="log_dir_no_app">Файловый менеджер не найден — путь, скопирован в буфер обмена</string>
 </resources>
