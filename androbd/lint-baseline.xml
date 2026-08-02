@@ -651,7 +651,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;select_ble_device&quot; is not translated in &quot;be&quot; (Belarusian), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        message="&quot;select_ble_device&quot; is not translated in &quot;be&quot; (Belarusian), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
         errorLine1="    &lt;string name=&quot;select_ble_device&quot;>Select BLE adapter&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -805,7 +805,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;no_obd_files_found&quot; is not translated in &quot;be&quot; (Belarusian), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        message="&quot;no_obd_files_found&quot; is not translated in &quot;be&quot; (Belarusian), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
         errorLine1="    &lt;string name=&quot;no_obd_files_found&quot;>No OBD files found&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -1014,7 +1014,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;open_log_dir&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;fr&quot; (French), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        message="&quot;open_log_dir&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;fr&quot; (French), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
         errorLine1="    &lt;string name=&quot;open_log_dir&quot;>Open log directory&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
@@ -1025,7 +1025,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;open_log_dir_description&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;fr&quot; (French), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        message="&quot;open_log_dir_description&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;fr&quot; (French), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
         errorLine1="    &lt;string name=&quot;open_log_dir_description&quot;>Open the log folder in a file manager&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -1036,7 +1036,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;log_dir_not_found&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;fr&quot; (French), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        message="&quot;log_dir_not_found&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;fr&quot; (French), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
         errorLine1="    &lt;string name=&quot;log_dir_not_found&quot;>Log directory not found — enable logging and restart the app first&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -1047,7 +1047,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;log_dir_no_app&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;fr&quot; (French), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        message="&quot;log_dir_no_app&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;fr&quot; (French), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
         errorLine1="    &lt;string name=&quot;log_dir_no_app&quot;>No file manager found — path copied to clipboard&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -2213,7 +2213,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;language_selection_description&quot; is not translated in &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        message="&quot;language_selection_description&quot; is not translated in &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
         errorLine1="    &lt;string name=&quot;language_selection_description&quot;>Select application language&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -2224,7 +2224,7 @@
 
     <issue
         id="MissingTranslation"
-        message="&quot;language_system_default&quot; is not translated in &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        message="&quot;language_system_default&quot; is not translated in &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
         errorLine1="    &lt;string name=&quot;language_system_default&quot;>System default&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -2233,80 +2233,20 @@
             column="13"/>
     </issue>
 
-    <issue
-        id="MissingTranslation"
-        message="&quot;language_english&quot; is not translated in &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
-        errorLine1="    &lt;string name=&quot;language_english&quot;>English&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="329"
-            column="13"/>
-    </issue>
+
+
+
+
+
 
     <issue
         id="MissingTranslation"
-        message="&quot;language_russian&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
-        errorLine1="    &lt;string name=&quot;language_russian&quot;>Русский&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="330"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;language_italian&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
-        errorLine1="    &lt;string name=&quot;language_italian&quot;>Italiano&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="331"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;language_german&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
-        errorLine1="    &lt;string name=&quot;language_german&quot;>Deutsch&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="332"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;language_french&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
-        errorLine1="    &lt;string name=&quot;language_french&quot;>Français&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="333"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;language_spanish&quot; is not translated in &quot;de&quot; (German), &quot;be&quot; (Belarusian), &quot;fi&quot; (Finnish), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
-        errorLine1="    &lt;string name=&quot;language_spanish&quot;>Español&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/res/values/strings.xml"
-            line="334"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="MissingTranslation"
-        message="&quot;restart_required&quot; is not translated in &quot;be&quot; (Belarusian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;pl&quot; (Polish), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
+        message="&quot;restart_required&quot; is not translated in &quot;be&quot; (Belarusian), &quot;pt&quot; (Portuguese), &quot;bg&quot; (Bulgarian), &quot;ain&quot; (Ainu), &quot;lt&quot; (Lithuanian), &quot;kab&quot; (Kabyle), &quot;bez&quot;, &quot;uk&quot; (Ukrainian), &quot;sl&quot; (Slovenian), &quot;ang&quot; (English, Old (ca.450-1100)), &quot;ca&quot; (Catalan), &quot;sr&quot; (Serbian), &quot;sv&quot; (Swedish), &quot;ko&quot; (Korean), &quot;enm&quot; (English, Middle (1100-1500)), &quot;gl&quot; (Galician), &quot;in&quot; (Indonesian), &quot;el&quot; (Greek), &quot;it&quot; (Italian), &quot;am&quot; (Amharic), &quot;es&quot; (Spanish), &quot;iw&quot; (Hebrew), &quot;zh&quot; (Chinese), &quot;cs&quot; (Czech), &quot;ar&quot; (Arabic), &quot;te&quot; (Telugu), &quot;nb&quot; (Norwegian Bokmål), &quot;ja&quot; (Japanese), &quot;ckb&quot;, &quot;fa&quot; (Persian), &quot;da&quot; (Danish), &quot;ro&quot; (Romanian), &quot;nl&quot; (Dutch), &quot;tr&quot; (Turkish)"
         errorLine1="    &lt;string name=&quot;restart_required&quot;>Restart required to apply language change&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/res/values/strings.xml"
-            line="335"
+            line="338"
             column="13"/>
     </issue>
 
