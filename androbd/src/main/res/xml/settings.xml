@@ -72,11 +72,14 @@
 
         </PreferenceCategory>
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="night_mode"
-            android:summary="@string/night_mode_description"
-            android:title="@string/night_mode"
+        <ListPreference
+            android:defaultValue="system"
+            android:dialogTitle="@string/theme_mode"
+            android:entries="@array/theme_mode_entries"
+            android:entryValues="@array/theme_mode_values"
+            android:key="theme_mode"
+            android:summary="@string/theme_mode_description"
+            android:title="@string/theme_mode"
             />
 
         <ListPreference

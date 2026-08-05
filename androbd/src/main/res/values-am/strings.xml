@@ -86,7 +86,6 @@
     <string name="elm_adaptive_timing_descr">Allow adaptive timing handling in ELM drivers\?</string>
     <string name="obd_error">OBD ፕሮትኮል ችግር ተፈጥርዋል</string>
     <string name="back_again_to_exit">ለመዝጋት ተመለስ የሚለውን ቁልፍ ይጫኑ</string>
-    <string name="night_mode_description">እይታውን በዳርክ ባክግራውንድ ቀይር</string>
     <string name="license">ፈቃድ …</string>
     <string name="BUSERROR">የ BUS ችግር ተፈጥርዋል</string>
     <string name="extension_files">ፕሮቶኮል ማስተካከያ ፋይል (CSV)</string>
@@ -127,7 +126,6 @@
     <string name="device_address">IP አድራሻ</string>
     <string name="csv_export_description">Options for formatting CSV export files</string>
     <string name="conversions">ዳታ መቀየሪያ</string>
-    <string name="night_mode">የማታ አማራጭ</string>
     <string name="comma">COMMA</string>
     <string name="csv_field_delimiter_description">የ CSV ዳታ ፊልድ የፊደላት መለያ ካራክተር</string>
     <string name="share">አጋራ</string>

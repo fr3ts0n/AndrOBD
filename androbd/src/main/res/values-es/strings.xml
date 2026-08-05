@@ -88,7 +88,6 @@
     <string name="select_medium">Tipo de adaptador…</string>
     <string name="devices_found">%d dispositivo(s) USB encontrado(s)</string>
     <string name="unabletoconnect">Imposible conectar con el dispositivo</string>
-    <string name="night_mode">Modo nocturno</string>
     <string name="disconnect">Desconectar</string>
     <string name="use_last_settings">Utilizar última configuración</string>
     <string name="secure_connect">Conexión segura</string>
@@ -111,7 +110,6 @@
     <string name="min_elm_timeout">Min. Tiempo de espera del ELM [ms]</string>
     <string name="connectionlost">Se perdió la conexión con el dispositivo</string>
     <string name="elm_timeout_descr">Tiempo de espera mínimo en [ms] para las respuestas ELM</string>
-    <string name="night_mode_description">Establecer fondo de pantalla oscuro</string>
     <string name="disable_elm_cmds">Órdenes ELM desactivadas</string>
     <string name="disable_elm_cmds_descr">activar/desactivar órdenes ELM</string>
     <string name="elm_adaptive_timing">Tiempo adaptativo del ELM</string>

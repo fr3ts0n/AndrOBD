@@ -75,8 +75,6 @@
     <string name="connectionlost">デバイスの接続が失われました</string>
     <string name="elm_timeout_descr">ELM 応答を待つ最小タイムアウト [ミリ秒]</string>
     <string name="day_night_mode">昼間/夜間表示モード</string>
-    <string name="night_mode_description">表示を暗い背景に設定します</string>
-    <string name="night_mode">夜間モード</string>
     <string name="disable_elm_cmds">ELM コマンドを無効にしました</string>
     <string name="disable_elm_cmds_descr">ELM コマンドを有効/無効にします</string>
     <string name="elm_adaptive_timing">ELM 適応タイミング</string>

@@ -89,8 +89,6 @@
     <string name="select_ecu_addr">Pasirinkite ECU adresą …</string>
     <string name="disable_elm_cmds_descr">įjunkite/išjunkite ELM komandas</string>
     <string name="disable_elm_cmds">Išjungtos ELM komandos</string>
-    <string name="night_mode">Nakties rėžimas</string>
-    <string name="night_mode_description">Nustatyti tamsų ekrano foną</string>
     <string name="day_night_mode">Dienos/nakties peržiūros režimas</string>
     <string name="connectionlost">Prarastas ryšys su įrenginiu</string>
     <string name="unabletoconnect">Nepavyksta prijungti įrenginio</string>

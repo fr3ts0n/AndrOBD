@@ -81,8 +81,6 @@
     <string name="unabletoconnect">غير قادر على وصل الجهاز</string>
     <string name="connectionlost">انقطع اتصال الجهاز</string>
     <string name="day_night_mode">وضع الشاشة ليلي \\ نهاري</string>
-    <string name="night_mode_description">تعيين الشاشة إلى خلفية داكنة</string>
-    <string name="night_mode">الوضع اليلي</string>
     <string name="disconnect">إقطع الإتصال</string>
     <string name="use_last_settings">استخدام الإعدادات الأخيرة</string>
     <string name="common_settings_description">إعدادات عامة لمراقبة التطبيق</string>

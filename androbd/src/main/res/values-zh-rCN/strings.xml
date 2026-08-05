@@ -94,8 +94,6 @@
     <string name="connectionlost">与设备连接已断开</string>
     <string name="elm_timeout_descr">等待ELM响应的最小超时时间 [ms]</string>
     <string name="day_night_mode">白天/夜间 视图模式</string>
-    <string name="night_mode_description">设置背景为黑色</string>
-    <string name="night_mode">夜间模式</string>
     <string name="disable_elm_cmds">禁用ELM指令</string>
     <string name="disable_elm_cmds_descr">启用/禁用 ELM指令</string>
     <string name="elm_adaptive_timing">ELM 自适应时间</string>

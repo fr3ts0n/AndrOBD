@@ -57,8 +57,6 @@
     <string name="unabletoconnect">Kunne ikke forbinde til enheden</string>
     <string name="connectionlost">Mistede forbindelsen til enheden</string>
     <string name="day_night_mode">Dag/nat visningstilstand</string>
-    <string name="night_mode_description">Gør skærmens baggrunden mørk</string>
-    <string name="night_mode">Nat tilstand</string>
     <string name="disable_elm_cmds">Deaktiveret ELM kommandoer</string>
     <string name="disable_elm_cmds_descr">Aktiverer/deaktiverer ELM kommandoer</string>
     <string name="elm_reset_on_nrc">Nulstil ved NRC</string>

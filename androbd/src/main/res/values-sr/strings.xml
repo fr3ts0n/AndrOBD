@@ -92,8 +92,6 @@
     <string name="connectionlost">Veza sa uređajem je prekinuta</string>
     <string name="elm_timeout_descr">Minmalni istek vremena u [ms] za odgovor od ELM uređaja</string>
     <string name="day_night_mode">Dan/Noć mod prikaza</string>
-    <string name="night_mode_description">Postavi tamnu pozadinu na ekranu</string>
-    <string name="night_mode">Noćni rezim</string>
     <string name="disable_elm_cmds">Onemogućene ELM komande</string>
     <string name="disable_elm_cmds_descr">omogući/onemogući ELM komande</string>
     <string name="elm_adaptive_timing">ELM adaptivni tajming</string>

@@ -105,8 +105,6 @@
     <string name="select_extension">Triar el fitxer d\'extensió .csv…</string>
     <string name="obd_options">Opcions d\'OBD</string>
     <string name="day_night_mode">Mode de visualització dia/nit</string>
-    <string name="night_mode_description">Establir fons de pantalla fosc</string>
-    <string name="night_mode">Mode nit</string>
     <string name="disable_elm_cmds">Ordres ELM desactivades</string>
     <string name="disable_elm_cmds_descr">activar/desactivar ordres ELM</string>
     <string name="elm_adaptive_timing">Temporització adaptativa ELM</string>

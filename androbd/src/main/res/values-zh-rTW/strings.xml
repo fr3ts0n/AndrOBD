@@ -95,8 +95,6 @@
     <string name="connectionlost">設備無連缐</string>
     <string name="elm_timeout_descr">[ms] 中等待 ELM 回應的最小超時</string>
     <string name="day_night_mode">日/夜視圖模式</string>
-    <string name="night_mode_description">將顯示設定為深色背景</string>
-    <string name="night_mode">夜間模式</string>
     <string name="disable_elm_cmds">禁用ELM指令</string>
     <string name="disable_elm_cmds_descr">啟用/禁用 ELM 命令</string>
     <string name="elm_adaptive_timing">ELM 自我調整定時</string>

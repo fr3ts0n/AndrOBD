@@ -82,8 +82,6 @@
     <string name="connectionlost">Yhteys laitteeseen katkesi</string>
     <string name="elm_timeout_descr">ELM:n vastausten odottamisen vähimmäisaikakatkaisu, yksikkönä [ms]</string>
     <string name="day_night_mode">Päivä-/yönäkymä</string>
-    <string name="night_mode_description">Aseta näytön tausta tummaksi</string>
-    <string name="night_mode">Yötila</string>
     <string name="disable_elm_cmds">Käytöstä poistetut ELM-komennot</string>
     <string name="disable_elm_cmds_descr">estä/salli ELM-komentoja</string>
     <string name="elm_adaptive_timing">ELM:n mukautuva ajoitus</string>
