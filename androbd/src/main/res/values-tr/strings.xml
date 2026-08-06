@@ -95,8 +95,6 @@
     <string name="connectionlost">Cihazla bağlantı koptu</string>
     <string name="elm_timeout_descr">Azami ELM bekleme zaman aşımı [ms]</string>
     <string name="day_night_mode">Gündüz/Gece modu</string>
-    <string name="night_mode_description">Arka planı koyu yap</string>
-    <string name="night_mode">Gece modu</string>
     <string name="disable_elm_cmds">ELM komutlarını kapat</string>
     <string name="disable_elm_cmds_descr">"ELM komutlarını etkinleştir/kapat "</string>
     <string name="elm_adaptive_timing">ELM zamanlaması</string>

@@ -60,8 +60,6 @@
     <string name="elm_reset_on_nrc">Restablecer en NRC</string>
     <string name="disable_elm_cmds_descr">habilitar / desactivar os comandos ELM</string>
     <string name="disable_elm_cmds">Comandos ELM desactivados</string>
-    <string name="night_mode">Modo nocturno</string>
-    <string name="night_mode_description">Establecer a pantalla a fondo escuro</string>
     <string name="day_night_mode">Modo de visualización de día / noite</string>
     <string name="elm_timeout_descr">Tempo mínimo de espera en [ms] para agardar as respostas de ELM</string>
     <string name="connectionlost">Perdeuse a conexión do dispositivo</string>

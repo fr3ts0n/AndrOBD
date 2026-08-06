@@ -94,8 +94,6 @@
     <string name="connectionlost">기기 연결이 끊어졌습니다</string>
     <string name="elm_timeout_descr">ELM 응답을 기다리는 최소 시간 제한 [ms]</string>
     <string name="day_night_mode">주/야간 모드</string>
-    <string name="night_mode_description">디스플레이를 어두운 배경으로 설정</string>
-    <string name="night_mode">야간모드</string>
     <string name="disable_elm_cmds">사용하지 않는 ELM 명령</string>
     <string name="disable_elm_cmds_descr">ELM 명령을 활성화 / 비활성화합니다</string>
     <string name="elm_adaptive_timing">ELM 적응 타이밍</string>

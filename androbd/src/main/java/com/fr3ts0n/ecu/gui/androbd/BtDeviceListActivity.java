@@ -68,7 +68,6 @@ public class BtDeviceListActivity extends AppCompatActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		setTheme(MainActivity.nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
 		super.onCreate(savedInstanceState);
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {

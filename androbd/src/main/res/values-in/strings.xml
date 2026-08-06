@@ -71,8 +71,6 @@
     <string name="unabletoconnect">Tidak dapat menghubungkan perangkat</string>
     <string name="connectionlost">Sambungan perangkat terputus</string>
     <string name="day_night_mode">Mode tampilan Siang/Malam</string>
-    <string name="night_mode_description">Atur tampilan ke latar belakang gelap</string>
-    <string name="night_mode">Mode malam</string>
     <string name="disable_elm_cmds">Perintah ELM dinonaktifkan</string>
     <string name="disable_elm_cmds_descr">aktifkan/nonaktifkan perintah ELM</string>
     <string name="elm_adaptive_timing_descr">Izinkan penanganan pengaturan waktu adaptif pada driver ELM\?</string>

@@ -37,6 +37,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -63,6 +64,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.window.OnBackInvokedCallback;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
@@ -143,7 +145,10 @@ public class MainActivity extends PluginManager
     private static final String DEVICE_ADDRESS = "device_address";
     private static final String DEVICE_PORT = "device_port";
     private static final String MEASURE_SYSTEM = "measure_system";
+    /** legacy boolean preference key, kept only to migrate existing users' choice */
     private static final String NIGHT_MODE = "night_mode";
+    /** tri-state theme preference key: "system", "light" or "dark" */
+    private static final String THEME_MODE = "theme_mode";
     private static final String ELM_ADAPTIVE_TIMING = "adaptive_timing_mode";
     private static final String ELM_RESET_ON_NRC = "elm_reset_on_nrc";
     private static final String PREF_USE_LAST = "USE_LAST_SETTINGS";
@@ -196,10 +201,6 @@ public class MainActivity extends PluginManager
      * Container for Plugin-provided data
      */
     public static PvList mPluginPvs = new PvList();
-    /**
-     * current status of night mode
-     */
-    public static boolean nightMode = false;
     /**
      * app preferences ...
      */
@@ -546,7 +547,7 @@ public class MainActivity extends PluginManager
 
         // get preferences
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        setNightMode(prefs.getBoolean(NIGHT_MODE, false));
+        applyThemeMode(false);
 
         // instantiate superclass
         super.onCreate(savedInstanceState);
@@ -945,8 +946,10 @@ public class MainActivity extends PluginManager
         {
             // Display and UI Management
             if(id == R.id.day_night_mode) {
-                // toggle night mode setting
-                prefs.edit().putBoolean(NIGHT_MODE, !nightMode).apply();
+                // quick toggle: force the opposite of what's currently displayed
+                boolean currentlyDark = (getResources().getConfiguration().uiMode
+                        & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+                prefs.edit().putString(THEME_MODE, currentlyDark ? "light" : "dark").apply();
                 return true;
             }
 
@@ -1212,10 +1215,10 @@ public class MainActivity extends PluginManager
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
-        // night mode
-        if (key == null || NIGHT_MODE.equals(key))
+        // theme (day/night) mode
+        if (key == null || THEME_MODE.equals(key))
         {
-            setNightMode(prefs.getBoolean(NIGHT_MODE, false));
+            applyThemeMode(true);
         }
 
         // set default comm medium
@@ -1671,14 +1674,54 @@ public class MainActivity extends PluginManager
         }
     }
 
-    protected void setNightMode(boolean nightMode)
+    /**
+     * Read the tri-state theme preference, migrating the old boolean night_mode
+     * preference on first read for users upgrading from an earlier version.
+     */
+    static String getThemeModePref(SharedPreferences prefs)
     {
-        // store last mode selection
-        MainActivity.nightMode = nightMode;
+        if (prefs.contains(THEME_MODE))
+        {
+            return prefs.getString(THEME_MODE, "system");
+        }
+        if (prefs.contains(NIGHT_MODE))
+        {
+            String migrated = prefs.getBoolean(NIGHT_MODE, false) ? "dark" : "light";
+            prefs.edit().putString(THEME_MODE, migrated).remove(NIGHT_MODE).apply();
+            return migrated;
+        }
+        return "system";
+    }
 
-        // Set display theme based on specified mode
-        setTheme(nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
-        getWindow().getDecorView().setBackgroundColor(nightMode ? Color.BLACK : Color.WHITE);
+    static int themeModeToNightMode(String themeMode)
+    {
+        switch (themeMode)
+        {
+            case "dark":
+                return AppCompatDelegate.MODE_NIGHT_YES;
+            case "light":
+                return AppCompatDelegate.MODE_NIGHT_NO;
+            default:
+                return AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+        }
+    }
+
+    /**
+     * Apply the tri-state theme preference application-wide via AppCompatDelegate.
+     * MainActivity itself isn't an AppCompatActivity (it extends the legacy
+     * ListActivity via PluginManager), so a live preference change needs an
+     * explicit recreate() here to pick up the new theme; other activities in
+     * this app are AppCompatActivity subclasses and re-theme automatically.
+     */
+    private void applyThemeMode(boolean recreateIfChanged)
+    {
+        int wanted = themeModeToNightMode(getThemeModePref(prefs));
+        boolean changed = AppCompatDelegate.getDefaultNightMode() != wanted;
+        AppCompatDelegate.setDefaultNightMode(wanted);
+        if (changed && recreateIfChanged)
+        {
+            recreate();
+        }
     }
 
     private void setNumCodes(int newNumCodes)

@@ -95,8 +95,6 @@
     <string name="connectionlost">Злучэнне з прыладай страчанае</string>
     <string name="elm_timeout_descr">Мінімальнае чаканне адказу ад ELM, мс</string>
     <string name="day_night_mode">Дзённы/Начны рэжым прагляду</string>
-    <string name="night_mode_description">Устанавіць цёмны фон экрана</string>
-    <string name="night_mode">Начны рэжым</string>
     <string name="disable_elm_cmds">Адключаныя ELM-каманды</string>
     <string name="disable_elm_cmds_descr">уключыць/адключыць ELM-каманды</string>
     <string name="elm_adaptive_timing">Адаптыўны таймінг ELM</string>

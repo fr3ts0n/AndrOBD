@@ -175,8 +175,18 @@ period of time while the ECU recalibrates itself.
     <string name="connectionlost">Device connection was lost</string>
     <string name="elm_timeout_descr">Minimum timeout in [ms] to wait for ELM responses</string>
     <string name="day_night_mode">Day/Night view mode</string>
-    <string name="night_mode_description">Set display to dark background</string>
-    <string name="night_mode">Night mode</string>
+    <string name="theme_mode">Theme</string>
+    <string name="theme_mode_description">Follow the system theme, or force light or dark</string>
+    <string-array name="theme_mode_entries">
+        <item>Follow system</item>
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+    <string-array name="theme_mode_values">
+        <item>system</item>
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
     <string name="disable_elm_cmds">Disabled ELM commands</string>
     <string name="disable_elm_cmds_descr">enable/disable ELM commands</string>
     <string name="elm_adaptive_timing">ELM adaptive timing</string>

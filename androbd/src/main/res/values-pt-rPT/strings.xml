@@ -58,8 +58,6 @@
     <string name="select_medium">Tipo de adaptador…</string>
     <string name="devices_found">%d aparelho(s) USB encontrado(s)</string>
     <string name="day_night_mode">Modo de visualização dia/noite</string>
-    <string name="night_mode_description">Definir ecrã para fundo escuro</string>
-    <string name="night_mode">Modo noturno</string>
     <string name="disable_elm_cmds">Comandos ELM desativados</string>
     <string name="disable_elm_cmds_descr">ativar/desativar comandos ELM</string>
     <string name="disconnect">Desligar</string>

@@ -186,7 +186,6 @@ public class DashBoardActivity extends AppCompatActivity
 	{
 		// Apply locale before anything else
 		SettingsActivity.applyLocale(this);
-		setTheme(MainActivity.nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
 
 		super.onCreate(savedInstanceState);
 		// set to full screen

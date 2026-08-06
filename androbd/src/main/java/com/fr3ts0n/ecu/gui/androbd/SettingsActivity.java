@@ -107,7 +107,6 @@ public class SettingsActivity extends AppCompatActivity
 	{
 		// Apply locale before calling super.onCreate()
 		applyLocale(this);
-		setTheme(MainActivity.nightMode ? R.style.AppTheme_Dark : R.style.AppTheme);
 		super.onCreate(savedInstanceState);
 
 		if (savedInstanceState == null)

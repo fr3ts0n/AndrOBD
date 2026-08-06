@@ -95,8 +95,6 @@
     <string name="connectionlost">Enhetsanslutning förlorades</string>
     <string name="elm_timeout_descr">Minsta tidsgräns i [ms] att vänta på ELM-svar</string>
     <string name="day_night_mode">Dag-/Nattläge</string>
-    <string name="night_mode_description">Stället in visning av mörk bakgrund</string>
-    <string name="night_mode">Nattläge</string>
     <string name="disable_elm_cmds">Inaktiverade ELM-kommandon</string>
     <string name="disable_elm_cmds_descr">aktivera/inaktivera ELM-kommandon</string>
     <string name="elm_adaptive_timing">Adaptiv ELM-tidtagning</string>

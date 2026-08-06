@@ -92,8 +92,6 @@
     <string name="connectionlost">Połączenie urządzenia zostało utracone</string>
     <string name="elm_timeout_descr">Minimalny czas oczekiwania [ms] na odpowiedź ELM</string>
     <string name="day_night_mode">Tryb widoku Dzień/Noc</string>
-    <string name="night_mode_description">Ustaw wyświetlacz na ciemnym tle</string>
-    <string name="night_mode">Tryb nocny</string>
     <string name="disable_elm_cmds">Wyłączone komendy ELM</string>
     <string name="disable_elm_cmds_descr">włącz/wyłącz komendy ELM</string>
     <string name="elm_adaptive_timing">czas adaptacji ELM</string>

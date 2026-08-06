@@ -56,8 +56,6 @@
     <string name="unabletoconnect">Kunne ikke koble til enhet</string>
     <string name="connectionlost">Enhetstilkobling gikk tapt</string>
     <string name="day_night_mode">Dag/natt-visningsmodus</string>
-    <string name="night_mode_description">Bruk mørk bakgrunn</string>
-    <string name="night_mode">Nattmodus</string>
     <string name="disable_elm_cmds">Avskrudde ELM-kommandoer</string>
     <string name="disable_elm_cmds_descr">skru på/av ELM-kommandoer</string>
     <string name="select_ecu_addr">Velg ECU-adresse…</string>
