@@ -12,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 36
-        versionCode 20710
-        versionName 'V2.7.10'
+        versionCode 20711
+        versionName 'V2.7.11'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
