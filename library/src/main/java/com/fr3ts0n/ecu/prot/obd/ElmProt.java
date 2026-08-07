@@ -22,6 +22,7 @@ import com.fr3ts0n.prot.TelegramListener;
 import com.fr3ts0n.prot.TelegramWriter;
 
 import java.beans.PropertyChangeEvent;
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -643,7 +644,52 @@ public class ElmProt
 	 * multiline response is pending, for responses w/o a length info
 	 */
 	private boolean responsePending = false;
-	
+
+	/**
+	 * Get buffer as byte array from HEX string
+	 * @param buffer hex string char buffer
+	 * @return byte[] of buffer content
+	 */
+    private byte[] fromHex(char[] buffer)
+	{
+		return new BigInteger(String.copyValueOf(buffer),16).toByteArray();
+	}
+
+	/**
+	 * Check if buffer contains a valid ISO telegram
+	 * @param buffer Telegram buffer
+	 * @return true if buffer contains valid ISO telegram, false otherwise
+	 */
+	private boolean isValidIsoTelegram(char[] buffer)
+	{
+		boolean result = false;
+		// ISO Header=3bytes, footer=1byte > min 8 hex digits
+		if(buffer.length > 8)
+		{
+			try {
+				int i;
+				int crc=0;
+				byte[] binBuff = fromHex(buffer);
+				for (i=0; i<binBuff.length-1; i++)
+				{
+					crc += binBuff[i];
+				}
+				// check last byte matching accumulated CRC
+				result = (crc == binBuff[i]);
+			} catch (Exception e) {
+				// Ignore exception - result=false
+			}
+		}
+		return result;
+	}
+
+	private String extractIsoContent(char[] buffer)
+	{
+		/* Extract payload content out of ISO telegram
+		 * ISO Tgm.: <TYPE><SENDER><DESTINATION><PayLoad...><CRC> */
+		return String.copyValueOf(buffer,6,buffer.length-8);
+	}
+
 	/**
 	 * handle incoming protocol telegram
 	 *
@@ -655,9 +701,12 @@ public class ElmProt
 	{
 		int result = 0;
 		String bufferStr = new String(buffer);
-		
+		if( isValidIsoTelegram(buffer) )
+			// extract ISO content
+			bufferStr = extractIsoContent(buffer);
+
 		log.fine(this.toString() + " RX:'" + bufferStr + "'");
-		
+
 		// empty result
 		if (buffer.length == 0)
 		{
@@ -896,9 +945,11 @@ public class ElmProt
 							log.fine(String.format("Found ECU address: 0x%s", address));
 							// and add to list of addresses
 							ecuAddresses.add(Integer.valueOf(address, 16));
+							lastRxMsg = bufferStr.substring(adrStart+adrLen);
 						}
-						return lastRxMsg.length();
+						// return lastRxMsg.length();
 					}
+
 					default:
 						break;
 				}

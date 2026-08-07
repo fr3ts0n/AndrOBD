@@ -256,4 +256,34 @@ class ElmProtTest
 		assertEquals(true, ObdProt.tCodes.containsKey(0x0456));
 		assertEquals(true, ObdProt.tCodes.containsKey(0x0789));
 	}
+
+	@Test
+	/**
+	 * Read PID support telegram with ISO header
+	 * @Verifies AndrOBD #348
+	 */
+	void handleTgmReadObdData_ISO_Header()
+	{
+		prot.setService(ObdProt.OBD_SVC_DATA);
+		// OBD data pid list with ISO header bytes
+		prot.handleTelegram("86F1104100BE3EB8118D".toCharArray());
+		// ensure, trailing padding bytes are detected and cut off
+		// BE3EB811 -> PID's 1,5,12,13,14 ... set
+		assertEquals(1, prot.getNextSupportedPid());
+		assertEquals(3, prot.getNextSupportedPid());
+		assertEquals(4, prot.getNextSupportedPid());
+		assertEquals(5, prot.getNextSupportedPid());
+		assertEquals(6, prot.getNextSupportedPid());
+		assertEquals(7, prot.getNextSupportedPid());
+		assertEquals(11, prot.getNextSupportedPid());
+		assertEquals(12, prot.getNextSupportedPid());
+		assertEquals(13, prot.getNextSupportedPid());
+		assertEquals(14, prot.getNextSupportedPid());
+		assertEquals(15, prot.getNextSupportedPid());
+		assertEquals(17, prot.getNextSupportedPid());
+		assertEquals(19, prot.getNextSupportedPid());
+		assertEquals(20, prot.getNextSupportedPid());
+		assertEquals(21, prot.getNextSupportedPid());
+		assertEquals(28, prot.getNextSupportedPid());
+	}
 }
