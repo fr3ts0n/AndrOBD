@@ -183,4 +183,11 @@
 \n 请自行确认并保证该测试在安全场合中进行！</string>
     <string name="customize_display">自定义数据显示</string>
     <string name="display_range">显示范围</string>
+    <string name="select_ble_device">选择BLE适配器</string>
+    <string name="open_log_dir">打开日志目录</string>
+    <string name="open_log_dir_description">在文件管理器中打开日志文件夹</string>
+    <string name="log_dir_no_app">找不到文件管理器——路径已复制到剪贴板</string>
+    <string name="no_obd_files_found">未找到OBD文件</string>
+    <string name="language_selection_description">选择应用语言</string>
+    <string name="language_system_default">系统默认值</string>
 </resources>
