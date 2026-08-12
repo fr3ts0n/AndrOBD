@@ -156,4 +156,15 @@
     <string name="full_screen_display_description">Повноекранний режим для показу застосунку</string>
     <string name="display_range">Діапазон показу</string>
     <string name="update_period_s">Період оновлення [с]</string>
+    <string name="select_ble_device">Вибрати адаптер BLE</string>
+    <string name="no_obd_files_found">Файлів OBD не знайдено</string>
+    <string name="open_log_dir">Відкрити теку журналів</string>
+    <string name="open_log_dir_description">Відкрити теку журналів у файловому менеджері</string>
+    <string name="log_dir_not_found">Теку журналу не знайдено — спочатку ввімкніть ведення журналу та перезапустіть застосунок</string>
+    <string name="log_dir_no_app">Файловий менеджер не знайдено — шлях скопійовано в буфер обміну</string>
+    <string name="theme_mode">Тема</string>
+    <string name="theme_mode_description">Використовувати тему системи або примусово встановити світлий чи темний режим</string>
+    <string name="language_selection_description">Вибір мови застосунку</string>
+    <string name="language_system_default">Мова системи</string>
+    <string name="restart_required">Для застосування змін мови потрібен перезапуск</string>
 </resources>
