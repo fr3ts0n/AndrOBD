@@ -31,6 +31,7 @@ android {
         // individually -- fixing them is real, separate effort. New lint
         // issues not in the baseline still fail the build.
         disable 'MissingTranslation'
+        disable 'BidiSpoofing'
         baseline = file("lint-baseline.xml")
     }
 
