@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     namespace = 'com.fr3ts0n.ecu.gui.androbd'
-    compileSdk 36
+    compileSdk 37
 
     buildFeatures {
         resValues = true
@@ -10,8 +10,8 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 36
+        minSdk 23
+        targetSdkVersion 37
         versionCode 30000
         versionName 'V3.0.0'
 
@@ -50,10 +50,9 @@ dependencies {
     implementation 'com.github.mik3y:usb-serial-for-android:3.9.0'
     implementation 'com.github.anastr:speedviewlib:1.6.1'
     implementation 'androidx.annotation:annotation:1.10.0'
-    // core:1.12.0 to keep supporting minSdk 17
-    implementation 'androidx.core:core:1.12.0'
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.core:core:1.19.0'
+    implementation 'androidx.appcompat:appcompat:1.8.0'
+    implementation 'com.google.android.material:material:1.14.0'
     implementation 'androidx.preference:preference:1.2.1'
 
     // Local (JVM) unit tests
