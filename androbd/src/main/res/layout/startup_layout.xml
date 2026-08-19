@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,14 +19,14 @@
             android:maxWidth="240dp"
             android:maxHeight="240dp"
             android:contentDescription="@string/logo"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/logo" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="bottom"
         android:background="#40000000">
 
         <TextView
@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:contentDescription="@string/url_app_mainpage"
+            android:focusable="true"
             android:gravity="center"
             android:onClick="browseClickedUrl"
             android:text="@string/app_name"
@@ -46,6 +47,7 @@
             android:clickable="true"
             android:contentDescription="@string/url_app_releases"
             android:enabled="true"
+            android:focusable="true"
             android:gravity="center"
             android:onClick="browseClickedUrl"
             android:text="@string/app_version"
@@ -65,6 +67,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:contentDescription="@string/url_app_translation"
+            android:focusable="true"
             android:gravity="center"
             android:onClick="browseClickedUrl"
             android:text="@string/translation_credits"

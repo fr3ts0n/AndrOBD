@@ -23,7 +23,6 @@ import static android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.SearchManager;
@@ -31,11 +30,8 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.pm.PackageManager;
@@ -45,7 +41,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
@@ -64,6 +59,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.window.OnBackInvokedCallback;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
@@ -490,7 +486,7 @@ public class MainActivity extends PluginManager
                         // log action
                         log.fine(String.format("ActionBar: %s", visible ? "show" : "hide"));
                         // set action bar visibility
-                        ActionBar ab = getActionBar();
+                        final ActionBar ab = getSupportActionBar();
                         if (ab != null)
                         {
                             if (visible)
@@ -596,7 +592,7 @@ public class MainActivity extends PluginManager
         CommService.elm.addPropertyChangeListener(this);
 
         // set up action bar
-        ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
         {
             actionBar.setDisplayShowTitleEnabled(true);
@@ -2245,7 +2241,7 @@ public class MainActivity extends PluginManager
      */
     private void setStatus(CharSequence subTitle)
     {
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
         {
             actionBar.setSubtitle(subTitle);
@@ -2375,7 +2371,7 @@ public class MainActivity extends PluginManager
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         // set title
-        ActionBar ab = getActionBar();
+        final ActionBar ab = getSupportActionBar();
         if (ab != null)
         {
             // title specified ... show it
