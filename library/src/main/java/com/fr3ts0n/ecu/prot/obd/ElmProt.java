@@ -22,7 +22,6 @@ import com.fr3ts0n.prot.TelegramListener;
 import com.fr3ts0n.prot.TelegramWriter;
 
 import java.beans.PropertyChangeEvent;
-import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -647,12 +646,27 @@ public class ElmProt
 
 	/**
 	 * Get buffer as byte array from HEX string
+	 *
+	 * Parses each hex digit pair independently rather than via
+	 * {@code new BigInteger(str, 16).toByteArray()}: BigInteger's
+	 * two's-complement byte array silently drops leading zero bytes and
+	 * silently prepends an extra 0x00 sign byte whenever the first hex pair's
+	 * high bit is set, so its length does not reliably match {@code
+	 * buffer.length / 2}. That misalignment previously threw off every index
+	 * into the result in {@link #isValidIsoTelegram}.
+	 *
 	 * @param buffer hex string char buffer
-	 * @return byte[] of buffer content
+	 * @return byte[] of buffer content, one byte per hex digit pair
 	 */
-    private byte[] fromHex(char[] buffer)
+	private byte[] fromHex(char[] buffer)
 	{
-		return new BigInteger(String.copyValueOf(buffer),16).toByteArray();
+		int len = buffer.length / 2;
+		byte[] result = new byte[len];
+		for (int i = 0; i < len; i++)
+		{
+			result[i] = (byte) Integer.parseInt(new String(buffer, i * 2, 2), 16);
+		}
+		return result;
 	}
 
 	/**
@@ -672,10 +686,11 @@ public class ElmProt
 				byte[] binBuff = fromHex(buffer);
 				for (i=0; i<binBuff.length-1; i++)
 				{
-					crc += binBuff[i];
+					// treat each byte as unsigned - checksum is mod 256
+					crc += binBuff[i] & 0xFF;
 				}
-				// check last byte matching accumulated CRC
-				result = (crc == binBuff[i]);
+				// check last byte matching accumulated CRC (both unsigned)
+				result = ((crc & 0xFF) == (binBuff[i] & 0xFF));
 			} catch (Exception e) {
 				// Ignore exception - result=false
 			}
