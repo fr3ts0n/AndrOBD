@@ -110,9 +110,8 @@ public class StreamHandler implements TelegramWriter, Runnable
 				}
 				catch (Exception ex)
 				{
-					log.severe("TX error:'"
-					           + ProtUtils.hexDumpBuffer(buffer) + "':"
-					           + ex.getStackTrace());
+					log.log(Level.SEVERE, "TX error:'"
+					           + ProtUtils.hexDumpBuffer(buffer) + "'", ex);
 				}
 			}
 		}).start();
