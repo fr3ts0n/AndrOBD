@@ -286,4 +286,39 @@ class ElmProtTest
 		assertEquals(21, prot.getNextSupportedPid());
 		assertEquals(28, prot.getNextSupportedPid());
 	}
+
+	@Test
+	/**
+	 * Same ISO-header telegram as handleTgmReadObdData_ISO_Header(), but with a
+	 * header type byte (0x79) whose correct checksum (0x80) exposes the old
+	 * isValidIsoTelegram()/fromHex() bug: BigInteger(str,16).toByteArray() drops
+	 * or adds a leading byte depending on the first hex pair's high bit, and the
+	 * checksum comparison never masked to unsigned - together these silently
+	 * rejected ~25% of otherwise-valid ISO telegrams as bad checksums (verified
+	 * by sweeping all 256 header-type values), so the header was never stripped
+	 * and PID decoding broke.
+	 * @Verifies AndrOBD #348
+	 */
+	void handleTgmReadObdData_ISO_Header_HighBitType()
+	{
+		prot.setService(ObdProt.OBD_SVC_DATA);
+		// same payload as handleTgmReadObdData_ISO_Header(), different header type/checksum
+		prot.handleTelegram("79F1104100BE3EB81180".toCharArray());
+		assertEquals(1, prot.getNextSupportedPid());
+		assertEquals(3, prot.getNextSupportedPid());
+		assertEquals(4, prot.getNextSupportedPid());
+		assertEquals(5, prot.getNextSupportedPid());
+		assertEquals(6, prot.getNextSupportedPid());
+		assertEquals(7, prot.getNextSupportedPid());
+		assertEquals(11, prot.getNextSupportedPid());
+		assertEquals(12, prot.getNextSupportedPid());
+		assertEquals(13, prot.getNextSupportedPid());
+		assertEquals(14, prot.getNextSupportedPid());
+		assertEquals(15, prot.getNextSupportedPid());
+		assertEquals(17, prot.getNextSupportedPid());
+		assertEquals(19, prot.getNextSupportedPid());
+		assertEquals(20, prot.getNextSupportedPid());
+		assertEquals(21, prot.getNextSupportedPid());
+		assertEquals(28, prot.getNextSupportedPid());
+	}
 }
