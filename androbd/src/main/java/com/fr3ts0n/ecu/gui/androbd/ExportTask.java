@@ -18,6 +18,8 @@
 
 package com.fr3ts0n.ecu.gui.androbd;
 
+import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -26,6 +28,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
+
+import androidx.core.content.FileProvider;
 
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.model.XYSeries;
@@ -184,10 +188,14 @@ class ExportTask extends AsyncTask<XYMultipleSeriesDataset, Integer, String>
 		// if export file should be sent immediately ...
 		if(prefs.getBoolean(OPT_SEND_EXPORT, false))
 		{
-			// allow sending the generated file ...
+			Uri uri = FileProvider.getUriForFile(activity,
+					activity.getPackageName() + ".provider",
+					new File(fileName));
+// allow sending the generated file ...
 			Intent sendIntent = new Intent(Intent.ACTION_SEND);
 			sendIntent.setType("*/*");
-			sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(fileName)));
+			sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
+			sendIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 			activity.startActivity(
 					Intent.createChooser(sendIntent,
 										 activity.getResources().getText(R.string.send_to)));
