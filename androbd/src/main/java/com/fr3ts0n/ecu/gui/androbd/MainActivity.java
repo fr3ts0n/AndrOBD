@@ -1706,10 +1706,11 @@ public class MainActivity extends PluginManager
 
     /**
      * Apply the tri-state theme preference application-wide via AppCompatDelegate.
-     * MainActivity itself isn't an AppCompatActivity (it extends the legacy
-     * ListActivity via PluginManager), so a live preference change needs an
-     * explicit recreate() here to pick up the new theme; other activities in
-     * this app are AppCompatActivity subclasses and re-theme automatically.
+     * PluginManager (MainActivity's superclass) migrated to AppCompatActivity in
+     * AndrOBD-libplugin#36, so AppCompatDelegate's override reaches MainActivity
+     * correctly like any other activity here; this explicit recreate() is just a
+     * belt-and-braces trigger for a live preference change, not a workaround for
+     * a missing AppCompatActivity base.
      */
     private void applyThemeMode(boolean recreateIfChanged)
     {
