@@ -2745,6 +2745,7 @@ public class MainActivity extends PluginManager
                         ChartActivity.setAdapter(getListAdapter());
                         Intent intent = new Intent(this, ChartActivity.class);
                         intent.putExtra(ChartActivity.POSITIONS, getSelectedPositions());
+                        intent.putExtra(ChartActivity.LIVE_UPDATE, Set.of(MODE.ONLINE, MODE.DEMO).contains(getMode()));
                         startActivityForResult(intent, REQUEST_GRAPH_DISPLAY_DONE);
                         this.dataViewMode = dataViewMode;
                     }

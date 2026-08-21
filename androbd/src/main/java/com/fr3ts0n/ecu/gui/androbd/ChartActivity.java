@@ -61,20 +61,17 @@ public class ChartActivity extends AppCompatActivity
 {
 
 	/**
-	 * minimum time between screen updates
-	 */
-	public static final long MIN_UPDATE_TIME = 1000;
-
-	/**
 	 * For passing the index number of the <code>Sensor</code> in its
 	 * <code>SensorManager</code>
 	 */
 	public static final String POSITIONS = "POSITIONS";
 
-	/** Permission request code for WRITE_EXTERNAL_STORAGE (screenshot, API 23-28) */
-	private static final int REQUEST_WRITE_STORAGE = 1;
+	/**
+	 * For passing if to do live data updates
+	 */
+	public static final String LIVE_UPDATE = "LIVE_UPDATE";
 
-	/** Map to uniquely collect PID numbers */
+    /** Map to uniquely collect PID numbers */
 	private final TreeSet<Integer> pidNumbers = new TreeSet<>();
 
 	/**
@@ -108,6 +105,9 @@ public class ChartActivity extends AppCompatActivity
 	 * the wake lock to keep app communication alive
 	 */
 	private WakeLock wakeLock;
+
+	/** do live updates? */
+	private boolean doLiveUpdates = false;
 
 	private static ListAdapter mAdapter = null;
 
@@ -171,6 +171,10 @@ public class ChartActivity extends AppCompatActivity
 
 		setTitle(R.string.chart);
 
+		/*
+		 * get intent parameters
+		 */
+		doLiveUpdates = getIntent().getBooleanExtra(LIVE_UPDATE,false);
 		/* get PIDs to be shown */
 		int[] positions = getIntent().getIntArrayExtra(POSITIONS);
 
@@ -312,7 +316,9 @@ public class ChartActivity extends AppCompatActivity
 		// start display update task
 		try
 		{
-			refreshTimer.schedule(updateTask, 0, 1000);
+			if(doLiveUpdates) {
+				refreshTimer.schedule(updateTask, 0, 1000);
+			}
 		} catch (Exception e)
 		{
 			// exception ignored here ...
