@@ -188,4 +188,6 @@
     <string name="open_log_dir_description">Откройте папку журнала в файловом менеджере</string>
     <string name="log_dir_not_found">Папка журнала не найден — сначала включите журналирование и перезапустите приложение</string>
     <string name="log_dir_no_app">Файловый менеджер не найден — путь, скопирован в буфер обмена</string>
+    <string name="theme_mode">Тема</string>
+    <string name="theme_mode_description">Настройте светлую или тёмную тему оформления, или оставьте как в системе</string>
 </resources>
