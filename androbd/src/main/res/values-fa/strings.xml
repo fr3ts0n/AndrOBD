@@ -2,4 +2,5 @@
 <resources>
     <string name="configure">تنظیمات</string>
     <string name="donation">طرح ثابت</string>
+    <string name="release_history">Release history …</string>
 </resources>
