@@ -274,7 +274,7 @@ class ElmProtTest
 		prot.setStatus(ElmProt.STAT.ECU_DETECTED);
 
 		// ensure address 0x10 detected
-		assertEquals(0x10, prot.ecuAddresses.getFirst());
+		assertEquals(0x10, prot.ecuAddresses.first());
 
 		// ensure, trailing padding bytes are detected and cut off
 		// BE3EB811 -> PID's 1,5,12,13,14 ... set
@@ -345,6 +345,6 @@ class ElmProtTest
 		prot.setStatus(ElmProt.STAT.ECU_DETECTED);
 
 		// ensure CAN address 0x7E8 detected
-		assertEquals(0x7E8, prot.ecuAddresses.getFirst());
+		assertEquals(0x7E8, prot.ecuAddresses.first());
 	}
 }
