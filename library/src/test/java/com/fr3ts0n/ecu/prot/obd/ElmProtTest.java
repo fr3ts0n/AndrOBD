@@ -7,6 +7,7 @@ import com.fr3ts0n.pvs.PvChangeListener;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ElmProtTest
 	implements PvChangeListener
@@ -260,13 +261,21 @@ class ElmProtTest
 	@Test
 	/**
 	 * Read PID support telegram with ISO header
+	 * Independent of current service in ECU detection mode
+	 * - ISO ECU address shall be detected
+	 * - DATA (Mode 1) PID's shall be detected
 	 * @Verifies AndrOBD #348
 	 */
 	void handleTgmReadObdData_ISO_Header()
 	{
-		prot.setService(ObdProt.OBD_SVC_DATA);
+		prot.setStatus(ElmProt.STAT.ECU_DETECT);
 		// OBD data pid list with ISO header bytes
 		prot.handleTelegram("86F1104100BE3EB8118D".toCharArray());
+		prot.setStatus(ElmProt.STAT.ECU_DETECTED);
+
+		// ensure address 0x10 detected
+		assertEquals(0x10, prot.ecuAddresses.getFirst());
+
 		// ensure, trailing padding bytes are detected and cut off
 		// BE3EB811 -> PID's 1,5,12,13,14 ... set
 		assertEquals(1, prot.getNextSupportedPid());
@@ -320,5 +329,22 @@ class ElmProtTest
 		assertEquals(20, prot.getNextSupportedPid());
 		assertEquals(21, prot.getNextSupportedPid());
 		assertEquals(28, prot.getNextSupportedPid());
+	}
+
+	@Test
+	/**
+	 * Handle NRC response in ECU detection
+	 * Independent of current service in ECU detection mode
+	 * - CAN ECU address shall be detected
+	 * @Verifies AndrOBD-Plugin #10
+	 */
+	void handleTgm_EcuDetect_NRC_CAN() {
+		prot.setStatus(ElmProt.STAT.ECU_DETECT);
+		// test case for issue AndrOBD-Plugin/#10 (NRC22 on detect)
+		prot.handleTelegram("7E8037F0122".toCharArray());
+		prot.setStatus(ElmProt.STAT.ECU_DETECTED);
+
+		// ensure CAN address 0x7E8 detected
+		assertEquals(0x7E8, prot.ecuAddresses.getFirst());
 	}
 }

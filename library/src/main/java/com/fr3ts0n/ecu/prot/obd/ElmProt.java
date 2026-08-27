@@ -79,7 +79,7 @@ public class ElmProt
 	/**
 	 * list of identified ECU addresses
 	 */
-	private final TreeSet<Integer> ecuAddresses = new TreeSet<Integer>();
+	final TreeSet<Integer> ecuAddresses = new TreeSet<Integer>();
 	/**
 	 * selected ECU address
 	 */
@@ -716,10 +716,6 @@ public class ElmProt
 	{
 		int result = 0;
 		String bufferStr = new String(buffer);
-		if( isValidIsoTelegram(buffer) )
-			// extract ISO content
-			bufferStr = extractIsoContent(buffer);
-
 		log.fine(this.toString() + " RX:'" + bufferStr + "'");
 
 		// empty result
@@ -916,6 +912,8 @@ public class ElmProt
 							adrEnd = bufferStr.indexOf("7F01");
 						}
 						int adrStart = bufferStr.lastIndexOf(".") + 1;
+						int dataEnd = bufferStr.length();
+
 						if (adrEnd > adrStart)
 						{
 							int adrLen = adrEnd - adrStart;
@@ -939,6 +937,8 @@ public class ElmProt
 									 */
 									adrLen = 2;
 									adrStart = adrEnd - adrLen;
+									// subtract ISO checksum from payload
+									dataEnd -= 2;
 								}
 								else if (adrLen == 10)
 								{
@@ -960,18 +960,20 @@ public class ElmProt
 							log.fine(String.format("Found ECU address: 0x%s", address));
 							// and add to list of addresses
 							ecuAddresses.add(Integer.valueOf(address, 16));
-							lastRxMsg = bufferStr.substring(adrStart+adrLen);
+							// extract / process payload data
+							bufferStr = bufferStr.substring(adrEnd, dataEnd);
 						}
-						// return lastRxMsg.length();
+						return handleDataMessage(bufferStr);
 					}
-
-					default:
-						break;
 				}
 				
 				// we are connected ...
 				setStatus(STAT.CONNECTED);
-				
+
+				if( isValidIsoTelegram(buffer) )
+					// extract ISO content
+					bufferStr = extractIsoContent(buffer);
+
 				// ELM clone verbose message (starting with '+')
 				if(buffer[0] == '+')
 				{
@@ -1091,10 +1093,6 @@ public class ElmProt
 		// otherwise process response
 		switch (service)
 		{
-			case OBD_SVC_NONE:
-				// ignore messages
-				break;
-			
 			case OBD_SVC_CAN_MONITOR:
 				result = canProt.handleTelegram(lastRxMsg.toCharArray());
 				break;
@@ -1137,8 +1135,6 @@ public class ElmProt
 				handleTelegram("7EA074100000000".toCharArray());
 				// test case for issue AndrOBD/#60
 				handleTelegram("18DAF110064100BE3EB811".toCharArray());
-				// test case for issue AndrOBD-Plugin/#10 (NRC22 on detect)
-				handleTelegram("7E8037F0122".toCharArray());
 				setStatus(STAT.ECU_DETECTED);
 				
 				while (runDemo)
@@ -1330,7 +1326,7 @@ public class ElmProt
 	 *
 	 * @param status New value of property status.
 	 */
-	private void setStatus(STAT status)
+    void setStatus(STAT status)
 	{
 		STAT oldStatus = this.status;
 		this.status = status;
