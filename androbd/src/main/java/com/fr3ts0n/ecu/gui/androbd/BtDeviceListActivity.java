@@ -22,7 +22,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -30,18 +29,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,7 +62,10 @@ public class BtDeviceListActivity extends AppCompatActivity
 
 	// Member fields
 	protected BluetoothAdapter mBtAdapter;
-	protected ArrayAdapter<BluetoothDevice> mBtDevices;
+	protected final List<BluetoothDevice> mDevices = new ArrayList<>();
+	protected DeviceAdapter mDeviceAdapter;
+	protected TextView mEmptyStateView;
+	protected LinearProgressIndicator mScanProgress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -87,62 +89,97 @@ public class BtDeviceListActivity extends AppCompatActivity
 		setResult(RESULT_CANCELED);
 		// Setup the window
 		setContentView(R.layout.device_list);
-		
+
 		// Get the local Bluetooth adapter
 		mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 		stopDeviceScan();
 
-		mBtDevices =
-			new ArrayAdapter<BluetoothDevice>(this, R.layout.device_name){
-				final LayoutInflater mInflater =
-						(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				@SuppressLint("MissingPermission")
-                @NonNull
-				@Override
-				public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-					TextView tv;
-					BluetoothDevice dev = getItem(position);
-					if (convertView != null) {
-						tv = (TextView) convertView;
-					} else {
-						tv = (TextView)mInflater.inflate(R.layout.device_name,
-														 parent,
-											 false);
-					}
-					String displayName;
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-						String alias = dev.getAlias();
-						displayName = (alias != null && !alias.isEmpty()) ? alias : dev.getName();
-					} else {
-						displayName = dev.getName();
-					}
-					tv.setText(String.format("%s\n%s", displayName, dev.getAddress()));
-					return tv;
-				}
-			};
-		
-		// Find and set up the ListView for paired devices
-		ListView pairedListView = findViewById(R.id.list);
-		pairedListView.setAdapter(mBtDevices);
-		// set up list selection handlers
-		pairedListView.setOnItemClickListener(mDeviceClickListener);
+		// Find and set up the RecyclerView for paired devices
+		RecyclerView pairedListView = findViewById(R.id.list);
+		pairedListView.setLayoutManager(new LinearLayoutManager(this));
+		mDeviceAdapter = new DeviceAdapter();
+		pairedListView.setAdapter(mDeviceAdapter);
+
+		mEmptyStateView = findViewById(R.id.empty_state);
+		mEmptyStateView.setText(R.string.no_paired_devices);
+		mScanProgress = findViewById(R.id.scan_progress);
+
+		updateEmptyState();
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
+		mScanProgress.setVisibility(View.VISIBLE);
 		startDeviceScan();
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
+		mScanProgress.setVisibility(View.GONE);
 		stopDeviceScan();
 	}
 
 	protected void addDevice(BluetoothDevice device) {
-		if (mBtDevices.getPosition(device) < 0) {
-			mBtDevices.add(device);
+		if (!mDevices.contains(device)) {
+			mDevices.add(device);
+			mDeviceAdapter.notifyItemInserted(mDevices.size() - 1);
+			updateEmptyState();
+		}
+	}
+
+	protected void updateEmptyState() {
+		mEmptyStateView.setVisibility(mDevices.isEmpty() ? View.VISIBLE : View.GONE);
+	}
+
+	/** Called when the user picks a device from the list. */
+	protected void onDeviceSelected(BluetoothDevice device) {
+		// Create the result Intent and include the MAC address
+		Intent intent = new Intent();
+		intent.putExtra(EXTRA_DEVICE_ADDRESS, device.getAddress());
+
+		// Set result and finish this Activity
+		setResult(RESULT_OK, intent);
+		log.log(Level.FINE, "Sending Result...");
+		finish();
+	}
+
+	protected static class DeviceViewHolder extends RecyclerView.ViewHolder {
+		final TextView text;
+		DeviceViewHolder(@NonNull View itemView) {
+			super(itemView);
+			text = (TextView) itemView;
+		}
+	}
+
+	protected class DeviceAdapter extends RecyclerView.Adapter<DeviceViewHolder> {
+		@NonNull
+		@Override
+		public DeviceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+			View v = LayoutInflater.from(parent.getContext())
+				.inflate(R.layout.device_name, parent, false);
+			return new DeviceViewHolder(v);
+		}
+
+		@SuppressLint("MissingPermission") // permission is checked before
+		@Override
+		public void onBindViewHolder(@NonNull DeviceViewHolder holder, int position) {
+			BluetoothDevice dev = mDevices.get(position);
+			String displayName;
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+				String alias = dev.getAlias();
+				displayName = (alias != null && !alias.isEmpty()) ? alias : dev.getName();
+			} else {
+				displayName = dev.getName();
+			}
+			holder.text.setText(String.format("%s\n%s", displayName, dev.getAddress()));
+			holder.itemView.setOnClickListener(v -> onDeviceSelected(dev));
+		}
+
+		@Override
+		public int getItemCount() {
+			return mDevices.size();
 		}
 	}
 
@@ -165,25 +202,4 @@ public class BtDeviceListActivity extends AppCompatActivity
 			// Cancel discovery because it's costly and we're about to connect
 			mBtAdapter.cancelDiscovery();
 	}
-
-	// The on-click listener for all devices in the ListViews
-	private final OnItemClickListener mDeviceClickListener = new OnItemClickListener()
-	{
-		public void onItemClick(AdapterView<?> av, View v, int position, long id)
-		{
-			// Get the device MAC address, which is the last 17 chars in the View
-			//String address = "00:0D:18:A0:4E:35"; //FORCE OBD MAC Address
-			BluetoothDevice currDev = (BluetoothDevice)av.getItemAtPosition(position);
-			String address = currDev.getAddress();
-
-			// Create the result Intent and include the MAC address
-			Intent intent = new Intent();
-			intent.putExtra(EXTRA_DEVICE_ADDRESS, address);
-
-			// Set result and finish this Activity
-			setResult(RESULT_OK, intent);
-			log.log(Level.FINE, "Sending Result...");
-			finish();
-		}
-	};
 }

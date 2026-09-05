@@ -7,6 +7,7 @@ import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanResult;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
@@ -19,6 +20,12 @@ public class BleDeviceListActivity
     extends BtDeviceListActivity
 {
     private BluetoothLeScanner leScanner;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mEmptyStateView.setText(R.string.no_ble_devices_found);
+    }
 
     @SuppressLint("InlinedApi")
     @Override
