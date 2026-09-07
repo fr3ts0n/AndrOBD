@@ -22,76 +22,121 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.fr3ts0n.ecu.EcuDataPv;
 import com.github.anastr.speedviewlib.AwesomeSpeedometer;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Adapter for OBD data gauge display
  *
  * @author erwin
  */
-class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv>
+class ObdGaugeAdapter extends RecyclerView.Adapter<ObdGaugeAdapter.GaugeViewHolder>
 {
-	private final transient LayoutInflater mInflater;
-	private static int resourceId;
+	private final Context context;
+	private final int resourceId;
+	private final List<EcuDataPv> items = new ArrayList<>();
+	private OnItemLongClickListener longClickListener;
 
 	/** format for numeric labels */
 	private static final NumberFormat labelFormat = new DecimalFormat("0;-#");
 
-	static class ViewHolder
+	/** Callback for a long-press on a gauge item. */
+	interface OnItemLongClickListener
+	{
+		boolean onItemLongClick(int position);
+	}
+
+	static class GaugeViewHolder extends RecyclerView.ViewHolder
 	{
 		AwesomeSpeedometer gauge;
 		TextView tvDescr;
+
+		GaugeViewHolder(View itemView)
+		{
+			super(itemView);
+			gauge = itemView.findViewById(R.id.chart);
+			tvDescr = itemView.findViewById(R.id.label);
+		}
 	}
 
 	public ObdGaugeAdapter(Context context, int resource)
 	{
-		super(context, resource);
-		mInflater = (LayoutInflater) context
-			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		resourceId = resource;
+		this.context = context;
+		this.resourceId = resource;
 	}
 
-	/* (non-Javadoc)
-	 * @see android.widget.ArrayAdapter#getView(int, android.view.View, android.view.ViewGroup)
-	 */
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent)
+	/** Sets the listener invoked on a long-press of a gauge item. */
+	void setOnItemLongClickListener(OnItemLongClickListener listener)
 	{
-		ViewHolder holder;
+		longClickListener = listener;
+	}
+
+	/** Returns the item at {@code position}, or {@code null} if out of range. */
+	EcuDataPv getItem(int position)
+	{
+		return (position >= 0 && position < items.size()) ? items.get(position) : null;
+	}
+
+	/** Returns the position of {@code pv} in the current item list, or -1 if not present. */
+	int getPosition(EcuDataPv pv)
+	{
+		return items.indexOf(pv);
+	}
+
+	/** Appends {@code pv} to the item list and notifies the RecyclerView. */
+	void add(EcuDataPv pv)
+	{
+		items.add(pv);
+		notifyItemInserted(items.size() - 1);
+	}
+
+	/** Removes all items and notifies the RecyclerView. */
+	void clear()
+	{
+		int size = items.size();
+		items.clear();
+		notifyItemRangeRemoved(0, size);
+	}
+
+	@Override
+	public int getItemCount()
+	{
+		return items.size();
+	}
+
+	@NonNull
+	@Override
+	public GaugeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+	{
+		View itemView = LayoutInflater.from(context).inflate(resourceId, parent, false);
+		return new GaugeViewHolder(itemView);
+	}
+
+	@Override
+	public void onBindViewHolder(@NonNull GaugeViewHolder holder, int position)
+	{
 		EcuDataPv currPv = getItem(position);
-		int pid = Objects.requireNonNull(currPv).getAsInt(EcuDataPv.FID_PID);
+		if (currPv == null) return;
 
-		// if no recycled convertView delivered, then create a new one
-		if (convertView == null)
-		{
-			convertView = mInflater.inflate(resourceId, parent, false);
+		holder.itemView.setOnLongClickListener(v ->
+			longClickListener != null
+				&& longClickListener.onItemLongClick(holder.getBindingAdapterPosition()));
 
-			holder = new ViewHolder();
-			// get all views into view holder
-			holder.gauge = convertView.findViewById(R.id.chart);
-			holder.tvDescr = convertView.findViewById(R.id.label);
-
-			// remember this view holder
-			convertView.setTag(holder);
-		}
-		else
-		{
-			// recall previous holder
-			holder = (ViewHolder)convertView.getTag();
-		}
 		// Get display color ...
 		int pidColor = ColorAdapter.getItemColor(currPv);
 
 		// Taint background with PID color
-		convertView.setBackgroundColor(pidColor & 0x10FFFFFF);
+		holder.itemView.setBackgroundColor(pidColor & 0x10FFFFFF);
 		// set new values for display
 		holder.tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
 
@@ -112,7 +157,5 @@ class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv>
 		holder.gauge.setMinSpeed(minValue.floatValue());
 		holder.gauge.setMaxSpeed(maxValue.floatValue());
 		holder.gauge.speedTo(value.floatValue());
-
-		return convertView;
 	}
 }
