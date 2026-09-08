@@ -25,14 +25,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
 import android.util.DisplayMetrics;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ListAdapter;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.fr3ts0n.ecu.EcuDataItem;
 import com.fr3ts0n.ecu.EcuDataItems;
@@ -50,7 +49,7 @@ import java.util.Objects;
  * Display selected data items as dashboard
  */
 public class DashBoardActivity extends AppCompatActivity
-		implements PvChangeListener, AdapterView.OnItemLongClickListener
+		implements PvChangeListener, ObdGaugeAdapter.OnItemLongClickListener
 {
 	/**
 	 * For passing the index number of the <code>Sensor</code> in its
@@ -72,7 +71,8 @@ public class DashBoardActivity extends AppCompatActivity
 	 */
 	private PowerManager.WakeLock wakeLock;
 	private transient ObdGaugeAdapter adapter;
-	private transient GridView grid;
+	private transient RecyclerView grid;
+	private transient GridLayoutManager gridLayoutManager;
 
 	/** Map to uniquely collect PID numbers */
 	private final HashSet<Integer> pidNumbers = new HashSet<>();
@@ -122,10 +122,10 @@ public class DashBoardActivity extends AppCompatActivity
 			{
 				case MESSAGE_UPDATE_VIEW:
 					EcuDataPv currPv = (EcuDataPv)msg.obj;
-					View itemView = grid.getChildAt(msg.arg1);
-					if(itemView != null)
+					RecyclerView.ViewHolder holder = grid.findViewHolderForAdapterPosition(msg.arg1);
+					if(holder instanceof ObdGaugeAdapter.GaugeViewHolder)
 					{
-						Gauge gauge = itemView.findViewById(R.id.chart);
+						Gauge gauge = ((ObdGaugeAdapter.GaugeViewHolder)holder).gauge;
 						if(gauge != null)
 						{
 							Number val = (Number)currPv.get(EcuDataPv.FID_VALUE);
@@ -163,7 +163,7 @@ public class DashBoardActivity extends AppCompatActivity
 			numColumns = rowCols[positions.length][(width>height)?0:1];
 		}
 		/* get grid object */
-		grid.setNumColumns(numColumns);
+		gridLayoutManager.setSpanCount(numColumns);
 
 		adapter.clear();
 		pidNumbers.clear();
@@ -209,12 +209,14 @@ public class DashBoardActivity extends AppCompatActivity
 		// set the desired content screen
 		int resId = getIntent().getIntExtra(RES_ID, R.layout.dashboard);
 		setContentView(resId);
-		grid = findViewById(android.R.id.list);
-		grid.setOnItemLongClickListener(this);
+		grid = findViewById(R.id.dashboardGrid);
+		gridLayoutManager = new GridLayoutManager(this, 1);
+		grid.setLayoutManager(gridLayoutManager);
 
 		// create data adapter
 		adapter = new ObdGaugeAdapter( this,
 									   R.layout.obd_gauge);
+		adapter.setOnItemLongClickListener(this);
 
 		/* get PIDs to be shown */
 		positions = getIntent().getIntArrayExtra(POSITIONS);
@@ -277,7 +279,7 @@ public class DashBoardActivity extends AppCompatActivity
 	}
 
 	@Override
-	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
+	public boolean onItemLongClick(int position)
 	{
 		// Set data item to be customized
 		EcuDataPv pv = adapter.getItem(position);
