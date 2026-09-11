@@ -150,6 +150,7 @@ class ObdGaugeAdapter extends RecyclerView.Adapter<ObdGaugeAdapter.GaugeViewHold
 
 		// Tick triangles show in PID color
 		holder.gauge.setTrianglesColor(pidColor);
+		holder.gauge.setBackgroundCircleColor(pidColor & 0x20FFFFFF);
 		// Use PID specific units and value format
 		holder.gauge.setUnit(currPv.getUnits());
 		holder.gauge.setSpeedTextListener(aFloat -> String.format(format, aFloat));

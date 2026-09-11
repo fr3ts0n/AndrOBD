@@ -13,13 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        app:sv_backgroundCircleColor="?attr/colorSurfaceVariant"
         app:sv_speedTextPosition="BOTTOM_CENTER"
-        app:sv_speedometerColor="?attr/colorOutlineVariant"
         app:sv_speedometerMode="TOP"
-        app:sv_indicatorColor="?attr/colorPrimary"
         app:sv_cutPadding="15dp"
-        app:sv_withTremble="false" />
+        app:sv_withTremble="false"
+        app:sv_backgroundCircleColor="?attr/colorSurface"
+        app:sv_indicatorColor="?attr/colorControlNormal"
+        app:sv_speedometerColor="?attr/colorControlNormal"
+        app:sv_textColor="?attr/colorControlNormal"
+        app:sv_speedTextColor="?attr/colorControlNormal"
+        app:sv_unitTextColor="?attr/colorControlNormal"
+        />
 
     <TextView
         android:id="@+id/label"
