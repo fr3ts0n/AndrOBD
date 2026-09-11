@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <GridView
-        android:id="@android:id/list"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dashboardGrid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:choiceMode="none"
         />
 
 </com.fr3ts0n.ecu.gui.androbd.MirrorRelativeLayout>
