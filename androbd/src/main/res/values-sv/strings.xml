@@ -183,4 +183,15 @@
 \n - etc.
 \n
 \n Bekräfta att du utför denna testkontroll på egen risk och endast i en säker testmiljö!</string>
+    <string name="select_ble_device">Välj BLE-adapter</string>
+    <string name="language_selection_description">Välj programspråk</string>
+    <string name="language_system_default">Systemstandard</string>
+    <string name="restart_required">Omstart krävs för att språkändringen ska tillämpas</string>
+    <string name="no_obd_files_found">Inga OBD-filer hittades</string>
+    <string name="open_log_dir">Öppna loggkatalogen</string>
+    <string name="open_log_dir_description">Öppna loggmappen i en filhanterare</string>
+    <string name="log_dir_not_found">Loggkatalogen hittades inte — aktivera loggning och starta sedan om appen</string>
+    <string name="log_dir_no_app">Ingen filhanterare hittades — sökvägen kopierades till urklipp</string>
+    <string name="theme_mode">Tema</string>
+    <string name="theme_mode_description">Följ systemets tema eller tvinga ljust eller mörkt tema</string>
 </resources>
