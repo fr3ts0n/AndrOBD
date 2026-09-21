@@ -183,4 +183,18 @@
     <string name="libraries_sum">Perpustakaan yang digunakan dalam proyek…</string>
     <string name="long_press_dfc_hint">Tekan lama DFC untuk pencarian online…</string>
     <string name="configure">Atur</string>
+    <string name="select_ble_device">Pilih adaptor BLE</string>
+    <string name="no_obd_files_found">Tidak ditemukan berkas OBD</string>
+    <string name="open_log_dir">Buka direktori log</string>
+    <string name="open_log_dir_description">Buka folder log di pengelola file</string>
+    <string name="log_dir_not_found">Direktori log tidak ditemukan — aktifkan pencatatan log dan jalankan ulang aplikasi terlebih dahulu</string>
+    <string name="log_dir_no_app">Tidak ditemukan pengelola file — jalur telah disalin ke papan klip</string>
+    <string name="no_paired_devices">Tidak ditemukan perangkat yang terhubung. Silakan hubungkan perangkat terlebih dahulu di pengaturan Bluetooth.</string>
+    <string name="no_ble_devices_found">Tidak ditemukan perangkat di sekitar.</string>
+    <string name="no_usb_devices_found">Tidak ditemukan perangkat USB.</string>
+    <string name="theme_mode">Tema</string>
+    <string name="theme_mode_description">Ikuti tema sistem, atau paksa tampilan terang atau gelap</string>
+    <string name="language_selection_description">Pilih bahasa aplikasi</string>
+    <string name="language_system_default">Pengaturan default sistem</string>
+    <string name="restart_required">Lakukan restart untuk menerapkan perubahan bahasa</string>
 </resources>
