@@ -516,7 +516,21 @@ public class ElmProt
 		// return command String
 		return cmd;
 	}
-	
+
+	/**
+	 * Send telegram form command queue
+	 */
+	private void sendQueuedTelegram()
+	{
+		if(!cmdStack.isEmpty())
+		{
+			// get last cmd stack element
+			String cmd = cmdStack.pop();
+			// send the telegram
+			sendTelegram(cmd.toCharArray());
+		}
+	}
+
 	/**
 	 * send command to ELM adapter
 	 *
@@ -525,13 +539,13 @@ public class ElmProt
 	 */
 	public void sendCommand(CMD cmdID, int param)
 	{
+		pushCommand(cmdID, param);
 		// now send command
-		String cmd = createCommand(cmdID, param);
-		if (cmd != null) { sendTelegram(cmd.toCharArray()); }
+		sendQueuedTelegram();
 	}
-	
+
 	/**
-	 * queue command to ELM command queue
+	 * queue command to ELM command stack
 	 *
 	 * @param cmdID ID of ELM command
 	 * @param param parameter for ELM command (0 if not required)
@@ -539,7 +553,16 @@ public class ElmProt
 	private void pushCommand(CMD cmdID, int param)
 	{
 		String cmd = createCommand(cmdID, param);
-		if (cmd != null) { cmdQueue.add(cmd); }
+		pushTelegram(cmd);
+	}
+
+	/**
+	 * queue generic telegram buffer to command stack
+	 * @param tgm telegram buffer
+	 */
+	private void pushTelegram(String tgm)
+	{
+		if (tgm != null && !tgm.isEmpty()) { cmdStack.push(tgm); }
 	}
 	
 	@Override
@@ -608,18 +631,17 @@ public class ElmProt
 		// remember to disable headers again
 		pushCommand(CMD.SETHEADER, 0);
 		// request PIDs (from all devices)
-		cmdQueue.add("0100");
+		pushTelegram("0100");
 		// enable headers
-		sendCommand(CMD.SETHEADER, 1);
+		pushCommand(CMD.SETHEADER, 1);
+		// trigger sending of queued telegrams
+		sendQueuedTelegram();
 	}
 	
 	private void initialize()
 	{
 		// set status to INITIALIZING
 		setStatus(STAT.INITIALIZING);
-		
-		// push custom init commands
-		cmdQueue.addAll(customInitCommands);
 		
 		// set to preferred protocol
 		pushCommand(CMD.SETPROT, preferredProtocol.ordinal());
@@ -765,7 +787,7 @@ public class ElmProt
 				// remember this as last received message
 				lastRxMsg = bufferStr;
 				// re-queue last command
-				cmdQueue.add(String.valueOf(lastCommand));
+				pushTelegram(String.valueOf(lastCommand));
 				break;
 
 			case MODEL:
@@ -788,7 +810,7 @@ public class ElmProt
 					case FBERROR:
 						setStatus(STAT.DISCONNECTED);
 						// re-queue last command
-						cmdQueue.add(String.valueOf(lastCommand));
+						pushTelegram(String.valueOf(lastCommand));
 						// queue setting to preferred protocol
 						pushCommand(CMD.SETPROT, preferredProtocol.ordinal());
 						// Initialize adaptive timing
@@ -818,7 +840,7 @@ public class ElmProt
 						// re-queue next data item
 						if (service != OBD_SVC_NONE)
 						{
-							cmdQueue.add(
+							pushTelegram(
 								String.valueOf(
 									createTelegram(emptyBuffer, service, getNextSupportedPid()))
 							);
@@ -845,14 +867,9 @@ public class ElmProt
 						}
 						
 						// queued commands will be sent first
-						if (cmdQueue.size() > 0)
+						if (!cmdStack.isEmpty())
 						{
-							// get last command
-							String cmd = cmdQueue.lastElement();
-							// and remove it from list
-							cmdQueue.remove(cmd);
-							// send the command
-							sendTelegram(cmd.toCharArray());
+							sendQueuedTelegram();
 						}
 						else
 						{
@@ -861,6 +878,8 @@ public class ElmProt
 							{
 								// set status to initialized
 								setStatus(STAT.INITIALIZED);
+								// push custom init commands
+								cmdStack.addAll(customInitCommands);
 								// initiate query of connected ECUs
 								queryEcus();
 								break;

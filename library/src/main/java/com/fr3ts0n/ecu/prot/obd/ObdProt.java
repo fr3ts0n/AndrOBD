@@ -38,6 +38,7 @@ import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Stack;
 import java.util.Vector;
 
 /**
@@ -266,8 +267,8 @@ public class ObdProt extends ProtoHeader
     public static PvList tCodes = new PvList();
     /** list of known fault codes */
     private static final EcuCodeList knownCodes = EcuConversions.codeList;
-    /** queue of ELM commands to be sent */
-    static final Vector<String> cmdQueue = new Vector<String>();
+    /** stack of ELM commands to be sent */
+    static final Stack<String> cmdStack = new Stack<String>();
     /** freeze frame ID to request */
     private int freezeFrame_Id = 0;
     /** perform reset on NRC reception */
@@ -475,7 +476,7 @@ public class ObdProt extends ProtoHeader
         if ((bitmask & 1) != 0)
         {
             // request next block
-            cmdQueue.add(String.format("%02X%02X", obdService, start + 0x20));
+            cmdStack.add(String.format("%02X%02X", obdService, start + 0x20));
         }
         else
         {
@@ -815,7 +816,7 @@ public class ObdProt extends ProtoHeader
         // switch off any active service
         setService(OBD_SVC_NONE, true);
         // clear command queue
-        cmdQueue.clear();
+        cmdStack.clear();
         // clear supported PIDs
         pidSupported.clear();
         // reset fixed PIDs
@@ -895,9 +896,9 @@ public class ObdProt extends ProtoHeader
             case OBD_SVC_PERMACODES:
                 numCodes = 0;
                 // Queue requests for reading all trouble codes
-                cmdQueue.add(String.format("%02X", OBD_SVC_READ_CODES, 0));
-                cmdQueue.add(String.format("%02X", OBD_SVC_PENDINGCODES, 0));
-                cmdQueue.add(String.format("%02X", OBD_SVC_PERMACODES, 0));
+                cmdStack.add(String.format("%02X", OBD_SVC_READ_CODES));
+                cmdStack.add(String.format("%02X", OBD_SVC_PENDINGCODES));
+                cmdStack.add(String.format("%02X", OBD_SVC_PERMACODES));
                 // read PID number of codes ...
                 writeTelegram(emptyBuffer, OBD_SVC_DATA, 1);
                 break;
