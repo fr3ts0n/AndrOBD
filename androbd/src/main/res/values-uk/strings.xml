@@ -167,4 +167,7 @@
     <string name="language_selection_description">Вибір мови застосунку</string>
     <string name="language_system_default">Мова системи</string>
     <string name="restart_required">Для застосування змін мови потрібен перезапуск</string>
+    <string name="no_paired_devices">Не знайдено сполучених пристроїв. Спочатку сполучіть пристрій у налаштуваннях Bluetooth.</string>
+    <string name="no_ble_devices_found">Пристроїв поблизу не знайдено.</string>
+    <string name="no_usb_devices_found">USB-пристроїв не виявлено.</string>
 </resources>
