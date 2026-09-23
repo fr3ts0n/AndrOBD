@@ -527,28 +527,11 @@ public class MainActivity extends PluginManager
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        // Apply locale before anything else
-        SettingsActivity.applyLocale(this);
-
-        // for compatibility with newer SDK builds
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            getOnBackInvokedDispatcher().registerOnBackInvokedCallback(PRIORITY_DEFAULT, new OnBackInvokedCallback() {
-                @Override
-                public void onBackInvoked() {
-                    onBackPressed();
-                }
-            });
-        }
-        requestWindowFeature(Window.FEATURE_PROGRESS);
-
-        // get preferences
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        applyThemeMode(false);
-
         // instantiate superclass
         super.onCreate(savedInstanceState);
 
-        dlgBuilder = new AlertDialog.Builder(this);
+        // Apply locale before anything else
+        SettingsActivity.applyLocale(this);
 
         // get preferences
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -561,6 +544,21 @@ public class MainActivity extends PluginManager
         {
             getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         }
+
+        // for compatibility with newer SDK builds
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            getOnBackInvokedDispatcher().registerOnBackInvokedCallback(PRIORITY_DEFAULT, new OnBackInvokedCallback() {
+                @Override
+                public void onBackInvoked() {
+                    onBackPressed();
+                }
+            });
+        }
+        requestWindowFeature(Window.FEATURE_PROGRESS);
+
+        applyThemeMode(false);
+
+        dlgBuilder = new AlertDialog.Builder(this);
 
         // Set up all data adapters
         mPidAdapter = new ObdItemAdapter(this, R.layout.obd_item, ObdProt.PidPvs);
