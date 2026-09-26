@@ -1,0 +1,9 @@
+V3.02 - Updates
+
+* General bug fixes and stability improvements
+* Improved Bluetooth communication reliability
+* Fixed screen rotation wake lock handling in Chart and Dashboard views
+* Improved chart rendering for sensors with no changing values
+* Fixed logging behavior when logging is disabled
+* Added clearer settings descriptions for logging level and ECU selector options
+* Updated translations and build/configuration files
