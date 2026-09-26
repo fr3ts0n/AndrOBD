@@ -864,13 +864,14 @@ public class MainActivity extends PluginManager
         {
             if (CommService.elm.getService() != ObdProt.OBD_SVC_NONE)
             {
+                // revert to start view
+                setObdService(ObdProt.OBD_SVC_NONE, null);
+                // If we return from NON list view (i.e. FILTERED)
                 if (dataViewMode != DATA_VIEW_MODE.LIST)
                 {
+                    // revert to list view
                     setDataViewMode(DATA_VIEW_MODE.LIST);
-                    checkToRestoreLastDataSelection();
-                } else
-                {
-                    setObdService(ObdProt.OBD_SVC_NONE, null);
+                    setObdService(ObdProt.OBD_SVC_DATA, null);
                 }
             } else
             {
