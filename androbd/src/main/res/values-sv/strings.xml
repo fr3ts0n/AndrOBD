@@ -194,4 +194,7 @@
     <string name="log_dir_no_app">Ingen filhanterare hittades — sökvägen kopierades till urklipp</string>
     <string name="theme_mode">Tema</string>
     <string name="theme_mode_description">Följ systemets tema eller tvinga ljust eller mörkt tema</string>
+    <string name="no_paired_devices">Inga ihopparade enheter hittades. Para ihop en enhet i Bluetooth-inställningar först.</string>
+    <string name="no_ble_devices_found">Inga enheter hittades i närheten.</string>
+    <string name="no_usb_devices_found">Inga USB-enheter hittades.</string>
 </resources>
