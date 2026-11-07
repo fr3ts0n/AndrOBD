@@ -184,5 +184,12 @@
     <string name="language_system_default">Systemsprache</string>
     <string name="restart_required">Neustart zur Anwendung</string>
     <string name="no_obd_files_found">Keine OBD-Dateien gefunden</string>
-    <string name="language_english"></string>
+    <string name="language_english"/>
+    <string name="open_log_dir">Protokollverzeichnis öffnen</string>
+    <string name="open_log_dir_description">Protokollordner in einem Dateimanager öffnen</string>
+    <string name="log_dir_no_app">Kein Dateimanager gefunden – Pfad in die Zwischenablage kopiert</string>
+    <string name="log_dir_not_found">Protokollverzeichnis nicht gefunden – zuerst Protokollierung aktivieren und die App neu starten</string>
+    <string name="no_paired_devices">Keine gekoppelten Geräte gefunden. Zuerst ein Gerät in den Bluetooth-Einstellungen koppeln.</string>
+    <string name="no_ble_devices_found">Keine Geräte in der Nähe gefunden.</string>
+    <string name="no_usb_devices_found">Keine USB-Geräte gefunden.</string>
 </resources>
